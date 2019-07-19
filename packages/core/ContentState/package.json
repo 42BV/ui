@@ -38,5 +38,7 @@
     "ts-jest": "24.0.2",
     "typescript": "3.5.3"
   },
-  "gitHead": "5950002c4a9ff7d458aa4c378a57c5e2a93a1cdb"
+  "publishConfig": {
+    "access": "public"
+  }
 }
