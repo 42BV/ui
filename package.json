@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "test": "lerna bootstrap && lerna run build && lerna run test",
+    "bootstrap": "lerna bootstrap",
+    "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}
