@@ -6,13 +6,57 @@ import { uniqueId } from 'lodash';
 export type Size = 'xs' | 'sm' | 'md' | 'lg';
 
 interface Props {
+  /**
+   * Image URL to show as avatar.
+   *
+   * @type {string}
+   * @memberof Props
+   */
   src: string;
+
+  /**
+   * Element underneath the image.
+   *
+   * @type {React.ReactNode}
+   * @memberof Props
+   */
   children?: ReactNode;
-  alt: string; // If an alt is added a tooltip will be shown
+
+  /**
+   * Text that will be shown upon hovering over the image.
+   *
+   * @type {string}
+   * @memberof Props
+   */
+  alt: string;
+
+  /**
+   * Optional size, where medium ('md') is the default size.
+   *
+   * @type {string}
+   * @memberof Props
+   */
   size?: Size; // Size is optional because the default is medium size
-  className?: string; // Optional classes
+
+  /**
+   * Optional extra CSS class you want to add to the component.
+   * Useful for styling the component.
+   *
+   * @type {string}
+   * @memberof Props
+   */
+  className?: string;
 }
 
+/**
+ * Avatar is a component which shows a circular image with any element underneath.
+ *
+ * Use it for instance for showing the profile image of logged-in user.
+ *
+ * @export
+ * @param {Props} props
+ * @returns
+ */
 export default function Avatar({ size, className, alt, src, children }: Props) {
   const sizeClass = size ? `avatar-${size}` : null;
   const classes = classNames('avatar', sizeClass, className);
