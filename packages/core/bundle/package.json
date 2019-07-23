@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "private": false,
   "scripts": {
@@ -14,7 +14,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@42.nl/ui-core-content-state": "^0.0.1"
+    "@42.nl/ui-core-content-state": "^0.0.2"
   },
   "description": "React components as used in 42.nl products",
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-content-state",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "lib/ContentState.js",
   "private": false,
