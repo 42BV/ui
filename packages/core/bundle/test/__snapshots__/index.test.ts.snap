@@ -7,5 +7,6 @@ Object {
   "FlashMessage": [Function],
   "Icon": [Function],
   "InfoBadge": [Function],
+  "Spinner": [Function],
 }
 `;

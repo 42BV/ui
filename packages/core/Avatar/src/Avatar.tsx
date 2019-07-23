@@ -51,7 +51,7 @@ interface Props {
 /**
  * Avatar is a component which shows a circular image with any element underneath.
  *
- * Use it for instance for showing the profile image of logged-in user.
+ * Use it for instance for showing the profile image of a logged-in user.
  *
  * @export Avatar
  * @param {Props} props
