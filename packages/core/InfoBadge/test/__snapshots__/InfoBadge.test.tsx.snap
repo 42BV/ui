@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: InfoBadge ui: Component: InfoBadge => ui 1`] = `
+<span
+  className="info-badge-container"
+>
+  <h1>
+    Children
+  </h1>
+  <Badge
+    color="primary"
+    pill={true}
+    tag="span"
+  >
+    5
+  </Badge>
+</span>
+`;

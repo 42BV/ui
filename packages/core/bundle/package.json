@@ -3,31 +3,25 @@
   "version": "0.0.2",
   "main": "lib/index.js",
   "private": false,
+  "license": "ISC",
   "scripts": {
     "test": "jest --config=jest.config.js",
     "build": "tsc",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
-    "clean": "rm -rf node_modules && rm -rf lib"
+    "clean": "rm -rf lib"
   },
+  "description": "React components as used in 42.nl products",
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@42.nl/ui-core-content-state": "^0.0.2"
-  },
-  "description": "React components as used in 42.nl products",
-  "devDependencies": {
-    "@types/classnames": "2.2.9",
-    "@types/enzyme": "3.10.3",
-    "@types/jest": "24.0.15",
-    "@types/react": "16.8.23",
-    "classnames": "2.2.6",
-    "enzyme": "3.10.0",
-    "jest": "24.8.0",
-    "react": "16.8.6",
-    "ts-jest": "24.0.2",
-    "typescript": "3.5.3"
+    "@42.nl/ui-core-content-state": "0.0.2",
+    "@42.nl/ui-core-avatar": "0.0.1",
+    "@42.nl/ui-core-infobadge": "0.0.1",
+    "@42.nl/ui-core-icon": "0.0.1",
+    "reactstrap": "8.0.1",
+    "material-design-icons": "3.0.1"
   },
   "publishConfig": {
     "access": "public"

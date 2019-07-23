@@ -4,46 +4,31 @@
   "description": "",
   "main": "lib/Avatar.js",
   "private": false,
-  "dependencies": {
-    "classnames": "2.2.6",
-    "lodash.uniqueid": "4.0.1"
-  },
   "scripts": {
     "test": "jest --config=jest.config.js",
     "build": "tsc",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
-    "clean": "rm -rf node_modules && rm -rf lib"
+    "clean": "rm -rf lib"
   },
   "files": [
     "lib/*"
   ],
+  "dependencies": {
+    "classnames": "2.2.6",
+    "lodash.uniqueid": "4.0.1"
+  },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "material-design-icons": "^3.0.1",
     "reactstrap": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/lodash.uniqueid": "4.0.6",
+    "reactstrap": "8.0.1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/classnames": "2.2.9",
-    "@types/enzyme": "3.10.3",
-    "@types/jest": "24.0.15",
-    "@types/react": "16.8.23",
-    "@types/lodash.uniqueid": "4.0.6",
-    "classnames": "2.2.6",
-    "enzyme": "3.10.0",
-    "enzyme-adapter-react-16": "1.14.0",
-    "enzyme-to-json": "3.3.5",
-    "jest": "24.8.0",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "ts-jest": "24.0.2",
-    "reactstrap": "8.0.1",
-    "material-design-icons": "3.0.1",
-    "typescript": "3.5.3"
-  },
   "publishConfig": {
     "access": "public"
   }

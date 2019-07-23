@@ -2,6 +2,9 @@
 
 exports[`core should contain exports 1`] = `
 Object {
+  "Avatar": [Function],
   "ContentState": [Function],
+  "Icon": [Function],
+  "InfoBadge": [Function],
 }
 `;

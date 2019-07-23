@@ -1,29 +1,32 @@
 {
-  "name": "@42.nl/ui-core-content-state",
-  "version": "0.0.2",
+  "name": "@42.nl/ui-core-icon",
+  "version": "0.0.1",
   "description": "",
-  "main": "lib/ContentState.js",
+  "main": "lib/Icon.js",
   "private": false,
   "scripts": {
     "test": "jest --config=jest.config.js",
     "build": "tsc",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
-    "clean": "rm -rf node_modules && rm -rf lib"
+    "clean": "rm -rf lib"
   },
   "files": [
     "lib/*"
   ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "classnames": "2.2.6"
   },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
-    "material-design-icons": "^3.0.1"
+    "reactstrap": "^8.0.1"
   },
+  "devDependencies": {
+    "reactstrap": "8.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "publishConfig": {
     "access": "public"
   }
