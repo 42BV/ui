@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: FlashMessage empty messages array: Component: FlashMessage => empty messages array 1`] = `""`;
+
+exports[`Component: FlashMessage message types: Component: FlashMessage => message types 1`] = `
+<div
+  className="flash-messages"
+>
+  <Alert
+    closeAriaLabel="Close"
+    color="info"
+    fade={true}
+    isOpen={true}
+    key="2"
+    open={true}
+    tag="div"
+    toggle={[Function]}
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    text
+  </Alert>
+  <Alert
+    closeAriaLabel="Close"
+    color="success"
+    fade={true}
+    isOpen={true}
+    key="3"
+    open={true}
+    tag="div"
+    toggle={[Function]}
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    text
+  </Alert>
+  <Alert
+    closeAriaLabel="Close"
+    color="warning"
+    fade={true}
+    isOpen={true}
+    key="4"
+    open={true}
+    tag="div"
+    toggle={[Function]}
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    text
+  </Alert>
+  <Alert
+    closeAriaLabel="Close"
+    color="danger"
+    fade={true}
+    isOpen={true}
+    key="5"
+    open={true}
+    tag="div"
+    toggle={[Function]}
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    text
+  </Alert>
+  <Alert
+    closeAriaLabel="Close"
+    color="danger"
+    fade={true}
+    isOpen={true}
+    key="6"
+    open={true}
+    tag="div"
+    toggle={[Function]}
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    text
+  </Alert>
+</div>
+`;
+
+exports[`Component: FlashMessage ui: Component: FlashMessage => ui 1`] = `
+<div
+  className="flash-messages"
+>
+  <Alert
+    closeAriaLabel="Close"
+    color="info"
+    fade={true}
+    isOpen={true}
+    key="1"
+    open={true}
+    tag="div"
+    toggle={[Function]}
+    transition={
+      Object {
+        "appear": true,
+        "baseClass": "fade",
+        "baseClassActive": "show",
+        "enter": true,
+        "exit": true,
+        "in": true,
+        "mountOnEnter": false,
+        "onEnter": [Function],
+        "onEntered": [Function],
+        "onEntering": [Function],
+        "onExit": [Function],
+        "onExited": [Function],
+        "onExiting": [Function],
+        "tag": "div",
+        "timeout": 150,
+        "unmountOnExit": true,
+      }
+    }
+  >
+    Epic info
+  </Alert>
+</div>
+`;
