@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { UncontrolledTooltip } from 'reactstrap';
 import classNames from 'classnames';
-import { uniqueId } from 'lodash';
+import uniqueId from 'lodash.uniqueid';
 
 export type Size = 'xs' | 'sm' | 'md' | 'lg';
 
