@@ -21,6 +21,7 @@
     "@42.nl/ui-core-icon": "0.0.1",
     "@42.nl/ui-core-infobadge": "0.0.1",
     "@42.nl/ui-core-flash-message": "0.0.1",
+    "@42.nl/ui-core-spinner": "0.0.1",
     "@42.nl/react-flash-messages": "0.0.2",
     "material-design-icons": "3.0.1",
     "reactstrap": "8.0.1"

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Spinner ui: Component: Spinner => ui 1`] = `
+<svg
+  className="spinner"
+  height={42}
+  viewBox="25 25 50 50"
+  width={42}
+>
+  <circle
+    className="path"
+    cx="50"
+    cy="50"
+    fill="none"
+    r="20"
+    stroke="white"
+    strokeMiterlimit="10"
+    strokeWidth="4"
+  />
+</svg>
+`;
