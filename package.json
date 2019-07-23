@@ -6,7 +6,8 @@
     "test": "lerna run --parallel test",
     "test-all": "yarn bootstrap && yarn build && yarn test",
     "bootstrap": "lerna bootstrap",
-    "lint": "eslint . --cache --ext js,jsx,ts,tsx --max-warnings=0"
+    "lint": "eslint . --cache --ext js,jsx,ts,tsx --max-warnings=0",
+    "postinstall": "yarn bootstrap && yarn build"
   },
   "devDependencies": {
     "@types/classnames": "2.2.9",
