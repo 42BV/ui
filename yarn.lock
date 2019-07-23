@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@42.nl/react-flash-messages@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@42.nl/react-flash-messages/-/react-flash-messages-0.0.2.tgz#edcedd45f4fdb363fa57319749c18b860379dadb"
+  integrity sha512-y/rR7BIpTg7ckIX5zhIzbG5ChexKGoZfjrXDYgWGJSj0um2p3/sQep4FzA7VOKKLMm3hGRinZzBdCMGds5BYag==
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.5.5.tgz#bc0782f6d69f7b7d49531219699b988f669a8f9d"
