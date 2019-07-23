@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: MoreOrLess ui closed: Component: MoreOrLess => ui => closed 1`] = `
+<div
+  className="more-or-less more-or-less-closed"
+>
+  <h1
+    key="1"
+  >
+    1
+  </h1>
+  <h1
+    key="2"
+  >
+    2
+  </h1>
+  <h1
+    key="3"
+  >
+    3
+  </h1>
+  <div
+    className="more-or-less-link"
+    onClick={[Function]}
+    role="button"
+  >
+    Show 3 more
+  </div>
+</div>
+`;
+
+exports[`Component: MoreOrLess ui open: Component: MoreOrLess => ui => open 1`] = `
+<div
+  className="more-or-less more-or-less-opened"
+>
+  <h1
+    key="1"
+  >
+    1
+  </h1>
+  <h1
+    key="2"
+  >
+    2
+  </h1>
+  <h1
+    key="3"
+  >
+    3
+  </h1>
+  <h1
+    key="4"
+  >
+    4
+  </h1>
+  <h1
+    key="5"
+  >
+    5
+  </h1>
+  <h1
+    key="6"
+  >
+    6
+  </h1>
+  <div
+    className="more-or-less-link"
+    onClick={[Function]}
+    role="button"
+  >
+    Show less
+  </div>
+</div>
+`;
+
+exports[`Component: MoreOrLess ui to few items: Component: MoreOrLess => ui => to few items 1`] = `
+<div
+  className="more-or-less more-or-less-closed"
+>
+  <h1
+    key="1"
+  >
+    1
+  </h1>
+  <h1
+    key="2"
+  >
+    2
+  </h1>
+  <h1
+    key="3"
+  >
+    3
+  </h1>
+</div>
+`;
