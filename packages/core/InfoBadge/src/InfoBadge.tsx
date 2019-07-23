@@ -37,11 +37,11 @@ interface Props {
  * Use it when you want to show a notification / message count above
  * an element.
  *
- * @export
+ * @exports InfoBadge
  * @param {Props} props
- * @returns
+ * @returns {JSX.Element}
  */
-export default function InfoBadge(props: Props) {
+export default function InfoBadge(props: Props): JSX.Element {
   const { color, value, children, className } = props;
   return (
     <span className={classNames('info-badge-container', className)}>

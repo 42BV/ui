@@ -53,11 +53,17 @@ interface Props {
  *
  * Use it for instance for showing the profile image of logged-in user.
  *
- * @export
+ * @export Avatar
  * @param {Props} props
- * @returns
+ * @returns {JSX.Element}
  */
-export default function Avatar({ size, className, alt, src, children }: Props) {
+export default function Avatar({
+  size,
+  className,
+  alt,
+  src,
+  children
+}: Props): JSX.Element {
   const sizeClass = size ? `avatar-${size}` : null;
   const classes = classNames('avatar', sizeClass, className);
   const tooltip = uniqueId('tooltip');
