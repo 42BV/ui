@@ -12,6 +12,12 @@
     <a href="https://lerna.js.org/">
         <img alt="Lerna" src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" />
     </a>
+    <a href="https://travis-ci.org/42BV/ui/">
+      <img alt="Build status" src="https://travis-ci.org/42BV/ui.svg?branch=master" />
+    </a>
+    <a href="https://codecov.io/gh/42BV/ui">
+      <img alt="Coverage" src="https://codecov.io/gh/42BV/ui/branch/master/graph/badge.svg" />
+    </a>
 </p>
 
 ---
@@ -66,7 +72,7 @@ For example developing a new component:
 First follow the build instructions above. Then to run both the linters and tests, use:
 
 ```bash
-yarn test-all
+yarn test
 ```
 
 Or to run them seperately, use:
@@ -76,5 +82,5 @@ yarn lint
 ```
 
 ```bash
-yarn test
+yarn test-only
 ```

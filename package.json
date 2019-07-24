@@ -2,12 +2,10 @@
   "private": true,
   "scripts": {
     "clean": "lerna run --parallel clean && lerna clean",
-    "build": "lerna run build",
-    "test": "lerna run --parallel test",
-    "test-all": "yarn bootstrap && yarn build && yarn test",
-    "bootstrap": "lerna bootstrap",
+    "test-only": "jest",
+    "test": "yarn lint && yarn test-only",
     "lint": "eslint . --cache --ext js,jsx,ts,tsx --max-warnings=0",
-    "postinstall": "yarn bootstrap && yarn build"
+    "build": "lerna bootstrap && lerna run build"
   },
   "devDependencies": {
     "@types/classnames": "2.2.9",
@@ -32,11 +30,18 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "ts-jest": "24.0.2",
-    "typescript": "3.5.3"
+    "typescript": "3.5.3",
+    "lerna": "3.15.0"
   },
   "workspaces": {
     "packages": [
       "packages/**/*"
+    ]
+  },
+  "jest": {
+    "collectCoverage": true,
+    "projects": [
+      "<rootDir>/packages/core/*"
     ]
   }
 }
