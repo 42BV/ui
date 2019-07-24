@@ -8,6 +8,7 @@ Object {
   "Icon": [Function],
   "InfoBadge": [Function],
   "MoreOrLess": [Function],
+  "NavigationItem": [Function],
   "Spinner": [Function],
 }
 `;

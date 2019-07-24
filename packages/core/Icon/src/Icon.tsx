@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { IconType } from './types';
+import IconType from './types';
 
 interface Props {
   /**
@@ -52,8 +52,7 @@ interface Props {
  * @param {Props} props
  * @returns
  */
-export default function Icon(props: Props) {
-  const { className, onClick, icon, id, color } = props;
+export default function Icon({ className, onClick, icon, id, color }: Props) {
   const colorCssClass = color !== undefined ? `text-${color}` : undefined;
   const classes = classNames(className, 'material-icons', colorCssClass, {
     clickable: onClick
