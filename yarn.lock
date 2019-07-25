@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@42.nl/authentication@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@42.nl/authentication/-/authentication-0.0.1.tgz#641e83c412ac30a45672503205dae38352091d63"
-  integrity sha512-xDBscFafn7A4DNxKTXiDEjhJQdQQeoajSNoU0DWxMrN/3DpxGwsy1C9EqpnxwJ91Q7Nl5NYnPRKSGq9VZnMtMg==
-  dependencies:
-    node-fetch "2.3.0"
-
 "@42.nl/react-flash-messages@0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@42.nl/react-flash-messages/-/react-flash-messages-0.0.2.tgz#edcedd45f4fdb363fa57319749c18b860379dadb"
@@ -5197,11 +5190,6 @@ node-fetch-npm@^2.0.2:
     json-parse-better-errors "^1.0.0"
     safe-buffer "^5.1.1"
 
-node-fetch@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
-  integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==
-
 node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
@@ -6114,16 +6102,6 @@ react-transition-group@^2.3.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react@16.8.0:
-  version "16.8.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.8.0.tgz#8533f0e4af818f448a276eae71681d09e8dd970a"
-  integrity sha512-g+nikW2D48kqgWSPwNo0NH9tIGG3DsQFlrtrQ1kj6W77z5ahyIHG0w8kPpz4Sdj6gyLnz0lEd/xsjOoGge2MYQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.13.0"
-
 react@16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
@@ -6540,7 +6518,7 @@ sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
 
-scheduler@^0.13.0, scheduler@^0.13.6:
+scheduler@^0.13.6:
   version "0.13.6"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.6.tgz#466a4ec332467b31a91b9bf74e5347072e4cd889"
   integrity sha512-IWnObHt413ucAYKsD9J1QShUKkbKLQQHdxRyw73sw4FN26iWr3DY/H34xGPe4nmL1DwXyWmSWmMrA9TfQbE/XQ==
