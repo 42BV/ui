@@ -11,9 +11,6 @@ interface Props {
   /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
-   *
-   * @type {string}
-   * @memberof Props
    */
   className?: string;
 }
@@ -22,11 +19,8 @@ interface Props {
  * FlashMessage is a graphical implementation for @see {@link https://github.com/42BV/react-flash-messages}.
  *
  * Use it when you want to globally show a notification / message.
- *
- * @exports FlashMessage
- * @returns {JSX.Element}
  */
-export default function FlashMessage({ className }: Props): JSX.Element {
+export default function FlashMessage({ className }: Props) {
   const flashMessages = useFlashMessages();
 
   if (flashMessages.length === 0) {

@@ -3,59 +3,38 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 import { NavItem, NavLink } from 'reactstrap';
 
 import { Icon, IconType } from '@42.nl/ui-core-icon';
-import { useCurrentUser } from '@42.nl/authentication';
 
 interface Props {
   /**
    * String that corresponds to a route.
-   *
-   * @type {string}
-   * @memberof Props
    */
   to: string;
 
   /**
    * Determines which icon to render above the text.
-   *
-   * @type {IconType}
-   * @memberof Props
    */
   icon: IconType;
 
   /**
    * Link text as rendered underneath icon.
-   *
-   * @type {string}
-   * @memberof Props
    */
   text?: string;
 
   /**
-   * Guard that that prevents display by user role.
-   *
-   * @type {string}
-   * @memberof Props
+   * Predicate to determine if the link will be shown.
    */
-  requiresRole?: string;
+  show?: (() => boolean) | boolean;
 }
 
 /**
+ * The NavigationItem enables you to guard specific links by a predicate, for example by user role.
  *
- *
- * @export NavigationItem
- * @param {Props} props
- * @returns {JSX.Element}
+ * Use it when you want to keep certain navigation items hidden for specific user roles.
  */
-export default function NavigationItem({
-  requiresRole,
-  to,
-  icon,
-  text
-}: Props): JSX.Element {
-  const currentUser = useCurrentUser<any>();
-  const userRoles = currentUser.roles;
+export default function NavigationItem({ to, icon, text, show = true }: Props) {
+  const shouldShow = typeof show === 'function' ? show : () => show;
 
-  if (requiresRole !== undefined && !userRoles.includes(requiresRole)) {
+  if (!shouldShow()) {
     return null;
   }
 

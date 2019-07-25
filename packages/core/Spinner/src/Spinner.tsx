@@ -5,9 +5,6 @@ interface Props {
   /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
-   *
-   * @type {string}
-   * @memberof Props
    */
   className?: string;
 
@@ -32,16 +29,8 @@ interface Props {
  * Spinner is a component which is used as a loading indicator.
  *
  * Use it for example when data is fetching during navigation to a page.
- *
- * @exports Spinner
- * @param {Props} props
- * @returns {JSX.Element}
  */
-export default function Spinner({
-  className,
-  color,
-  size
-}: Props): JSX.Element {
+export default function Spinner({ className, color, size }: Props) {
   return (
     <svg
       className={classNames('spinner', className)}
