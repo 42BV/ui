@@ -3,7 +3,15 @@ node_js: '12'
 sudo: false
 before_install:
   - npm install -g yarn # https://github.com/yarnpkg/yarn/issues/2428
+script:
   - yarn build
+  - yarn run lint
+  - yarn run test-only -- --coverage --outputFile test-results.json --json
+  - npx danger ci
+  - rm -f test-results.json
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - node_modules
