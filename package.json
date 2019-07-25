@@ -16,6 +16,7 @@
     "@types/reactstrap": "8.0.1",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
+    "@testing-library/react-hooks": "1.1.0",
     "classnames": "2.2.6",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",

@@ -1,0 +1,34 @@
+{
+  "name": "@42.nl/ui-core-pagination",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/Pagination.js",
+  "private": false,
+  "scripts": {
+    "test": "jest --config=jest.config.js",
+    "build": "tsc",
+    "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
+    "clean": "rm -rf lib"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "dependencies": {
+    "mad-spring-connect": "3.1.1",
+    "classnames": "2.2.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "reactstrap": "^8.0.1"
+  },
+  "devDependencies": {
+    "reactstrap": "8.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  }
+}

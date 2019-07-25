@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Button ui button normal inProgress is false 1`] = `
+<span
+  className="Button  primary"
+>
+  <Button
+    color="primary"
+    disabled={false}
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+     
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button normal inProgress is true 1`] = `
+<span
+  className="Button  primary"
+>
+  <Button
+    color="primary"
+    disabled={true}
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Spinner
+      color="white"
+      size={16}
+    />
+     
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button outline inProgress is false 1`] = `
+<span
+  className="Button  primary"
+>
+  <Button
+    color="primary"
+    disabled={false}
+    onClick={[Function]}
+    outline={true}
+    size="md"
+    tag="button"
+    type="button"
+  >
+     
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button outline inProgress is true 1`] = `
+<span
+  className="Button  primary"
+>
+  <Button
+    color="primary"
+    disabled={true}
+    onClick={[Function]}
+    outline={true}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Spinner
+      color=""
+      size={16}
+    />
+     
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button with icon normal inProgress is false 1`] = `
+<span
+  className="Button  primary"
+>
+  <Button
+    color="primary"
+    disabled={false}
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Icon
+      icon="save"
+    />
+     
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
+<span
+  className="Button  primary"
+>
+  <Button
+    color="primary"
+    disabled={true}
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Spinner
+      color="white"
+      size={16}
+    />
+     
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button with icon outline inProgress is false 1`] = `
+<span
+  className="Button  primary"
+>
+  <Button
+    color="primary"
+    disabled={false}
+    onClick={[Function]}
+    outline={true}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Icon
+      icon="save"
+    />
+     
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button with icon outline inProgress is true 1`] = `
+<span
+  className="Button  primary"
+>
+  <Button
+    color="primary"
+    disabled={true}
+    onClick={[Function]}
+    outline={true}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Spinner
+      color=""
+      size={16}
+    />
+     
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui icon inProgress is false 1`] = `
+<span
+  className="Button  primary"
+>
+  <Icon
+    color="primary"
+    icon="save"
+    onClick={[Function]}
+  />
+</span>
+`;
+
+exports[`Component: Button ui icon inProgress is true 1`] = `
+<span
+  className="Button  primary"
+>
+  <Spinner
+    color=""
+    size={24}
+  />
+</span>
+`;

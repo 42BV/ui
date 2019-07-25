@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: SubmitButton ui with all optional params: Component: SubmitButton => ui => with all optional params 1`] = `
+<Button
+  className="float-right extra-css-class"
+  color="primary"
+  inProgress={true}
+  onClick={[MockFunction]}
+  size="lg"
+  type="submit"
+>
+  <Icon
+    icon="save"
+  />
+   
+  Submit
+</Button>
+`;
+
+exports[`Component: SubmitButton ui with all required props: Component: SubmitButton => ui => with all required props 1`] = `
+<Button
+  className="float-right "
+  color="primary"
+  inProgress={true}
+  onClick={[MockFunction]}
+  type="submit"
+>
+  <Icon
+    icon="save"
+  />
+   
+  Submit
+</Button>
+`;

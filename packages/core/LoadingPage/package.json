@@ -1,0 +1,35 @@
+{
+  "name": "@42.nl/ui-core-loading-page",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/LoadingPage.js",
+  "private": false,
+  "scripts": {
+    "test": "jest --config=jest.config.js",
+    "build": "tsc",
+    "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
+    "clean": "rm -rf lib"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "dependencies": {
+    "@42.nl/ui-core-spinner": "0.0.1",
+    "classnames": "2.2.6"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "reactstrap": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/react-dom": "16.8.5",
+    "reactstrap": "8.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  }
+}

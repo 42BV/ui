@@ -1,0 +1,412 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: ConfirmButton ui button and icon: Component: ConfirmButton => ui => button and icon 1`] = `
+<div
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <Button
+    color="danger"
+    icon="delete"
+    inProgress={false}
+    onClick={[Function]}
+  >
+    Delete user
+  </Button>
+  <Modal
+    autoFocus={true}
+    backdrop={true}
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    fade={true}
+    isOpen={false}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      Confirmation
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    </ModalBody>
+    <ModalFooter
+      tag="div"
+    >
+      <Button
+        color="secondary"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        color="primary"
+        onClick={[Function]}
+      >
+        OK
+      </Button>
+    </ModalFooter>
+  </Modal>
+</div>
+`;
+
+exports[`Component: ConfirmButton ui custom class, color and texts: Component: ConfirmButton => ui => custom color and texts 1`] = `
+<div
+  className="bigger-better-and-uncut"
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <Button
+    color="info"
+    icon="delete"
+    inProgress={false}
+    onClick={[Function]}
+  >
+    Delete user
+  </Button>
+  <Modal
+    autoFocus={true}
+    backdrop={true}
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    fade={true}
+    isOpen={false}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      PLEASE SAY YES
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    </ModalBody>
+    <ModalFooter
+      tag="div"
+    >
+      <Button
+        color="secondary"
+        onClick={[Function]}
+      >
+        NO
+      </Button>
+      <Button
+        color="primary"
+        onClick={[Function]}
+      >
+        YES
+      </Button>
+    </ModalFooter>
+  </Modal>
+</div>
+`;
+
+exports[`Component: ConfirmButton ui only button: Component: ConfirmButton => ui => only button 1`] = `
+<div
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <Button
+    color="danger"
+    inProgress={false}
+    onClick={[Function]}
+  >
+    Delete user
+  </Button>
+  <Modal
+    autoFocus={true}
+    backdrop={true}
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    fade={true}
+    isOpen={false}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      Confirmation
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    </ModalBody>
+    <ModalFooter
+      tag="div"
+    >
+      <Button
+        color="secondary"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        color="primary"
+        onClick={[Function]}
+      >
+        OK
+      </Button>
+    </ModalFooter>
+  </Modal>
+</div>
+`;
+
+exports[`Component: ConfirmButton ui only icon in progress: Component: ConfirmButton => ui => only icon in progress 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline",
+    }
+  }
+>
+  <Button
+    color="danger"
+    icon="delete"
+    inProgress={true}
+    onClick={[Function]}
+  />
+  <Modal
+    autoFocus={true}
+    backdrop={true}
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    fade={true}
+    isOpen={false}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      Confirmation
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    </ModalBody>
+    <ModalFooter
+      tag="div"
+    >
+      <Button
+        color="secondary"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        color="primary"
+        onClick={[Function]}
+      >
+        OK
+      </Button>
+    </ModalFooter>
+  </Modal>
+</div>
+`;
+
+exports[`Component: ConfirmButton ui only icon: Component: ConfirmButton => ui => only icon 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline",
+    }
+  }
+>
+  <Button
+    color="danger"
+    icon="delete"
+    inProgress={false}
+    onClick={[Function]}
+  />
+  <Modal
+    autoFocus={true}
+    backdrop={true}
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
+    }
+    centered={false}
+    fade={true}
+    isOpen={false}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    returnFocusAfterClose={true}
+    role="dialog"
+    scrollable={false}
+    toggle={[Function]}
+    unmountOnClose={true}
+    zIndex={1050}
+  >
+    <ModalHeader
+      charCode={215}
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      Confirmation
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    </ModalBody>
+    <ModalFooter
+      tag="div"
+    >
+      <Button
+        color="secondary"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        color="primary"
+        onClick={[Function]}
+      >
+        OK
+      </Button>
+    </ModalFooter>
+  </Modal>
+</div>
+`;

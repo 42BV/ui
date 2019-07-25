@@ -24,6 +24,12 @@
     "@42.nl/ui-core-spinner": "0.0.1",
     "@42.nl/ui-core-more-or-less": "0.0.1",
     "@42.nl/ui-core-navigation-item": "0.0.1",
+    "@42.nl/ui-core-button": "0.0.1",
+    "@42.nl/ui-core-confirm-button": "0.0.1",
+    "@42.nl/ui-core-submit-button": "0.0.1",
+    "@42.nl/ui-core-pagination": "0.0.1",
+    "@42.nl/ui-core-tag": "0.0.1",
+    "@42.nl/ui-core-loading-page": "0.0.1",
     "@42.nl/react-flash-messages": "0.0.2",
     "material-design-icons": "3.0.1",
     "reactstrap": "8.0.1"
