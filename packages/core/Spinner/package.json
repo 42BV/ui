@@ -21,7 +21,7 @@
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
-    "react": "16.8.0",
+    "react": "16.8.6",
     "reactstrap": "8.0.1"
   },
   "keywords": [],

@@ -18,6 +18,9 @@
     <a href="https://codecov.io/gh/42BV/ui">
       <img alt="Coverage" src="https://codecov.io/gh/42BV/ui/branch/master/graph/badge.svg" />
     </a>
+    <a href="https://greenkeeper.io/">
+      <img alt="Greenkeeper" src="https://badges.greenkeeper.io/42BV/ui.svg" />
+    </a>
 </p>
 
 ---
