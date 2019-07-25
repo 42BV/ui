@@ -15,8 +15,6 @@ interface Props {
    *
    * Use `error` for when something went wrong.
    *
-   * @type {ContentStateMode}
-   * @memberof Props
    */
   mode: ContentStateMode;
 
@@ -33,18 +31,12 @@ interface Props {
   /**
    * Optional custom content you want to render below the titles.
    * You could use this to render a button for example.
-   *
-   * @type {React.ReactNode}
-   * @memberof Props
    */
   children?: React.ReactNode;
 
   /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
-   *
-   * @type {string}
-   * @memberof Props
    */
   className?: string;
 }
@@ -56,10 +48,6 @@ interface Props {
  * It will display whimsical component which tells the user that things
  * did not go as planned / expected. Use this component whenever you
  * would otherwise display 'nothing'.
- *
- * @export
- * @param {Props}
- * @returns
  */
 export default function ContentState({
   mode,

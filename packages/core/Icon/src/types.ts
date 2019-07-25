@@ -5,7 +5,7 @@
 
   From this site: https://material.io/icons/
 */
-export type IconType =
+type IconType =
   | '3d_rotation'
   | 'accessibility'
   | 'accessibility_new'
@@ -1050,3 +1050,5 @@ export type IconType =
   | 'star_half'
   | 'toggle_off'
   | 'toggle_on';
+
+export default IconType;

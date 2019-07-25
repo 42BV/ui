@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: NavigationItem ui 1`] = `
+<NavItem
+  tag="li"
+>
+  <NavLink
+    activeClassName="active"
+    exact={true}
+    tag={[Function]}
+    to="/dashboard"
+  >
+    <Icon
+      className="mr-3 align-bottom"
+      icon="dashboard"
+    />
+    Dashboard
+  </NavLink>
+</NavItem>
+`;

@@ -4,7 +4,11 @@ exports[`core should contain exports 1`] = `
 Object {
   "Avatar": [Function],
   "ContentState": [Function],
+  "FlashMessage": [Function],
   "Icon": [Function],
   "InfoBadge": [Function],
+  "MoreOrLess": [Function],
+  "NavigationItem": [Function],
+  "Spinner": [Function],
 }
 `;

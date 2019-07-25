@@ -1,8 +1,8 @@
 {
-  "name": "@42.nl/ui-core-icon",
+  "name": "@42.nl/ui-core-more-or-less",
   "version": "0.0.1",
   "description": "",
-  "main": "lib/index.js",
+  "main": "lib/MoreOrLess.js",
   "private": false,
   "scripts": {
     "test": "jest --config=jest.config.js",
@@ -14,16 +14,17 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-types": "0.0.1",
-    "classnames": "2.2.6"
+    "classnames": "2.2.6",
+    "lodash.take": "4.1.1"
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
-    "reactstrap": "8.0.1"
+    "react": "16.8.0",
+    "reactstrap": "8.0.1",
+    "@types/lodash.take": "4.1.6"
   },
   "keywords": [],
   "author": "",
