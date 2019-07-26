@@ -8,6 +8,7 @@
     "build": "lerna bootstrap && lerna run build"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "1.1.0",
     "@types/classnames": "2.2.9",
     "@types/enzyme": "3.10.3",
     "@types/enzyme-adapter-react-16": "1.0.5",
@@ -16,8 +17,11 @@
     "@types/reactstrap": "8.0.1",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
-    "@testing-library/react-hooks": "1.1.0",
     "classnames": "2.2.6",
+    "danger": "9.1.3",
+    "danger-plugin-jest": "1.3.0",
+    "danger-plugin-no-console": "1.1.2",
+    "danger-plugin-yarn": "1.3.2",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.3.5",
@@ -28,11 +32,11 @@
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.6.1",
     "jest": "24.8.0",
+    "lerna": "3.16.4",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "ts-jest": "24.0.2",
-    "typescript": "3.5.3",
-    "lerna": "3.16.4"
+    "typescript": "3.5.3"
   },
   "workspaces": [
     "packages/core/*"
