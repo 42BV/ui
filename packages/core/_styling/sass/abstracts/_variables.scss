@@ -1,0 +1,74 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+/**
+* Colors
+*/
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #868e96;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+$blue: #2cabe3;
+$indigo: #6610f2;
+$purple: #613d7c;
+$pink: #ff5b77;
+$red: #d9534f;
+$orange: #f0ad4e;
+$yellow: #ffd500;
+$green: #5fdc9f;
+$teal: #5bc0de;
+$cyan: #17a2b8;
+
+$colors: (
+  blue: $blue,
+  indigo: $indigo,
+  purple: $purple,
+  pink: $pink,
+  red: $red,
+  orange: $orange,
+  yellow: $yellow,
+  green: $green,
+  teal: $teal,
+  cyan: $cyan,
+  white: $white,
+  gray: $gray-600,
+  gray-dark: $gray-800
+);
+
+$theme-colors: (
+  primary: $blue,
+  secondary: $gray-500,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800
+);
+
+/**
+* Body
+*/
+$body-bg: #f4f6f8;
+$body-color: $gray-900;
+
+/**
+* Fonts
+*/
+$font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont,
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+/**
+* Forms
+*/
+$input-placeholder-color: $gray-500;

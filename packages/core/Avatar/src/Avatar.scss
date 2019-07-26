@@ -1,0 +1,70 @@
+.avatar {
+  .img-placeholder {
+    width: 1.875rem;
+    height: 1.875rem;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  &.avatar-xs {
+    .img-placeholder {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+  &.avatar-sm {
+    .img-placeholder {
+      width: 3.125rem;
+      height: 3.125rem;
+    }
+  }
+  &.avatar-md {
+    .img-placeholder {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  &.avatar-lg {
+    .img-placeholder {
+      width: 5.625rem;
+      height: 5.625rem;
+    }
+  }
+}
+
+.avatars-stack {
+  > .avatar {
+    position: relative;
+    display: inline-block;
+    margin-right: -1.25rem;
+    .img-placeholder {
+      margin-right: 0;
+    }
+    &:hover {
+      margin-right: 0;
+    }
+
+    &.avatar-xs,
+    &.avatar-sm,
+    &.avatar-md,
+    &.avatar-lg {
+      &:hover {
+        margin-right: 0;
+      }
+    }
+    &.avatar-xs {
+      margin-right: -0.625rem;
+    }
+    &.avatar-sm {
+      margin-right: -2.5rem;
+    }
+    &.avatar-md {
+      margin-right: -3.75rem;
+    }
+    &.avatar-lg {
+      margin-right: -80px;
+    }
+  }
+}

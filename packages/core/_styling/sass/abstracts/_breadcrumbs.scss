@@ -1,0 +1,28 @@
+.breadcrumb-wrapper {
+  @extend .row;
+  border-bottom: 1px solid $gray-200;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+
+  > strong {
+    padding: 0.75rem 0;
+    margin-left: $spacer;
+  }
+
+  .breadcrumb {
+    background: transparent;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: none;
+    margin-bottom: 0;
+    .breadcrumb-item + .breadcrumb-item {
+      &::before {
+        content: 'keyboard_arrow_right';
+        font-family: 'Material Icons';
+        line-height: $line-height-base;
+        vertical-align: middle;
+      }
+    }
+  }
+}

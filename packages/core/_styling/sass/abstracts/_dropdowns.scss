@@ -1,0 +1,43 @@
+.dropdown,
+.rdt {
+  .dropdown-menu,
+  .rdtPicker {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 0.625rem;
+  }
+  &.show,
+  &.rdtOpen {
+    .dropdown-menu,
+    .rdtPicker {
+      opacity: 1;
+      visibility: visible;
+      margin-top: 0;
+    }
+  }
+
+  .avatar {
+    position: relative;
+    top: -2px;
+    margin-right: 5px;
+  }
+
+  .material-icons {
+    margin-right: 5px;
+  }
+
+  .nav-link {
+    display: flex;
+    height: 44px;
+    align-items: center;
+  }
+}
+
+.dropdown-toggle {
+  &.d-flex {
+    ::after {
+      align-self: center;
+    }
+  }
+}

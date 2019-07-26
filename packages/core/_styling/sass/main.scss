@@ -1,0 +1,13 @@
+@import './node_modules/material-design-icons/iconfont/material-icons';
+@import './node_modules/bootstrap/scss/bootstrap';
+
+@import './abstracts/variables';
+
+// Abstract styles
+@import './abstracts/icons';
+@import './abstracts/mixins';
+@import './abstracts/typography';
+@import './abstracts/breadcrumbs';
+@import './abstracts/inputs';
+@import './abstracts/dropdowns';
+@import './abstracts/autocomplete';

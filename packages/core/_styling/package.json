@@ -1,0 +1,19 @@
+{
+  "name": "@42.nl/ui-styling",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/main.css",
+  "private": false,
+  "scripts": {
+    "build": "node-sass sass/ -o dist/",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "bootstrap": "4.3.1",
+    "material-design-icons": "3.0.1",
+    "node-sass-import": "^2.0.1"
+  },
+  "devDependencies": {
+    "node-sass": "4.12.0"
+  }
+}

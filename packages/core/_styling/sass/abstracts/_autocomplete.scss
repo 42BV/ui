@@ -1,0 +1,53 @@
+// http://ericgio.github.io/react-bootstrap-typeahead/
+.bootstrap-typeahead-menu {
+  > li > a {
+    @extend .dropdown-item;
+  }
+}
+
+.Tag,
+.rbt {
+  .token,
+  .rbt-token {
+    @extend .badge, .badge-pill, .badge-primary;
+    display: inline-block;
+    margin-right: 0.1875rem;
+    height: 18px;
+    cursor: default;
+  }
+
+  .rbt-token {
+    margin-top: 4px;
+    padding-right: 17px;
+  }
+
+  .rbt-token-remove-button {
+    position: relative;
+    top: -1px !important;
+    font-weight: 500 !important;
+    cursor: pointer;
+  }
+
+  .bootstrap-tokenizer {
+    @include box-shadow(inset 0 -2px 0 map-get($theme-colors, 'success'));
+    border: none;
+  }
+
+  .bootstrap-tokenizer-input {
+    display: inline-block;
+  }
+
+  .close-button {
+    margin-left: 0.1875rem;
+  }
+}
+
+.showing-placeholder {
+  .rbt-input-main {
+    &::placeholder {
+      color: $input-placeholder-color;
+      // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+      opacity: 1;
+    }
+  }
+}
