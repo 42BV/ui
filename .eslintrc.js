@@ -36,6 +36,19 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'warn',
         'react-hooks/exhaustive-deps': 'warn'
       }
+    },
+    {
+      env: {
+        browser: true,
+        node: true,
+        es6: true
+      },
+      files: ['*.js'],
+      extends: ['eslint:recommended'],
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 2017
+      }
     }
   ],
   settings: {

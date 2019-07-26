@@ -24,7 +24,8 @@
   },
   "devDependencies": {
     "@types/lodash.uniqueid": "4.0.6",
-    "reactstrap": "8.0.1"
+    "reactstrap": "8.0.1",
+    "@storybook/react": "next"
   },
   "keywords": [],
   "author": "",

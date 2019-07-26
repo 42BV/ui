@@ -4,7 +4,7 @@ module.exports = async ({ config }) => {
   config.module.rules.push({
     test: /\.stories\.tsx?$/,
     loaders: [require.resolve('@storybook/source-loader')],
-    include: [path.resolve(__dirname, '../core')],
+    include: [path.resolve(__dirname, '../packages/core')],
     enforce: 'pre'
   });
   return config;

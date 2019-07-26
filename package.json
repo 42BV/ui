@@ -4,8 +4,9 @@
     "clean": "lerna run --parallel clean && lerna clean",
     "test-only": "jest",
     "test": "yarn lint && yarn test-only",
-    "lint": "eslint . --cache --ext js,jsx,ts,tsx --max-warnings=0",
-    "build": "lerna bootstrap && lerna run build"
+    "lint": "eslint . --cache --max-warnings=0",
+    "build": "lerna bootstrap && lerna run build",
+    "docs": "start-storybook -c ./docs -p 9000"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "1.1.0",
@@ -15,8 +16,15 @@
     "@types/jest": "24.0.16",
     "@types/react": "16.8.23",
     "@types/reactstrap": "8.0.1",
+    "@types/storybook__react": "4.0.2",
+    "@types/node": "12.6.8",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
+    "@babel/core": "7.5.5",
+    "@storybook/react": "next",
+    "@storybook/addon-docs": "5.2.0-beta.7",
+    "@storybook/source-loader": "5.2.0-alpha.14",
+    "@storybook/preset-typescript": "1.1.0",
     "classnames": "2.2.6",
     "danger": "9.1.4",
     "danger-plugin-jest": "1.3.0",
@@ -27,7 +35,7 @@
     "eslint": "6.1.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-config-react-app": "4.0.1",
-    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.6.1",
     "jest": "24.8.0",
@@ -37,10 +45,12 @@
     "react-dom": "16.8.6",
     "ts-jest": "24.0.2",
     "ts-loader": "6.0.4",
-    "typescript": "3.5.3"
+    "typescript": "3.5.3",
+    "babel-loader": "8.0.6"
   },
   "workspaces": [
-    "packages/core/*"
+    "packages/core/*",
+    "packages/docs"
   ],
   "jest": {
     "collectCoverage": true,
