@@ -133,24 +133,32 @@ describe('Component: Button', () => {
     let onClickSpy: jest.Mock<any, any>;
 
     describe('onClick', () => {
-      function setup({ inProgress }: { inProgress: boolean }) {
+      function setup({
+        inProgress,
+        hasOnClick
+      }: {
+        inProgress: boolean;
+        hasOnClick: boolean;
+      }) {
         onClickSpy = jest.fn();
 
         jest
           .spyOn({ useShowSpinner }, 'useShowSpinner')
           .mockReturnValue(inProgress);
 
-        button = shallow(
-          <Button onClick={onClickSpy} inProgress={inProgress}>
-            Save
-          </Button>
-        );
+        const props = {
+          onClick: hasOnClick ? onClickSpy : undefined,
+          inProgress
+        };
+
+        button = shallow(<Button {...props}>Save</Button>);
       }
 
       describe('button', () => {
         it('should call the onClick callback when inProgress is false', () => {
           setup({
-            inProgress: false
+            inProgress: false,
+            hasOnClick: true
           });
 
           const event = new Event('click');
@@ -168,7 +176,26 @@ describe('Component: Button', () => {
 
         it('should not call the onClick callback when inProgress is true and ignore the click', () => {
           setup({
-            inProgress: true
+            inProgress: true,
+            hasOnClick: true
+          });
+
+          const event = new Event('click');
+
+          // @ts-ignore
+          button
+            .find('Button')
+            .props()
+            // @ts-ignore
+            .onClick(event);
+
+          expect(onClickSpy).toHaveBeenCalledTimes(0);
+        });
+
+        it('should not call the onClick callback when onClick is undefined', () => {
+          setup({
+            inProgress: false,
+            hasOnClick: false
           });
 
           const event = new Event('click');
