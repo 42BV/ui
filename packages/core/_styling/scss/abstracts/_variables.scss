@@ -1,11 +1,10 @@
+@import '~bootstrap/scss/_functions';
+@import '~bootstrap/scss/_variables.scss';
+
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
-
-/**
-* Colors
-*/
 $white: #fff;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
@@ -56,19 +55,10 @@ $theme-colors: (
   dark: $gray-800
 );
 
-/**
-* Body
-*/
 $body-bg: #f4f6f8;
 $body-color: $gray-900;
 
-/**
-* Fonts
-*/
 $font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont,
   'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
-/**
-* Forms
-*/
 $input-placeholder-color: $gray-500;

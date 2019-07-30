@@ -1,0 +1,23 @@
+@import '~@42.nl/ui-core-styling/dist/scss/abstracts/variables';
+
+.token {
+  &.token-info {
+    background-color: $teal !important;
+  }
+
+  &.token-success {
+    background-color: $green !important;
+  }
+
+  &.token-warning {
+    background-color: $orange !important;
+  }
+
+  &.token-danger {
+    background-color: $red !important;
+  }
+
+  .close-button {
+    cursor: pointer;
+  }
+}

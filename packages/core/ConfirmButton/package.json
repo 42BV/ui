@@ -6,7 +6,7 @@
   "private": false,
   "scripts": {
     "test": "jest --config=jest.config.js",
-    "build": "tsc",
+    "build": "yarn clean && tsc",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "clean": "rm -rf lib"
   },
@@ -16,16 +16,16 @@
   "dependencies": {
     "@42.nl/ui-core-button": "0.0.2",
     "@42.nl/ui-core-icon": "0.0.1",
-    "@42.nl/ui-types": "0.0.1",
-    "classnames": "2.2.6"
+    "@42.nl/ui-core-types": "0.0.1"
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
-    "reactstrap": "8.0.1"
+    "react": "16.8.6",
+    "reactstrap": "8.0.1",
+    "@storybook/react": "next"
   },
   "keywords": [],
   "author": "",

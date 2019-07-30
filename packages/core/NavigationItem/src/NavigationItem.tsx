@@ -21,7 +21,7 @@ interface Props {
   text?: string;
 
   /**
-   * Predicate to determine if the link will be shown.
+   * Predicate to determine if the link will be shown. Accepts either a boolean or a function that returns a boolean.
    */
   show?: (() => boolean) | boolean;
 }

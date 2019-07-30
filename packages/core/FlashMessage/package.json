@@ -6,7 +6,9 @@
   "private": false,
   "scripts": {
     "test": "jest --config=jest.config.js",
-    "build": "tsc",
+    "build": "yarn clean && tsc && yarn build:scss && yarn copy:scss",
+    "build:scss": "node-sass src/ -o lib/css/ --importer=../../../node_modules/node-sass-tilde-importer",
+    "copy:scss": "rsync -a src/*.scss lib/scss/",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "clean": "rm -rf node_modules && rm -rf lib"
   },
@@ -15,15 +17,18 @@
   ],
   "dependencies": {
     "classnames": "2.2.6",
+    "@42.nl/ui-core-styling": "0.0.1",
     "@42.nl/react-flash-messages": "0.0.2"
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
-    "reactstrap": "8.0.1"
+    "reactstrap": "8.0.1",
+    "@storybook/react": "next",
+    "node-sass-tilde-importer": "1.0.2",
+    "node-sass": "4.12.0"
   },
   "keywords": [],
   "author": "",

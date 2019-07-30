@@ -2,11 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Avatar from '../src/Avatar';
+import '../src/Avatar.scss';
 
-// eslint-disable-next-line import/no-unresolved
-import '!style-loader!css-loader!sass-loader!../src/Avatar.scss';
-
-storiesOf('Avatar', module)
+storiesOf('core/Avatar', module)
   .addParameters({ component: Avatar })
   .add('small', () => (
     <Avatar alt="xs" size="xs" src="https://www.placecage.com/100/100" />

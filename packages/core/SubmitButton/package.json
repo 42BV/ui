@@ -20,11 +20,11 @@
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
-    "reactstrap": "8.0.1"
+    "reactstrap": "8.0.1",
+    "react": "16.8.6"
   },
   "keywords": [],
   "author": "",

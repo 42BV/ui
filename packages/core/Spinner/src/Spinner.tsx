@@ -11,16 +11,12 @@ interface Props {
   /**
    * Color of the circle within the spinner.
    *
-   * @type {string}
-   * @memberof Props
    */
   color: string;
 
   /**
    * Width and height of the spinner.
    *
-   * @type {number}
-   * @memberof Props
    */
   size: number;
 }

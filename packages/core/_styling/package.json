@@ -1,19 +1,21 @@
 {
-  "name": "@42.nl/ui-styling",
+  "name": "@42.nl/ui-core-styling",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/main.css",
+  "main": "dist/css/main.css",
   "private": false,
   "scripts": {
-    "build": "node-sass sass/ -o dist/",
+    "build": "yarn run build:scss && yarn run copy:scss",
+    "build:scss": "yarn clean && node-sass scss/ -o dist/css/ --importer=../../../node_modules/node-sass-tilde-importer",
+    "copy:scss": "cp -r scss/ dist/scss/",
     "clean": "rm -rf dist"
   },
   "dependencies": {
     "bootstrap": "4.3.1",
-    "material-design-icons": "3.0.1",
-    "node-sass-import": "^2.0.1"
+    "material-design-icons": "3.0.1"
   },
   "devDependencies": {
-    "node-sass": "4.12.0"
+    "node-sass": "4.12.0",
+    "node-sass-tilde-importer": "1.0.2"
   }
 }

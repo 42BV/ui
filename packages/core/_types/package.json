@@ -1,5 +1,5 @@
 {
-  "name": "@42.nl/ui-types",
+  "name": "@42.nl/ui-core-types",
   "version": "0.0.1",
   "description": "",
   "main": "index.d.ts",

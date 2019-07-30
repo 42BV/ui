@@ -13,7 +13,7 @@ export interface Props {
   /**
    * Optionally the size of the button, defaults to md.
    *
-   * @default "md"
+   * @default md
    */
   size?: 'lg' | 'sm' | 'md';
 

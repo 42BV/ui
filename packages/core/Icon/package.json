@@ -14,7 +14,7 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-types": "0.0.1",
+    "@42.nl/ui-core-types": "0.0.1",
     "classnames": "2.2.6"
   },
   "peerDependencies": {

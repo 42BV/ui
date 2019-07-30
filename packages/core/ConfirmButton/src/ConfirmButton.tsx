@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Button from '@42.nl/ui-core-button';
-import { Color } from '@42.nl/ui-types';
+import { Color } from '@42.nl/ui-core-types';
 import { IconType } from '@42.nl/ui-core-icon';
 
 interface BaseProps {
@@ -14,7 +14,7 @@ interface BaseProps {
   /**
    * Optionally the color of the button
    *
-   * @default "danger"
+   * @default danger
    */
   color?: Color;
 
@@ -45,21 +45,21 @@ interface BaseProps {
   /**
    * The text to show in the header, defaults to "Confirmation"
    *
-   * @default "Confirmation"
+   * @default Confirmation
    */
   modalHeaderText?: React.ReactNode;
 
   /**
    * The text to show as the cancel button's text, defaults to "Cancel"
    *
-   * @default "Cancel"
+   * @default Cancel
    */
   cancelText?: string;
 
   /**
    * The text to show as the ok button's text, defaults to "OK"
    *
-   * @default "OK"
+   * @default OK
    */
   confirmText?: string;
 }

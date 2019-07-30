@@ -2,7 +2,7 @@ import { load, addParameters } from '@storybook/react';
 import { DocsPage } from '@storybook/addon-docs/blocks';
 
 // eslint-disable-next-line import/no-unresolved
-import '!style-loader!css-loader!@42.nl/ui-styling';
+import '@42.nl/ui-core-styling/dist/scss/main.scss';
 
 addParameters({
   docs: DocsPage

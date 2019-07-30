@@ -24,9 +24,9 @@ interface Props {
   /**
    * Optional size.
    *
-   * @default 'md'
+   * @default md
    */
-  size?: Size;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 
   /**
    * Optional extra CSS class you want to add to the component.
