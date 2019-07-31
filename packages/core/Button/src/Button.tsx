@@ -26,7 +26,7 @@ interface BaseProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => any;
 
   /**
-   * Whether or not the action you are performing is currenlty in
+   * Whether or not the action you are performing is currently in
    * progress. If so a spinner is rendered inside of the button.
    * This behavior is optional and default to `false`.
    *
@@ -138,7 +138,7 @@ export default function Button({
     };
 
     return (
-      <span className={`Button ${className} ${color}`}>
+      <span className={`button ${className} ${color}`}>
         <RSButton
           onClick={handleOnClick}
           disabled={inProgress}
@@ -159,7 +159,7 @@ export default function Button({
     const iconCast = icon as IconType;
 
     return (
-      <span className={`Button ${className} ${color}`}>
+      <span className={`button ${className} ${color}`}>
         {showSpinner ? (
           // Color is empty string so we can override the color
           <Spinner size={24} color="" />

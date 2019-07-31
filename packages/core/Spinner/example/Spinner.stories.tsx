@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import '../src/Spinner.scss';
 import Spinner from '../src/Spinner';
 
 storiesOf('core/Spinner', module)

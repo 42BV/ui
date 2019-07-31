@@ -6,7 +6,8 @@
   "private": false,
   "scripts": {
     "test": "jest --config=jest.config.js",
-    "build": "tsc",
+    "build": "yarn clean && tsc && yarn copy:scss",
+    "copy:scss": "rsync -a src/*.scss lib/scss/",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "clean": "rm -rf lib"
   },

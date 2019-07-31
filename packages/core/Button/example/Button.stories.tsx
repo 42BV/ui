@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions';
 import { Row, Col } from 'reactstrap';
 
 import Button from '../src/Button';
-import '../src/Button.scss';
 
 storiesOf('core/buttons/Button', module)
   .addParameters({ component: Button })

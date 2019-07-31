@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { Button } from 'reactstrap';
 import { Icon } from '@42.nl/ui-core-icon';
 
-import '../src/InfoBadge.scss';
 import InfoBadge from '../src/InfoBadge';
 
 storiesOf('core/InfoBadge', module)

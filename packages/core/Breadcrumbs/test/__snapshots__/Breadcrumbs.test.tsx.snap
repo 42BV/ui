@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Breadcrumbs ui default: Component: Breadcrumbs => ui => default 1`] = `
+<div
+  className="breadcrumb-wrapper"
+>
+  <Breadcrumb
+    aria-label="breadcrumb"
+    className="ml-auto"
+    listTag="ol"
+    tag="nav"
+  >
+    <BreadcrumbItem
+      key="0"
+      tag="li"
+    >
+      <NavLink
+        exact={true}
+        tag={[Function]}
+        to="/dashboard"
+      >
+        Dashboard
+      </NavLink>
+    </BreadcrumbItem>
+  </Breadcrumb>
+</div>
+`;

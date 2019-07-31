@@ -6,8 +6,7 @@
   "private": false,
   "scripts": {
     "test": "jest --config=jest.config.js",
-    "build": "yarn clean && tsc && yarn build:scss && yarn copy:scss",
-    "build:scss": "node-sass src/ -o lib/css/ --importer=../../../node_modules/node-sass-tilde-importer",
+    "build": "yarn clean && tsc && yarn copy:scss",
     "copy:scss": "rsync -a src/*.scss lib/scss/",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "clean": "rm -rf lib"
@@ -18,8 +17,7 @@
   "dependencies": {
     "@42.nl/ui-core-types": "0.0.1",
     "@42.nl/ui-core-spinner": "0.0.1",
-    "@42.nl/ui-core-icon": "0.0.1",
-    "@42.nl/ui-core-styling": "0.0.1"
+    "@42.nl/ui-core-icon": "0.0.1"
   },
   "peerDependencies": {
     "react": "^16.8.0",

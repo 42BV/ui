@@ -6,8 +6,7 @@
   "private": false,
   "scripts": {
     "test": "jest --config=jest.config.js",
-    "build": "yarn clean && tsc && yarn build:scss && yarn copy:scss",
-    "build:scss": "node-sass src/ -o lib/css/",
+    "build": "yarn clean && tsc && yarn copy:scss",
     "copy:scss": "rsync -a src/*.scss lib/scss/",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "clean": "rm -rf lib"
@@ -27,8 +26,7 @@
     "react": "16.8.6",
     "reactstrap": "8.0.1",
     "@storybook/react": "next",
-    "@types/lodash.take": "4.1.6",
-    "node-sass": "4.12.0"
+    "@types/lodash.take": "4.1.6"
   },
   "keywords": [],
   "author": "",

@@ -2,7 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Avatar from '../src/Avatar';
-import '../src/Avatar.scss';
 
 storiesOf('core/Avatar', module)
   .addParameters({ component: Avatar })
@@ -24,5 +23,3 @@ storiesOf('core/Avatar', module)
       </div>
     );
   });
-
-export const _ = '';

@@ -144,5 +144,3 @@ storiesOf('core/buttons/ConfirmButton', module)
       </div>
     );
   });
-
-export const _ = '';

@@ -32,5 +32,3 @@ storiesOf('core/Icons', module)
       </div>
     );
   });
-
-export const _ = '';

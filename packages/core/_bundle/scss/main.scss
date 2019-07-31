@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+@import '~material-design-icons/iconfont/material-icons.css';
+@import '~bootstrap/scss/bootstrap';
+
+// Variables
+@import './abstracts/variables';
+
+// Abstract styles
+@import './abstracts/mixins';
+@import './abstracts/typography';
+@import './abstracts/inputs';
+@import './abstracts/dropdowns';
+@import './abstracts/autocomplete';
+
+// Components
+@import '~@42.nl/ui-core-icon/lib/scss/Icon';
+@import '~@42.nl/ui-core-spinner/lib/scss/Spinner';
+@import '~@42.nl/ui-core-avatar/lib/scss/Avatar';
+@import '~@42.nl/ui-core-button/lib/scss/Button';
+@import '~@42.nl/ui-core-content-state/lib/scss/ContentState';
+@import '~@42.nl/ui-core-infobadge/lib/scss/InfoBadge';
+@import '~@42.nl/ui-core-flash-message/lib/scss/FlashMessage';
+@import '~@42.nl/ui-core-more-or-less/lib/scss/MoreOrLess';
+@import '~@42.nl/ui-core-pagination/lib/scss/Pagination';
+@import '~@42.nl/ui-core-tag/lib/scss/Tag';
+@import '~@42.nl/ui-core-loading-page/lib/scss/LoadingPage';
+@import '~@42.nl/ui-core-breadcrumbs/lib/scss/Breadcrumbs';

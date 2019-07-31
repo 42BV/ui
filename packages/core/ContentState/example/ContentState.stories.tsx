@@ -44,5 +44,3 @@ storiesOf('core/ContentState', module)
       </ContentState>
     );
   });
-
-export const _ = '';

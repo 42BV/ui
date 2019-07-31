@@ -6,5 +6,5 @@ import LoadingPage from '../src/LoadingPage';
 storiesOf('core/LoadingPage', module)
   .addParameters({ component: LoadingPage })
   .add('default', () => {
-    return <LoadingPage />;
+    return <LoadingPage className="mt-0" />;
   });
