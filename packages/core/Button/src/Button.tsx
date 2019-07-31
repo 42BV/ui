@@ -22,9 +22,9 @@ interface BaseProps {
   color?: Color;
 
   /**
-   * Callback for what needs to happen when the button is clicked.
+   *  Optional callback for what needs to happen when the button is clicked.
    */
-  onClick: (event: React.MouseEvent<HTMLElement>) => any;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => any;
 
   /**
    * Whether or not the action you are performing is currenlty in
@@ -114,6 +114,11 @@ export default function Button({
   const showSpinner = useShowSpinner(!!inProgress);
 
   function handleOnClick(event: React.MouseEvent<HTMLElement>) {
+    if (!onClick) {
+      return;
+    }
+
+
     if (!inProgress) {
       onClick(event);
     }

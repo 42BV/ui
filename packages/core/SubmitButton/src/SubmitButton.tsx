@@ -18,9 +18,9 @@ export interface Props {
   size?: 'lg' | 'sm' | 'md';
 
   /**
-   * Callback for what needs to happen when the button is clicked.
+   * Optional callback for what needs to happen when the button is clicked.
    */
-  onClick: (event: React.MouseEvent<HTMLElement>) => any;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => any;
 
   /**
    * The text of the button.
