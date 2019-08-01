@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-navigation-item",
-  "version": "0.1.1-alpha.0",
+  "version": "0.1.1-alpha.1",
   "description": "NavigationItem React component as used in 42.nl products.",
   "main": "lib/NavigationItem.js",
   "private": false,
@@ -15,8 +15,8 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-icon": "^0.1.1-alpha.0",
-    "@42.nl/ui-core-styling": "^0.1.1-alpha.0"
+    "@42.nl/ui-core-icon": "^0.1.1-alpha.1",
+    "@42.nl/ui-core-styling": "^0.1.1-alpha.1"
   },
   "peerDependencies": {
     "react": "^16.8.0",
