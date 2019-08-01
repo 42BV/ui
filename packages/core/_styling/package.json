@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-styling",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha.0",
   "description": "Styling for @42.nl/ui.",
   "main": "scss/main.scss",
   "files": [

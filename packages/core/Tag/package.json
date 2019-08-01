@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-tag",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha.0",
   "description": "Tag React component as used in 42.nl products.",
   "main": "lib/Tag.js",
   "private": false,
@@ -16,8 +16,8 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "0.0.1",
-    "@42.nl/ui-core-typings": "0.0.1",
+    "@42.nl/ui-core-styling": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-typings": "^0.1.0-alpha.0",
     "classnames": "2.2.6"
   },
   "peerDependencies": {

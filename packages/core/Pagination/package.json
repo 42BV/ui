@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-pagination",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha.0",
   "description": "Pagination React component as used in 42.nl products.",
   "main": "lib/Pagination.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "0.0.1",
+    "@42.nl/ui-core-styling": "^0.1.0-alpha.0",
     "mad-spring-connect": "3.1.1"
   },
   "peerDependencies": {
@@ -23,8 +23,8 @@
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
-    "reactstrap": "8.0.1",
-    "react": "16.8.6"
+    "react": "16.8.6",
+    "reactstrap": "8.0.1"
   },
   "keywords": [
     "ui",

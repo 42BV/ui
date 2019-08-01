@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-button",
-  "version": "0.0.2",
+  "version": "0.1.0-alpha.0",
   "description": "Button React component as used in 42.nl products.",
   "main": "lib/Button.js",
   "private": false,
@@ -16,10 +16,10 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "0.0.1",
-    "@42.nl/ui-core-typings": "0.0.1",
-    "@42.nl/ui-core-spinner": "0.0.1",
-    "@42.nl/ui-core-icon": "0.0.1"
+    "@42.nl/ui-core-icon": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-spinner": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-styling": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-typings": "^0.1.0-alpha.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",

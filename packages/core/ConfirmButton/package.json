@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-confirm-button",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha.0",
   "description": "ConfirmButton React component as used in 42.nl products.",
   "main": "lib/ConfirmButton.js",
   "scripts": {
@@ -14,9 +14,9 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-button": "0.0.2",
-    "@42.nl/ui-core-icon": "0.0.1",
-    "@42.nl/ui-core-typings": "0.0.1"
+    "@42.nl/ui-core-button": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-icon": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-typings": "^0.1.0-alpha.0"
   },
   "peerDependencies": {
     "react": "^16.8.0",

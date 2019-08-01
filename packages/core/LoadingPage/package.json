@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-loading-page",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha.0",
   "description": "LoadingPage React component as used in 42.nl products.",
   "main": "lib/LoadingPage.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-spinner": "0.0.1",
+    "@42.nl/ui-core-spinner": "^0.1.0-alpha.0",
     "classnames": "2.2.6"
   },
   "peerDependencies": {

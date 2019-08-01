@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha.0",
   "main": "lib/index.js",
   "description": "React components as used in 42.nl products.",
   "files": [
@@ -18,22 +18,22 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
-    "@42.nl/ui-core-styling": "0.0.1",
-    "@42.nl/ui-core-avatar": "0.0.1",
-    "@42.nl/ui-core-content-state": "0.0.1",
-    "@42.nl/ui-core-icon": "0.0.1",
-    "@42.nl/ui-core-infobadge": "0.0.1",
-    "@42.nl/ui-core-flash-message": "0.0.1",
-    "@42.nl/ui-core-spinner": "0.0.1",
-    "@42.nl/ui-core-more-or-less": "0.0.1",
-    "@42.nl/ui-core-navigation-item": "0.0.1",
-    "@42.nl/ui-core-button": "0.0.2",
-    "@42.nl/ui-core-confirm-button": "0.0.1",
-    "@42.nl/ui-core-submit-button": "0.0.1",
-    "@42.nl/ui-core-pagination": "0.0.1",
-    "@42.nl/ui-core-tag": "0.0.1",
-    "@42.nl/ui-core-loading-page": "0.0.1",
-    "@42.nl/ui-core-breadcrumbs": "0.0.1"
+    "@42.nl/ui-core-avatar": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-breadcrumbs": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-button": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-confirm-button": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-content-state": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-flash-message": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-icon": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-infobadge": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-loading-page": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-more-or-less": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-navigation-item": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-pagination": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-spinner": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-styling": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-submit-button": "^0.1.0-alpha.0",
+    "@42.nl/ui-core-tag": "^0.1.0-alpha.0"
   },
   "keywords": [
     "ui",
