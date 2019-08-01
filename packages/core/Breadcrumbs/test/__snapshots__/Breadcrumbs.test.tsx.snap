@@ -9,6 +9,19 @@ exports[`Component: Breadcrumbs ui default: Component: Breadcrumbs => ui => defa
     className="ml-auto"
     listTag="ol"
     tag="nav"
+  />
+</div>
+`;
+
+exports[`Component: Breadcrumbs ui with items: Component: Breadcrumbs => ui => with items 1`] = `
+<div
+  className="breadcrumb-wrapper"
+>
+  <Breadcrumb
+    aria-label="breadcrumb"
+    className="ml-auto"
+    listTag="ol"
+    tag="nav"
   >
     <BreadcrumbItem
       key="0"

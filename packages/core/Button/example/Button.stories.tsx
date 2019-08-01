@@ -5,7 +5,7 @@ import { Row, Col } from 'reactstrap';
 
 import Button from '../src/Button';
 
-storiesOf('core/buttons/Button', module)
+storiesOf('core|buttons/Button', module)
   .addParameters({ component: Button })
   .add('default', () => {
     return (

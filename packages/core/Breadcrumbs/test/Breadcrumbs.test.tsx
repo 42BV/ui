@@ -13,10 +13,18 @@ describe('Component: Breadcrumbs', () => {
 
   describe('ui', () => {
     test('default', () => {
-      setup({ items: [{ name: 'Dashboard', url: '/dashboard' }] });
+      setup({});
 
       expect(toJson(breadcrumbs)).toMatchSnapshot(
         'Component: Breadcrumbs => ui => default'
+      );
+    });
+
+    test('with items', () => {
+      setup({ items: [{ name: 'Dashboard', url: '/dashboard' }] });
+
+      expect(toJson(breadcrumbs)).toMatchSnapshot(
+        'Component: Breadcrumbs => ui => with items'
       );
     });
   });

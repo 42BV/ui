@@ -1,3 +1,9 @@
+@import '~@42.nl/ui-core-styling/scss/variables';
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+@import '~@42.nl/ui-core-styling/scss/icons';
+@import '~@42.nl/ui-core-icon/lib/scss/Icon';
+@import '~@42.nl/ui-core-spinner/lib/scss/Spinner';
+
 .button {
   .btn {
     font-size: 0.9rem;

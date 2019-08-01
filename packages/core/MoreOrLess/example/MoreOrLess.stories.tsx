@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import MoreOrLess from '../src/MoreOrLess';
 
-storiesOf('core/MoreOrLess', module)
+storiesOf('core|MoreOrLess', module)
   .addParameters({ component: MoreOrLess })
   .add('default', () => {
     return (

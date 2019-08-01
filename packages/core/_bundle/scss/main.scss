@@ -1,17 +1,6 @@
 @charset "UTF-8";
 
-@import '~material-design-icons/iconfont/material-icons.css';
-@import '~bootstrap/scss/bootstrap';
-
-// Variables
-@import './abstracts/variables';
-
-// Abstract styles
-@import './abstracts/mixins';
-@import './abstracts/typography';
-@import './abstracts/inputs';
-@import './abstracts/dropdowns';
-@import './abstracts/autocomplete';
+@import '~@42.nl/ui-core-styling';
 
 // Components
 @import '~@42.nl/ui-core-icon/lib/scss/Icon';

@@ -6,7 +6,7 @@
     "test": "yarn lint && yarn test-only",
     "lint": "eslint . --cache --max-warnings=0",
     "build": "lerna bootstrap && lerna run build",
-    "docs": "start-storybook -c ./docs -p 9000"
+    "docs": "start-storybook -c docs -p 9000"
   },
   "devDependencies": {
     "@types/classnames": "2.2.9",

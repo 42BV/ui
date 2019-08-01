@@ -1,46 +1,59 @@
+@import '~@42.nl/ui-core-styling/scss/variables';
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+@import '~@42.nl/ui-core-styling/scss/icons';
+
 .content-state {
   position: relative;
   height: 10rem;
+
   > .state-icons {
     position: absolute;
     left: 50%;
     top: 45%;
     transform: translate(-50%, 0);
     text-align: center;
+
     > i {
       color: $text-muted;
       &:nth-of-type(1) {
         transform: rotate(10deg) translate(30px, -110px);
         font-size: 2.4em;
       }
+
       &:nth-of-type(2) {
         transform: rotate(-40deg) translate(25px, -70px);
       }
+
       &:nth-of-type(3) {
         transform: translate(-10px, -25px);
 
         font-size: 0.5em;
       }
+
       &:nth-of-type(4) {
         z-index: 1030;
         position: relative;
         -webkit-font-smoothing: antialiased;
         font-size: 5rem;
       }
+
       &:nth-of-type(5) {
         transform: rotate(-16deg) translate(15px, -50px);
 
         font-size: 0.9em;
       }
+
       &:nth-of-type(6) {
         transform: translate(-20px, -65px);
 
         font-size: 0.3em;
         font-weight: 900;
       }
+
       &:last-of-type {
         transform: rotate(-35deg) translate(-10px, -115px);
       }
+
       &:nth-of-type(1),
       &:nth-of-type(2),
       &:nth-of-type(3),

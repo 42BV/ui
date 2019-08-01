@@ -1,0 +1,14 @@
+{
+  "name": "@42.nl/ui-core-styling",
+  "version": "0.0.1",
+  "description": "",
+  "private": false,
+  "main": "scss/main.scss",
+  "files": [
+    "scss/*"
+  ],
+  "dependencies": {
+    "bootstrap": "4.3.1",
+    "material-design-icons": "3.0.1"
+  }
+}

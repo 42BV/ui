@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import SubmitButton from '../src/SubmitButton';
 
-storiesOf('core/buttons/SubmitButton', module)
+storiesOf('core|buttons/SubmitButton', module)
   .addParameters({ component: SubmitButton })
   .add('default', () => {
     return (

@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 
 import ContentState from '../src/ContentState';
 
-storiesOf('core/ContentState', module)
+storiesOf('core|ContentState', module)
   .addParameters({ component: ContentState })
   .add('empty', () => {
     return (

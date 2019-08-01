@@ -1,3 +1,7 @@
+@import '~@42.nl/ui-core-styling/scss/variables';
+@import '~@42.nl/ui-core-styling/scss/mixins';
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+
 .flash-messages {
   position: fixed;
   height: 3.125rem;

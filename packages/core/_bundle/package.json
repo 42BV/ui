@@ -4,6 +4,9 @@
   "main": "lib/index.js",
   "private": false,
   "license": "ISC",
+  "files": [
+    "lib/*"
+  ],
   "scripts": {
     "test": "jest --config=jest.config.js",
     "build": "yarn clean && tsc && yarn copy:scss",
@@ -17,6 +20,7 @@
     "react-dom": "^16.8.6"
   },
   "dependencies": {
+    "@42.nl/ui-core-styling": "0.0.1",
     "@42.nl/ui-core-avatar": "0.0.1",
     "@42.nl/ui-core-content-state": "0.0.1",
     "@42.nl/ui-core-icon": "0.0.1",
@@ -32,10 +36,7 @@
     "@42.nl/ui-core-tag": "0.0.1",
     "@42.nl/ui-core-loading-page": "0.0.1",
     "@42.nl/ui-core-breadcrumbs": "0.0.1",
-    "@42.nl/react-flash-messages": "0.0.2",
-    "bootstrap": "4.3.1",
-    "material-design-icons": "3.0.1",
-    "reactstrap": "8.0.1"
+    "@42.nl/react-flash-messages": "0.0.2"
   },
   "publishConfig": {
     "access": "public"

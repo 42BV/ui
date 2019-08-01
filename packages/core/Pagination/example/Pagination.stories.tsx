@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Pagination from '../src/Pagination';
 
-storiesOf('core/Pagination', module)
+storiesOf('core|Pagination', module)
   .addParameters({ component: Pagination })
   .add('default', () => {
     const page = {

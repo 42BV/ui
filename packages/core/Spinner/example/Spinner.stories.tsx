@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import Spinner from '../src/Spinner';
 
-storiesOf('core/Spinner', module)
+storiesOf('core|Spinner', module)
   .addParameters({ component: Spinner })
   .add('default', () => {
     return (

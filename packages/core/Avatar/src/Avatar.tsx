@@ -49,7 +49,6 @@ export default function Avatar({ size, className, alt, src, children }: Props) {
       <UncontrolledTooltip placement="top" target={tooltip} delay={250}>
         {alt}
       </UncontrolledTooltip>
-
       <span id={tooltip} className="img-placeholder">
         <img alt={alt} src={src} />
       </span>

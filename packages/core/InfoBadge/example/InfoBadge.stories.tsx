@@ -5,7 +5,7 @@ import { Icon } from '@42.nl/ui-core-icon';
 
 import InfoBadge from '../src/InfoBadge';
 
-storiesOf('core/InfoBadge', module)
+storiesOf('core|InfoBadge', module)
   .addParameters({ component: InfoBadge })
   .add('default', () => {
     return (

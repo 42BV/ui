@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import ConfirmButton from '../src/ConfirmButton';
 
-storiesOf('core/buttons/ConfirmButton', module)
+storiesOf('core|buttons/ConfirmButton', module)
   .addParameters({ component: ConfirmButton })
   .add('as button', () => {
     return (

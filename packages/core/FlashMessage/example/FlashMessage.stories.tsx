@@ -14,7 +14,7 @@ import {
   addSuccess
 } from '@42.nl/react-flash-messages';
 
-storiesOf('core/FlashMessage', module)
+storiesOf('core|FlashMessage', module)
   .addParameters({ component: FlashMessage })
   .add('default', () => {
     return (

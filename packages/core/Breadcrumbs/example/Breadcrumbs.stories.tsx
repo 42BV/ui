@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Breadcrumbs from '../src/Breadcrumbs';
 
-storiesOf('core/Breadcrumbs', module)
+storiesOf('core|Breadcrumbs', module)
   .addParameters({ component: Breadcrumbs })
   .add('default', () => (
     <BrowserRouter>
