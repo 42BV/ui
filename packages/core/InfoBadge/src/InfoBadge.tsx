@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
 import classNames from 'classnames';
-import { Color } from '@42.nl/ui-core-types';
+import { Color } from '@42.nl/ui-core-typings';
 
 interface Props {
   /**

@@ -1,9 +1,8 @@
 {
   "name": "@42.nl/ui-core-content-state",
   "version": "0.0.1",
-  "description": "",
+  "description": "ContentState React component as used in 42.nl products.",
   "main": "lib/ContentState.js",
-  "private": false,
   "scripts": {
     "dev": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ../../../docs -p 9000",
     "test": "jest --config=jest.config.js",
@@ -15,9 +14,6 @@
   "files": [
     "lib/*"
   ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@42.nl/ui-core-styling": "0.0.1",
     "classnames": "2.2.6"
@@ -26,9 +22,29 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
-    "react": "16.8.6",
-    "@storybook/react": "next"
+    "react": "16.8.6"
   },
+  "keywords": [
+    "ui",
+    "react",
+    "bootstrap",
+    "contentstate"
+  ],
+  "contributors": [
+    "Maarten Hus <maarten.hus@42.nl>",
+    "Pouja Nikray <pouja.nikray@42.nl>",
+    "Jeffrey van Hoven <jeffrey.van.hoven@42.nl> (https://jvhoven.nl)"
+  ],
+  "homepage": "https://42bv.github.io/ui",
+  "bugs": {
+    "url": "https://github.com/42BV/ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/42BV/ui.git",
+    "directory": "packages/core/ContentState"
+  },
+  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   }

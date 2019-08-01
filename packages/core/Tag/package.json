@@ -1,7 +1,7 @@
 {
   "name": "@42.nl/ui-core-tag",
   "version": "0.0.1",
-  "description": "",
+  "description": "Tag React component as used in 42.nl products.",
   "main": "lib/Tag.js",
   "private": false,
   "scripts": {
@@ -17,20 +17,36 @@
   ],
   "dependencies": {
     "@42.nl/ui-core-styling": "0.0.1",
-    "@42.nl/ui-core-types": "0.0.1",
+    "@42.nl/ui-core-typings": "0.0.1",
     "classnames": "2.2.6"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "reactstrap": "^8.0.1"
+    "react": "^16.8.0"
   },
   "devDependencies": {
-    "react": "16.8.6",
-    "reactstrap": "8.0.1"
+    "react": "16.8.6"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "ui",
+    "react",
+    "bootstrap",
+    "tag"
+  ],
+  "contributors": [
+    "Maarten Hus <maarten.hus@42.nl>",
+    "Pouja Nikray <pouja.nikray@42.nl>",
+    "Jeffrey van Hoven <jeffrey.van.hoven@42.nl> (https://jvhoven.nl)"
+  ],
+  "homepage": "https://42bv.github.io/ui",
+  "bugs": {
+    "url": "https://github.com/42BV/ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/42BV/ui.git",
+    "directory": "packages/core/Tag"
+  },
+  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   }

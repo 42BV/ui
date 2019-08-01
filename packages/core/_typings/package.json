@@ -1,18 +1,11 @@
 {
-  "name": "@42.nl/ui-core-styling",
+  "name": "@42.nl/ui-core-typings",
   "version": "0.0.1",
-  "description": "Styling for @42.nl/ui.",
-  "main": "scss/main.scss",
-  "files": [
-    "scss/*"
-  ],
-  "dependencies": {
-    "bootstrap": "4.3.1",
-    "material-design-icons": "3.0.1"
-  },
+  "description": "TypeScript typings for @42.nl/ui.",
+  "main": "index.d.ts",
   "keywords": [
-    "scss",
-    "bootstrap"
+    "typescript",
+    "typings"
   ],
   "contributors": [
     "Maarten Hus <maarten.hus@42.nl>",
@@ -26,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/42BV/ui.git",
-    "directory": "packages/core/_styling"
+    "directory": "packages/core/_typings"
   },
   "license": "Apache-2.0",
   "publishConfig": {

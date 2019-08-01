@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Button from '@42.nl/ui-core-button';
-import { Color } from '@42.nl/ui-core-types';
+import { Color } from '@42.nl/ui-core-typings';
 import { IconType } from '@42.nl/ui-core-icon';
 
 interface BaseProps {

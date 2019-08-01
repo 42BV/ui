@@ -2,7 +2,7 @@ import React from 'react';
 import { Button as RSButton } from 'reactstrap';
 
 import Spinner from '@42.nl/ui-core-spinner';
-import { Color } from '@42.nl/ui-core-types';
+import { Color } from '@42.nl/ui-core-typings';
 import { Icon, IconType } from '@42.nl/ui-core-icon';
 
 import useShowSpinner from './useShowSpinner';

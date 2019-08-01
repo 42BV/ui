@@ -1,9 +1,8 @@
 {
   "name": "@42.nl/ui-core-breadcrumbs",
   "version": "0.0.1",
-  "description": "",
+  "description": "Breadcrumbs React component as used in 42.nl products.",
   "main": "lib/Breadcrumbs.js",
-  "private": false,
   "scripts": {
     "dev": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ../../../docs -p 9000",
     "test": "jest --config=jest.config.js",
@@ -16,8 +15,7 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "0.0.1",
-    "classnames": "2.2.6"
+    "@42.nl/ui-core-styling": "0.0.1"
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -26,15 +24,31 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "4.3.4",
-    "node-sass": "4.12.0",
     "react": "16.8.0",
     "reactstrap": "8.0.1",
-    "react-router-dom": "5.0.1",
-    "@storybook/react": "next"
+    "react-router-dom": "5.0.1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "ui",
+    "react",
+    "bootstrap",
+    "breadcrumbs"
+  ],
+  "contributors": [
+    "Maarten Hus <maarten.hus@42.nl>",
+    "Pouja Nikray <pouja.nikray@42.nl>",
+    "Jeffrey van Hoven <jeffrey.van.hoven@42.nl> (https://jvhoven.nl)"
+  ],
+  "homepage": "https://42bv.github.io/ui",
+  "bugs": {
+    "url": "https://github.com/42BV/ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/42BV/ui.git",
+    "directory": "packages/core/Breadcrumbs"
+  },
+  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   }

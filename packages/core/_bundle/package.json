@@ -2,8 +2,7 @@
   "name": "@42.nl/ui",
   "version": "0.0.1",
   "main": "lib/index.js",
-  "private": false,
-  "license": "ISC",
+  "description": "React components as used in 42.nl products.",
   "files": [
     "lib/*"
   ],
@@ -14,7 +13,6 @@
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "clean": "rm -rf lib"
   },
-  "description": "React components as used in 42.nl products",
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
@@ -35,9 +33,28 @@
     "@42.nl/ui-core-pagination": "0.0.1",
     "@42.nl/ui-core-tag": "0.0.1",
     "@42.nl/ui-core-loading-page": "0.0.1",
-    "@42.nl/ui-core-breadcrumbs": "0.0.1",
-    "@42.nl/react-flash-messages": "0.0.2"
+    "@42.nl/ui-core-breadcrumbs": "0.0.1"
   },
+  "keywords": [
+    "ui",
+    "react",
+    "bootstrap"
+  ],
+  "contributors": [
+    "Maarten Hus <maarten.hus@42.nl>",
+    "Pouja Nikray <pouja.nikray@42.nl>",
+    "Jeffrey van Hoven <jeffrey.van.hoven@42.nl> (https://jvhoven.nl)"
+  ],
+  "homepage": "https://42bv.github.io/ui",
+  "bugs": {
+    "url": "https://github.com/42BV/ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/42BV/ui.git",
+    "directory": "packages/core/_bundle"
+  },
+  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   }
