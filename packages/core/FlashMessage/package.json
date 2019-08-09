@@ -18,7 +18,7 @@
     "@42.nl/react-flash-messages": "0.0.2"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
+    "react": "^16.9.0",
     "react-dom": "^16.8.0",
     "reactstrap": "^8.0.1"
   },
