@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "4.3.4",
-    "react": "16.8.6",
+    "react": "16.9.0",
     "reactstrap": "8.0.1",
     "react-router-dom": "5.0.1"
   },
