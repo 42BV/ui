@@ -18,7 +18,7 @@
     "lodash.uniqueid": "4.0.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
+    "react": "^16.9.0",
     "react-dom": "^16.8.0",
     "reactstrap": "^8.0.1"
   },
