@@ -18,7 +18,7 @@
     "lodash.take": "4.1.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
+    "react": "^16.9.0",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
