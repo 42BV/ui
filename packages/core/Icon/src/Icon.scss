@@ -1,0 +1,27 @@
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+@import '~@42.nl/ui-core-styling/scss/icons';
+
+/**
+* Make material-icons within Bootstrap great again!
+*/
+.input-group {
+  &-append,
+  &-prepend {
+    i {
+      @extend .input-group-text;
+    }
+
+    .btn > i.material-icons {
+      border: 0;
+      background: none;
+      color: #fff;
+      padding: 0;
+    }
+  }
+}
+
+.nav-link {
+  i.material-icons {
+    vertical-align: middle;
+  }
+}

@@ -16,7 +16,7 @@ interface Props {
 }
 
 /**
- * FlashMessage is a graphical implementation for @see {@link https://github.com/42BV/react-flash-messages}.
+ * FlashMessage is a graphical implementation for https://github.com/42BV/react-flash-messages.
  *
  * Use it when you want to globally show a notification / message.
  */

@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export type ContentStateMode = 'empty' | 'no-results' | 'error';
-
 interface Props {
   /**
    * The mode of the ContentState:
@@ -16,7 +14,7 @@ interface Props {
    * Use `error` for when something went wrong.
    *
    */
-  mode: ContentStateMode;
+  mode: 'empty' | 'no-results' | 'error';
 
   /**
    * The title of the ContentState component.

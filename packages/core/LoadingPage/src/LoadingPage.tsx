@@ -30,7 +30,7 @@ export default function LoadingPage({ className }: Props) {
   }, []);
 
   return (
-    <div className={classNames('LoadingPage', className)}>
+    <div className={classNames('loading-page', className)}>
       <div
         className="vh-100 d-flex flex-column justify-content-center align-items-center"
         style={{ marginTop: -(size / 2) }}

@@ -39,3 +39,6 @@ lib/
 
 # Ignore eslint cache
 .eslintcache
+
+# Documentation
+dist/

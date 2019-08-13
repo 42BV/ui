@@ -2,7 +2,7 @@
 
 exports[`Component: Button ui button normal inProgress is false 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Button
     color="primary"
@@ -12,7 +12,6 @@ exports[`Component: Button ui button normal inProgress is false 1`] = `
     tag="button"
     type="button"
   >
-     
     Save
   </Button>
 </span>
@@ -20,7 +19,7 @@ exports[`Component: Button ui button normal inProgress is false 1`] = `
 
 exports[`Component: Button ui button normal inProgress is true 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Button
     color="primary"
@@ -34,7 +33,6 @@ exports[`Component: Button ui button normal inProgress is true 1`] = `
       color="white"
       size={16}
     />
-     
     Save
   </Button>
 </span>
@@ -42,7 +40,7 @@ exports[`Component: Button ui button normal inProgress is true 1`] = `
 
 exports[`Component: Button ui button outline inProgress is false 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Button
     color="primary"
@@ -53,7 +51,6 @@ exports[`Component: Button ui button outline inProgress is false 1`] = `
     tag="button"
     type="button"
   >
-     
     Save
   </Button>
 </span>
@@ -61,7 +58,7 @@ exports[`Component: Button ui button outline inProgress is false 1`] = `
 
 exports[`Component: Button ui button outline inProgress is true 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Button
     color="primary"
@@ -76,7 +73,6 @@ exports[`Component: Button ui button outline inProgress is true 1`] = `
       color=""
       size={16}
     />
-     
     Save
   </Button>
 </span>
@@ -84,7 +80,7 @@ exports[`Component: Button ui button outline inProgress is true 1`] = `
 
 exports[`Component: Button ui button with icon normal inProgress is false 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Button
     color="primary"
@@ -97,7 +93,6 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
     <Icon
       icon="save"
     />
-     
     Save
   </Button>
 </span>
@@ -105,7 +100,7 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
 
 exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Button
     color="primary"
@@ -119,7 +114,6 @@ exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
       color="white"
       size={16}
     />
-     
     Save
   </Button>
 </span>
@@ -127,7 +121,7 @@ exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
 
 exports[`Component: Button ui button with icon outline inProgress is false 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Button
     color="primary"
@@ -141,7 +135,6 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
     <Icon
       icon="save"
     />
-     
     Save
   </Button>
 </span>
@@ -149,7 +142,7 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
 
 exports[`Component: Button ui button with icon outline inProgress is true 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Button
     color="primary"
@@ -164,7 +157,6 @@ exports[`Component: Button ui button with icon outline inProgress is true 1`] = 
       color=""
       size={16}
     />
-     
     Save
   </Button>
 </span>
@@ -172,7 +164,7 @@ exports[`Component: Button ui button with icon outline inProgress is true 1`] = 
 
 exports[`Component: Button ui icon inProgress is false 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Icon
     color="primary"
@@ -184,7 +176,7 @@ exports[`Component: Button ui icon inProgress is false 1`] = `
 
 exports[`Component: Button ui icon inProgress is true 1`] = `
 <span
-  className="Button  primary"
+  className="button  primary"
 >
   <Spinner
     color=""

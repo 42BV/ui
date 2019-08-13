@@ -1,0 +1,68 @@
+.b-t {
+  border-top: 1px solid rgba($body-color, 0.13);
+}
+.b-b {
+  border-bottom: 1px solid rgba($body-color, 0.13);
+}
+.b-l {
+  border-left: 1px solid rgba($body-color, 0.13);
+}
+.b-r {
+  border-right: 1px solid rgba($body-color, 0.13);
+}
+.b-all {
+  border: 1px solid rgba($body-color, 0.13);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+$theme-colors: (
+  primary: map-get($theme-colors, primary),
+  secondary: $gray-600,
+  success: map-get($theme-colors, success),
+  info: map-get($theme-colors, info),
+  warning: map-get($theme-colors, warning),
+  danger: map-get($theme-colors, danger),
+  light: $gray-200,
+  dark: $gray-800,
+  white: white
+);
+
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {List}            - text-shadow list
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke * -1;
+  @for $i from $from through $stroke {
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i * 1px $j * 1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {Style}           - text-shadow
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+
+// Color contrast
+@mixin color-yiq($color) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+  @if ($yiq >= 150) {
+    color: darken($color, 40%);
+  } @else {
+    color: lighten($color, 40%);
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button as RSButton } from 'reactstrap';
 
 import Spinner from '@42.nl/ui-core-spinner';
-import { Color } from '@42.nl/ui-types';
+import { Color } from '@42.nl/ui-core-typings';
 import { Icon, IconType } from '@42.nl/ui-core-icon';
 
 import useShowSpinner from './useShowSpinner';
@@ -11,8 +11,7 @@ interface BaseProps {
   /**
    * Optionally the type of button it is, defaults to 'button'.
    *
-   * @type {('button' | 'submit')}
-   * @default "button"
+   * @default button
    */
   type?: 'button' | 'submit';
 
@@ -27,7 +26,7 @@ interface BaseProps {
   onClick?: (event: React.MouseEvent<HTMLElement>) => any;
 
   /**
-   * Whether or not the action you are performing is currenlty in
+   * Whether or not the action you are performing is currently in
    * progress. If so a spinner is rendered inside of the button.
    * This behavior is optional and default to `false`.
    *
@@ -61,7 +60,7 @@ interface WithIconAndText extends BaseProps {
   /**
    * Optionally the size of the button, defaults to md.
    *
-   * @default "md"
+   * @default md
    */
   size?: 'sm' | 'md' | 'lg';
 }
@@ -87,7 +86,7 @@ interface WithText extends BaseProps {
   /**
    * Optionally the size of the button, defaults to md.
    *
-   * @default "md"
+   * @default md
    */
   size?: 'sm' | 'md' | 'lg';
 }
@@ -95,8 +94,8 @@ interface WithText extends BaseProps {
 export type Props = WithIcon | WithText | WithIconAndText;
 
 /**
- * The Button component is basically a clickeable element which can
- * either be shown as an Icon or as a react strap Button.
+ * The Button component is a clickable element which can
+ * either be shown as an Icon or as a ReactStrap Button.
  *
  * The Button component also has a notion of being `inProgress` when it is
  * it shows a Spinner. But only when `inProgress` has been true for more
@@ -139,7 +138,7 @@ export default function Button({
     };
 
     return (
-      <span className={`Button ${className} ${color}`}>
+      <span className={`button ${className} ${color}`}>
         <RSButton
           onClick={handleOnClick}
           disabled={inProgress}
@@ -149,7 +148,7 @@ export default function Button({
             <Spinner size={16} color={outline ? '' : 'white'} />
           ) : icon !== undefined ? (
             <Icon icon={icon} />
-          ) : null}{' '}
+          ) : null}
           {children}
         </RSButton>
       </span>
@@ -160,7 +159,7 @@ export default function Button({
     const iconCast = icon as IconType;
 
     return (
-      <span className={`Button ${className} ${color}`}>
+      <span className={`button ${className} ${color}`}>
         {showSpinner ? (
           // Color is empty string so we can override the color
           <Spinner size={24} color="" />

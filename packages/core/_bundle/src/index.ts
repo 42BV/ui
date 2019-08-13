@@ -12,3 +12,4 @@ export { default as SubmitButton } from '@42.nl/ui-core-submit-button';
 export { default as Tag } from '@42.nl/ui-core-tag';
 export { default as LoadingPage } from '@42.nl/ui-core-loading-page';
 export { default as Pagination } from '@42.nl/ui-core-pagination';
+export { default as Breadcrumbs } from '@42.nl/ui-core-breadcrumbs';

@@ -1,0 +1,9 @@
+@import '~@42.nl/ui-core-styling/scss/variables';
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+@import '~@42.nl/ui-core-spinner/lib/scss/Spinner';
+
+.loading-page {
+  margin: 0;
+  padding: 0;
+  background-color: $body-bg;
+}

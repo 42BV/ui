@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '@42.nl/ui-types';
+import { Color } from '@42.nl/ui-core-typings';
 
 import IconType from './types';
 

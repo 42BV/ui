@@ -24,9 +24,9 @@ interface Props {
   /**
    * Optional size.
    *
-   * @default 'md'
+   * @default md
    */
-  size?: Size;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 
   /**
    * Optional extra CSS class you want to add to the component.
@@ -49,7 +49,6 @@ export default function Avatar({ size, className, alt, src, children }: Props) {
       <UncontrolledTooltip placement="top" target={tooltip} delay={250}>
         {alt}
       </UncontrolledTooltip>
-
       <span id={tooltip} className="img-placeholder">
         <img alt={alt} src={src} />
       </span>

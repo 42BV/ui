@@ -10,7 +10,6 @@ import {
 interface Props<T> {
   /**
    * Represents Spring's page abstraction.
-   *  @see {@link http://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/Page.html}
    */
   page: Page<T>;
 
@@ -26,6 +25,10 @@ interface Props<T> {
   className?: string;
 }
 
+/**
+ * The Pagination component is an enhanced Bootstrap pagination component. It supports working with `Page`s and shows a fixed
+ * layout for the number of pages, indicating that multiple pages exist for the min and max ranges (e.g. 1 ... 4 5 6 ... 10).
+ */
 export default function Pagination<T>({ page, onChange, className }: Props<T>) {
   const { first, last, totalPages } = page;
 

@@ -1,0 +1,36 @@
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+@import '~@42.nl/ui-core-styling/scss/icons';
+
+.breadcrumb-wrapper {
+  @extend .row;
+  background: white;
+  border-bottom: 1px solid $gray-200;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  > strong {
+    padding: 0.75rem 0;
+    margin-left: $spacer;
+  }
+
+  .breadcrumb {
+    margin-right: $spacer;
+    background: white;
+    border-bottom: none;
+    margin-bottom: 0;
+
+    .breadcrumb-item + .breadcrumb-item {
+      &::before {
+        content: 'keyboard_arrow_right';
+        font-family: 'Material Icons';
+        line-height: $line-height-base;
+        vertical-align: middle;
+      }
+
+      .nav-link {
+        display: inline-block;
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@
 exports[`core should contain exports 1`] = `
 Object {
   "Avatar": [Function],
+  "Breadcrumbs": [Function],
   "Button": [Function],
   "ConfirmButton": [Function],
   "ContentState": [Function],

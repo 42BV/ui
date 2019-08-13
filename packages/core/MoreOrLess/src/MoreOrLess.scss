@@ -1,0 +1,12 @@
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+
+.more-or-less {
+  display: inline;
+
+  .more-or-less-link {
+    font-size: 12px;
+    display: inline;
+    cursor: pointer;
+    text-decoration: underline !important;
+  }
+}

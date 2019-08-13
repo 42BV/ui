@@ -4,21 +4,36 @@
     "clean": "lerna run --parallel clean && lerna clean",
     "test-only": "jest",
     "test": "yarn lint && yarn test-only",
-    "lint": "eslint . --cache --ext js,jsx,ts,tsx --max-warnings=0",
-    "build": "lerna bootstrap && lerna run build"
+    "lint": "eslint . --cache --max-warnings=0",
+    "build": "lerna bootstrap && lerna run build",
+    "docs": "start-storybook -c docs -p 9000",
+    "deploy-storybook": "storybook-to-ghpages",
+    "build-storybook": "build-storybook -c docs"
   },
   "devDependencies": {
+    "@babel/core": "7.5.5",
+    "@babel/plugin-transform-modules-commonjs": "7.5.0",
+    "@storybook/addon-actions": "5.1.9",
+    "@storybook/addon-docs": "next",
+    "@storybook/preset-scss": "1.0.2",
+    "@storybook/preset-typescript": "1.1.0",
+    "@storybook/react": "next",
+    "@storybook/storybook-deployer": "^2.8.1",
     "@testing-library/react-hooks": "1.1.0",
     "@types/classnames": "2.2.9",
     "@types/enzyme": "3.10.3",
     "@types/enzyme-adapter-react-16": "1.0.5",
     "@types/jest": "24.0.16",
+    "@types/node": "12.6.8",
     "@types/react": "16.8.23",
     "@types/reactstrap": "8.0.1",
+    "@types/storybook__react": "4.0.2",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
+    "babel-loader": "8.0.6",
     "classnames": "2.2.6",
     "danger": "9.1.4",
+    "css-loader": "3.1.0",
     "danger-plugin-jest": "1.3.0",
     "danger-plugin-yarn": "1.3.2",
     "enzyme": "3.10.0",
@@ -27,19 +42,24 @@
     "eslint": "6.1.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-config-react-app": "4.0.1",
-    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.6.1",
     "jest": "24.8.0",
     "lerna": "3.16.4",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
+    "node-sass": "4.12.0",
+    "react-docgen-typescript-loader": "3.1.0",
+    "sass-loader": "7.1.0",
+    "style-loader": "0.23.1",
     "ts-jest": "24.0.2",
+    "ts-loader": "6.0.4",
     "typescript": "3.5.3"
   },
-  "workspaces": [
-    "packages/core/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/core/*"
+    ]
+  },
   "jest": {
     "collectCoverage": true,
     "projects": [

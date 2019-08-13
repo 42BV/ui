@@ -1,0 +1,19 @@
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+@import '~@42.nl/ui-core-styling/scss/icons';
+
+.info-badge-container {
+  position: relative;
+  display: inline-block;
+  > .badge {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+  }
+}
+
+// Fix text alignment of badges within a flex container
+.d-flex {
+  .badge {
+    align-self: center;
+  }
+}

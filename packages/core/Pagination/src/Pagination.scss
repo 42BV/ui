@@ -1,0 +1,18 @@
+@import '~@42.nl/ui-core-styling/scss/variables';
+@import '~@42.nl/ui-core-styling/scss/bootstrap';
+
+.pagination {
+  .page-item {
+    button.disabled.page-link {
+      border-radius: 0;
+      background-color: $white;
+      color: $body-color;
+    }
+
+    &.active {
+      .page-link {
+        overflow: hidden;
+      }
+    }
+  }
+}
