@@ -20,11 +20,11 @@
     "classnames": "2.2.6"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
+    "react": "^16.9.0",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
+    "react": "16.9.0",
     "reactstrap": "8.0.1"
   },
   "keywords": [

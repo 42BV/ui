@@ -1,4 +1,4 @@
-import { load, addParameters } from '@storybook/react';
+import { configure, addParameters } from '@storybook/react';
 import { DocsPage } from '@storybook/addon-docs/blocks';
 
 let context;
@@ -27,4 +27,4 @@ addParameters({
   docs: DocsPage
 });
 
-load(context, module);
+configure(context, module);

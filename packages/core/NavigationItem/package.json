@@ -19,13 +19,13 @@
     "@42.nl/ui-core-styling": "^0.1.1-alpha.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
+    "react": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
     "@types/react-router-dom": "4.3.4",
-    "react": "16.8.6",
+    "react": "16.9.0",
     "react-router-dom": "5.0.1",
     "reactstrap": "8.0.1"
   },

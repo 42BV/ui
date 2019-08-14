@@ -17,15 +17,15 @@
     "@storybook/addon-docs": "next",
     "@storybook/preset-scss": "1.0.2",
     "@storybook/preset-typescript": "1.1.0",
-    "@storybook/react": "next",
-    "@storybook/storybook-deployer": "^2.8.1",
+    "@storybook/react": "5.2.0-beta.29",
+    "@storybook/storybook-deployer": "2.8.1",
     "@testing-library/react-hooks": "1.1.0",
     "@types/classnames": "2.2.9",
     "@types/enzyme": "3.10.3",
     "@types/enzyme-adapter-react-16": "1.0.5",
     "@types/jest": "24.0.16",
     "@types/node": "12.6.8",
-    "@types/react": "16.8.23",
+    "@types/react": "16.9.1",
     "@types/reactstrap": "8.0.1",
     "@types/storybook__react": "4.0.2",
     "@typescript-eslint/eslint-plugin": "1.13.0",
@@ -55,11 +55,9 @@
     "ts-loader": "6.0.4",
     "typescript": "3.5.3"
   },
-  "workspaces": {
-    "packages": [
-      "packages/core/*"
-    ]
-  },
+  "workspaces": [
+    "packages/core/*"
+  ],
   "jest": {
     "collectCoverage": true,
     "projects": [

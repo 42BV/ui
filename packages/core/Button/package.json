@@ -22,11 +22,11 @@
     "@42.nl/ui-core-typings": "^0.1.1-alpha.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
+    "react": "^16.9.0",
     "reactstrap": "^8.0.1"
   },
   "devDependencies": {
-    "react": "16.8.6",
+    "react": "16.9.0",
     "reactstrap": "8.0.1"
   },
   "keywords": [
