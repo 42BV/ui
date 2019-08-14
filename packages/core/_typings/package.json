@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-typings",
-  "version": "0.1.1-alpha.1",
+  "version": "0.11.0-alpha.0",
   "description": "TypeScript typings for @42.nl/ui.",
   "main": "index.d.ts",
   "keywords": [

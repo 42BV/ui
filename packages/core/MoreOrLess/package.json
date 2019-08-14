@@ -1,13 +1,14 @@
 {
   "name": "@42.nl/ui-core-more-or-less",
-  "version": "0.1.1-alpha.1",
+  "version": "0.11.0-alpha.0",
   "description": "MoreOrLess React component as used in 42.nl products.",
   "main": "lib/MoreOrLess.js",
+  "types": "lib/MoreOrLess.d.ts",
   "scripts": {
     "dev": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ../../../docs -p 9000",
     "test": "jest --config=jest.config.js",
     "build": "yarn clean && tsc && yarn copy:scss",
-    "copy:scss": "rsync -a src/*.scss lib/scss/",
+    "copy:scss": "node ../../../scripts/prebuild src/*.scss lib/scss/",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "clean": "rm -rf lib"
   },
@@ -15,7 +16,7 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "^0.1.1-alpha.1",
+    "@42.nl/ui-core-styling": "^0.11.0-alpha.0",
     "classnames": "2.2.6",
     "lodash.take": "4.1.1"
   },

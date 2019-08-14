@@ -1,7 +1,10 @@
 {
   "name": "@42.nl/ui",
-  "version": "0.1.1-alpha.1",
+  "version": "0.11.0-alpha.0",
   "main": "lib/index.js",
+  "module": "lib/index.es.js",
+  "style": "lib/scss/main.scss",
+  "types": "lib/index.d.ts",
   "description": "React components as used in 42.nl products.",
   "files": [
     "lib/*"
@@ -9,31 +12,32 @@
   "scripts": {
     "test": "jest --config=jest.config.js",
     "build": "yarn clean && tsc && yarn copy:scss",
-    "copy:scss": "rsync -a scss/ lib/scss/",
+    "copy:scss": "rsync -a src/*.scss lib/scss/",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "clean": "rm -rf lib"
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "bootstrap": "^4.3.1"
   },
   "dependencies": {
-    "@42.nl/ui-core-avatar": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-breadcrumbs": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-button": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-confirm-button": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-content-state": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-flash-message": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-icon": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-infobadge": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-loading-page": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-more-or-less": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-navigation-item": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-pagination": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-spinner": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-styling": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-submit-button": "^0.1.1-alpha.1",
-    "@42.nl/ui-core-tag": "^0.1.1-alpha.1"
+    "@42.nl/ui-core-avatar": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-breadcrumbs": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-button": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-confirm-button": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-content-state": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-flash-message": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-icon": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-infobadge": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-loading-page": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-more-or-less": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-navigation-item": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-pagination": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-spinner": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-styling": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-submit-button": "^0.11.0-alpha.0",
+    "@42.nl/ui-core-tag": "^0.11.0-alpha.0"
   },
   "keywords": [
     "ui",

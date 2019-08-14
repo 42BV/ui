@@ -8,7 +8,8 @@
     "build": "lerna bootstrap && lerna run build",
     "docs": "start-storybook -c docs -p 9000",
     "deploy-storybook": "storybook-to-ghpages",
-    "build-storybook": "build-storybook -c docs"
+    "build-storybook": "build-storybook -c docs",
+    "dev-publish": "lerna version --no-push --no-git-tag-version preminor && lerna exec 'npm publish --registry http://localhost:4873'"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
@@ -32,8 +33,8 @@
     "@typescript-eslint/parser": "1.13.0",
     "babel-loader": "8.0.6",
     "classnames": "2.2.6",
-    "danger": "9.1.4",
     "css-loader": "3.1.0",
+    "danger": "9.1.4",
     "danger-plugin-jest": "1.3.0",
     "danger-plugin-yarn": "1.3.2",
     "enzyme": "3.10.0",
@@ -42,9 +43,10 @@
     "eslint": "6.1.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-config-react-app": "4.0.1",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "2.18.2",
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.6.1",
+    "glob": "7.1.4",
     "jest": "24.8.0",
     "lerna": "3.16.4",
     "node-sass": "4.12.0",

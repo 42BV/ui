@@ -1,8 +1,10 @@
-@import '~@42.nl/ui-core-styling/scss/variables';
-@import '~@42.nl/ui-core-styling/scss/bootstrap';
-@import '~@42.nl/ui-core-styling/scss/icons';
+// @remove-on-build-start
+@import '~@42.nl/ui-core-styling/lib/variables';
+@import '~@42.nl/ui-core-styling/lib/bootstrap';
+@import '~@42.nl/ui-core-styling/lib/icons';
 @import '~@42.nl/ui-core-icon/lib/scss/Icon';
 @import '~@42.nl/ui-core-spinner/lib/scss/Spinner';
+// @remove-on-build-end
 
 .button {
   .btn {

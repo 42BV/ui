@@ -1,6 +1,8 @@
-@import '~@42.nl/ui-core-styling/scss/variables';
-@import '~@42.nl/ui-core-styling/scss/mixins';
-@import '~@42.nl/ui-core-styling/scss/bootstrap';
+// @remove-on-build-start
+@import '~@42.nl/ui-core-styling/lib/variables';
+@import '~@42.nl/ui-core-styling/lib/mixins';
+@import '~@42.nl/ui-core-styling/lib/bootstrap';
+// @remove-on-build-end
 
 .tag,
 .rbt {
