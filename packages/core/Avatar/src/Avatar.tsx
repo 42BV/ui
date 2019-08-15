@@ -52,7 +52,6 @@ export default function Avatar({ size, className, alt, src, children }: Props) {
       <span id={tooltip} className="img-placeholder">
         <img alt={alt} src={src} />
       </span>
-
       {children}
     </span>
   );

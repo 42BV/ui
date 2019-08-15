@@ -1,2 +1,9 @@
-@import '~@42.nl/ui-core-styling/scss/bootstrap';
+// @remove-on-build-start
+@import '~@42.nl/ui-core-styling/lib/bootstrap';
+@import '~@42.nl/ui-core-styling/lib/icons';
 @import '~@42.nl/ui-core-icon/lib/scss/Icon';
+// @remove-on-build-end
+
+.navigation-item {
+  list-style: none;
+}

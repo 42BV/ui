@@ -3,7 +3,9 @@
 @import 'mixins';
 
 // Abstract styles
+// @remove-on-build-start
 @import 'bootstrap';
+// @remove-on-build-end
 @import 'icons';
 @import 'typography';
 @import 'inputs';

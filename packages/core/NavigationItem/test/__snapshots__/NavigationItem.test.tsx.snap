@@ -2,6 +2,7 @@
 
 exports[`Component: NavigationItem ui 1`] = `
 <NavItem
+  className="navigation-item"
   tag="li"
 >
   <NavLink

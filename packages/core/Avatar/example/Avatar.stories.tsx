@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Avatar from '../src/Avatar';
+import AvatarStack from '../src/AvatarStack';
 
 storiesOf('core|Avatar', module)
   .addParameters({ component: Avatar })
@@ -13,5 +14,31 @@ storiesOf('core|Avatar', module)
       <Avatar alt="muted avatar" src="https://www.placecage.com/100/100">
         <small className="text-muted">John Doe</small>
       </Avatar>
+    </div>
+  ))
+  .add('stacked avatars', () => (
+    <div className="text-center">
+      <AvatarStack>
+        <Avatar
+          alt="Avatar numbero 1"
+          size="xs"
+          src="https://www.placecage.com/100/100"
+        />
+        <Avatar
+          alt="Avatar numbero 2"
+          size="xs"
+          src="https://www.placecage.com/100/100"
+        />
+        <Avatar
+          alt="Avatar numbero 3"
+          size="xs"
+          src="https://www.placecage.com/100/100"
+        />
+        <Avatar
+          alt="Avatar numbero 4"
+          size="xs"
+          src="https://www.placecage.com/100/100"
+        />
+      </AvatarStack>
     </div>
   ));

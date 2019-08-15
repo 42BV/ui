@@ -1,5 +1,7 @@
-@import '~@42.nl/ui-core-styling/scss/bootstrap';
-@import '~@42.nl/ui-core-styling/scss/icons';
+// @remove-on-build-start
+@import '~@42.nl/ui-core-styling/lib/bootstrap';
+@import '~@42.nl/ui-core-styling/lib/icons';
+// @remove-on-build-end
 
 /**
 * Make material-icons within Bootstrap great again!
