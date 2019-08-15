@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-icon",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Typesafe material-ui React icon component as used in 42.nl products.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,7 +16,7 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "^1.0.3",
+    "@42.nl/ui-core-styling": "^1.0.4",
     "@42.nl/ui-core-typings": "^1.0.2",
     "classnames": "2.2.6"
   },
