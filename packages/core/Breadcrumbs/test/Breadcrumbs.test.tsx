@@ -2,29 +2,34 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Breadcrumbs from '../src/Breadcrumbs';
+import Breadcrumbs, { ItemProps } from '../src/Breadcrumbs';
 
 describe('Component: Breadcrumbs', () => {
   let breadcrumbs: ShallowWrapper;
 
-  function setup({ items }: { items?: { url: string; name: string }[] }) {
+  function setup({ items }: { items?: ItemProps[] }) {
     breadcrumbs = shallow(<Breadcrumbs items={items} />);
   }
 
   describe('ui', () => {
     test('default', () => {
-      setup({});
+      setup({ items: [{ name: 'Dashboard', url: '/dashboard' }] });
 
       expect(toJson(breadcrumbs)).toMatchSnapshot(
         'Component: Breadcrumbs => ui => default'
       );
     });
 
-    test('with items', () => {
-      setup({ items: [{ name: 'Dashboard', url: '/dashboard' }] });
+    test('with active', () => {
+      setup({
+        items: [
+          { name: 'Dashboard', url: '/dashboard' },
+          { name: 'Library', active: true }
+        ]
+      });
 
       expect(toJson(breadcrumbs)).toMatchSnapshot(
-        'Component: Breadcrumbs => ui => with items'
+        'Component: Breadcrumbs => ui => with active'
       );
     });
   });

@@ -16,7 +16,8 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "1.0.0"
+    "@42.nl/ui-core-styling": "1.0.0",
+    "classnames": "2.2.6"
   },
   "peerDependencies": {
     "react": "^16.9.0",

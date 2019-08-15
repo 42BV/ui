@@ -11,7 +11,8 @@ storiesOf('core|Breadcrumbs', module)
       <Breadcrumbs
         items={[
           { name: 'Dashboard', url: '/dashboard' },
-          { name: 'Users', url: '/users' }
+          { name: 'Users', url: '/users' },
+          { name: 'Library', active: true }
         ]}
       />
     </BrowserRouter>
