@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-breadcrumbs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Breadcrumbs React component as used in 42.nl products.",
   "main": "lib/Breadcrumbs.js",
   "types": "lib/Breadcrumbs.d.ts",

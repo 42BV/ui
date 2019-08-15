@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
   "style": "lib/scss/main.scss",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@42.nl/ui-core-avatar": "^1.0.2",
-    "@42.nl/ui-core-breadcrumbs": "^1.0.2",
+    "@42.nl/ui-core-breadcrumbs": "^1.0.3",
     "@42.nl/ui-core-button": "^1.0.2",
     "@42.nl/ui-core-confirm-button": "^1.0.2",
     "@42.nl/ui-core-content-state": "^1.0.2",
