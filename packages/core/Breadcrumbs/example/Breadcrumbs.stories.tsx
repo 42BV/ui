@@ -16,4 +16,18 @@ storiesOf('core|Breadcrumbs', module)
         ]}
       />
     </BrowserRouter>
+  ))
+  .add('example with header', () => (
+    <BrowserRouter>
+      <div className="d-flex">
+        <h2 className="flex-fill align-self-center">Test</h2>
+        <Breadcrumbs
+          items={[
+            { name: 'Dashboard', url: '/dashboard' },
+            { name: 'Users', url: '/users' },
+            { name: 'Library', active: true }
+          ]}
+        />
+      </div>
+    </BrowserRouter>
   ));

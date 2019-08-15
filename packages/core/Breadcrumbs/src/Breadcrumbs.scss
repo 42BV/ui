@@ -4,12 +4,10 @@
 // @remove-on-build-end
 
 .breadcrumb-wrapper {
-  @extend .row;
+  flex-wrap: wrap;
   background: white;
-  border-bottom: 1px solid $gray-200;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
 
   > strong {
     padding: 0.75rem 0;
@@ -17,10 +15,10 @@
   }
 
   .breadcrumb {
-    margin-right: $spacer;
     background: transparent;
     border-bottom: none;
     margin-bottom: 0;
+    padding-right: 0;
 
     .active {
       span {

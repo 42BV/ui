@@ -52,7 +52,7 @@ interface BreadcrumbsProps {
 export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   return (
     <div className={classNames('breadcrumb-wrapper', className)}>
-      <RBreadcrumb className="ml-auto">
+      <RBreadcrumb>
         {items.map(item => {
           const active = 'active' in item;
           const name = item.name;

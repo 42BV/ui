@@ -9,7 +9,7 @@
     "docs": "start-storybook -c docs -p 9000",
     "deploy-storybook": "storybook-to-ghpages",
     "build-storybook": "build-storybook -c docs",
-    "dev-publish": "lerna version --no-push --no-git-tag-version preminor && lerna exec 'npm publish --registry http://localhost:4873'",
+    "dev-publish": "lerna version --force-publish --no-push --no-git-tag-version preminor && lerna exec 'npm publish --registry http://localhost:4873'",
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
