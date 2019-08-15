@@ -117,3 +117,21 @@ select.form-control {
 select.showing-placeholder {
   color: $input-placeholder-color;
 }
+
+/**
+* Fixes the issue that cssnano transforms the background-position for
+* the Bootstrap checkmark icon to indicate that an input is valid.
+* 
+* Remove when following issue is fixed:
+* https://github.com/cssnano/cssnano/issues/712
+*/
+.form-control.is-valid,
+.ReactTable .rt-thead.-filters .was-validated input:valid,
+.ReactTable .rt-thead.-filters .was-validated select:valid,
+.ReactTable .rt-thead.-filters input.is-valid,
+.ReactTable .rt-thead.-filters select.is-valid,
+.was-validated .form-control:valid,
+.was-validated .ReactTable .rt-thead.-filters input:valid,
+.was-validated .ReactTable .rt-thead.-filters select:valid {
+  background-position: right calc(0.375em + 0.1875rem) center !important;
+}
