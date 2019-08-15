@@ -9,11 +9,25 @@ exports[`Component: Breadcrumbs ui default: Component: Breadcrumbs => ui => defa
     className="ml-auto"
     listTag="ol"
     tag="nav"
-  />
+  >
+    <BreadcrumbItem
+      active={false}
+      key="Dashboard"
+      tag="li"
+    >
+      <NavLink
+        exact={true}
+        tag={[Function]}
+        to="/dashboard"
+      >
+        Dashboard
+      </NavLink>
+    </BreadcrumbItem>
+  </Breadcrumb>
 </div>
 `;
 
-exports[`Component: Breadcrumbs ui with items: Component: Breadcrumbs => ui => with items 1`] = `
+exports[`Component: Breadcrumbs ui with active: Component: Breadcrumbs => ui => with active 1`] = `
 <div
   className="breadcrumb-wrapper"
 >
@@ -24,7 +38,8 @@ exports[`Component: Breadcrumbs ui with items: Component: Breadcrumbs => ui => w
     tag="nav"
   >
     <BreadcrumbItem
-      key="0"
+      active={false}
+      key="Dashboard"
       tag="li"
     >
       <NavLink
@@ -34,6 +49,15 @@ exports[`Component: Breadcrumbs ui with items: Component: Breadcrumbs => ui => w
       >
         Dashboard
       </NavLink>
+    </BreadcrumbItem>
+    <BreadcrumbItem
+      active={true}
+      key="Library"
+      tag="li"
+    >
+      <span>
+        Library
+      </span>
     </BreadcrumbItem>
   </Breadcrumb>
 </div>

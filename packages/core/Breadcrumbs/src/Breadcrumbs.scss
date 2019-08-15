@@ -18,9 +18,16 @@
 
   .breadcrumb {
     margin-right: $spacer;
-    background: white;
+    background: transparent;
     border-bottom: none;
     margin-bottom: 0;
+
+    .active {
+      span {
+        padding: 0.5rem 1rem;
+        display: inline-block;
+      }
+    }
 
     .breadcrumb-item + .breadcrumb-item {
       &::before {
