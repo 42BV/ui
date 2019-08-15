@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-submit-button",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SubmitButton React component as used in 42.nl products.",
   "main": "lib/SubmitButton.js",
   "types": "lib/SubmitButton.d.ts",
@@ -15,8 +15,8 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-button": "^1.0.1",
-    "@42.nl/ui-core-icon": "^1.0.1"
+    "@42.nl/ui-core-button": "^1.0.2",
+    "@42.nl/ui-core-icon": "^1.0.2"
   },
   "peerDependencies": {
     "react": "^16.9.0"

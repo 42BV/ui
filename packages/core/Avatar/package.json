@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-avatar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Avatar React component as used in 42.nl products.",
   "main": "lib/Avatar.js",
   "types": "lib/Avatar.d.ts",
@@ -16,7 +16,7 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "^1.0.1",
+    "@42.nl/ui-core-styling": "^1.0.2",
     "classnames": "2.2.6",
     "lodash.uniqueid": "4.0.1"
   },
