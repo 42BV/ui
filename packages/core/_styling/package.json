@@ -10,8 +10,13 @@
     "lib/*"
   ],
   "dependencies": {
-    "bootstrap": "4.3.1",
     "material-design-icons": "3.0.1"
+  },
+  "devDependencies": {
+    "bootstrap": "4.3.1"
+  },
+  "peerDependencies": {
+    "bootstrap": "^4.3.1"
   },
   "keywords": [
     "scss",
