@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-flash-message",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "FlashMessage React component as used in 42.nl products.",
   "main": "lib/FlashMessage.js",
   "types": "lib/FlashMessage.d.ts",
@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "@42.nl/react-flash-messages": "0.0.2",
-    "@42.nl/ui-core-styling": "^1.0.2",
+    "@42.nl/ui-core-styling": "^1.0.3",
     "classnames": "2.2.6"
   },
   "peerDependencies": {
