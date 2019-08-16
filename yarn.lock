@@ -7,35 +7,6 @@
   resolved "https://registry.yarnpkg.com/@42.nl/react-flash-messages/-/react-flash-messages-0.0.2.tgz#edcedd45f4fdb363fa57319749c18b860379dadb"
   integrity sha512-y/rR7BIpTg7ckIX5zhIzbG5ChexKGoZfjrXDYgWGJSj0um2p3/sQep4FzA7VOKKLMm3hGRinZzBdCMGds5BYag==
 
-"@42.nl/ui-core-breadcrumbs@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@42.nl/ui-core-breadcrumbs/-/ui-core-breadcrumbs-1.0.6.tgz#a06ee32a8a102bbabfb868771006814e3537feee"
-  integrity sha512-k8VkVG4M9VtBTIyQna5GPaDxOS2693nW7JEFgkk3HUAfmFBISc/hP35ppUSAzlNYL947mFgPyF1pG7at4lhoog==
-  dependencies:
-    "@42.nl/ui-core-styling" "^1.0.5"
-    classnames "2.2.6"
-
-"@42.nl/ui-core-styling@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@42.nl/ui-core-styling/-/ui-core-styling-1.0.5.tgz#bb4632437d86f773b3ab618487a7d0583b6bd469"
-  integrity sha512-xEKf6hXNeQmj+RIgO+FnvlDUBDlGxC32uyzU8sBYOD52NUp7UWbI1EdDFPelOKh0PnC5LAdoxCkgOpsjSr+zKg==
-  dependencies:
-    material-design-icons "3.0.1"
-
-"@42.nl/ui-core-tag@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@42.nl/ui-core-tag/-/ui-core-tag-1.0.5.tgz#51d04b0f668011da52a3885e4fb5e12a7f2bb5ae"
-  integrity sha512-26rdSi0UVGRLGdyKqeoDnI+G5LMlmfGvBANs152vephRKnLOcPpYKKqmG77NMI0kWF0BxOS0tEjPfnYCssxcZw==
-  dependencies:
-    "@42.nl/ui-core-styling" "^1.0.5"
-    "@42.nl/ui-core-typings" "^1.0.2"
-    classnames "2.2.6"
-
-"@42.nl/ui-core-typings@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@42.nl/ui-core-typings/-/ui-core-typings-1.0.2.tgz#0d56b51eef5099319daffa3d9d121398601efad7"
-  integrity sha512-qjvbmkQ75jbERbHxIHPTSH8fz6D7ZhjWHJHk3tMcutnlJC492HDnWPkcCI0jr2jMpAZ+MO+uQlLcT3esudoRzw==
-
 "@babel/code-frame@7.5.5", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.5.5.tgz#bc0782f6d69f7b7d49531219699b988f669a8f9d"
@@ -2938,10 +2909,18 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16.9.1", "@types/react@>=16.9.0":
+"@types/react@*", "@types/react@16.9.1":
   version "16.9.1"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.1.tgz#862c83b4c9d5cd116e42fd9a4f3694843cd2c051"
   integrity sha512-jGM2x8F7m7/r+81N/BOaUKVwbC5Cdw6ExlWEUpr77XPwVeNvAppnPEnMMLMfxRDYL8FPEX8MHjwtD2NQMJ0yyQ==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@>=16.9.0":
+  version "16.9.2"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.2.tgz#6d1765431a1ad1877979013906731aae373de268"
+  integrity sha512-jYP2LWwlh+FTqGd9v7ynUKZzjj98T8x7Yclz479QdRhHfuW9yQ+0jjnD31eXSXutmBpppj5PYNLYLRfnZJvcfg==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -4153,6 +4132,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+
+bootstrap@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
+  integrity sha512-rXqOmH1VilAt2DyPzluTi2blhk17bO7ef+zLLPlWvG494pDxcM234pJ8wTc/6R40UWizAIIMgxjvxZg5kmsbag==
 
 boxen@^3.0.0:
   version "3.2.0"

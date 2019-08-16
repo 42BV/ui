@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "clean": "lerna run --parallel clean && lerna clean",
+    "clean": "lerna run --parallel clean && lerna clean --yes",
     "test-only": "jest",
     "test": "yarn lint && yarn test-only",
     "lint": "eslint . --cache --max-warnings=0",
@@ -9,7 +9,7 @@
     "docs": "start-storybook -c docs -p 9000",
     "deploy-storybook": "storybook-to-ghpages",
     "build-storybook": "build-storybook -c docs",
-    "dev-publish": "lerna version --force-publish --no-push --no-git-tag-version preminor && lerna exec 'npm publish --registry http://localhost:4873'",
+    "dev-publish": "yarn clean && yarn build && ENV=dev ./scripts/publish.sh",
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {

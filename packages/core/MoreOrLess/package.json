@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui-core-more-or-less",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "MoreOrLess React component as used in 42.nl products.",
   "main": "lib/MoreOrLess.js",
   "types": "lib/MoreOrLess.d.ts",
@@ -16,7 +16,7 @@
     "lib/*"
   ],
   "dependencies": {
-    "@42.nl/ui-core-styling": "^1.0.5",
+    "@42.nl/ui-core-styling": "1.0.6",
     "classnames": "2.2.6",
     "lodash.take": "4.1.1"
   },
