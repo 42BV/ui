@@ -18,6 +18,7 @@ User Interface package that contains the following React components:
 - `@42.nl/ui-core-tag`
 - `@42.nl/ui-core-loading-page`
 - `@42.nl/ui-core-breadcrumbs`
+- `@42.nl/ui-core-progress-stepper`
 
 ## Installation
 

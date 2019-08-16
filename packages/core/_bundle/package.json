@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
   "style": "lib/scss/main.scss",
@@ -37,7 +37,8 @@
     "@42.nl/ui-core-spinner": "1.0.6",
     "@42.nl/ui-core-styling": "1.0.6",
     "@42.nl/ui-core-submit-button": "1.0.6",
-    "@42.nl/ui-core-tag": "1.0.6"
+    "@42.nl/ui-core-tag": "1.0.6",
+    "@42.nl/ui-core-progress-stepper": "1.0.0"
   },
   "keywords": [
     "ui",

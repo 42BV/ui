@@ -14,6 +14,7 @@ Object {
   "MoreOrLess": [Function],
   "NavigationItem": [Function],
   "Pagination": [Function],
+  "ProgressStepper": [Function],
   "Spinner": [Function],
   "SubmitButton": [Function],
   "Tag": [Function],

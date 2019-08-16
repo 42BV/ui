@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: ProgressStepper ui 1`] = `
+<div
+  className="progress-stepper extra-css-class"
+>
+  <div
+    className="step primary"
+    key="start"
+  >
+    <div
+      className="step-item"
+      onClick={[Function]}
+    >
+      <div
+        className="step-circle"
+      >
+        <span>
+          1
+        </span>
+      </div>
+      <div
+        className="step-title"
+      >
+        start
+      </div>
+    </div>
+    <div
+      className="step-bar-left"
+    />
+    <div
+      className="step-bar-right"
+    />
+  </div>
+</div>
+`;
