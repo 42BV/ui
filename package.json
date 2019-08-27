@@ -6,9 +6,9 @@
     "test": "yarn lint && yarn test-only",
     "lint": "eslint . --cache --max-warnings=0",
     "build": "lerna bootstrap && lerna run build",
-    "docs": "start-storybook -c docs -p 9000",
+    "docs": "jekyll serve --source docs",
     "deploy-storybook": "storybook-to-ghpages",
-    "build-storybook": "build-storybook -c docs",
+    "build-storybook": "build-storybook -c storybook -o docs/storybook",
     "dev-publish": "yarn clean && yarn build && ENV=dev ./scripts/publish.sh",
     "prepublishOnly": "yarn build"
   },
