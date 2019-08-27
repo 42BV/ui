@@ -5,11 +5,13 @@
   "main": "lib/NavigationItem.js",
   "types": "lib/NavigationItem.d.ts",
   "scripts": {
-    "dev": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ../../../storybook -p 9000",
-    "test": "jest --config=jest.config.js",
-    "build": "yarn run clean && tsc && yarn run copy:scss",
+    "start": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ../../../docs -p 9000",
+    "test": "jest --config=jest.config.js --watch",
+    "test-all": "yarn lint && yarn typecheck && jest --config=jest.config.js",
+    "build": "yarn clean && tsc && yarn copy:scss",
     "copy:scss": "node ../../../scripts/prebuild src/*.scss lib/scss/",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
+    "typecheck": "tsc --noEmit",
     "clean": "rm -rf lib"
   },
   "files": [

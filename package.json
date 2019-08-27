@@ -3,7 +3,7 @@
   "scripts": {
     "clean": "lerna run --parallel clean && lerna clean --yes",
     "test-only": "jest",
-    "test": "yarn lint && yarn test-only",
+    "test": "lerna run --parallel test-all",
     "lint": "eslint . --cache --max-warnings=0",
     "build": "lerna bootstrap && lerna run build",
     "docs": "jekyll serve --source docs",

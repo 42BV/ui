@@ -89,7 +89,6 @@ export function pagesFor(
   }
 
   if (content[0] === 1 && content[1] !== 2) {
-    // @ts-ignore
     content.splice(1, 0, '...');
   }
 
@@ -98,7 +97,6 @@ export function pagesFor(
     content[lastIndex] === totalPages &&
     content[lastIndex - 1] !== totalPages - 1
   ) {
-    // @ts-ignore
     content.splice(lastIndex, 0, '...');
   }
 
