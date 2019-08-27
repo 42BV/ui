@@ -42,3 +42,6 @@ lib/
 
 # Documentation
 dist/
+
+# Verdaccio
+.versions.json

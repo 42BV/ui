@@ -37,21 +37,11 @@ yarn add @42.nl/ui
 npm i @42.nl/ui --save
 ```
 
-## Features
-
-| Package     | Components     |
-| ----------- | -------------- |
-| `@42.nl/ui` | ContentState   |
-|             | Icon           |
-|             | InfoBadge      |
-|             | NavigationItem |
-|             | MoreOrLess     |
-|             | Spinner        |
-|             | Flash Message  |
-
 ## Contributing
 
-This repository makes heavy use of [`Yarn` workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) functionality, therefore it is mandatory to have `Yarn` installed. If you do not have `Yarn` installed, consult the [installation guide](https://yarnpkg.com/en/docs/install#mac-stable).
+This repository makes heavy use of [`Yarn` workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) 
+functionality, therefore it is mandatory to have `Yarn` installed. If you 
+do not have `Yarn` installed, consult the [installation guide](https://yarnpkg.com/en/docs/install#mac-stable).
 
 ### Setup
 
@@ -61,9 +51,12 @@ This repository makes heavy use of [`Yarn` workspaces](https://yarnpkg.com/lang/
 
 ### Development
 
-This project uses [lerna](https://lerna.js.org/) to manage independently versioned packages and enable code sharing. This enables us to run commands on repository level through `lerna run [script]` or on package level through `yarn [script]`.
+This project uses [lerna](https://lerna.js.org/) to manage independently 
+versioned packages and enable code sharing. This enables us to run commands 
+on repository level through `lerna run [script]` or on package level 
+through `yarn [script]`.
 
-For example developing a new component:
+#### Scenario: new component
 
 1. Copy an existing package (e.g. `cp -r packages/Avatar packages/Component`) or use [@lerna/create](https://github.com/lerna/lerna/tree/master/commands/create#readme).
 2. Update `package.json` to reflect the new component.
@@ -87,3 +80,39 @@ yarn lint
 ```bash
 yarn test-only
 ```
+
+### Publishing
+
+#### Development
+
+To prevent multiple prelease publishes for a single feature, we recommend using 
+[https://verdaccio.org/](Verdaccio). Verdaccio enables you to spin up 
+a local NPM registry. This allows us to publish multiple versions for 
+testing purposes without polluting the version scope.
+
+> We recommend the Docker approach instead of locally installing 
+Verdaccio, if you do not want to use Docker, refer to the Verdaccio 
+documentation.
+
+To publish to the Verdaccio registry run `yarn dev-publish` this
+will spin up Verdaccio and publish all packages as a version
+based on the current date. To get out the version look for a line
+in the output that looks like this:
+
+`+ @42.nl/ui@2019.7.2182427`.
+
+In this case the version would be `2019.7.2182427`.
+
+You can view Verdaccio here: `http://localhost:4873/` it should after
+a successful dev publish show the packages here.
+
+Next in the `package.json` of the project you want to test the new
+version in change the `@42.nl/ui` version to the version that was
+created. 
+
+Then install with the registry Verdaccio registry via: 
+
+`npm install --registry http://localhost:4873`.
+
+Now you can test the package locally without a publish to the actual
+NPM registry.
