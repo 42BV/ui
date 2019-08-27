@@ -45,3 +45,10 @@ dist/
 
 # Verdaccio
 .versions.json
+
+# Jekyll
+*.gem
+.bundle
+.sass-cache
+_site
+Gemfile.lock

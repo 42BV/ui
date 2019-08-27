@@ -5,7 +5,7 @@
   "main": "lib/Tag.js",
   "types": "lib/Tag.d.ts",
   "scripts": {
-    "dev": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ../../../docs -p 9000",
+    "dev": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ../../../storybook -p 9000",
     "test": "jest --config=jest.config.js",
     "build": "yarn clean && tsc && yarn copy:scss",
     "copy:scss": "node ../../../scripts/prebuild src/*.scss lib/scss/",
