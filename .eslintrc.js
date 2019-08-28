@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['prettier', 'plugin:import/errors'],
+  extends: ['plugin:import/errors'],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
