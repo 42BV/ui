@@ -1,0 +1,92 @@
+$progress-stepper-icons: (
+  success: '\2713',
+  warning: '!',
+  info: '?',
+  danger: '!'
+);
+
+.progress-stepper {
+  display: table;
+  width: 100%;
+  margin: 0 auto;
+
+  .step {
+    display: table-cell;
+    position: relative;
+    padding: 24px;
+
+    &:first-child .step-bar-left,
+    &:last-child .step-bar-right {
+      display: none;
+    }
+
+    &.clickable {
+      cursor: pointer;
+    }
+
+    @each $color, $value in $theme-colors {
+      &.#{$color} {
+        .step-circle {
+          background-color: $value;
+
+          $icon: map-get($progress-stepper-icons, $color);
+
+          @if ($icon) {
+            &:before {
+              content: $icon;
+            }
+
+            * {
+              display: none;
+            }
+          }
+        }
+        .step-title {
+          font-weight: 600;
+          color: $value;
+        }
+      }
+    }
+
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+      background-color: $gray-900;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-size: 16px;
+      font-weight: 600;
+      color: $white;
+    }
+
+    .step-title {
+      margin-top: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      color: $gray-900;
+    }
+
+    .step-bar-left,
+    .step-bar-right {
+      position: absolute;
+      top: 42px;
+      height: 1px;
+      border-top: 1px solid $gray-900;
+    }
+
+    .step-bar-right {
+      right: 0;
+      left: 50%;
+      margin-left: 28px;
+    }
+
+    .step-bar-left {
+      left: 0;
+      right: 50%;
+      margin-right: 28px;
+    }
+  }
+}

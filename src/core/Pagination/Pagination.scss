@@ -1,0 +1,15 @@
+.pagination {
+  .page-item {
+    button.disabled.page-link {
+      border-radius: 0;
+      background-color: $white;
+      color: $body-color;
+    }
+
+    &.active {
+      .page-link {
+        overflow: hidden;
+      }
+    }
+  }
+}

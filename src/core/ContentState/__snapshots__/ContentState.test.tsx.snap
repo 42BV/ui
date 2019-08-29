@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: ContentStateIcon ui empty: Component: ContentStateIcon => empty 1`] = `
+<div
+  className="text-center"
+>
+  <div
+    className="content-state empty"
+  >
+    <div
+      className="state-icons"
+    >
+      <Icon
+        className="material-icons"
+        icon="folder_open"
+      />
+      <Icon
+        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        className="material-icons"
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        className="material-icons"
+        icon="laptop"
+      />
+      <Icon
+        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        className="material-icons"
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        className="material-icons"
+        icon="photo"
+      />
+    </div>
+  </div>
+  <h4>
+    title
+  </h4>
+  <h6
+    className="text-muted mb-3"
+  >
+    subtitle
+  </h6>
+</div>
+`;
+
+exports[`Component: ContentStateIcon ui error: Component: ContentStateIcon => error 1`] = `
+<div
+  className="text-center"
+>
+  <div
+    className="content-state error"
+  >
+    <div
+      className="state-icons"
+    >
+      <Icon
+        className="material-icons"
+        icon="folder_open"
+      />
+      <Icon
+        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        className="material-icons"
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        className="material-icons"
+        icon="sentiment_very_dissatisfied"
+      />
+      <Icon
+        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        className="material-icons"
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        className="material-icons"
+        icon="photo"
+      />
+    </div>
+  </div>
+  <h4>
+    title
+  </h4>
+  <h6
+    className="text-muted mb-3"
+  >
+    subtitle
+  </h6>
+</div>
+`;
+
+exports[`Component: ContentStateIcon ui no-results: Component: ContentStateIcon => no-results 1`] = `
+<div
+  className="text-center"
+>
+  <div
+    className="content-state no-results"
+  >
+    <div
+      className="state-icons"
+    >
+      <Icon
+        className="material-icons"
+        icon="folder_open"
+      />
+      <Icon
+        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        className="material-icons"
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        className="material-icons"
+        icon="search"
+      />
+      <Icon
+        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        className="material-icons"
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        className="material-icons"
+        icon="photo"
+      />
+    </div>
+  </div>
+  <h4>
+    title
+  </h4>
+  <h6
+    className="text-muted mb-3"
+  >
+    subtitle
+  </h6>
+</div>
+`;
