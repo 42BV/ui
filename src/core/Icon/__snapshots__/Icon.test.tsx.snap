@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon ui default: Icon => ui => default 1`] = `
+<i
+  className="material-icons"
+>
+  alarm
+</i>
+`;
+
+exports[`Icon ui is clickable: Icon => ui => is clickable 1`] = `
+<i
+  className="material-icons clickable"
+  onClick={[Function]}
+>
+  alarm
+</i>
+`;
+
+exports[`Icon ui is not clickable: Icon => ui => is not clickable 1`] = `
+<i
+  className="material-icons"
+>
+  alarm
+</i>
+`;
+
+exports[`Icon ui with className: Icon => ui => with className 1`] = `
+<i
+  className="text-danger material-icons"
+>
+  alarm
+</i>
+`;
+
+exports[`Icon ui with color: Icon => ui => with color 1`] = `
+<i
+  className="material-icons text-danger"
+  id="1337"
+>
+  alarm
+</i>
+`;
+
+exports[`Icon ui with id: Icon => ui => with id 1`] = `
+<i
+  className="material-icons"
+  id="1337"
+>
+  alarm
+</i>
+`;
+
+exports[`index should contain exports 1`] = `
+Object {
+  "Icon": [Function],
+}
+`;

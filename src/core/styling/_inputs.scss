@@ -1,0 +1,137 @@
+body {
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: $font-family-sans-serif;
+  }
+}
+
+.radio,
+.radio-inline,
+.checkbox,
+.checkbox-inline {
+  label {
+    padding-left: 1.5625rem;
+  }
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    margin-left: -1.5625rem;
+  }
+}
+
+.form-control-label {
+  font-size: 0.8rem;
+  color: $text-muted;
+}
+
+textarea,
+textarea.form-control,
+input.form-control,
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+[type='text'].form-control,
+[type='password'].form-control,
+[type='email'].form-control,
+[type='tel'].form-control,
+[contenteditable].form-control {
+  appearance: none;
+
+  &[disabled],
+  &[readonly] {
+    @include box-shadow(none);
+    border-bottom: 1px dotted #ddd;
+  }
+
+  font-size: 16px;
+
+  &.input {
+    &-sm {
+      font-size: $font-size-sm;
+    }
+
+    &-lg {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+select,
+select.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEVmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaP/QSjAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  font-size: 16px;
+  line-height: 1.5;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &.input {
+    &-sm {
+      font-size: $font-size-sm;
+    }
+
+    &-lg {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &:focus {
+    @include box-shadow(inset 0 -2px 0 map-get($theme-colors, 'primary'));
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEVmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaP/QSjAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
+  }
+
+  &[disabled],
+  &[readonly] {
+    @include box-shadow(none);
+    border-bottom: 1px dotted #ddd;
+
+    &,
+    option {
+      color: $input-placeholder-color;
+    }
+  }
+
+  &[multiple] {
+    background: none;
+  }
+
+  &.is-valid {
+    border-bottom: 2px solid $green;
+    box-shadow: none !important;
+    outline: none;
+  }
+}
+
+select.showing-placeholder {
+  color: $input-placeholder-color;
+}
+
+/**
+  * Fixes the issue that cssnano transforms the background-position for
+  * the Bootstrap checkmark icon to indicate that an input is valid.
+  * 
+  * Remove when following issue is fixed:
+  * https://github.com/cssnano/cssnano/issues/712
+  */
+.form-control.is-valid,
+.ReactTable .rt-thead.-filters .was-validated input:valid,
+.ReactTable .rt-thead.-filters .was-validated select:valid,
+.ReactTable .rt-thead.-filters input.is-valid,
+.ReactTable .rt-thead.-filters select.is-valid,
+.was-validated .form-control:valid,
+.was-validated .ReactTable .rt-thead.-filters input:valid,
+.was-validated .ReactTable .rt-thead.-filters select:valid {
+  background-position: right calc(0.375em + 0.1875rem) center !important;
+}

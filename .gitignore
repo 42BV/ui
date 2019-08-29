@@ -34,13 +34,10 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Ignore built ts files
-lib/
-
 # Ignore eslint cache
 .eslintcache
 
-# Documentation
+# Build artifacts
 dist/
 
 # Verdaccio
@@ -52,3 +49,6 @@ dist/
 .sass-cache
 _site
 Gemfile.lock
+
+# Rollup
+.rpt2_cache

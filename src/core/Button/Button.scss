@@ -1,0 +1,36 @@
+.button {
+  .btn {
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+
+    @each $color, $value in $theme-colors {
+      &.btn-#{$color} {
+        &:hover,
+        &:active:hover {
+          background-color: darken($value, 6%);
+        }
+      }
+    }
+
+    .material-icons {
+      vertical-align: middle;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .spinner {
+      position: relative;
+      top: -2px;
+      left: -5px;
+    }
+  }
+
+  @each $color, $value in $theme-colors {
+    &.#{$color} {
+      .spinner {
+        stroke: $value;
+      }
+    }
+  }
+}

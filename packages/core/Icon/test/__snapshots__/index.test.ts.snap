@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`core should contain exports 1`] = `
-Object {
-  "Icon": [Function],
-}
-`;
