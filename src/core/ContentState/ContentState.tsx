@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Icon from '../Icon/Icon';
+import Spinner from '../Spinner/Spinner';
 
 interface Props {
   /**
@@ -15,8 +16,10 @@ interface Props {
    *
    * Use `error` for when something went wrong.
    *
+   * Use `loading` for when something is still loading.
+   *
    */
-  mode: 'empty' | 'no-results' | 'error';
+  mode: 'empty' | 'no-results' | 'error' | 'loading';
 
   /**
    * The title of the ContentState component.
@@ -26,7 +29,7 @@ interface Props {
   /**
    * The subTitle of the ContentState component.
    */
-  subTitle: string;
+  subTitle?: string;
 
   /**
    * Optional custom content you want to render below the titles.
@@ -67,18 +70,23 @@ export default function ContentState({
     <div className={classNames('text-center', className)}>
       <div className={classNames('content-state', mode)}>
         <div className="state-icons">
-          <Icon className="material-icons" icon="folder_open" />
-          <Icon className="material-icons" icon="add" />
-          <Icon className="material-icons" icon="radio_button_unchecked" />
-          <Icon className="material-icons" icon={icon} />
-          <Icon className="material-icons" icon="add" />
-          <Icon className="material-icons" icon="radio_button_unchecked" />
-          <Icon className="material-icons" icon="photo" />
+          <Icon icon="add" />
+          <Icon icon="radio_button_unchecked" />
+          <Icon icon="photo" />
+          <Icon icon="folder_open" />
+          <Icon icon="radio_button_unchecked" />
+          <Icon icon="add" />
+        </div>
+        <div className="state-content">
+          {mode === 'loading' ? (
+            <Spinner className="mb-2" color="#f0ad4e" size={75} />
+          ) : (
+            <Icon icon={icon} />
+          )}
         </div>
       </div>
-
       <h4>{title}</h4>
-      <h6 className="text-muted mb-3">{subTitle}</h6>
+      {subTitle && <h6 className="text-muted mb-3">{subTitle}</h6>}
       {children}
     </div>
   );

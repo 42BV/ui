@@ -1,66 +1,65 @@
 .content-state {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
   position: relative;
   height: 10rem;
 
-  > .state-icons {
-    position: absolute;
-    left: 50%;
-    top: 45%;
-    transform: translate(-50%, 0);
-    text-align: center;
+  .state-icons {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    height: 3rem;
 
     > i {
-      color: $text-muted;
+      opacity: 0.6;
+      color: map-get($theme-colors, primary);
+
+      // First add icon
       &:nth-of-type(1) {
-        transform: rotate(10deg) translate(30px, -110px);
+        transform: rotate(55deg) translate(10px, 30px);
+        font-size: 1.6em;
+      }
+
+      // Checkbox unchecked underneath add icon
+      &:nth-of-type(2) {
+        transform: translate(-20px, 70px);
+        font-size: 0.6em;
+      }
+
+      // Picture icon
+      &:nth-of-type(3) {
+        transform: rotate(-30deg) translate(-10px, 0px);
+      }
+
+      // Folder icon
+      &:nth-of-type(4) {
+        transform: rotate(10deg) translate(10px, -5px);
         font-size: 2.4em;
       }
 
-      &:nth-of-type(2) {
-        transform: rotate(-40deg) translate(25px, -70px);
-      }
-
-      &:nth-of-type(3) {
-        transform: translate(-10px, -25px);
-
-        font-size: 0.5em;
-      }
-
-      &:nth-of-type(4) {
-        z-index: 1030;
-        position: relative;
-        -webkit-font-smoothing: antialiased;
-        font-size: 5rem;
-      }
-
+      // Checkbox unchecked underneath folder
       &:nth-of-type(5) {
-        transform: rotate(-16deg) translate(15px, -50px);
-
-        font-size: 0.9em;
+        transform: translate(-15px, 35px);
+        font-size: 0.4em;
       }
 
+      // Add to the right
       &:nth-of-type(6) {
-        transform: translate(-20px, -65px);
-
-        font-size: 0.3em;
-        font-weight: 900;
+        transform: rotate(-15deg) translate(-5px, 45px);
+        font-size: 0.8em;
       }
+    }
+  }
 
-      &:last-of-type {
-        transform: rotate(-35deg) translate(-10px, -115px);
-      }
-
-      &:nth-of-type(1),
-      &:nth-of-type(2),
-      &:nth-of-type(3),
-      &:nth-of-type(5),
-      &:nth-of-type(6),
-      &:last-of-type {
-        top: 50%;
-        position: absolute;
-        opacity: 0.6;
-        color: map-get($theme-colors, primary);
-      }
+  .state-content {
+    i {
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      font-size: 5rem;
+      color: $text-muted;
     }
   }
 }

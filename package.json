@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -11,8 +11,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "start": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ./storybook",
-    "test-only": "jest",
-    "test": "yarn lint && yarn test-only",
+    "test": "jest",
+    "test-all": "yarn lint && yarn test --coverage",
     "build": "yarn clean && rollup -c",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "copy:scss": "rsync -a src/*.scss lib/scss/",
@@ -21,7 +21,7 @@
     "storybook": "start-storybook -c storybook",
     "docs": "jekyll serve --source docs",
     "dev-publish": "yarn clean && yarn build && ENV=dev ./scripts/publish.sh",
-    "prepublishOnly": "yarn test && yarn build"
+    "prepublishOnly": "yarn test-all && yarn build"
   },
   "dependencies": {
     "@42.nl/jarb-final-form": "1.0.0",
@@ -100,6 +100,7 @@
     "node-sass": "4.12.0",
     "react-docgen-typescript-loader": "3.1.1",
     "react-test-renderer": "16.8.6",
+    "react-async": "8.0.0",
     "rollup": "1.20.3",
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-copy": "3.1.0",
@@ -112,12 +113,6 @@
     "typescript": "3.5.3"
   },
   "jest": {
-    "globals": {
-      "ts-jes": {
-        "diagnostics": false
-      }
-    },
-    "collectCoverage": true,
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.ts"
     ],

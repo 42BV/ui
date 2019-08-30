@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: AsyncContent when fulfilled 1`] = `
+<Fragment>
+  <h2>
+    importantos data
+  </h2>
+</Fragment>
+`;
+
+exports[`Component: AsyncContent when loading 1`] = `
+<ContentState
+  mode="loading"
+  title="Loading..."
+/>
+`;
+
+exports[`Component: AsyncContent when rejected 1`] = `
+<ContentState
+  mode="error"
+  title="Oops something went wrong!"
+/>
+`;
