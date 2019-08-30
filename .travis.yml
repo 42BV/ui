@@ -1,10 +1,13 @@
 language: node_js
 node_js: '12'
 sudo: false
+before_script:
+  - export TZ=Europe/Amsterdam
+  - date
 before_install:
   - npm install -g yarn # https://github.com/yarnpkg/yarn/issues/2428
 script:
-  - yarn build
+  - yarn
   - yarn run lint
   - yarn run test-only -- --coverage --outputFile test-results.json --json
   - npx danger ci

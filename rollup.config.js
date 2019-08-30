@@ -61,7 +61,7 @@ const copy = (options = {}) => {
 };
 
 module.exports = {
-  input: 'src/core/index.ts',
+  input: 'src/index.ts',
   output: [
     {
       file: pkg.main,

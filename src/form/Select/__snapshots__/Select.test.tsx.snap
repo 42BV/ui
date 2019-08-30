@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Select ui with value: Component: Select => ui => with value 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="subject"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Subject
+  </Label>
+  <Input
+    className=""
+    id="subject"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    placeholder="Please enter your subject"
+    type="select"
+    value={0}
+  >
+    <option
+      disabled={true}
+    >
+      Please enter your subject
+    </option>
+    <option
+      disabled={false}
+      key="admin@42.nl"
+      value={0}
+    >
+      admin@42.nl
+    </option>
+    <option
+      disabled={false}
+      key="coordinator@42.nl"
+      value={1}
+    >
+      coordinator@42.nl
+    </option>
+    <option
+      disabled={false}
+      key="user@42.nl"
+      value={2}
+    >
+      user@42.nl
+    </option>
+  </Input>
+  Some error
+</FormGroup>
+`;

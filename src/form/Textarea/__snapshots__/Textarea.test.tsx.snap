@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Textarea ui: Component: textarea => ui 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="firstName"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    First name
+  </Label>
+  <TextareaAutosize
+    className="form-control is-valid"
+    id="firstName"
+    inputRef={[Function]}
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    onHeightChange={[Function]}
+    placeholder="Please enter your first name"
+    useCacheForDOMMeasurements={false}
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;

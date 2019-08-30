@@ -25,7 +25,7 @@ interface BaseProps {
    * Basically replaces the logic you would normally put in an `onClick`
    * event in a normal button.
    */
-  onConfirm: () => void;
+  onConfirm: (event: React.MouseEvent<HTMLElement>) => void;
 
   /**
    * Whether or not the action you are performing is currenlty in
@@ -120,9 +120,9 @@ export default function ConfirmButton({
     setOpen(true);
   }
 
-  function saveModal() {
+  function saveModal(event: React.MouseEvent<HTMLElement>) {
     setOpen(false);
-    onConfirm();
+    onConfirm(event);
   }
 
   return (
@@ -148,7 +148,7 @@ export default function ConfirmButton({
           <Button color="secondary" onClick={() => setOpen(false)}>
             {cancelText}
           </Button>
-          <Button color="primary" onClick={() => saveModal()}>
+          <Button color="primary" onClick={e => saveModal(e)}>
             {confirmText}
           </Button>
         </ModalFooter>

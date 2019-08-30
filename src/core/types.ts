@@ -6,4 +6,6 @@ export type Color =
   | 'warning'
   | 'danger'
   | 'link'
-  | 'muted';
+  | 'muted'
+  | 'dark'
+  | 'light';
