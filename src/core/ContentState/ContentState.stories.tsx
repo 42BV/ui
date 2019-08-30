@@ -33,6 +33,9 @@ storiesOf('core|ContentState', module)
       />
     );
   })
+  .add('loading', () => {
+    return <ContentState mode="loading" title="Loading..." />;
+  })
   .add('with children', () => {
     return (
       <ContentState

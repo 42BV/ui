@@ -21,6 +21,7 @@ export {
 export { default as Spinner } from './core/Spinner/Spinner';
 export { default as SubmitButton } from './core/SubmitButton/SubmitButton';
 export { default as Tag } from './core/Tag/Tag';
+export { default as AsyncContent } from './core/AsyncContent/AsyncContent';
 
 // Form
 export { default as Input, JarbInput } from './form/Input/Input';

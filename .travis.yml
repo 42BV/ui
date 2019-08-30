@@ -9,7 +9,7 @@ before_install:
 script:
   - yarn
   - yarn run lint
-  - yarn run test-only -- --coverage --outputFile test-results.json --json
+  - yarn run test -- --coverage --outputFile test-results.json --json
   - npx danger ci
   - rm -f test-results.json
 after_success:

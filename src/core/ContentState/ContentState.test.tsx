@@ -36,6 +36,19 @@ describe('Component: ContentStateIcon', () => {
       );
     });
 
+    test('loading', () => {
+      const contentState = shallow(
+        <ContentState mode="loading" title="Loading..." />
+      );
+
+      expect(toJson(contentState)).toMatchSnapshot(
+        'Component: ContentStateIcon => loading'
+      );
+
+      // should contain a spinner
+      expect(contentState.find('spinner')).not.toBeNull();
+    });
+
     test('with extra className', () => {
       const contentState = shallow(
         <ContentState

@@ -11,32 +11,29 @@ exports[`Component: ContentStateIcon ui empty: Component: ContentStateIcon => em
       className="state-icons"
     >
       <Icon
-        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        icon="photo"
+      />
+      <Icon
         icon="folder_open"
       />
       <Icon
-        className="material-icons"
-        icon="add"
-      />
-      <Icon
-        className="material-icons"
         icon="radio_button_unchecked"
       />
       <Icon
-        className="material-icons"
+        icon="add"
+      />
+    </div>
+    <div
+      className="state-content"
+    >
+      <Icon
         icon="laptop"
-      />
-      <Icon
-        className="material-icons"
-        icon="add"
-      />
-      <Icon
-        className="material-icons"
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        className="material-icons"
-        icon="photo"
       />
     </div>
   </div>
@@ -62,32 +59,29 @@ exports[`Component: ContentStateIcon ui error: Component: ContentStateIcon => er
       className="state-icons"
     >
       <Icon
-        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        icon="photo"
+      />
+      <Icon
         icon="folder_open"
       />
       <Icon
-        className="material-icons"
-        icon="add"
-      />
-      <Icon
-        className="material-icons"
         icon="radio_button_unchecked"
       />
       <Icon
-        className="material-icons"
+        icon="add"
+      />
+    </div>
+    <div
+      className="state-content"
+    >
+      <Icon
         icon="sentiment_very_dissatisfied"
-      />
-      <Icon
-        className="material-icons"
-        icon="add"
-      />
-      <Icon
-        className="material-icons"
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        className="material-icons"
-        icon="photo"
       />
     </div>
   </div>
@@ -102,6 +96,51 @@ exports[`Component: ContentStateIcon ui error: Component: ContentStateIcon => er
 </div>
 `;
 
+exports[`Component: ContentStateIcon ui loading: Component: ContentStateIcon => loading 1`] = `
+<div
+  className="text-center"
+>
+  <div
+    className="content-state loading"
+  >
+    <div
+      className="state-icons"
+    >
+      <Icon
+        icon="add"
+      />
+      <Icon
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        icon="photo"
+      />
+      <Icon
+        icon="folder_open"
+      />
+      <Icon
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        icon="add"
+      />
+    </div>
+    <div
+      className="state-content"
+    >
+      <Spinner
+        className="mb-2"
+        color="#f0ad4e"
+        size={75}
+      />
+    </div>
+  </div>
+  <h4>
+    Loading...
+  </h4>
+</div>
+`;
+
 exports[`Component: ContentStateIcon ui no-results: Component: ContentStateIcon => no-results 1`] = `
 <div
   className="text-center"
@@ -113,32 +152,29 @@ exports[`Component: ContentStateIcon ui no-results: Component: ContentStateIcon 
       className="state-icons"
     >
       <Icon
-        className="material-icons"
+        icon="add"
+      />
+      <Icon
+        icon="radio_button_unchecked"
+      />
+      <Icon
+        icon="photo"
+      />
+      <Icon
         icon="folder_open"
       />
       <Icon
-        className="material-icons"
-        icon="add"
-      />
-      <Icon
-        className="material-icons"
         icon="radio_button_unchecked"
       />
       <Icon
-        className="material-icons"
+        icon="add"
+      />
+    </div>
+    <div
+      className="state-content"
+    >
+      <Icon
         icon="search"
-      />
-      <Icon
-        className="material-icons"
-        icon="add"
-      />
-      <Icon
-        className="material-icons"
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        className="material-icons"
-        icon="photo"
       />
     </div>
   </div>
