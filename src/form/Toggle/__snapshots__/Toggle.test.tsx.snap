@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: FormToggle ui: Component: FormToggle 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="active"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Is active
+    <Toggle
+      color="primary"
+      id="active"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value={true}
+    />
+  </Label>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: Toggle ui: Component: Toggle => ui 1`] = `
+<span
+  className="toggle-container toggle-primary"
+>
+  <input
+    checked={true}
+    id="toggle"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    type="checkbox"
+  />
+</span>
+`;

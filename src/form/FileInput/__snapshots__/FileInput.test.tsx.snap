@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: FileInput ui empty value: Component: FileInput => ui => empty value 1`] = `
+<FormGroup
+  className="file-upload "
+  color="success"
+  tag="div"
+>
+  <input
+    accept="text/plain"
+    id="file-upload-with-button"
+    onChange={[Function]}
+    onClick={[Function]}
+    type="file"
+  />
+  <Input
+    addon={
+      Object {
+        "color": "primary",
+        "icon": "cloud_upload",
+        "position": "right",
+      }
+    }
+    id="file-upload-with-button"
+    label="Upload a file here"
+    onChange={[Function]}
+    placeholder="Upload a file here"
+    valid={false}
+    value=""
+  />
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: FileInput ui with value: Component: FileInput => ui => with value 1`] = `
+<FormGroup
+  className="file-upload "
+  color="success"
+  tag="div"
+>
+  <input
+    accept="text/plain"
+    id="file-upload-with-button"
+    onChange={[Function]}
+    onClick={[Function]}
+    type="file"
+  />
+  <Input
+    addon={
+      Object {
+        "color": "danger",
+        "icon": "delete",
+        "position": "right",
+      }
+    }
+    id="file-upload-with-button"
+    label="Upload a file here"
+    onChange={[Function]}
+    placeholder="Upload a file here"
+    valid={true}
+    value="maarten.png"
+  />
+  Some error
+</FormGroup>
+`;

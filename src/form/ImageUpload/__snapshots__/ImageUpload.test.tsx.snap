@@ -1,0 +1,349 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: ImgUpload ui edit as circle: Component: ImgUpload => ui => edit as circle 1`] = `
+<div>
+  <FormGroup
+    className="img-upload"
+    color="success"
+    tag="div"
+  >
+    <Label
+      for="image-uploader"
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Profile photo
+    </Label>
+    <div
+      className="d-flex justify-content-center"
+    >
+      <div
+        onWheel={[Function]}
+      >
+        <l
+          border={25}
+          borderRadius={9000000}
+          color={
+            Array [
+              0,
+              0,
+              0,
+              0.5,
+            ]
+          }
+          disableBoundaryChecks={false}
+          disableHiDPIScaling={false}
+          height={250}
+          image="maarten.png"
+          onImageChange={[Function]}
+          onImageReady={[Function]}
+          onLoadFailure={[Function]}
+          onLoadSuccess={[Function]}
+          onMouseMove={[Function]}
+          onMouseUp={[Function]}
+          onPositionChange={[Function]}
+          rotate={0}
+          scale={1}
+          width={250}
+        />
+      </div>
+    </div>
+    <FormGroup
+      className="text-center mt-1"
+      tag="div"
+    >
+      <Button
+        color="secondary"
+        icon="rotate_left"
+        onClick={[Function]}
+      />
+      <Button
+        className="ml-1"
+        color="secondary"
+        icon="rotate_right"
+        onClick={[Function]}
+      />
+      <Button
+        className="ml-3"
+        color="secondary"
+        icon="cancel"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        icon="done"
+        onClick={[Function]}
+      >
+        Done
+      </Button>
+    </FormGroup>
+    Some error
+  </FormGroup>
+</div>
+`;
+
+exports[`Component: ImgUpload ui edit as rect: Component: ImgUpload => ui => edit as rect 1`] = `
+<div>
+  <FormGroup
+    className="img-upload"
+    color="success"
+    tag="div"
+  >
+    <Label
+      for="image-uploader"
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Profile photo
+    </Label>
+    <div
+      className="d-flex justify-content-center"
+    >
+      <div
+        onWheel={[Function]}
+      >
+        <l
+          border={25}
+          borderRadius={0}
+          color={
+            Array [
+              0,
+              0,
+              0,
+              0.5,
+            ]
+          }
+          disableBoundaryChecks={false}
+          disableHiDPIScaling={false}
+          height={500}
+          image="maarten.png"
+          onImageChange={[Function]}
+          onImageReady={[Function]}
+          onLoadFailure={[Function]}
+          onLoadSuccess={[Function]}
+          onMouseMove={[Function]}
+          onMouseUp={[Function]}
+          onPositionChange={[Function]}
+          rotate={0}
+          scale={1}
+          width={500}
+        />
+      </div>
+    </div>
+    <FormGroup
+      className="text-center mt-1"
+      tag="div"
+    >
+      <Button
+        color="secondary"
+        icon="rotate_left"
+        onClick={[Function]}
+      />
+      <Button
+        className="ml-1"
+        color="secondary"
+        icon="rotate_right"
+        onClick={[Function]}
+      />
+      <Button
+        className="ml-3"
+        color="secondary"
+        icon="cancel"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        icon="done"
+        onClick={[Function]}
+      >
+        Done
+      </Button>
+    </FormGroup>
+    Some error
+  </FormGroup>
+</div>
+`;
+
+exports[`Component: ImgUpload ui file-selected as circle: Component: ImgUpload => ui => file-selected as circle 1`] = `
+<div>
+  <FormGroup
+    className="img-upload"
+    color="success"
+    tag="div"
+  >
+    <Label
+      for="image-uploader"
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Profile photo
+    </Label>
+    <div
+      className="d-flex justify-content-center"
+    >
+      <img
+        alt="Profile photo"
+        className="img-fluid elevated-3"
+        src="maarten.png"
+        style={
+          Object {
+            "borderRadius": "50%",
+          }
+        }
+      />
+    </div>
+    <FormGroup
+      className="text-center mt-1"
+      tag="div"
+    >
+      <Button
+        color="primary"
+        icon="camera_roll"
+        onClick={[Function]}
+      >
+        Change
+      </Button>
+      <Button
+        className="ml-1"
+        color="danger"
+        icon="delete"
+        onClick={[Function]}
+      >
+        Remove
+      </Button>
+    </FormGroup>
+    Some error
+  </FormGroup>
+</div>
+`;
+
+exports[`Component: ImgUpload ui file-selected as rect: Component: ImgUpload => ui => file-selected as rect 1`] = `
+<div>
+  <FormGroup
+    className="img-upload"
+    color="success"
+    tag="div"
+  >
+    <Label
+      for="image-uploader"
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Profile photo
+    </Label>
+    <div
+      className="d-flex justify-content-center"
+    >
+      <img
+        alt="Profile photo"
+        className="img-fluid elevated-3"
+        src="maarten.png"
+        style={
+          Object {
+            "borderRadius": 0,
+          }
+        }
+      />
+    </div>
+    <FormGroup
+      className="text-center mt-1"
+      tag="div"
+    >
+      <Button
+        color="primary"
+        icon="camera_roll"
+        onClick={[Function]}
+      >
+        Change
+      </Button>
+      <Button
+        className="ml-1"
+        color="danger"
+        icon="delete"
+        onClick={[Function]}
+      >
+        Remove
+      </Button>
+    </FormGroup>
+    Some error
+  </FormGroup>
+</div>
+`;
+
+exports[`Component: ImgUpload ui no-file: Component: ImgUpload => ui => no-file 1`] = `
+<div>
+  <FormGroup
+    className="img-upload"
+    color="success"
+    tag="div"
+  >
+    <Label
+      for="image-uploader"
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      Profile photo
+    </Label>
+    <input
+      accept="image/*"
+      id="image-uploader"
+      onChange={[Function]}
+      type="file"
+    />
+    <div
+      className="img-upload-wrapper bg-faded text-muted"
+    >
+      <Icon
+        icon="add_a_photo"
+      />
+    </div>
+    Some error
+  </FormGroup>
+</div>
+`;

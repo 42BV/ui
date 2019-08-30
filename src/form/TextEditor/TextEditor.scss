@@ -1,0 +1,18 @@
+.quill {
+  .ql-container {
+    min-height: 132px;
+  }
+
+  strong {
+    font-weight: bolder;
+  }
+
+  p {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  &.is-valid {
+    border-bottom: solid 2px $success;
+  }
+}

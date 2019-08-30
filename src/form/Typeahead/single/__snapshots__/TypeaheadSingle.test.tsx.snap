@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: TypeaheadSingle ui: Component: TypeaheadSingle => ui 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best friend
+  </Label>
+  <div
+    className=""
+  >
+    <asyncContainer(TypeaheadComponent)
+      delay={200}
+      id="bestFriend"
+      isLoading={false}
+      labelKey="label"
+      minLength={2}
+      multiple={false}
+      onChange={[Function]}
+      onSearch={[Function]}
+      options={Array []}
+      placeholder="Please provide your best friend"
+      promptText="Type to search..."
+      searchText="Searching..."
+      selected={
+        Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "id": 42,
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+        ]
+      }
+      useCache={true}
+    />
+  </div>
+  Some error
+</FormGroup>
+`;

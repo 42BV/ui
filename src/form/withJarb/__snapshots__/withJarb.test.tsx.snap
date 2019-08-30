@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HoC: withJarb ui: withJarb => ui => formError 1`] = `
+<Fragment>
+  <FormFeedback
+    key=""
+    tag="div"
+  />
+</Fragment>
+`;
+
+exports[`HoC: withJarb ui: withJarb => ui => jarbField 1`] = `
+<input
+  color=""
+  error={
+    <Field
+      name="firstName"
+      render={[Function]}
+      subscription={
+        Object {
+          "active": true,
+          "error": true,
+          "touched": true,
+        }
+      }
+    />
+  }
+  id="firstName"
+  label="First name"
+  onBlur={[MockFunction]}
+  onChange={[Function]}
+  placeholder="Please enter your first name"
+  value="value"
+/>
+`;
+
+exports[`HoC: withJarb ui: withJarb => ui 1`] = `
+<JarbField
+  jarb={
+    Object {
+      "label": "First name",
+      "validator": "User.email",
+    }
+  }
+  name="firstName"
+  render={[Function]}
+  subscription={
+    Object {
+      "invalid": true,
+      "touched": true,
+      "validating": true,
+      "value": true,
+    }
+  }
+  validators={
+    Array [
+      [Function],
+    ]
+  }
+/>
+`;

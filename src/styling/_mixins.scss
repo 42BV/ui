@@ -18,6 +18,10 @@
   cursor: pointer;
 }
 
+.not-clickable {
+  cursor: default !important;
+}
+
 $theme-colors: (
   primary: map-get($theme-colors, primary),
   secondary: $gray-600,

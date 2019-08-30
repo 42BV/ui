@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: TextEditor ui: Component: textEditor => ui 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="firstName"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    First name
+  </Label>
+  <Quill
+    className="is-valid"
+    id="firstName"
+    modules={Object {}}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    placeholder="Please enter your first name"
+    theme="snow"
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;

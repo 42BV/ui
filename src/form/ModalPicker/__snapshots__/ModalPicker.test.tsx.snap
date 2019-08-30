@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: ModalPicker ui with addButton and search: Component: ModalPicker => ui with addButton and search 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    Please select your favorite color
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <Row
+      tag="div"
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <InputGroup
+          tag="div"
+        >
+          <InputGroupAddon
+            addonType="prepend"
+            tag="div"
+          >
+            <Icon
+              icon="search"
+            />
+          </InputGroupAddon>
+          <Input
+            id="search"
+            onChange={[Function]}
+            placeholder="Search..."
+            type="text"
+          />
+        </InputGroup>
+      </Col>
+    </Row>
+    <h1>
+      Children
+    </h1>
+  </ModalBody>
+  <ModalFooter
+    className="d-flex flex-row justify-content-between"
+    tag="div"
+  >
+    <Button
+      color="primary"
+      onClick={[Function]}
+      tag="button"
+    >
+      Add color
+    </Button>
+    <div>
+      <Button
+        className="ml-1"
+        color="secondary"
+        onClick={[Function]}
+        tag="button"
+      >
+        Cancel
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        disabled={false}
+        onClick={[Function]}
+        tag="button"
+      >
+        Select
+      </Button>
+    </div>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`Component: ModalPicker ui without addButton and search: Component: ModalPicker => ui without addButton and search 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    Please select your favorite color
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <h1>
+      Children
+    </h1>
+  </ModalBody>
+  <ModalFooter
+    className="d-flex flex-row justify-content-between"
+    tag="div"
+  >
+    <div />
+    <div>
+      <Button
+        className="ml-1"
+        color="secondary"
+        onClick={[Function]}
+        tag="button"
+      >
+        Cancel
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        disabled={false}
+        onClick={[Function]}
+        tag="button"
+      >
+        Select
+      </Button>
+    </div>
+  </ModalFooter>
+</Modal>
+`;

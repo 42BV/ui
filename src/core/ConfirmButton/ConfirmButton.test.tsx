@@ -227,15 +227,17 @@ describe('Component: ConfirmButton', () => {
       });
 
       openModal();
+      const event = new Event('click');
 
       // @ts-ignore
       confirmButton
         .find('Button')
         .at(2)
-        .prop('onClick')();
+        // @ts-ignore
+        .prop('onClick')(event);
 
       expect(onConfirmSpy).toHaveBeenCalledTimes(1);
-      expect(onConfirmSpy).toHaveBeenCalledWith();
+      expect(onConfirmSpy).toHaveBeenCalledWith(event);
 
       // @ts-ignore
       expect(confirmButton.find('Modal').props().isOpen).toBe(false);

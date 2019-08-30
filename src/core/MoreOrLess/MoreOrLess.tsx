@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import take from 'lodash.take';
+import { take } from 'lodash';
 import classNames from 'classnames';
 
 interface Props {

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: EmptyModal mode: empty: Component: EmptyModal => mode: empty 1`] = `
+<ContentState
+  mode="empty"
+  subTitle="There is nothing here yet, the collection is empty."
+  title="Empty"
+/>
+`;
+
+exports[`Component: EmptyModal mode: no-results: Component: EmptyModal => mode: no-results 1`] = `
+<ContentState
+  mode="no-results"
+  subTitle="No results were found please try again with a different query."
+  title="No results"
+/>
+`;
