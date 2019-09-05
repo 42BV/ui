@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
@@ -96,9 +95,11 @@ describe('Component: ConfirmButton', () => {
               Are you sure you want to <strong>delete</strong> the user?
             </p>
           }
-          confirmText="YES"
-          cancelText="NO"
-          modalHeaderText="PLEASE SAY YES"
+          text={{
+            confirm: 'YES',
+            cancel: 'NO',
+            modalHeader: 'PLEASE SAY YES'
+          }}
         >
           Delete user
         </ConfirmButton>

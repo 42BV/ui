@@ -8,7 +8,13 @@ import MoreOrLess from './MoreOrLess';
 describe('Component: MoreOrLess', () => {
   let moreOrLess: ShallowWrapper;
 
-  function setup({ exceedsLimit }: { exceedsLimit: boolean }) {
+  function setup({
+    exceedsLimit,
+    text
+  }: {
+    exceedsLimit: boolean;
+    text?: { more?: (amount: number) => string; less?: string };
+  }) {
     let content: JSX.Element[];
     if (exceedsLimit) {
       content = [
@@ -23,7 +29,9 @@ describe('Component: MoreOrLess', () => {
       content = [<h1 key={1}>1</h1>, <h1 key={2}>2</h1>, <h1 key={3}>3</h1>];
     }
 
-    moreOrLess = shallow(<MoreOrLess limit={3} content={content} />);
+    moreOrLess = shallow(
+      <MoreOrLess limit={3} content={content} text={text} />
+    );
   }
 
   function open() {
@@ -62,6 +70,19 @@ describe('Component: MoreOrLess', () => {
       setup({ exceedsLimit: false });
       expect(toJson(moreOrLess)).toMatchSnapshot(
         'Component: MoreOrLess => ui => to few items'
+      );
+    });
+
+    test('with custom text', () => {
+      setup({
+        exceedsLimit: true,
+        text: {
+          more: amount => `Laad ${amount} meer...`
+        }
+      });
+
+      expect(moreOrLess.find('div[role="button"]').text()).toEqual(
+        'Laad 3 meer...'
       );
     });
   });

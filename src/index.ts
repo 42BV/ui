@@ -73,4 +73,7 @@ export {
   JarbFormToggle
 } from './form/Toggle/Toggle';
 export { default as FormError } from './form/FormError/FormError';
-export { setTranslator, Translator } from './form/translator';
+
+// Utilities
+export { t } from './utilities/translation/translation';
+export { setTranslator } from './utilities/translation/translator';

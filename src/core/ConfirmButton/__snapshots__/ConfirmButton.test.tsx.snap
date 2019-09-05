@@ -76,7 +76,7 @@ exports[`Component: ConfirmButton ui button and icon: Component: ConfirmButton =
         color="primary"
         onClick={[Function]}
       >
-        OK
+        Confirm
       </Button>
     </ModalFooter>
   </Modal>
@@ -242,7 +242,7 @@ exports[`Component: ConfirmButton ui only button: Component: ConfirmButton => ui
         color="primary"
         onClick={[Function]}
       >
-        OK
+        Confirm
       </Button>
     </ModalFooter>
   </Modal>
@@ -323,7 +323,7 @@ exports[`Component: ConfirmButton ui only icon in progress: Component: ConfirmBu
         color="primary"
         onClick={[Function]}
       >
-        OK
+        Confirm
       </Button>
     </ModalFooter>
   </Modal>
@@ -404,7 +404,7 @@ exports[`Component: ConfirmButton ui only icon: Component: ConfirmButton => ui =
         color="primary"
         onClick={[Function]}
       >
-        OK
+        Confirm
       </Button>
     </ModalFooter>
   </Modal>

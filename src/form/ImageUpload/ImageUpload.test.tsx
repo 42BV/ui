@@ -436,6 +436,6 @@ test('limitImageSize', () => {
     data: { fileSize: '2.2', label: 'profile picture', size: '1.0' },
     fallback:
       'profile picture image is to large. Max size is 1.0 MB image size is 2.2 MB',
-    key: 'ImgUpload.SIZE_TO_LARGE'
+    key: 'ImageUpload.SIZE_TO_LARGE'
   });
 });

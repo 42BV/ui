@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 import { take } from 'lodash';
 import classNames from 'classnames';
+import { t } from '../../utilities/translation/translation';
+
+interface Text {
+  /**
+   * Text to show when status is open.
+   */
+  less?: string;
+
+  /**
+   * Text to show when status is closed.
+   * Allows you to pass an arbitrary number to show (e.g. `show 4 more`).
+   */
+  more?: (amount: number) => string;
+}
 
 interface Props {
   /**
@@ -20,15 +34,10 @@ interface Props {
   className?: string;
 
   /**
-   * Text to show when status is closed.
-   * Allows you to pass an arbitrary number to show (e.g. `show 4 more`).
+   * Optionally customized text within the component.
+   * This text should already be translated.
    */
-  moreText?: (amount: number) => string;
-
-  /**
-   * Text to show when status is open.
-   */
-  lessText?: string;
+  text?: Text;
 }
 
 /**
@@ -38,11 +47,11 @@ export default function MoreOrLess({
   limit,
   content,
   className,
-  moreText = (amount: number): string => `Show ${amount} more`,
-  lessText = 'Show less'
+  text = {}
 }: Props): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
-  const text = isOpen ? lessText : moreText(content.length - limit);
+  const { more, less } = text;
+  const amount = content.length - limit;
 
   function toggleOpen() {
     setIsOpen(!isOpen);
@@ -58,7 +67,18 @@ export default function MoreOrLess({
       {isOpen ? content : take(content, limit)}
       {content.length > limit && (
         <div role="button" className="more-or-less-link" onClick={toggleOpen}>
-          {text}
+          {isOpen
+            ? t({
+                key: 'MoreOrLess.LESS',
+                fallback: 'Show less',
+                overrideText: less
+              })
+            : t({
+                key: 'MoreOrLess.MORE',
+                fallback: `Show ${amount} more`,
+                data: { amount },
+                overrideText: more ? more(amount) : undefined
+              })}
         </div>
       )}
     </div>

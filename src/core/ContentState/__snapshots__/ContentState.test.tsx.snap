@@ -96,7 +96,7 @@ exports[`Component: ContentStateIcon ui error: Component: ContentStateIcon => er
 </div>
 `;
 
-exports[`Component: ContentStateIcon ui loading: Component: ContentStateIcon => loading 1`] = `
+exports[`Component: ContentStateIcon ui loading: Component= ContentStateIcon => loading 1`] = `
 <div
   className="text-center"
 >

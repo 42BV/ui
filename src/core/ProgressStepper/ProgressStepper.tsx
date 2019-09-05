@@ -77,11 +77,8 @@ export default function ProgressStepper<T>(props: Props<T>) {
     <div className={classNames('progress-stepper', className)}>
       {steps.map((step, index) => {
         const title = titleForStep(step, index);
-
         const color = colorForStep(step, index);
-
         const clickable = isStepClickable(step, index);
-
         const classes = classNames('step', color, { clickable });
 
         return (

@@ -1,5 +1,5 @@
 import { ValidationError } from '@42.nl/jarb-final-form';
-import { Translation } from './translator';
+import { Translation } from '../utilities/translation/translator';
 export { Color } from '../core/types';
 
 export type MetaError = ValidationError | string | Translation;
