@@ -6,7 +6,10 @@ import AvatarEditor from 'react-avatar-editor';
 import Icon from '../../core/Icon/Icon';
 import Button from '../../core/Button/Button';
 import { Color } from '../../core/types';
-
+import withJarb from '../withJarb/withJarb';
+import { doBlur } from '../utils';
+import { t } from '../../utilities/translation/translation';
+import { Translation } from '../../utilities/translation/translator';
 import {
   getPicaInstance,
   dataUrlToFile,
@@ -14,10 +17,12 @@ import {
   calculateScale
 } from './utils';
 
-import withJarb from '../withJarb/withJarb';
-import { doBlur } from '../utils';
-import { Translation, getTranslator } from '../translator';
-
+interface Text {
+  cancel?: string;
+  change?: string;
+  remove?: string;
+  done?: string;
+}
 interface CropRect {
   /**
    * Crop is a rectangle
@@ -101,6 +106,11 @@ interface Props {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optionally customized text you want to use in this component.
+   */
+  text?: Text;
 }
 
 /*
@@ -139,6 +149,10 @@ interface State {
 const reader = new FileReader();
 
 export default class ImageUpload extends Component<Props, State> {
+  static defaultProps = {
+    text: {}
+  };
+
   state = {
     mode: Mode.NO_FILE,
     imageSrc: '',
@@ -206,7 +220,6 @@ export default class ImageUpload extends Component<Props, State> {
       );
 
       const dataUrl = picaCanvas.toDataURL('image/png', 1.0);
-
       const file = dataUrlToFile(dataUrl, this.state.fileName);
 
       this.props.onChange(file);
@@ -262,11 +275,8 @@ export default class ImageUpload extends Component<Props, State> {
       <div className={className}>
         <FormGroup color={color} className="img-upload">
           <Label for={id}>{label}</Label>
-
           {this.renderMode()}
-
           {this.renderButtons()}
-
           {error}
         </FormGroup>
       </div>
@@ -359,7 +369,7 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   renderFileSelectedButtons() {
-    const translator = getTranslator();
+    const { change, remove } = this.props.text;
 
     return (
       <FormGroup className="text-center mt-1">
@@ -368,7 +378,11 @@ export default class ImageUpload extends Component<Props, State> {
           color="primary"
           icon="camera_roll"
         >
-          {translator({ key: 'ImgUpload.CHANGE', fallback: 'Change' })}
+          {t({
+            key: 'ImageUpload.CHANGE',
+            fallback: 'Change',
+            overrideText: change
+          })}
         </Button>
         <Button
           className="ml-1"
@@ -376,14 +390,18 @@ export default class ImageUpload extends Component<Props, State> {
           color="danger"
           icon="delete"
         >
-          {translator({ key: 'ImgUpload.REMOVE', fallback: 'Remove' })}
+          {t({
+            key: 'ImageUpload.REMOVE',
+            fallback: 'Remove',
+            overrideText: remove
+          })}
         </Button>
       </FormGroup>
     );
   }
 
   renderEditButtons() {
-    const translator = getTranslator();
+    const { cancel, done } = this.props.text;
 
     return (
       <FormGroup className="text-center mt-1">
@@ -406,7 +424,11 @@ export default class ImageUpload extends Component<Props, State> {
           color="secondary"
           icon="cancel"
         >
-          {translator({ key: 'ImgUpload.CANCEL', fallback: 'Cancel' })}
+          {t({
+            key: 'ImageUpload.CANCEL',
+            fallback: 'Cancel',
+            overrideText: cancel
+          })}
         </Button>
 
         <Button
@@ -415,7 +437,11 @@ export default class ImageUpload extends Component<Props, State> {
           color="primary"
           icon="done"
         >
-          {translator({ key: 'ImgUpload.DONE', fallback: 'Done' })}
+          {t({
+            key: 'ImageUpload.DONE',
+            fallback: 'Done',
+            overrideText: done
+          })}
         </Button>
       </FormGroup>
     );
@@ -483,7 +509,7 @@ export function limitImageSize(size: number, label: string): ImageValidator {
     const maxSizeDisplay = size.toFixed(1);
 
     return {
-      key: 'ImgUpload.SIZE_TO_LARGE',
+      key: 'ImageUpload.SIZE_TO_LARGE',
       data: { label, size: maxSizeDisplay, fileSize },
       fallback: `${label} image is to large. Max size is ${maxSizeDisplay} MB image size is ${fileSize} MB`
     };

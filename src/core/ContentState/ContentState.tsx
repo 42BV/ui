@@ -22,16 +22,6 @@ interface Props {
   mode: 'empty' | 'no-results' | 'error' | 'loading';
 
   /**
-   * The title of the ContentState component.
-   */
-  title: string;
-
-  /**
-   * The subTitle of the ContentState component.
-   */
-  subTitle?: string;
-
-  /**
    * Optional custom content you want to render below the titles.
    * You could use this to render a button for example.
    */
@@ -42,6 +32,16 @@ interface Props {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * The title of the ContentState component.
+   */
+  title: string;
+
+  /**
+   * The subTitle of the ContentState component.
+   */
+  subTitle?: string;
 }
 
 /**

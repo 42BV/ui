@@ -115,9 +115,11 @@ storiesOf('core|buttons/ConfirmButton', module)
               Are you sure you want to <strong>delete</strong> the user?
             </p>
           }
-          confirmText="YES"
-          cancelText="NO"
-          modalHeaderText="PLEASE SAY YES"
+          text={{
+            confirm: 'YES',
+            cancel: 'NO',
+            modalHeader: 'PLEASE SAY YES'
+          }}
         >
           Delete user
         </ConfirmButton>
@@ -135,9 +137,11 @@ storiesOf('core|buttons/ConfirmButton', module)
               Are you sure you want to <strong>delete</strong> the user?
             </p>
           }
-          confirmText="YES"
-          cancelText="NO"
-          modalHeaderText="PLEASE SAY YES"
+          text={{
+            confirm: 'YES',
+            cancel: 'NO',
+            modalHeader: 'PLEASE SAY YES'
+          }}
         >
           Delete user
         </ConfirmButton>

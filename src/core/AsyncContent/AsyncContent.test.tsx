@@ -27,7 +27,6 @@ describe('Component: AsyncContent', () => {
     };
 
     const { asyncContent } = setup(state);
-
     expect(toJson(asyncContent)).toMatchSnapshot();
     expect(console.error).toHaveBeenCalledTimes(0);
   });

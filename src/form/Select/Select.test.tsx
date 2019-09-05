@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Select, { OptionEnabledCallback } from './Select';
+import Select, { OptionEnabledCallback, Text } from './Select';
 import { User } from '../../test/types';
 import {
   adminUser,
@@ -20,11 +20,11 @@ describe('Component: Select', () => {
   function setup({
     value,
     isOptionEnabled,
-    loadingMessage
+    text
   }: {
     value?: User;
     isOptionEnabled?: OptionEnabledCallback<User>;
-    loadingMessage?: string;
+    text?: Text;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -34,13 +34,13 @@ describe('Component: Select', () => {
         id="subject"
         label="Subject"
         placeholder="Please enter your subject"
+        text={text}
         isOptionEnabled={isOptionEnabled}
         optionForValue={(user: User) => user.email}
         options={[adminUser, coordinatorUser, userUser]}
         value={value}
         onChange={onChangeSpy}
         onBlur={onBlurSpy}
-        loadingMessage={loadingMessage}
         error="Some error"
       />
     );
@@ -56,8 +56,8 @@ describe('Component: Select', () => {
     });
 
     describe('loading', () => {
-      test('with custom loading message', () => {
-        setup({ value: adminUser, loadingMessage: 'Custom loading' });
+      test('with custom text', () => {
+        setup({ value: adminUser, text: { loadingMessage: 'Custom loading' } });
 
         // @ts-ignore
         select.setState({ loading: true });
@@ -66,7 +66,7 @@ describe('Component: Select', () => {
         expect(select.find('span').text()).toBe('Custom loading');
       });
 
-      test('with default loading message', () => {
+      test('with default text', () => {
         setup({ value: adminUser });
 
         // @ts-ignore

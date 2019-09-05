@@ -154,7 +154,7 @@ export default class DateTimeInput extends Component<Props, State> {
 
     if (!dateFormat && !timeFormat) {
       throw new Error(
-        'DateTimeInput: dateFormat and timeFormat cannot both be false'
+        'DateTimeInput: dateFormat and timeFormat cannot both be false. This is a programmer error.'
       );
     }
   }
@@ -176,9 +176,7 @@ export default class DateTimeInput extends Component<Props, State> {
     } = this.props;
 
     const { hasFormatError } = this.state;
-
     const format = combineFormat(dateFormat, timeFormat);
-
     const isDateAllowed = get(this.props, 'isDateAllowed', constant(true));
 
     return (

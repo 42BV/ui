@@ -15,7 +15,13 @@ import {
 
 import Pagination from '../../core/Pagination/Pagination';
 import Icon from '../../core/Icon/Icon';
-import { getTranslator } from '../translator';
+import { t } from '../../utilities/translation/translation';
+
+interface Text {
+  placeholder?: string;
+  cancel?: string;
+  select?: string;
+}
 
 interface Props {
   /**
@@ -78,6 +84,12 @@ interface Props {
     label: string;
     onClick: () => void;
   };
+
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
 }
 
 /**
@@ -97,12 +109,11 @@ export default function ModalPicker(props: Props) {
     closeModal,
     modalSaved,
     saveButtonEnabled,
-    addButton
+    addButton,
+    text = {}
   } = props;
 
   const shouldRenderPagination = !(page.first && page.last);
-
-  const translator = getTranslator();
 
   return (
     <Modal isOpen={isOpen} toggle={() => closeModal()}>
@@ -117,7 +128,8 @@ export default function ModalPicker(props: Props) {
                 </InputGroupAddon>
                 <Input
                   id="search"
-                  placeholder={translator({
+                  placeholder={t({
+                    overrideText: text.placeholder,
                     key: 'ModalPicker.SEARCH',
                     fallback: 'Search...'
                   })}
@@ -151,7 +163,8 @@ export default function ModalPicker(props: Props) {
             color="secondary"
             onClick={() => closeModal()}
           >
-            {translator({
+            {t({
+              overrideText: text.cancel,
               key: 'ModalPicker.CANCEL',
               fallback: 'Cancel'
             })}
@@ -162,7 +175,8 @@ export default function ModalPicker(props: Props) {
             onClick={() => modalSaved()}
             disabled={!saveButtonEnabled}
           >
-            {translator({
+            {t({
+              overrideText: text.select,
               key: 'ModalPicker.SELECT',
               fallback: 'Select'
             })}

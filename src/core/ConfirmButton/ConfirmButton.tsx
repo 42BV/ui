@@ -4,6 +4,30 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Button from '../Button/Button';
 import { Color } from '../types';
 import IconType from '../Icon/types';
+import { t } from '../../utilities/translation/translation';
+
+interface Text {
+  /**
+   * The text to show in the header, defaults to "Confirmation"
+   *
+   * @default Confirmation
+   */
+  modalHeader?: string;
+
+  /**
+   * The text to show as the cancel button's text, defaults to "Cancel"
+   *
+   * @default Cancel
+   */
+  cancel?: string;
+
+  /**
+   * The text to show as the ok button's text, defaults to "OK"
+   *
+   * @default OK
+   */
+  confirm?: string;
+}
 
 interface BaseProps {
   /**
@@ -43,25 +67,9 @@ interface BaseProps {
   className?: string;
 
   /**
-   * The text to show in the header, defaults to "Confirmation"
-   *
-   * @default Confirmation
+   * Optionally customized text to use within the component.
    */
-  modalHeaderText?: React.ReactNode;
-
-  /**
-   * The text to show as the cancel button's text, defaults to "Cancel"
-   *
-   * @default Cancel
-   */
-  cancelText?: string;
-
-  /**
-   * The text to show as the ok button's text, defaults to "OK"
-   *
-   * @default OK
-   */
-  confirmText?: string;
+  text?: Text;
 }
 
 interface WithIconAndText extends BaseProps {
@@ -104,16 +112,14 @@ export default function ConfirmButton({
   color = 'danger',
   onConfirm,
   inProgress,
-  modalHeaderText = 'Confirmation',
-  confirmText = 'OK',
-  cancelText = 'Cancel',
+  text = {},
   className,
   ...props
 }: Props) {
   const children = 'children' in props ? props.children : undefined;
   const icon = 'icon' in props ? props.icon : undefined;
-
   const [isOpen, setOpen] = useState(false);
+  const { modalHeader, confirm, cancel } = text;
 
   function openModal(event: React.MouseEvent<HTMLElement>) {
     event.stopPropagation();
@@ -141,15 +147,27 @@ export default function ConfirmButton({
 
       <Modal isOpen={isOpen} toggle={() => setOpen(false)}>
         <ModalHeader toggle={() => setOpen(false)}>
-          {modalHeaderText}
+          {t({
+            overrideText: modalHeader,
+            key: 'ConfirmButton.MODAL_HEADER',
+            fallback: 'Confirmation'
+          })}
         </ModalHeader>
         <ModalBody>{dialogText}</ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={() => setOpen(false)}>
-            {cancelText}
+            {t({
+              overrideText: cancel,
+              key: 'ConfirmButton.CANCEL',
+              fallback: 'Cancel'
+            })}
           </Button>
           <Button color="primary" onClick={e => saveModal(e)}>
-            {confirmText}
+            {t({
+              overrideText: confirm,
+              key: 'ConfirmButton.CONFIRM',
+              fallback: 'Confirm'
+            })}
           </Button>
         </ModalFooter>
       </Modal>

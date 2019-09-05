@@ -12,6 +12,6 @@ exports[`Component: EmptyModal mode: no-results: Component: EmptyModal => mode: 
 <ContentState
   mode="no-results"
   subTitle="No results were found please try again with a different query."
-  title="No results"
+  title="Empty"
 />
 `;

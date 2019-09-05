@@ -9,7 +9,7 @@ import Input from '../Input/Input';
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { Color } from '../types';
-import { Translation } from '../translator';
+import { Translation } from '../../utilities/translation/translator';
 
 interface Props {
   /**

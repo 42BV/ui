@@ -1,12 +1,14 @@
 import React from 'react';
 import ContentState from '../../core/ContentState/ContentState';
-import { getTranslator } from '../translator';
+import { t } from '../../utilities/translation/translation';
 
 interface Props {
   /**
    * Whether or not the user performed a search.
    */
   userHasSearched: boolean;
+  title?: string;
+  subTitle?: string;
 }
 
 /**
@@ -17,22 +19,21 @@ interface Props {
  * search query when the user has searched.
  */
 export default function EmptyModal(props: Props) {
-  const { userHasSearched } = props;
-
-  const translator = getTranslator();
-
+  const { userHasSearched, title, subTitle } = props;
   if (userHasSearched) {
     return (
       <ContentState
         mode="no-results"
-        title={translator({
+        title={t({
           key: 'EmptyModal.NO_RESULTS.TITLE',
-          fallback: 'No results'
+          fallback: 'Empty',
+          overrideText: title
         })}
-        subTitle={translator({
+        subTitle={t({
           key: 'EmptyModal.NO_RESULTS.SUBTITLE',
           fallback:
-            'No results were found please try again with a different query.'
+            'No results were found please try again with a different query.',
+          overrideText: subTitle
         })}
       />
     );
@@ -40,13 +41,15 @@ export default function EmptyModal(props: Props) {
     return (
       <ContentState
         mode="empty"
-        title={translator({
+        title={t({
           key: 'EmptyModal.EMPTY.TITLE',
-          fallback: 'Empty'
+          fallback: 'Empty',
+          overrideText: title
         })}
-        subTitle={translator({
+        subTitle={t({
           key: 'EmptyModal.EMPTY.SUBTITLE',
-          fallback: 'There is nothing here yet, the collection is empty.'
+          fallback: 'There is nothing here yet, the collection is empty.',
+          overrideText: subTitle
         })}
       />
     );

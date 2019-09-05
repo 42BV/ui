@@ -8,7 +8,11 @@ import DateTimeInput, {
 } from '../DateTimeInput/DateTimeInput';
 
 import withJarb from '../withJarb/withJarb';
-import { getTranslator } from '../translator';
+import { t } from '../../utilities/translation/translation';
+
+interface Text {
+  rangeError?: string;
+}
 
 /**
  * Represents the value of the DateRangePicker form element.
@@ -73,6 +77,12 @@ interface Props {
    * Whether or not the form element is currently valid.
    */
   valid?: boolean;
+
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
 }
 
 interface State {
@@ -167,19 +177,18 @@ export default class DateRangePicker extends Component<Props, State> {
   renderError() {
     const { fromDate, toDate } = this.state;
 
-    const translator = getTranslator();
-
     if (fromDate && toDate) {
       const isBefore = fromDate < toDate;
       if (isBefore === false) {
-        const { from, to } = this.props;
+        const { from, to, text = {} } = this.props;
 
         return (
           <FormFeedback>
-            {translator({
+            {t({
               key: 'DateRangePicker.DATE_RANGE_ERROR',
               fallback: `The "${from.label}" must be before the "${to.label}"`,
-              data: { from: from.label, to: to.label }
+              data: { from: from.label, to: to.label },
+              overrideText: text.rangeError
             })}
           </FormFeedback>
         );

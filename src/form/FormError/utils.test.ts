@@ -1,5 +1,8 @@
 import { errorMessage, keyForError } from './utils';
-import { setTranslator, Translator } from '../translator';
+import {
+  setTranslator,
+  Translator
+} from '../../utilities/translation/translator';
 
 describe('keyForError', () => {
   test('Error is a string', () => {

@@ -1,6 +1,9 @@
 import { ValidationError } from '@42.nl/jarb-final-form';
 import { MetaError } from '../types';
-import { Translation, getTranslator } from '../translator';
+import {
+  Translation,
+  getTranslator
+} from '../../utilities/translation/translator';
 
 export function keyForError(error: MetaError) {
   if (typeof error === 'string') {
@@ -38,33 +41,25 @@ export function errorMessage(error: MetaError): string {
       return translator({
         key: 'JarbFinalForm.VALIDATION.MINIMUM_LENGTH',
         data: validationError,
-        fallback: `${validationError.label} must be bigger than ${
-          validationError.reasons.minimumLength
-        } characters`
+        fallback: `${validationError.label} must be bigger than ${validationError.reasons.minimumLength} characters`
       });
     case 'ERROR_MAXIMUM_LENGTH':
       return translator({
         key: 'JarbFinalForm.VALIDATION.MAXIMUM_LENGTH',
         data: validationError,
-        fallback: `${validationError.label} must be smaller than ${
-          validationError.reasons.maximumLength
-        } characters`
+        fallback: `${validationError.label} must be smaller than ${validationError.reasons.maximumLength} characters`
       });
     case 'ERROR_MIN_VALUE':
       return translator({
         key: 'JarbFinalForm.VALIDATION.MIN_VALUE',
         data: validationError,
-        fallback: `${validationError.label} must be more than ${
-          validationError.reasons.minValue
-        }`
+        fallback: `${validationError.label} must be more than ${validationError.reasons.minValue}`
       });
     case 'ERROR_MAX_VALUE':
       return translator({
         key: 'JarbFinalForm.VALIDATION.MAX_VALUE',
         data: validationError,
-        fallback: `${validationError.label} must be less than ${
-          validationError.reasons.maxValue
-        }`
+        fallback: `${validationError.label} must be less than ${validationError.reasons.maxValue}`
       });
     case 'ERROR_NUMBER':
       return translator({
@@ -76,9 +71,7 @@ export function errorMessage(error: MetaError): string {
       return translator({
         key: 'JarbFinalForm.VALIDATION.NUMBER_FRACTION',
         data: validationError,
-        fallback: `${validationError.label} is not a number. Number may have ${
-          validationError.reasons.fractionLength
-        } digits behind the comma`
+        fallback: `${validationError.label} is not a number. Number may have ${validationError.reasons.fractionLength} digits behind the comma`
       });
 
     default:

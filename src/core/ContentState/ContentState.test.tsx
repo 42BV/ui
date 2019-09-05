@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 
 import ContentState from './ContentState';
 
+// TODO: Correctly type
 describe('Component: ContentStateIcon', () => {
   describe('ui', () => {
     test('empty', () => {
@@ -42,7 +43,7 @@ describe('Component: ContentStateIcon', () => {
       );
 
       expect(toJson(contentState)).toMatchSnapshot(
-        'Component: ContentStateIcon => loading'
+        'Component= ContentStateIcon => loading'
       );
 
       // should contain a spinner

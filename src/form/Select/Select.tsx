@@ -7,7 +7,7 @@ import { Page } from '@42.nl/spring-connect';
 import withJarb from '../withJarb/withJarb';
 import Spinner from '../../core/Spinner/Spinner';
 import { Color } from '../types';
-import { getTranslator } from '../translator';
+import { t } from '../../utilities/translation/translation';
 
 /**
  * Callback to determine if the option is currently enabled.
@@ -20,21 +20,18 @@ export type OptionEnabledCallback<T> = (option: T) => boolean;
  */
 type OptionsFetcher<T> = () => Promise<Page<T>>;
 
+export interface Text {
+  /**
+   * The message to show when the select is loading. Defaults
+   * to `loading...`
+   */
+  loadingMessage?: string;
+}
 interface Props<T> {
   /**
    * The id of the form element.
    */
   id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder: string;
 
   /**
    * The value that the form element currently has.
@@ -71,12 +68,6 @@ interface Props<T> {
   isOptionEnabled?: OptionEnabledCallback<T>;
 
   /**
-   * The message to show when the select is loading. Defaults
-   * to `loading...`
-   */
-  loadingMessage?: string;
-
-  /**
    * Optionally the error message to render.
    */
   error?: React.ReactNode;
@@ -96,6 +87,22 @@ interface Props<T> {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+
+  /**
+   * The placeholder of the form element.
+   */
+  placeholder: string;
+
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
 }
 
 interface State<T> {
@@ -133,7 +140,6 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
       const fetcher = options as OptionsFetcher<T>;
 
       const page: Page<T> = await fetcher();
-
       this.setState({ options: page.content, loading: false });
 
       this.props.onChange(page.content[0]);
@@ -148,20 +154,7 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
   }
 
   render() {
-    const translator = getTranslator();
-
-    const {
-      id,
-      label,
-      error,
-      color,
-      loadingMessage = translator({
-        key: 'Select.LOADING',
-        fallback: 'Loading...'
-      }),
-      className = ''
-    } = this.props;
-
+    const { id, error, color, label, text = {}, className = '' } = this.props;
     const { loading } = this.state;
 
     return (
@@ -169,7 +162,14 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
         <Label for={id}>{label}</Label>
         {loading ? (
           <div>
-            <Spinner color="black" size={16} /> <span>{loadingMessage}</span>
+            <Spinner color="black" size={16} />
+            <span>
+              {t({
+                key: 'Select.LOADING',
+                fallback: 'Loading...',
+                overrideText: text.loadingMessage
+              })}
+            </span>
           </div>
         ) : (
           this.renderInput()
@@ -194,12 +194,11 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
     const { options } = this.state;
 
     const isOptionEnabled = get(this.props, 'isOptionEnabled', constant(true));
-
     const inputProps = {
       id,
       valid,
       type: 'select' as InputType,
-      placeholder: placeholder,
+      placeholder,
       onChange: (event: { target: { value: string } }) => {
         const index = parseInt(event.target.value, 10);
         onChange(options[index]);
