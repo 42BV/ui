@@ -54,7 +54,7 @@
   "devDependencies": {
     "@babel/core": "7.5.5",
     "@babel/plugin-transform-modules-commonjs": "7.5.0",
-    "@storybook/addon-actions": "5.1.11",
+    "@storybook/addon-actions": "5.2.0",
     "@storybook/addon-docs": "next",
     "@storybook/preset-scss": "1.0.2",
     "@storybook/preset-typescript": "1.1.0",
