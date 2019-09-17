@@ -5,23 +5,27 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "description": "React components as used in 42.nl products.",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist/*"
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "start": "STORYBOOK_MODE=isolated STORYBOOK_COMPONENT=$(pwd) start-storybook -c ./storybook",
-    "test": "jest",
-    "test-all": "yarn lint && yarn test --coverage",
-    "build": "yarn clean && rollup -c",
+    "start": "npm run storybook",
+    "test": "jest --watch",
+    "test-all": "npm run lint && jest --coverage",
+    "build": "npm run clean && rollup -c",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
-    "copy:scss": "rsync -a src/*.scss lib/scss/",
-    "deploy-storybook": "storybook-to-ghpages",
-    "build-storybook": "build-storybook -c storybook -o docs/storybook",
+    "storybook:deploy": "storybook-to-ghpages",
+    "storybook:build": "build-storybook -c storybook -o docs/storybook",
     "storybook": "start-storybook -c storybook",
     "docs": "jekyll serve --source docs",
-    "dev-publish": "yarn clean && yarn build && ENV=dev ./scripts/publish.sh",
-    "prepublishOnly": "yarn test-all && yarn build"
+    "release": "np --otp",
+    "dev:publish": "./scripts/dev-publish.sh",
+    "prepublishOnly": "npm run clean && npm run test-all && npm run build",
+    "version": "jekyll build && npm run storybook:build"
   },
   "dependencies": {
     "@42.nl/jarb-final-form": "1.0.0",
@@ -54,10 +58,10 @@
     "@babel/core": "7.5.5",
     "@babel/plugin-transform-modules-commonjs": "7.5.0",
     "@storybook/addon-actions": "5.1.11",
-    "@storybook/addon-docs": "next",
+    "@storybook/addon-docs": "5.2.0",
     "@storybook/preset-scss": "1.0.2",
     "@storybook/preset-typescript": "1.1.0",
-    "@storybook/react": "next",
+    "@storybook/react": "5.2.0",
     "@storybook/storybook-deployer": "2.8.1",
     "@testing-library/react-hooks": "1.1.0",
     "@types/classnames": "2.2.9",
@@ -96,6 +100,7 @@
     "jest": "24.8.0",
     "lerna": "3.16.4",
     "node-sass": "4.12.0",
+    "np": "5.1.0",
     "react-async": "8.0.0",
     "react-docgen-typescript-loader": "3.1.1",
     "react-i18next": "10.12.0",

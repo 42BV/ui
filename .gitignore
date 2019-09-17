@@ -13,9 +13,6 @@ logs
 results
 tmp
 
-# Build
-public/css/main.css
-
 # Coverage reports
 coverage
 test-results.json
@@ -29,6 +26,7 @@ node_modules/
 # Editors
 .idea
 *.iml
+.vscode
 
 # OS metadata
 .DS_Store
@@ -39,9 +37,6 @@ Thumbs.db
 
 # Build artifacts
 dist/
-
-# Verdaccio
-.versions.json
 
 # Jekyll
 *.gem

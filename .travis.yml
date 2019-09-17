@@ -1,20 +1,17 @@
 language: node_js
-node_js: '12'
+node_js: '10.16.3'
 sudo: false
 before_script:
   - export TZ=Europe/Amsterdam
   - date
-before_install:
-  - npm install -g yarn # https://github.com/yarnpkg/yarn/issues/2428
 script:
-  - yarn
-  - yarn run lint
-  - yarn run test -- --coverage --outputFile test-results.json --json
+  - npm i
+  - npm run lint
+  - jest --coverage --outputFile test-results.json --json
   - npx danger ci
   - rm -f test-results.json
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 cache:
-  yarn: true
   directories:
     - node_modules
