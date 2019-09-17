@@ -1,18 +1,12 @@
 ---
-layout: guide
+layout: default
 title: Getting started
 permalink: /
 has_children: false
 nav_order: 1
-next:
-  url: directory-structure
-  name: Directory structure
 ---
 
 <p>
-    <a href="https://lerna.js.org/">
-        <img alt="Lerna" src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" />
-    </a>
     <a href="https://travis-ci.org/42BV/ui/">
       <img alt="Build status" src="https://travis-ci.org/42BV/ui.svg?branch=master" />
     </a>
@@ -24,17 +18,14 @@ next:
     </a>
 </p>
 
-## Yarn
+### With npm
 
-This repository makes heavy use of [`Yarn` workspaces](https://yarnpkg.com/lang/en/docs/workspaces/)
-functionality, therefore it is mandatory to have `Yarn` installed. If you
-do not have `Yarn` installed, consult the [installation guide](https://yarnpkg.com/en/docs/install#mac-stable).
+```
+npm install @42.nl/ui --save
+```
 
-## Lerna
+### Or with Yarn
 
-This project uses [lerna](https://lerna.js.org/) to manage independently
-versioned packages and enable code sharing. This enables us to run commands
-on repository level through `lerna run [script]` or on package level
-through `yarn [script]`.
-
-It is recommended to install `lerna` globally through `yarn global add lerna` or `npm i -g lerna`.
+```
+yarn add @42.nl/ui
+```

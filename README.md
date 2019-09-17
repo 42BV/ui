@@ -9,9 +9,6 @@
 </p>
 
 <p align="center">
-    <a href="https://lerna.js.org/">
-        <img alt="Lerna" src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg" />
-    </a>
     <a href="https://travis-ci.org/42BV/ui/">
       <img alt="Build status" src="https://travis-ci.org/42BV/ui.svg?branch=master" />
     </a>
@@ -39,80 +36,50 @@ npm i @42.nl/ui --save
 
 ## Contributing
 
-This repository makes heavy use of [`Yarn` workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) 
-functionality, therefore it is mandatory to have `Yarn` installed. If you 
-do not have `Yarn` installed, consult the [installation guide](https://yarnpkg.com/en/docs/install#mac-stable).
+> Detailled steps can be found at https://42bv.github.io/ui.
 
 ### Setup
 
 1. Ensure you have Node.js 10.13+ and Yarn installed.
 2. Git clone the repository.
-3. From the root of the repository, run `yarn` to install the dependencies required for development. This should automatically build and link the individual packages.
-
-### Development
-
-This project uses [lerna](https://lerna.js.org/) to manage independently 
-versioned packages and enable code sharing. This enables us to run commands 
-on repository level through `lerna run [script]` or on package level 
-through `yarn [script]`.
-
-#### Scenario: new component
-
-1. Copy an existing package (e.g. `cp -r packages/Avatar packages/Component`) or use [@lerna/create](https://github.com/lerna/lerna/tree/master/commands/create#readme).
-2. Update `package.json` to reflect the new component.
-3. Ensure the package works by writing a test and verify by running `yarn test`.
-4. (Optional) if you're not using an [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) for your editor, run `yarn lint`.
+3. From the root of the repository, run `yarn` to install the dependencies required for development.
 
 ### Testing
 
 First follow the build instructions above. Then to run both the linters and tests, use:
 
 ```bash
-yarn test
+npm run test-all
 ```
 
 Or to run them seperately, use:
 
 ```bash
-yarn lint
+npm run lint
 ```
 
 ```bash
-yarn test-only
+npm run test
 ```
-
-### Publishing
 
 #### Development
 
-To prevent multiple prelease publishes for a single feature, we recommend using 
-[https://verdaccio.org/](Verdaccio). Verdaccio enables you to spin up 
-a local NPM registry. This allows us to publish multiple versions for 
-testing purposes without polluting the version scope.
+To prevent multiple prelease publishes for a single feature, we recommend using
+[https://verdaccio.org/](Verdaccio). Verdaccio enables you to spin up
+a local NPM registry which in turn allows us to publish multiple versions for testing purposes without polluting the version in NPM.
 
-> We recommend the Docker approach instead of locally installing 
-Verdaccio, if you do not want to use Docker, refer to the Verdaccio 
-documentation.
+> We recommend the Docker approach instead of locally installing
+> Verdaccio, if you do not want to use Docker, refer to the Verdaccio
+> documentation.
 
-To publish to the Verdaccio registry run `yarn dev-publish` this
-will spin up Verdaccio and publish all packages as a version
-based on the current date. To get out the version look for a line
-in the output that looks like this:
-
-`+ @42.nl/ui@2019.7.2182427`.
-
-In this case the version would be `2019.7.2182427`.
+To publish to the Verdaccio registry run `npm run dev:publish` this
+will spin up Verdaccio and publish.
 
 You can view Verdaccio here: `http://localhost:4873/` it should after
 a successful dev publish show the packages here.
 
-Next in the `package.json` of the project you want to test the new
-version in change the `@42.nl/ui` version to the version that was
-created. 
-
-Then install with the registry Verdaccio registry via: 
-
-`npm install --registry http://localhost:4873`.
+To verify the release, install `@42.nl/ui` from the Verdaccio registry in a project of your choice
+by running: `npm install --registry http://localhost:4873`.
 
 Now you can test the package locally without a publish to the actual
 NPM registry.
