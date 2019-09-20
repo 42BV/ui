@@ -509,7 +509,7 @@ export function limitImageSize(size: number, label: string): ImageValidator {
     const maxSizeDisplay = size.toFixed(1);
 
     return {
-      key: 'ImageUpload.SIZE_TO_LARGE',
+      key: 'ImageUpload.SIZE_TOO_LARGE',
       data: { label, size: maxSizeDisplay, fileSize },
       fallback: `${label} image is to large. Max size is ${maxSizeDisplay} MB image size is ${fileSize} MB`
     };

@@ -38,13 +38,10 @@ describe('errorMessage', () => {
   });
 
   test('Error is a string', () => {
-    errorMessage('Serious error');
+    const error = errorMessage('Serious error');
 
-    expect(t).toHaveBeenCalledTimes(1);
-    expect(t).toHaveBeenCalledWith({
-      fallback: 'Serious error',
-      key: 'Serious error'
-    });
+    expect(t).toHaveBeenCalledTimes(0);
+    expect(error).toEqual('Serious error');
   });
 
   test('Error is a Translation', () => {
