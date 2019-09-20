@@ -162,6 +162,6 @@ test('limitFileSize', () => {
   expect(validator(largeFile, {})).toEqual({
     data: { fileSize: '1.5', label: 'cv', size: '1.0' },
     fallback: 'cv file is to large. Max size is 1.0 MB file size is 1.5 MB',
-    key: 'FileInput.SIZE_TO_LARGE'
+    key: 'FileInput.SIZE_TOO_LARGE'
   });
 });

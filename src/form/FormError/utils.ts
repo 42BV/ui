@@ -20,8 +20,9 @@ export function keyForError(error: MetaError) {
 export function errorMessage(error: MetaError): string {
   const translator = getTranslator();
 
+  // We consider it translated already
   if (typeof error === 'string') {
-    return translator({ key: error, fallback: error });
+    return error;
   }
 
   if ((error as ValidationError).type === undefined) {

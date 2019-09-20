@@ -10,9 +10,9 @@ defaults:
     values:
       image: true
 links:
-  - icon: 'https://unpkg.com/simple-icons@latest/icons/github.svg'
-    name: 'View on Github'
+  - name: 'View on Github'
+    icon: 'https://unpkg.com/simple-icons@latest/icons/github.svg'
     href: 'https://github.com/42BV/ui'
-  - icon: 'https://unpkg.com/simple-icons@latest/icons/storybook.svg'
-    name: 'Storybook'
-    href: 'https://42bv.github.io/storybook'
+  - name: 'Storybook'
+    icon: 'https://unpkg.com/simple-icons@latest/icons/storybook.svg'
+    href: 'https://42bv.github.io/ui/storybook'

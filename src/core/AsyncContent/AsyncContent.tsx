@@ -27,7 +27,7 @@ export default function AsyncContent<T>(props: Props<T>) {
       <ContentState
         mode="loading"
         title={t({
-          key: 'ContentState.LOADING.TITLE',
+          key: 'AsyncContent.LOADING.TITLE',
           fallback: 'Loading...',
           overrideText: text.title
         })}
@@ -42,7 +42,7 @@ export default function AsyncContent<T>(props: Props<T>) {
         <ContentState
           mode="error"
           title={t({
-            key: 'ContentState.ERROR.TITLE',
+            key: 'AsyncContent.ERROR.TITLE',
             fallback: 'Oops something went wrong!',
             overrideText: text.title
           })}

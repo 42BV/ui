@@ -217,7 +217,7 @@ export function limitFileSize(size: number, label: string): FileValidator {
     const maxSizeDisplay = size.toFixed(1);
 
     return {
-      key: 'FileInput.SIZE_TO_LARGE',
+      key: 'FileInput.SIZE_TOO_LARGE',
       data: { label, size: maxSizeDisplay, fileSize },
       fallback: `${label} file is to large. Max size is ${maxSizeDisplay} MB file size is ${fileSize} MB`
     };
