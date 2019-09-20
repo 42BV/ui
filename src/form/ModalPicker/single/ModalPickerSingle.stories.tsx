@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import ModalPickerSingle, { JarbModalPickerSingle } from './ModalPickerSingle';
 import { FinalForm, Form } from '../../story-utils';
@@ -10,6 +9,8 @@ import { User } from '../../../test/types';
 
 storiesOf('Form/ModalPicker/ModalPickerSingle', module)
   .add('basic', () => {
+    const [value, setValue] = useState(undefined);
+
     return (
       <Form>
         <ModalPickerSingle
@@ -21,12 +22,15 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           fetchOptions={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
           }
-          onChange={value => action(`You entered ${value}`)}
+          value={value}
+          onChange={setValue}
         />
       </Form>
     );
   })
   .add('with extra add button', () => {
+    const [value, setValue] = useState(undefined);
+
     return (
       <Form>
         <ModalPickerSingle<User>
@@ -51,12 +55,15 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
               });
             }
           }}
-          onChange={value => action(`You entered ${value}`)}
+          value={value}
+          onChange={setValue}
         />
       </Form>
     );
   })
   .add('without search', () => {
+    const [value, setValue] = useState(undefined);
+
     return (
       <Form>
         <ModalPickerSingle
@@ -68,7 +75,8 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           fetchOptions={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser]))
           }
-          onChange={value => action(`You entered ${value}`)}
+          value={value}
+          onChange={setValue}
         />
       </Form>
     );

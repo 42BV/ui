@@ -40,7 +40,9 @@ export function useSettledErrors(meta: Meta): MetaError[] {
     }
 
     function hideErrors() {
-      setSettledErrors([]);
+      if (settledErrors.length > 0) {
+        setSettledErrors([]);
+      }
     }
 
     if (active) {
@@ -60,7 +62,6 @@ export function useSettledErrors(meta: Meta): MetaError[] {
           // If the field is touched but not active show errors relatively quickly
           timeout = window.setTimeout(showErrors, 100);
         } else {
-          // Hide errors for fields which are never touched immediately
           hideErrors();
         }
       } else {
@@ -75,7 +76,7 @@ export function useSettledErrors(meta: Meta): MetaError[] {
     return () => {
       window.clearTimeout(timeout);
     };
-  }, [hasErrors, active, touched, errors]);
+  }, [hasErrors, active, touched, errors, settledErrors.length]);
 
   return settledErrors;
 }

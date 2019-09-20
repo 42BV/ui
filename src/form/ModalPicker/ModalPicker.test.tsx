@@ -120,6 +120,7 @@ describe('Component: ModalPicker', () => {
         .find('Button')
         .at(0)
         .props()
+        // @ts-ignore
         .onClick();
 
       expect(closeModalSpy).toHaveBeenCalledTimes(1);
@@ -133,6 +134,7 @@ describe('Component: ModalPicker', () => {
         .find('Button')
         .at(1)
         .props()
+        // @ts-ignore
         .onClick();
 
       expect(modalSavedSpy).toHaveBeenCalledTimes(1);
@@ -178,6 +180,7 @@ describe('Component: ModalPicker', () => {
         .find('Button')
         .at(0)
         .props()
+        // @ts-ignore
         .onClick();
 
       expect(addButtonSpy).toHaveBeenCalledTimes(1);
