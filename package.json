@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@42.nl/jarb-final-form": "1.0.0",
-    "@42.nl/react-error-store": "0.0.1",
+    "@42.nl/react-error-store": "1.0.0",
     "@42.nl/react-flash-messages": "0.0.2",
     "@42.nl/spring-connect": "3.2.0",
     "bootstrap": "4.3.1",
