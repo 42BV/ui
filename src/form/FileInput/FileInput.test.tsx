@@ -84,6 +84,7 @@ describe('Component: FileInput', () => {
       fileInput
         .find('Input')
         .props()
+        // @ts-ignore
         .onChange();
 
       // It should not call the onChangesSpy at all.

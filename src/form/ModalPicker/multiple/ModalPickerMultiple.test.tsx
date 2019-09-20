@@ -197,6 +197,7 @@ describe('Component: ModalPickerMultiple', () => {
         modalPickerMultiple
           .find('Button')
           .props()
+          // @ts-ignore
           .onClick();
         expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
         expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1);
@@ -212,6 +213,10 @@ describe('Component: ModalPickerMultiple', () => {
 
           expect(state.userHasSearched).toBe(false);
           expect(state.page).toBe(pageOfUsers);
+
+          // @ts-ignore
+          const value = modalPickerMultiple.instance().props.value;
+          expect(state.selected).not.toBe(value);
 
           done();
         } catch (error) {
@@ -233,7 +238,9 @@ describe('Component: ModalPickerMultiple', () => {
         modalPickerMultiple
           .find('Button')
           .props()
+          // @ts-ignore
           .onClick();
+
         expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
         expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1);
 
@@ -361,6 +368,7 @@ describe('Component: ModalPickerMultiple', () => {
         .find('Input')
         .at(0)
         .props()
+        // @ts-ignore
         .onChange();
       modalPickerMultiple.update();
       // @ts-ignore
@@ -372,6 +380,7 @@ describe('Component: ModalPickerMultiple', () => {
         .find('Input')
         .at(0)
         .props()
+        // @ts-ignore
         .onChange();
       modalPickerMultiple.update();
       // @ts-ignore
@@ -386,7 +395,9 @@ describe('Component: ModalPickerMultiple', () => {
         .find('Input')
         .at(1)
         .props()
+        // @ts-ignore
         .onChange();
+      // @ts-ignore
       modalPickerMultiple.update();
 
       // @ts-ignore
@@ -398,7 +409,9 @@ describe('Component: ModalPickerMultiple', () => {
         .find('Input')
         .at(1)
         .props()
+        // @ts-ignore
         .onChange();
+      // @ts-ignore
       modalPickerMultiple.update();
 
       // @ts-ignore
@@ -413,6 +426,7 @@ describe('Component: ModalPickerMultiple', () => {
         .find('Input')
         .at(2)
         .props()
+        // @ts-ignore
         .onChange();
       modalPickerMultiple.update();
       // @ts-ignore
@@ -428,6 +442,7 @@ describe('Component: ModalPickerMultiple', () => {
         .find('Input')
         .at(2)
         .props()
+        // @ts-ignore
         .onChange();
       modalPickerMultiple.update();
       // @ts-ignore

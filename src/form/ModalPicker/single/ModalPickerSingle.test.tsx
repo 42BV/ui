@@ -146,6 +146,7 @@ describe('Component: ModalPickerSingle', () => {
       modalPickerSingle
         .find('Button')
         .props()
+        // @ts-ignore
         .onClick();
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
@@ -271,6 +272,7 @@ describe('Component: ModalPickerSingle', () => {
         .find('Input')
         .at(1)
         .props()
+        // @ts-ignore
         .onChange();
 
       // @ts-ignore
@@ -281,6 +283,7 @@ describe('Component: ModalPickerSingle', () => {
         .find('Input')
         .at(2)
         .props()
+        // @ts-ignore
         .onChange();
 
       // @ts-ignore
@@ -291,6 +294,7 @@ describe('Component: ModalPickerSingle', () => {
         .find('Input')
         .at(0)
         .props()
+        // @ts-ignore
         .onChange();
 
       // @ts-ignore

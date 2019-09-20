@@ -144,7 +144,11 @@ export default class ModalPickerMultiple<T> extends React.Component<
   }
 
   openModal() {
-    const selected = isArray(this.props.value) ? this.props.value : [];
+    // Always copy the `value` so the `selected` is a fresh array.
+    // Otherwise the selection will be the same as the value, which
+    // causes values to be commited and the cancel button will not
+    // do anything.
+    const selected = isArray(this.props.value) ? [...this.props.value] : [];
 
     this.setState({ selected, isOpen: true, query: '' }, () => {
       this.loadPage(1);
@@ -208,14 +212,14 @@ export default class ModalPickerMultiple<T> extends React.Component<
   }
 
   render() {
-    const selected = this.props.value;
+    const value = this.props.value;
     const { id, label, placeholder, error, color, className = '' } = this.props;
 
     return (
       <FormGroup className={className} color={color}>
         <Label for={id}>{label}</Label>
         <div className="mb-2">
-          <div className="mb-2">{this.renderTagsInMoreOrLess(selected)}</div>
+          <div className="mb-2">{this.renderTagsInMoreOrLess(value)}</div>
           <Button color="primary" onClick={() => this.openModal()}>
             {placeholder}
           </Button>

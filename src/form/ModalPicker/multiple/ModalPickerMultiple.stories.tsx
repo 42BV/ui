@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import { pageWithContentAndExactSize } from '../../../test/utils';
 import { userUser, adminUser } from '../../../test/fixtures';
@@ -14,6 +13,8 @@ import { FinalForm, Form } from '../../story-utils';
 
 storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
   .add('default', () => {
+    const [value, setValue] = useState([]);
+
     return (
       <Form>
         <ModalPickerMultiple<User>
@@ -25,12 +26,15 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
             Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
           }
           optionForValue={(user: User) => user.email}
-          onChange={value => action(`You entered ${value}`)}
+          value={value}
+          onChange={setValue}
         />
       </Form>
     );
   })
   .add('with extra add button', () => {
+    const [value, setValue] = useState([]);
+
     return (
       <Form>
         <ModalPickerMultiple<User>
@@ -55,12 +59,15 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
               });
             }
           }}
-          onChange={value => action(`You entered ${value}`)}
+          value={value}
+          onChange={setValue}
         />
       </Form>
     );
   })
   .add('without search', () => {
+    const [value, setValue] = useState([]);
+
     return (
       <Form>
         <ModalPickerMultiple<User>
@@ -85,7 +92,8 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
               });
             }
           }}
-          onChange={value => action(`You entered ${value}`)}
+          value={value}
+          onChange={setValue}
         />
       </Form>
     );
