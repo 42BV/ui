@@ -1,79 +1,26 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import FlashMessage from './FlashMessage';
-import { Button } from 'reactstrap';
-
-import {
-  addInfo,
-  addError,
-  addWarning,
-  addApocalypse,
-  addSuccess
-} from '@42.nl/react-flash-messages';
 
 storiesOf('core|FlashMessage', module)
   .addParameters({ component: FlashMessage })
   .add('default', () => {
     return (
-      <Fragment>
-        <FlashMessage />
-
-        <Button
-          onClick={() =>
-            addSuccess({
-              text: 'Success',
-              onClick: () => action('Success clicked')
-            })
-          }
-        >
+      <>
+        <FlashMessage color="success" onClose={action('success closed')}>
           Success
-        </Button>
-
-        <Button
-          onClick={() =>
-            addInfo({
-              text: 'Info',
-              onClick: () => action('Info clicked')
-            })
-          }
-        >
-          Info
-        </Button>
-
-        <Button
-          onClick={() =>
-            addError({
-              text: 'Error',
-              onClick: () => action('Error clicked')
-            })
-          }
-        >
-          Error
-        </Button>
-
-        <Button
-          onClick={() =>
-            addWarning({
-              text: 'Warning',
-              onClick: () => action('Warning clicked')
-            })
-          }
-        >
+        </FlashMessage>
+        <FlashMessage color="danger" onClose={action('danger closed')}>
           Warning
-        </Button>
-
-        <Button
-          onClick={() =>
-            addApocalypse({
-              text: 'Apocalypse',
-              onClick: () => action('Apocalypse clicked')
-            })
-          }
-        >
-          Apocalypse
-        </Button>
-      </Fragment>
+        </FlashMessage>
+        <FlashMessage color="warning" onClose={action('warning closed')}>
+          Warning
+        </FlashMessage>
+        <FlashMessage color="info" onClose={action('info closed')}>
+          Info
+        </FlashMessage>
+      </>
     );
   });
