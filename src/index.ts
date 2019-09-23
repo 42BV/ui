@@ -77,3 +77,6 @@ export { default as FormError } from './form/FormError/FormError';
 // Utilities
 export { t } from './utilities/translation/translation';
 export { setTranslator } from './utilities/translation/translator';
+
+// Types
+export { Color } from './core/types';

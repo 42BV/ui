@@ -1,14 +1,7 @@
-.flash-messages {
-  position: fixed;
-  height: 3.125rem;
-  left: 50%;
-  top: 1rem;
-  z-index: 9000;
-  transform: translateX(-50%);
-  @include media-breakpoint-down(sm) {
-    min-width: 90%;
-  }
-
+.flash-message {
+  position: relative;
+  margin-top: 1rem;
+  
   .close {
     position: relative;
     left: 74px;
