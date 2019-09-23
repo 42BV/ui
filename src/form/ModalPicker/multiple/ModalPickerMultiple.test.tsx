@@ -200,7 +200,7 @@ describe('Component: ModalPickerMultiple', () => {
           // @ts-ignore
           .onClick();
         expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-        expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1);
+        expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
 
         try {
           await promise;
@@ -242,7 +242,7 @@ describe('Component: ModalPickerMultiple', () => {
           .onClick();
 
         expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-        expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1);
+        expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
 
         try {
           await promise;
@@ -279,7 +279,7 @@ describe('Component: ModalPickerMultiple', () => {
       modalPicker.props().fetchOptions('tes');
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('tes', 1);
+      expect(fetchOptionsSpy).toHaveBeenCalledWith('tes', 1, 10);
     });
 
     it('should when the user moves to another page load the new page', async done => {
@@ -294,7 +294,7 @@ describe('Component: ModalPickerMultiple', () => {
       modalPicker.props().pageChanged(42);
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('search', 42);
+      expect(fetchOptionsSpy).toHaveBeenCalledWith('search', 42, 10);
 
       try {
         await promise;

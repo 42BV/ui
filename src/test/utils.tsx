@@ -3,7 +3,7 @@ import { Page } from '@42.nl/spring-connect';
 export function resolvablePromise<R>() {
   let resolve: (result?: Promise<R> | R) => void = () => undefined;
 
-  const promise = new Promise(r => {
+  const promise = new Promise<R>(r => {
     resolve = r;
   });
 
@@ -20,7 +20,7 @@ export function rejectablePromise() {
   return { promise, reject };
 }
 
-export function pageWithContent<T = any>(content: T[]): Page<T> {
+export function pageWithContent<T>(content: T[]): Page<T> {
   return {
     content,
     last: false,
@@ -33,7 +33,7 @@ export function pageWithContent<T = any>(content: T[]): Page<T> {
   };
 }
 
-export function pageWithContentAndExactSize(content: Array<any>): Page<any> {
+export function pageWithContentAndExactSize<T>(content: Array<T>): Page<T> {
   return {
     content,
     last: true,

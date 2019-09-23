@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Select, { OptionEnabledCallback, Text } from './Select';
+import Select, { Text } from './Select';
 import { User } from '../../test/types';
 import {
   adminUser,
@@ -10,6 +10,8 @@ import {
   userUser,
   pageOfUsers
 } from '../../test/fixtures';
+import { OptionEnabledCallback } from '../types';
+import { pageWithContent } from '../../test/utils';
 
 describe('Component: Select', () => {
   let select: ShallowWrapper;
@@ -128,32 +130,102 @@ describe('Component: Select', () => {
       }
     });
 
-    test('when options is a function set options to empty and loading to true', async done => {
-      const onChange = jest.fn();
-      const options = () => Promise.resolve(pageOfUsers);
+    describe('when options is a function', () => {
+      test('when options is a function set options to empty and loading to true', async done => {
+        const options = () => Promise.resolve(pageOfUsers);
 
-      // @ts-ignore
-      const select = new Select({ options, onChange });
+        // @ts-ignore
+        const select = new Select({ options, onChange: jest.fn() });
 
-      jest.spyOn(select, 'setState').mockImplementation(() => undefined);
+        jest.spyOn(select, 'setState').mockImplementation(() => undefined);
 
-      try {
-        await select.componentDidMount();
+        try {
+          await select.componentDidMount();
 
-        expect(select.setState).toHaveBeenCalledTimes(1);
-        expect(select.setState).toHaveBeenCalledWith({
-          loading: false,
-          options: [adminUser, coordinatorUser, userUser]
+          expect(select.setState).toHaveBeenCalledTimes(1);
+          expect(select.setState).toHaveBeenCalledWith({
+            loading: false,
+            options: [adminUser, coordinatorUser, userUser]
+          });
+
+          done();
+        } catch (e) {
+          console.error(e);
+          done.fail();
+        }
+      });
+
+      describe('setting of initial value after loading options', () => {
+        test('do nothing when value is set and can be found in the loaded options', async done => {
+          const onChange = jest.fn();
+          const options = () => Promise.resolve(pageOfUsers);
+
+          // @ts-ignore
+          const select = new Select({ options, onChange });
+          select.props.value = adminUser;
+          select.props.optionForValue = (user: User) => user.email;
+
+          jest.spyOn(select, 'setState').mockImplementation(() => undefined);
+
+          try {
+            await select.componentDidMount();
+
+            expect(onChange).toHaveBeenCalledTimes(0);
+
+            done();
+          } catch (e) {
+            console.error(e);
+            done.fail();
+          }
         });
 
-        expect(onChange).toHaveBeenCalledTimes(1);
-        expect(onChange).toBeCalledWith(adminUser);
+        test('select first option when value is set but not in the loaded options', async done => {
+          const onChange = jest.fn();
+          const options = () =>
+            Promise.resolve(pageWithContent([adminUser, coordinatorUser]));
 
-        done();
-      } catch (e) {
-        console.error(e);
-        done.fail();
-      }
+          // @ts-ignore
+          const select = new Select({ options, onChange });
+          select.props.value = userUser;
+          select.props.optionForValue = (user: User) => user.email;
+
+          jest.spyOn(select, 'setState').mockImplementation(() => undefined);
+
+          try {
+            await select.componentDidMount();
+
+            expect(onChange).toHaveBeenCalledTimes(1);
+            expect(onChange).toBeCalledWith(adminUser);
+
+            done();
+          } catch (e) {
+            console.error(e);
+            done.fail();
+          }
+        });
+
+        test('select first option when value is not set', async done => {
+          const onChange = jest.fn();
+          const options = () => Promise.resolve(pageOfUsers);
+
+          // @ts-ignore
+          const select = new Select({ options, onChange });
+
+          jest.spyOn(select, 'setState').mockImplementation(() => undefined);
+
+          try {
+            await select.componentDidMount();
+
+            expect(onChange).toHaveBeenCalledTimes(1);
+            expect(onChange).toBeCalledWith(adminUser);
+
+            done();
+          } catch (e) {
+            console.error(e);
+            done.fail();
+          }
+        });
+      });
     });
   });
 

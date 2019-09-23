@@ -1,6 +1,7 @@
 import { Page } from '@42.nl/spring-connect';
 import { Meta } from '../form/types';
 import { CurrentUser, UserRole, User } from './types';
+import { random } from 'lodash';
 
 export const validMeta: Meta = Object.freeze({
   blur: () => undefined,
@@ -11,6 +12,17 @@ export const validMeta: Meta = Object.freeze({
   invalid: false,
   valid: true
 });
+
+export function randomUser(): User {
+  const id = random(1, 1000000);
+
+  return {
+    id,
+    email: `user-${id}@42.nl`,
+    active: true,
+    roles: [UserRole.ADMIN]
+  }
+}
 
 const admin = {
   id: 42,
