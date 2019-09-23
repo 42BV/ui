@@ -6,7 +6,7 @@ import { TypeaheadOption, FetchOptionsCallback } from '../types';
 import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
 import { valueToTypeaheadOption } from '../utils';
-import { Color } from '../../types';
+import { Color, OptionForValue } from '../../types';
 
 interface Props<T> {
   /**
@@ -38,7 +38,7 @@ interface Props<T> {
    * Callback to convert an value of type T to an option to show
    * to the user.
    */
-  optionForValue: (value: T) => string;
+  optionForValue: OptionForValue<T>;
 
   /**
    * Callback for when the form element changes.

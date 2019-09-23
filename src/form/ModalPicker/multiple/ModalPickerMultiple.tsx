@@ -8,14 +8,10 @@ import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
 import MoreOrLess from '../../../core/MoreOrLess/MoreOrLess';
 import Tag from '../../../core/Tag/Tag';
-import { Color } from '../../types';
+import { Color, OptionForValue, FetchOptionsCallback } from '../../types';
 import ModalPicker from '../ModalPicker';
 import EmptyModal from '../EmptyModal';
-import {
-  FetchOptionsCallback,
-  AddButtonCallback,
-  AddButtonOptions
-} from '../types';
+import { AddButtonCallback, AddButtonOptions } from '../types';
 
 interface Props<T> {
   /**
@@ -55,7 +51,7 @@ interface Props<T> {
    * Callback to convert an value of type T to an option to show
    * to the user.
    */
-  optionForValue: (value: T) => string;
+  optionForValue: OptionForValue<T>;
 
   /**
    * Callback for when the form element changes.
@@ -183,7 +179,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
     const query = this.state.query;
 
     this.setState({ userHasSearched: query !== '' });
-    const page: Page<T> = await this.props.fetchOptions(query, pageNumber);
+    const page: Page<T> = await this.props.fetchOptions(query, pageNumber, 10);
 
     this.setState({ page });
   }

@@ -100,9 +100,9 @@ describe('Component: ModalPickerSingle', () => {
       expect(modalPickerSingle.find('span').text()).toBe('admin@42.nl');
     });
 
-    it('should render a label with an empty string when the value is empty', () => {
+    it('should not render a label when the value is empty', () => {
       setup({ value: undefined, showAddButton: false });
-      expect(modalPickerSingle.find('span').text()).toBe('');
+      expect( modalPickerSingle.find('span').exists()).toBe(false);
     });
 
     it('should render EmptyState when the totalElements of the page are zero', () => {
@@ -150,7 +150,7 @@ describe('Component: ModalPickerSingle', () => {
         .onClick();
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1);
+      expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
 
       try {
         await promise;
@@ -191,7 +191,7 @@ describe('Component: ModalPickerSingle', () => {
       modalPicker.props().fetchOptions('tes');
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('tes', 1);
+      expect(fetchOptionsSpy).toHaveBeenCalledWith('tes', 1, 10);
     });
 
     it('should when the user moves to another page load the new page', async done => {
@@ -206,7 +206,7 @@ describe('Component: ModalPickerSingle', () => {
       modalPicker.props().pageChanged(42);
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('search', 42);
+      expect(fetchOptionsSpy).toHaveBeenCalledWith('search', 42, 10);
 
       try {
         await promise;
@@ -400,26 +400,24 @@ describe('Component: ModalPickerSingle', () => {
     test('becomes empty', () => {
       setup({ value: adminUser, showAddButton: false });
 
-      let value = modalPickerSingle.find('span').text();
+      const value = modalPickerSingle.find('span').text();
       expect(value).toBe('admin@42.nl');
 
       modalPickerSingle.setProps({ value: undefined });
 
-      value = modalPickerSingle.find('span').text();
-      expect(value).toBe('');
+      expect( modalPickerSingle.find('span').exists()).toBe(false);
     });
 
     test('becomes filled', () => {
       setup({ value: undefined, showAddButton: false });
 
-      let value = modalPickerSingle.find('span').text();
-      expect(value).toBe('');
+      expect( modalPickerSingle.find('span').exists()).toBe(false);
 
       modalPickerSingle.setProps({
         value: adminUser
       });
 
-      value = modalPickerSingle.find('span').text();
+      const value = modalPickerSingle.find('span').text();
       expect(value).toBe('admin@42.nl');
     });
   });

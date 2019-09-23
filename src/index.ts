@@ -72,6 +72,14 @@ export {
   JarbFormToggle
 } from './form/Toggle/Toggle';
 export { default as FormError } from './form/FormError/FormError';
+export {
+  default as CheckboxMultipleSelect,
+  JarbCheckboxMultipleSelect,
+} from './form/CheckboxMultipleSelect/CheckboxMultipleSelect';
+export {
+  default as ValuePicker,
+  JarbValuePicker,
+} from './form/ValuePicker/ValuePicker';
 
 // Utilities
 export { t } from './utilities/translation/translation';

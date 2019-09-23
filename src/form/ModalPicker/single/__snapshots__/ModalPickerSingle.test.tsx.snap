@@ -23,11 +23,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
   </Label>
   <p>
     <span
-      style={
-        Object {
-          "marginRight": "10px",
-        }
-      }
+      className="mr-1"
     >
       admin@42.nl
     </span>

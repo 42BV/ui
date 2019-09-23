@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
-import { FormGroup, Label, Input as RSInput } from 'reactstrap';
-import { get, constant, isArray } from 'lodash';
-import { InputType } from 'reactstrap/lib/Input';
+import { FormGroup, Label, Input as RSInput, Row, Col } from 'reactstrap';
+import { get, constant, isArray, chunk } from 'lodash';
+
 import { Page } from '@42.nl/spring-connect';
 
 import withJarb from '../withJarb/withJarb';
 import Spinner from '../../core/Spinner/Spinner';
-import {
-  Color,
-  OptionForValue,
-  OptionEnabledCallback,
-  OptionsFetcher
-} from '../types';
+import { Color, OptionsFetcher, OptionEnabledCallback } from '../types';
 import { t } from '../../utilities/translation/translation';
+import { doBlur } from '../utils';
 
 export interface Text {
   /**
-   * The message to show when the select is loading. Defaults
+   * The message to show when the CheckboxMultipleSelect is loading. Defaults
    * to `loading...`
    */
   loadingMessage?: string;
 }
+
 interface Props<T> {
   /**
    * The id of the form element.
@@ -30,12 +27,12 @@ interface Props<T> {
   /**
    * The value that the form element currently has.
    */
-  value?: T;
+  value?: T[];
 
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T) => void;
+  onChange: (value: T[] | null) => void;
 
   /**
    * Optional callback for when the form element is blurred.
@@ -52,7 +49,7 @@ interface Props<T> {
    * Callback to convert an value of type T to an option to show
    * to the user.
    */
-  optionForValue: OptionForValue<T>;
+  optionForValue: (value: T) => string;
 
   /**
    * Optional callback which is called for every option to determine
@@ -108,7 +105,10 @@ interface State<T> {
  * Select is a form element for which the value can be selected
  * from a limited range.
  */
-export default class Select<T> extends Component<Props<T>, State<T>> {
+export default class CheckboxMultipleSelect<T> extends Component<
+  Props<T>,
+  State<T>
+> {
   constructor(props: Props<T>) {
     super(props);
 
@@ -135,44 +135,37 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
 
       const page: Page<T> = await fetcher();
       this.setState({ options: page.content, loading: false });
-
-      this.setInitialValueAfterloadingOptions(page);
     }
   }
 
-  setInitialValueAfterloadingOptions(page: Page<T>) {
-    const { value, optionForValue } = this.props;
+  optionClicked(option: T, isChecked: boolean) {
+    const { value, onChange, onBlur } = this.props;
 
-    // If there is a value try to see if it is still in the content
-    if (value) {
-      const label = optionForValue(value);
+    // Always copy the `value` so the `selected` is a fresh array.
+    // Otherwise the selection will be the same as the value, which
+    // causes values to be commited and the cancel button will not
+    // do anything.
+    let selected = isArray(value) ? [...value] : [];
 
-      if (!page.content.some(item => optionForValue(item) === label)) {
-        // The value no longer appears in the options, so we select
-        // the first option by default, overriding any value it
-        // had already.
-        this.props.onChange(page.content[0]);
-      }
+    if (isChecked) {
+      selected = selected.filter(v => v !== option);
     } else {
-      // If there is no value, select the first option by default
-      this.props.onChange(page.content[0]);
+      selected.push(option);
     }
-  }
 
-  selectDefaultOption(option?: HTMLOptionElement | null) {
-    // select the default option when no other option is chosen.
-    if (option && this.props.value === undefined) {
-      option.selected = true;
-    }
+    onChange(selected);
+
+    doBlur(onBlur);
   }
 
   render() {
-    const { id, error, color, label, text = {}, className = '' } = this.props;
+    const { id, error, color, label, text = {}, className = '', placeholder } = this.props;
     const { loading } = this.state;
 
     return (
       <FormGroup className={className} color={color}>
         <Label for={id}>{label}</Label>
+        <p className="text-muted"><em>{placeholder}</em></p>
         {loading ? (
           <div>
             <Spinner color="black" size={16} />
@@ -185,7 +178,7 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
             </span>
           </div>
         ) : (
-          this.renderInput()
+          this.renderCheckboxes()
         )}
 
         {error}
@@ -193,61 +186,53 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
     );
   }
 
-  renderInput() {
-    const {
-      id,
-      placeholder,
-      value,
-      valid,
-      onBlur,
-      onChange,
-      optionForValue
-    } = this.props;
+  renderCheckboxes() {
+    const { optionForValue, value} = this.props;
 
     const { options } = this.state;
 
-    const isOptionEnabled = get(this.props, 'isOptionEnabled', constant(true));
-    const inputProps = {
-      id,
-      valid,
-      type: 'select' as InputType,
-      placeholder,
-      onChange: (event: { target: { value: string } }) => {
-        const index = parseInt(event.target.value, 10);
-        onChange(options[index]);
-      },
-      onBlur,
-      className: value === undefined ? 'showing-placeholder' : ''
-    };
+    const chunks = chunk(options, 10);
 
-    // @ts-ignore
-    const indexOfValue = options.findIndex(option => option === value);
+    const isOptionEnabled = get(this.props, 'isOptionEnabled', constant(true));
 
     return (
-      <RSInput value={indexOfValue} {...inputProps}>
-        <option disabled ref={option => this.selectDefaultOption(option)}>
-          {placeholder}
-        </option>
-
-        {options.map((option, index) => {
-          const label = optionForValue(option);
-
+      <Row>
+        {chunks.map((options, index) => {
           return (
-            <option
-              key={label}
-              // @ts-ignore
-              value={index}
-              disabled={!isOptionEnabled(option)}
-            >
-              {label}
-            </option>
+            <Col xs="auto" key={index} style={{ width: '300px' }}>
+              {options.map((option, index) => {
+                const label = optionForValue(option);
+
+                const isChecked = !!(value && value.some(v => option === v));
+
+                return (
+                  <FormGroup check key={label}>
+                    <Label check>
+                      <RSInput
+                        type="checkbox"
+                        checked={isChecked}
+                        value={index}
+                        disabled={!isOptionEnabled(option)}
+                        onChange={() => this.optionClicked(option, isChecked)}
+                      />{' '}
+                      {label}
+                    </Label>
+                  </FormGroup>
+                );
+              })}
+            </Col>
           );
         })}
-      </RSInput>
+      </Row>
     );
   }
 }
+
 /**
- * Variant of the Select which can be used in a Jarb context.
+ * Variant of the ModalPickerMultiple which can be used in a Jarb context.
  */
-export const JarbSelect = withJarb<string, string, Props<any>>(Select);
+export const JarbCheckboxMultipleSelect = withJarb<
+  any[],
+  any[] | null,
+  Props<any>
+>(CheckboxMultipleSelect);
