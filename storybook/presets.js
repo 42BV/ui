@@ -1,5 +1,14 @@
 module.exports = [
-  '@storybook/preset-typescript',
+  {
+    name: '@storybook/preset-typescript',
+    options: {
+      tsLoaderOptions: {
+        compilerOptions: {
+          declaration: false
+        }
+      }
+    }
+  },
   '@storybook/addon-docs/react/preset',
   '@storybook/preset-scss'
 ];
