@@ -10,6 +10,7 @@ script:
   - jest --coverage --outputFile test-results.json --json
   - npx danger ci
   - rm -f test-results.json
+  - npm run storybook:build
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 cache:
