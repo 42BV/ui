@@ -1,7 +1,6 @@
 // Core
 export { default as Avatar } from './core/Avatar/Avatar';
 export { default as AvatarStack } from './core/Avatar/AvatarStack';
-export { default as Breadcrumbs } from './core/Breadcrumbs/Breadcrumbs';
 export { default as Button } from './core/Button/Button';
 export { default as useShowSpinner } from './core/Button/useShowSpinner';
 export { default as ConfirmButton } from './core/ConfirmButton/ConfirmButton';
