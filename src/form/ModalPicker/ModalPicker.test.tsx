@@ -3,7 +3,6 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
-import * as testUtils from '../../test/utils';
 import ModalPicker from './ModalPicker';
 
 describe('Component: ModalPicker', () => {
@@ -50,7 +49,6 @@ describe('Component: ModalPicker', () => {
         saveButtonEnabled={true}
         canSearch={canSearch}
         addButton={addButton}
-        {...testUtils.mockI18n()}
       >
         <h1>Children</h1>
       </ModalPicker>

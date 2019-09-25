@@ -39,7 +39,6 @@ describe('Component: ImgUpload', () => {
         onBlur={onBlurSpy}
         error="Some error"
         color="success"
-        {...testUtils.mockI18n()}
       />
     );
   }
