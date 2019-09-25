@@ -14,7 +14,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "start": "npm run storybook",
-    "test": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "test-all": "npm run lint && jest --coverage",
     "build": "npm run clean && rollup -c",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
