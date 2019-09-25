@@ -56,34 +56,3 @@ function setupStorages() {
     })
   };
 }
-
-// Mock useTranslation everywhere.
-jest.mock('react-i18next', () => {
-  // Get the actual react-i18next
-  const originalModule = jest.requireActual('react-i18next');
-
-  const useTranslation = {
-    // @ts-ignore
-    i18n: {
-      language: 'en',
-      changeLanguage: jest.fn()
-    },
-    tReady: true,
-    // @ts-ignore
-    t: (key, data) => {
-      let fakeTranslation = key ? key : '{WRONG_NO_KEY}';
-
-      if (data) {
-        fakeTranslation += ` ${JSON.stringify(data)}`;
-      }
-
-      return fakeTranslation;
-    }
-  };
-
-  // use react-i18next as is but mock useTranslation.
-  return {
-    ...originalModule,
-    useTranslation: () => useTranslation
-  };
-});

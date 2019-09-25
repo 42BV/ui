@@ -4,7 +4,6 @@ import toJson from 'enzyme-to-json';
 import { RequiredError } from '@42.nl/jarb-final-form';
 import * as reactErrorStore from '@42.nl/react-error-store';
 
-import * as testUtils from '../../test/utils';
 import { validMeta } from '../../test/fixtures';
 import * as SettledErrors from './useSettledErrors';
 
@@ -41,7 +40,6 @@ describe('Component: FormError', () => {
       <FormError
         meta={validMeta}
         validator="User.name"
-        {...testUtils.mockI18n()}
       />
     );
   }

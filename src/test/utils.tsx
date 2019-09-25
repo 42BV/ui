@@ -1,5 +1,4 @@
 import { Page } from '@42.nl/spring-connect';
-import { WithTranslation } from 'react-i18next';
 
 export function resolvablePromise<R>() {
   let resolve: (result?: Promise<R> | R) => void = () => undefined;
@@ -19,27 +18,6 @@ export function rejectablePromise() {
   });
 
   return { promise, reject };
-}
-
-export function mockI18n(): WithTranslation {
-  return {
-    // @ts-ignore
-    i18n: {
-      language: 'en',
-      changeLanguage: jest.fn()
-    },
-    tReady: true,
-    // @ts-ignore
-    t: (key, data) => {
-      let fakeTranslation = key ? key : '{WRONG_NO_KEY}';
-
-      if (data) {
-        fakeTranslation += ` ${JSON.stringify(data)}`;
-      }
-
-      return fakeTranslation;
-    }
-  };
 }
 
 export function pageWithContent<T = any>(content: T[]): Page<T> {
