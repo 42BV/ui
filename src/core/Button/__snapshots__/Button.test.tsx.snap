@@ -91,6 +91,7 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
     type="button"
   >
     <Icon
+      className="material-icons-left"
       icon="save"
     />
     Save
@@ -119,6 +120,26 @@ exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
 </span>
 `;
 
+exports[`Component: Button ui button with icon normal with icon on the right 1`] = `
+<span
+  className="button  primary"
+>
+  <Button
+    color="primary"
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Icon
+      className="material-icons-right"
+      icon="save"
+    />
+    Save
+  </Button>
+</span>
+`;
+
 exports[`Component: Button ui button with icon outline inProgress is false 1`] = `
 <span
   className="button  primary"
@@ -133,6 +154,7 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
     type="button"
   >
     <Icon
+      className="material-icons-left"
       icon="save"
     />
     Save

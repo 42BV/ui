@@ -123,6 +123,58 @@ storiesOf('core|buttons/Button', module)
           <hr />
         </Col>
         <Col xs={12}>
+          <h4>Button with icon right</h4>
+          <Button
+            icon="save"
+            iconPosition="right"
+            onClick={action('Button clicked')}
+            color="primary"
+          >
+            primary
+          </Button>
+          <Button
+            icon="save"
+            iconPosition="right"
+            onClick={action('Button clicked')}
+            color="secondary"
+          >
+            secondary
+          </Button>
+          <Button
+            icon="save"
+            iconPosition="right"
+            onClick={action('Button clicked')}
+            color="success"
+          >
+            success
+          </Button>
+          <Button
+            icon="save"
+            iconPosition="right"
+            onClick={action('Button clicked')}
+            color="info"
+          >
+            info
+          </Button>
+          <Button
+            icon="save"
+            iconPosition="right"
+            onClick={action('Button clicked')}
+            color="warning"
+          >
+            warning
+          </Button>
+          <Button
+            icon="save"
+            iconPosition="right"
+            onClick={action('Button clicked')}
+            color="danger"
+          >
+            danger
+          </Button>
+          <hr />
+        </Col>
+        <Col xs={12}>
           <h4>Button with icon in progress</h4>
           <Button
             icon="save"
@@ -329,6 +381,64 @@ storiesOf('core|buttons/Button', module)
           <Button
             onClick={action('Button clicked')}
             icon="save"
+            outline={true}
+            color="danger"
+          >
+            danger
+          </Button>
+          <hr />
+        </Col>
+        <Col xs={12}>
+          <h4>Outline with icon right</h4>
+          <Button
+            onClick={action('Button clicked')}
+            icon="save"
+            iconPosition="right"
+            outline={true}
+            color="primary"
+          >
+            primary
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            icon="save"
+            iconPosition="right"
+            outline={true}
+            color="secondary"
+          >
+            secondary
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            icon="save"
+            iconPosition="right"
+            outline={true}
+            color="success"
+          >
+            success
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            icon="save"
+            iconPosition="right"
+            outline={true}
+            color="info"
+          >
+            info
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            icon="save"
+            iconPosition="right"
+            outline={true}
+            color="warning"
+          >
+            warning
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            icon="save"
+            iconPosition="right"
             outline={true}
             color="danger"
           >

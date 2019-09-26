@@ -7,6 +7,8 @@ import useShowSpinner from './useShowSpinner';
 
 import { Color } from '../types';
 
+export type IconPosition = 'left' | 'right';
+
 interface BaseProps {
   /**
    * Optionally the type of button it is, defaults to 'button'.
@@ -46,6 +48,8 @@ interface WithIconAndText extends BaseProps {
    * Optionally the Icon you want to use.
    */
   icon: IconType;
+
+  iconPosition?: IconPosition;
 
   /**
    * Optionally the text of the button.
@@ -128,6 +132,7 @@ export default function Button({
   if (children !== undefined) {
     const outline = 'outline' in props ? props.outline : undefined;
     const size = 'size' in props ? props.size : 'md';
+    const iconPosition = 'iconPosition' in props ? props.iconPosition : 'left';
 
     const buttonProps = {
       type,
@@ -146,7 +151,7 @@ export default function Button({
           {showSpinner ? (
             <Spinner size={16} color={outline ? '' : 'white'} />
           ) : icon !== undefined ? (
-            <Icon icon={icon} />
+            <Icon icon={icon} className={`material-icons-${iconPosition}`} />
           ) : null}
           {children}
         </RSButton>
