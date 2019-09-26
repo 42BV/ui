@@ -17,12 +17,21 @@
       vertical-align: middle;
       font-size: 1rem;
       margin-bottom: 2px;
+      margin-right: 5px;
+
+      &-right {
+        float: right;
+        margin-top: 3px;
+        margin-right: 0px;
+        margin-left: 5px;
+      }
     }
 
     .spinner {
       position: relative;
       top: -2px;
       left: -5px;
+      margin-left: 5px;
     }
   }
 

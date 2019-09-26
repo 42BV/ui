@@ -75,6 +75,16 @@ describe('Component: Button', () => {
 
           expect(toJson(button)).toMatchSnapshot();
         });
+
+        test('with icon on the right', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} icon="save" iconPosition="right">
+              Save
+            </Button>
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
       });
 
       describe('outline', () => {
