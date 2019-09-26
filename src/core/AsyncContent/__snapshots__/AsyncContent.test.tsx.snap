@@ -15,7 +15,35 @@ exports[`Component: AsyncContent when loading 1`] = `
 />
 `;
 
-exports[`Component: AsyncContent when rejected 1`] = `
+exports[`Component: AsyncContent when rejected should not render when showRetryButton is undefined 1`] = `
+<ContentState
+  mode="error"
+  title="Oops something went wrong!"
+>
+  <Button
+    icon="refresh"
+    onClick={[Function]}
+  >
+    Retry
+  </Button>
+</ContentState>
+`;
+
+exports[`Component: AsyncContent when rejected with retry button 1`] = `
+<ContentState
+  mode="error"
+  title="Oops something went wrong!"
+>
+  <Button
+    icon="refresh"
+    onClick={[Function]}
+  >
+    Retry
+  </Button>
+</ContentState>
+`;
+
+exports[`Component: AsyncContent when rejected without retry button 1`] = `
 <ContentState
   mode="error"
   title="Oops something went wrong!"
