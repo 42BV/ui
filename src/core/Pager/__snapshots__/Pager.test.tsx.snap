@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Pager ui normal: Component: Pager => normal 1`] = `
+<div
+  className="pager"
+>
+  <Button
+    className="mr-1"
+    icon="arrow_back"
+    onClick={[Function]}
+    outline={true}
+  >
+    Previous
+  </Button>
+  <Button
+    className="pager-next"
+    icon="arrow_forward"
+    iconPosition="right"
+    onClick={[Function]}
+    outline={true}
+  >
+    Next
+  </Button>
+</div>
+`;
