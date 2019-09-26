@@ -2,28 +2,28 @@
 //
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
-$white: #fff;
-$gray-100: #f8f9fa;
-$gray-200: #e9ecef;
-$gray-300: #dee2e6;
-$gray-400: #ced4da;
-$gray-500: #adb5bd;
-$gray-600: #868e96;
-$gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
-$black: #000;
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
 
-$blue: #2cabe3;
-$indigo: #6610f2;
-$purple: #613d7c;
-$pink: #ff5b77;
-$red: #d9534f;
-$orange: #f0ad4e;
-$yellow: #ffd500;
-$green: #5fdc9f;
-$teal: #5bc0de;
-$cyan: #17a2b8;
+$blue: #2cabe3 !default;
+$indigo: #6610f2 !default;
+$purple: #613d7c !default;
+$pink: #ff5b77 !default;
+$red: #d9534f !default;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green: #5fdc9f !default;
+$teal: #5bc0de !default;
+$cyan: #17a2b8 !default;
 
 $colors: (
   blue: $blue,
@@ -39,7 +39,7 @@ $colors: (
   white: $white,
   gray: $gray-600,
   gray-dark: $gray-800
-);
+) !default;
 
 $theme-colors: (
   primary: $blue,
@@ -50,12 +50,12 @@ $theme-colors: (
   danger: $red,
   light: $gray-100,
   dark: $gray-800
-);
+) !default;
 
-$body-bg: #f4f6f8;
-$body-color: $gray-900;
+$body-bg: #f4f6f8 !default;
+$body-color: $gray-900 !default;
 
 $font-family-sans-serif: -apple-system, system-ui, BlinkMacSystemFont,
-  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !default;
 
-$input-placeholder-color: $gray-500;
+$input-placeholder-color: $gray-500 !default;
