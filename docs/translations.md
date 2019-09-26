@@ -70,7 +70,8 @@ Here is a JSON notation containing all keys and default translations:
       "TITLE": "Loading..."
     },
     "ERROR": {
-      "TITLE": "Oops something went wrong!"
+      "TITLE": "Oops something went wrong!",
+      "RETRY": "Retry"
     }
   },
   "ConfirmButton": {
