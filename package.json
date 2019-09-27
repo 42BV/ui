@@ -100,7 +100,7 @@
     "eslint-config-react-app": "5.0.2",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-react": "7.15.0",
-    "eslint-plugin-react-hooks": "2.0.1",
+    "eslint-plugin-react-hooks": "2.1.0",
     "eslint-plugin-flowtype": "4.3.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "final-form": "4.18.5",
