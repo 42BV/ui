@@ -116,7 +116,7 @@
     "react-async": "8.0.0",
     "react-docgen-typescript-loader": "3.2.1",
     "react-test-renderer": "16.9.0",
-    "react-router-dom": "5.1.0",
+    "react-router-dom": "5.1.1",
     "reactstrap": "8.0.1",
     "rollup": "1.21.4",
     "rollup-plugin-auto-external": "2.0.0",
