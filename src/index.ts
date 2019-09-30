@@ -4,7 +4,7 @@ export { default as AvatarStack } from './core/Avatar/AvatarStack';
 export { default as Button } from './core/Button/Button';
 export { default as useShowSpinner } from './core/Button/useShowSpinner';
 export { default as ConfirmButton } from './core/ConfirmButton/ConfirmButton';
-export { default as ContentState } from './core/ContentState/ContentState';
+export { default as ContentState, ContentStateMode } from './core/ContentState/ContentState';
 export { default as FlashMessage } from './core/FlashMessage/FlashMessage';
 export { Icon, IconType } from './core/Icon/index';
 export { default as InfoBadge } from './core/InfoBadge/InfoBadge';
@@ -80,6 +80,24 @@ export {
   default as ValuePicker,
   JarbValuePicker,
 } from './form/ValuePicker/ValuePicker';
+
+// Table
+export { EpicTable } from './table/EpicTable/EpicTable';
+
+export { EpicCell } from './table/EpicTable/cells/EpicCell/EpicCell';
+export { EpicHeader } from './table/EpicTable/cells/EpicHeader/EpicHeader';
+export { EpicCellLayout } from './table/EpicTable/cells/EpicCellLayout/EpicCellLayout';
+
+export { EpicRow } from './table/EpicTable/rows/EpicRow/EpicRow';
+export { EpicDetailRow } from './table/EpicTable/rows/EpicDetailRow/EpicDetailRow';
+export { EpicExpanderRow } from './table/EpicTable/rows/EpicExpanderRow/EpicExpanderRow';
+
+export { EpicDetail } from './table/EpicTable/widgets/EpicDetail/EpicDetail';
+export { EpicExpander } from './table/EpicTable/widgets/EpicExpander/EpicExpander';
+export { EpicSelection } from './table/EpicTable/widgets/EpicSelection/EpicSelection';
+export { EpicSort } from './table/EpicTable/widgets/EpicSort/EpicSort';
+
+export { Direction } from './table/EpicTable/types';
 
 // Utilities
 export { t } from './utilities/translation/translation';

@@ -133,6 +133,11 @@ Here is a JSON notation containing all keys and default translations:
   "Pager": {
     "NEXT": "Next",
     "PREVIOUS": "Previous"
+  },
+  "EpicTable": {
+    "EpicDetail": {
+      "CLOSE": "Close"
+    }
   }
 }
 ```

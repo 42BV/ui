@@ -28,6 +28,7 @@
 @import '~react-bootstrap-typeahead/css/Typeahead.css';
 @import '~react-bootstrap-typeahead/css/Typeahead-bs4.css';
 @import '~react-quill/dist/quill.snow.css';
+@import '~overlayscrollbars/css/OverlayScrollbars.css';
 
 // Components
 @import './form/ImageUpload/ImageUpload';
@@ -38,6 +39,9 @@
 @import './form/TextEditor/TextEditor';
 @import './form/Toggle/Toggle';
 @import './form/Typeahead/Typeahead';
+
+// Table
+@import './table/EpicTable/EpicTable';
 
 // Defaults
 body {
