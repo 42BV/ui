@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: EpicHeader ui with resize 1`] = `
+<EpicHeader
+  height={44}
+  onResize={[MockFunction]}
+  width={300}
+>
+  <div
+    className="epic-table-header d-flex align-items-center justify-content-between p-1"
+    style={
+      Object {
+        "height": 44,
+        "minWidth": 300,
+        "width": 300,
+      }
+    }
+  >
+    epic header
+    <EpicResize
+      onResize={[MockFunction]}
+      width={300}
+    >
+      <div
+        className="epic-table-header-resizeable"
+        onMouseDown={[Function]}
+      />
+    </EpicResize>
+  </div>
+</EpicHeader>
+`;
+
+exports[`Component: EpicHeader ui without resize 1`] = `
+<div
+  className="epic-table-header d-flex align-items-center justify-content-between p-1"
+  style={
+    Object {
+      "height": 44,
+      "minWidth": 300,
+      "width": 300,
+    }
+  }
+>
+  epic header
+</div>
+`;

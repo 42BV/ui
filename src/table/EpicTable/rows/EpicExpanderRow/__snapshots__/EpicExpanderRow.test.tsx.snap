@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: EpicExpanderRow is active 1`] = `
+<div
+  className="epic-table-expander-row"
+  style={
+    Object {
+      "height": 44,
+      "minWidth": 100,
+      "width": 100,
+    }
+  }
+>
+  <h1>
+    children
+  </h1>
+</div>
+`;

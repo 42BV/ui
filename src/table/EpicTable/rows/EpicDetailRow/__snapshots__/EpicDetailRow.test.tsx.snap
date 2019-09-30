@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: EpicDetailRow is active 1`] = `
+<div
+  className="epic-table-detail-row"
+  style={
+    Object {
+      "height": 100,
+      "left": 300,
+      "minWidth": 100,
+      "top": 1900,
+      "width": 100,
+    }
+  }
+>
+  <h1>
+    children
+  </h1>
+</div>
+`;

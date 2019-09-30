@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { storiesOf } from '@storybook/react';
 import { range } from 'lodash';
 
@@ -8,7 +8,6 @@ import CheckboxMultipleSelect, {
 import { FinalForm, Form } from '../story-utils';
 import { pageOfUsers } from '../../test/fixtures';
 import { User } from '../../test/types';
-import { useState } from '@storybook/addons';
 
 interface SubjectOption {
   value: string;

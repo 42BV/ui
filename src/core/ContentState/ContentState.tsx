@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import Icon from '../Icon/Icon';
 import Spinner from '../Spinner/Spinner';
 
+export type ContentStateMode = 'empty' | 'no-results' | 'error' | 'loading';
+
 interface Props {
   /**
    * The mode of the ContentState:
@@ -19,7 +21,7 @@ interface Props {
    * Use `loading` for when something is still loading.
    *
    */
-  mode: 'empty' | 'no-results' | 'error' | 'loading';
+  mode: ContentStateMode;
 
   /**
    * Optional custom content you want to render below the titles.
