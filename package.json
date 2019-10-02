@@ -124,7 +124,7 @@
     "rollup-plugin-size-snapshot": "0.10.0",
     "rollup-plugin-typescript2": "0.24.2",
     "sass-loader": "8.0.0",
-    "sass": "1.22.9",
+    "sass": "1.23.0",
     "style-loader": "1.0.0",
     "typescript": "3.6.3",
     "ts-jest": "24.1.0",
