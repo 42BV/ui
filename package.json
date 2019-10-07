@@ -62,7 +62,7 @@
     "@42.nl/spring-connect": "4.0.0",
     "@42.nl/react-error-store": "1.0.1",
     "@babel/plugin-transform-modules-commonjs": "7.6.0",
-    "@storybook/addon-actions": "5.2.1",
+    "@storybook/addon-actions": "5.2.2",
     "@storybook/addon-docs": "5.2.1",
     "@storybook/preset-scss": "1.0.2",
     "@storybook/preset-typescript": "1.1.0",
