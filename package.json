@@ -33,7 +33,6 @@
     "version": "jekyll build && npm run storybook:build"
   },
   "dependencies": {
-    "@42.nl/jarb-final-form": "1.0.0",
     "bootstrap": "4.3.1",
     "material-design-icons": "3.0.1",
     "moment": "2.24.0",
@@ -54,6 +53,7 @@
     "classnames": "^2.2.6",
     "@42.nl/spring-connect": "^4.0.0",
     "@42.nl/react-error-store": "^1.0.1",
+    "@42.nl/jarb-final-form": "^1.0.0",
     "reactstrap": "^8.0.1",
     "lodash": "^4.17.15",
     "react-router-dom": "^5.1.0"
@@ -61,6 +61,7 @@
   "devDependencies": {
     "@42.nl/spring-connect": "4.0.0",
     "@42.nl/react-error-store": "1.0.1",
+    "@42.nl/jarb-final-form": "1.0.0",
     "@babel/plugin-transform-modules-commonjs": "7.6.0",
     "@storybook/addon-actions": "5.2.1",
     "@storybook/addon-docs": "5.2.1",
