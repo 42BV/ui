@@ -48,13 +48,6 @@ describe('Component: FileInput', () => {
         'Component: FileInput => ui => empty value'
       );
     });
-
-    test('valid when file present but invalid', () => {
-      setup({ value: new File([''], 'maarten.png'), valid: false });
-
-      // @ts-ignore
-      expect(fileInput.find('Input').props().valid).toBe(true);
-    });
   });
 
   describe('events', () => {

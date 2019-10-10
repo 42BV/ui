@@ -207,14 +207,14 @@ export default class ModalPickerSingle<T> extends React.Component<
       <FormGroup className={className} color={color}>
         <Label for={id}>{label}</Label>
 
-        <p>
+        <div>
           {selected ? (
             <span className="mr-1">{optionForValue(selected)}</span>
           ) : null}
           <Button color="primary" onClick={() => this.openModal()}>
             {placeholder}
           </Button>
-        </p>
+        </div>
 
         {error}
 

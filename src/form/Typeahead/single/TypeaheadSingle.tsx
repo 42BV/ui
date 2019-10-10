@@ -7,6 +7,7 @@ import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
 import { valueToTypeaheadOption } from '../utils';
 import { Color, OptionForValue } from '../../types';
+import classNames from 'classnames';
 
 interface Props<T> {
   /**
@@ -64,6 +65,11 @@ interface Props<T> {
    * Optionally the color of the FormGroup.
    */
   color?: Color;
+
+  /**
+   * Whether or not the form element is currently valid.
+   */
+  valid?: boolean;
 
   /**
    * Optional extra CSS class you want to add to the component.
@@ -149,6 +155,7 @@ export default class TypeaheadSingle<T> extends Component<Props<T>, State<T>> {
       color,
       optionForValue,
       onFocus,
+      valid,
       className = ''
     } = this.props;
 
@@ -158,8 +165,12 @@ export default class TypeaheadSingle<T> extends Component<Props<T>, State<T>> {
       selected.push(option);
     }
 
+    const classes = classNames(className, {
+      'is-invalid': valid === false
+    });
+
     return (
-      <FormGroup className={className} color={color}>
+      <FormGroup className={classes} color={color}>
         <Label for={id}>{label}</Label>
         <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
           <AsyncTypeahead
@@ -173,6 +184,11 @@ export default class TypeaheadSingle<T> extends Component<Props<T>, State<T>> {
             onSearch={query => this.fetchOpions(query)}
             onChange={value => this.onChange(value)}
             onFocus={onFocus}
+            inputProps={{
+              className: classNames('form-control', {
+                'is-invalid': valid === false
+              })
+            }}
           />
         </div>
         {error}

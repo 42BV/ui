@@ -29,9 +29,16 @@ describe('HoC: withJarb', () => {
         name="firstName"
         jarb={{ validator: 'User.email', label: 'First name' }}
         validators={[isSuperman]}
+        asyncValidators={[isSuperman]}
+        asyncValidatorsDebounce={5000}
         id="firstName"
         label="First name"
         placeholder="Please enter your first name"
+        // Should pass `passedFieldProps`
+        initialValue="beheer@42.nl" 
+        format={() => 'yolo'}
+        formatOnBlur={false}
+        parse={() => 'oloy'}
       />
     );
 

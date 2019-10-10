@@ -336,12 +336,7 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
             Best friend
           </label>
         </Label>
-        <div
-          className="mb-2"
-        >
-          <div
-            className="mb-2"
-          />
+        <div>
           <Button
             color="primary"
             onClick={[Function]}
@@ -572,7 +567,7 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
             Best friend
           </label>
         </Label>
-        <p>
+        <div>
           <Button
             color="primary"
             onClick={[Function]}
@@ -587,7 +582,7 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
               Select your best friend
             </button>
           </Button>
-        </p>
+        </div>
         <ModalPicker
           canSearch={true}
           closeModal={[Function]}

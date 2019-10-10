@@ -12,7 +12,9 @@
     word-break: break-all;
   }
 
-  &.is-valid {
-    border-bottom: solid 2px $success;
+  &.is-invalid {
+    .ql-toolbar, .ql-container {
+      border-color: $danger;
+    }
   }
 }

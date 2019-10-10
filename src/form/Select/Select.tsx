@@ -210,6 +210,7 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
     const inputProps = {
       id,
       valid,
+      invalid: valid === false ? true : undefined,
       type: 'select' as InputType,
       placeholder,
       onChange: (event: { target: { value: string } }) => {

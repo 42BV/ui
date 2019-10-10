@@ -19,11 +19,19 @@ import { Meta, MetaError } from '../types';
  * The solution is `useSettledErrors`, it basically debounces the
  * errors, this means that if N changes happen in rapid succession
  * only the last state change is shown.
+ * 
+ * It also stores the `value` and the resulting `error` whenever an
+ * error does occur. This way when the same value is encountered it
+ * will return the previous error. This way when `final-form` is
+ * running async validations we still consider it an error. 
  *
  * @param meta
+ * @param any
  */
-export function useSettledErrors(meta: Meta): MetaError[] {
+export function useSettledErrors(meta: Meta, value: any): MetaError[] {
   const { error, active, touched } = meta;
+
+  const [errorCache] = useState({});
 
   const errors: MetaError[] =
     error === undefined ? [] : isArray(error) ? error : [error];
@@ -36,11 +44,19 @@ export function useSettledErrors(meta: Meta): MetaError[] {
     let timeout: number | undefined;
 
     function showErrors() {
+      // Store the errors for this value.
+      errorCache[value] = errors;
+
       setSettledErrors(errors);
     }
 
     function hideErrors() {
-      if (settledErrors.length > 0) {
+      // Only hide the errors when there are no errors. 
+      // And the value did not have an error previously, this can 
+      // be true when an async call is made and final-form considers
+      // it valid again. We say when that value previously has an
+      // error it is likely to still have an error.
+      if (settledErrors.length > 0 && errorCache[value] === undefined) {
         setSettledErrors([]);
       }
     }
@@ -76,7 +92,7 @@ export function useSettledErrors(meta: Meta): MetaError[] {
     return () => {
       window.clearTimeout(timeout);
     };
-  }, [hasErrors, active, touched, errors, settledErrors.length]);
+  }, [hasErrors, active, touched, errors, settledErrors.length, errorCache, value]);
 
   return settledErrors;
 }

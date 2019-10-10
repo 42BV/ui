@@ -14,10 +14,12 @@ describe('Component: FormError', () => {
 
   function setup({
     hasFrontEndErrors,
-    hasBackEndErrors
+    hasBackEndErrors,
+    onChange
   }: {
     hasFrontEndErrors: boolean;
     hasBackEndErrors: boolean;
+    onChange?: (hasErrors: boolean) => void;
   }) {
     const required: RequiredError = {
       type: 'ERROR_REQUIRED',
@@ -38,8 +40,10 @@ describe('Component: FormError', () => {
 
     formError = shallow(
       <FormError
+        value="henkie"
         meta={validMeta}
         validator="User.name"
+        onChange={onChange}
       />
     );
   }

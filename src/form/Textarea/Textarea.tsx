@@ -93,7 +93,7 @@ export default function Textarea(props: Props) {
     onBlur
   };
 
-  const classes = classNames('form-control', { 'is-valid': valid });
+  const classes = classNames('form-control', { 'is-invalid': valid === false });
 
   return (
     <FormGroup className={className} color={color}>

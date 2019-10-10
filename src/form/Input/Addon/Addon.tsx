@@ -4,7 +4,6 @@ import { Icon, IconType } from '../../../core/Icon';
 
 import { Color } from '../../types';
 import { Position } from '../types';
-import { useButtonColor } from './useButtonColor';
 
 interface BaseProps {
   /**
@@ -63,7 +62,7 @@ export default function Addon({
   ...props
 }: Props) {
   const addonType = position === 'left' ? 'prepend' : 'append';
-  const buttonColor = useButtonColor(!color ? 'primary' : color);
+  const buttonColor = !color ? 'primary' : color;
 
   return (
     <InputGroupAddon className={className} addonType={addonType}>

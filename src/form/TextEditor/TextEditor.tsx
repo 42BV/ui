@@ -104,7 +104,7 @@ export default function TextEditor(props: Props) {
     value
   };
 
-  const classes = classNames({ 'is-valid': valid });
+  const classes = classNames({ 'is-invalid': valid === false });
 
   return (
     <FormGroup className={className} color={color}>

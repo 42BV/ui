@@ -6,6 +6,21 @@ exports[`Component: FileInput ui empty value: Component: FileInput => ui => empt
   color="success"
   tag="div"
 >
+  <Label
+    for="file-upload-with-button"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Upload a file here
+  </Label>
   <input
     accept="text/plain"
     id="file-upload-with-button"
@@ -13,21 +28,24 @@ exports[`Component: FileInput ui empty value: Component: FileInput => ui => empt
     onClick={[Function]}
     type="file"
   />
-  <Input
-    addon={
-      Object {
-        "color": "primary",
-        "icon": "cloud_upload",
-        "position": "right",
-      }
-    }
-    id="file-upload-with-button"
-    label="Upload a file here"
-    onChange={[Function]}
-    placeholder="Upload a file here"
-    valid={false}
-    value=""
-  />
+  <InputGroup
+    tag="div"
+  >
+    <Input
+      id="file-upload-with-button"
+      invalid={true}
+      label="Upload a file here"
+      onChange={[Function]}
+      placeholder="Upload a file here"
+      type="text"
+      value=""
+    />
+    <Addon
+      color="danger"
+      icon="cloud_upload"
+      position="right"
+    />
+  </InputGroup>
   Some error
 </FormGroup>
 `;
@@ -38,6 +56,21 @@ exports[`Component: FileInput ui with value: Component: FileInput => ui => with 
   color="success"
   tag="div"
 >
+  <Label
+    for="file-upload-with-button"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Upload a file here
+  </Label>
   <input
     accept="text/plain"
     id="file-upload-with-button"
@@ -45,21 +78,23 @@ exports[`Component: FileInput ui with value: Component: FileInput => ui => with 
     onClick={[Function]}
     type="file"
   />
-  <Input
-    addon={
-      Object {
-        "color": "danger",
-        "icon": "delete",
-        "position": "right",
-      }
-    }
-    id="file-upload-with-button"
-    label="Upload a file here"
-    onChange={[Function]}
-    placeholder="Upload a file here"
-    valid={true}
-    value="maarten.png"
-  />
+  <InputGroup
+    tag="div"
+  >
+    <Input
+      id="file-upload-with-button"
+      label="Upload a file here"
+      onChange={[Function]}
+      placeholder="Upload a file here"
+      type="text"
+      value="maarten.png"
+    />
+    <Addon
+      color="danger"
+      icon="delete"
+      position="right"
+    />
+  </InputGroup>
   Some error
 </FormGroup>
 `;

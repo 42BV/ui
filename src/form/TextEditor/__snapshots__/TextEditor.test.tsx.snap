@@ -22,7 +22,7 @@ exports[`Component: TextEditor ui: Component: textEditor => ui 1`] = `
     First name
   </Label>
   <Quill
-    className="is-valid"
+    className=""
     id="firstName"
     modules={Object {}}
     onBlur={[Function]}

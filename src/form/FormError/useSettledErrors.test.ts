@@ -3,24 +3,37 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { useSettledErrors } from './useSettledErrors';
 import { Meta, MetaError } from '../types';
 
+type Config = { meta: Meta; value: any };
+
 describe('useSettledErrors', () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
 
+  function setup(config: Config) {
+    return renderHook<Config, MetaError[]>(
+      props => useSettledErrors(props.meta, props.value),
+      {
+        initialProps: config
+      }
+    );
+  }
+
   describe('initialisation', () => {
     test('when array that it returns an array', () => {
-      const { result } = renderHook<Meta, MetaError[]>(() =>
-        useSettledErrors({ touched: true, error: ['Big error', 'Small error'] })
-      );
+      const { result } = setup({
+        meta: { touched: true, error: ['Big error', 'Small error'] },
+        value: 'test'
+      });
 
       expect(result.current).toEqual(['Big error', 'Small error']);
     });
 
     test('when single value return array', () => {
-      const { result } = renderHook<Meta, MetaError[]>(() =>
-        useSettledErrors({ touched: true, error: 'Big error' })
-      );
+      const { result } = setup({
+        meta: { touched: true, error: 'Big error' },
+        value: 'test'
+      });
 
       expect(result.current).toEqual(['Big error']);
     });
@@ -28,9 +41,10 @@ describe('useSettledErrors', () => {
 
   describe('cleanup', () => {
     test('that window clearTimeout is called', () => {
-      const { unmount } = renderHook<Meta, MetaError[]>(() =>
-        useSettledErrors({ active: true, error: ['Big error', 'Small error'] })
-      );
+      const { unmount } = setup({
+        meta: { active: true, error: ['Big error', 'Small error'] },
+        value: 'test'
+      });
 
       const spy = jest.spyOn(window, 'clearTimeout');
 
@@ -44,18 +58,16 @@ describe('useSettledErrors', () => {
 
   describe('scenarios', () => {
     test('active with errors shows the error', () => {
-      const { result, rerender } = renderHook<Meta, MetaError[]>(
-        meta => useSettledErrors(meta),
-        {
-          initialProps: {}
-        }
-      );
+      const { result, rerender } = setup({
+        meta: {},
+        value: 'test'
+      });
 
       // It should start of with zero errors
       expect(result.current).toEqual([]);
 
       // When it becomes active it should show the error after 5000 milliseconds
-      rerender({ active: true, error: 'Big error' });
+      rerender({ meta: { active: true, error: 'Big error' }, value: 'henk' });
 
       act(() => {
         jest.advanceTimersByTime(4999);
@@ -69,18 +81,16 @@ describe('useSettledErrors', () => {
     });
 
     test('active without errors hides the error', () => {
-      const { result, rerender } = renderHook<Meta, MetaError[]>(
-        meta => useSettledErrors(meta),
-        {
-          initialProps: { error: 'Big error', active: true }
-        }
-      );
+      const { result, rerender } = setup({
+        meta: { error: 'Big error', active: true },
+        value: 'test'
+      });
 
       // It should start of with the error
       expect(result.current).toEqual(['Big error']);
 
       // When if the error is cleared it should hide the error after 100 milliseconds
-      rerender({ active: true, error: undefined });
+      rerender({ meta: { active: true, error: undefined }, value: 'henk' });
 
       act(() => {
         jest.advanceTimersByTime(99);
@@ -94,18 +104,19 @@ describe('useSettledErrors', () => {
     });
 
     test('inactive and touched with error shows error', () => {
-      const { result, rerender } = renderHook<Meta, MetaError[]>(
-        meta => useSettledErrors(meta),
-        {
-          initialProps: { error: undefined, touched: false, active: true }
-        }
-      );
+      const { result, rerender } = setup({
+        meta: { error: undefined, touched: false, active: true },
+        value: 'test'
+      });
 
       // It should start of with zero errors
       expect(result.current).toEqual([]);
 
       // When no longer active but touched show the error after 100 milliseconds
-      rerender({ active: false, touched: true, error: 'Small error' });
+      rerender({
+        meta: { active: false, touched: true, error: 'Small error' },
+        value: 'henk'
+      });
 
       act(() => {
         jest.advanceTimersByTime(99);
@@ -119,35 +130,34 @@ describe('useSettledErrors', () => {
     });
 
     test('inactive and untouched with error hides error immediately', () => {
-      const { result, rerender } = renderHook<Meta, MetaError[]>(
-        meta => useSettledErrors(meta),
-        {
-          initialProps: { error: 'Big error', touched: true, active: false }
-        }
-      );
+      const { result, rerender } = setup({
+        meta: { error: 'Big error', touched: true, active: false },
+        value: 'test'
+      });
 
       // It should start of with errors
       expect(result.current).toEqual(['Big error']);
 
       // When no longer active and pristine hide the error after 100 milliseconds
-      rerender({ active: false, touched: false, error: 'Big error' });
+      rerender({
+        meta: { active: false, touched: false, error: 'Big error' },
+        value: 'henk'
+      });
 
       expect(result.current).toEqual([]);
     });
 
     test('inactive without errors hides error', () => {
-      const { result, rerender } = renderHook<Meta, MetaError[]>(
-        meta => useSettledErrors(meta),
-        {
-          initialProps: { error: 'Small error', active: true }
-        }
-      );
+      const { result, rerender } = setup({
+        meta: { error: 'Small error', active: true },
+        value: 'test'
+      });
 
       // It should start of with the error
       expect(result.current).toEqual(['Small error']);
 
       // When no longer active and pristine hide the error after 2000 milliseconds
-      rerender({ active: false, error: undefined });
+      rerender({ meta: { active: false, error: undefined }, value: 'henk' });
 
       act(() => {
         jest.advanceTimersByTime(1999);
@@ -158,6 +168,33 @@ describe('useSettledErrors', () => {
         jest.advanceTimersByTime(1);
       });
       expect(result.current).toEqual([]);
+    });
+
+    test('that errors are cached by value', () => {
+      const { result, rerender } = setup({
+        meta: { error: 'Small error', active: true },
+        value: 'small-error'
+      });
+
+      // Show first errors
+      act(() => {
+        jest.advanceTimersToNextTimer();
+      });
+
+      // It should start of with the error
+      expect(result.current).toEqual(['Small error']);
+
+      // Set the value to 'small-error' with no error, to simulate an
+      // async validation which `final-form` will set the error to
+      // undefined
+      rerender({ meta: { active: true, error: undefined }, value: 'small-error' });
+
+      // It should use the error from the cache, even though error
+      // was undefined
+      act(() => {
+        jest.advanceTimersToNextTimer();
+      });
+      expect(result.current).toEqual(['Small error']);
     });
   });
 });

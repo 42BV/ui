@@ -44,6 +44,7 @@ describe('Component: Select', () => {
         onChange={onChangeSpy}
         onBlur={onBlurSpy}
         error="Some error"
+        valid={false}
       />
     );
   }

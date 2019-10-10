@@ -3,18 +3,15 @@ export interface State {
   valid?: boolean;
 }
 
-export function getState(meta: {
-  invalid?: boolean;
+export function getState(info: {
+  hasErrors: boolean;
   touched?: boolean;
-  validating?: boolean;
 }): State {
-  if (meta.invalid && meta.touched) {
+  if (info.hasErrors && info.touched) {
     return { color: 'danger', valid: false };
-  } else if (meta.invalid === false && meta.validating === false) {
-    return { color: 'success', valid: true };
+  } else {
+    return { color: '', valid: undefined };
   }
-
-  return { color: '', valid: undefined };
 }
 
 export function doBlur(onBlur?: () => void): void {

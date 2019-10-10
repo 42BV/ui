@@ -26,6 +26,11 @@ exports[`Component: TypeaheadSingle ui: Component: TypeaheadSingle => ui 1`] = `
     <asyncContainer(TypeaheadComponent)
       delay={200}
       id="bestFriend"
+      inputProps={
+        Object {
+          "className": "form-control",
+        }
+      }
       isLoading={false}
       labelKey="label"
       minLength={2}

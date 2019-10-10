@@ -21,7 +21,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
   >
     Best Friend
   </Label>
-  <p>
+  <div>
     <span
       className="mr-1"
     >
@@ -34,7 +34,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
     >
       Select your best friend
     </Button>
-  </p>
+  </div>
   Some error
   <ModalPicker
     canSearch={true}

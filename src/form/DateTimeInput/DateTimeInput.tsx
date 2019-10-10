@@ -198,7 +198,7 @@ export default class DateTimeInput extends Component<Props, State> {
             // @ts-ignore
             mask: formatToMask(dateFormat, timeFormat),
             placeholder,
-            valid: valid === true && !hasFormatError
+            invalid: valid === false || hasFormatError,
           }}
           renderInput={maskedInput}
           onChange={x => this.onChange(x)}

@@ -5,8 +5,15 @@ import { useErrorsForValidator } from '@42.nl/react-error-store';
 import { Meta, MetaError } from '../types';
 import { keyForError, errorMessage } from './utils';
 import { useSettledErrors } from './useSettledErrors';
+import { useOnChange } from './useOnChange';
+import { OnChange } from './types';
 
 interface Props {
+  /**
+   * The value for this form error.
+   */
+  value: any;
+
   /**
    * The meta object to render the errors for.
    */
@@ -16,6 +23,12 @@ interface Props {
    * The validator for which the FormError should render the errors.
    */
   validator: string;
+
+  /**
+   * Optionally: callback which is called when there are errors or
+   * they are removed.
+   */
+  onChange?: OnChange;
 }
 
 /**
@@ -27,11 +40,15 @@ interface Props {
  * is `Entity.property`.
  */
 export default function FormError(props: Props) {
-  const { meta, validator } = props;
+  const { value, meta, validator, onChange } = props;
   const backEndErrors = useErrorsForValidator(validator);
-  const frontEndErrors = useSettledErrors(meta);
+  const frontEndErrors = useSettledErrors(meta, value);
 
-  if (backEndErrors.length === 0 && frontEndErrors.length === 0) {
+  const hasErrors = backEndErrors.length > 0 || frontEndErrors.length > 0;
+
+  useOnChange(hasErrors, onChange);
+
+  if (!hasErrors) {
     return null;
   }
 
@@ -47,3 +64,4 @@ export default function FormError(props: Props) {
     </>
   );
 }
+
