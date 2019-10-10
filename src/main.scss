@@ -31,6 +31,7 @@
 
 // Components
 @import './form/ImageUpload/ImageUpload';
+@import './form/DateRangePicker/DateRangePicker';
 @import './form/DateTimeInput/DateTimeInput';
 @import './form/FileInput/FileInput';
 @import './form/FormError/FormError';
@@ -47,6 +48,10 @@ body {
   textarea {
     font-family: $font-family-sans-serif;
   }
+}
+
+.form-control:focus {
+  box-shadow: none !important;
 }
 
 .radio,

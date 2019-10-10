@@ -118,6 +118,7 @@ export default function Input(props: Props) {
     id,
     type,
     valid,
+    invalid: valid === false ? true : undefined,
     value,
     innerRef,
     placeholder,

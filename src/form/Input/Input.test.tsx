@@ -36,12 +36,14 @@ describe('Component: Input', () => {
     value,
     type,
     mask,
-    position
+    position,
+    valid
   }: {
     value?: string;
     type?: InputType;
     mask?: Mask;
     position?: Position;
+    valid?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -62,7 +64,7 @@ describe('Component: Input', () => {
         onFocus={onFocusSpy}
         error="Some error"
         color="success"
-        valid={true}
+        valid={valid}
         mask={mask}
         addon={addon}
       />
@@ -108,6 +110,18 @@ describe('Component: Input', () => {
       expect(toJson(input)).toMatchSnapshot(
         'Component: Input => position right'
       );
+    });
+
+    test('is valid', () => {
+      setup({ valid: true });
+
+      expect(toJson(input)).toMatchSnapshot('Component: Input => is valid');
+    });
+
+    test('is invalid', () => {
+      setup({ valid: false });
+
+      expect(toJson(input)).toMatchSnapshot('Component: Input => is invalid');
     });
   });
 

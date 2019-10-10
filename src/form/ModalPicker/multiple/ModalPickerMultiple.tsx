@@ -214,12 +214,14 @@ export default class ModalPickerMultiple<T> extends React.Component<
     return (
       <FormGroup className={className} color={color}>
         <Label for={id}>{label}</Label>
-        <div className="mb-2">
-          <div className="mb-2">{this.renderTagsInMoreOrLess(value)}</div>
+        
+        <div>
+          {this.renderTagsInMoreOrLess(value)}
           <Button color="primary" onClick={() => this.openModal()}>
             {placeholder}
           </Button>
         </div>
+
         {error}
         {this.renderModal()}
       </FormGroup>
@@ -301,7 +303,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
       return null;
     }
 
-    return <MoreOrLess limit={3} content={content} />;
+    return <MoreOrLess className="mb-2" limit={3} content={content} />;
   }
 
   renderModalCurrentSelection() {

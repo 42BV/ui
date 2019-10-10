@@ -2,7 +2,7 @@
 
 exports[`Component: DateRangePicker ui no errors: Component: DateRangePicker => ui => no errors 1`] = `
 <Row
-  className=""
+  className="date-range-picker "
   tag="div"
 >
   <Col
@@ -80,7 +80,7 @@ exports[`Component: DateRangePicker ui no errors: Component: DateRangePicker => 
 
 exports[`Component: DateRangePicker ui with errors: Component: DateRangePicker => ui => with errors 1`] = `
 <Row
-  className=""
+  className="date-range-picker "
   tag="div"
 >
   <Col

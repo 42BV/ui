@@ -1,11 +1,21 @@
-import React from 'react';
-import { FieldRenderProps, Field } from 'react-final-form';
+import React, { useState } from 'react';
+import { FieldRenderProps, Field, UseFieldConfig } from 'react-final-form';
 import { JarbField, JarbFieldProps } from '@42.nl/jarb-final-form';
 import getDisplayName from 'react-display-name';
 import { clearErrorsForValidator } from '@42.nl/react-error-store';
+import { pick, omit } from 'lodash';
 
 import FormError from '../FormError/FormError';
 import { getState } from '../utils';
+
+// This is a list of props that we withJarb will pass to the `final-form`
+// Field, but not the wrapper.
+const passedFieldProps = ['initialValue', 'format', 'formatOnBlur', 'parse'];
+
+type PassedFieldProps<Value> = Pick<
+  UseFieldConfig<Value>,
+  'initialValue' | 'format' | 'formatOnBlur' | 'parse'
+>;
 
 interface FieldCompatible<Value, ChangeValue> {
   onChange: (value: ChangeValue) => void;
@@ -52,17 +62,36 @@ export default function withJarb<
         | 'error'
       >
   ) {
-    const { name, jarb, validators, ...rest } = props;
+    const [hasErrors, setHasErrors] = useState(false);
+
+    const {
+      name,
+      jarb,
+      validators,
+      asyncValidators,
+      asyncValidatorsDebounce,
+      allowNull,
+      ...rest
+    } = props;
 
     // Bit magical this one but this makes TypeScript accept all other
     // props as the Props to the wrapped component.
-    const wrapperProps = (rest as unknown) as P;
+    const wrapperProps = (omit(rest, passedFieldProps) as unknown) as P;
+
+    const fieldProps = pick(rest, [
+      'initialValue',
+      'format',
+      'formatOnBlur',
+      'parse'
+    ]);
 
     // Listen to all props on the `Meta` object.
     const errorSubscription = {
       active: true,
       touched: true,
-      error: true
+      error: true,
+      value: true,
+      validating: true
     };
 
     const error = (
@@ -70,7 +99,12 @@ export default function withJarb<
         name={name}
         subscription={errorSubscription}
         render={field => (
-          <FormError meta={field.meta} validator={jarb.validator} />
+          <FormError
+            value={field.input.value}
+            meta={field.meta}
+            validator={jarb.validator}
+            onChange={setHasErrors}
+          />
         )}
       />
     );
@@ -88,13 +122,16 @@ export default function withJarb<
         name={name}
         jarb={jarb}
         validators={validators}
+        asyncValidators={asyncValidators}
+        asyncValidatorsDebounce={asyncValidatorsDebounce}
         subscription={fieldSubscription}
         render={field => (
           <Wrapper
             {...wrapperProps}
-            {...mapFieldRenderProps(error, field, jarb.validator)}
+            {...mapFieldRenderProps(error, field, jarb.validator, hasErrors)}
           />
         )}
+        {...fieldProps}
       />
     );
   }
@@ -105,11 +142,12 @@ export default function withJarb<
 function mapFieldRenderProps<T>(
   error: React.ReactNode,
   props: FieldRenderProps<T, any>,
-  validator: string
+  validator: string,
+  hasErrors: boolean
 ) {
   const { input, meta } = props;
 
-  const state = getState(meta);
+  const state = getState({ hasErrors: hasErrors, touched: meta.touched });
 
   return {
     ...state,

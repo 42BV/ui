@@ -22,7 +22,7 @@ exports[`Component: Textarea ui: Component: textarea => ui 1`] = `
     First name
   </Label>
   <TextareaAutosize
-    className="form-control is-valid"
+    className="form-control"
     id="firstName"
     inputRef={[Function]}
     onBlur={[MockFunction]}

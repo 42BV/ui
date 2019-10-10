@@ -83,6 +83,11 @@ interface Props {
    * This text should already be translated.
    */
   text?: Text;
+
+  /**
+   * Optionally the error message to render.
+   */
+  error?: React.ReactNode;
 }
 
 interface State {
@@ -146,7 +151,7 @@ export default class DateRangePicker extends Component<Props, State> {
     const { className = '', valid, color } = this.props;
 
     return (
-      <Row className={className}>
+      <Row className={`date-range-picker ${className}`}>
         <Col sm="12" md="6">
           <DateTimeInput
             {...this.props.from}
@@ -175,6 +180,7 @@ export default class DateRangePicker extends Component<Props, State> {
   }
 
   renderError() {
+    const { error } = this.props;
     const { fromDate, toDate } = this.state;
 
     if (fromDate && toDate) {
@@ -183,19 +189,22 @@ export default class DateRangePicker extends Component<Props, State> {
         const { from, to, text = {} } = this.props;
 
         return (
-          <FormFeedback>
-            {t({
-              key: 'DateRangePicker.DATE_RANGE_ERROR',
-              fallback: `The "${from.label}" must be before the "${to.label}"`,
-              data: { from: from.label, to: to.label },
-              overrideText: text.rangeError
-            })}
-          </FormFeedback>
+          <>
+            <FormFeedback>
+              {t({
+                key: 'DateRangePicker.DATE_RANGE_ERROR',
+                fallback: `The "${from.label}" must be before the "${to.label}"`,
+                data: { from: from.label, to: to.label },
+                overrideText: text.rangeError
+              })}
+            </FormFeedback>
+            {error}
+          </>
         );
       }
     }
 
-    return null;
+    return <>{error}</>;
   }
 }
 

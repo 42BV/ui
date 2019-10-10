@@ -23,10 +23,12 @@ exports[`Component: Select ui with value: Component: Select => ui => with value 
   <Input
     className=""
     id="subject"
+    invalid={true}
     onBlur={[MockFunction]}
     onChange={[Function]}
     placeholder="Please enter your subject"
     type="select"
+    valid={false}
     value={0}
   >
     <option

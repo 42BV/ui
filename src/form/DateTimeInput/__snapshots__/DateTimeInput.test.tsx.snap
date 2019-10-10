@@ -38,6 +38,7 @@ exports[`Component: DateTimeInput ui: Component: DateTimeInput => ui 1`] = `
     input={true}
     inputProps={
       Object {
+        "invalid": false,
         "mask": Array [
           /\\\\d/,
           /\\\\d/,
@@ -60,7 +61,6 @@ exports[`Component: DateTimeInput ui: Component: DateTimeInput => ui 1`] = `
           /\\\\d/,
         ],
         "placeholder": "Please enter your birthdate",
-        "valid": true,
       }
     }
     isValidDate={[Function]}

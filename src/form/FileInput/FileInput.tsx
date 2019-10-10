@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { get } from 'lodash';
 import { FieldValidator } from 'final-form';
 
-import { FormGroup } from 'reactstrap';
-
-import Input from '../Input/Input';
+import { FormGroup, Input, Label, InputGroup } from 'reactstrap';
 
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { Color } from '../types';
 import { Translation } from '../../utilities/translation/translator';
+import Addon from '../Input/Addon/Addon';
 
 interface Props {
   /**
@@ -118,16 +117,15 @@ export default class FileInput extends Component<Props> {
     } = this.props;
 
     const name = get(value, 'name', '');
-
     const inputProps = {
       placeholder,
       value: name,
-      // For some reason valid will be false coming from
-      valid: valid === true || !!value
+      invalid: valid === false ? true : undefined
     };
 
     return (
       <FormGroup className={`file-upload ${className}`} color={color}>
+        <Label for={id}>{label}</Label>
         <input
           id={id}
           accept={accept}
@@ -136,17 +134,21 @@ export default class FileInput extends Component<Props> {
           onClick={event => this.onClick(event)}
           onChange={event => this.onChange(event)}
         />
-        <Input
-          id={id}
-          label={label}
-          {...inputProps}
-          onChange={() => undefined}
-          addon={{
-            icon: value ? 'delete' : 'cloud_upload',
-            position: 'right',
-            color: value ? 'danger' : 'primary'
-          }}
-        />
+
+        <InputGroup>
+          <Input
+            id={id}
+            label={label}
+            {...inputProps}
+            onChange={() => undefined}
+          />
+          <Addon
+            icon={value ? 'delete' : 'cloud_upload'}
+            position="right"
+            color={value || valid === false ? 'danger' : 'primary'}
+          />
+        </InputGroup>
+
         {error}
       </FormGroup>
     );

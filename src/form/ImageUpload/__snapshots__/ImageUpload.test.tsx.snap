@@ -57,16 +57,17 @@ exports[`Component: ImgUpload ui edit as circle: Component: ImgUpload => ui => e
       </div>
     </div>
     <FormGroup
-      className="text-center mt-1"
+      className="d-flex justify-content-center mt-1"
       tag="div"
     >
       <Button
+        className="mt-2"
         color="secondary"
         icon="rotate_left"
         onClick={[Function]}
       />
       <Button
-        className="ml-1"
+        className="ml-1 mt-2"
         color="secondary"
         icon="rotate_right"
         onClick={[Function]}
@@ -150,16 +151,17 @@ exports[`Component: ImgUpload ui edit as rect: Component: ImgUpload => ui => edi
       </div>
     </div>
     <FormGroup
-      className="text-center mt-1"
+      className="d-flex justify-content-center mt-1"
       tag="div"
     >
       <Button
+        className="mt-2"
         color="secondary"
         icon="rotate_left"
         onClick={[Function]}
       />
       <Button
-        className="ml-1"
+        className="ml-1 mt-2"
         color="secondary"
         icon="rotate_right"
         onClick={[Function]}

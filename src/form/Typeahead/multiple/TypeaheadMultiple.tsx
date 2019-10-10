@@ -6,6 +6,7 @@ import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
 import { valueToTypeaheadOption } from '../utils';
 import { Color, OptionForValue } from '../../types';
+import classNames from 'classnames';
 
 interface Props<T> {
   /**
@@ -58,6 +59,11 @@ interface Props<T> {
    * Optionally the color of the FormGroup.
    */
   color?: Color;
+
+  /**
+   * Whether or not the form element is currently valid.
+   */
+  valid?: boolean;
 
   /**
    * The value that the form element currently has.
@@ -139,6 +145,7 @@ export default class TypeaheadMultiple<T> extends Component<
       error,
       optionForValue,
       onFocus,
+      valid,
       className = ''
     } = this.props;
 
@@ -147,8 +154,12 @@ export default class TypeaheadMultiple<T> extends Component<
       selected = value.map(v => valueToTypeaheadOption(v, optionForValue));
     }
 
+    const classes = classNames(className, {
+      'is-invalid': valid === false
+    });
+
     return (
-      <FormGroup className={className} color={color}>
+      <FormGroup className={classes} color={color}>
         <Label for={id}>{label}</Label>
         <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
           <AsyncTypeahead
@@ -158,9 +169,14 @@ export default class TypeaheadMultiple<T> extends Component<
             placeholder={placeholder}
             selected={selected}
             options={this.state.options}
-            // TODO: Check if this is an error in definitions
             // @ts-ignore
-            inputProps={{ value: value }}
+            inputProps={{
+              // @ts-ignore
+              value: value,
+              className: classNames('form-control', {
+                'is-invalid': valid === false
+              })
+            }}
             onChange={value => this.onChange(value)}
             onSearch={query => this.fetchOptions(query)}
             onFocus={onFocus}

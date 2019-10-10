@@ -21,6 +21,8 @@ exports[`HoC: withJarb ui: withJarb => ui => jarbField 1`] = `
           "active": true,
           "error": true,
           "touched": true,
+          "validating": true,
+          "value": true,
         }
       }
     />
@@ -36,6 +38,15 @@ exports[`HoC: withJarb ui: withJarb => ui => jarbField 1`] = `
 
 exports[`HoC: withJarb ui: withJarb => ui 1`] = `
 <JarbField
+  asyncValidators={
+    Array [
+      [Function],
+    ]
+  }
+  asyncValidatorsDebounce={5000}
+  format={[Function]}
+  formatOnBlur={false}
+  initialValue="beheer@42.nl"
   jarb={
     Object {
       "label": "First name",
@@ -43,6 +54,7 @@ exports[`HoC: withJarb ui: withJarb => ui 1`] = `
     }
   }
   name="firstName"
+  parse={[Function]}
   render={[Function]}
   subscription={
     Object {

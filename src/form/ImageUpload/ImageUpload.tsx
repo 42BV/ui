@@ -404,15 +404,16 @@ export default class ImageUpload extends Component<Props, State> {
     const { cancel, done } = this.props.text;
 
     return (
-      <FormGroup className="text-center mt-1">
+      <FormGroup className="d-flex justify-content-center mt-1">
         <Button
+          className="mt-2"
           onClick={() => this.rotateLeft()}
           color="secondary"
           icon="rotate_left"
         ></Button>
 
         <Button
-          className="ml-1"
+          className="ml-1 mt-2"
           onClick={() => this.rotateRight()}
           color="secondary"
           icon="rotate_right"

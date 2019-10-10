@@ -28,6 +28,7 @@ exports[`Component: TypeaheadMultiple ui: Component: TypeaheadMultiple => ui 1`]
       id="bestFriend"
       inputProps={
         Object {
+          "className": "form-control",
           "value": Array [
             Object {
               "active": true,
