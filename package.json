@@ -30,7 +30,7 @@
     "release": "np --otp",
     "dev:publish": "./scripts/dev-publish.sh",
     "prepublishOnly": "npm run clean && npm run test-all && npm run build",
-    "version": "jekyll build && npm run storybook:build"
+    "version": "jekyll build && npm run storybook:build && git add docs"
   },
   "dependencies": {
     "bootstrap": "4.3.1",
