@@ -59,7 +59,7 @@
     "react-router-dom": "^5.1.0"
   },
   "devDependencies": {
-    "@42.nl/spring-connect": "4.0.0",
+    "@42.nl/spring-connect": "4.1.0",
     "@42.nl/react-error-store": "1.0.1",
     "@42.nl/jarb-final-form": "1.1.0",
     "@babel/plugin-transform-modules-commonjs": "7.6.0",
