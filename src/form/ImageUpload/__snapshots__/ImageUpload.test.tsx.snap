@@ -28,28 +28,10 @@ exports[`Component: ImgUpload ui edit as circle: Component: ImgUpload => ui => e
       <div
         onWheel={[Function]}
       >
-        <l
-          border={25}
+        <[object Object]
           borderRadius={9000000}
-          color={
-            Array [
-              0,
-              0,
-              0,
-              0.5,
-            ]
-          }
-          disableBoundaryChecks={false}
-          disableHiDPIScaling={false}
           height={250}
           image="maarten.png"
-          onImageChange={[Function]}
-          onImageReady={[Function]}
-          onLoadFailure={[Function]}
-          onLoadSuccess={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
-          onPositionChange={[Function]}
           rotate={0}
           scale={1}
           width={250}
@@ -122,28 +104,10 @@ exports[`Component: ImgUpload ui edit as rect: Component: ImgUpload => ui => edi
       <div
         onWheel={[Function]}
       >
-        <l
-          border={25}
+        <[object Object]
           borderRadius={0}
-          color={
-            Array [
-              0,
-              0,
-              0,
-              0.5,
-            ]
-          }
-          disableBoundaryChecks={false}
-          disableHiDPIScaling={false}
           height={500}
           image="maarten.png"
-          onImageChange={[Function]}
-          onImageReady={[Function]}
-          onLoadFailure={[Function]}
-          onLoadSuccess={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
-          onPositionChange={[Function]}
           rotate={0}
           scale={1}
           width={500}
