@@ -27,7 +27,7 @@ export interface Props {
   /**
    * The label of the form element.
    */
-  label: string;
+  label?: string;
 
   /**
    * The placeholder of the form element.
@@ -181,16 +181,18 @@ export default class DateTimeInput extends Component<Props, State> {
 
     return (
       <FormGroup className={`date-time-input ${className}`} color={color}>
-        <Label for={id}>
-          {label}{' '}
-          <span
-            className={`date-time-input-format ${
-              hasFormatError ? 'text-danger' : 'text-muted'
-            }`}
-          >
-            ({format})
-          </span>
-        </Label>
+        {label ? (
+          <Label for={id}>
+            {label}{' '}
+            <span
+              className={`date-time-input-format ${
+                hasFormatError ? 'text-danger' : 'text-muted'
+              }`}
+            >
+              ({format})
+            </span>
+          </Label>
+        ) : null}
         <Datetime
           inputProps={{
             // TODO: Figure out if we should do this the hacky way
@@ -198,7 +200,7 @@ export default class DateTimeInput extends Component<Props, State> {
             // @ts-ignore
             mask: formatToMask(dateFormat, timeFormat),
             placeholder,
-            invalid: valid === false || hasFormatError,
+            invalid: valid === false || hasFormatError
           }}
           renderInput={maskedInput}
           onChange={x => this.onChange(x)}
