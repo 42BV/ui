@@ -62,7 +62,7 @@
     "@42.nl/spring-connect": "4.0.0",
     "@42.nl/react-error-store": "1.0.1",
     "@42.nl/jarb-final-form": "1.1.0",
-    "@babel/plugin-transform-modules-commonjs": "7.6.0",
+    "@babel/plugin-transform-modules-commonjs": "7.7.0",
     "@storybook/addon-actions": "5.2.4",
     "@storybook/addon-docs": "5.2.4",
     "@storybook/preset-scss": "1.0.2",
