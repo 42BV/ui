@@ -14,8 +14,6 @@ import {
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
 
-import lodash from 'lodash';
-
 describe('Component: ModalPickerMultiple', () => {
   let modalPickerMultiple: ShallowWrapper;
 
@@ -259,13 +257,7 @@ describe('Component: ModalPickerMultiple', () => {
       });
     });
 
-    it('should when the user searches it should perform the search on typing', () => {
-      // @ts-ignore
-      jest.spyOn(lodash, 'debounce').mockImplementation((fn, delay) => {
-        expect(delay).toBe(500);
-        return fn;
-      });
-
+    it('should fetch options when the user searches', () => {
       setup({
         value: undefined,
         showAddButton: false

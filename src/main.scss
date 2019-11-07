@@ -56,6 +56,7 @@ body {
 
 .form-control:focus {
   box-shadow: none !important;
+  border-color: $gray-400 !important;
 }
 
 .radio,
