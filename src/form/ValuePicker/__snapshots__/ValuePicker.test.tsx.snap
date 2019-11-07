@@ -398,6 +398,7 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
           }
           pageChanged={[Function]}
           placeholder="Select your best friend"
+          query=""
           saveButtonEnabled={true}
         >
           <Modal
@@ -629,6 +630,7 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
           }
           pageChanged={[Function]}
           placeholder="Select your best friend"
+          query=""
           saveButtonEnabled={false}
         >
           <Modal

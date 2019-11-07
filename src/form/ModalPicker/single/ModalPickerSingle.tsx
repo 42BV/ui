@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormGroup, Label, Input } from 'reactstrap';
-import { debounce } from 'lodash';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 import { Button, Row, Col } from 'reactstrap';
 
@@ -116,11 +115,6 @@ export default class ModalPickerSingle<T> extends React.Component<
     userHasSearched: false
   };
 
-  constructor(props: Props<T>) {
-    super(props);
-    this.debouncedSearch = debounce(this.debouncedSearch, 500);
-  }
-
   componentDidMount() {
     this.loadPage(1);
   }
@@ -156,7 +150,9 @@ export default class ModalPickerSingle<T> extends React.Component<
   }
 
   fetchOptions(query: string) {
-    this.debouncedSearch(query);
+    this.setState({ query }, () => {
+      this.loadPage(1);
+    });
   }
 
   async loadPage(pageNumber: number) {
@@ -167,12 +163,6 @@ export default class ModalPickerSingle<T> extends React.Component<
     const page: Page<T> = await this.props.fetchOptions(query, pageNumber, 10);
 
     this.setState({ page });
-  }
-
-  debouncedSearch(query: string) {
-    this.setState({ query }, () => {
-      this.loadPage(1);
-    });
   }
 
   async addButtonClicked(callback: AddButtonCallback<T>) {
@@ -225,7 +215,7 @@ export default class ModalPickerSingle<T> extends React.Component<
 
   renderModal() {
     const { placeholder, addButton, canSearch = true } = this.props;
-    const { page, selected, isOpen } = this.state;
+    const { page, selected, isOpen, query } = this.state;
 
     const addButtonOptions = addButton
       ? {
@@ -238,6 +228,7 @@ export default class ModalPickerSingle<T> extends React.Component<
 
     return (
       <ModalPicker
+        query={query}
         placeholder={placeholder}
         isOpen={isOpen}
         page={page}

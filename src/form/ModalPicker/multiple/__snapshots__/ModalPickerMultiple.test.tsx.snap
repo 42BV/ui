@@ -67,6 +67,7 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
     }
     pageChanged={[Function]}
     placeholder="Select your best friend"
+    query=""
     saveButtonEnabled={true}
   >
     <Row

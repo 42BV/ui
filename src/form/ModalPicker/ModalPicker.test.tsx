@@ -47,6 +47,7 @@ describe('Component: ModalPicker', () => {
         closeModal={closeModalSpy}
         modalSaved={modalSavedSpy}
         saveButtonEnabled={true}
+        query=""
         canSearch={canSearch}
         addButton={addButton}
       >
@@ -138,15 +139,15 @@ describe('Component: ModalPicker', () => {
       expect(modalSavedSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should call search when the user hits "enter" in the search box', () => {
+    it('should call search stops typing', () => {
       setup({ showAddButton: false, canSearch: true });
 
       // @ts-ignore
       modalPicker
-        .find('Input')
+        .find('SearchInput')
         .props()
         // @ts-ignore
-        .onChange({ target: { value: 'Maarten' } });
+        .onChange('Maarten');
 
       expect(fetchDataSpy).toHaveBeenCalledTimes(1);
       expect(fetchDataSpy).toHaveBeenCalledWith('Maarten');

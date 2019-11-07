@@ -56,6 +56,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
     }
     pageChanged={[Function]}
     placeholder="Select your best friend"
+    query=""
     saveButtonEnabled={false}
   >
     <Row

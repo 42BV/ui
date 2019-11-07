@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { emptyPage } from '@42.nl/spring-connect';
-import lodash from 'lodash';
 
 import ModalPickerSingle, { State } from './ModalPickerSingle';
 import { User } from '../../../test/types';
@@ -171,13 +170,7 @@ describe('Component: ModalPickerSingle', () => {
       }
     });
 
-    it('should when the user searches it should perform the search on key up', () => {
-      // @ts-ignore
-      jest.spyOn(lodash, 'debounce').mockImplementation((fn, delay) => {
-        expect(delay).toBe(500);
-        return fn;
-      });
-
+    it('should fetch options when the user searches', () => {
       setup({
         value: undefined,
         showAddButton: false

@@ -8,14 +8,11 @@ import {
   Button,
   Row,
   Col,
-  Input,
-  InputGroup,
-  InputGroupAddon
 } from 'reactstrap';
 
 import Pagination from '../../core/Pagination/Pagination';
-import Icon from '../../core/Icon/Icon';
 import { t } from '../../utilities/translation/translation';
+import SearchInput from '../../core/SearchInput/SearchInput';
 
 interface Text {
   placeholder?: string;
@@ -44,6 +41,11 @@ interface Props {
    * Here the component using the ModalPicker must render in the options.
    */
   children: React.ReactNode;
+
+  /**
+   * The value to show in the search input.
+   */
+  query: string;
 
   /**
    * Whether or not to show the search input.
@@ -103,6 +105,7 @@ export default function ModalPicker(props: Props) {
     isOpen,
     page,
     children,
+    query,
     canSearch,
     fetchOptions,
     pageChanged,
@@ -122,20 +125,16 @@ export default function ModalPicker(props: Props) {
         {canSearch ? (
           <Row>
             <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  <Icon icon="search" />
-                </InputGroupAddon>
-                <Input
-                  id="search"
-                  placeholder={t({
-                    overrideText: text.placeholder,
-                    key: 'ModalPicker.SEARCH',
-                    fallback: 'Search...'
-                  })}
-                  onChange={event => fetchOptions(event.target.value)}
-                />
-              </InputGroup>
+              <SearchInput
+                id="search"
+                value={query}
+                placeholder={t({
+                  overrideText: text.placeholder,
+                  key: 'ModalPicker.SEARCH',
+                  fallback: 'Search...'
+                })}
+                onChange={value => fetchOptions(value)}
+              ></SearchInput>
             </Col>
           </Row>
         ) : null}

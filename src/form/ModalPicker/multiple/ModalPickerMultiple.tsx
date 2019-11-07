@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormGroup, Label, Input } from 'reactstrap';
-import { debounce, isArray } from 'lodash';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 import { Button, Row, Col } from 'reactstrap';
 
@@ -118,11 +117,6 @@ export default class ModalPickerMultiple<T> extends React.Component<
     userHasSearched: false
   };
 
-  constructor(props: Props<T>) {
-    super(props);
-    this.debouncedSearch = debounce(this.debouncedSearch, 500);
-  }
-
   componentDidMount() {
     this.loadPage(1);
   }
@@ -144,7 +138,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
     // Otherwise the selection will be the same as the value, which
     // causes values to be commited and the cancel button will not
     // do anything.
-    const selected = isArray(this.props.value) ? [...this.props.value] : [];
+    const selected = Array.isArray(this.props.value) ? [...this.props.value] : [];
 
     this.setState({ selected, isOpen: true, query: '' }, () => {
       this.loadPage(1);
@@ -172,7 +166,9 @@ export default class ModalPickerMultiple<T> extends React.Component<
   }
 
   fetchOptions(query: string) {
-    this.debouncedSearch(query);
+    this.setState({ query }, () => {
+      this.loadPage(1);
+    });
   }
 
   async loadPage(pageNumber: number) {
@@ -182,12 +178,6 @@ export default class ModalPickerMultiple<T> extends React.Component<
     const page: Page<T> = await this.props.fetchOptions(query, pageNumber, 10);
 
     this.setState({ page });
-  }
-
-  debouncedSearch(query: string) {
-    this.setState({ query }, () => {
-      this.loadPage(1);
-    });
   }
 
   async addButtonClicked(callback: AddButtonCallback<T>) {
@@ -214,7 +204,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
     return (
       <FormGroup className={className} color={color}>
         <Label for={id}>{label}</Label>
-        
+
         <div>
           {this.renderTagsInMoreOrLess(value)}
           <Button color="primary" onClick={() => this.openModal()}>
@@ -230,7 +220,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
 
   renderModal() {
     const { placeholder, addButton, canSearch = true } = this.props;
-    const { page, isOpen, selected } = this.state;
+    const { page, isOpen, selected, query } = this.state;
 
     const addButtonOptions = addButton
       ? {
@@ -243,6 +233,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
 
     return (
       <ModalPicker
+        query={query}
         placeholder={placeholder}
         isOpen={isOpen}
         page={page}
