@@ -1,48 +1,77 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+
+import { NavLink } from 'reactstrap';
 
 import NavigationItem from './NavigationItem';
 
 describe('Component: NavigationItem', () => {
-  let navigationItem: ShallowWrapper;
-
-  function setup({ show = true }: { show?: (() => boolean) | boolean }) {
-    navigationItem = shallow(
+  function setup({
+    show = true,
+    exact
+  }: {
+    show?: (() => boolean) | boolean;
+    exact?: boolean;
+  }) {
+    const navigationItem = shallow(
       <NavigationItem
         to="/dashboard"
         icon="dashboard"
         text="Dashboard"
         show={show}
+        exact={exact}
       />
     );
+
+    return { navigationItem };
   }
 
   test('ui', () => {
-    setup({});
+    const { navigationItem } = setup({});
     expect(toJson(navigationItem)).toMatchSnapshot();
   });
 
-  test('should not render when show is false', () => {
-    setup({ show: false });
-    expect(navigationItem.isEmptyRender()).toBe(true);
+  describe('show behavior', () => {
+    it('should not render when show is false', () => {
+      const { navigationItem } = setup({ show: false });
+      expect(navigationItem.isEmptyRender()).toBe(true);
+    });
+
+    it('should render when predicate resolves to true', () => {
+      const { navigationItem } = setup({ show: () => 1 + 1 === 2 });
+      expect(navigationItem.isEmptyRender()).toBe(false);
+    });
+
+    it('should not render when predicate resolves to false', () => {
+      const { navigationItem } = setup({ show: () => 1 + 2 === 2 });
+      expect(navigationItem.isEmptyRender()).toBe(true);
+    });
+
+    it('should default show to true if it is not provided', () => {
+      const navigationItem = shallow(
+        <NavigationItem to="/dashboard" icon="dashboard" text="Dashboard" />
+      );
+
+      expect(navigationItem.isEmptyRender()).toBe(false);
+    });
   });
 
-  test('should render when predicate resolves to true', () => {
-    setup({ show: () => 1 + 1 === 2 });
-    expect(navigationItem.isEmptyRender()).toBe(false);
-  });
+  describe('exact behavior', () => {
+    it('should default to exact when exact is undefined', () => {
+      const { navigationItem } = setup({ exact: undefined });
 
-  test('should not render when predicate resolves to false', () => {
-    setup({ show: () => 1 + 2 === 2 });
-    expect(navigationItem.isEmptyRender()).toBe(true);
-  });
+      const exact = navigationItem.find(NavLink).props().exact;
 
-  test('should default show to true if it is not provided', () => {
-    const navigationItem = shallow(
-      <NavigationItem to="/dashboard" icon="dashboard" text="Dashboard" />
-    );
+      expect(exact).toBe(true);
+    });
 
-    expect(navigationItem.isEmptyRender()).toBe(false);
+    it('should be able to set exact to false', () => {
+      const { navigationItem } = setup({ exact: false });
+
+      const exact = navigationItem.find(NavLink).props().exact;
+
+      expect(exact).toBe(false);
+    });
   });
 });
