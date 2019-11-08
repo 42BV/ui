@@ -31,19 +31,37 @@ interface Props {
    * Predicate to determine if the link will be shown. Accepts either a boolean or a function that returns a boolean.
    */
   show?: (() => boolean) | boolean;
+
+  /**
+   * Optionally whether the route is an exact route.
+   * 
+   * Defaults to true.
+   */
+  exact?: boolean;
 }
 
 /**
- * The NavigationItem enables you to guard specific links by a predicate, for example by user role.
+ * The NavigationItem is a wrapper around the `react-router`'s 
+ * `NavLink`. See https://reacttraining.com/react-router/web/api/NavLink.
+ * It adds texts and icons around the `NavLink`.
+ * 
+ * The NavigationItem enables you to guard specific links by a predicate, 
+ * for example by user role.
  *
- * Use it when you want to keep certain navigation items hidden for specific user roles.
+ * Use it when you want to keep certain navigation items hidden 
+ * for specific user roles.
+ * 
+ * By default the `NavigationItem` will render an `exact` link. See:
+ * https://reacttraining.com/react-router/web/api/Route/exact-bool.
+ * But you can set it to `false` via the props.
  */
 export default function NavigationItem({
   to,
   icon,
   text,
   show = true,
-  className
+  className,
+  exact = true
 }: Props) {
   const shouldShow = typeof show === 'function' ? show : () => show;
 
@@ -53,7 +71,7 @@ export default function NavigationItem({
 
   return (
     <NavItem className={classNames('navigation-item', className)}>
-      <NavLink to={to} exact tag={RRNavLink} activeClassName="active">
+      <NavLink to={to} exact={exact} tag={RRNavLink} activeClassName="active">
         <Icon icon={icon} className="mr-3 align-bottom" />
         {text}
       </NavLink>

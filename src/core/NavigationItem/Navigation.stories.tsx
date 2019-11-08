@@ -12,4 +12,40 @@ storiesOf('core|NavigationItem', module)
         <NavigationItem to="/dashboard" icon="dashboard" text="Dashboard" />
       </BrowserRouter>
     );
+  })
+  .add('with show boolean', () => {
+    return (
+      <BrowserRouter>
+        <NavigationItem
+          show={true}
+          to="/dashboard"
+          icon="dashboard"
+          text="Dashboard"
+        />
+      </BrowserRouter>
+    );
+  })
+  .add('with show as function', () => {
+    return (
+      <BrowserRouter>
+        <NavigationItem
+          show={() => true && true}
+          to="/dashboard"
+          icon="dashboard"
+          text="Dashboard"
+        />
+      </BrowserRouter>
+    );
+  })
+  .add('with exact is false', () => {
+    return (
+      <BrowserRouter>
+        <NavigationItem
+          to="/dashboard"
+          icon="dashboard"
+          text="Dashboard"
+          exact={false}
+        />
+      </BrowserRouter>
+    );
   });
