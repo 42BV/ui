@@ -76,7 +76,7 @@
     "@types/enzyme": "3.10.3",
     "@types/enzyme-adapter-react-16": "1.0.5",
     "@types/enzyme-to-json": "1.5.3",
-    "@types/jest": "24.0.22",
+    "@types/jest": "24.0.23",
     "@types/lodash": "4.14.145",
     "@types/node": "12.12.6",
     "@types/overlayscrollbars": "1.9.0",
