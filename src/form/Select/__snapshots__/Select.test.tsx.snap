@@ -31,9 +31,7 @@ exports[`Component: Select ui with value: Component: Select => ui => with value 
     valid={false}
     value={0}
   >
-    <option
-      disabled={true}
-    >
+    <option>
       Please enter your subject
     </option>
     <option
