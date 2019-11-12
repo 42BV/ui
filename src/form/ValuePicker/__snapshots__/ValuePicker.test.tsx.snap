@@ -790,7 +790,6 @@ exports[`Component: ValuePicker single should render a \`Select\` component when
           onChange={[Function]}
           placeholder="Select your best friend"
           type="select"
-          value={-1}
         >
           <select
             className="showing-placeholder form-control"
@@ -798,11 +797,8 @@ exports[`Component: ValuePicker single should render a \`Select\` component when
             onBlur={[MockFunction]}
             onChange={[Function]}
             placeholder="Select your best friend"
-            value={-1}
           >
-            <option
-              disabled={true}
-            >
+            <option>
               Select your best friend
             </option>
             <option

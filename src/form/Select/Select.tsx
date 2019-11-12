@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormGroup, Label, Input as RSInput } from 'reactstrap';
-import { get, constant, isArray } from 'lodash';
+import { get, constant } from 'lodash';
 import { InputType } from 'reactstrap/lib/Input';
 import { Page } from '@42.nl/spring-connect';
 
@@ -114,7 +114,7 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
 
     const { options } = props;
 
-    if (isArray(options)) {
+    if (Array.isArray(options)) {
       this.state = {
         options,
         loading: false
@@ -130,7 +130,7 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
   async componentDidMount() {
     const options = this.props.options;
 
-    if (isArray(options) === false) {
+    if (Array.isArray(options) === false) {
       const fetcher = options as OptionsFetcher<T>;
 
       const page: Page<T> = await fetcher();
@@ -221,12 +221,19 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
       className: value === undefined ? 'showing-placeholder' : ''
     };
 
-    // @ts-ignore
-    const indexOfValue = options.findIndex(option => option === value);
+    const indexOfValue =
+      value !== undefined
+        ? options.findIndex(
+            option => optionForValue(option) === optionForValue(value)
+          )
+        : undefined;
 
     return (
-      <RSInput value={indexOfValue} {...inputProps}>
-        <option disabled ref={option => this.selectDefaultOption(option)}>
+      <RSInput
+        value={indexOfValue === -1 ? undefined : indexOfValue}
+        {...inputProps}
+      >
+        <option ref={option => this.selectDefaultOption(option)}>
           {placeholder}
         </option>
 

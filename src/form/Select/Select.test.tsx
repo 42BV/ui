@@ -38,7 +38,7 @@ describe('Component: Select', () => {
         placeholder="Please enter your subject"
         text={text}
         isOptionEnabled={isOptionEnabled}
-        optionForValue={(user: User) => user.email}
+        optionForValue={(user: User) => user?.email}
         options={[adminUser, coordinatorUser, userUser]}
         value={value}
         onChange={onChangeSpy}
@@ -164,7 +164,7 @@ describe('Component: Select', () => {
           // @ts-ignore
           const select = new Select({ options, onChange });
           select.props.value = adminUser;
-          select.props.optionForValue = (user: User) => user.email;
+          select.props.optionForValue = (user: User) => user?.email;
 
           jest.spyOn(select, 'setState').mockImplementation(() => undefined);
 
@@ -188,7 +188,7 @@ describe('Component: Select', () => {
           // @ts-ignore
           const select = new Select({ options, onChange });
           select.props.value = userUser;
-          select.props.optionForValue = (user: User) => user.email;
+          select.props.optionForValue = (user: User) => user?.email;
 
           jest.spyOn(select, 'setState').mockImplementation(() => undefined);
 
@@ -242,6 +242,9 @@ describe('Component: Select', () => {
       defaultOption.getElement().ref(option);
 
       expect(option.selected).toBe(true);
+
+      // @ts-ignore
+      expect(option.value).toBe(undefined);
     });
 
     it('should not select the placeholder as the default value when value is not an empty string', () => {
@@ -299,9 +302,6 @@ describe('Component: Select', () => {
         const options = select.find('option');
         expect(options.length).toBe(4);
 
-        // Default option should be disabled
-        expect(options.at(0).props().disabled).toBe(true);
-
         // Other options should be enabled
         expect(options.at(1).props().disabled).toBe(false);
         expect(options.at(2).props().disabled).toBe(false);
@@ -318,9 +318,6 @@ describe('Component: Select', () => {
 
         const options = select.find('option');
         expect(options.length).toBe(4);
-
-        // Default option should be disabled
-        expect(options.at(0).props().disabled).toBe(true);
 
         // Other options should be enabled
         expect(options.at(1).props().disabled).toBe(true);
@@ -347,14 +344,14 @@ describe('Component: Select', () => {
       select.setProps({ value: undefined });
 
       rsInput = select.find('Input');
-      expect(rsInput.props().value).toBe(-1);
+      expect(rsInput.props().value).toBe(undefined);
     });
 
     test('becomes filled', () => {
       setup({ value: undefined, isOptionEnabled: undefined });
 
       let rsInput = select.find('Input');
-      expect(rsInput.props().value).toBe(-1);
+      expect(rsInput.props().value).toBe(undefined);
 
       select.setProps({ value: coordinatorUser });
 

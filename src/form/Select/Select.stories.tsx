@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -69,5 +69,27 @@ storiesOf('Form|Select', module)
           }}
         />
       </FinalForm>
+    );
+  })
+  .add('default option', () => {
+    const [value, setValue] = useState({ value: 'great', label: 'Great shit' });
+
+    return (
+      <Form>
+        <Select<SubjectOption>
+          id="subject"
+          label="Subject"
+          value={value}
+          placeholder="Please enter your subject"
+          optionForValue={(option: SubjectOption) => option.label}
+          options={[
+            { value: 'awesome', label: 'Awesome shit' },
+            { value: 'super', label: 'Super shit' },
+            { value: 'great', label: 'Great shit' },
+            { value: 'good', label: 'good shit' }
+          ]}
+          onChange={setValue}
+        />
+      </Form>
     );
   });
