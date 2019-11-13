@@ -3,32 +3,3 @@
     opacity: 0.65;
   }
 }
-
-/**
-  * Make material-icons within Bootstrap great again!
-  */
-.input-group {
-  &-append,
-  &-prepend {
-    i {
-      @extend .input-group-text;
-    }
-
-    .btn > i.material-icons {
-      border: 0;
-      background: none;
-      color: #fff;
-      padding: 0;
-    }
-  }
-}
-
-i.material-icons {
-  user-select: none;
-}
-
-.nav-link {
-  i.material-icons {
-    vertical-align: middle;
-  }
-}
