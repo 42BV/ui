@@ -41,6 +41,13 @@ interface BaseProps {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optionally whether the button is disabled
+   *
+   * Defaults to `false`
+   */
+  disabled?: boolean;
 }
 
 interface WithIconAndText extends BaseProps {
@@ -64,7 +71,7 @@ interface WithIconAndText extends BaseProps {
   /**
    * Optionally the size of the button, defaults to md.
    *
-   * @default md
+   * Defaults to 'md'.
    */
   size?: 'sm' | 'md' | 'lg';
 }
@@ -90,7 +97,7 @@ interface WithText extends BaseProps {
   /**
    * Optionally the size of the button, defaults to md.
    *
-   * @default md
+   * Defaults to 'md'.
    */
   size?: 'sm' | 'md' | 'lg';
 }
@@ -128,6 +135,7 @@ export default function Button({
 
   const children = 'children' in props ? props.children : undefined;
   const icon = 'icon' in props ? props.icon : undefined;
+  const disabled = 'disabled' in props ? props.disabled : undefined;
 
   if (children !== undefined) {
     const outline = 'outline' in props ? props.outline : undefined;
@@ -145,7 +153,7 @@ export default function Button({
       <span className={`button ${className} ${color}`}>
         <RSButton
           onClick={handleOnClick}
-          disabled={inProgress}
+          disabled={inProgress || disabled}
           {...buttonProps}
         >
           {showSpinner ? (
@@ -168,7 +176,12 @@ export default function Button({
           // Color is empty string so we can override the color
           <Spinner size={24} color="" />
         ) : (
-          <Icon onClick={handleOnClick} icon={iconCast} color={color} />
+          <Icon
+            onClick={handleOnClick}
+            icon={iconCast}
+            color={color}
+            disabled={inProgress || disabled}
+          />
         )}
       </span>
     );

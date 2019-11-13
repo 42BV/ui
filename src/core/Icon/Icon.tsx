@@ -30,6 +30,13 @@ interface Props {
    * Optional onClick event for when the Icon is clicked.
    */
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+
+  /**
+   * Optionally whether the button is disabled
+   *
+   * Defaults to `false`
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -37,14 +44,36 @@ interface Props {
  *
  * Useful for making sure your icon is typesafe via TypeScript.
  */
-export default function Icon({ className, onClick, icon, id, color }: Props) {
+export default function Icon({
+  className,
+  onClick,
+  icon,
+  id,
+  color,
+  disabled
+}: Props) {
   const colorCssClass = color !== undefined ? `text-${color}` : undefined;
-  const classes = classNames(className, 'material-icons', colorCssClass, {
-    clickable: onClick
-  });
+  const classes = classNames(
+    'icon',
+    className,
+    'material-icons',
+    colorCssClass,
+    {
+      clickable: !disabled && onClick,
+      'icon--disabled': disabled
+    }
+  );
 
   return (
-    <i id={id} onClick={onClick} className={classes}>
+    <i
+      id={id}
+      onClick={event => {
+        if (!disabled) {
+          onClick(event);
+        }
+      }}
+      className={classes}
+    >
       {icon}
     </i>
   );

@@ -12,7 +12,7 @@ describe('Component: Button', () => {
       describe('normal', () => {
         test('inProgress is true', () => {
           const button = shallow(
-            <Button onClick={jest.fn()} inProgress={true} size="md">
+            <Button onClick={jest.fn()} inProgress={true}>
               Save
             </Button>
           );
@@ -45,6 +45,46 @@ describe('Component: Button', () => {
         test('inProgress is false', () => {
           const button = shallow(
             <Button onClick={jest.fn()} inProgress={false} outline={true}>
+              Save
+            </Button>
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+      });
+
+      describe('disabled', () => {
+        test('is disabled', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} disabled={true}>
+              Save
+            </Button>
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+
+        test('is enabled', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} disabled={false}>
+              Save
+            </Button>
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+      });
+
+      describe('size', () => {
+        test('use md by default', () => {
+          const button = shallow(<Button onClick={jest.fn()}>Save</Button>);
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+
+        test('can override size', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} size="sm">
               Save
             </Button>
           );
@@ -121,20 +161,40 @@ describe('Component: Button', () => {
     });
 
     describe('icon', () => {
-      test('inProgress is true', () => {
-        const button = shallow(
-          <Button onClick={jest.fn()} inProgress={true} icon="save" />
-        );
+      describe('inProgress', () => {
+        test('inProgress is true', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} inProgress={true} icon="save" />
+          );
 
-        expect(toJson(button)).toMatchSnapshot();
+          expect(toJson(button)).toMatchSnapshot();
+        });
+
+        test('inProgress is false', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} inProgress={false} icon="save" />
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
       });
 
-      test('inProgress is false', () => {
-        const button = shallow(
-          <Button onClick={jest.fn()} inProgress={false} icon="save" />
-        );
+      describe('disabled', () => {
+        test('is disabled', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} icon="save" disabled={true} />
+          );
 
-        expect(toJson(button)).toMatchSnapshot();
+          expect(toJson(button)).toMatchSnapshot();
+        });
+
+        test('is enabled', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} icon="save" disabled={false} />
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
       });
     });
   });
