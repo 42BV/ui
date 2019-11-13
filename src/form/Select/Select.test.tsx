@@ -87,6 +87,19 @@ describe('Component: Select', () => {
 
       expect(rsInput.props().className).toBe('showing-placeholder');
     });
+
+    test('when value is not in options select nothing', () => {
+      setup({ value: {
+        id: -1,
+        email: 'none',
+        active: false,
+        roles: [],
+      }, isOptionEnabled: undefined });
+
+      const rsInput = select.find('Input');
+
+      expect(rsInput.props().value).toBe(undefined);
+    });
   });
 
   describe('constructor', () => {

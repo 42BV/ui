@@ -28,7 +28,13 @@ storiesOf('core|Icons', module)
         <Icon icon="train" color="primary" />
         <Icon icon="wb_sunny" color="warning" />
         <Icon icon="drafts" />
+        <Icon icon="drafts" disabled={true} />
         <Icon icon="timer_3" onClick={action('timer clicked')} />
+        <Icon
+          icon="home"
+          disabled={true}
+          onClick={action('timer clicked')}
+        />
       </div>
     );
   });

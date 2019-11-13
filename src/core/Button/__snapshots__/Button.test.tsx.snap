@@ -1,12 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Button ui button normal inProgress is false 1`] = `
+exports[`Component: Button ui button disabled is disabled 1`] = `
+<span
+  className="button  primary"
+>
+  <Button
+    color="primary"
+    disabled={true}
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button disabled is enabled 1`] = `
 <span
   className="button  primary"
 >
   <Button
     color="primary"
     disabled={false}
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button normal inProgress is false 1`] = `
+<span
+  className="button  primary"
+>
+  <Button
+    color="primary"
     onClick={[Function]}
     size="md"
     tag="button"
@@ -44,7 +77,6 @@ exports[`Component: Button ui button outline inProgress is false 1`] = `
 >
   <Button
     color="primary"
-    disabled={false}
     onClick={[Function]}
     outline={true}
     size="md"
@@ -78,13 +110,44 @@ exports[`Component: Button ui button outline inProgress is true 1`] = `
 </span>
 `;
 
+exports[`Component: Button ui button size can override size 1`] = `
+<span
+  className="button  primary"
+>
+  <Button
+    color="primary"
+    onClick={[Function]}
+    size="sm"
+    tag="button"
+    type="button"
+  >
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button size use md by default 1`] = `
+<span
+  className="button  primary"
+>
+  <Button
+    color="primary"
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    Save
+  </Button>
+</span>
+`;
+
 exports[`Component: Button ui button with icon normal inProgress is false 1`] = `
 <span
   className="button  primary"
 >
   <Button
     color="primary"
-    disabled={false}
     onClick={[Function]}
     size="md"
     tag="button"
@@ -146,7 +209,6 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
 >
   <Button
     color="primary"
-    disabled={false}
     onClick={[Function]}
     outline={true}
     size="md"
@@ -184,7 +246,33 @@ exports[`Component: Button ui button with icon outline inProgress is true 1`] = 
 </span>
 `;
 
-exports[`Component: Button ui icon inProgress is false 1`] = `
+exports[`Component: Button ui icon disabled is disabled 1`] = `
+<span
+  className="button  primary"
+>
+  <Icon
+    color="primary"
+    disabled={true}
+    icon="save"
+    onClick={[Function]}
+  />
+</span>
+`;
+
+exports[`Component: Button ui icon disabled is enabled 1`] = `
+<span
+  className="button  primary"
+>
+  <Icon
+    color="primary"
+    disabled={false}
+    icon="save"
+    onClick={[Function]}
+  />
+</span>
+`;
+
+exports[`Component: Button ui icon inProgress inProgress is false 1`] = `
 <span
   className="button  primary"
 >
@@ -196,7 +284,7 @@ exports[`Component: Button ui icon inProgress is false 1`] = `
 </span>
 `;
 
-exports[`Component: Button ui icon inProgress is true 1`] = `
+exports[`Component: Button ui icon inProgress inProgress is true 1`] = `
 <span
   className="button  primary"
 >

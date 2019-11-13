@@ -42,6 +42,18 @@ describe('Icon', () => {
       const icon = shallow(<Icon icon="alarm" onClick={undefined} />);
       expect(toJson(icon)).toMatchSnapshot('Icon => ui => is not clickable');
     });
+
+    test('is disabled', () => {
+      const icon = shallow(
+        <Icon icon="alarm" onClick={() => undefined} disabled={true} />
+      );
+      expect(toJson(icon)).toMatchSnapshot('Icon => ui => is disabled');
+    });
+
+    test('is enabled', () => {
+      const icon = shallow(<Icon icon="alarm" disabled={false} />);
+      expect(toJson(icon)).toMatchSnapshot('Icon => ui => is enabled');
+    });
   });
 
   describe('events', () => {
@@ -52,6 +64,28 @@ describe('Icon', () => {
       icon.find('i').simulate('click');
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call the "onClick" event when the icon is clicked and is explicitly enabled', () => {
+      const onClickSpy = jest.fn();
+
+      const icon = shallow(
+        <Icon icon="alarm" onClick={onClickSpy} disabled={false} />
+      );
+      icon.find('i').simulate('click');
+
+      expect(onClickSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not call the "onClick" event when the icon is clicked but is disabled', () => {
+      const onClickSpy = jest.fn();
+
+      const icon = shallow(
+        <Icon icon="alarm" onClick={onClickSpy} disabled={true} />
+      );
+      icon.find('i').simulate('click');
+
+      expect(onClickSpy).toHaveBeenCalledTimes(0);
     });
   });
 });

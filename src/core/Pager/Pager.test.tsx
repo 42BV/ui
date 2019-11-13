@@ -51,6 +51,22 @@ describe('Component: Pager', () => {
         'Component: Pager => normal'
       );
     });
+
+    test('first', () => {
+      setup({ number: 1, totalPages: 10 });
+
+      expect(toJson(pager)).toMatchSnapshot(
+        'Component: Pager => first'
+      );
+    });
+
+    test('last', () => {
+      setup({ number: 10, totalPages: 10 });
+
+      expect(toJson(pager)).toMatchSnapshot(
+        'Component: Pager => last'
+      );
+    });
   });
 
   describe('events', () => {

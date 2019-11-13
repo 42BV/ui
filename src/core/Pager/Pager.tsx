@@ -75,6 +75,7 @@ export default function Pager<T>({
         className="mr-1"
         outline
         icon="arrow_back"
+        disabled={first}
         onClick={() => onChange(page.number - 1)}
       >
         {t({
@@ -89,6 +90,7 @@ export default function Pager<T>({
         className="pager-next"
         icon="arrow_forward"
         iconPosition="right"
+        disabled={last}
         onClick={() => onChange(page.number + 1)}
       >
         {t({
