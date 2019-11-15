@@ -1,0 +1,11 @@
+.icon-picker {
+  &-clear {
+    font-size: 12px;
+    display: inline;
+    cursor: pointer;
+    text-decoration: underline !important;
+    position: relative;
+    top: -8px;
+    margin: 0 8px 0 10px;
+  }
+}

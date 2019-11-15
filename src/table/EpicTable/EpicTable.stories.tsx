@@ -17,14 +17,14 @@ import { EpicSelection } from './widgets/EpicSelection/EpicSelection';
 import { EpicSort } from './widgets/EpicSort/EpicSort';
 
 import { Direction } from './types';
-import { pageOf } from '../../test/utils';
 import {
   Tag,
   Pagination,
   DateTimeInput,
   Button,
   ContentState,
-  ContentStateMode
+  ContentStateMode,
+  pageOf
 } from '../..';
 import moment from 'moment';
 

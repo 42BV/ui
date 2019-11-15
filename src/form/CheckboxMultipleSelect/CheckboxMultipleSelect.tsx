@@ -159,13 +159,23 @@ export default class CheckboxMultipleSelect<T> extends Component<
   }
 
   render() {
-    const { id, error, color, label, text = {}, className = '', placeholder } = this.props;
+    const {
+      id,
+      error,
+      color,
+      label,
+      text = {},
+      className = '',
+      placeholder
+    } = this.props;
     const { loading } = this.state;
 
     return (
       <FormGroup className={className} color={color}>
         <Label for={id}>{label}</Label>
-        <p className="text-muted"><em>{placeholder}</em></p>
+        <p className="text-muted">
+          <em>{placeholder}</em>
+        </p>
         {loading ? (
           <div>
             <Spinner color="black" size={16} />
@@ -187,7 +197,7 @@ export default class CheckboxMultipleSelect<T> extends Component<
   }
 
   renderCheckboxes() {
-    const { optionForValue, value} = this.props;
+    const { optionForValue, value } = this.props;
 
     const { options } = this.state;
 
@@ -229,7 +239,7 @@ export default class CheckboxMultipleSelect<T> extends Component<
 }
 
 /**
- * Variant of the ModalPickerMultiple which can be used in a Jarb context.
+ * Variant of the CheckboxMultipleSelect which can be used in a Jarb context.
  */
 export const JarbCheckboxMultipleSelect = withJarb<
   any[],

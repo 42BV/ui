@@ -21,7 +21,8 @@ import {
   limitFileSize,
   requireImage,
   limitImageSize,
-  JarbCheckboxMultipleSelect
+  JarbCheckboxMultipleSelect,
+  JarbIconPicker
 } from '..';
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
@@ -261,9 +262,7 @@ storiesOf('Form|Example', module).add('jarb form', () => {
         placeholder="Select your best friend"
         canSearch={true}
         optionForValue={userAsOption}
-        fetchOptions={() =>
-          Promise.resolve(pageOfUsers)
-        }
+        fetchOptions={() => Promise.resolve(pageOfUsers)}
         validators={requiredValidator}
       />
 
@@ -299,6 +298,15 @@ storiesOf('Form|Example', module).add('jarb form', () => {
         optionForValue={userAsOption}
         options={() => Promise.resolve(pageOfUsers)}
         canSearch={true}
+        validators={requiredValidator}
+      />
+
+      <JarbIconPicker
+        name="icon"
+        jarb={{ validator: 'User.icon', label: 'Icon' }}
+        id="icon"
+        label="Icon"
+        placeholder="Please select an icon"
         validators={requiredValidator}
       />
     </FinalForm>

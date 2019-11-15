@@ -22,6 +22,7 @@ export { default as SubmitButton } from './core/SubmitButton/SubmitButton';
 export { default as Tag } from './core/Tag/Tag';
 export { default as AsyncContent } from './core/AsyncContent/AsyncContent';
 export { default as SearchInput } from './core/SearchInput/SearchInput';
+export { default as Pager } from './core/Pager/Pager';
 
 // Form
 export { default as Input, JarbInput } from './form/Input/Input';
@@ -81,6 +82,10 @@ export {
   default as ValuePicker,
   JarbValuePicker,
 } from './form/ValuePicker/ValuePicker';
+export {
+  default as IconPicker,
+  JarbIconPicker,
+} from './form/IconPicker/IconPicker';
 
 // Table
 export { EpicTable } from './table/EpicTable/EpicTable';
@@ -103,6 +108,7 @@ export { Direction } from './table/EpicTable/types';
 // Utilities
 export { t } from './utilities/translation/translation';
 export { setTranslator } from './utilities/translation/translator';
+export { pageOf } from './utilities/page/page';
 
 // Types
 export { Color } from './core/types';

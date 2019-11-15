@@ -138,6 +138,13 @@ Here is a JSON notation containing all keys and default translations:
     "EpicDetail": {
       "CLOSE": "Close"
     }
+  },
+  "IconPicker": {
+    "CLEAR": "Clear",
+    "NO_RESULTS": {
+      "TITLE": "No icons found",
+      "SUBTITLE": "No icons were found, please try again with a different query."
+    }
   }
 }
 ```
