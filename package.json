@@ -119,7 +119,7 @@
     "react-docgen-typescript-loader": "3.3.0",
     "react-dom": "16.12.0",
     "react-router-dom": "5.1.2",
-    "react-test-renderer": "16.11.0",
+    "react-test-renderer": "16.12.0",
     "reactstrap": "8.1.1",
     "rollup": "1.26.3",
     "rollup-plugin-auto-external": "2.0.0",
