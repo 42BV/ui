@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Pager from './Pager';
-import { pageOf } from '../../test/utils';
+import { pageOf } from '../../utilities/page/page';
 
 storiesOf('core|Pager', module)
   .addParameters({ component: Pager })
