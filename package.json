@@ -114,7 +114,7 @@
     "lodash": "4.17.15",
     "node-sass": "4.13.0",
     "np": "5.1.2",
-    "react": "16.11.0",
+    "react": "16.12.0",
     "react-async": "9.0.0",
     "react-docgen-typescript-loader": "3.3.0",
     "react-dom": "16.11.0",
