@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import lodash from 'lodash';
@@ -121,6 +121,52 @@ describe('Component: SearchInput', () => {
       expect(lodash.debounce).toBeCalledTimes(1);
       // @ts-ignore
       expect(lodash.debounce.mock.calls[0][2]).toBe(debounceSettings);
+    });
+
+    it('should allow the user to take full control of the value through the children render prop', done => {
+      const onChangeSpy = jest.fn();
+      const cancel = jest.fn();
+
+      // @ts-ignore
+      jest.spyOn(lodash, 'debounce').mockImplementation(fn => {
+        // @ts-ignore
+        fn.cancel = cancel;
+        return fn;
+      });
+
+      const searchInput = mount(
+        <SearchInput
+          value=""
+          debounce={300}
+          onChange={onChangeSpy}
+          showIcon={true}
+        >
+          {(searchInput, { setValue }) => {
+            // At this time the ref is null so it wont be called
+            setValue('not called');
+
+            setTimeout(() => {
+              setValue('external change');
+            }, 0);
+
+            return searchInput;
+          }}
+        </SearchInput>
+      );
+
+      setTimeout(() => {
+        expect(onChangeSpy).toBeCalledTimes(1);
+        expect(onChangeSpy).toBeCalledWith('external change');
+
+        expect(cancel).toBeCalledTimes(1);
+
+        // @ts-ignore
+        expect(searchInput.find('Input').props().innerRef.current.value).toBe(
+          'external change'
+        );
+
+        done();
+      }, 5);
     });
 
     describe('onKeyUp behavior', () => {

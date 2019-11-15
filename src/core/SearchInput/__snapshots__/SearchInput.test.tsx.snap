@@ -2,6 +2,7 @@
 
 exports[`Component: SearchInput ui with icon 1`] = `
 <InputGroup
+  className=""
   tag="div"
 >
   <InputGroupAddon
@@ -13,7 +14,13 @@ exports[`Component: SearchInput ui with icon 1`] = `
     />
   </InputGroupAddon>
   <Input
+    className=""
     defaultValue=""
+    innerRef={
+      Object {
+        "current": null,
+      }
+    }
     onChange={[Function]}
     onKeyUp={[Function]}
     type="text"
@@ -23,6 +30,7 @@ exports[`Component: SearchInput ui with icon 1`] = `
 
 exports[`Component: SearchInput ui with icon when undefined 1`] = `
 <InputGroup
+  className=""
   tag="div"
 >
   <InputGroupAddon
@@ -34,7 +42,13 @@ exports[`Component: SearchInput ui with icon when undefined 1`] = `
     />
   </InputGroupAddon>
   <Input
+    className=""
     defaultValue=""
+    innerRef={
+      Object {
+        "current": null,
+      }
+    }
     onChange={[Function]}
     onKeyUp={[Function]}
     type="text"
@@ -44,7 +58,13 @@ exports[`Component: SearchInput ui with icon when undefined 1`] = `
 
 exports[`Component: SearchInput ui without icon 1`] = `
 <Input
+  className=""
   defaultValue=""
+  innerRef={
+    Object {
+      "current": null,
+    }
+  }
   onChange={[Function]}
   onKeyUp={[Function]}
   type="text"

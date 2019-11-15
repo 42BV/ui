@@ -4,6 +4,15 @@ import { Input, InputProps, InputGroup, InputGroupAddon } from 'reactstrap';
 
 import { Icon } from '../Icon';
 
+interface SearchInputApi {
+  /**
+   * Sets the value of the SearchInput's inner <input> element
+   * cancels any active debounce, and calls props.onChange with
+   * the value.
+   */
+  setValue: (value: string) => void;
+}
+
 type ModifiedInputProps = Omit<
   InputProps,
   // We are going to override onChange so it sends out strings.
@@ -30,7 +39,9 @@ interface Props extends ModifiedInputProps {
   debounceSettings?: DebounceSettings;
 
   /**
-   * The value that the form element currently has.
+   * The default value that the form element currently has.
+   * In the future this will be called `defaultValue` instead
+   * of `value`.
    */
   value: string;
 
@@ -45,6 +56,31 @@ interface Props extends ModifiedInputProps {
    * Defaults to true.
    */
   showIcon?: boolean;
+
+  /**
+   * Optional extra CSS class you want to add to the component.
+   * Useful for styling the component.
+   */
+  className?: string;
+
+  /**
+   * Optionally you can use the `children` prop to manipulate the
+   * value rendered inside of the `SearchInput`.
+   *
+   * You will be called with the `searchInput`, which you must render, and
+   * an API object, which you can use to manually alter the value.
+   *
+   * The `setValue` in the API will then cancel any active debounce.
+   *
+   * This has to be done via this unconventional api because the
+   * `SearchInput` has to use an uncontrolled <input> so it can
+   * debounce the value. If you would change the `props.value` from
+   * outside this component nothing would normally happen.
+   */
+  children?: (
+    searchInput: React.ReactNode,
+    api: SearchInputApi
+  ) => React.ReactNode;
 }
 
 /**
@@ -62,8 +98,12 @@ export default function SearchInput(props: Props) {
     value,
     onChange,
     showIcon = true,
+    className = '',
+    children,
     ...rest
   } = props;
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleChange = useRef(
     lodashDebounce(onChange, debounce, debounceSettings)
@@ -75,6 +115,14 @@ export default function SearchInput(props: Props) {
     }
   }
 
+  function setValue(value: string) {
+    if (inputRef.current) {
+      inputRef.current.value = value;
+      onChange(value);
+      handleChange.current.cancel();
+    }
+  }
+
   // We map value to defaultValue so this component is completely
   // controlled by us. Otherwise the value of the <Input> will only
   // update after the onChange. Which would never work because it is
@@ -82,6 +130,8 @@ export default function SearchInput(props: Props) {
 
   const input = (
     <Input
+      className={!showIcon ? className : ''}
+      innerRef={inputRef}
       defaultValue={value}
       onChange={event => handleChange.current(event.target.value)}
       onKeyUp={handleKeyUp}
@@ -89,16 +139,16 @@ export default function SearchInput(props: Props) {
     />
   );
 
-  if (showIcon) {
-    return (
-      <InputGroup size={rest.size}>
-        <InputGroupAddon addonType="prepend">
-          <Icon icon="search" />
-        </InputGroupAddon>
-        {input}
-      </InputGroup>
-    );
-  } else {
-    return input;
-  }
+  const searchInput = showIcon ? (
+    <InputGroup className={className} size={rest.size}>
+      <InputGroupAddon addonType="prepend">
+        <Icon icon="search" />
+      </InputGroupAddon>
+      {input}
+    </InputGroup>
+  ) : (
+    input
+  );
+
+  return children ? <>{children(searchInput, { setValue })}</> : searchInput;
 }
