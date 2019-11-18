@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ImgUpload ui edit as circle: Component: ImgUpload => ui => edit as circle 1`] = `
+exports[`Component: ImageUpload ui edit as circle: Component: ImageUpload => ui => edit as circle 1`] = `
 <div>
   <FormGroup
     className="img-upload"
@@ -76,7 +76,7 @@ exports[`Component: ImgUpload ui edit as circle: Component: ImgUpload => ui => e
 </div>
 `;
 
-exports[`Component: ImgUpload ui edit as rect: Component: ImgUpload => ui => edit as rect 1`] = `
+exports[`Component: ImageUpload ui edit as rect: Component: ImageUpload => ui => edit as rect 1`] = `
 <div>
   <FormGroup
     className="img-upload"
@@ -136,7 +136,7 @@ exports[`Component: ImgUpload ui edit as rect: Component: ImgUpload => ui => edi
         icon="cancel"
         onClick={[Function]}
       >
-        Cancel
+        CANCEL
       </Button>
       <Button
         className="ml-1"
@@ -144,7 +144,7 @@ exports[`Component: ImgUpload ui edit as rect: Component: ImgUpload => ui => edi
         icon="done"
         onClick={[Function]}
       >
-        Done
+        DONE
       </Button>
     </FormGroup>
     Some error
@@ -152,7 +152,7 @@ exports[`Component: ImgUpload ui edit as rect: Component: ImgUpload => ui => edi
 </div>
 `;
 
-exports[`Component: ImgUpload ui file-selected as circle: Component: ImgUpload => ui => file-selected as circle 1`] = `
+exports[`Component: ImageUpload ui file-selected as circle: Component: ImageUpload => ui => file-selected as circle 1`] = `
 <div>
   <FormGroup
     className="img-upload"
@@ -197,7 +197,7 @@ exports[`Component: ImgUpload ui file-selected as circle: Component: ImgUpload =
         icon="camera_roll"
         onClick={[Function]}
       >
-        Change
+        CHANGE
       </Button>
       <Button
         className="ml-1"
@@ -205,7 +205,7 @@ exports[`Component: ImgUpload ui file-selected as circle: Component: ImgUpload =
         icon="delete"
         onClick={[Function]}
       >
-        Remove
+        REMOVE
       </Button>
     </FormGroup>
     Some error
@@ -213,7 +213,7 @@ exports[`Component: ImgUpload ui file-selected as circle: Component: ImgUpload =
 </div>
 `;
 
-exports[`Component: ImgUpload ui file-selected as rect: Component: ImgUpload => ui => file-selected as rect 1`] = `
+exports[`Component: ImageUpload ui file-selected as rect: Component: ImageUpload => ui => file-selected as rect 1`] = `
 <div>
   <FormGroup
     className="img-upload"
@@ -274,7 +274,7 @@ exports[`Component: ImgUpload ui file-selected as rect: Component: ImgUpload => 
 </div>
 `;
 
-exports[`Component: ImgUpload ui no-file: Component: ImgUpload => ui => no-file 1`] = `
+exports[`Component: ImageUpload ui no-file: Component: ImageUpload => ui => no-file 1`] = `
 <div>
   <FormGroup
     className="img-upload"

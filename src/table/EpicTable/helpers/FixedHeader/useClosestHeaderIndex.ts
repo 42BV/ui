@@ -4,19 +4,18 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import { useEffect, useState, MutableRefObject } from 'react';
-import { last } from 'lodash';
+import { useEffect, useState, RefObject } from 'react';
 import { HeaderRef } from '../../types';
 
 /**
- * Calculates which header is rendered closest to the FixedHeader by 
+ * Calculates which header is rendered closest to the FixedHeader by
  * index
- * 
+ *
  * Used to determine which header the FixedHeader should take as
  * its appearance.
  */
 export function useClosestHeaderIndex(
-  fixedHeaderEl: MutableRefObject<HTMLDivElement>,
+  fixedHeaderEl: RefObject<HTMLDivElement>,
   headers: HeaderRef[]
 ) {
   const [index, setIndex] = useState(-1);
@@ -33,7 +32,11 @@ export function useClosestHeaderIndex(
         });
 
         if (headersAboveFakeHeader && headersAboveFakeHeader.length > 0) {
-          setIndex(last(headersAboveFakeHeader).index);
+          const lastIndex = headersAboveFakeHeader.length - 1;
+
+          setIndex(
+            headersAboveFakeHeader[lastIndex].index
+          );
         } else {
           setIndex(-1);
         }

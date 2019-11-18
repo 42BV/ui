@@ -53,7 +53,7 @@ interface Props<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T | null) => void;
+  onChange: (value: T) => void;
 
   /**
    * Optional callback for when the form element is blurred.
@@ -85,7 +85,7 @@ interface Props<T> {
 export interface State<T> {
   isOpen: boolean;
   page: Page<T>;
-  selected?: T;
+  selected?: T | null;
   query: string;
   userHasSearched: boolean;
 }

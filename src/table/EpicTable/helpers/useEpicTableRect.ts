@@ -4,9 +4,9 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import { MutableRefObject, useState, useEffect } from "react";
+import { useState, useEffect, RefObject } from "react";
 
-export function useEpicTableRect(epicTableEl: MutableRefObject<HTMLDivElement>) {
+export function useEpicTableRect(epicTableEl: RefObject<HTMLDivElement>) {
   const [epicTableRect, setEpicTableRect] = useState<
     DOMRect | ClientRect | null
   >(null);

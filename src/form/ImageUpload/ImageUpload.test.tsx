@@ -4,11 +4,16 @@ import toJson from 'enzyme-to-json';
 
 import * as imgUploadUtils from './utils';
 
-import ImgUpload, { requireImage, Crop, limitImageSize } from './ImageUpload';
+import ImageUpload, {
+  requireImage,
+  Crop,
+  limitImageSize,
+  Text
+} from './ImageUpload';
 
 import * as testUtils from '../../test/utils';
 
-describe('Component: ImgUpload', () => {
+describe('Component: ImageUpload', () => {
   let imgUpload: ShallowWrapper;
 
   let onChangeSpy: jest.Mock<any, any>;
@@ -16,10 +21,12 @@ describe('Component: ImgUpload', () => {
 
   function setup({
     value,
-    cropType
+    cropType,
+    text
   }: {
     value?: File | string;
     cropType: 'rect' | 'circle';
+    text?: Text;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -30,7 +37,7 @@ describe('Component: ImgUpload', () => {
         : { size: 250, type: 'circle' };
 
     imgUpload = shallow(
-      <ImgUpload
+      <ImageUpload
         id="image-uploader"
         label="Profile photo"
         crop={crop}
@@ -39,6 +46,7 @@ describe('Component: ImgUpload', () => {
         onBlur={onBlurSpy}
         error="Some error"
         color="success"
+        text={text}
       />
     );
   }
@@ -46,7 +54,7 @@ describe('Component: ImgUpload', () => {
   describe('componentDidMount', () => {
     it('should not show the image when the value is null', () => {
       // @ts-ignore
-      const imgUpload = new ImgUpload();
+      const imgUpload = new ImageUpload();
 
       imgUpload.props = { value: null };
       jest.spyOn(imgUpload, 'setState');
@@ -58,7 +66,7 @@ describe('Component: ImgUpload', () => {
 
     it('should not show the image when the value is empty string', () => {
       // @ts-ignore
-      const imgUpload = new ImgUpload();
+      const imgUpload = new ImageUpload();
 
       imgUpload.props = { value: '' };
       jest.spyOn(imgUpload, 'setState');
@@ -70,7 +78,7 @@ describe('Component: ImgUpload', () => {
 
     test('it should show the image when the value is a non empty string', () => {
       // @ts-ignore
-      const imgUpload = new ImgUpload();
+      const imgUpload = new ImageUpload();
 
       imgUpload.props = { value: 'maarten.png' };
       jest.spyOn(imgUpload, 'setState').mockImplementation(() => undefined);
@@ -92,27 +100,48 @@ describe('Component: ImgUpload', () => {
       imgUpload.setState({ imageSrc: 'maarten.png', mode: 'file-selected' });
 
       expect(toJson(imgUpload)).toMatchSnapshot(
-        'Component: ImgUpload => ui => file-selected as rect'
+        'Component: ImageUpload => ui => file-selected as rect'
       );
     });
 
     test('file-selected as circle', () => {
-      setup({ value: new File([''], 'maarten.png'), cropType: 'circle' });
+      setup({
+        value: new File([''], 'maarten.png'),
+        cropType: 'circle',
+        text: {
+          cancel: 'CANCEL',
+          change: 'CHANGE',
+          remove: 'REMOVE',
+          done: 'DONE'
+        }
+      });
 
       imgUpload.setState({ imageSrc: 'maarten.png', mode: 'file-selected' });
 
       expect(toJson(imgUpload)).toMatchSnapshot(
-        'Component: ImgUpload => ui => file-selected as circle'
+        'Component: ImageUpload => ui => file-selected as circle'
       );
     });
 
     test('edit as rect', () => {
-      setup({ value: undefined, cropType: 'rect' });
+      setup({
+        value: undefined,
+        cropType: 'rect',
+        text: {
+          cancel: 'CANCEL',
+          change: 'CHANGE',
+          remove: 'REMOVE',
+          done: 'DONE'
+        }
+      });
 
-      imgUpload.setState({ imageSrc: 'maarten.png', mode: 'edit' });
+      imgUpload.setState({
+        imageSrc: 'maarten.png',
+        mode: 'edit'
+      });
 
       expect(toJson(imgUpload)).toMatchSnapshot(
-        'Component: ImgUpload => ui => edit as rect'
+        'Component: ImageUpload => ui => edit as rect'
       );
     });
 
@@ -122,7 +151,7 @@ describe('Component: ImgUpload', () => {
       imgUpload.setState({ imageSrc: 'maarten.png', mode: 'edit' });
 
       expect(toJson(imgUpload)).toMatchSnapshot(
-        'Component: ImgUpload => ui => edit as circle'
+        'Component: ImageUpload => ui => edit as circle'
       );
     });
 
@@ -131,7 +160,7 @@ describe('Component: ImgUpload', () => {
       imgUpload.setState({ mode: 'no-file' });
 
       expect(toJson(imgUpload)).toMatchSnapshot(
-        'Component: ImgUpload => ui => no-file'
+        'Component: ImageUpload => ui => no-file'
       );
     });
   });

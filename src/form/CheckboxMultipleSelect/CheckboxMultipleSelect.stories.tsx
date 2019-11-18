@@ -21,7 +21,7 @@ const options: SubjectOption[] = range(0, 100).map(i => ({
 
 storiesOf('Form|CheckboxMultipleSelect', module)
   .add('defined options', () => {
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
 
     return (
       <div>
@@ -41,7 +41,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
     );
   })
   .add('fetched options', () => {
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
       <Form>

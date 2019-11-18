@@ -35,7 +35,7 @@ const large = Promise.resolve(
 storiesOf('Form|ValuePicker/multiple', module)
   .addParameters({ component: ValuePicker })
   .add('basic', () => {
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState<User[] | undefined>(undefined);
 
     const [size, setSize] = useState('small');
 
@@ -97,7 +97,7 @@ storiesOf('Form|ValuePicker/multiple', module)
 storiesOf('Form|ValuePicker/single', module)
   .addParameters({ component: ValuePicker })
   .add('basic', () => {
-    const [value, setValue] = useState(undefined);
+    const [value, setValue] = useState<User | undefined>(undefined);
 
     const [size, setSize] = useState('small');
 

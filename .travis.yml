@@ -7,6 +7,7 @@ before_script:
 script:
   - npm i
   - npm run lint
+  - npm run tsc
   - jest --coverage --outputFile test-results.json --json
   - npx danger ci
   - rm -f test-results.json

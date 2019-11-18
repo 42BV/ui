@@ -13,7 +13,7 @@ import { FinalForm, Form } from '../../story-utils';
 
 storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
   .add('default', () => {
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
       <Form>
@@ -33,7 +33,7 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('with extra add button', () => {
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
       <Form>
@@ -66,7 +66,7 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('without search', () => {
-    const [value, setValue] = useState([]);
+    const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
       <Form>

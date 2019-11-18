@@ -45,6 +45,7 @@ describe('Component: EpicSort', () => {
     it('should call onChange with true when checkbox is clicked while not checked', () => {
       const { epicSelection, onChangeSpy } = setup({ direction: 'DESC' });
 
+      // @ts-ignore
       epicSelection
         .find(Icon)
         .props()

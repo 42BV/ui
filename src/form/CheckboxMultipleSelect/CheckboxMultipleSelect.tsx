@@ -32,7 +32,7 @@ interface Props<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T[] | null) => void;
+  onChange: (value: T[]) => void;
 
   /**
    * Optional callback for when the form element is blurred.

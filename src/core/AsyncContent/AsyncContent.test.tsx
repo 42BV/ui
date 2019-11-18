@@ -25,7 +25,7 @@ describe('Component: AsyncContent', () => {
     const asyncContent = shallow(
       // @ts-ignore
       <AsyncContent state={state} showRetryButton={showRetryButton}>
-        {data => <h2>{data}</h2>}
+        {(data: string) => <h2>{data}</h2>}
       </AsyncContent>
     );
 

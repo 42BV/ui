@@ -17,12 +17,13 @@ import {
   calculateScale
 } from './utils';
 
-interface Text {
+export interface Text {
   cancel?: string;
   change?: string;
   remove?: string;
   done?: string;
 }
+
 interface CropRect {
   /**
    * Crop is a rectangle
@@ -149,10 +150,6 @@ interface State {
 const reader = new FileReader();
 
 export default class ImageUpload extends Component<Props, State> {
-  static defaultProps = {
-    text: {}
-  };
-
   state = {
     mode: Mode.NO_FILE,
     imageSrc: '',
@@ -369,7 +366,7 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   renderFileSelectedButtons() {
-    const { change, remove } = this.props.text;
+    const { text = {} } = this.props;
 
     return (
       <FormGroup className="text-center mt-1">
@@ -381,7 +378,7 @@ export default class ImageUpload extends Component<Props, State> {
           {t({
             key: 'ImageUpload.CHANGE',
             fallback: 'Change',
-            overrideText: change
+            overrideText: text.change
           })}
         </Button>
         <Button
@@ -393,7 +390,7 @@ export default class ImageUpload extends Component<Props, State> {
           {t({
             key: 'ImageUpload.REMOVE',
             fallback: 'Remove',
-            overrideText: remove
+            overrideText: text.remove
           })}
         </Button>
       </FormGroup>
@@ -401,7 +398,7 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   renderEditButtons() {
-    const { cancel, done } = this.props.text;
+    const { text = {} } = this.props;
 
     return (
       <FormGroup className="d-flex justify-content-center mt-1">
@@ -428,7 +425,7 @@ export default class ImageUpload extends Component<Props, State> {
           {t({
             key: 'ImageUpload.CANCEL',
             fallback: 'Cancel',
-            overrideText: cancel
+            overrideText: text.cancel
           })}
         </Button>
 
@@ -441,7 +438,7 @@ export default class ImageUpload extends Component<Props, State> {
           {t({
             key: 'ImageUpload.DONE',
             fallback: 'Done',
-            overrideText: done
+            overrideText: text.done
           })}
         </Button>
       </FormGroup>

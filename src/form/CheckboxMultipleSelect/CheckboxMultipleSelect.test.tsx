@@ -149,7 +149,7 @@ describe('Component: CheckboxMultipleSelect', () => {
 
   describe('events', () => {
     test('onChange', () => {
-      let value = undefined;
+      let value: User[] | undefined = undefined;
 
       setup({ value, isOptionEnabled: undefined });
 

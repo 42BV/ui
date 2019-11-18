@@ -34,6 +34,7 @@ describe('Component: EpicExpander', () => {
     it('should open the expander when it is clicked when it is closed', () => {
       const { epicExpander, onChangeSpy } = setup({ open: false });
 
+      // @ts-ignore
       epicExpander
         .find(Button)
         .props()
@@ -47,6 +48,7 @@ describe('Component: EpicExpander', () => {
     it('should close the expander when it is clicked when it is open', () => {
       const { epicExpander, onChangeSpy } = setup({ open: true });
 
+      // @ts-ignore
       epicExpander
         .find(Button)
         .props()

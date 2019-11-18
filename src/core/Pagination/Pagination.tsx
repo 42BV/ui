@@ -66,7 +66,7 @@ export function pagesFor(
   currentPage: number,
   totalPages: number
 ): (number | Dots)[] {
-  const content = [];
+  const content: (number | Dots)[] = [];
 
   if (currentPage > 1) {
     content.push(1);
