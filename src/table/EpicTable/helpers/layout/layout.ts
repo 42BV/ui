@@ -4,7 +4,7 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import { Children, cloneElement, createElement } from 'react';
+import { Children, cloneElement, createElement, ReactElement } from 'react';
 import { isFragment } from 'react-is';
 
 import { EpicExpanderRow } from '../../rows/EpicExpanderRow/EpicExpanderRow';
@@ -169,13 +169,13 @@ export function epicTableLayout(
   hasRight: boolean
 ): EpicTableLayout {
   // Will contain all the first columns as sections.
-  const left = [];
+  const left: EpicTableLayoutSection[] = [];
 
   // Will contain the middle columns as sections.
-  const center = [];
+  const center: EpicTableLayoutSection[] = [];
 
   // Will contain all the last columns as sections.
-  const right = [];
+  const right: EpicTableLayoutSection[] = [];
 
   let leftSection: EpicTableLayoutSection = { header: [], contents: [] };
   let centerSection: EpicTableLayoutSection = { header: [], contents: [] };
@@ -185,13 +185,13 @@ export function epicTableLayout(
   // so it renders the shadows properly.
   let containsActiveDetailRow = false;
 
-  Children.forEach(getRows(children), (row, index) => {
-    if (row.type === EpicExpanderRow && rect) {
-      return handleExpanderRow(row);
+  Children.forEach(getRows(children), (row: ReactElement, index) => {
+    if (row.type === EpicExpanderRow && rect !== null) {
+      return handleExpanderRow(row, rect);
     }
 
-    if (row.type === EpicDetailRow && rect) {
-      return handleEpicDetailRow(row);
+    if (row.type === EpicDetailRow && rect !== null) {
+      return handleEpicDetailRow(row, rect);
     }
 
     handleEpicRow(row, index);
@@ -245,12 +245,12 @@ export function epicTableLayout(
     }
 
     // These will contain all non header cells
-    const leftRow = [];
-    const centerRow = [];
-    const rightRow = [];
+    const leftRow: ReactElement[] = [];
+    const centerRow: ReactElement[] = [];
+    const rightRow: ReactElement[] = [];
 
     // Put all cells in the correct bucket
-    Children.forEach(cells, (cell, cellIndex) => {
+    Children.forEach(cells, (cell: ReactElement, cellIndex) => {
       // The first cell should be bucketed on the left
       if (cellIndex === 0) {
         if (isHeader) {
@@ -290,7 +290,7 @@ export function epicTableLayout(
   }
 
   // Impure helper function for handling EpicDetailRow's
-  function handleEpicDetailRow(row: any) {
+  function handleEpicDetailRow(row: any, rect: DOMRect | ClientRect) {
     // Clone the element because we are injecting extra props.
     const clone = cloneElement(row, {
       width: rect.width - row.props.left,
@@ -315,7 +315,7 @@ export function epicTableLayout(
   }
 
   // Impure helper function for handling ExpanderRow's
-  function handleExpanderRow(row: any) {
+  function handleExpanderRow(row: any, rect: DOMRect | ClientRect) {
     // Clone the element because we are injecting extra props.
     const clone = cloneElement(row, { width: rect.width, key: 1337 });
 
@@ -346,12 +346,12 @@ export function epicTableLayout(
 // Function which gathers all Row's inside of the EpicTable.
 // Also unpacks fragments at one level deep to help the user map
 // over array's
-export function getRows(children: any) {
-  const rows = [];
+export function getRows(children: any): ReactElement[] {
+  const rows: ReactElement[] = [];
 
-  Children.forEach(children, child => {
+  Children.forEach(children, (child: ReactElement) => {
     if (isFragment(child)) {
-      child.props.children.forEach(row => {
+      child.props.children.forEach((row: ReactElement) => {
         rows.push(row);
       });
     } else {

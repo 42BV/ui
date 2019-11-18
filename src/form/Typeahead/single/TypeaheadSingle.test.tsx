@@ -60,7 +60,7 @@ describe('Component: TypeaheadSingle', () => {
         asyncTypeahead.props().onChange([]);
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(null);
+        expect(onChangeSpy).toHaveBeenCalledWith(undefined);
       });
 
       test('value selected', () => {
@@ -122,7 +122,7 @@ describe('Component: TypeaheadSingle', () => {
           });
 
           expect(onChangeSpy).toHaveBeenCalledTimes(1);
-          expect(onChangeSpy).toHaveBeenCalledWith(null);
+          expect(onChangeSpy).toHaveBeenCalledWith(undefined);
           done();
         } catch (error) {
           console.error(error);

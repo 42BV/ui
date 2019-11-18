@@ -60,7 +60,7 @@ describe('Component: TypeaheadMultiple', () => {
         asyncTypeahead.props().onChange([]);
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(null);
+        expect(onChangeSpy).toHaveBeenCalledWith(undefined);
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
       });
 

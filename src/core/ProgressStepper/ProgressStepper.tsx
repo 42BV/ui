@@ -85,7 +85,11 @@ export default function ProgressStepper<T>(props: Props<T>) {
           <div key={title} className={classes}>
             <div
               className="step-item"
-              onClick={() => clickable && onClick(step, index)}
+              onClick={() => {
+                if (clickable && onClick) {
+                  onClick(step, index);
+                }
+              }}
             >
               <div className="step-circle">
                 <span>{index + 1}</span>

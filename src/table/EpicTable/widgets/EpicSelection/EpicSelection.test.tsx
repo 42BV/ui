@@ -34,6 +34,7 @@ describe('Component: EpicSelection', () => {
     it('should call onChange with true when checkbox is clicked while not checked', () => {
       const { epicSelection, onChangeSpy } = setup({ checked: false });
 
+      // @ts-ignore
       epicSelection
         .find(Input)
         .props()
@@ -47,6 +48,7 @@ describe('Component: EpicSelection', () => {
     it('should call onChange with false when checkbox is clicked while checked', () => {
       const { epicSelection, onChangeSpy } = setup({ checked: true });
 
+      // @ts-ignore
       epicSelection
         .find(Input)
         .props()

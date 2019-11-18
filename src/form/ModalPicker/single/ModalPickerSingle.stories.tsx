@@ -9,7 +9,7 @@ import { User } from '../../../test/types';
 
 storiesOf('Form/ModalPicker/ModalPickerSingle', module)
   .add('basic', () => {
-    const [value, setValue] = useState(undefined);
+    const [value, setValue] = useState<User| undefined>(undefined);
 
     return (
       <Form>
@@ -29,7 +29,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('with extra add button', () => {
-    const [value, setValue] = useState(undefined);
+    const [value, setValue] = useState<User| undefined>(undefined);
 
     return (
       <Form>
@@ -62,7 +62,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('without search', () => {
-    const [value, setValue] = useState(undefined);
+    const [value, setValue] = useState<User| undefined | null>(undefined);
 
     return (
       <Form>

@@ -65,8 +65,8 @@ export function GooeyCenter({
   showScrollbar = true,
   onCenterWidthChanged
 }: Props) {
-  const wrapperEl = useRef(null);
-  const centerEl = useRef(null);
+  const wrapperEl = useRef<HTMLDivElement>(null);
+  const centerEl = useRef<HTMLDivElement>(null);
 
   const [centerWidth, setCenterWidth] = useState(0);
 
@@ -74,8 +74,8 @@ export function GooeyCenter({
     const calculateCenterWidth = debounce(() => {
       if (wrapperEl.current) {
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const [left, _, right] = wrapperEl.current.children;
+        const left = wrapperEl.current.children[0];
+        const right = wrapperEl.current.children[2];
 
         const rightWidth = right ? right.clientWidth : 0;
 

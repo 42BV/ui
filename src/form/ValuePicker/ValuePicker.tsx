@@ -89,7 +89,7 @@ interface SingleValuePicker<T> extends BaseValuePickerProps<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T | null) => void;
+  onChange: (value: T) => void;
 
   /**
    * The value that the form element currently has.
@@ -106,7 +106,7 @@ interface MultipleValuePicker<T> extends BaseValuePickerProps<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T[] | null) => void;
+  onChange: (value: T[]) => void;
 
   /**
    * The value that the form element currently has.

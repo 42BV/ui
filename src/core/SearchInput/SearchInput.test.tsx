@@ -14,7 +14,7 @@ describe('Component: SearchInput', () => {
     debounceSettings
   }: {
     debounce?: number;
-    showIcon: boolean;
+    showIcon?: boolean;
     debounceSettings?: lodash.DebounceSettings;
   }) {
     // @ts-ignore
@@ -61,6 +61,7 @@ describe('Component: SearchInput', () => {
     it('should debounce by 500 by default', () => {
       const { searchInput, onChangeSpy } = setup({ showIcon: true });
 
+      // @ts-ignore
       searchInput
         .find(Input)
         .props()
@@ -83,6 +84,7 @@ describe('Component: SearchInput', () => {
         debounce: 10
       });
 
+      // @ts-ignore
       searchInput
         .find(Input)
         .props()
@@ -105,6 +107,7 @@ describe('Component: SearchInput', () => {
         debounceSettings
       });
 
+      // @ts-ignore
       searchInput
         .find(Input)
         .props()
@@ -124,6 +127,7 @@ describe('Component: SearchInput', () => {
       it('should on "ENTER" press set the value immediately', () => {
         const { searchInput, onChangeSpy } = setup({ showIcon: true });
 
+        // @ts-ignore
         searchInput
           .find(Input)
           .props()
@@ -137,6 +141,7 @@ describe('Component: SearchInput', () => {
       it('should on letters other "ENTER" wait for the debounce', () => {
         const { searchInput, onChangeSpy } = setup({ showIcon: true });
 
+        // @ts-ignore
         searchInput
           .find(Input)
           .props()

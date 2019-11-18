@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import ImageUpload, { JarbImageUpload, requireImage } from './ImageUpload';
 import { Form, FinalForm } from '../story-utils';
 
-storiesOf('Form|ImgUpload', module)
+storiesOf('Form|ImageUpload', module)
   .add('rect', () => {
     return (
       <Form>

@@ -271,6 +271,7 @@ describe('Component: Button', () => {
 
           const event = new Event('click');
 
+          // @ts-ignore
           button
             .find('Button')
             .props()

@@ -30,6 +30,7 @@ describe('Component: EpicResize', () => {
         <EpicResize width={300} onResize={onResizeSpy} />
       );
 
+      // @ts-ignore
       epicResize
         .find('div')
         .props()
@@ -72,6 +73,7 @@ describe('Component: EpicResize', () => {
         <EpicResize width={300} onResize={onResizeSpy} />
       );
 
+      // @ts-ignore
       epicResize
         .find('div')
         .props()

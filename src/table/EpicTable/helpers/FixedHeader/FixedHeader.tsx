@@ -69,7 +69,7 @@ export function FixedHeader({
         <GooeyCenter
           left={<div className="shadow">{left[index].header}</div>}
           center={
-            center.length > 0 ? (
+            center && center.length > 0 ? (
               <div
                 ref={fixedCenterEl}
                 className="d-flex justify-content-between overflow-hidden"
@@ -80,7 +80,7 @@ export function FixedHeader({
             ) : null
           }
           right={
-            right.length > 0 ? (
+            right && right.length > 0 ? (
               <div className="shadow">{right[index].header}</div>
             ) : null
           }

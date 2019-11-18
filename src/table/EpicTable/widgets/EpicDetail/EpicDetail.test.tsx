@@ -34,6 +34,7 @@ describe('Component: EpicDetail', () => {
 
       const event = new MouseEvent('click');
 
+      // @ts-ignore
       epicDetail
         .find(Icon)
         .props()

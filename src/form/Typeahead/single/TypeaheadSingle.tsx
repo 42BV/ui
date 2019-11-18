@@ -44,7 +44,7 @@ interface Props<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T | null) => void;
+  onChange: (value: T | undefined) => void;
 
   /**
    * Callback for when the form element gets the focus.
@@ -107,7 +107,7 @@ export default class TypeaheadSingle<T> extends Component<Props<T>, State<T>> {
 
   onChange(values: TypeaheadOption<T>[]) {
     if (values.length === 0) {
-      this.props.onChange(null);
+      this.props.onChange(undefined);
     } else {
       const selectedOption = values[0];
 
@@ -141,7 +141,7 @@ export default class TypeaheadSingle<T> extends Component<Props<T>, State<T>> {
     if (selectedValue) {
       this.props.onChange(selectedValue.value);
     } else {
-      this.props.onChange(null);
+      this.props.onChange(undefined);
     }
   }
 
@@ -159,7 +159,7 @@ export default class TypeaheadSingle<T> extends Component<Props<T>, State<T>> {
       className = ''
     } = this.props;
 
-    const selected = [];
+    const selected: TypeaheadOption<T>[] = [];
     if (value) {
       const option = valueToTypeaheadOption(value, optionForValue);
       selected.push(option);

@@ -53,6 +53,7 @@ export default function Icon({
   disabled
 }: Props) {
   const colorCssClass = color !== undefined ? `text-${color}` : undefined;
+
   const classes = classNames(
     'icon',
     className,
@@ -68,7 +69,7 @@ export default function Icon({
     <i
       id={id}
       onClick={event => {
-        if (!disabled) {
+        if (!disabled && onClick) {
           onClick(event);
         }
       }}

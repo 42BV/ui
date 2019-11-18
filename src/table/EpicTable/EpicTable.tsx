@@ -147,7 +147,7 @@ export function EpicTable({
             </div>
           }
           center={
-            center.length > 0
+            center && center.length > 0
               ? center.map((section, index) => (
                   <Fragment key={index}>
                     <div className="d-flex justify-content-between">
@@ -167,11 +167,11 @@ export function EpicTable({
               : null
           }
           right={
-            hasRight && right.length > 0 ? (
+            hasRight && right && right.length > 0 ? (
               <div
                 className={containsActiveDetailRow || overlay ? '' : 'shadow'}
               >
-                {right.map((section, index) => (
+                {right && right.map((section, index) => (
                   <Fragment key={index}>
                     {section.header}
 
