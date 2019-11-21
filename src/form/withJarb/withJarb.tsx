@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FieldRenderProps, Field, UseFieldConfig } from 'react-final-form';
+import { FieldRenderProps, Field } from 'react-final-form';
 import { JarbField, JarbFieldProps } from '@42.nl/jarb-final-form';
 import getDisplayName from 'react-display-name';
 import { clearErrorsForValidator } from '@42.nl/react-error-store';
@@ -8,14 +8,21 @@ import { pick, omit } from 'lodash';
 import FormError from '../FormError/FormError';
 import { getState } from '../utils';
 
-// This is a list of props that we withJarb will pass to the `final-form`
+// This is a list of props that `withJarb` will pass to the `final-form`
 // Field, but not the wrapper.
 const passedFieldProps = ['initialValue', 'format', 'formatOnBlur', 'parse'];
 
-type PassedFieldProps<Value> = Pick<
-  UseFieldConfig<Value>,
-  'initialValue' | 'format' | 'formatOnBlur' | 'parse'
->;
+// These are the props that are managed by `withJarb` and should not
+// be set manually by the user.
+const managedProps = [
+  'onChange',
+  'onBlur',
+  'onFocus',
+  'value',
+  'color',
+  'valid',
+  'error'
+];
 
 interface FieldCompatible<Value, ChangeValue> {
   onChange: (value: ChangeValue) => void;
@@ -47,7 +54,9 @@ export default function withJarb<
   ChangeValue,
   P extends FieldCompatible<Value, ChangeValue>
 >(Wrapper: React.ComponentType<P>) {
-  WithJarb.displayName = `Jarb${getDisplayName(Wrapper)}`;
+  const displayName = `Jarb${getDisplayName(Wrapper)}`;
+
+  WithJarb.displayName = displayName;
 
   function WithJarb(
     props: JarbFieldProps<Value, any> &
@@ -62,6 +71,27 @@ export default function withJarb<
         | 'error'
       >
   ) {
+    const illegalProps = managedProps.filter(p => props[p] !== undefined);
+
+    if (illegalProps.length > 0) {
+      const illegalPropsAsString = prettyPropsSummation(illegalProps, 'and');
+      const managedPropsAsString = prettyPropsSummation(managedProps, 'or');
+
+      throw new Error(`
+        withJarb: illegal props detected on "${displayName}".
+        
+        The following illegal props were detected: ${illegalPropsAsString}.
+        
+        This happens when providing one or multiple of the following 
+        managed props: ${managedPropsAsString} manually. 
+        
+        You should never provide these props manually instead you should
+        trust that "withJarb" will manage these props for you.
+
+        Remove the following illegal props: ${illegalPropsAsString}.
+      `);
+    }
+
     const [hasErrors, setHasErrors] = useState(false);
 
     const {
@@ -162,4 +192,24 @@ function mapFieldRenderProps<T>(
     value: input.value,
     error
   };
+}
+
+function prettyPropsSummation(
+  props: string[],
+  coordinatingConjunction: 'and' | 'or'
+): string {
+  const lastIndex = props.length - 1;
+
+  return props
+    .map((prop, index) => {
+      const isFirst = index === 0;
+      const isLast = index === lastIndex;
+
+      const comma = isFirst || isLast ? '' : ', ';
+
+      const conjunction = isLast ? ` ${coordinatingConjunction} ` : '';
+
+      return `${comma}${conjunction}'${prop}'`;
+    })
+    .join('');
 }
