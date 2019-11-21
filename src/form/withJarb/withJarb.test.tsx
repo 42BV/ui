@@ -35,7 +35,7 @@ describe('HoC: withJarb', () => {
         label="First name"
         placeholder="Please enter your first name"
         // Should pass `passedFieldProps`
-        initialValue="beheer@42.nl" 
+        initialValue="beheer@42.nl"
         format={() => 'yolo'}
         formatOnBlur={false}
         parse={() => 'oloy'}
@@ -61,6 +61,13 @@ describe('HoC: withJarb', () => {
     expect(toJson(jarbFieldParent)).toMatchSnapshot('withJarb => ui');
     expect(toJson(jarbField)).toMatchSnapshot('withJarb => ui => jarbField');
     expect(toJson(formError)).toMatchSnapshot('withJarb => ui => formError');
+  });
+
+  it('should throw an error when detecting illegal props', () => {
+    expect(() =>
+      // @ts-ignore
+      shallow(<JarbInput value="test" onChange={() => undefined} />)
+    ).toThrowErrorMatchingSnapshot();
   });
 
   describe('events', () => {
