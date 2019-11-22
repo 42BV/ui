@@ -11,10 +11,41 @@ import { EpicExpanderRow } from '../../rows/EpicExpanderRow/EpicExpanderRow';
 import { EpicDetailRow } from '../../rows/EpicDetailRow/EpicDetailRow';
 
 export type EpicTableLayout = {
+  /**
+   * The layout sections that make up the left of the EpicTable
+   */
   left: EpicTableLayoutSection[];
+
+  /**
+   * The layout sections that make up the right of the EpicTable
+   */
   right?: EpicTableLayoutSection[];
+
+  /**
+   * The layout sections that make up the center of the EpicTable
+   */
   center?: EpicTableLayoutSection[];
+
+  /**
+   * Whether or not this layout contains an active detail row. A
+   * detail row takes up the center and right when displayed and
+   * the EpicTable needs to know this so it can determine if it
+   * needs to render shadows.
+   */
   containsActiveDetailRow: boolean;
+
+  /**
+   * Is the combined width of the first center row the layout encounters,
+   * as provided by the user. So if the user defines an EpicTable with
+   * 5 columns of 100px each, the totalCenterWidth would be 300. Because
+   * 500 pixels is the total desired width, minus 200px for the left
+   * and right, which leaves 300 as the totalDesiredCenterWidth.
+   *
+   * The EpicTable needs to know this to determine if the desired width
+   * can be met without the need for a center scrollbar. If so no shadows
+   * are rendered.
+   */
+  totalDesiredCenterWidth: number;
 };
 
 /**
@@ -181,6 +212,8 @@ export function epicTableLayout(
   let centerSection: EpicTableLayoutSection = { header: [], contents: [] };
   let rightSection: EpicTableLayoutSection = { header: [], contents: [] };
 
+  let totalDesiredCenterWidth = -1;
+
   // When there is an active detail row the EpicTable needs to know
   // so it renders the shadows properly.
   let containsActiveDetailRow = false;
@@ -207,7 +240,13 @@ export function epicTableLayout(
     right.push(rightSection);
   }
 
-  return { left, center, right, containsActiveDetailRow };
+  return {
+    left,
+    center,
+    right,
+    containsActiveDetailRow,
+    totalDesiredCenterWidth
+  };
 
   // Impure helper function for handling EpicRow's
   function handleEpicRow(row: any, index: number) {
@@ -281,6 +320,13 @@ export function epicTableLayout(
     leftSection.contents.push(leftRow);
 
     if (centerRow.length > 0) {
+      // Only calculate it once for the first center row encountered.
+      if (totalDesiredCenterWidth === -1) {
+        totalDesiredCenterWidth = centerRow.reduce((acc: number, cell) => {
+          return acc + cell.props.width;
+        }, 0);
+      }
+
       centerSection.contents.push(centerRow);
     }
 
