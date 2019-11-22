@@ -53,8 +53,8 @@ type Props = {
  *
  * The center gets a horizontal scrollbar for when the content
  * is to large to fit in the center.
- * 
- * GooeyCenter is not meant for consumers of the library and is 
+ *
+ * GooeyCenter is not meant for consumers of the library and is
  * a private component.
  */
 export function GooeyCenter({
@@ -70,35 +70,37 @@ export function GooeyCenter({
 
   const [centerWidth, setCenterWidth] = useState(0);
 
-  useEffect(function trackCenterWidthBasedOnResize() {
-    const calculateCenterWidth = debounce(() => {
-      if (wrapperEl.current) {
+  useEffect(
+    function trackCenterWidthBasedOnResize() {
+      const calculateCenterWidth = debounce(() => {
+        if (wrapperEl.current) {
+          const left = wrapperEl.current.children[0];
+          const right = wrapperEl.current.children[2];
 
-        const left = wrapperEl.current.children[0];
-        const right = wrapperEl.current.children[2];
+          const rightWidth = right ? right.clientWidth : 0;
 
-        const rightWidth = right ? right.clientWidth : 0;
+          const centerWidth =
+            wrapperEl.current.clientWidth - left.clientWidth - rightWidth;
 
-        const centerWidth =
-          wrapperEl.current.clientWidth - left.clientWidth - rightWidth;
+          setCenterWidth(centerWidth);
 
-        setCenterWidth(centerWidth);
-
-        if (onCenterWidthChanged) {
-          onCenterWidthChanged(centerWidth);
+          if (onCenterWidthChanged) {
+            onCenterWidthChanged(centerWidth);
+          }
         }
-      }
-    }, 200);
+      }, 200);
 
-    window.addEventListener('resize', calculateCenterWidth);
+      window.addEventListener('resize', calculateCenterWidth);
 
-    // Calculate at least once on startup
-    calculateCenterWidth();
+      // Calculate at least once on startup
+      calculateCenterWidth();
 
-    return () => {
-      window.removeEventListener('resize', calculateCenterWidth);
-    };
-  }, [setCenterWidth, onCenterWidthChanged]);
+      return () => {
+        window.removeEventListener('resize', calculateCenterWidth);
+      };
+    },
+    [setCenterWidth, onCenterWidthChanged]
+  );
 
   function handleScroll(this: OverlayScrollbars, event?: UIEvent) {
     if (onScroll && event) {
@@ -123,6 +125,7 @@ export function GooeyCenter({
 
       {center && showScrollbar ? (
         <OverlayScrollbarsComponent
+          className="w-100"
           options={{
             scrollbars: {
               visibility: 'visible'

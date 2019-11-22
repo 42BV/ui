@@ -669,6 +669,69 @@ storiesOf('table|EpicTable', module)
       </Card>
     );
   })
+  .add('small example', () => {
+    return (
+      <Card body>
+        <EpicTable>
+          <EpicRow header>
+            <EpicHeader width={300} height={44}>
+              First name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Last name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Age
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              Actions
+            </EpicHeader>
+          </EpicRow>
+
+          {persons.map(person => (
+            <EpicRow key={person.id}>
+              <EpicCell width={300} height={44}>
+                {person.firstName}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.lastName}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.age}
+              </EpicCell>
+              <EpicCell width={300} height={44}>
+                <Button icon="delete" /> <Button icon="edit" />
+              </EpicCell>
+            </EpicRow>
+          ))}
+        </EpicTable>
+      </Card>
+    );
+  })
+  .add('no header', () => {
+    return (
+      <Card body>
+        <EpicTable>
+          {persons.map(person => (
+            <EpicRow key={person.id}>
+              <EpicCell width={300} height={44}>
+                {person.firstName}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.lastName}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.age}
+              </EpicCell>
+              <EpicCell width={300} height={44}>
+                <Button icon="delete" /> <Button icon="edit" />
+              </EpicCell>
+            </EpicRow>
+          ))}
+        </EpicTable>
+      </Card>
+    );
+  })
   .add('no right', () => {
     return (
       <Card body>

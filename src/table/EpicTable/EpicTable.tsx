@@ -63,15 +63,15 @@ interface Props {
  *   7. Filtering per column.
  *   8. Resizing of columns.
  *   9. Multiple headers
- * 
+ *
  * See the stories in the documentation for detailed examples.
- * 
+ *
  * That said there are a couple of rules:
- * 
+ *
  *   1. Do not render anything inside of the EpicTable which is not
  *      one of the row's. The EpicTable will not understand those and
  *      it will error.
- * 
+ *
  *   2. The EpicTable can contain fragments, and will unpack those, but
  *      only one level deep. Those fragments should contain only row's.
  */
@@ -101,7 +101,15 @@ export function EpicTable({
 
   const layout = epicTableLayout(children, epicTableRect, hasRight);
 
-  const { center, right, left, containsActiveDetailRow } = layout;
+  const {
+    center,
+    right,
+    left,
+    containsActiveDetailRow,
+    totalDesiredCenterWidth
+  } = layout;
+
+  const desiredWidthMet = totalDesiredCenterWidth < centerWidth;
 
   return (
     <div
@@ -109,7 +117,9 @@ export function EpicTable({
       className="epic-table"
       style={{ minHeight: minHeight }}
     >
-      <div className="epic-table-container">
+      <div
+        className={`epic-table-container ${desiredWidthMet ? 'shadow' : ''}`}
+      >
         {overlay && epicTableRect ? (
           <div
             className="epic-table-overlay shadow"
@@ -134,7 +144,10 @@ export function EpicTable({
           onCenterWidthChanged={setCenterWidth}
           onScroll={setLeftScroll}
           left={
-            <div className={overlay ? '' : 'shadow'} style={{ minHeight }}>
+            <div
+              className={desiredWidthMet || overlay ? '' : 'shadow'}
+              style={{ minHeight }}
+            >
               {left.map((section, index) => (
                 <Fragment key={index}>
                   <div ref={ref => registerHeader(ref, index)}>
@@ -169,15 +182,20 @@ export function EpicTable({
           right={
             hasRight && right && right.length > 0 ? (
               <div
-                className={containsActiveDetailRow || overlay ? '' : 'shadow'}
+                className={
+                  desiredWidthMet || containsActiveDetailRow || overlay
+                    ? ''
+                    : 'shadow'
+                }
               >
-                {right && right.map((section, index) => (
-                  <Fragment key={index}>
-                    {section.header}
+                {right &&
+                  right.map((section, index) => (
+                    <Fragment key={index}>
+                      {section.header}
 
-                    {section.contents}
-                  </Fragment>
-                ))}
+                      {section.contents}
+                    </Fragment>
+                  ))}
               </div>
             ) : null
           }
