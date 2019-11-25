@@ -122,7 +122,10 @@ export function EpicTable({
   const desiredWidthMet = totalDesiredCenterWidth < centerWidth;
 
   const classes = classNames('epic-table', {
-    'epic-table--striped': striped
+    'epic-table--striped': striped,
+    // Making it invisible when not fully calculated, prevents
+    // the content from instantly resizing and flickering.
+    invisible: centerWidth === 0
   });
 
   return (

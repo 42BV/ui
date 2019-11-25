@@ -111,8 +111,10 @@ export function GooeyCenter({
   const centerWrapper = (
     <div
       ref={centerEl}
-      // Making it undefined when not fully calculated, prevents
+      // Making it invisible when not fully calculated, prevents
       // the content from instantly resizing and flickering.
+      // Also the width must be undefined for this to work.
+      className={centerWidth === 0 ? 'invisible' : ''}
       style={{ width: centerWidth !== 0 ? centerWidth : undefined }}
     >
       {center}
