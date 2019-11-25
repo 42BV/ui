@@ -99,7 +99,7 @@ export function GooeyCenter({
         window.removeEventListener('resize', calculateCenterWidth);
       };
     },
-    [setCenterWidth, onCenterWidthChanged]
+    [setCenterWidth, onCenterWidthChanged, left, center, right]
   );
 
   function handleScroll(this: OverlayScrollbars, event?: UIEvent) {
