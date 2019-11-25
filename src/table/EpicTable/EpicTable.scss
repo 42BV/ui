@@ -1,6 +1,14 @@
 .epic-table {
   background-color: $gray-100;
 
+  &--striped {
+    .epic-table-cell--odd {
+      // Must be transparent otherwise the shadow of the left / right
+      // columns are negated.
+      background-color: rgba($gray-400, 0.3);
+    }
+  }
+
   &-container {
     position: relative;
   }

@@ -669,6 +669,93 @@ storiesOf('table|EpicTable', module)
       </Card>
     );
   })
+  .add('no stipes', () => {
+    return (
+      <Card body>
+        <EpicTable striped={false}>
+          <EpicRow header>
+            <EpicHeader width={300} height={44}>
+              First name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Last name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Age
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Eye color
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Height
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Weight
+            </EpicHeader>
+            <EpicHeader width={200} height={44}>
+              Job title
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              Favorite movie
+            </EpicHeader>
+            <EpicHeader width={150} height={44}>
+              Favorite food
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Birth date
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Sex
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              Actions
+            </EpicHeader>
+          </EpicRow>
+
+          {persons.map(person => (
+            <EpicRow key={person.id}>
+              <EpicCell width={300} height={44}>
+                {person.firstName}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.lastName}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.age}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.eyeColor}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.height}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.weight}
+              </EpicCell>
+              <EpicCell width={200} height={44}>
+                {person.jobTitle}
+              </EpicCell>
+              <EpicCell width={300} height={44}>
+                {person.favoriteMovie}
+              </EpicCell>
+              <EpicCell width={150} height={44}>
+                {person.favoriteFood}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.birthDate}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.sex}
+              </EpicCell>
+              <EpicCell width={300} height={44}>
+                <Button icon="delete" /> <Button icon="edit" />
+              </EpicCell>
+            </EpicRow>
+          ))}
+        </EpicTable>
+      </Card>
+    );
+  })
   .add('small example', () => {
     return (
       <Card body>
@@ -1156,7 +1243,7 @@ storiesOf('table|EpicTable', module)
 
     return (
       <Card body>
-        <EpicTable>
+        <EpicTable striped={false}>
           {letters.map(letter => (
             <Fragment key={letter}>
               <EpicRow header>

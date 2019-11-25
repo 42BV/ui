@@ -218,7 +218,12 @@ export function epicTableLayout(
   // so it renders the shadows properly.
   let containsActiveDetailRow = false;
 
-  Children.forEach(getRows(children), (row: ReactElement, index) => {
+  // Increases whenever an epic-row is encounted, used to determine
+  // if the row is striped. Needs a separate counter because other
+  // rows can be mixed with epic-row's.
+  let epicRowNumber = 1;
+
+  Children.forEach(getRows(children), (row: ReactElement) => {
     if (row.type === EpicExpanderRow && rect !== null) {
       return handleExpanderRow(row, rect);
     }
@@ -227,7 +232,8 @@ export function epicTableLayout(
       return handleEpicDetailRow(row, rect);
     }
 
-    handleEpicRow(row, index);
+    handleEpicRow(row, epicRowNumber);
+    epicRowNumber += 1;
   });
 
   left.push(leftSection);
@@ -281,6 +287,7 @@ export function epicTableLayout(
       leftSection = { header: [], contents: [] };
       centerSection = { header: [], contents: [] };
       rightSection = { header: [], contents: [] };
+      epicRowNumber = 1;
     }
 
     // These will contain all non header cells
@@ -288,31 +295,38 @@ export function epicTableLayout(
     const centerRow: ReactElement[] = [];
     const rightRow: ReactElement[] = [];
 
+    const isRowOdd = index % 2 === 1;
+
     // Put all cells in the correct bucket
     Children.forEach(cells, (cell: ReactElement, cellIndex) => {
+      const left = cellIndex === 0;
+      const right = hasRight && cellIndex === lastCellInRowIndex;
+
+      const clone = cloneElement(cell, { odd: isRowOdd, key: cellIndex });
+
       // The first cell should be bucketed on the left
-      if (cellIndex === 0) {
+      if (left) {
         if (isHeader) {
-          leftSection.header.push(cell);
+          leftSection.header.push(clone);
         } else {
-          leftRow.push(cell);
+          leftRow.push(clone);
         }
       }
       // The last cell should be bucketed on the right, if there is a right
-      else if (hasRight && cellIndex === lastCellInRowIndex) {
+      else if (right) {
         if (isHeader) {
-          rightSection.header.push(cell);
+          rightSection.header.push(clone);
         } else {
-          rightRow.push(cell);
+          rightRow.push(clone);
         }
       }
       // All cells in the center (or when there is no right) should be
       // bucketed in the center.
       else {
         if (isHeader) {
-          centerSection.header.push(cell);
+          centerSection.header.push(clone);
         } else {
-          centerRow.push(cell);
+          centerRow.push(clone);
         }
       }
     });

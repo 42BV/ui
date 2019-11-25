@@ -5,6 +5,7 @@
 // that is why the EpicTable is ignored by istanbul.
 
 import React, { useRef, Fragment, useState } from 'react';
+import classNames from 'classnames';
 
 import { FixedHeader } from './helpers/FixedHeader/FixedHeader';
 import { GooeyCenter } from './helpers/GooeyCenter/GooeyCenter';
@@ -35,7 +36,7 @@ interface Props {
   /**
    * Whether or not to render a fixed right column.
    *
-   * Defaults to true
+   * Defaults to true.
    */
   hasRight?: boolean;
 
@@ -45,6 +46,13 @@ interface Props {
    * error states.
    */
   overlay?: React.ReactNode;
+
+  /**
+   * Whether or not to add zebra stripes to the table.
+   *
+   * Defaults to true.
+   */
+  striped?: boolean;
 }
 
 /**
@@ -63,6 +71,7 @@ interface Props {
  *   7. Filtering per column.
  *   8. Resizing of columns.
  *   9. Multiple headers
+ *  10. Zebra stripes.
  *
  * See the stories in the documentation for detailed examples.
  *
@@ -79,7 +88,8 @@ export function EpicTable({
   children,
   minHeight = 600,
   hasRight = true,
-  overlay
+  overlay,
+  striped = true
 }: Props) {
   const epicTableEl = useRef<HTMLDivElement>(null);
 
@@ -111,12 +121,12 @@ export function EpicTable({
 
   const desiredWidthMet = totalDesiredCenterWidth < centerWidth;
 
+  const classes = classNames('epic-table', {
+    'epic-table--striped': striped
+  });
+
   return (
-    <div
-      ref={epicTableEl}
-      className="epic-table"
-      style={{ minHeight: minHeight }}
-    >
+    <div ref={epicTableEl} className={classes} style={{ minHeight: minHeight }}>
       <div
         className={`epic-table-container ${desiredWidthMet ? 'shadow' : ''}`}
       >
