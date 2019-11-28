@@ -902,6 +902,7 @@ storiesOf('table|EpicTable', module)
   })
   .add('with overlay', () => {
     const [mode, setMode] = useState<ContentStateMode>('loading');
+    const [detail, setDetail] = useState(false);
 
     return (
       <Card body>
@@ -917,6 +918,14 @@ storiesOf('table|EpicTable', module)
           </Button>
           <Button className="mr-1" onClick={() => setMode('no-results')}>
             No results
+          </Button>
+
+          <Button
+            className="d-inline-block float-right"
+            icon="details"
+            onClick={() => setDetail(true)}
+          >
+            Show detail
           </Button>
         </div>
 
@@ -967,6 +976,18 @@ storiesOf('table|EpicTable', module)
               Actions
             </EpicHeader>
           </EpicRow>
+          <EpicDetailRow active={detail} left={300}>
+            {() => (
+              <EpicDetail onClose={() => setDetail(false)}>
+                <h2>Details</h2>
+
+                <p>
+                  Details should be shown over the overlay. This allows the user
+                  to create items when the table is still empty.
+                </p>
+              </EpicDetail>
+            )}
+          </EpicDetailRow>
         </EpicTable>
       </Card>
     );
