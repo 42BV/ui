@@ -264,21 +264,17 @@ export function epicTableLayout(
     const isHeader = row.props.header;
 
     // When new header starts end the section and start a new one.
-    if (isHeader && index !== 0) {
+    if (isHeader) {
       if (leftSection !== null) {
-        left.push(leftSection);
+        if (sectionHasData(leftSection)) {
+          left.push(leftSection);
+        }
 
-        if (
-          centerSection.header.length > 0 ||
-          centerSection.contents.length > 0
-        ) {
+        if (sectionHasData(centerSection)) {
           center.push(centerSection);
         }
 
-        if (
-          rightSection.header.length > 0 ||
-          rightSection.contents.length > 0
-        ) {
+        if (sectionHasData(rightSection)) {
           right.push(rightSection);
         }
       }
@@ -331,7 +327,9 @@ export function epicTableLayout(
       }
     });
 
-    leftSection.contents.push(leftRow);
+    if (leftRow.length > 0) {
+      leftSection.contents.push(leftRow);
+    }
 
     if (centerRow.length > 0) {
       // Only calculate it once for the first center row encountered.
@@ -420,4 +418,8 @@ export function getRows(children: any): ReactElement[] {
   });
 
   return rows;
+}
+
+function sectionHasData(section: EpicTableLayoutSection): boolean {
+  return section.contents.length > 0 || section.header.length > 0;
 }

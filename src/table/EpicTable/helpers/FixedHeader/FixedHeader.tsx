@@ -67,9 +67,10 @@ export function FixedHeader({
     <div className="epic-table-fixed-header" ref={fixedHeaderEl}>
       {showFixedHeader ? (
         <GooeyCenter
-          left={<div className="shadow">{left[index].header}</div>}
+          forceCenterAlwaysVisible={true}
+          left={left && left[index] ? left[index].header : null}
           center={
-            center && center.length > 0 ? (
+            center && center[index] ? (
               <div
                 ref={fixedCenterEl}
                 className="d-flex justify-content-between overflow-hidden"
@@ -79,11 +80,7 @@ export function FixedHeader({
               </div>
             ) : null
           }
-          right={
-            right && right.length > 0 ? (
-              <div className="shadow">{right[index].header}</div>
-            ) : null
-          }
+          right={right && right[index] ? right[index].header : null}
           showScrollbar={false}
         />
       ) : null}

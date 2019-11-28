@@ -43,6 +43,12 @@ type Props = {
    * sync the center width.
    */
   onCenterWidthChanged?: (centerWidth: number) => void;
+
+  /**
+   * Whether or not the center is always visible. Need for the
+   * FixedHeader to prevent it from flashing.
+   */
+  forceCenterAlwaysVisible?: boolean;
 };
 
 /**
@@ -63,7 +69,8 @@ export function GooeyCenter({
   center,
   onScroll,
   showScrollbar = true,
-  onCenterWidthChanged
+  onCenterWidthChanged,
+  forceCenterAlwaysVisible = false
 }: Props) {
   const wrapperEl = useRef<HTMLDivElement>(null);
   const centerEl = useRef<HTMLDivElement>(null);
@@ -114,7 +121,9 @@ export function GooeyCenter({
       // Making it invisible when not fully calculated, prevents
       // the content from instantly resizing and flickering.
       // Also the width must be undefined for this to work.
-      className={centerWidth === 0 ? 'invisible' : ''}
+      className={
+        centerWidth === 0 && !forceCenterAlwaysVisible ? 'invisible' : ''
+      }
       style={{ width: centerWidth !== 0 ? centerWidth : undefined }}
     >
       {center}

@@ -128,10 +128,15 @@ export function EpicTable({
     invisible: centerWidth === 0
   });
 
+  const leftAndContainerHaveShadow = !desiredWidthMet && !overlay;
+  const rightHasShadow = leftAndContainerHaveShadow && !containsActiveDetailRow;
+
   return (
     <div ref={epicTableEl} className={classes} style={{ minHeight: minHeight }}>
       <div
-        className={`epic-table-container ${desiredWidthMet ? 'shadow' : ''}`}
+        className={`epic-table-container ${
+          leftAndContainerHaveShadow ? 'shadow' : ''
+        }`}
       >
         {overlay && epicTableRect ? (
           <div
@@ -158,7 +163,7 @@ export function EpicTable({
           onScroll={setLeftScroll}
           left={
             <div
-              className={desiredWidthMet || overlay ? '' : 'shadow'}
+              className={leftAndContainerHaveShadow ? 'shadow' : ''}
               style={{ minHeight }}
             >
               {left.map((section, index) => (
@@ -194,13 +199,7 @@ export function EpicTable({
           }
           right={
             hasRight && right && right.length > 0 ? (
-              <div
-                className={
-                  desiredWidthMet || containsActiveDetailRow || overlay
-                    ? ''
-                    : 'shadow'
-                }
-              >
+              <div className={rightHasShadow ? 'shadow' : ''}>
                 {right &&
                   right.map((section, index) => (
                     <Fragment key={index}>

@@ -99,7 +99,7 @@ storiesOf('table|EpicTable', module)
 
     const [page, setPage] = useState(1);
 
-    const pageOfPersons = pageOf(sortedPersons, page);
+    const pageOfPersons = pageOf(sortedPersons, page, 20);
 
     const [selected, setSelected] = useState<Person[]>([]);
 
@@ -144,15 +144,6 @@ storiesOf('table|EpicTable', module)
       }, 1000);
     }, []);
 
-    const overlay = loading ? (
-      <ContentState mode="loading" title="Loading" />
-    ) : pageOfPersons.totalElements === 0 ? (
-      <ContentState
-        mode="no-results"
-        title="Try again with a different query"
-      />
-    ) : null;
-
     return (
       <Card body>
         {selected.length > 0 ? (
@@ -170,7 +161,19 @@ storiesOf('table|EpicTable', module)
           </>
         ) : null}
 
-        <EpicTable overlay={overlay}>
+        <EpicTable
+          overlay={
+            loading ? (
+              <ContentState className="my-5" mode="loading" title="Loading" />
+            ) : pageOfPersons.totalElements === 0 ? (
+              <ContentState
+                className="my-5"
+                mode="no-results"
+                title="Try again with a different query"
+              />
+            ) : null
+          }
+        >
           <EpicRow header>
             <EpicHeader
               width={widths.firstName}
@@ -1293,7 +1296,7 @@ storiesOf('table|EpicTable', module)
   .add('with pagination', () => {
     const [page, setPage] = useState(1);
 
-    const pageOfPersons = pageOf(persons, page);
+    const pageOfPersons = pageOf(persons, page, 20);
 
     return (
       <Card body>
@@ -1542,7 +1545,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {persons.slice(0, 4).map((person, index) => (
+          {persons.map((person, index) => (
             <Fragment key={person.id}>
               <EpicRow>
                 <EpicCell width={300} height={44}>
@@ -1673,7 +1676,7 @@ storiesOf('table|EpicTable', module)
   .add('with selection', () => {
     const [page, setPage] = useState(1);
 
-    const pageOfPersons = pageOf(persons, page);
+    const pageOfPersons = pageOf(persons, page, 20);
 
     const [selected, setSelected] = useState<Person[]>([]);
 
@@ -2079,6 +2082,118 @@ const persons: Person[] = [
     favoriteMovie: 'Next generation',
     favoriteFood: 'Tea Earl Grey Hot',
     birthDate: '2200-09-24',
+    sex: 'male'
+  },
+  {
+    id: Math.random(),
+    firstName: 'Peter',
+    lastName: 'Parker',
+    age: 30,
+    eyeColor: 'blue',
+    height: 55,
+    weight: 14,
+    jobTitle: 'Spider-man',
+    favoriteMovie: 'Spider-man',
+    favoriteFood: 'Webs',
+    birthDate: '1990-09-24',
+    sex: 'male'
+  },
+  {
+    id: Math.random(),
+    firstName: 'Clark',
+    lastName: 'Kent',
+    age: 40,
+    eyeColor: 'blue',
+    height: 80,
+    weight: 33,
+    jobTitle: 'Journalist',
+    favoriteMovie: 'Superman returns',
+    favoriteFood: 'Kryptonite',
+    birthDate: '1960-01-01',
+    sex: 'male'
+  },
+  {
+    id: Math.random(),
+    firstName: 'Bruce',
+    lastName: 'Wayne',
+    age: 55,
+    eyeColor: 'blue',
+    height: 70,
+    weight: 33,
+    jobTitle: 'CEO',
+    favoriteMovie: 'Batman begins',
+    favoriteFood: 'Bats',
+    birthDate: '1955-01-01',
+    sex: 'male'
+  },
+  {
+    id: Math.random(),
+    firstName: 'Diana',
+    lastName: 'Prince',
+    age: 28,
+    eyeColor: 'green',
+    height: 90,
+    weight: 19,
+    jobTitle: 'Curator',
+    favoriteMovie: 'Wonderwoman',
+    favoriteFood: 'Greek',
+    birthDate: '1990-01-01',
+    sex: 'female'
+  },
+  {
+    id: Math.random(),
+    firstName: 'Tony',
+    lastName: 'Stark',
+    age: 40,
+    eyeColor: 'brown',
+    height: 70,
+    weight: 33,
+    jobTitle: 'CEO',
+    favoriteMovie: 'Ironman',
+    favoriteFood: 'Shoarma',
+    birthDate: '1980-01-01',
+    sex: 'male'
+  },
+  {
+    id: Math.random(),
+    firstName: 'Steve',
+    lastName: 'Rogers',
+    age: 100,
+    eyeColor: 'blue',
+    height: 44,
+    weight: 55,
+    jobTitle: 'Captain',
+    favoriteMovie: 'Winter soldier',
+    favoriteFood: 'Applepie',
+    birthDate: '1920-01-01',
+    sex: 'male'
+  },
+  {
+    id: Math.random(),
+    firstName: 'Natasha',
+    lastName: 'Romanov',
+    age: 30,
+    eyeColor: 'green',
+    height: 77,
+    weight: 66,
+    jobTitle: 'Black widow',
+    favoriteMovie: 'Avengers',
+    favoriteFood: 'Stroganov',
+    birthDate: '1995-01-01',
+    sex: 'female'
+  },
+  {
+    id: Math.random(),
+    firstName: 'Bruce',
+    lastName: 'Banner',
+    age: 42,
+    eyeColor: 'brown',
+    height: 89,
+    weight: 99,
+    jobTitle: 'Smasher',
+    favoriteMovie: 'The Incredible Hulk',
+    favoriteFood: 'Gammarays',
+    birthDate: '1975-01-01',
     sex: 'male'
   }
 ];
