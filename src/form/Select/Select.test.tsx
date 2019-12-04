@@ -10,7 +10,7 @@ import {
   userUser,
   pageOfUsers
 } from '../../test/fixtures';
-import { OptionEnabledCallback } from '../types';
+import { OptionEnabledCallback } from '../option';
 import { pageWithContent } from '../../test/utils';
 
 describe('Component: Select', () => {
@@ -89,12 +89,15 @@ describe('Component: Select', () => {
     });
 
     test('when value is not in options select nothing', () => {
-      setup({ value: {
-        id: -1,
-        email: 'none',
-        active: false,
-        roles: [],
-      }, isOptionEnabled: undefined });
+      setup({
+        value: {
+          id: -1,
+          email: 'none',
+          active: false,
+          roles: []
+        },
+        isOptionEnabled: undefined
+      });
 
       const rsInput = select.find('Input');
 

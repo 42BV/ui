@@ -8,7 +8,13 @@ import EmptyModal from '../EmptyModal';
 
 import { AddButtonCallback, AddButtonOptions } from '../types';
 import withJarb from '../../withJarb/withJarb';
-import { Color, OptionForValue, FetchOptionsCallback } from '../../types';
+import { Color } from '../../types';
+import {
+  OptionEqual,
+  OptionForValue,
+  FetchOptionsCallback,
+  isOptionSelected
+} from '../../option';
 
 interface Props<T> {
   /**
@@ -43,6 +49,15 @@ interface Props<T> {
    * before.
    */
   addButton?: AddButtonOptions<T>;
+
+  /**
+   * Optional callback which is used to determine if two options
+   * of type T are equal.
+   *
+   * When `isOptionEqual` is not defined the outcome of `optionForValue`
+   * is used to test equality.
+   */
+  isOptionEqual?: OptionEqual<T>;
 
   /**
    * Callback to convert an value of type T to an option to show
@@ -255,23 +270,26 @@ export default class ModalPickerSingle<T> extends React.Component<
       return <EmptyModal userHasSearched={this.state.userHasSearched} />;
     }
 
-    const { optionForValue } = this.props;
+    const { optionForValue, isOptionEqual } = this.props;
 
-    return page.content.map((value: T) => {
-      const label = optionForValue(value);
+    return page.content.map((option: T) => {
+      const label = optionForValue(option);
 
-      const isChecked =
-        // @ts-ignore
-        selected !== undefined && optionForValue(selected) === label;
+      const isChecked = isOptionSelected({
+        option,
+        optionForValue,
+        isOptionEqual,
+        value: selected
+      });
 
       return (
-        <FormGroup key={optionForValue(value)} check>
+        <FormGroup key={label} check>
           <Label check>
             <Input
               type="radio"
               name={label}
               checked={isChecked}
-              onChange={() => this.itemClicked(value)}
+              onChange={() => this.itemClicked(option)}
             />
             {label}
           </Label>

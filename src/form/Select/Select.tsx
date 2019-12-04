@@ -6,13 +6,15 @@ import { Page } from '@42.nl/spring-connect';
 
 import withJarb from '../withJarb/withJarb';
 import Spinner from '../../core/Spinner/Spinner';
+import { Color } from '../types';
+import { t } from '../../utilities/translation/translation';
 import {
-  Color,
+  OptionEqual,
   OptionForValue,
   OptionEnabledCallback,
-  OptionsFetcher
-} from '../types';
-import { t } from '../../utilities/translation/translation';
+  OptionsFetcher,
+  isOptionSelected
+} from '../option';
 
 export interface Text {
   /**
@@ -53,6 +55,15 @@ interface Props<T> {
    * to the user.
    */
   optionForValue: OptionForValue<T>;
+
+  /**
+   * Optional callback which is used to determine if two options
+   * of type T are equal.
+   *
+   * When `isOptionEqual` is not defined the outcome of `optionForValue`
+   * is used to test equality.
+   */
+  isOptionEqual?: OptionEqual<T>;
 
   /**
    * Optional callback which is called for every option to determine
@@ -201,7 +212,8 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
       valid,
       onBlur,
       onChange,
-      optionForValue
+      optionForValue,
+      isOptionEqual
     } = this.props;
 
     const { options } = this.state;
@@ -223,8 +235,8 @@ export default class Select<T> extends Component<Props<T>, State<T>> {
 
     const indexOfValue =
       value !== undefined
-        ? options.findIndex(
-            option => optionForValue(option) === optionForValue(value)
+        ? options.findIndex(option =>
+            isOptionSelected({ option, optionForValue, isOptionEqual, value })
           )
         : undefined;
 

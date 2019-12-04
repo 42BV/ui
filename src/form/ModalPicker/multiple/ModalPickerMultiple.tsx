@@ -7,10 +7,16 @@ import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
 import MoreOrLess from '../../../core/MoreOrLess/MoreOrLess';
 import Tag from '../../../core/Tag/Tag';
-import { Color, OptionForValue, FetchOptionsCallback } from '../../types';
+import { Color } from '../../types';
 import ModalPicker from '../ModalPicker';
 import EmptyModal from '../EmptyModal';
 import { AddButtonCallback, AddButtonOptions } from '../types';
+import {
+  OptionEqual,
+  OptionForValue,
+  FetchOptionsCallback,
+  isOptionSelected
+} from '../../option';
 
 interface Props<T> {
   /**
@@ -51,6 +57,15 @@ interface Props<T> {
    * to the user.
    */
   optionForValue: OptionForValue<T>;
+
+  /**
+   * Optional callback which is used to determine if two options
+   * of type T are equal.
+   *
+   * When `isOptionEqual` is not defined the outcome of `optionForValue`
+   * is used to test equality.
+   */
+  isOptionEqual?: OptionEqual<T>;
 
   /**
    * Callback for when the form element changes.
@@ -138,7 +153,9 @@ export default class ModalPickerMultiple<T> extends React.Component<
     // Otherwise the selection will be the same as the value, which
     // causes values to be commited and the cancel button will not
     // do anything.
-    const selected = Array.isArray(this.props.value) ? [...this.props.value] : [];
+    const selected = Array.isArray(this.props.value)
+      ? [...this.props.value]
+      : [];
 
     this.setState({ selected, isOpen: true, query: '' }, () => {
       this.loadPage(1);
@@ -262,14 +279,17 @@ export default class ModalPickerMultiple<T> extends React.Component<
       return <EmptyModal userHasSearched={this.state.userHasSearched} />;
     }
 
-    const { optionForValue } = this.props;
+    const { optionForValue, isOptionEqual } = this.props;
 
-    return page.content.map(value => {
-      const label = optionForValue(value);
+    return page.content.map(option => {
+      const label = optionForValue(option);
 
-      const isChecked = selected.some(
-        selected => optionForValue(selected) === label
-      );
+      const isChecked = isOptionSelected({
+        option,
+        optionForValue,
+        isOptionEqual,
+        value: selected
+      });
 
       return (
         <FormGroup key={label} check>
@@ -278,7 +298,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
               type="checkbox"
               name={label}
               checked={isChecked}
-              onChange={() => this.itemClicked(value, isChecked)}
+              onChange={() => this.itemClicked(option, isChecked)}
             />
             {label}
           </Label>

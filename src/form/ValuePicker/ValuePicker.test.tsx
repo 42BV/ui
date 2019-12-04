@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 import { Page } from '@42.nl/spring-connect';
 
 import ValuePicker from './ValuePicker';
-import { FetchOptionsCallback } from '../types';
+import { FetchOptionsCallback } from '../option';
 
 import { User } from '../../test/types';
 import * as testUtils from '../../test/utils';

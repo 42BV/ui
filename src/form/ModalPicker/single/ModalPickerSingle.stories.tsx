@@ -9,7 +9,7 @@ import { User } from '../../../test/types';
 
 storiesOf('Form/ModalPicker/ModalPickerSingle', module)
   .add('basic', () => {
-    const [value, setValue] = useState<User| undefined>(undefined);
+    const [value, setValue] = useState<User | undefined>(undefined);
 
     return (
       <Form>
@@ -29,7 +29,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('with extra add button', () => {
-    const [value, setValue] = useState<User| undefined>(undefined);
+    const [value, setValue] = useState<User | undefined>(undefined);
 
     return (
       <Form>
@@ -62,7 +62,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('without search', () => {
-    const [value, setValue] = useState<User| undefined | null>(undefined);
+    const [value, setValue] = useState<User | undefined | null>(undefined);
 
     return (
       <Form>
@@ -74,6 +74,27 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser]))
+          }
+          value={value}
+          onChange={setValue}
+        />
+      </Form>
+    );
+  })
+  .add('custom optionIsEqual', () => {
+    const [value, setValue] = useState<User | undefined>(userUser);
+
+    return (
+      <Form>
+        <ModalPickerSingle
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          optionForValue={(user: User) => user.email}
+          isOptionEqual={(a: User, b: User) => a.id === b.id}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
           }
           value={value}
           onChange={setValue}

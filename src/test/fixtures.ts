@@ -21,7 +21,7 @@ export function randomUser(): User {
     email: `user-${id}@42.nl`,
     active: true,
     roles: [UserRole.ADMIN]
-  }
+  };
 }
 
 const admin = {
@@ -43,7 +43,7 @@ const user = {
 export const userUser = Object.freeze(user);
 
 const coordinator = {
-  id: 1337,
+  id: 777,
   email: 'coordinator@42.nl',
   active: false,
   roles: [UserRole.ADMIN, UserRole.USER]

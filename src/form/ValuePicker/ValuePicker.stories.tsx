@@ -63,6 +63,36 @@ storiesOf('Form|ValuePicker/multiple', module)
       </Form>
     );
   })
+  .add('custom isOptionEqual', () => {
+    const [value, setValue] = useState<User[] | undefined>([userUser]);
+
+    const [size, setSize] = useState('small');
+
+    const promise = size === 'small' ? small : large;
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={true}
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() => promise}
+          optionForValue={(user: User) => user.email}
+          isOptionEqual={(a: User, b: User) => a.id === b.id}
+          value={value}
+          onChange={setValue}
+        />
+
+        <p>Use these buttons to trigger a morph</p>
+        <Button className="mx-2" onClick={() => setSize('small')}>
+          Small
+        </Button>
+        <Button onClick={() => setSize('large')}>Large</Button>
+      </Form>
+    );
+  })
   .add('jarb', () => {
     const [size, setSize] = useState('small');
 
@@ -113,6 +143,36 @@ storiesOf('Form|ValuePicker/single', module)
           canSearch={true}
           fetchOptions={() => promise}
           optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+        />
+
+        <p>Use these buttons to trigger a morph</p>
+        <Button className="mx-2" onClick={() => setSize('small')}>
+          Small
+        </Button>
+        <Button onClick={() => setSize('large')}>Large</Button>
+      </Form>
+    );
+  })
+  .add('custom isOptionEqual', () => {
+    const [value, setValue] = useState<User | undefined>(userUser);
+
+    const [size, setSize] = useState('small');
+
+    const promise = size === 'small' ? small : large;
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={false}
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() => promise}
+          optionForValue={(user: User) => user.email}
+          isOptionEqual={(a: User, b: User) => a.id === b.id}
           value={value}
           onChange={setValue}
         />

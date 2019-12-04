@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Color, FetchOptionsCallback } from '../types';
+import { Color } from '../types';
+import { FetchOptionsCallback, OptionForValue, OptionEqual } from '../option';
 import withJarb from '../withJarb/withJarb';
 
 import ModalPickerMultiple from '../ModalPicker/multiple/ModalPickerMultiple';
@@ -50,7 +51,16 @@ interface BaseValuePickerProps<T> {
    * Callback to convert an value of type T to an option to show
    * to the user.
    */
-  optionForValue: (value: T) => string;
+  optionForValue: OptionForValue<T>;
+
+  /**
+   * Optional callback which is used to determine if two options
+   * of type T are equal.
+   *
+   * When `isOptionEqual` is not defined the outcome of `optionForValue`
+   * is used to test equality.
+   */
+  isOptionEqual?: OptionEqual<T>;
 
   /**
    * Optional callback for when the form element is blurred.
@@ -116,21 +126,20 @@ interface MultipleValuePicker<T> extends BaseValuePickerProps<T> {
 
 type Props<T> = SingleValuePicker<T> | MultipleValuePicker<T>;
 
-
 /**
- * 
+ *
  * The `ValuePicker` component is an abstraction which automatically
  * selects the best component to use when the user has to select a value
  * from a pre-defined list.
- * 
+ *
  * This is the decision matrix:
- * 
+ *
  * ```
  * | multiple | items <= 10             | items > 10
  * | true     | CheckboxMultipleSelect  | ModalPickerMultiple
  * | false    | Select                  | ModalPickerSingle
  * ```
- * 
+ *
  * `ValuePicker` starts in a booting state in which a spinner is shown.
  * During the booting state it will call `FetchOptionsCallback` and ask
  * for a `Page` of size `1` so it can get the `totalElements`.

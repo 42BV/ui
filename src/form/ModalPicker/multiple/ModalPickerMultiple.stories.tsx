@@ -98,6 +98,27 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
       </Form>
     );
   })
+  .add('custom isOptionEqual', () => {
+    const [value, setValue] = useState<User[] | undefined>([userUser]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple<User>
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          optionForValue={(user: User) => user.email}
+          isOptionEqual={(a: User, b: User) => a.id === b.id}
+          value={value}
+          onChange={setValue}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

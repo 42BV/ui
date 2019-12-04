@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { range } from 'lodash';
 
@@ -6,7 +6,7 @@ import CheckboxMultipleSelect, {
   JarbCheckboxMultipleSelect
 } from './CheckboxMultipleSelect';
 import { FinalForm, Form } from '../story-utils';
-import { pageOfUsers } from '../../test/fixtures';
+import { pageOfUsers, userUser } from '../../test/fixtures';
 import { User } from '../../test/types';
 
 interface SubjectOption {
@@ -51,6 +51,24 @@ storiesOf('Form|CheckboxMultipleSelect', module)
           placeholder="Please select your subjects"
           optionForValue={(user: User) => user.email}
           options={() => Promise.resolve(pageOfUsers)}
+          value={value}
+          onChange={setValue}
+        />
+      </Form>
+    );
+  })
+  .add('custom isOptionEqual', () => {
+    const [value, setValue] = useState<User[] | undefined>([userUser]);
+
+    return (
+      <Form>
+        <CheckboxMultipleSelect
+          id="subject"
+          label="Subject"
+          placeholder="Please select your subjects"
+          optionForValue={(user: User) => user.email}
+          options={() => Promise.resolve(pageOfUsers)}
+          isOptionEqual={(a: User, b: User) => a.id === b.id}
           value={value}
           onChange={setValue}
         />

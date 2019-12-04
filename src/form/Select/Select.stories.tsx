@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Select, { JarbSelect } from './Select';
 import { FinalForm, Form } from '../story-utils';
-import { pageOfUsers } from '../../test/fixtures';
+import { pageOfUsers, userUser } from '../../test/fixtures';
 import { User } from '../../test/types';
 
 interface SubjectOption {
@@ -42,6 +42,22 @@ storiesOf('Form|Select', module)
           placeholder="Please enter your subject"
           optionForValue={(user: User) => user.email}
           options={() => Promise.resolve(pageOfUsers)}
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
+  .add('custom isOptionEqual', () => {
+    return (
+      <Form>
+        <Select
+          id="subject"
+          label="Subject"
+          placeholder="Please enter your subject"
+          value={userUser}
+          optionForValue={(user: User) => user.email}
+          options={() => Promise.resolve(pageOfUsers)}
+          isOptionEqual={(a: User, b: User) => a.id === b.id}
           onChange={value => action(`You entered ${value}`)}
         />
       </Form>
