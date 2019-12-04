@@ -6,7 +6,14 @@ import { Page } from '@42.nl/spring-connect';
 
 import withJarb from '../withJarb/withJarb';
 import Spinner from '../../core/Spinner/Spinner';
-import { Color, OptionsFetcher, OptionEnabledCallback } from '../types';
+import { Color } from '../types';
+import {
+  OptionsFetcher,
+  OptionEnabledCallback,
+  OptionForValue,
+  OptionEqual,
+  isOptionSelected
+} from '../option';
 import { t } from '../../utilities/translation/translation';
 import { doBlur } from '../utils';
 
@@ -49,7 +56,16 @@ interface Props<T> {
    * Callback to convert an value of type T to an option to show
    * to the user.
    */
-  optionForValue: (value: T) => string;
+  optionForValue: OptionForValue<T>;
+
+  /**
+   * Optional callback which is used to determine if two options
+   * of type T are equal.
+   *
+   * When `isOptionEqual` is not defined the outcome of `optionForValue`
+   * is used to test equality.
+   */
+  isOptionEqual?: OptionEqual<T>;
 
   /**
    * Optional callback which is called for every option to determine
@@ -197,7 +213,7 @@ export default class CheckboxMultipleSelect<T> extends Component<
   }
 
   renderCheckboxes() {
-    const { optionForValue, value } = this.props;
+    const { optionForValue, value, isOptionEqual } = this.props;
 
     const { options } = this.state;
 
@@ -213,7 +229,12 @@ export default class CheckboxMultipleSelect<T> extends Component<
               {options.map((option, index) => {
                 const label = optionForValue(option);
 
-                const isChecked = !!(value && value.some(v => option === v));
+                const isChecked = isOptionSelected({
+                  option,
+                  optionForValue,
+                  isOptionEqual,
+                  value
+                });
 
                 return (
                   <FormGroup check key={label}>

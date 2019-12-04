@@ -5,7 +5,8 @@ import { FetchOptionsCallback, TypeaheadOption } from '../types';
 import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
 import { valueToTypeaheadOption } from '../utils';
-import { Color, OptionForValue } from '../../types';
+import { Color } from '../../types';
+import { OptionForValue } from '../../option';
 import classNames from 'classnames';
 
 interface Props<T> {
@@ -191,6 +192,8 @@ export default class TypeaheadMultiple<T> extends Component<
 /**
  * Variant of the TypeaheadMultiple which can be used in a Jarb context.
  */
-export const JarbTypeaheadMultiple = withJarb<any[], any[] | undefined, Props<any>>(
-  TypeaheadMultiple
-);
+export const JarbTypeaheadMultiple = withJarb<
+  any[],
+  any[] | undefined,
+  Props<any>
+>(TypeaheadMultiple);

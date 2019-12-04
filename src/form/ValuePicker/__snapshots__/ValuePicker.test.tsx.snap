@@ -372,7 +372,7 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
                 Object {
                   "active": false,
                   "email": "coordinator@42.nl",
-                  "id": 1337,
+                  "id": 777,
                   "roles": Array [
                     "ADMIN",
                     "USER",
@@ -604,7 +604,7 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
                 Object {
                   "active": false,
                   "email": "coordinator@42.nl",
-                  "id": 1337,
+                  "id": 777,
                   "roles": Array [
                     "ADMIN",
                     "USER",
