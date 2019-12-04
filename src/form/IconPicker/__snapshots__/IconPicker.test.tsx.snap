@@ -27,6 +27,7 @@ exports[`Component: IconPicker ui no results 1`] = `
       color="primary"
       id="icon-picker-popover"
       tag="button"
+      type="button"
     >
       Select your best friend
     </Button>
@@ -130,6 +131,7 @@ exports[`Component: IconPicker ui with selected value 1`] = `
       color="primary"
       id="icon-picker-popover"
       tag="button"
+      type="button"
     >
       Select your best friend
     </Button>
@@ -861,6 +863,7 @@ exports[`Component: IconPicker ui without selected value 1`] = `
       color="primary"
       id="icon-picker-popover"
       tag="button"
+      type="button"
     >
       Select your best friend
     </Button>
