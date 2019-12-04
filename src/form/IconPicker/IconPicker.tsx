@@ -164,7 +164,7 @@ export default function IconPicker(props: Props) {
                 </div>
               </span>
             ) : null}
-            <Button id="icon-picker-popover" color="primary">
+            <Button id="icon-picker-popover" type="button" color="primary">
               {placeholder}
             </Button>
           </div>
