@@ -1,4 +1,4 @@
-import React, { useRef, KeyboardEvent } from 'react';
+import React, { useRef, KeyboardEvent, useEffect } from 'react';
 import { debounce as lodashDebounce, DebounceSettings } from 'lodash';
 import { Input, InputProps, InputGroup, InputGroupAddon } from 'reactstrap';
 
@@ -108,6 +108,11 @@ export default function SearchInput(props: Props) {
   const handleChange = useRef(
     lodashDebounce(onChange, debounce, debounceSettings)
   );
+
+  // When the onChange changes update the handleChange
+  useEffect(() => {
+    handleChange.current = lodashDebounce(onChange, debounce, debounceSettings);
+  }, [onChange, debounce, debounceSettings]);
 
   function handleKeyUp(event: KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter') {
