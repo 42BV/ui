@@ -111,22 +111,22 @@ exports[`Component: IconPicker ui with selected value 1`] = `
   <div
     className="d-flex"
   >
-    <span
-      className="mr-1"
+    <div
+      className="d-flex justify-content-between"
     >
       <Icon
         className="pt-2"
         icon="3d_rotation"
         id="icon-picker-value"
       />
-      <div
-        className="icon-picker-clear"
+      <u
+        className="align-self-center mx-3 clickable font-weight-lighter"
         onClick={[Function]}
         role="button"
       >
         Clear
-      </div>
-    </span>
+      </u>
+    </div>
     <Button
       color="primary"
       id="icon-picker-popover"

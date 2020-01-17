@@ -100,7 +100,8 @@ interface Props {
 
 /**
  * IconPicker is a form element which allows the user to select one
- * of the material design icons. It is a popover which shows
+ * of the material design icons. It is a popover which shows all
+ * the icons and lets the user select one.
  */
 export default function IconPicker(props: Props) {
   const {
@@ -149,11 +150,11 @@ export default function IconPicker(props: Props) {
 
           <div className="d-flex">
             {value ? (
-              <span className="mr-1">
+              <div className="d-flex justify-content-between">
                 <Icon id="icon-picker-value" className="pt-2" icon={value} />
-                <div
+                <u
                   role="button"
-                  className="icon-picker-clear"
+                  className="align-self-center mx-3 clickable font-weight-lighter"
                   onClick={() => onIconSelected(undefined)}
                 >
                   {t({
@@ -161,8 +162,8 @@ export default function IconPicker(props: Props) {
                     fallback: 'Clear',
                     overrideText: text.clear
                   })}
-                </div>
-              </span>
+                </u>
+              </div>
             ) : null}
             <Button id="icon-picker-popover" type="button" color="primary">
               {placeholder}

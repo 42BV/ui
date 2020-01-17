@@ -42,6 +42,15 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
   >
     <Row
       tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
     >
       <Col
         tag="div"

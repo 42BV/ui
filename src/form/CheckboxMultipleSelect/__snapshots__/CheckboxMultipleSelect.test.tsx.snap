@@ -29,6 +29,15 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
   </p>
   <Row
     tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
   >
     <Col
       key="0"

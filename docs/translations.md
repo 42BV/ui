@@ -145,6 +145,11 @@ Here is a JSON notation containing all keys and default translations:
       "TITLE": "No icons found",
       "SUBTITLE": "No icons were found, please try again with a different query."
     }
+  },
+  "ColorPicker": {
+    "CLEAR": "Clear",
+    "CANCEL": "Cancel",
+    "SELECT": "Select"
   }
 }
 ```

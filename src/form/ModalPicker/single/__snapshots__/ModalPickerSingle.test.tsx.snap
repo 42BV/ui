@@ -62,6 +62,15 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
     <Row
       className="mt-3"
       tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
     >
       <Col
         tag="div"

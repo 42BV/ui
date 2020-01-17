@@ -26,6 +26,7 @@ import {
 } from '..';
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
+import { JarbColorPicker } from './ColorPicker/ColorPicker';
 
 function sleep(ms: number) {
   return new Promise(resolve => {
@@ -307,6 +308,15 @@ storiesOf('Form|Example', module).add('jarb form', () => {
         id="icon"
         label="Icon"
         placeholder="Please select an icon"
+        validators={requiredValidator}
+      />
+
+      <JarbColorPicker
+        name="color"
+        jarb={{ validator: 'User.color', label: 'Color' }}
+        id="color"
+        label="Color"
+        placeholder="Please select a Color"
         validators={requiredValidator}
       />
     </FinalForm>
