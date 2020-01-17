@@ -1,0 +1,11 @@
+/*
+  Removes the border around the color picker in the popover so the
+  Select and cancel buttons look like they are in the SketchPicker.
+  Is done on .popover and not on .color-picker because a popover
+  is rendered in the <body> by react-strap.
+*/
+.popover {
+  .sketch-picker {
+    box-shadow: none !important;
+  }
+}

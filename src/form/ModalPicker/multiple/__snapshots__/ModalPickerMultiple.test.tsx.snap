@@ -73,6 +73,15 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
     <Row
       className="mt-3"
       tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
     >
       <Col
         tag="div"

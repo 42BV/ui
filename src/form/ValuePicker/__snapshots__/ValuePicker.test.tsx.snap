@@ -83,6 +83,15 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
         </p>
         <Row
           tag="div"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
         >
           <div
             className="row"

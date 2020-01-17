@@ -4,6 +4,15 @@ exports[`Component: DateRangePicker ui no errors: Component: DateRangePicker => 
 <Row
   className="date-range-picker "
   tag="div"
+  widths={
+    Array [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+    ]
+  }
 >
   <Col
     md="6"
@@ -82,6 +91,15 @@ exports[`Component: DateRangePicker ui with errors: Component: DateRangePicker =
 <Row
   className="date-range-picker "
   tag="div"
+  widths={
+    Array [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+    ]
+  }
 >
   <Col
     md="6"
