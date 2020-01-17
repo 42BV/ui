@@ -4,7 +4,7 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import React, { useRef, Fragment, useState } from 'react';
+import React, { useRef, Fragment, useState, useEffect } from 'react';
 import classNames from 'classnames';
 
 import { FixedHeader } from './helpers/FixedHeader/FixedHeader';
@@ -96,6 +96,9 @@ export function EpicTable({
   const [centerWidth, setCenterWidth] = useState(0);
   const [leftScroll, setLeftScroll] = useState(0);
   const [headerHeight, setHeaderHeight] = useState(0);
+  const [activeDetailRow, setActiveDetailRow] = useState<HTMLDivElement | null>(
+    null
+  );
 
   const headerRefs: HeaderRef[] = [];
 
@@ -107,16 +110,25 @@ export function EpicTable({
     }
   }
 
+  function activeDetailRowChanged(detailRowRef: HTMLDivElement) {
+    setActiveDetailRow(detailRowRef);
+  }
+
   const epicTableRect = useEpicTableRect(epicTableEl);
 
-  const layout = epicTableLayout(children, epicTableRect, hasRight);
+  const layout = epicTableLayout({
+    children,
+    epicTableRect,
+    hasRight,
+    activeDetailRowChanged
+  });
 
   const {
     center,
     right,
     left,
-    containsActiveDetailRow,
-    totalDesiredCenterWidth
+    totalDesiredCenterWidth,
+    totalDesiredHeight
   } = layout;
 
   const desiredWidthMet = totalDesiredCenterWidth < centerWidth;
@@ -128,11 +140,25 @@ export function EpicTable({
     invisible: centerWidth === 0
   });
 
+  const containsActiveDetailRow = activeDetailRow !== null;
+
   const leftAndContainerHaveShadow = !desiredWidthMet && !overlay;
   const rightHasShadow = leftAndContainerHaveShadow && !containsActiveDetailRow;
 
+  const actualHeight = calculateActualHeight(
+    minHeight,
+    totalDesiredHeight,
+    activeDetailRow
+  );
+
+  useAdjustHeightOfActiveDetailRow(activeDetailRow, actualHeight);
+
   return (
-    <div ref={epicTableEl} className={classes} style={{ minHeight: minHeight }}>
+    <div
+      ref={epicTableEl}
+      className={classes}
+      style={{ minHeight: actualHeight }}
+    >
       <div
         className={`epic-table-container ${
           leftAndContainerHaveShadow ? 'shadow' : ''
@@ -164,7 +190,7 @@ export function EpicTable({
           left={
             <div
               className={leftAndContainerHaveShadow ? 'shadow' : ''}
-              style={{ minHeight }}
+              style={{ minHeight: actualHeight }}
             >
               {left.map((section, index) => (
                 <Fragment key={index}>
@@ -178,7 +204,9 @@ export function EpicTable({
             </div>
           }
           center={
-            center && center.length > 0
+            // Do not render a center when there is an activeDetailRow
+            // to prevent scrollbars from rendering
+            center && center.length > 0 && !activeDetailRow
               ? center.map((section, index) => (
                   <Fragment key={index}>
                     <div className="d-flex justify-content-between">
@@ -215,4 +243,50 @@ export function EpicTable({
       </div>
     </div>
   );
+}
+
+/**
+ * Calculates the height of the EpicTable. Taking into account
+ * the existence of an active EpicDetailRow.
+ *
+ * When an EpicDetailRow exists it may be larger than the actual
+ * EpicTable. So we increase the height of the EpicTable in that
+ * case to be the height of the EpicDetailRow.
+ *
+ * Also the minHeight can be lower than the totalDesiredHeight. In
+ * that case the totalDesiredHeight should be used instead. As the
+ * minHeight is merely a suggestion.
+ */
+function calculateActualHeight(
+  minHeight: number,
+  totalDesiredHeight: number,
+  activeDetailRow: HTMLDivElement | null
+) {
+  const detailRowHeight = activeDetailRow ? activeDetailRow.clientHeight : 0;
+
+  return Math.max(minHeight, detailRowHeight, totalDesiredHeight);
+}
+
+/**
+ * Changes the height of the detailRow so it always fills up the to
+ * the height of the EpicTable.
+ */
+function useAdjustHeightOfActiveDetailRow(
+  activeDetailRow: HTMLDivElement | null,
+  actualHeight: number
+) {
+  useEffect(() => {
+    // We only want to adjust the size once. Otherwise we get into
+    // an infinite loop because changing the size will trigger another
+    // call to this useEffect. That is why we add a property on the
+    // DOM element called `epicTableAdjustedHeight`. When it is `true`
+    // we ignore it.
+
+    // @ts-ignore
+    if (activeDetailRow && !activeDetailRow['epicTableAdjustedHeight']) {
+      // @ts-ignore
+      activeDetailRow['epicTableAdjustedHeight'] = true;
+      activeDetailRow.style.height = `${actualHeight}px`;
+    }
+  }, [activeDetailRow, actualHeight]);
 }

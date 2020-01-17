@@ -558,14 +558,14 @@ storiesOf('table|EpicTable', module)
                       </Col>
 
                       <Col tag="dt" sm={3}>
-                        Favorite move
+                        Favorite movie
                       </Col>
                       <Col tag="dd" sm={9}>
                         {person.favoriteMovie}
                       </Col>
 
                       <Col>
-                        <Input value="This input should have a normal height" />
+                        <Input defaultValue="This input should have a normal height" />
                       </Col>
                     </Row>
                   </EpicDetail>
@@ -1505,7 +1505,7 @@ storiesOf('table|EpicTable', module)
 
     return (
       <Card body>
-        <EpicTable minHeight={800}>
+        <EpicTable>
           <EpicRow header>
             <EpicHeader width={300} height={44}>
               First name
@@ -1545,130 +1545,309 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {persons.map((person, index) => (
-            <Fragment key={person.id}>
-              <EpicRow>
-                <EpicCell width={300} height={44}>
-                  <span
-                    onClick={() => setDetail(index)}
-                    className="text-primary clickable"
-                  >
-                    {person.firstName}
-                  </span>
-                </EpicCell>
-                <EpicCell width={100} height={44}>
-                  {person.lastName}
-                </EpicCell>
-                <EpicCell width={100} height={44}>
-                  {person.age}
-                </EpicCell>
-                <EpicCell width={100} height={44}>
-                  {person.eyeColor}
-                </EpicCell>
-                <EpicCell width={100} height={44}>
-                  {person.height}
-                </EpicCell>
-                <EpicCell width={100} height={44}>
-                  {person.weight}
-                </EpicCell>
-                <EpicCell width={200} height={44}>
-                  {person.jobTitle}
-                </EpicCell>
-                <EpicCell width={300} height={44}>
-                  {person.favoriteMovie}
-                </EpicCell>
-                <EpicCell width={150} height={44}>
-                  {person.favoriteFood}
-                </EpicCell>
-                <EpicCell width={100} height={44}>
-                  {person.birthDate}
-                </EpicCell>
-                <EpicCell width={100} height={44}>
-                  {person.sex}
-                </EpicCell>
-                <EpicCell width={300} height={44}>
-                  <Button icon="delete" /> <Button icon="edit" />
-                </EpicCell>
-              </EpicRow>
-              <EpicDetailRow active={index === detail} left={300}>
-                {() => (
-                  <EpicDetail onClose={() => setDetail(-1)}>
-                    <Row tag="dl">
-                      <Col tag="dt" sm={3}>
-                        First name
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.firstName}
-                      </Col>
+          {persons
+            .filter(p => p.firstName === 'Zechs')
+            .map((person, index) => (
+              <Fragment key={person.id}>
+                <EpicRow>
+                  <EpicCell width={300} height={44}>
+                    <span
+                      onClick={() => setDetail(index)}
+                      className="text-primary clickable"
+                    >
+                      {person.firstName}
+                    </span>
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.lastName}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.age}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.eyeColor}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.height}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.weight}
+                  </EpicCell>
+                  <EpicCell width={200} height={44}>
+                    {person.jobTitle}
+                  </EpicCell>
+                  <EpicCell width={300} height={44}>
+                    {person.favoriteMovie}
+                  </EpicCell>
+                  <EpicCell width={150} height={44}>
+                    {person.favoriteFood}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.birthDate}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.sex}
+                  </EpicCell>
+                  <EpicCell width={300} height={44}>
+                    <Button icon="delete" /> <Button icon="edit" />
+                  </EpicCell>
+                </EpicRow>
+                <EpicDetailRow active={index === detail} left={300}>
+                  {() => (
+                    <EpicDetail onClose={() => setDetail(-1)}>
+                      <Row tag="dl">
+                        <Col tag="dt" sm={3}>
+                          First name
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.firstName}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Last name
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.lastName}
-                      </Col>
+                        <Col tag="dt" sm={3}>
+                          Last name
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.lastName}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Birthdate
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.birthDate}
-                      </Col>
+                        <Col tag="dt" sm={3}>
+                          Birthdate
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.birthDate}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Sex
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.sex}
-                      </Col>
+                        <Col tag="dt" sm={3}>
+                          Sex
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.sex}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Job title
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.jobTitle}
-                      </Col>
+                        <Col tag="dt" sm={3}>
+                          Job title
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.jobTitle}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Eye color
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.eyeColor}
-                      </Col>
+                        <Col tag="dt" sm={3}>
+                          Eye color
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.eyeColor}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Weight
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.weight}
-                      </Col>
+                        <Col tag="dt" sm={3}>
+                          Weight
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.weight}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Height
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.height}
-                      </Col>
+                        <Col tag="dt" sm={3}>
+                          Height
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.height}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Favorite food
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.favoriteFood}
-                      </Col>
+                        <Col tag="dt" sm={3}>
+                          Favorite food
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.favoriteFood}
+                        </Col>
 
-                      <Col tag="dt" sm={3}>
-                        Favorite move
-                      </Col>
-                      <Col tag="dd" sm={9}>
-                        {person.favoriteMovie}
-                      </Col>
-                    </Row>
-                  </EpicDetail>
-                )}
-              </EpicDetailRow>
-            </Fragment>
-          ))}
+                        <Col tag="dt" sm={3}>
+                          Favorite movie
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.favoriteMovie}
+                        </Col>
+
+                        <p className="p-5">
+                          Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Dignissimos assumenda doloribus earum quidem
+                          consequuntur. Eligendi necessitatibus vero tenetur quo
+                          dolorem, nesciunt reprehenderit, rerum ea modi,
+                          suscipit porro maiores nostrum atque.
+                        </p>
+
+                        <p className="p-5">
+                          Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Dignissimos assumenda doloribus earum quidem
+                          consequuntur. Eligendi necessitatibus vero tenetur quo
+                          dolorem, nesciunt reprehenderit, rerum ea modi,
+                          suscipit porro maiores nostrum atque.
+                        </p>
+                      </Row>
+                    </EpicDetail>
+                  )}
+                </EpicDetailRow>
+              </Fragment>
+            ))}
+        </EpicTable>
+      </Card>
+    );
+  })
+  .add('with detail but small', () => {
+    const [detail, setDetail] = useState(-1);
+
+    return (
+      <Card body>
+        <EpicTable>
+          <EpicRow header>
+            <EpicHeader width={300} height={44}>
+              First name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Last name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Age
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Eye color
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Height
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Weight
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              Actions
+            </EpicHeader>
+          </EpicRow>
+
+          {persons
+            .filter(p => p.firstName === 'Zechs')
+            .map((person, index) => (
+              <Fragment key={person.id}>
+                <EpicRow>
+                  <EpicCell width={300} height={44}>
+                    <span
+                      onClick={() => setDetail(index)}
+                      className="text-primary clickable"
+                    >
+                      {person.firstName}
+                    </span>
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.lastName}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.age}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.eyeColor}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.height}
+                  </EpicCell>
+                  <EpicCell width={100} height={44}>
+                    {person.weight}
+                  </EpicCell>
+                  <EpicCell width={300} height={44}>
+                    <Button icon="delete" /> <Button icon="edit" />
+                  </EpicCell>
+                </EpicRow>
+                <EpicDetailRow active={index === detail} left={300}>
+                  {() => (
+                    <EpicDetail onClose={() => setDetail(-1)}>
+                      <Row tag="dl">
+                        <Col tag="dt" sm={3}>
+                          First name
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.firstName}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Last name
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.lastName}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Birthdate
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.birthDate}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Sex
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.sex}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Job title
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.jobTitle}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Eye color
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.eyeColor}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Weight
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.weight}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Height
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.height}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Favorite food
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.favoriteFood}
+                        </Col>
+
+                        <Col tag="dt" sm={3}>
+                          Favorite movie
+                        </Col>
+                        <Col tag="dd" sm={9}>
+                          {person.favoriteMovie}
+                        </Col>
+
+                        <p className="p-5">
+                          Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Dignissimos assumenda doloribus earum quidem
+                          consequuntur. Eligendi necessitatibus vero tenetur quo
+                          dolorem, nesciunt reprehenderit, rerum ea modi,
+                          suscipit porro maiores nostrum atque.
+                        </p>
+
+                        <p className="p-5">
+                          Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Dignissimos assumenda doloribus earum quidem
+                          consequuntur. Eligendi necessitatibus vero tenetur quo
+                          dolorem, nesciunt reprehenderit, rerum ea modi,
+                          suscipit porro maiores nostrum atque.
+                        </p>
+                      </Row>
+                    </EpicDetail>
+                  )}
+                </EpicDetailRow>
+              </Fragment>
+            ))}
         </EpicTable>
       </Card>
     );
