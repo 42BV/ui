@@ -9,6 +9,7 @@ import { isFragment } from 'react-is';
 
 import { EpicExpanderRow } from '../../rows/EpicExpanderRow/EpicExpanderRow';
 import { EpicDetailRow } from '../../rows/EpicDetailRow/EpicDetailRow';
+import { EpicCell } from '../../cells/EpicCell/EpicCell';
 
 export type EpicTableLayout = {
   /**
@@ -27,14 +28,6 @@ export type EpicTableLayout = {
   center?: EpicTableLayoutSection[];
 
   /**
-   * Whether or not this layout contains an active detail row. A
-   * detail row takes up the center and right when displayed and
-   * the EpicTable needs to know this so it can determine if it
-   * needs to render shadows.
-   */
-  containsActiveDetailRow: boolean;
-
-  /**
    * Is the combined width of the first center row the layout encounters,
    * as provided by the user. So if the user defines an EpicTable with
    * 5 columns of 100px each, the totalCenterWidth would be 300. Because
@@ -46,6 +39,16 @@ export type EpicTableLayout = {
    * are rendered.
    */
   totalDesiredCenterWidth: number;
+
+  /**
+   * Is the combined height of all first left cells the layout encounters,
+   * as provided by the user. So if the user defines an EpicTable with
+   * 5 rows of 100px each, the totalDesiredHeight would be 300.
+   *
+   * The EpicTable needs to know this to determine the actual height
+   * to render the EpicTable at.
+   */
+  totalDesiredHeight: number;
 };
 
 /**
@@ -57,6 +60,35 @@ type EpicTableLayoutSection = {
   header: React.ReactNode[];
   // Contains rows which are arrays which contain Cell's
   contents: React.ReactNode[][];
+};
+
+type EpicTableLayoutConfig = {
+  /**
+   * The children to bucket
+   */
+  children: React.ReactNode;
+
+  /**
+   * The current rect of the epic table
+   */
+  epicTableRect: DOMRect | ClientRect | null;
+
+  /**
+   * Whether or not the epic-table has a sticky right.
+   */
+  hasRight: boolean;
+
+  /**
+   * Callback which receives active detail row.
+   *
+   * A detail row takes up the center and right when displayed and
+   * the EpicTable needs to know this so it can determine if it
+   * needs to render shadows.
+   *
+   * Also when the detail row is larger than the EpicTable the table
+   * needs to become the height of the detail row.
+   */
+  activeDetailRowChanged: (detailRowRef: HTMLDivElement) => void;
 };
 
 /**
@@ -187,7 +219,6 @@ type EpicTableLayoutSection = {
  *     )]]
  *   }]
  * }
- * ```
  *
  * To bucket the rows it will hunt in the EpicTable's children for the
  * following rows: `EpicRow`, `EpicExpanderRow` and `EpicDetailRow`.
@@ -195,10 +226,10 @@ type EpicTableLayoutSection = {
  * functions on how.
  */
 export function epicTableLayout(
-  children: React.ReactNode,
-  rect: DOMRect | ClientRect | null,
-  hasRight: boolean
+  config: EpicTableLayoutConfig
 ): EpicTableLayout {
+  const { children, epicTableRect, hasRight, activeDetailRowChanged } = config;
+
   // Will contain all the first columns as sections.
   const left: EpicTableLayoutSection[] = [];
 
@@ -213,10 +244,7 @@ export function epicTableLayout(
   let rightSection: EpicTableLayoutSection = { header: [], contents: [] };
 
   let totalDesiredCenterWidth = -1;
-
-  // When there is an active detail row the EpicTable needs to know
-  // so it renders the shadows properly.
-  let containsActiveDetailRow = false;
+  let totalDesiredCenterHeight = -1;
 
   // Increases whenever an epic-row is encounted, used to determine
   // if the row is striped. Needs a separate counter because other
@@ -224,12 +252,12 @@ export function epicTableLayout(
   let epicRowNumber = 1;
 
   Children.forEach(getRows(children), (row: ReactElement) => {
-    if (row.type === EpicExpanderRow && rect !== null) {
-      return handleExpanderRow(row, rect);
+    if (row.type === EpicExpanderRow && epicTableRect !== null) {
+      return handleExpanderRow(row, epicTableRect);
     }
 
-    if (row.type === EpicDetailRow && rect !== null) {
-      return handleEpicDetailRow(row, rect);
+    if (row.type === EpicDetailRow && epicTableRect !== null) {
+      return handleEpicDetailRow(row, epicTableRect);
     }
 
     handleEpicRow(row, epicRowNumber);
@@ -246,12 +274,41 @@ export function epicTableLayout(
     right.push(rightSection);
   }
 
+  // Calculate the total desired height by looping through all left
+  // headers and cells and sum their height
+  const totalDesiredHeight = left.reduce((totalHeight, section) => {
+    const header = section.header[0];
+
+    if (header) {
+      // @ts-ignore
+      totalHeight += header.props.height;
+    }
+
+    const cellHeight = section.contents.reduce((cellsHeight, cells) => {
+      const cell = cells[0];
+
+      // @ts-ignore
+      if (cell && cell.type === EpicCell) {
+        // @ts-ignore
+        return cellsHeight + cell.props.height;
+      } else {
+        // In this case the cell is an EpicDetailRow or
+        // an EpicExpander spacer. We ignore these heights for now.
+        // In case of the expander this is tricky but you should
+        // not use expanders and details as the same time for now.
+        return cellsHeight;
+      }
+    }, 0);
+
+    return (totalHeight += cellHeight);
+  }, 0);
+
   return {
     left,
     center,
     right,
-    containsActiveDetailRow,
-    totalDesiredCenterWidth
+    totalDesiredCenterWidth,
+    totalDesiredHeight
   };
 
   // Impure helper function for handling EpicRow's
@@ -339,6 +396,12 @@ export function epicTableLayout(
         }, 0);
       }
 
+      if (totalDesiredCenterHeight === -1) {
+        totalDesiredCenterHeight = centerRow.reduce((acc: number, cell) => {
+          return acc + cell.props.width;
+        }, 0);
+      }
+
       centerSection.contents.push(centerRow);
     }
 
@@ -354,8 +417,9 @@ export function epicTableLayout(
       width: rect.width - row.props.left,
       top: 0,
       left: row.props.left,
-      height: rect.height,
-      key: 42
+      key: 42,
+      // @ts-ignore
+      ref: activeDetailRowChanged
     });
 
     // Now add the detail row on the left section. Even thought it
@@ -368,7 +432,8 @@ export function epicTableLayout(
     // When the EpicDetailRow is active, report it back to the
     // EpicTable so it can set the shadows correctly.
     if (row.props.active === true) {
-      containsActiveDetailRow = true;
+      // @ts-ignore
+      // activeDetailRow = epicDetailRowRef;
     }
   }
 

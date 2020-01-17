@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef, Ref, RefObject } from 'react';
 
 export interface Props {
   /**
@@ -24,16 +24,13 @@ interface InjectedProps {
   width: number;
   top: number;
   height: number;
+  ref: Ref<HTMLDivElement>;
 }
 
-/**
- * The EpicDetailRow is a row inside of an EpicTable which can be used
- * to show details whenever a row is clicked. It displays itself over
- * the rest of the EpicTable on the left.
- * 
- * Often used in combination with the EpicDetail widget component.
- */
-export function EpicDetailRow({ children, active, left, ...rest }: Props) {
+function epicDetailRow(
+  { children, active, left, ...rest }: Props,
+  ref: RefObject<HTMLDivElement>
+) {
   if (!active) {
     return null;
   }
@@ -42,6 +39,7 @@ export function EpicDetailRow({ children, active, left, ...rest }: Props) {
 
   return (
     <div
+      ref={ref}
       className="epic-table-detail-row"
       style={{
         minWidth: width,
@@ -55,3 +53,12 @@ export function EpicDetailRow({ children, active, left, ...rest }: Props) {
     </div>
   );
 }
+
+/**
+ * The EpicDetailRow is a row inside of an EpicTable which can be used
+ * to show details whenever a row is clicked. It displays itself over
+ * the rest of the EpicTable on the left.
+ *
+ * Often used in combination with the EpicDetail widget component.
+ */
+export const EpicDetailRow = forwardRef(epicDetailRow);
