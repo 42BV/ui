@@ -27,6 +27,7 @@ import {
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
 import { JarbColorPicker } from './ColorPicker/ColorPicker';
+import { JarbCheckbox } from './Checkbox/Checkbox';
 
 function sleep(ms: number) {
   return new Promise(resolve => {
@@ -317,6 +318,15 @@ storiesOf('Form|Example', module).add('jarb form', () => {
         id="color"
         label="Color"
         placeholder="Please select a Color"
+        validators={requiredValidator}
+      />
+
+      <JarbCheckbox
+        name="agree"
+        jarb={{ validator: 'User.agree', label: 'Agree' }}
+        id="agree"
+        label="Agree"
+        placeholder="Do you agree to the terms?"
         validators={requiredValidator}
       />
     </FinalForm>

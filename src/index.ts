@@ -4,19 +4,18 @@ export { default as AvatarStack } from './core/Avatar/AvatarStack';
 export { default as Button } from './core/Button/Button';
 export { default as useShowSpinner } from './core/Button/useShowSpinner';
 export { default as ConfirmButton } from './core/ConfirmButton/ConfirmButton';
-export { default as ContentState, ContentStateMode } from './core/ContentState/ContentState';
+export {
+  default as ContentState,
+  ContentStateMode
+} from './core/ContentState/ContentState';
 export { default as FlashMessage } from './core/FlashMessage/FlashMessage';
 export { Icon, IconType } from './core/Icon/index';
 export { default as InfoBadge } from './core/InfoBadge/InfoBadge';
 export { default as LoadingPage } from './core/LoadingPage/LoadingPage';
 export { default as MoreOrLess } from './core/MoreOrLess/MoreOrLess';
-export {
-  default as NavigationItem
-} from './core/NavigationItem/NavigationItem';
+export { default as NavigationItem } from './core/NavigationItem/NavigationItem';
 export { default as Pagination } from './core/Pagination/Pagination';
-export {
-  default as ProgressStepper
-} from './core/ProgressStepper/ProgressStepper';
+export { default as ProgressStepper } from './core/ProgressStepper/ProgressStepper';
 export { default as Spinner } from './core/Spinner/Spinner';
 export { default as SubmitButton } from './core/SubmitButton/SubmitButton';
 export { default as Tag } from './core/Tag/Tag';
@@ -76,16 +75,21 @@ export {
 export { default as FormError } from './form/FormError/FormError';
 export {
   default as CheckboxMultipleSelect,
-  JarbCheckboxMultipleSelect,
+  JarbCheckboxMultipleSelect
 } from './form/CheckboxMultipleSelect/CheckboxMultipleSelect';
 export {
   default as ValuePicker,
-  JarbValuePicker,
+  JarbValuePicker
 } from './form/ValuePicker/ValuePicker';
 export {
   default as IconPicker,
-  JarbIconPicker,
+  JarbIconPicker
 } from './form/IconPicker/IconPicker';
+export {
+  default as ColorPicker,
+  JarbColorPicker
+} from './form/ColorPicker/ColorPicker';
+export { default as Checkbox, JarbCheckbox } from './form/Checkbox/Checkbox';
 
 // Table
 export { EpicTable } from './table/EpicTable/EpicTable';
