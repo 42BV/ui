@@ -3,13 +3,13 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import CheckboxMultipleSelect, { Text } from './CheckboxMultipleSelect';
-import { User } from '../../test/types';
+import { User } from '../../../test/types';
 import {
   adminUser,
   coordinatorUser,
   userUser,
   pageOfUsers
-} from '../../test/fixtures';
+} from '../../../test/fixtures';
 import { OptionEnabledCallback } from '../option';
 
 describe('Component: CheckboxMultipleSelect', () => {

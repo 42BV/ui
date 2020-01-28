@@ -1,6 +1,6 @@
 import { Page } from '@42.nl/spring-connect';
-import { Meta } from '../form/types';
-import { CurrentUser, UserRole, User } from './types';
+import { Meta } from '../src/form/types';
+import { UserRole, User } from './types';
 import { random } from 'lodash';
 
 export const validMeta: Meta = Object.freeze({
@@ -51,6 +51,15 @@ const coordinator = {
 
 export const coordinatorUser = Object.freeze(coordinator);
 
+const nobody = {
+  id: 999,
+  email: 'nobody@42.nl',
+  active: false,
+  roles: []
+};
+
+export const nobodyUser = Object.freeze(nobody);
+
 export const pageOfUsers: Page<User> = Object.freeze({
   content: [adminUser, coordinatorUser, userUser],
   last: false,
@@ -60,28 +69,4 @@ export const pageOfUsers: Page<User> = Object.freeze({
   number: 2,
   first: false,
   numberOfElements: 3
-});
-
-export const currentUserAdmin: CurrentUser = Object.freeze({
-  id: 42,
-  email: 'maarten@42.nl',
-  active: true,
-  roles: [UserRole.ADMIN],
-  switched: false // Whether an ADMIN is impersonating the user.
-});
-
-export const currentUserSwitched: CurrentUser = Object.freeze({
-  id: 42,
-  email: 'sander@42.nl',
-  active: true,
-  roles: [UserRole.USER],
-  switched: true // Whether an ADMIN is impersonating the user.
-});
-
-export const currentUserUser: CurrentUser = Object.freeze({
-  id: 42,
-  email: 'peter@42.nl',
-  active: true,
-  roles: [UserRole.USER],
-  switched: false // Whether an ADMIN is impersonating the user.
 });

@@ -38,6 +38,9 @@ Thumbs.db
 # Build artifacts
 dist/
 
+# Test artifacts
+coverage/
+
 # Jekyll
 *.gem
 .bundle

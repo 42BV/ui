@@ -4,14 +4,14 @@ import toJson from 'enzyme-to-json';
 import { emptyPage } from '@42.nl/spring-connect';
 
 import ModalPickerSingle, { State } from './ModalPickerSingle';
-import { User } from '../../../test/types';
-import * as testUtils from '../../../test/utils';
+import { User } from '../../../../test/types';
+import * as testUtils from '../../../../test/utils';
 import {
   pageOfUsers,
   adminUser,
   userUser,
   coordinatorUser
-} from '../../../test/fixtures';
+} from '../../../../test/fixtures';
 
 describe('Component: ModalPickerSingle', () => {
   let modalPickerSingle: ShallowWrapper;
@@ -101,7 +101,7 @@ describe('Component: ModalPickerSingle', () => {
 
     it('should not render a label when the value is empty', () => {
       setup({ value: undefined, showAddButton: false });
-      expect( modalPickerSingle.find('span').exists()).toBe(false);
+      expect(modalPickerSingle.find('span').exists()).toBe(false);
     });
 
     it('should render EmptyState when the totalElements of the page are zero', () => {
@@ -398,13 +398,13 @@ describe('Component: ModalPickerSingle', () => {
 
       modalPickerSingle.setProps({ value: undefined });
 
-      expect( modalPickerSingle.find('span').exists()).toBe(false);
+      expect(modalPickerSingle.find('span').exists()).toBe(false);
     });
 
     test('becomes filled', () => {
       setup({ value: undefined, showAddButton: false });
 
-      expect( modalPickerSingle.find('span').exists()).toBe(false);
+      expect(modalPickerSingle.find('span').exists()).toBe(false);
 
       modalPickerSingle.setProps({
         value: adminUser

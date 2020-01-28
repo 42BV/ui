@@ -271,7 +271,7 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
 </ValuePicker>
 `;
 
-exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\` when \`totalElements\` is less than 11 1`] = `
+exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\` when \`totalElements\` is more than 10 1`] = `
 <ValuePicker
   canSearch={true}
   fetchOptions={
@@ -503,7 +503,7 @@ exports[`Component: ValuePicker should when booting render a loading spinner and
 </ValuePicker>
 `;
 
-exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` when \`totalElements\` is less than 11 1`] = `
+exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` when \`totalElements\` is more than than 10 1`] = `
 <ValuePicker
   canSearch={true}
   fetchOptions={
@@ -676,7 +676,215 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
 </ValuePicker>
 `;
 
-exports[`Component: ValuePicker single should render a \`Select\` component when \`totalElements\` is less than 11 1`] = `
+exports[`Component: ValuePicker single should render a \`RadioGroup\` component when \`totalElements\` is less than 4 1`] = `
+<ValuePicker
+  canSearch={true}
+  fetchOptions={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          "",
+          1,
+          1,
+        ],
+        Array [
+          "",
+          1,
+          3,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": Promise {},
+        },
+        Object {
+          "type": "return",
+          "value": Promise {},
+        },
+      ],
+    }
+  }
+  id="bestFriend"
+  label="Best friend"
+  multiple={false}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  optionForValue={[Function]}
+  placeholder="Select your best friend"
+>
+  <RadioGroup
+    canSearch={true}
+    id="bestFriend"
+    label="Best friend"
+    onBlur={[MockFunction]}
+    onChange={[MockFunction]}
+    optionForValue={[Function]}
+    options={[Function]}
+    placeholder="Select your best friend"
+  >
+    <FormGroup
+      className=""
+      tag="fieldset"
+    >
+      <fieldset
+        className="form-group"
+      >
+        <legend>
+          Best friend
+        </legend>
+        <p
+          className="text-muted"
+        >
+          <em>
+            Select your best friend
+          </em>
+        </p>
+        <FormGroup
+          check={true}
+          key="admin@42.nl"
+          tag="div"
+        >
+          <div
+            className="form-check"
+          >
+            <Label
+              check={true}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <label
+                className="form-check-label"
+              >
+                <Input
+                  checked={false}
+                  disabled={false}
+                  onChange={[Function]}
+                  type="radio"
+                  value="admin@42.nl"
+                >
+                  <input
+                    checked={false}
+                    className="form-check-input"
+                    disabled={false}
+                    onChange={[Function]}
+                    type="radio"
+                    value="admin@42.nl"
+                  />
+                </Input>
+                 
+                admin@42.nl
+              </label>
+            </Label>
+          </div>
+        </FormGroup>
+        <FormGroup
+          check={true}
+          key="coordinator@42.nl"
+          tag="div"
+        >
+          <div
+            className="form-check"
+          >
+            <Label
+              check={true}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <label
+                className="form-check-label"
+              >
+                <Input
+                  checked={false}
+                  disabled={false}
+                  onChange={[Function]}
+                  type="radio"
+                  value="coordinator@42.nl"
+                >
+                  <input
+                    checked={false}
+                    className="form-check-input"
+                    disabled={false}
+                    onChange={[Function]}
+                    type="radio"
+                    value="coordinator@42.nl"
+                  />
+                </Input>
+                 
+                coordinator@42.nl
+              </label>
+            </Label>
+          </div>
+        </FormGroup>
+        <FormGroup
+          check={true}
+          key="user@42.nl"
+          tag="div"
+        >
+          <div
+            className="form-check"
+          >
+            <Label
+              check={true}
+              tag="label"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <label
+                className="form-check-label"
+              >
+                <Input
+                  checked={false}
+                  disabled={false}
+                  onChange={[Function]}
+                  type="radio"
+                  value="user@42.nl"
+                >
+                  <input
+                    checked={false}
+                    className="form-check-input"
+                    disabled={false}
+                    onChange={[Function]}
+                    type="radio"
+                    value="user@42.nl"
+                  />
+                </Input>
+                 
+                user@42.nl
+              </label>
+            </Label>
+          </div>
+        </FormGroup>
+      </fieldset>
+    </FormGroup>
+  </RadioGroup>
+</ValuePicker>
+`;
+
+exports[`Component: ValuePicker single should render a \`Select\` component when \`totalElements\` is less than 11 but more than 3 1`] = `
 <ValuePicker
   canSearch={true}
   fetchOptions={
@@ -709,28 +917,7 @@ exports[`Component: ValuePicker single should render a \`Select\` component when
   label="Best friend"
   multiple={false}
   onBlur={[MockFunction]}
-  onChange={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "active": true,
-            "email": "admin@42.nl",
-            "id": 42,
-            "roles": Array [
-              "ADMIN",
-            ],
-          },
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": undefined,
-        },
-      ],
-    }
-  }
+  onChange={[MockFunction]}
   optionForValue={[Function]}
   placeholder="Select your best friend"
 >
@@ -739,28 +926,7 @@ exports[`Component: ValuePicker single should render a \`Select\` component when
     id="bestFriend"
     label="Best friend"
     onBlur={[MockFunction]}
-    onChange={
-      [MockFunction] {
-        "calls": Array [
-          Array [
-            Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "id": 42,
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          ],
-        ],
-        "results": Array [
-          Object {
-            "type": "return",
-            "value": undefined,
-          },
-        ],
-      }
-    }
+    onChange={[MockFunction]}
     optionForValue={[Function]}
     options={[Function]}
     placeholder="Select your best friend"
@@ -830,6 +996,13 @@ exports[`Component: ValuePicker single should render a \`Select\` component when
               value={2}
             >
               user@42.nl
+            </option>
+            <option
+              disabled={false}
+              key="nobody@42.nl"
+              value={3}
+            >
+              nobody@42.nl
             </option>
           </select>
         </Input>

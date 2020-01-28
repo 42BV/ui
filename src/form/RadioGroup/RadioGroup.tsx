@@ -1,7 +1,6 @@
 import React from 'react';
-import { FormGroup, Label, Input as RSInput } from 'reactstrap';
+import { FormGroup, Label, Input } from 'reactstrap';
 import { get, constant } from 'lodash';
-import { InputType } from 'reactstrap/lib/Input';
 
 import withJarb from '../withJarb/withJarb';
 import { Color } from '../types';
@@ -9,12 +8,13 @@ import { t } from '../../utilities/translation/translation';
 import {
   OptionEqual,
   OptionForValue,
-  OptionEnabledCallback,
   OptionsFetcher,
-  isOptionSelected
+  isOptionSelected,
+  OptionEnabledCallback
 } from '../option';
-import { useOptions } from '../useOptions';
+import { doBlur } from '../utils';
 import Loading from '../../core/Loading/Loading';
+import { useOptions } from '../useOptions';
 
 export interface Text {
   /**
@@ -111,19 +111,17 @@ interface Props<T> {
 }
 
 /**
- * Select is a form element for which the value can be selected
+ * RadioGroup is a form element for which the value can be selected
  * from a limited range.
  */
-export default function Select<T>(props: Props<T>) {
+export default function RadioGroup<T>(props: Props<T>) {
   const {
-    id,
     value,
     error,
     color,
     label,
     text = {},
     className = '',
-    valid,
     placeholder,
     onChange,
     onBlur,
@@ -138,78 +136,58 @@ export default function Select<T>(props: Props<T>) {
     optionForValue
   });
 
-  function selectDefaultOption(option?: HTMLOptionElement | null) {
-    // select the default option when no other option is chosen.
-    if (option && value === undefined) {
-      option.selected = true;
-    }
+  const isOptionEnabled = get(props, 'isOptionEnabled', constant(true));
+
+  function onRadioClicked(option: T) {
+    onChange(option);
+    doBlur(onBlur);
   }
 
-  const isOptionEnabled = get(props, 'isOptionEnabled', constant(true));
-  const inputProps = {
-    id,
-    valid,
-    invalid: valid === false ? true : undefined,
-    type: 'select' as InputType,
-    placeholder,
-    onChange: (event: { target: { value: string } }) => {
-      const index = parseInt(event.target.value, 10);
-      onChange(options[index]);
-    },
-    onBlur,
-    className: value === undefined ? 'showing-placeholder' : ''
-  };
-
-  const indexOfValue =
-    value !== undefined
-      ? options.findIndex(option =>
-          isOptionSelected({ option, optionForValue, isOptionEqual, value })
-        )
-      : undefined;
-
   return (
-    <FormGroup className={className} color={color}>
-      <Label for={id}>{label}</Label>
+    <FormGroup tag="fieldset" className={className} color={color}>
+      <legend>{label}</legend>
+      <p className="text-muted">
+        <em>{placeholder}</em>
+      </p>
       {loading ? (
-        <Loading className="mt-2">
+        <Loading>
           {t({
-            key: 'Select.LOADING',
+            key: 'RadioGroup.LOADING',
             fallback: 'Loading...',
             overrideText: text.loadingMessage
           })}
         </Loading>
       ) : (
-        <RSInput
-          value={indexOfValue === -1 ? undefined : indexOfValue}
-          {...inputProps}
-        >
-          <option ref={option => selectDefaultOption(option)}>
-            {placeholder}
-          </option>
+        options.map(option => {
+          const label = optionForValue(option);
 
-          {options.map((option, index) => {
-            const label = optionForValue(option);
-
-            return (
-              <option
-                key={label}
-                // @ts-ignore
-                value={index}
-                disabled={!isOptionEnabled(option)}
-              >
+          return (
+            <FormGroup key={label} check>
+              <Label check>
+                <Input
+                  type="radio"
+                  value={label}
+                  checked={isOptionSelected({
+                    option,
+                    optionForValue,
+                    isOptionEqual,
+                    value
+                  })}
+                  disabled={!isOptionEnabled(option)}
+                  onChange={() => onRadioClicked(option)}
+                />{' '}
                 {label}
-              </option>
-            );
-          })}
-        </RSInput>
+              </Label>
+            </FormGroup>
+          );
+        })
       )}
 
       {error}
     </FormGroup>
   );
 }
-
 /**
- * Variant of the Select which can be used in a Jarb context.
+ * Variant of the RadioGroup which can be used in a Jarb context.
  */
-export const JarbSelect = withJarb<any, any, Props<any>>(Select);
+export const JarbRadioGroup = withJarb<any, any, Props<any>>(RadioGroup);

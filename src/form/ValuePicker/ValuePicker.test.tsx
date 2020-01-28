@@ -6,9 +6,14 @@ import { Page } from '@42.nl/spring-connect';
 import ValuePicker from './ValuePicker';
 import { FetchOptionsCallback } from '../option';
 
-import { User } from '../../test/types';
-import * as testUtils from '../../test/utils';
-import { adminUser, coordinatorUser, userUser } from '../../test/fixtures';
+import { User } from '../../../test/types';
+import * as testUtils from '../../../test/utils';
+import {
+  adminUser,
+  coordinatorUser,
+  userUser,
+  nobodyUser
+} from '../../../test/fixtures';
 import { act } from 'react-dom/test-utils';
 
 describe('Component: ValuePicker', () => {
@@ -60,12 +65,50 @@ describe('Component: ValuePicker', () => {
   });
 
   describe('single', () => {
-    it('should render a `Select` component when `totalElements` is less than 11', async done => {
+    it('should render a `RadioGroup` component when `totalElements` is less than 4', async done => {
       const promise = Promise.resolve(
         testUtils.pageWithContentAndExactSize([
           adminUser,
           coordinatorUser,
           userUser
+        ])
+      );
+
+      const fetchOptionsSpy = jest.fn(() => promise);
+
+      setup({
+        fetchOptions: fetchOptionsSpy,
+        multiple: false
+      });
+
+      try {
+        await act(async () => {
+          await promise;
+        });
+
+        valuePicker.update();
+
+        expect(valuePicker.find('RadioGroup').exists()).toBe(true);
+        expect(toJson(valuePicker)).toMatchSnapshot();
+
+        expect(fetchOptionsSpy).toBeCalledTimes(2);
+        expect(fetchOptionsSpy).toBeCalledWith('', 1, 1);
+        expect(fetchOptionsSpy).toHaveBeenLastCalledWith('', 1, 3);
+
+        done();
+      } catch (e) {
+        console.error(e);
+        done.fail();
+      }
+    });
+
+    it('should render a `Select` component when `totalElements` is less than 11 but more than 3', async done => {
+      const promise = Promise.resolve(
+        testUtils.pageWithContentAndExactSize([
+          adminUser,
+          coordinatorUser,
+          userUser,
+          nobodyUser
         ])
       );
 
@@ -97,7 +140,7 @@ describe('Component: ValuePicker', () => {
       }
     });
 
-    it('should render a `ModalPickerSingle` when `totalElements` is less than 11', async done => {
+    it('should render a `ModalPickerSingle` when `totalElements` is more than than 10', async done => {
       const promise = Promise.resolve(
         testUtils.pageWithContent([adminUser, coordinatorUser, userUser])
       );
@@ -169,7 +212,7 @@ describe('Component: ValuePicker', () => {
       }
     });
 
-    it('should render a `ModalPickerMultiple` when `totalElements` is less than 11', async done => {
+    it('should render a `ModalPickerMultiple` when `totalElements` is more than 10', async done => {
       const promise = Promise.resolve(
         testUtils.pageWithContent([adminUser, coordinatorUser, userUser])
       );

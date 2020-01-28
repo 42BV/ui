@@ -3,15 +3,9 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import Select, { Text } from './Select';
-import { User } from '../../test/types';
-import {
-  adminUser,
-  coordinatorUser,
-  userUser,
-  pageOfUsers
-} from '../../test/fixtures';
+import { User } from '../../../test/types';
+import { adminUser, coordinatorUser, userUser } from '../../../test/fixtures';
 import { OptionEnabledCallback } from '../option';
-import { pageWithContent } from '../../test/utils';
 
 describe('Component: Select', () => {
   let select: ShallowWrapper;
@@ -58,28 +52,6 @@ describe('Component: Select', () => {
       );
     });
 
-    describe('loading', () => {
-      test('with custom text', () => {
-        setup({ value: adminUser, text: { loadingMessage: 'Custom loading' } });
-
-        // @ts-ignore
-        select.setState({ loading: true });
-
-        expect(select.find('Spinner').exists()).toBe(true);
-        expect(select.find('span').text()).toBe('Custom loading');
-      });
-
-      test('with default text', () => {
-        setup({ value: adminUser });
-
-        // @ts-ignore
-        select.setState({ loading: true });
-
-        expect(select.find('Spinner').exists()).toBe(true);
-        expect(select.find('span').text()).toBe('Loading...');
-      });
-    });
-
     test('empty value string, should show placeholder', () => {
       setup({ value: undefined, isOptionEnabled: undefined });
 
@@ -102,147 +74,6 @@ describe('Component: Select', () => {
       const rsInput = select.find('Input');
 
       expect(rsInput.props().value).toBe(undefined);
-    });
-  });
-
-  describe('constructor', () => {
-    test('when options is an array use that options and set loading to false', () => {
-      // @ts-ignore
-      const select = new Select({ options: [adminUser] });
-
-      expect(select.state).toEqual({ loading: false, options: [adminUser] });
-    });
-
-    test('when options is a function set options to empty and loading to true', () => {
-      // @ts-ignore
-      const select = new Select({ options: jest.fn() });
-
-      expect(select.state).toEqual({ loading: true, options: [] });
-    });
-  });
-
-  describe('componentDidMount', () => {
-    test('when options is an array do nothing', async done => {
-      const onChange = jest.fn();
-
-      // @ts-ignore
-      const select = new Select({
-        options: [adminUser, coordinatorUser, userUser],
-        onChange
-      });
-
-      jest.spyOn(select, 'setState').mockImplementation(() => undefined);
-
-      try {
-        await select.componentDidMount();
-
-        expect(select.setState).toHaveBeenCalledTimes(0);
-
-        expect(onChange).toHaveBeenCalledTimes(0);
-
-        done();
-      } catch (e) {
-        console.error(e);
-        done.fail();
-      }
-    });
-
-    describe('when options is a function', () => {
-      test('when options is a function set options to empty and loading to true', async done => {
-        const options = () => Promise.resolve(pageOfUsers);
-
-        // @ts-ignore
-        const select = new Select({ options, onChange: jest.fn() });
-
-        jest.spyOn(select, 'setState').mockImplementation(() => undefined);
-
-        try {
-          await select.componentDidMount();
-
-          expect(select.setState).toHaveBeenCalledTimes(1);
-          expect(select.setState).toHaveBeenCalledWith({
-            loading: false,
-            options: [adminUser, coordinatorUser, userUser]
-          });
-
-          done();
-        } catch (e) {
-          console.error(e);
-          done.fail();
-        }
-      });
-
-      describe('setting of initial value after loading options', () => {
-        test('do nothing when value is set and can be found in the loaded options', async done => {
-          const onChange = jest.fn();
-          const options = () => Promise.resolve(pageOfUsers);
-
-          // @ts-ignore
-          const select = new Select({ options, onChange });
-          select.props.value = adminUser;
-          select.props.optionForValue = (user: User) => user?.email;
-
-          jest.spyOn(select, 'setState').mockImplementation(() => undefined);
-
-          try {
-            await select.componentDidMount();
-
-            expect(onChange).toHaveBeenCalledTimes(0);
-
-            done();
-          } catch (e) {
-            console.error(e);
-            done.fail();
-          }
-        });
-
-        test('select first option when value is set but not in the loaded options', async done => {
-          const onChange = jest.fn();
-          const options = () =>
-            Promise.resolve(pageWithContent([adminUser, coordinatorUser]));
-
-          // @ts-ignore
-          const select = new Select({ options, onChange });
-          select.props.value = userUser;
-          select.props.optionForValue = (user: User) => user?.email;
-
-          jest.spyOn(select, 'setState').mockImplementation(() => undefined);
-
-          try {
-            await select.componentDidMount();
-
-            expect(onChange).toHaveBeenCalledTimes(1);
-            expect(onChange).toBeCalledWith(adminUser);
-
-            done();
-          } catch (e) {
-            console.error(e);
-            done.fail();
-          }
-        });
-
-        test('select first option when value is not set', async done => {
-          const onChange = jest.fn();
-          const options = () => Promise.resolve(pageOfUsers);
-
-          // @ts-ignore
-          const select = new Select({ options, onChange });
-
-          jest.spyOn(select, 'setState').mockImplementation(() => undefined);
-
-          try {
-            await select.componentDidMount();
-
-            expect(onChange).toHaveBeenCalledTimes(1);
-            expect(onChange).toBeCalledWith(adminUser);
-
-            done();
-          } catch (e) {
-            console.error(e);
-            done.fail();
-          }
-        });
-      });
     });
   });
 

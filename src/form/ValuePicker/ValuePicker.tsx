@@ -6,6 +6,7 @@ import withJarb from '../withJarb/withJarb';
 import ModalPickerMultiple from '../ModalPicker/multiple/ModalPickerMultiple';
 import CheckboxMultipleSelect from '../CheckboxMultipleSelect/CheckboxMultipleSelect';
 
+import RadioGroup from '../RadioGroup/RadioGroup';
 import Select from '../Select/Select';
 import ModalPickerSingle from '../ModalPicker/single/ModalPickerSingle';
 
@@ -135,9 +136,9 @@ type Props<T> = SingleValuePicker<T> | MultipleValuePicker<T>;
  * This is the decision matrix:
  *
  * ```
- * | multiple | items <= 10             | items > 10
- * | true     | CheckboxMultipleSelect  | ModalPickerMultiple
- * | false    | Select                  | ModalPickerSingle
+ * | multiple | items <=3              | items <= 10             | items > 10
+ * | true     | CheckboxMultipleSelect | CheckboxMultipleSelect  | ModalPickerMultiple
+ * | false    | RadioGroup             | Select                  | ModalPickerSingle
  * ```
  *
  * `ValuePicker` starts in a booting state in which a spinner is shown.
@@ -171,7 +172,7 @@ export default function ValuePicker<T>(props: Props<T>) {
     boot();
   }, [fetchOptionsCallback]);
 
-  // Until we know the number of totalElements the ValuPicker is booting.
+  // Until we know the number of totalElements the ValuePicker is booting.
   // and we do not shown anything to the user yet.
   if (booting) {
     return (
@@ -209,7 +210,11 @@ export default function ValuePicker<T>(props: Props<T>) {
   } else {
     const { fetchOptions, multiple, ...rest } = props;
 
-    if (totalElements < 11) {
+    if (totalElements < 4) {
+      return (
+        <RadioGroup options={() => fetchOptionsCallback('', 1, 3)} {...rest} />
+      );
+    } else if (totalElements < 11) {
       return (
         <Select options={() => fetchOptionsCallback('', 1, 10)} {...rest} />
       );
