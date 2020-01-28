@@ -54,6 +54,11 @@ describe('Icon', () => {
       const icon = shallow(<Icon icon="alarm" disabled={false} />);
       expect(toJson(icon)).toMatchSnapshot('Icon => ui => is enabled');
     });
+
+    test('with size', () => {
+      const icon = shallow(<Icon icon="alarm" size={144} />);
+      expect(toJson(icon)).toMatchSnapshot('Icon => ui => with size');
+    });
   });
 
   describe('events', () => {

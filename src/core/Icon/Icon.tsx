@@ -37,6 +37,13 @@ interface Props {
    * Defaults to `false`
    */
   disabled?: boolean;
+
+  /**
+   * Optionally the size of the icon in pixels.
+   *
+   * Defaults to `24px`
+   */
+  size?: number;
 }
 
 /**
@@ -50,7 +57,8 @@ export default function Icon({
   icon,
   id,
   color,
-  disabled
+  disabled,
+  size
 }: Props) {
   const colorCssClass = color !== undefined ? `text-${color}` : undefined;
 
@@ -65,9 +73,12 @@ export default function Icon({
     }
   );
 
+  const style = size ? { fontSize: size } : undefined;
+
   return (
     <i
       id={id}
+      style={style}
       onClick={event => {
         if (!disabled && onClick) {
           onClick(event);

@@ -74,6 +74,20 @@ exports[`Icon ui with id: Icon => ui => with id 1`] = `
 </i>
 `;
 
+exports[`Icon ui with size: Icon => ui => with size 1`] = `
+<i
+  className="icon material-icons"
+  onClick={[Function]}
+  style={
+    Object {
+      "fontSize": 144,
+    }
+  }
+>
+  alarm
+</i>
+`;
+
 exports[`index should contain exports 1`] = `
 Object {
   "Icon": [Function],
