@@ -23,7 +23,7 @@ export function FinalForm({ children }: Props) {
       render={({ handleSubmit, submitting, values, errors }) => (
         <Fragment>
           <Row>
-            <Col>
+            <Col lg={6}>
               <Form>
                 {children}
 
@@ -35,7 +35,7 @@ export function FinalForm({ children }: Props) {
                 </SubmitButton>
               </Form>
             </Col>
-            <Col>
+            <Col lg={6}>
               <h2>Values</h2>
               <pre>{JSON.stringify(values, null, 2)}</pre>
               <h2>Errors</h2>
