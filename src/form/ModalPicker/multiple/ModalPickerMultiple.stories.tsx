@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { pageWithContentAndExactSize } from '../../../test/utils';
-import { userUser, adminUser } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import { pageWithContentAndExactSize } from '../../../../test/utils';
+import { userUser, adminUser } from '../../../../test/fixtures';
+import { User } from '../../../../test/types';
 
 import ModalPickerMultiple, {
   JarbModalPickerMultiple

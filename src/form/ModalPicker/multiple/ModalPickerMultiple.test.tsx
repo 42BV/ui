@@ -9,10 +9,10 @@ import {
   adminUser,
   userUser,
   coordinatorUser
-} from '../../../test/fixtures';
+} from '../../../../test/fixtures';
 
-import { User } from '../../../test/types';
-import * as testUtils from '../../../test/utils';
+import { User } from '../../../../test/types';
+import * as testUtils from '../../../../test/utils';
 
 describe('Component: ModalPickerMultiple', () => {
   let modalPickerMultiple: ShallowWrapper;

@@ -24,10 +24,11 @@ import {
   JarbCheckboxMultipleSelect,
   JarbIconPicker
 } from '..';
-import { pageOfUsers } from '../test/fixtures';
-import { User } from '../test/types';
+import { pageOfUsers } from '../../test/fixtures';
+import { User } from '../../test/types';
 import { JarbColorPicker } from './ColorPicker/ColorPicker';
 import { JarbCheckbox } from './Checkbox/Checkbox';
+import { JarbRadioGroup } from './RadioGroup/RadioGroup';
 
 function sleep(ms: number) {
   return new Promise(resolve => {
@@ -239,8 +240,19 @@ storiesOf('Form|Example', module).add('jarb form', () => {
         name="nemesis"
         jarb={{ validator: 'User.nemesis', label: 'Nemesis' }}
         id="nemesis"
-        label="Best friend"
+        label="Worst enemy"
         placeholder="Select your nemesis"
+        optionForValue={userAsOption}
+        options={() => Promise.resolve(pageOfUsers)}
+        validators={requiredValidator}
+      />
+
+      <JarbRadioGroup
+        name="bestFriend"
+        jarb={{ validator: 'User.bestFriend', label: 'Nemesis' }}
+        id="bestFriend"
+        label="Best friend"
+        placeholder="Select your best friend"
         optionForValue={userAsOption}
         options={() => Promise.resolve(pageOfUsers)}
         validators={requiredValidator}

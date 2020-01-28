@@ -12,6 +12,7 @@ export { default as FlashMessage } from './core/FlashMessage/FlashMessage';
 export { Icon, IconType } from './core/Icon/index';
 export { default as InfoBadge } from './core/InfoBadge/InfoBadge';
 export { default as LoadingPage } from './core/LoadingPage/LoadingPage';
+export { default as Loading } from './core/Loading/Loading';
 export { default as MoreOrLess } from './core/MoreOrLess/MoreOrLess';
 export { default as NavigationItem } from './core/NavigationItem/NavigationItem';
 export { default as Pagination } from './core/Pagination/Pagination';
@@ -90,6 +91,10 @@ export {
   JarbColorPicker
 } from './form/ColorPicker/ColorPicker';
 export { default as Checkbox, JarbCheckbox } from './form/Checkbox/Checkbox';
+export {
+  default as RadioGroup,
+  JarbRadioGroup
+} from './form/RadioGroup/RadioGroup';
 
 // Table
 export { EpicTable } from './table/EpicTable/EpicTable';

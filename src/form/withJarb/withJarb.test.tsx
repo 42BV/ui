@@ -5,7 +5,7 @@ import * as reactErrorStore from '@42.nl/react-error-store';
 
 import withJarb from './withJarb';
 
-import { validMeta } from '../../test/fixtures';
+import { validMeta } from '../../../test/fixtures';
 
 const isSuperman = (value: string) =>
   value === 'superman' ? undefined : 'not superman';

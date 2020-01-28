@@ -6,8 +6,8 @@ import CheckboxMultipleSelect, {
   JarbCheckboxMultipleSelect
 } from './CheckboxMultipleSelect';
 import { FinalForm, Form } from '../story-utils';
-import { pageOfUsers, userUser } from '../../test/fixtures';
-import { User } from '../../test/types';
+import { pageOfUsers, userUser } from '../../../test/fixtures';
+import { User } from '../../../test/types';
 
 interface SubjectOption {
   value: string;

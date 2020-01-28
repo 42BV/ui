@@ -47,3 +47,11 @@ export function FinalForm({ children }: Props) {
     />
   );
 }
+
+export function resolveAfter<T>(value: T, after = 1000): Promise<T> {
+  return new Promise(resolve => {
+    return setTimeout(() => {
+      resolve(value);
+    }, after);
+  });
+}

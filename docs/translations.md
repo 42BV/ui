@@ -150,6 +150,12 @@ Here is a JSON notation containing all keys and default translations:
     "CLEAR": "Clear",
     "CANCEL": "Cancel",
     "SELECT": "Select"
+  },
+  "Loading": {
+    "LOADING": "Loading...",
+  },
+  "RadioGroup": {
+    "LOADING": "Loading..."
   }
 }
 ```

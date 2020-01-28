@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Loading ui with children: Component: Loading => ui => with children 1`] = `
+<div
+  className="d-flex"
+>
+  <Spinner
+    className="align-self-center"
+    color="black"
+    size={16}
+  />
+  <span
+    className="ml-1"
+  >
+    We are 
+    <b>
+      loading
+    </b>
+     the world!
+  </span>
+</div>
+`;
+
+exports[`Component: Loading ui without children: Component: Loading => ui => without children 1`] = `
+<div
+  className="d-flex"
+>
+  <Spinner
+    className="align-self-center"
+    color="black"
+    size={16}
+  />
+  <span
+    className="ml-1"
+  >
+    Loading...
+  </span>
+</div>
+`;

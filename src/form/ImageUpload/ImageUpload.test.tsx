@@ -11,7 +11,7 @@ import ImageUpload, {
   Text
 } from './ImageUpload';
 
-import * as testUtils from '../../test/utils';
+import * as testUtils from '../../../test/utils';
 
 describe('Component: ImageUpload', () => {
   let imgUpload: ShallowWrapper;

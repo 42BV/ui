@@ -140,16 +140,15 @@
     "prettier": "1.19.1"
   },
   "jest": {
+    "rootDir": "src",
     "setupFilesAfterEnv": [
-      "<rootDir>/setupTests.ts"
+      "<rootDir>/../setupTests.ts"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!<rootDir>/src/index.ts",
-      "!<rootDir>/src/form/story-utils.tsx",
-      "!<rootDir>/src/**/*.stories.tsx",
-      "!<rootDir>/src/test/**/*",
-      "!<rootDir>/node_modules/"
+      "<rootDir>/**/*.{ts,tsx}",
+      "!<rootDir>/index.ts",
+      "!<rootDir>/form/story-utils.tsx",
+      "!<rootDir>/**/*.stories.tsx"
     ],
     "moduleFileExtensions": [
       "ts",

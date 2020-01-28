@@ -3,9 +3,9 @@ import { storiesOf } from '@storybook/react';
 
 import ModalPickerSingle, { JarbModalPickerSingle } from './ModalPickerSingle';
 import { FinalForm, Form } from '../../story-utils';
-import { pageWithContentAndExactSize } from '../../../test/utils';
-import { userUser, adminUser } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import { pageWithContentAndExactSize } from '../../../../test/utils';
+import { userUser, adminUser } from '../../../../test/fixtures';
+import { User } from '../../../../test/types';
 
 storiesOf('Form/ModalPicker/ModalPickerSingle', module)
   .add('basic', () => {

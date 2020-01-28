@@ -2,10 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { pageWithContentAndExactSize } from '../../../test/utils';
+import { pageWithContentAndExactSize } from '../../../../test/utils';
 import { Form, FinalForm } from '../../story-utils';
-import { userUser, adminUser } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import { userUser, adminUser } from '../../../../test/fixtures';
+import { User } from '../../../../test/types';
 import TypeaheadSingle, { JarbTypeaheadSingle } from './TypeaheadSingle';
 
 storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
