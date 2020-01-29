@@ -9,8 +9,8 @@ import {
   pageOfUsers,
   coordinatorUser,
   userUser
-} from '../../../../test/fixtures';
-import { User } from '../../../../test/types';
+} from '../../../test/fixtures';
+import { User } from '../../../test/types';
 
 describe('Component: TypeaheadMultiple', () => {
   let typeaheadMultiple: ShallowWrapper;

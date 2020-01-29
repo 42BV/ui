@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 
 import Checkbox, { JarbRadioGroup } from './RadioGroup';
 import { FinalForm, Form, resolveAfter } from '../story-utils';
-import { pageOfUsers, randomUser } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import { pageOfUsers, randomUser } from '../../test/fixtures';
+import { User } from '../../test/types';
 
 interface SubjectOption {
   value: string;

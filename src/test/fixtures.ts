@@ -1,5 +1,5 @@
 import { Page } from '@42.nl/spring-connect';
-import { Meta } from '../src/form/types';
+import { Meta } from '../form/types';
 import { UserRole, User } from './types';
 import { random } from 'lodash';
 

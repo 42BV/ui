@@ -4,14 +4,14 @@ import toJson from 'enzyme-to-json';
 import { emptyPage } from '@42.nl/spring-connect';
 
 import ModalPickerSingle, { State } from './ModalPickerSingle';
-import { User } from '../../../../test/types';
-import * as testUtils from '../../../../test/utils';
+import { User } from '../../../test/types';
+import * as testUtils from '../../../test/utils';
 import {
   pageOfUsers,
   adminUser,
   userUser,
   coordinatorUser
-} from '../../../../test/fixtures';
+} from '../../../test/fixtures';
 
 describe('Component: ModalPickerSingle', () => {
   let modalPickerSingle: ShallowWrapper;
