@@ -1,6 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: AsyncContent when fulfilled 1`] = `
+exports[`Component: AsyncContent when fulfilled when empty 1`] = `
+<ContentState
+  mode="empty"
+  title="No results found"
+/>
+`;
+
+exports[`Component: AsyncContent when fulfilled when empty with custom empty  1`] = `
+<Fragment>
+  <h1>
+    Custom renderer
+  </h1>
+</Fragment>
+`;
+
+exports[`Component: AsyncContent when fulfilled when not empty 1`] = `
 <Fragment>
   <h2>
     importantos data

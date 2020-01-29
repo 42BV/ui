@@ -15,16 +15,25 @@ type State = {
 describe('Component: AsyncContent', () => {
   function setup({
     state,
-    showRetryButton = undefined
+    showRetryButton = undefined,
+    isEmpty = undefined,
+    emptyContent = undefined
   }: {
     state: State;
     showRetryButton?: boolean;
+    isEmpty?: () => boolean;
+    emptyContent?: (data: string) => React.ReactNode;
   }) {
     jest.spyOn(console, 'error');
 
     const asyncContent = shallow(
-      // @ts-ignore
-      <AsyncContent state={state} showRetryButton={showRetryButton}>
+      <AsyncContent
+        // @ts-ignore
+        state={state}
+        showRetryButton={showRetryButton}
+        isEmpty={isEmpty}
+        emptyContent={emptyContent}
+      >
         {(data: string) => <h2>{data}</h2>}
       </AsyncContent>
     );
@@ -43,18 +52,57 @@ describe('Component: AsyncContent', () => {
     expect(console.error).toHaveBeenCalledTimes(0);
   });
 
-  test('when fulfilled', () => {
-    const state = {
-      isLoading: false,
-      isFulfilled: true,
-      data: 'importantos data',
-      reload: () => undefined
-    };
+  describe('when fulfilled', () => {
+    test('when not empty', () => {
+      const state = {
+        isLoading: false,
+        isFulfilled: true,
+        data: 'importantos data',
+        reload: () => undefined
+      };
 
-    const { asyncContent } = setup({ state });
+      const { asyncContent } = setup({ state });
 
-    expect(toJson(asyncContent)).toMatchSnapshot();
-    expect(console.error).toHaveBeenCalledTimes(0);
+      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(console.error).toHaveBeenCalledTimes(0);
+    });
+
+    test('when empty', () => {
+      const state = {
+        isLoading: false,
+        isFulfilled: true,
+        data: 'importantos data',
+        reload: () => undefined
+      };
+
+      const { asyncContent } = setup({ state, isEmpty: () => true });
+
+      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(console.error).toHaveBeenCalledTimes(0);
+    });
+
+    test('when empty with custom empty ', () => {
+      const state = {
+        isLoading: false,
+        isFulfilled: true,
+        data: 'importantos data',
+        reload: () => undefined
+      };
+
+      const { asyncContent } = setup({
+        state,
+        isEmpty: () => true,
+        // eslint-disable-next-line react/display-name
+        emptyContent: data => {
+          expect(data).toBe('importantos data');
+
+          return <h1>Custom renderer</h1>;
+        }
+      });
+
+      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(console.error).toHaveBeenCalledTimes(0);
+    });
   });
 
   describe('when rejected', () => {

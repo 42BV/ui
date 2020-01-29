@@ -17,12 +17,18 @@ interface Text {
   loading?: string;
 
   /**
+   * Empty text to show when a request has loaded but the response
+   * is considered empty.
+   */
+  empty?: string;
+
+  /**
    * Text to show within the `retry` button.
    */
   retry?: string;
 }
 
-type Props<T> = {
+export type Props<T> = {
   /**
    * Render function which takes the `data` from the `useAsync`'s
    * `state` when the promise is fulfilled, and expects a you
@@ -48,6 +54,20 @@ type Props<T> = {
    * @default true
    */
   showRetryButton?: boolean;
+
+  /**
+   * An optional callback which gets called when the data has
+   * loaded. When `isEmpty` returns `true` the `emptyContent` is
+   * rendered.
+   */
+  isEmpty?: (data: T) => boolean;
+
+  /**
+   * Optionally when `isEmpty` returns `true` what content to render.
+   *
+   * Defaults to rendering a `ContentState` in the `empty` mode.
+   */
+  emptyContent?: (data: T) => React.ReactNode;
 };
 
 /**
@@ -65,11 +85,22 @@ type Props<T> = {
  * 3. When the state has loaded successfully it will render the `children`
  *    render function and it provides the `state.data` for you to render.
  *
+ * 4. When the state has loaded successfully will ask via the `isEmpty`
+ *    callback if you consider the `stata.data` empty. It will then
+ *    render the `emptyContent` when defined or by default show
+ *    a `ContentState` in the `empty` mode.
+ *
  * With these behaviors you ensure that you always handle the error and
  * loading state when using `useAsync`.
  */
 export default function AsyncContent<T>(props: Props<T>) {
-  const { state, text = {}, showRetryButton = true } = props;
+  const {
+    state,
+    text = {},
+    showRetryButton = true,
+    isEmpty,
+    emptyContent
+  } = props;
 
   if (state.isLoading) {
     return (
@@ -82,31 +113,46 @@ export default function AsyncContent<T>(props: Props<T>) {
         })}
       />
     );
-  } else {
-    if (state.isFulfilled) {
-      return <>{props.children(state.data)}</>;
+  } else if (state.isFulfilled) {
+    if (isEmpty && isEmpty(state.data)) {
+      if (emptyContent) {
+        return <>{emptyContent(state.data)}</>;
+      } else {
+        return (
+          <ContentState
+            mode="empty"
+            title={t({
+              key: 'AsyncContent.EMPTY.TITLE',
+              fallback: 'No results found',
+              overrideText: text.empty
+            })}
+          />
+        );
+      }
     } else {
-      console.error(state.error);
-      return (
-        <ContentState
-          mode="error"
-          title={t({
-            key: 'AsyncContent.ERROR.TITLE',
-            fallback: 'Oops something went wrong!',
-            overrideText: text.error
-          })}
-        >
-          {showRetryButton ? (
-            <Button icon="refresh" onClick={() => state.reload()}>
-              {t({
-                key: 'AsyncContent.ERROR.RETRY',
-                fallback: 'Retry',
-                overrideText: text.retry
-              })}
-            </Button>
-          ) : null}
-        </ContentState>
-      );
+      return <>{props.children(state.data)}</>;
     }
+  } else {
+    console.error(state.error);
+    return (
+      <ContentState
+        mode="error"
+        title={t({
+          key: 'AsyncContent.ERROR.TITLE',
+          fallback: 'Oops something went wrong!',
+          overrideText: text.error
+        })}
+      >
+        {showRetryButton ? (
+          <Button icon="refresh" onClick={() => state.reload()}>
+            {t({
+              key: 'AsyncContent.ERROR.RETRY',
+              fallback: 'Retry',
+              overrideText: text.retry
+            })}
+          </Button>
+        ) : null}
+      </ContentState>
+    );
   }
 }

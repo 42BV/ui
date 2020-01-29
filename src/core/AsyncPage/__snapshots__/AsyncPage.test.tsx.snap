@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: AsyncPage ui 1`] = `
+<AsyncContent
+  isEmpty={[Function]}
+  showRetryButton={true}
+  state={
+    Object {
+      "data": Object {
+        "content": Array [
+          Object {
+            "active": true,
+            "email": "admin@42.nl",
+            "id": 42,
+            "roles": Array [
+              "ADMIN",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "coordinator@42.nl",
+            "id": 777,
+            "roles": Array [
+              "ADMIN",
+              "USER",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "user@42.nl",
+            "id": 1337,
+            "roles": Array [
+              "USER",
+            ],
+          },
+        ],
+        "first": false,
+        "last": false,
+        "number": 2,
+        "numberOfElements": 3,
+        "size": 3,
+        "totalElements": 9,
+        "totalPages": 3,
+      },
+      "isFulfilled": true,
+      "isLoading": false,
+    }
+  }
+  text={
+    Object {
+      "loading": "Custom loading",
+    }
+  }
+>
+  <Component />
+</AsyncContent>
+`;
