@@ -148,7 +148,8 @@
       "<rootDir>/**/*.{ts,tsx}",
       "!<rootDir>/index.ts",
       "!<rootDir>/form/story-utils.tsx",
-      "!<rootDir>/**/*.stories.tsx"
+      "!<rootDir>/**/*.stories.tsx",
+      "!<rootDir>/test/**/*"
     ],
     "moduleFileExtensions": [
       "ts",

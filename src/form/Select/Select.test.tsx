@@ -3,8 +3,8 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import Select, { Text } from './Select';
-import { User } from '../../../test/types';
-import { adminUser, coordinatorUser, userUser } from '../../../test/fixtures';
+import { User } from '../../test/types';
+import { adminUser, coordinatorUser, userUser } from '../../test/fixtures';
 import { OptionEnabledCallback } from '../option';
 
 describe('Component: Select', () => {

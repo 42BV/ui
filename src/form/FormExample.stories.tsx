@@ -24,8 +24,8 @@ import {
   JarbCheckboxMultipleSelect,
   JarbIconPicker
 } from '..';
-import { pageOfUsers } from '../../test/fixtures';
-import { User } from '../../test/types';
+import { pageOfUsers } from '../test/fixtures';
+import { User } from '../test/types';
 import { JarbColorPicker } from './ColorPicker/ColorPicker';
 import { JarbCheckbox } from './Checkbox/Checkbox';
 import { JarbRadioGroup } from './RadioGroup/RadioGroup';

@@ -4,8 +4,8 @@ import { action } from '@storybook/addon-actions';
 
 import Select, { JarbSelect } from './Select';
 import { FinalForm, Form, resolveAfter } from '../story-utils';
-import { pageOfUsers, userUser, randomUser } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import { pageOfUsers, userUser, randomUser } from '../../test/fixtures';
+import { User } from '../../test/types';
 
 interface SubjectOption {
   value: string;

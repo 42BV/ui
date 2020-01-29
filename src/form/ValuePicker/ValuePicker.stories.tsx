@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import {
-  pageWithContentAndExactSize,
-  pageWithContent
-} from '../../../test/utils';
-import { userUser, adminUser, randomUser } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import { pageWithContentAndExactSize, pageWithContent } from '../../test/utils';
+import { userUser, adminUser, randomUser } from '../../test/fixtures';
+import { User } from '../../test/types';
 
 import ValuePicker, { JarbValuePicker } from './ValuePicker';
 

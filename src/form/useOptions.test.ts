@@ -6,7 +6,7 @@ import {
   coordinatorUser,
   adminUser,
   nobodyUser
-} from '../../test/fixtures';
+} from '../test/fixtures';
 import { pageOf } from '../utilities/page/page';
 
 describe('useOptions', () => {

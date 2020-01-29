@@ -6,14 +6,14 @@ import { Page } from '@42.nl/spring-connect';
 import ValuePicker from './ValuePicker';
 import { FetchOptionsCallback } from '../option';
 
-import { User } from '../../../test/types';
-import * as testUtils from '../../../test/utils';
+import { User } from '../../test/types';
+import * as testUtils from '../../test/utils';
 import {
   adminUser,
   coordinatorUser,
   userUser,
   nobodyUser
-} from '../../../test/fixtures';
+} from '../../test/fixtures';
 import { act } from 'react-dom/test-utils';
 
 describe('Component: ValuePicker', () => {
