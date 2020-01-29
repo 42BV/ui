@@ -3,11 +3,13 @@ import { storiesOf } from '@storybook/react';
 
 import AsyncContent from './AsyncContent';
 import { useAsync } from 'react-async';
+import { action } from '@storybook/addon-actions';
+import { ContentState, Button } from '../..';
 
 function loadData() {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve({ user: 'jeffrey' });
+      resolve({ user: 'Jeffrey' });
     }, 1000);
   });
 }
@@ -24,7 +26,7 @@ function loadingData() {
   return new Promise(() => undefined);
 }
 
-storiesOf('core|AsyncContent', module)
+storiesOf('core|async/AsyncContent', module)
   .addParameters({ component: AsyncContent })
   .add('when loaded', () => {
     const state = useAsync(loadData);
@@ -55,7 +57,10 @@ storiesOf('core|AsyncContent', module)
 
     return (
       <div className="text-center">
-        <AsyncContent state={state} text={{ error: "I’m sorry Dave, I’m afraid I can’t do that" }}>
+        <AsyncContent
+          state={state}
+          text={{ error: 'I’m sorry Dave, I’m afraid I can’t do that' }}
+        >
           {(data: { user: string }) => <h2>Hi, {data.user}</h2>}
         </AsyncContent>
       </div>
@@ -91,7 +96,60 @@ storiesOf('core|AsyncContent', module)
 
     return (
       <div className="text-center">
-        <AsyncContent state={state} text={{ loading: "Loading Jeffrey" }}>
+        <AsyncContent state={state} text={{ loading: 'Loading Jeffrey' }}>
+          {(data: { user: string }) => <h2>Hi, {data.user}</h2>}
+        </AsyncContent>
+      </div>
+    );
+  })
+
+  .add('when empty', () => {
+    const state = useAsync(loadData);
+
+    return (
+      <div className="text-center">
+        <AsyncContent
+          state={state}
+          isEmpty={(data: { user: string }) => data.user === 'Jeffrey'}
+        >
+          {(data: { user: string }) => <h2>Hi, {data.user}</h2>}
+        </AsyncContent>
+      </div>
+    );
+  })
+
+  .add('when empty with title', () => {
+    const state = useAsync(loadData);
+
+    return (
+      <div className="text-center">
+        <AsyncContent
+          state={state}
+          text={{ empty: "No Jeffrey's match your parameters try again" }}
+          isEmpty={(data: { user: string }) => data.user === 'Jeffrey'}
+        >
+          {(data: { user: string }) => <h2>Hi, {data.user}</h2>}
+        </AsyncContent>
+      </div>
+    );
+  })
+
+  .add('when empty with custom empty', () => {
+    const state = useAsync(loadData);
+
+    return (
+      <div className="text-center">
+        <AsyncContent
+          state={state}
+          isEmpty={(data: { user: string }) => data.user === 'Jeffrey'}
+          emptyContent={() => (
+            <ContentState mode="empty" title="No results found">
+              <Button icon="refresh" onClick={action('clear filters')}>
+                Clear filters
+              </Button>
+            </ContentState>
+          )}
+        >
           {(data: { user: string }) => <h2>Hi, {data.user}</h2>}
         </AsyncContent>
       </div>

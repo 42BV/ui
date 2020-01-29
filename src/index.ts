@@ -21,6 +21,8 @@ export { default as Spinner } from './core/Spinner/Spinner';
 export { default as SubmitButton } from './core/SubmitButton/SubmitButton';
 export { default as Tag } from './core/Tag/Tag';
 export { default as AsyncContent } from './core/AsyncContent/AsyncContent';
+export { default as AsyncPage } from './core/AsyncPage/AsyncPage';
+export { default as AsyncList } from './core/AsyncList/AsyncList';
 export { default as SearchInput } from './core/SearchInput/SearchInput';
 export { default as Pager } from './core/Pager/Pager';
 
