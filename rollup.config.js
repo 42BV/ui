@@ -1,6 +1,8 @@
 import typescript from 'rollup-plugin-typescript2';
 import autoExternal from 'rollup-plugin-auto-external';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
+import visualizer from 'rollup-plugin-visualizer';
+ 
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs-extra';
@@ -75,6 +77,7 @@ module.exports = {
   plugins: [
     autoExternal(),
     sizeSnapshot(),
+    visualizer(),
     copy({
       targets: [
         {
