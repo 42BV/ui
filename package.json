@@ -24,15 +24,13 @@
     "test:watch": "jest --watch --coverage",
     "test-all": "npm run lint && npm run tsc && jest --coverage",
     "build": "npm run clean && rollup -c",
-    "git-add-stats": "git add stats.html && git add .size-snapshot.json",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "storybook:build": "build-storybook -c storybook -o docs/storybook",
     "storybook": "start-storybook -c storybook",
     "docs": "jekyll serve --source docs",
     "release": "np --otp",
     "dev:publish": "./scripts/dev-publish.sh",
-    "prepublishOnly": "npm run clean && npm run test-all && npm run build && npm run git-add-stats",
-    "version": "jekyll build && npm run storybook:build && git add docs"
+    "version": "npm run clean && npm run test-all && npm run build && jekyll build && npm run storybook:build && git add stats.html && git add .size-snapshot.json && git add docs && git clean -df"
   },
   "dependencies": {
     "bootstrap": "4.4.1",
