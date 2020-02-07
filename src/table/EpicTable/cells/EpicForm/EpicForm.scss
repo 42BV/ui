@@ -1,0 +1,36 @@
+.epic-table-form {
+  &,
+  &-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  form {
+    display: flex;
+  }
+
+  .form-group {
+    margin: 0;
+    width: 100%;
+  }
+
+  &--odd {
+    .epic-table-form-cell {
+      // Must be transparent otherwise the shadow of the left / right
+      // columns are negated.
+      background-color: rgba($gray-400, 0.3);
+    }
+  }
+
+  .date-time-input .rdt {
+    position: static;
+
+    .rdtPicker {
+      top: unset;
+      left: unset;
+    }
+  }
+}

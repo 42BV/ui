@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: FormButton ui 1`] = `
+<Button
+  icon="save"
+  onClick={[Function]}
+  type="submit"
+/>
+`;

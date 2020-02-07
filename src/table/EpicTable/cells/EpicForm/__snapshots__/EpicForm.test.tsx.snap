@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: EpicForm ui default: Component: EpicForm => ui => epicForm 1`] = `
+<ReactFinalForm
+  initialValues={Object {}}
+  onSubmit={[MockFunction]}
+>
+  <Component />
+</ReactFinalForm>
+`;
+
+exports[`Component: EpicForm ui default: Component: EpicForm => ui => formContent 1`] = `
+<form
+  className="epic-table-form border-bottom p-1"
+  id="test"
+  onSubmit={[MockFunction]}
+  style={
+    Object {
+      "height": 52,
+      "minWidth": 1950,
+      "width": 1950,
+    }
+  }
+>
+  <JarbInput
+    id="testField"
+    jarb={
+      Object {
+        "label": "Test",
+        "validator": "Test.test",
+      }
+    }
+    name="testField"
+  />
+</form>
+`;
+
+exports[`Component: EpicForm ui submitOnChange: Component: EpicForm => ui => submitOnChange 1`] = `
+<form
+  className="epic-table-form border-bottom p-1"
+  id="test"
+  onSubmit={[MockFunction]}
+  style={
+    Object {
+      "height": 52,
+      "minWidth": 1950,
+      "width": 1950,
+    }
+  }
+>
+  <AutoSave
+    initialValues={Object {}}
+  />
+  <JarbInput
+    id="testField"
+    jarb={
+      Object {
+        "label": "Test",
+        "validator": "Test.test",
+      }
+    }
+    name="testField"
+  />
+</form>
+`;
