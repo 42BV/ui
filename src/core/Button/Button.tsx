@@ -15,7 +15,7 @@ export interface BaseProps {
    *
    * @default button
    */
-  type?: 'button' | 'submit';
+  type?: 'button' | 'submit' | 'reset';
 
   /**
    * Optionally the color of the button.
