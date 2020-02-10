@@ -25,7 +25,7 @@ interface Props {
   /**
    * Elements to show.
    */
-  content: JSX.Element[];
+  content: React.ReactNode[];
 
   /**
    * Optional extra CSS class you want to add to the component.
