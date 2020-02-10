@@ -89,7 +89,7 @@
     "@types/reactstrap": "8.4.1",
     "@types/webpack": "4.41.4",
     "@typescript-eslint/eslint-plugin": "2.18.0",
-    "@typescript-eslint/parser": "2.18.0",
+    "@typescript-eslint/parser": "2.19.1",
     "awesome-typescript-loader": "5.2.1",
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
