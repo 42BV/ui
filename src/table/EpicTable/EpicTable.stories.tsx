@@ -27,6 +27,7 @@ import {
   pageOf
 } from '../..';
 import moment from 'moment';
+import MoreOrLess from '../../core/MoreOrLess/MoreOrLess';
 
 storiesOf('table|EpicTable', module)
   .addParameters({ component: EpicTable })
@@ -1756,93 +1757,12 @@ storiesOf('table|EpicTable', module)
                 <EpicDetailRow active={index === detail} left={300}>
                   {() => (
                     <EpicDetail onClose={() => setDetail(-1)}>
-                      <Row tag="dl">
-                        <Col tag="dt" sm={3}>
-                          First name
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.firstName}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Last name
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.lastName}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Birthdate
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.birthDate}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Sex
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.sex}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Job title
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.jobTitle}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Eye color
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.eyeColor}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Weight
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.weight}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Height
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.height}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Favorite food
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.favoriteFood}
-                        </Col>
-
-                        <Col tag="dt" sm={3}>
-                          Favorite movie
-                        </Col>
-                        <Col tag="dd" sm={9}>
-                          {person.favoriteMovie}
-                        </Col>
-
-                        <p className="p-5">
-                          Lorem, ipsum dolor sit amet consectetur adipisicing
-                          elit. Dignissimos assumenda doloribus earum quidem
-                          consequuntur. Eligendi necessitatibus vero tenetur quo
-                          dolorem, nesciunt reprehenderit, rerum ea modi,
-                          suscipit porro maiores nostrum atque.
-                        </p>
-
-                        <p className="p-5">
-                          Lorem, ipsum dolor sit amet consectetur adipisicing
-                          elit. Dignissimos assumenda doloribus earum quidem
-                          consequuntur. Eligendi necessitatibus vero tenetur quo
-                          dolorem, nesciunt reprehenderit, rerum ea modi,
-                          suscipit porro maiores nostrum atque.
-                        </p>
-                      </Row>
+                      <MoreOrLess
+                        content={persons.map(p => (
+                          <p key={p.id}>{p.firstName}</p>
+                        ))}
+                        limit={3}
+                      ></MoreOrLess>
                     </EpicDetail>
                   )}
                 </EpicDetailRow>

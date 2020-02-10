@@ -4,7 +4,7 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import React, { useRef, Fragment, useState, useEffect } from 'react';
+import React, { useRef, Fragment, useState } from 'react';
 import classNames from 'classnames';
 
 import { FixedHeader } from './helpers/FixedHeader/FixedHeader';
@@ -13,6 +13,8 @@ import { GooeyCenter } from './helpers/GooeyCenter/GooeyCenter';
 import { epicTableLayout } from './helpers/layout/layout';
 import { HeaderRef } from './types';
 import { useEpicTableRect } from './helpers/useEpicTableRect';
+import { useCalculateActualHeight } from './helpers/useCalculateActualHeight';
+import { useAdjustHeightOfActiveDetailRow } from './helpers/useAdjustHeightOfActiveDetailRow';
 
 interface Props {
   // What I really want to expres here is is that children only
@@ -86,12 +88,13 @@ interface Props {
  */
 export function EpicTable({
   children,
-  minHeight = 600,
+  minHeight = 200,
   hasRight = true,
   overlay,
   striped = true
 }: Props) {
   const epicTableEl = useRef<HTMLDivElement>(null);
+  const overlayEl = useRef<HTMLDivElement>(null);
 
   const [centerWidth, setCenterWidth] = useState(0);
   const [leftScroll, setLeftScroll] = useState(0);
@@ -145,13 +148,15 @@ export function EpicTable({
   const leftAndContainerHaveShadow = !desiredWidthMet && !overlay;
   const rightHasShadow = leftAndContainerHaveShadow && !containsActiveDetailRow;
 
-  const actualHeight = calculateActualHeight(
+  const actualHeight = useCalculateActualHeight({
     minHeight,
     totalDesiredHeight,
-    activeDetailRow
-  );
+    activeDetailRow,
+    overlayEl: overlayEl.current,
+    headerHeight
+  });
 
-  useAdjustHeightOfActiveDetailRow(activeDetailRow, actualHeight);
+  useAdjustHeightOfActiveDetailRow({ activeDetailRow, actualHeight });
 
   return (
     <div
@@ -166,6 +171,7 @@ export function EpicTable({
       >
         {overlay && epicTableRect ? (
           <div
+            ref={overlayEl}
             className="epic-table-overlay shadow"
             style={{
               top: headerHeight,
@@ -243,50 +249,4 @@ export function EpicTable({
       </div>
     </div>
   );
-}
-
-/**
- * Calculates the height of the EpicTable. Taking into account
- * the existence of an active EpicDetailRow.
- *
- * When an EpicDetailRow exists it may be larger than the actual
- * EpicTable. So we increase the height of the EpicTable in that
- * case to be the height of the EpicDetailRow.
- *
- * Also the minHeight can be lower than the totalDesiredHeight. In
- * that case the totalDesiredHeight should be used instead. As the
- * minHeight is merely a suggestion.
- */
-function calculateActualHeight(
-  minHeight: number,
-  totalDesiredHeight: number,
-  activeDetailRow: HTMLDivElement | null
-) {
-  const detailRowHeight = activeDetailRow ? activeDetailRow.clientHeight : 0;
-
-  return Math.max(minHeight, detailRowHeight, totalDesiredHeight);
-}
-
-/**
- * Changes the height of the detailRow so it always fills up the to
- * the height of the EpicTable.
- */
-function useAdjustHeightOfActiveDetailRow(
-  activeDetailRow: HTMLDivElement | null,
-  actualHeight: number
-) {
-  useEffect(() => {
-    // We only want to adjust the size once. Otherwise we get into
-    // an infinite loop because changing the size will trigger another
-    // call to this useEffect. That is why we add a property on the
-    // DOM element called `epicTableAdjustedHeight`. When it is `true`
-    // we ignore it.
-
-    // @ts-ignore
-    if (activeDetailRow && !activeDetailRow['epicTableAdjustedHeight']) {
-      // @ts-ignore
-      activeDetailRow['epicTableAdjustedHeight'] = true;
-      activeDetailRow.style.height = `${actualHeight}px`;
-    }
-  }, [activeDetailRow, actualHeight]);
 }
