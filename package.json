@@ -129,7 +129,7 @@
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-copy": "3.3.0",
     "rollup-plugin-size-snapshot": "0.11.0",
-    "rollup-plugin-typescript2": "0.25.3",
+    "rollup-plugin-typescript2": "0.26.0",
     "rollup-plugin-visualizer": "3.3.1",
     "sass": "1.25.1-test.1",
     "sass-loader": "8.0.2",
