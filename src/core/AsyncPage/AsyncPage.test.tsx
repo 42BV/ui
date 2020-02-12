@@ -5,8 +5,8 @@ import toJson from 'enzyme-to-json';
 import AsyncPage, { isEmpty } from './AsyncPage';
 
 import { Page, emptyPage } from '@42.nl/spring-connect';
-import { User } from '../../../test/types';
-import { pageOfUsers } from '../../../test/fixtures';
+import { User } from '../../test/types';
+import { pageOfUsers } from '../../test/fixtures';
 
 type State = {
   isLoading: boolean;

@@ -6,8 +6,8 @@ import { Page, emptyPage } from '@42.nl/spring-connect';
 
 import AsyncPage from './AsyncPage';
 
-import { pageOfUsers } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import { pageOfUsers } from '../../test/fixtures';
+import { User } from '../../test/types';
 import { ContentState } from '../..';
 import { action } from '@storybook/addon-actions';
 

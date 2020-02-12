@@ -5,8 +5,8 @@ import { Card, ListGroup, ListGroupItem, Button } from 'reactstrap';
 
 import AsyncList from './AsyncList';
 
-import { pageOfUsers } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import { pageOfUsers } from '../../test/fixtures';
+import { User } from '../../test/types';
 import { ContentState } from '../..';
 import { action } from '@storybook/addon-actions';
 
