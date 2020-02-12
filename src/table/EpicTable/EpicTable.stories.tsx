@@ -436,7 +436,7 @@ storiesOf('table|EpicTable', module)
                 </Input>
               </EpicCellLayout>
             </EpicHeader>
-            <EpicHeader width={300} height={88}>
+            <EpicHeader width={widths.actions} height={88}>
               <div className="px-1 py-1 align-self-start">Actions</div>
             </EpicHeader>
           </EpicRow>
