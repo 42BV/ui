@@ -4,8 +4,8 @@ import toJson from 'enzyme-to-json';
 
 import AsyncList, { isEmpty } from './AsyncList';
 
-import { User } from '../../../test/types';
-import { pageOfUsers } from '../../../test/fixtures';
+import { User } from '../../test/types';
+import { pageOfUsers } from '../../test/fixtures';
 
 type State = {
   isLoading: boolean;
