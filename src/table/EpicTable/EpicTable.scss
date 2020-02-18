@@ -37,8 +37,8 @@
   }
 
   &-header {
-    background-color: $primary;
-    color: color-yiq($primary);
+    background-color: map-get($theme-colors, primary);
+    color: color-yiq(map-get($theme-colors, primary));
     font-weight: bold;
     flex-grow: 1;
 
