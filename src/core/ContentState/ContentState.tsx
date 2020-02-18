@@ -11,7 +11,7 @@ interface Props {
    * The mode of the ContentState:
    *
    * Use `empty` for when you want to inform the user that there
-   * is now, content yet for.
+   * is no content yet.
    *
    * Use `no-results` for when applying a filter resulted in no results
    * matching the filters.
