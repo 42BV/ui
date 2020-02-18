@@ -186,7 +186,7 @@ export default class DateTimeInput extends Component<Props, State> {
             {label}{' '}
             <span
               className={`date-time-input-format ${
-                hasFormatError ? 'text-danger' : 'text-muted'
+                value && hasFormatError ? 'text-danger' : 'text-muted'
               }`}
             >
               ({format})
@@ -200,7 +200,7 @@ export default class DateTimeInput extends Component<Props, State> {
             // @ts-ignore
             mask: formatToMask(dateFormat, timeFormat),
             placeholder,
-            invalid: valid === false || hasFormatError
+            invalid: valid === false || (value && hasFormatError)
           }}
           renderInput={maskedInput}
           onChange={x => this.onChange(x)}
