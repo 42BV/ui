@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { Tooltip } from './Tooltip';
+import Tooltip from './Tooltip';
 
 describe('Component: Tooltip', () => {
   describe('ui', () => {

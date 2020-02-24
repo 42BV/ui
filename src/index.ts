@@ -20,6 +20,7 @@ export { default as ProgressStepper } from './core/ProgressStepper/ProgressStepp
 export { default as Spinner } from './core/Spinner/Spinner';
 export { default as SubmitButton } from './core/SubmitButton/SubmitButton';
 export { default as Tag } from './core/Tag/Tag';
+export { default as Tooltip } from './core/Tooltip/Tooltip';
 export { default as AsyncContent } from './core/AsyncContent/AsyncContent';
 export { default as AsyncPage } from './core/AsyncPage/AsyncPage';
 export { default as AsyncList } from './core/AsyncList/AsyncList';

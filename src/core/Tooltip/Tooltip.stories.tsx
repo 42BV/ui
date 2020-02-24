@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Tooltip } from './Tooltip';
+import Tooltip from './Tooltip';
 import Tag from '../Tag/Tag';
 import { Row, Col, Button } from 'reactstrap';
 
