@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Tooltip ui default: Component: Tooltip => ui => default 1`] = `
+<ForwardRef(TippyWrapper)
+  boundary="viewport"
+  className="border-0"
+  content={
+    <React.Fragment>
+       
+      <React.Fragment>
+         Tooltip Content 
+      </React.Fragment>
+       
+    </React.Fragment>
+  }
+  distance={7}
+  maxWidth={350}
+  placement="top"
+>
+  <span
+    style={
+      Object {
+        "outline": 0,
+      }
+    }
+    tabIndex={0}
+  >
+    <div>
+      The tooltip should be wrapped around this div, in a span
+    </div>
+  </span>
+</ForwardRef(TippyWrapper)>
+`;
+
+exports[`Component: Tooltip ui with custom tag: Component: Tooltip => ui => with tag 1`] = `
+<ForwardRef(TippyWrapper)
+  boundary="viewport"
+  className="border-0"
+  content={
+    <React.Fragment>
+       
+      Tooltip content
+       
+    </React.Fragment>
+  }
+  distance={7}
+  maxWidth={350}
+  placement="top"
+>
+  <div
+    style={
+      Object {
+        "outline": 0,
+      }
+    }
+    tabIndex={0}
+  >
+    <div>
+      The tooltip should be wrapped around this div, in a div
+    </div>
+  </div>
+</ForwardRef(TippyWrapper)>
+`;
