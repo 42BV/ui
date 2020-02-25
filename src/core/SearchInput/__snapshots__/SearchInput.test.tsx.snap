@@ -23,6 +23,7 @@ exports[`Component: SearchInput ui with icon 1`] = `
     }
     onChange={[Function]}
     onKeyUp={[Function]}
+    placeholder="Search..."
     type="text"
   />
 </InputGroup>
@@ -51,6 +52,7 @@ exports[`Component: SearchInput ui with icon when undefined 1`] = `
     }
     onChange={[Function]}
     onKeyUp={[Function]}
+    placeholder="Search..."
     type="text"
   />
 </InputGroup>
@@ -104,6 +106,7 @@ exports[`Component: SearchInput ui without icon 1`] = `
   }
   onChange={[Function]}
   onKeyUp={[Function]}
+  placeholder="Search..."
   type="text"
 />
 `;
