@@ -5,14 +5,17 @@ import { emptyPage } from '@42.nl/spring-connect';
 
 import ModalPickerMultiple, { State } from './ModalPickerMultiple';
 import {
-  pageOfUsers,
   adminUser,
-  userUser,
-  coordinatorUser
+  coordinatorUser,
+  pageOfUsers,
+  userUser
 } from '../../../test/fixtures';
 
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
+import { ListGroup, ListGroupItem } from 'reactstrap';
+import * as optionTypesAndFunctions from '../../option';
+import { RenderOptionsOption } from '../../option';
 
 describe('Component: ModalPickerMultiple', () => {
   let modalPickerMultiple: ShallowWrapper;
@@ -21,45 +24,72 @@ describe('Component: ModalPickerMultiple', () => {
   let onBlurSpy: jest.Mock<any, any>;
   let fetchOptionsSpy: jest.Mock<any, any>;
   let addButtonCallbackSpy: jest.Mock<any, any>;
+  let renderOptionsSpy: jest.Mock<any, any>;
 
   function setup({
     value,
     showAddButton,
     canSearch = undefined,
-    label = 'Best Friend'
+    hasLabel = true,
+    spyOnRenderOptions
   }: {
     value?: User[];
     showAddButton: boolean;
     canSearch?: boolean;
-    label?: string | null;
+    hasLabel?: boolean;
+    spyOnRenderOptions?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
     fetchOptionsSpy = jest.fn();
     addButtonCallbackSpy = jest.fn();
 
+    if (spyOnRenderOptions) {
+      renderOptionsSpy = jest.fn((options: RenderOptionsOption<User>[]) => {
+        return (
+          <ListGroup>
+            {options.map((option: RenderOptionsOption<User>) => (
+              <ListGroupItem key={option.option.id} onClick={option.toggle}>
+                {option.option.email}
+              </ListGroupItem>
+            ))}
+          </ListGroup>
+        );
+      });
+    }
+
     const addButton = showAddButton
       ? { label: 'Add color', onClick: addButtonCallbackSpy }
       : undefined;
 
     const props = {
-      id: 'bestFriend',
       name: 'bestFriend',
-      label,
       placeholder: 'Select your best friend',
       canSearch,
       fetchOptions: fetchOptionsSpy,
       optionForValue: (user: User) => user.email,
+      renderOptions: renderOptionsSpy,
       addButton,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
-      error: 'Some error',
-      color: 'success'
+      error: 'Some error'
     };
 
-    // @ts-ignore
-    modalPickerMultiple = shallow(<ModalPickerMultiple {...props} />);
+    if (hasLabel) {
+      modalPickerMultiple = shallow(
+        <ModalPickerMultiple
+          id="bestFriend"
+          label="Best Friend"
+          color="success"
+          {...props}
+        />
+      );
+    } else {
+      modalPickerMultiple = shallow(
+        <ModalPickerMultiple color="success" {...props} />
+      );
+    }
   }
 
   describe('lifecycle events', () => {
@@ -185,7 +215,7 @@ describe('Component: ModalPickerMultiple', () => {
       setup({
         value: [adminUser, userUser],
         showAddButton: false,
-        label: null
+        hasLabel: false
       });
 
       expect(toJson(modalPickerMultiple)).toMatchSnapshot(
@@ -625,6 +655,49 @@ describe('Component: ModalPickerMultiple', () => {
             done();
           });
         }
+      });
+    });
+
+    describe('renderOptions', () => {
+      it('should when renderOptions is provided use that callback to render options', () => {
+        const isOptionSelectedSpy = jest
+          .spyOn(optionTypesAndFunctions, 'isOptionSelected')
+          .mockReturnValue(false);
+
+        setup({ showAddButton: false, spyOnRenderOptions: true });
+
+        modalPickerMultiple.setState({
+          isOpen: true,
+          page: pageOfUsers
+        });
+
+        expect(renderOptionsSpy).toHaveBeenCalledTimes(1);
+        expect(isOptionSelectedSpy).toHaveBeenCalledTimes(
+          pageOfUsers.content.length
+        );
+      });
+
+      it('should when renderOptions is provided call itemClicked on the option that is selected', () => {
+        setup({ showAddButton: false, spyOnRenderOptions: true });
+
+        modalPickerMultiple.setState({
+          isOpen: true,
+          page: pageOfUsers
+        });
+
+        // @ts-ignore
+        modalPickerMultiple
+          .find('ListGroupItem')
+          .at(0)
+          .props()
+          // @ts-ignore
+          .onClick();
+        modalPickerMultiple.update();
+
+        // @ts-ignore
+        expect(modalPickerMultiple.state().selected).toEqual([
+          pageOfUsers.content[0]
+        ]);
       });
     });
   });

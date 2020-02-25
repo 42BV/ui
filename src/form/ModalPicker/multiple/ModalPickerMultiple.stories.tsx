@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { pageWithContentAndExactSize } from '../../../test/utils';
-import { userUser, adminUser } from '../../../test/fixtures';
+import { adminUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
 import ModalPickerMultiple, {
@@ -11,6 +11,8 @@ import ModalPickerMultiple, {
 
 import { FinalForm, Form } from '../../story-utils';
 import { Tooltip, Icon } from '../../..';
+import { ListGroup, ListGroupItem } from 'reactstrap';
+import Avatar from '../../../core/Avatar/Avatar';
 
 storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
   .add('default', () => {
@@ -114,6 +116,46 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
           }
           optionForValue={(user: User) => user.email}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
+          value={value}
+          onChange={setValue}
+        />
+      </Form>
+    );
+  })
+  .add('custom renderOptions', () => {
+    const [value, setValue] = useState<User[] | undefined>([]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple<User>
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          optionForValue={(user: User) => user.email}
+          renderOptions={options => (
+            <ListGroup>
+              {options.map(({ option, isSelected, toggle }) => (
+                <ListGroupItem
+                  key={option.email}
+                  onClick={toggle}
+                  className="d-flex justify-content-between align-items-center clickable"
+                >
+                  <span>
+                    <Avatar
+                      src="https://www.placecage.com/100/100"
+                      alt={option.email}
+                    />
+                    {option.email}
+                  </span>
+                  {isSelected ? <Icon icon="check" color="primary" /> : null}
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+          )}
           value={value}
           onChange={setValue}
         />

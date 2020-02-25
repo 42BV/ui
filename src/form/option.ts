@@ -1,4 +1,5 @@
 import { Page } from '@42.nl/spring-connect';
+import { ReactNode } from 'react';
 
 /**
  * Callback to determine the label for a given value of type T.
@@ -7,6 +8,14 @@ import { Page } from '@42.nl/spring-connect';
 export type OptionForValue<T> = (value: T) => string;
 
 export type OptionEqual<T> = (a: T, b: T) => boolean;
+
+export type RenderOptionsOption<T> = {
+  option: T;
+  isSelected: boolean;
+  toggle: () => void;
+};
+
+export type RenderOptions<T> = (options: RenderOptionsOption<T>[]) => ReactNode;
 
 /**
  * Callback to determine if the option is currently enabled.
