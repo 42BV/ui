@@ -23,7 +23,7 @@ interface Props<T> {
   /**
    * The placeholder of the form element.
    */
-  placeholder: string;
+  placeholder?: string;
 
   /**
    * Callback to fetch the options to display to the user.

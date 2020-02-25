@@ -26,6 +26,21 @@ storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
       </Form>
     );
   })
+  .add('without placeholder', () => {
+    return (
+      <Form>
+        <TypeaheadMultiple
+          id="friends"
+          label="Friends"
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          onChange={value => action(`onChange: ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

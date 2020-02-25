@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: TextEditor ui: Component: textEditor => ui 1`] = `
+exports[`Component: TextEditor ui with value: Component: textEditor => ui => with value 1`] = `
 <FormGroup
   className=""
   color="success"
@@ -29,6 +29,41 @@ exports[`Component: TextEditor ui: Component: textEditor => ui 1`] = `
     onChange={[Function]}
     onFocus={[MockFunction]}
     placeholder="Please enter your first name"
+    theme="snow"
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: TextEditor ui without placeholder: Component: textEditor => ui => without placeholder 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="firstName"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    First name
+  </Label>
+  <Quill
+    className=""
+    id="firstName"
+    modules={Object {}}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
     theme="snow"
     value="Maarten"
   />

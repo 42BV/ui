@@ -11,7 +11,13 @@ describe('Component: Textarea', () => {
   let onBlurSpy: jest.Mock<any, any>;
   let onFocusSpy: jest.Mock<any, any>;
 
-  function setup({ value }: { value?: string }) {
+  function setup({
+    value,
+    hasPlaceholder = true
+  }: {
+    value?: string;
+    hasPlaceholder?: boolean;
+  }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
     onFocusSpy = jest.fn();
@@ -20,7 +26,9 @@ describe('Component: Textarea', () => {
       <Textarea
         id="firstName"
         label="First name"
-        placeholder="Please enter your first name"
+        placeholder={
+          hasPlaceholder ? 'Please enter your first name' : undefined
+        }
         value={value}
         onChange={onChangeSpy}
         onBlur={onBlurSpy}
@@ -32,10 +40,21 @@ describe('Component: Textarea', () => {
     );
   }
 
-  test('ui', () => {
-    setup({ value: 'Maarten' });
+  describe('ui', () => {
+    test('with value', () => {
+      setup({ value: 'Maarten' });
 
-    expect(toJson(textarea)).toMatchSnapshot('Component: textarea => ui');
+      expect(toJson(textarea)).toMatchSnapshot(
+        'Component: textarea => ui => with value'
+      );
+    });
+    test('without placeholder', () => {
+      setup({ value: 'Maarten', hasPlaceholder: false });
+
+      expect(toJson(textarea)).toMatchSnapshot(
+        'Component: textarea => ui => without placeholder'
+      );
+    });
   });
 
   describe('events', () => {

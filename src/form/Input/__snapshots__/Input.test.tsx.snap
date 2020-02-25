@@ -283,6 +283,41 @@ exports[`Component: Input ui with mask: Component: Input => ui => with mask 1`] 
 </FormGroup>
 `;
 
+exports[`Component: Input ui without placeholder: Component: Input => ui => without placeholder 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="firstName"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    First name
+  </Label>
+  <Input
+    id="firstName"
+    key="input"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    placeholder=""
+    type="text"
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;
+
 exports[`reactStrapInput: reactStrapInput 1`] = `
 <input
   className="form-control"

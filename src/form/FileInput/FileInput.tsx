@@ -24,7 +24,7 @@ interface Props {
   /**
    * The placeholder of the form element.
    */
-  placeholder: string;
+  placeholder?: string;
 
   /**
    * Which types of files the form element accepts.

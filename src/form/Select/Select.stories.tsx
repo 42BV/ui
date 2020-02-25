@@ -66,6 +66,25 @@ storiesOf('Form|Select', module)
       </Form>
     );
   })
+  .add('without placeholder', () => {
+    return (
+      <Form>
+        <Select
+          id="subject"
+          label="Subject"
+          optionForValue={(option: SubjectOption) => option.label}
+          isOptionEnabled={option => option.value !== 'awesome'}
+          options={[
+            { value: 'awesome', label: 'Awesome shit' },
+            { value: 'super', label: 'Super shit' },
+            { value: 'great', label: 'Great shit' },
+            { value: 'good', label: 'good shit' }
+          ]}
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>
