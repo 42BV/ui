@@ -24,7 +24,7 @@ interface Props<T> {
   /**
    * The placeholder of the form element.
    */
-  placeholder: string;
+  placeholder?: string;
 
   /**
    * The value that the form element currently has.

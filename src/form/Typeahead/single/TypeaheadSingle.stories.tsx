@@ -25,6 +25,21 @@ storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
       </Form>
     );
   })
+  .add('without placeholder', () => {
+    return (
+      <Form>
+        <TypeaheadSingle
+          id="bestFriend"
+          label="Best friend"
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          onChange={value => action(`onChange: ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

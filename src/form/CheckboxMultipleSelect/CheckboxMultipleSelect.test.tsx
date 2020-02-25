@@ -21,11 +21,13 @@ describe('Component: CheckboxMultipleSelect', () => {
   function setup({
     value,
     isOptionEnabled,
-    text
+    text,
+    hasPlaceholder = true
   }: {
     value?: User[];
     isOptionEnabled?: OptionEnabledCallback<User>;
     text?: Text;
+    hasPlaceholder?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -34,7 +36,7 @@ describe('Component: CheckboxMultipleSelect', () => {
       <CheckboxMultipleSelect
         id="subject"
         label="Subject"
-        placeholder="Please select your subjects"
+        placeholder={hasPlaceholder ? 'Please select your subjects' : undefined}
         text={text}
         isOptionEnabled={isOptionEnabled}
         optionForValue={(user: User) => user.email}
@@ -81,6 +83,18 @@ describe('Component: CheckboxMultipleSelect', () => {
         expect(checkboxMultipleSelect.find('Spinner').exists()).toBe(true);
         expect(checkboxMultipleSelect.find('span').text()).toBe('Loading...');
       });
+    });
+
+    test('without placeholder', () => {
+      setup({
+        value: [adminUser],
+        isOptionEnabled: undefined,
+        hasPlaceholder: false
+      });
+
+      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
+        'Component: CheckboxMultipleSelect => ui => without placeholder'
+      );
     });
   });
 

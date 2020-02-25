@@ -1,16 +1,16 @@
 import React from 'react';
-import { FormGroup, Label, Input } from 'reactstrap';
-import { get, constant } from 'lodash';
+import { FormGroup, Input, Label } from 'reactstrap';
+import { constant, get } from 'lodash';
 
 import withJarb from '../withJarb/withJarb';
 import { Color } from '../types';
 import { t } from '../../utilities/translation/translation';
 import {
+  isOptionSelected,
+  OptionEnabledCallback,
   OptionEqual,
   OptionForValue,
-  OptionsFetcher,
-  isOptionSelected,
-  OptionEnabledCallback
+  OptionsFetcher
 } from '../option';
 import { doBlur } from '../utils';
 import Loading from '../../core/Loading/Loading';
@@ -23,6 +23,7 @@ export interface Text {
    */
   loadingMessage?: string;
 }
+
 interface Props<T> {
   /**
    * The id of the form element.
@@ -101,7 +102,7 @@ interface Props<T> {
   /**
    * The placeholder of the form element.
    */
-  placeholder: string;
+  placeholder?: string;
 
   /**
    * Optionally customized text within the component.
@@ -146,9 +147,11 @@ export default function RadioGroup<T>(props: Props<T>) {
   return (
     <FormGroup tag="fieldset" className={className} color={color}>
       <legend>{label}</legend>
-      <p className="text-muted">
-        <em>{placeholder}</em>
-      </p>
+      {placeholder ? (
+        <p className="text-muted">
+          <em>{placeholder}</em>
+        </p>
+      ) : null}
       {loading ? (
         <Loading>
           {t({

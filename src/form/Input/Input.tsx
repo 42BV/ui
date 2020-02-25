@@ -23,7 +23,7 @@ export interface Props {
   /**
    * The placeholder of the form element.
    */
-  placeholder: string;
+  placeholder?: string | null;
 
   /**
    * The value that the form element currently has.
@@ -121,7 +121,7 @@ export default function Input(props: Props) {
     invalid: valid === false ? true : undefined,
     value,
     innerRef,
-    placeholder,
+    placeholder: placeholder ? placeholder : '',
     onFocus,
     onChange: (event: ChangeEvent<HTMLInputElement>) =>
       onChange(event.target.value),

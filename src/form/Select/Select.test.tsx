@@ -16,11 +16,13 @@ describe('Component: Select', () => {
   function setup({
     value,
     isOptionEnabled,
-    text
+    text,
+    hasPlaceholder = true
   }: {
     value?: User;
     isOptionEnabled?: OptionEnabledCallback<User>;
     text?: Text;
+    hasPlaceholder?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -29,7 +31,7 @@ describe('Component: Select', () => {
       <Select
         id="subject"
         label="Subject"
-        placeholder="Please enter your subject"
+        placeholder={hasPlaceholder ? 'Please enter your subject' : undefined}
         text={text}
         isOptionEnabled={isOptionEnabled}
         optionForValue={(user: User) => user?.email}
@@ -74,6 +76,18 @@ describe('Component: Select', () => {
       const rsInput = select.find('Input');
 
       expect(rsInput.props().value).toBe(undefined);
+    });
+
+    test('without placeholder', () => {
+      setup({
+        value: adminUser,
+        isOptionEnabled: undefined,
+        hasPlaceholder: false
+      });
+
+      expect(toJson(select)).toMatchSnapshot(
+        'Component: Select => ui => without placeholder'
+      );
     });
   });
 

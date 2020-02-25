@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Textarea ui: Component: textarea => ui 1`] = `
+exports[`Component: Textarea ui with value: Component: textarea => ui => with value 1`] = `
 <FormGroup
   className=""
   color="success"
@@ -30,6 +30,42 @@ exports[`Component: Textarea ui: Component: textarea => ui 1`] = `
     onFocus={[MockFunction]}
     onHeightChange={[Function]}
     placeholder="Please enter your first name"
+    useCacheForDOMMeasurements={false}
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: Textarea ui without placeholder: Component: textarea => ui => without placeholder 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="firstName"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    First name
+  </Label>
+  <TextareaAutosize
+    className="form-control"
+    id="firstName"
+    inputRef={[Function]}
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    onHeightChange={[Function]}
     useCacheForDOMMeasurements={false}
     value="Maarten"
   />

@@ -38,6 +38,17 @@ storiesOf('Form|Input', module)
       </Form>
     );
   })
+  .add('without placeholder', () => {
+    return (
+      <Form>
+        <Input
+          id="firstName"
+          label="First name"
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('mask', () => {
     return (
       <Form>

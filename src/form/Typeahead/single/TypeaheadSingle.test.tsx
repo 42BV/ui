@@ -6,8 +6,8 @@ import TypeaheadSingle from './TypeaheadSingle';
 
 import {
   adminUser,
-  pageOfUsers,
   coordinatorUser,
+  pageOfUsers,
   userUser
 } from '../../../test/fixtures';
 import { User } from '../../../test/types';
@@ -19,7 +19,13 @@ describe('Component: TypeaheadSingle', () => {
   let onChangeSpy: jest.Mock<any, any>;
   let onBlurSpy: jest.Mock<any, any>;
 
-  function setup({ value }: { value?: User }) {
+  function setup({
+    value,
+    hasPlaceholder = true
+  }: {
+    value?: User;
+    hasPlaceholder?: boolean;
+  }) {
     fetchOptionsSpy = jest.fn();
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -28,7 +34,9 @@ describe('Component: TypeaheadSingle', () => {
       <TypeaheadSingle
         id="bestFriend"
         label="Best friend"
-        placeholder="Please provide your best friend"
+        placeholder={
+          hasPlaceholder ? 'Please provide your best friend' : undefined
+        }
         optionForValue={(user: User) => user.email}
         fetchOptions={fetchOptionsSpy}
         value={value}
@@ -39,12 +47,22 @@ describe('Component: TypeaheadSingle', () => {
     );
   }
 
-  test('ui', () => {
-    setup({ value: adminUser });
+  describe('ui', () => {
+    test('with value', () => {
+      setup({ value: adminUser });
 
-    expect(toJson(typeaheadSingle)).toMatchSnapshot(
-      'Component: TypeaheadSingle => ui'
-    );
+      expect(toJson(typeaheadSingle)).toMatchSnapshot(
+        'Component: TypeaheadSingle => ui => with value'
+      );
+    });
+
+    test('without placeholder', () => {
+      setup({ value: adminUser, hasPlaceholder: false });
+
+      expect(toJson(typeaheadSingle)).toMatchSnapshot(
+        'Component: TypeaheadSingle => ui => without placeholder'
+      );
+    });
   });
 
   describe('events', () => {
