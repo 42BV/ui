@@ -65,7 +65,6 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
         }
       >
         <SearchInput
-          id="search"
           onChange={[Function]}
           placeholder="Search..."
           value=""

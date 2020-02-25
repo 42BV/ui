@@ -1,6 +1,13 @@
 import React, { useRef, KeyboardEvent, useEffect } from 'react';
 import { debounce as lodashDebounce, DebounceSettings } from 'lodash';
-import { Input, InputProps, InputGroup, InputGroupAddon } from 'reactstrap';
+import {
+  Input,
+  InputProps,
+  InputGroup,
+  InputGroupAddon,
+  FormGroup,
+  Label
+} from 'reactstrap';
 
 import { Icon } from '../Icon';
 
@@ -24,7 +31,7 @@ type ModifiedInputProps = Omit<
   | 'defaultValue'
 >;
 
-interface Props extends ModifiedInputProps {
+interface BaseProps extends ModifiedInputProps {
   /**
    * Optionally the number of milliseconds to debounce the onChange.
    *
@@ -83,6 +90,25 @@ interface Props extends ModifiedInputProps {
   ) => React.ReactNode;
 }
 
+interface WithoutLabel extends BaseProps {
+  id?: never;
+  label?: never;
+}
+
+interface WithLabel extends BaseProps {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props = WithoutLabel | WithLabel;
+
 /**
  * SearchInput is a component which shows an input field which has
  * the onChange debounced by a number of milliseconds. Useful for
@@ -135,6 +161,7 @@ export default function SearchInput(props: Props) {
 
   const input = (
     <Input
+      id={'id' in props ? props.id : undefined}
       className={!showIcon ? className : ''}
       innerRef={inputRef}
       defaultValue={value}
@@ -155,5 +182,14 @@ export default function SearchInput(props: Props) {
     input
   );
 
-  return children ? <>{children(searchInput, { setValue })}</> : searchInput;
+  return 'label' in props ? (
+    <FormGroup>
+      <Label for={props.id}>{props.label}</Label>
+      {children ? <>{children(searchInput, { setValue })}</> : searchInput}
+    </FormGroup>
+  ) : children ? (
+    <>{children(searchInput, { setValue })}</>
+  ) : (
+    searchInput
+  );
 }
