@@ -7,7 +7,7 @@ import {
   ModalFooter,
   Button,
   Row,
-  Col,
+  Col
 } from 'reactstrap';
 
 import Pagination from '../../core/Pagination/Pagination';
@@ -126,7 +126,6 @@ export default function ModalPicker(props: Props) {
           <Row>
             <Col>
               <SearchInput
-                id="search"
                 value={query}
                 placeholder={t({
                   overrideText: text.placeholder,
@@ -134,7 +133,7 @@ export default function ModalPicker(props: Props) {
                   fallback: 'Search...'
                 })}
                 onChange={value => fetchOptions(value)}
-              ></SearchInput>
+              />
             </Col>
           </Row>
         ) : null}

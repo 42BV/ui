@@ -67,6 +67,21 @@ storiesOf('core|SearchInput', module)
       </Card>
     );
   })
+  .add('with label', () => {
+    const [query, setQuery] = useState('');
+
+    return (
+      <Card body>
+        <p>You searched for: {query}</p>
+        <SearchInput
+          id="search"
+          label="Search"
+          value={query}
+          onChange={setQuery}
+        />
+      </Card>
+    );
+  })
   .add('with external value', () => {
     const [query, setQuery] = useState('');
 

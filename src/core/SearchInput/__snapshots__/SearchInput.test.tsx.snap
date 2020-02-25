@@ -58,6 +58,43 @@ exports[`Component: SearchInput ui with icon when undefined 1`] = `
 </InputGroup>
 `;
 
+exports[`Component: SearchInput ui with label 1`] = `
+<FormGroup
+  tag="div"
+>
+  <Label
+    for="search"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Search
+  </Label>
+  <Input
+    className=""
+    defaultValue=""
+    id="search"
+    innerRef={
+      Object {
+        "current": null,
+      }
+    }
+    label="Search"
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="Search..."
+    type="text"
+  />
+</FormGroup>
+`;
+
 exports[`Component: SearchInput ui without icon 1`] = `
 <Input
   className=""

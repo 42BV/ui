@@ -11,11 +11,13 @@ describe('Component: SearchInput', () => {
   function setup({
     debounce,
     showIcon,
-    debounceSettings
+    debounceSettings,
+    showLabel
   }: {
     debounce?: number;
     showIcon?: boolean;
     debounceSettings?: lodash.DebounceSettings;
+    showLabel?: boolean;
   }) {
     // @ts-ignore
     jest.spyOn(lodash, 'debounce').mockImplementation(fn => {
@@ -24,16 +26,32 @@ describe('Component: SearchInput', () => {
 
     const onChangeSpy = jest.fn();
 
-    const searchInput = shallow(
-      <SearchInput
-        value=""
-        debounce={debounce}
-        debounceSettings={debounceSettings}
-        onChange={onChangeSpy}
-        showIcon={showIcon}
-        placeholder="Search..."
-      />
-    );
+    let searchInput;
+    if (showLabel) {
+      searchInput = shallow(
+        <SearchInput
+          value=""
+          debounce={debounce}
+          debounceSettings={debounceSettings}
+          onChange={onChangeSpy}
+          showIcon={showIcon}
+          placeholder="Search..."
+          id="search"
+          label="Search"
+        />
+      );
+    } else {
+      searchInput = shallow(
+        <SearchInput
+          value=""
+          debounce={debounce}
+          debounceSettings={debounceSettings}
+          onChange={onChangeSpy}
+          showIcon={showIcon}
+          placeholder="Search..."
+        />
+      );
+    }
 
     return { searchInput, onChangeSpy };
   }
@@ -53,6 +71,12 @@ describe('Component: SearchInput', () => {
 
     test('without icon', () => {
       const { searchInput } = setup({ showIcon: false });
+
+      expect(toJson(searchInput)).toMatchSnapshot();
+    });
+
+    test('with label', () => {
+      const { searchInput } = setup({ showIcon: false, showLabel: true });
 
       expect(toJson(searchInput)).toMatchSnapshot();
     });
