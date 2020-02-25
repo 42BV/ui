@@ -31,6 +31,7 @@ describe('Component: SearchInput', () => {
         debounceSettings={debounceSettings}
         onChange={onChangeSpy}
         showIcon={showIcon}
+        placeholder="Search..."
       />
     );
 
