@@ -25,11 +25,13 @@ describe('Component: ModalPickerMultiple', () => {
   function setup({
     value,
     showAddButton,
-    canSearch = undefined
+    canSearch = undefined,
+    label = 'Best Friend'
   }: {
     value?: User[];
     showAddButton: boolean;
     canSearch?: boolean;
+    label?: string | null;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -43,7 +45,7 @@ describe('Component: ModalPickerMultiple', () => {
     const props = {
       id: 'bestFriend',
       name: 'bestFriend',
-      label: 'Best Friend',
+      label,
       placeholder: 'Select your best friend',
       canSearch,
       fetchOptions: fetchOptionsSpy,
@@ -177,6 +179,18 @@ describe('Component: ModalPickerMultiple', () => {
       expect(admin.props().checked).toBe(true);
       expect(coordinator.props().checked).toBe(true);
       expect(user.props().checked).toBe(false);
+    });
+
+    it('should render properly without label', () => {
+      setup({
+        value: [adminUser, userUser],
+        showAddButton: false,
+        label: null
+      });
+
+      expect(toJson(modalPickerMultiple)).toMatchSnapshot(
+        'Component: ModalPickerMultiple => ui => should render properly without label'
+      );
     });
   });
 

@@ -151,6 +151,142 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
 </FormGroup>
 `;
 
+exports[`Component: CheckboxMultipleSelect ui without label: Component: CheckboxMultipleSelect => ui => without label 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <p
+    className="text-muted"
+  >
+    <em>
+      Please select your subjects
+    </em>
+  </p>
+  <Row
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <Col
+      key="0"
+      style={
+        Object {
+          "width": "300px",
+        }
+      }
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="auto"
+    >
+      <FormGroup
+        check={true}
+        key="admin@42.nl"
+        tag="div"
+      >
+        <Label
+          check={true}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            checked={true}
+            disabled={false}
+            onChange={[Function]}
+            type="checkbox"
+            value={0}
+          />
+           
+          admin@42.nl
+        </Label>
+      </FormGroup>
+      <FormGroup
+        check={true}
+        key="coordinator@42.nl"
+        tag="div"
+      >
+        <Label
+          check={true}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            checked={false}
+            disabled={false}
+            onChange={[Function]}
+            type="checkbox"
+            value={1}
+          />
+           
+          coordinator@42.nl
+        </Label>
+      </FormGroup>
+      <FormGroup
+        check={true}
+        key="user@42.nl"
+        tag="div"
+      >
+        <Label
+          check={true}
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          <Input
+            checked={false}
+            disabled={false}
+            onChange={[Function]}
+            type="checkbox"
+            value={2}
+          />
+           
+          user@42.nl
+        </Label>
+      </FormGroup>
+    </Col>
+  </Row>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: CheckboxMultipleSelect => ui => without placeholder 1`] = `
 <FormGroup
   className=""

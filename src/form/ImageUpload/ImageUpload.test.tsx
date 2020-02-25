@@ -5,9 +5,9 @@ import toJson from 'enzyme-to-json';
 import * as imgUploadUtils from './utils';
 
 import ImageUpload, {
-  requireImage,
   Crop,
   limitImageSize,
+  requireImage,
   Text
 } from './ImageUpload';
 
@@ -22,11 +22,15 @@ describe('Component: ImageUpload', () => {
   function setup({
     value,
     cropType,
-    text
+    text,
+    hasLabel = true,
+    emptyLabel = false
   }: {
     value?: File | string;
     cropType: 'rect' | 'circle';
     text?: Text;
+    hasLabel?: boolean;
+    emptyLabel?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -36,19 +40,27 @@ describe('Component: ImageUpload', () => {
         ? { width: 500, height: 500, type: 'rect' }
         : { size: 250, type: 'circle' };
 
-    imgUpload = shallow(
-      <ImageUpload
-        id="image-uploader"
-        label="Profile photo"
-        crop={crop}
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        error="Some error"
-        color="success"
-        text={text}
-      />
-    );
+    const props = {
+      crop,
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      error: 'Some error',
+      text
+    };
+
+    if (hasLabel) {
+      imgUpload = shallow(
+        <ImageUpload
+          id="image-uploader"
+          label={emptyLabel ? '' : 'Profile photo'}
+          color="success"
+          {...props}
+        />
+      );
+    } else {
+      imgUpload = shallow(<ImageUpload color="success" {...props} />);
+    }
   }
 
   describe('componentDidMount', () => {
@@ -95,7 +107,10 @@ describe('Component: ImageUpload', () => {
 
   describe('ui', () => {
     test('file-selected as rect', () => {
-      setup({ value: new File([''], 'maarten.png'), cropType: 'rect' });
+      setup({
+        value: new File([''], 'maarten.png'),
+        cropType: 'rect'
+      });
 
       imgUpload.setState({ imageSrc: 'maarten.png', mode: 'file-selected' });
 
@@ -161,6 +176,36 @@ describe('Component: ImageUpload', () => {
 
       expect(toJson(imgUpload)).toMatchSnapshot(
         'Component: ImageUpload => ui => no-file'
+      );
+    });
+
+    test('without label', () => {
+      setup({ cropType: 'rect', hasLabel: false });
+
+      expect(toJson(imgUpload)).toMatchSnapshot(
+        'Component: ImageUpload => ui => without label'
+      );
+    });
+
+    test('with empty label', () => {
+      setup({ cropType: 'rect', emptyLabel: true });
+
+      expect(toJson(imgUpload)).toMatchSnapshot(
+        'Component: ImageUpload => ui => with empty label'
+      );
+    });
+
+    test('file-selected as rect without label', () => {
+      setup({
+        value: new File([''], 'maarten.png'),
+        cropType: 'rect',
+        hasLabel: false
+      });
+
+      imgUpload.setState({ imageSrc: 'maarten.png', mode: 'file-selected' });
+
+      expect(toJson(imgUpload)).toMatchSnapshot(
+        'Component: ImageUpload => ui => file-selected as rect without label'
       );
     });
   });

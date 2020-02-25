@@ -72,6 +72,62 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
 </FormGroup>
 `;
 
+exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMultiple => ui => without label 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <div
+    className=""
+  >
+    <asyncContainer(TypeaheadComponent)
+      delay={200}
+      inputProps={
+        Object {
+          "className": "form-control",
+          "value": Array [
+            Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "id": 42,
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          ],
+        }
+      }
+      isLoading={false}
+      minLength={2}
+      multiple={true}
+      onChange={[Function]}
+      onSearch={[Function]}
+      options={Array []}
+      placeholder="Please provide your best friend"
+      promptText="Type to search..."
+      searchText="Searching..."
+      selected={
+        Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "id": 42,
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+        ]
+      }
+      useCache={true}
+    />
+  </div>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: TypeaheadMultiple ui without placeholder: Component: TypeaheadMultiple => ui => without placeholder 1`] = `
 <FormGroup
   className=""

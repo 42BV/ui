@@ -16,17 +16,7 @@ import {
   isOptionSelected
 } from '../../option';
 
-interface Props<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
+interface BaseProps<T> {
   /**
    * The placeholder of the form element.
    */
@@ -96,6 +86,25 @@ interface Props<T> {
    */
   className?: string;
 }
+
+interface WithoutLabel<T> extends BaseProps<T> {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel<T> extends BaseProps<T> {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props<T> = WithoutLabel<T> | WithLabel<T>;
 
 export interface State<T> {
   isOpen: boolean;
@@ -199,18 +208,19 @@ export default class ModalPickerSingle<T> extends React.Component<
   render() {
     const selected = this.props.value;
     const {
-      id,
-      label,
       placeholder,
       error,
       color,
       optionForValue,
-      className = ''
+      className = '',
+      ...props
     } = this.props;
 
     return (
       <FormGroup className={className} color={color}>
-        <Label for={id}>{label}</Label>
+        {'label' in props && props.label ? (
+          <Label for={props.id}>{props.label}</Label>
+        ) : null}
 
         <div>
           {selected ? (

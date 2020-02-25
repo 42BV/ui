@@ -69,6 +69,16 @@ storiesOf('Form|Input', module)
       </Form>
     );
   })
+  .add('without label', () => {
+    return (
+      <Form>
+        <Input
+          placeholder="Please enter your first name"
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

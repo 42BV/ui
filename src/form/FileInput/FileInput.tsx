@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { get } from 'lodash';
 import { FieldValidator } from 'final-form';
 
-import { FormGroup, Input, Label, InputGroup } from 'reactstrap';
+import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
@@ -10,17 +10,7 @@ import { Color } from '../types';
 import { Translation } from '../../utilities/translation/translator';
 import Addon from '../Input/Addon/Addon';
 
-interface Props {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
+interface BaseProps {
   /**
    * The placeholder of the form element.
    */
@@ -70,6 +60,25 @@ interface Props {
   className?: string;
 }
 
+interface WithoutLabel extends BaseProps {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel extends BaseProps {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props = WithoutLabel | WithLabel;
+
 export default class FileInput extends Component<Props> {
   inputRef = React.createRef<HTMLInputElement>();
 
@@ -105,15 +114,14 @@ export default class FileInput extends Component<Props> {
 
   render() {
     const {
-      id,
-      label,
       accept,
       placeholder,
       error,
       color,
       value,
       valid,
-      className = ''
+      className = '',
+      ...props
     } = this.props;
 
     const name = get(value, 'name', '');
@@ -125,9 +133,11 @@ export default class FileInput extends Component<Props> {
 
     return (
       <FormGroup className={`file-upload ${className}`} color={color}>
-        <Label for={id}>{label}</Label>
+        {'label' in props && props.label ? (
+          <Label for={props.id}>{props.label}</Label>
+        ) : null}
         <input
-          id={id}
+          id={'id' in props ? props.id : undefined}
           accept={accept}
           ref={this.inputRef}
           type="file"
@@ -136,12 +146,7 @@ export default class FileInput extends Component<Props> {
         />
 
         <InputGroup>
-          <Input
-            id={id}
-            label={label}
-            {...inputProps}
-            onChange={() => undefined}
-          />
+          <Input {...inputProps} onChange={() => undefined} />
           <Addon
             icon={value ? 'delete' : 'cloud_upload'}
             position="right"

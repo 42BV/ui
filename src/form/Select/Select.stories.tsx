@@ -85,6 +85,25 @@ storiesOf('Form|Select', module)
       </Form>
     );
   })
+  .add('without label', () => {
+    return (
+      <Form>
+        <Select
+          id="subject"
+          placeholder="Please enter your subject"
+          optionForValue={(option: SubjectOption) => option.label}
+          isOptionEnabled={option => option.value !== 'awesome'}
+          options={[
+            { value: 'awesome', label: 'Awesome shit' },
+            { value: 'super', label: 'Super shit' },
+            { value: 'great', label: 'Great shit' },
+            { value: 'good', label: 'good shit' }
+          ]}
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

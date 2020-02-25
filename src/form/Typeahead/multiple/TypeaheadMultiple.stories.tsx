@@ -41,6 +41,21 @@ storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
       </Form>
     );
   })
+  .add('without label', () => {
+    return (
+      <Form>
+        <TypeaheadMultiple
+          id="friends"
+          placeholder="Please provide all your friends"
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          onChange={value => action(`onChange: ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

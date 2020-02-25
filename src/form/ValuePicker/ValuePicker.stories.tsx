@@ -106,6 +106,34 @@ storiesOf('Form|ValuePicker/multiple', module)
       </Form>
     );
   })
+  .add('without label', () => {
+    const [value, setValue] = useState<User[] | undefined>(undefined);
+
+    const [size, setSize] = useState('small');
+
+    const promise = sizes[size];
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={true}
+          id="bestFriend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() => promise}
+          optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+        />
+
+        <p>Use these buttons to trigger a morph</p>
+        <Button className="mx-2" onClick={() => setSize('small')}>
+          Small
+        </Button>
+        <Button onClick={() => setSize('large')}>Large</Button>
+      </Form>
+    );
+  })
   .add('jarb', () => {
     const [size, setSize] = useState('small');
 
@@ -189,6 +217,37 @@ storiesOf('Form|ValuePicker/single', module)
           fetchOptions={() => promise}
           optionForValue={(user: User) => user.email}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
+          value={value}
+          onChange={setValue}
+        />
+
+        <p>Use these buttons to trigger a morph</p>
+        <Button className="mr-1" onClick={() => setSize('small')}>
+          Small
+        </Button>
+        <Button className="mr-1" onClick={() => setSize('medium')}>
+          Medium
+        </Button>
+        <Button onClick={() => setSize('large')}>Large</Button>
+      </Form>
+    );
+  })
+  .add('without label', () => {
+    const [value, setValue] = useState<User | undefined>(undefined);
+
+    const [size, setSize] = useState('small');
+
+    const promise = sizes[size];
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={false}
+          id="bestFriend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() => promise}
+          optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
         />

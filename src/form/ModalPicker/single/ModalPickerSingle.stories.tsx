@@ -102,6 +102,25 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
       </Form>
     );
   })
+  .add('without label', () => {
+    const [value, setValue] = useState<User | undefined>(undefined);
+
+    return (
+      <Form>
+        <ModalPickerSingle
+          id="bestFriend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          value={value}
+          onChange={setValue}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

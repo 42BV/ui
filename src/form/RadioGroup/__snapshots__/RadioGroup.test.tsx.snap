@@ -106,6 +106,109 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
 </FormGroup>
 `;
 
+exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => without label 1`] = `
+<FormGroup
+  className=""
+  tag="fieldset"
+>
+  <p
+    className="text-muted"
+  >
+    <em>
+      Please enter your subject
+    </em>
+  </p>
+  <FormGroup
+    check={true}
+    key="admin@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={true}
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="admin@42.nl"
+      />
+       
+      admin@42.nl
+    </Label>
+  </FormGroup>
+  <FormGroup
+    check={true}
+    key="coordinator@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={false}
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="coordinator@42.nl"
+      />
+       
+      coordinator@42.nl
+    </Label>
+  </FormGroup>
+  <FormGroup
+    check={true}
+    key="user@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={false}
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="user@42.nl"
+      />
+       
+      user@42.nl
+    </Label>
+  </FormGroup>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => ui => without placeholder 1`] = `
 <FormGroup
   className=""

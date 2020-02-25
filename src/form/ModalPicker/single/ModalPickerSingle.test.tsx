@@ -24,11 +24,13 @@ describe('Component: ModalPickerSingle', () => {
   function setup({
     value,
     showAddButton,
-    canSearch = undefined
+    canSearch = undefined,
+    label = 'Best Friend'
   }: {
     value?: User;
     showAddButton: boolean;
     canSearch?: boolean;
+    label?: string | null;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -42,7 +44,7 @@ describe('Component: ModalPickerSingle', () => {
     const props = {
       id: 'bestFriend',
       name: 'bestFriend',
-      label: 'Best Friend',
+      label,
       placeholder: 'Select your best friend',
       optionForValue: (user: User) => user.email,
       canSearch,
@@ -128,6 +130,13 @@ describe('Component: ModalPickerSingle', () => {
       expect(admin.props().checked).toBe(true);
       expect(coordinator.props().checked).toBe(false);
       expect(user.props().checked).toBe(false);
+    });
+
+    it('should render without label', () => {
+      setup({ value: adminUser, showAddButton: false, label: null });
+      expect(toJson(modalPickerSingle)).toMatchSnapshot(
+        'Component: ModalPickerSingle => ui => should render without label'
+      );
     });
   });
 

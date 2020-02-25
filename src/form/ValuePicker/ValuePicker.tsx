@@ -23,16 +23,6 @@ export interface Text {
 
 interface BaseValuePickerProps<T> {
   /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
-  /**
    * The placeholder of the form element.
    */
   placeholder: string;
@@ -125,7 +115,45 @@ interface MultipleValuePicker<T> extends BaseValuePickerProps<T> {
   value?: T[];
 }
 
-type Props<T> = SingleValuePicker<T> | MultipleValuePicker<T>;
+interface SingleValuePickerWithoutLabel<T> extends SingleValuePicker<T> {
+  id?: string;
+  label?: never;
+}
+
+interface MultipleValuePickerWithoutLabel<T> extends MultipleValuePicker<T> {
+  id?: string;
+  label?: never;
+}
+
+interface SingleValuePickerWithLabel<T> extends SingleValuePicker<T> {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+interface MultipleValuePickerWithLabel<T> extends MultipleValuePicker<T> {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+type Props<T> =
+  | SingleValuePickerWithoutLabel<T>
+  | MultipleValuePickerWithoutLabel<T>
+  | SingleValuePickerWithLabel<T>
+  | MultipleValuePickerWithLabel<T>;
 
 /**
  *

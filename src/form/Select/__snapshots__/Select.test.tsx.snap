@@ -60,6 +60,50 @@ exports[`Component: Select ui with value: Component: Select => ui => with value 
 </FormGroup>
 `;
 
+exports[`Component: Select ui without label: Component: Select => ui => without label 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Input
+    className=""
+    invalid={true}
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    placeholder="Please enter your subject"
+    type="select"
+    valid={false}
+    value={0}
+  >
+    <option>
+      Please enter your subject
+    </option>
+    <option
+      disabled={false}
+      key="admin@42.nl"
+      value={0}
+    >
+      admin@42.nl
+    </option>
+    <option
+      disabled={false}
+      key="coordinator@42.nl"
+      value={1}
+    >
+      coordinator@42.nl
+    </option>
+    <option
+      disabled={false}
+      key="user@42.nl"
+      value={2}
+    >
+      user@42.nl
+    </option>
+  </Input>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: Select ui without placeholder: Component: Select => ui => without placeholder 1`] = `
 <FormGroup
   className=""

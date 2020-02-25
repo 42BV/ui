@@ -213,6 +213,52 @@ exports[`Component: ImageUpload ui file-selected as circle: Component: ImageUplo
 </div>
 `;
 
+exports[`Component: ImageUpload ui file-selected as rect without label: Component: ImageUpload => ui => file-selected as rect without label 1`] = `
+<div>
+  <FormGroup
+    className="img-upload"
+    color="success"
+    tag="div"
+  >
+    <div
+      className="d-flex justify-content-center"
+    >
+      <img
+        alt=""
+        className="img-fluid elevated-3"
+        src="maarten.png"
+        style={
+          Object {
+            "borderRadius": 0,
+          }
+        }
+      />
+    </div>
+    <FormGroup
+      className="text-center mt-1"
+      tag="div"
+    >
+      <Button
+        color="primary"
+        icon="camera_roll"
+        onClick={[Function]}
+      >
+        Change
+      </Button>
+      <Button
+        className="ml-1"
+        color="danger"
+        icon="delete"
+        onClick={[Function]}
+      >
+        Remove
+      </Button>
+    </FormGroup>
+    Some error
+  </FormGroup>
+</div>
+`;
+
 exports[`Component: ImageUpload ui file-selected as rect: Component: ImageUpload => ui => file-selected as rect 1`] = `
 <div>
   <FormGroup
@@ -299,6 +345,55 @@ exports[`Component: ImageUpload ui no-file: Component: ImageUpload => ui => no-f
     <input
       accept="image/*"
       id="image-uploader"
+      onChange={[Function]}
+      type="file"
+    />
+    <div
+      className="img-upload-wrapper bg-faded text-muted"
+    >
+      <Icon
+        icon="add_a_photo"
+      />
+    </div>
+    Some error
+  </FormGroup>
+</div>
+`;
+
+exports[`Component: ImageUpload ui with empty label: Component: ImageUpload => ui => with empty label 1`] = `
+<div>
+  <FormGroup
+    className="img-upload"
+    color="success"
+    tag="div"
+  >
+    <input
+      accept="image/*"
+      id="image-uploader"
+      onChange={[Function]}
+      type="file"
+    />
+    <div
+      className="img-upload-wrapper bg-faded text-muted"
+    >
+      <Icon
+        icon="add_a_photo"
+      />
+    </div>
+    Some error
+  </FormGroup>
+</div>
+`;
+
+exports[`Component: ImageUpload ui without label: Component: ImageUpload => ui => without label 1`] = `
+<div>
+  <FormGroup
+    className="img-upload"
+    color="success"
+    tag="div"
+  >
+    <input
+      accept="image/*"
       onChange={[Function]}
       type="file"
     />

@@ -24,11 +24,11 @@ export interface Text {
   loadingMessage?: string;
 }
 
-interface Props<T> {
+interface BaseProps<T> {
   /**
    * The id of the form element.
    */
-  id: string;
+  id?: string;
 
   /**
    * The value that the form element currently has.
@@ -95,11 +95,6 @@ interface Props<T> {
   className?: string;
 
   /**
-   * The label of the form element.
-   */
-  label: string;
-
-  /**
    * The placeholder of the form element.
    */
   placeholder?: string;
@@ -111,6 +106,19 @@ interface Props<T> {
   text?: Text;
 }
 
+interface WithoutLabel<T> extends BaseProps<T> {
+  label?: never;
+}
+
+interface WithLabel<T> extends BaseProps<T> {
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props<T> = WithoutLabel<T> | WithLabel<T>;
+
 /**
  * RadioGroup is a form element for which the value can be selected
  * from a limited range.
@@ -120,7 +128,6 @@ export default function RadioGroup<T>(props: Props<T>) {
     value,
     error,
     color,
-    label,
     text = {},
     className = '',
     placeholder,
@@ -146,7 +153,7 @@ export default function RadioGroup<T>(props: Props<T>) {
 
   return (
     <FormGroup tag="fieldset" className={className} color={color}>
-      <legend>{label}</legend>
+      {'label' in props && props.label ? <legend>{props.label}</legend> : null}
       {placeholder ? (
         <p className="text-muted">
           <em>{placeholder}</em>

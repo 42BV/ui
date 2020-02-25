@@ -13,31 +13,39 @@ describe('Component: TextEditor', () => {
 
   function setup({
     value,
-    hasPlaceholder = true
+    hasPlaceholder = true,
+    hasLabel = true
   }: {
     value?: string;
     hasPlaceholder?: boolean;
+    hasLabel?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
     onFocusSpy = jest.fn();
 
-    textEditor = shallow(
-      <Texteditor
-        id="firstName"
-        label="First name"
-        placeholder={
-          hasPlaceholder ? 'Please enter your first name' : undefined
-        }
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        onFocus={onFocusSpy}
-        error="Some error"
-        color="success"
-        valid={true}
-      />
-    );
+    const props = {
+      placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      onFocus: onFocusSpy,
+      error: 'Some error',
+      valid: true
+    };
+
+    if (hasLabel) {
+      textEditor = shallow(
+        <Texteditor
+          id="firstName"
+          label="First name"
+          color="success"
+          {...props}
+        />
+      );
+    } else {
+      textEditor = shallow(<Texteditor color="success" {...props} />);
+    }
   }
 
   describe('ui', () => {
@@ -54,6 +62,14 @@ describe('Component: TextEditor', () => {
 
       expect(toJson(textEditor)).toMatchSnapshot(
         'Component: textEditor => ui => without placeholder'
+      );
+    });
+
+    test('without label', () => {
+      setup({ value: 'Maarten', hasLabel: false });
+
+      expect(toJson(textEditor)).toMatchSnapshot(
+        'Component: textEditor => ui => without label'
       );
     });
   });
