@@ -32,9 +32,7 @@ exports[`Component: FileInput ui empty value: Component: FileInput => ui => empt
     tag="div"
   >
     <Input
-      id="file-upload-with-button"
       invalid={true}
-      label="Upload a file here"
       onChange={[Function]}
       placeholder="Upload a file here"
       type="text"
@@ -82,8 +80,6 @@ exports[`Component: FileInput ui with value: Component: FileInput => ui => with 
     tag="div"
   >
     <Input
-      id="file-upload-with-button"
-      label="Upload a file here"
       onChange={[Function]}
       placeholder="Upload a file here"
       type="text"
@@ -92,6 +88,38 @@ exports[`Component: FileInput ui with value: Component: FileInput => ui => with 
     <Addon
       color="danger"
       icon="delete"
+      position="right"
+    />
+  </InputGroup>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: FileInput ui without label: Component: FileInput => ui => without label 1`] = `
+<FormGroup
+  className="file-upload "
+  color="success"
+  tag="div"
+>
+  <input
+    accept="text/plain"
+    onChange={[Function]}
+    onClick={[Function]}
+    type="file"
+  />
+  <InputGroup
+    tag="div"
+  >
+    <Input
+      invalid={true}
+      onChange={[Function]}
+      placeholder="Upload a file here"
+      type="text"
+      value=""
+    />
+    <Addon
+      color="danger"
+      icon="cloud_upload"
       position="right"
     />
   </InputGroup>
@@ -131,9 +159,7 @@ exports[`Component: FileInput ui without placeholder: Component: FileInput => ui
     tag="div"
   >
     <Input
-      id="file-upload-with-button"
       invalid={true}
-      label="Upload a file here"
       onChange={[Function]}
       type="text"
       value=""

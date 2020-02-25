@@ -72,6 +72,17 @@ storiesOf('Form|Toggle', module)
       </Form>
     );
   })
+  .add('without label', () => {
+    return (
+      <Form>
+        <FormToggle
+          id="agree"
+          toggleColor="primary"
+          onChange={value => action(`onChange: ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

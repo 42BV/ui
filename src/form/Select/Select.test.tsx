@@ -17,32 +17,36 @@ describe('Component: Select', () => {
     value,
     isOptionEnabled,
     text,
-    hasPlaceholder = true
+    hasPlaceholder = true,
+    hasLabel = true
   }: {
     value?: User;
     isOptionEnabled?: OptionEnabledCallback<User>;
     text?: Text;
     hasPlaceholder?: boolean;
+    hasLabel?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
 
-    select = shallow(
-      <Select
-        id="subject"
-        label="Subject"
-        placeholder={hasPlaceholder ? 'Please enter your subject' : undefined}
-        text={text}
-        isOptionEnabled={isOptionEnabled}
-        optionForValue={(user: User) => user?.email}
-        options={[adminUser, coordinatorUser, userUser]}
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        error="Some error"
-        valid={false}
-      />
-    );
+    const props = {
+      placeholder: hasPlaceholder ? 'Please enter your subject' : undefined,
+      text,
+      isOptionEnabled,
+      optionForValue: (user: User) => user?.email,
+      options: [adminUser, coordinatorUser, userUser],
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      error: 'Some error',
+      valid: false
+    };
+
+    if (hasLabel) {
+      select = shallow(<Select id="subject" label="Subject" {...props} />);
+    } else {
+      select = shallow(<Select {...props} />);
+    }
   }
 
   describe('ui', () => {
@@ -87,6 +91,18 @@ describe('Component: Select', () => {
 
       expect(toJson(select)).toMatchSnapshot(
         'Component: Select => ui => without placeholder'
+      );
+    });
+
+    test('without label', () => {
+      setup({
+        value: adminUser,
+        isOptionEnabled: undefined,
+        hasLabel: false
+      });
+
+      expect(toJson(select)).toMatchSnapshot(
+        'Component: Select => ui => without label'
       );
     });
   });

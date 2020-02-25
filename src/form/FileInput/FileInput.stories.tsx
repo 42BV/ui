@@ -32,6 +32,18 @@ storiesOf('Form|FileInput', module)
       </Form>
     );
   })
+  .add('without label', () => {
+    return (
+      <Form>
+        <FileInput
+          id="file-upload-with-button"
+          placeholder="Upload a file here"
+          accept="text/plain"
+          onChange={() => action('value changed')}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

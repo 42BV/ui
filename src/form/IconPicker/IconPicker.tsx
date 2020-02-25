@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import {
+  Button,
   FormGroup,
   Label,
-  Button,
-  PopoverHeader,
   PopoverBody,
-  UncontrolledTooltip,
-  UncontrolledPopover
+  PopoverHeader,
+  UncontrolledPopover,
+  UncontrolledTooltip
 } from 'reactstrap';
 import classNames from 'classnames';
 
 import withJarb from '../withJarb/withJarb';
 import { Color } from '../types';
-import { IconType, Icon, icons } from '../../core/Icon';
+import { Icon, icons, IconType } from '../../core/Icon';
 import Pager from '../../core/Pager/Pager';
 import { doBlur } from '../utils';
 import SearchInput from '../../core/SearchInput/SearchInput';
@@ -39,12 +39,7 @@ interface Text {
   clear?: string;
 }
 
-interface Props {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
+interface BaseProps {
   /**
    * The value that the form element currently has.
    */
@@ -82,11 +77,6 @@ interface Props {
   className?: string;
 
   /**
-   * The label of the form element.
-   */
-  label: string;
-
-  /**
    * The placeholder of the form element.
    */
   placeholder: string;
@@ -98,6 +88,25 @@ interface Props {
   text?: Text;
 }
 
+interface WithoutLabel extends BaseProps {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel extends BaseProps {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props = WithoutLabel | WithLabel;
+
 /**
  * IconPicker is a form element which allows the user to select one
  * of the material design icons. It is a popover which shows all
@@ -105,8 +114,6 @@ interface Props {
  */
 export default function IconPicker(props: Props) {
   const {
-    id,
-    label,
     value,
     color,
     placeholder,
@@ -146,7 +153,9 @@ export default function IconPicker(props: Props) {
     <SearchInput value={query} onChange={onSearch} debounce={0}>
       {(searchInput, searchInputApi) => (
         <FormGroup className={classes} color={color}>
-          <Label for={id}>{label}</Label>
+          {'label' in props && props.label ? (
+            <Label>{props.label}</Label>
+          ) : null}
 
           <div className="d-flex">
             {value ? (

@@ -13,29 +13,39 @@ describe('Component: FileInput', () => {
   function setup({
     value,
     valid,
-    hasPlaceholder = true
+    hasPlaceholder = true,
+    hasLabel = true
   }: {
     value?: File;
     valid?: boolean;
     hasPlaceholder?: boolean;
+    hasLabel?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
 
-    fileInput = shallow(
-      <FileInput
-        id="file-upload-with-button"
-        placeholder={hasPlaceholder ? 'Upload a file here' : undefined}
-        label="Upload a file here"
-        accept="text/plain"
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        error="Some error"
-        color="success"
-        valid={valid}
-      />
-    );
+    const props = {
+      placeholder: hasPlaceholder ? 'Upload a file here' : undefined,
+      accept: 'text/plain',
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      error: 'Some error',
+      valid
+    };
+
+    if (hasLabel) {
+      fileInput = shallow(
+        <FileInput
+          id="file-upload-with-button"
+          label="Upload a file here"
+          color="success"
+          {...props}
+        />
+      );
+    } else {
+      fileInput = shallow(<FileInput color="success" {...props} />);
+    }
   }
 
   describe('ui', () => {
@@ -62,6 +72,14 @@ describe('Component: FileInput', () => {
 
       expect(toJson(fileInput)).toMatchSnapshot(
         'Component: FileInput => ui => without placeholder'
+      );
+    });
+
+    test('without label', () => {
+      setup({ value: undefined, valid: false, hasLabel: false });
+
+      expect(toJson(fileInput)).toMatchSnapshot(
+        'Component: FileInput => ui => without label'
       );
     });
   });

@@ -21,30 +21,36 @@ describe('Component: TypeaheadMultiple', () => {
 
   function setup({
     value,
-    hasPlaceholder = true
+    hasPlaceholder = true,
+    hasLabel = true
   }: {
     value?: User[];
     hasPlaceholder?: boolean;
+    hasLabel?: boolean;
   }) {
     fetchOptionsSpy = jest.fn();
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
 
-    typeaheadMultiple = shallow(
-      <TypeaheadMultiple
-        id="bestFriend"
-        label="Best friend"
-        placeholder={
-          hasPlaceholder ? 'Please provide your best friend' : undefined
-        }
-        optionForValue={(user: User) => user.email}
-        fetchOptions={fetchOptionsSpy}
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        error="Some error"
-      />
-    );
+    const props = {
+      placeholder: hasPlaceholder
+        ? 'Please provide your best friend'
+        : undefined,
+      optionForValue: (user: User) => user.email,
+      fetchOptions: fetchOptionsSpy,
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      error: 'Some error'
+    };
+
+    if (hasLabel) {
+      typeaheadMultiple = shallow(
+        <TypeaheadMultiple id="bestFriend" label="Best friend" {...props} />
+      );
+    } else {
+      typeaheadMultiple = shallow(<TypeaheadMultiple {...props} />);
+    }
   }
 
   describe('ui', () => {
@@ -61,6 +67,14 @@ describe('Component: TypeaheadMultiple', () => {
 
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => without placeholder'
+      );
+    });
+
+    test('without label', () => {
+      setup({ value: [adminUser], hasLabel: false });
+
+      expect(toJson(typeaheadMultiple)).toMatchSnapshot(
+        'Component: TypeaheadMultiple => ui => without label'
       );
     });
   });

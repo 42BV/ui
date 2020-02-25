@@ -94,6 +94,25 @@ storiesOf('Form|CheckboxMultipleSelect', module)
       </div>
     );
   })
+  .add('without label', () => {
+    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
+
+    return (
+      <div>
+        <Form>
+          <CheckboxMultipleSelect
+            id="subject"
+            placeholder="Please select your subjects"
+            optionForValue={(option: SubjectOption) => option.label}
+            isOptionEnabled={option => option.value !== 'awesome'}
+            options={options}
+            value={value}
+            onChange={setValue}
+          />
+        </Form>
+      </div>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

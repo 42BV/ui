@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FormGroup, Label, Input as RSInput, Row, Col } from 'reactstrap';
-import { get, constant, isArray, chunk } from 'lodash';
+import { Col, FormGroup, Input as RSInput, Label, Row } from 'reactstrap';
+import { chunk, constant, get, isArray } from 'lodash';
 
 import { Page } from '@42.nl/spring-connect';
 
@@ -8,11 +8,11 @@ import withJarb from '../withJarb/withJarb';
 import Spinner from '../../core/Spinner/Spinner';
 import { Color } from '../types';
 import {
-  OptionsFetcher,
+  isOptionSelected,
   OptionEnabledCallback,
-  OptionForValue,
   OptionEqual,
-  isOptionSelected
+  OptionForValue,
+  OptionsFetcher
 } from '../option';
 import { t } from '../../utilities/translation/translation';
 import { doBlur } from '../utils';
@@ -25,12 +25,7 @@ export interface Text {
   loadingMessage?: string;
 }
 
-interface Props<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
+interface BaseProps<T> {
   /**
    * The value that the form element currently has.
    */
@@ -96,11 +91,6 @@ interface Props<T> {
   className?: string;
 
   /**
-   * The label of the form element.
-   */
-  label: string;
-
-  /**
    * The placeholder of the form element.
    */
   placeholder?: string;
@@ -111,6 +101,25 @@ interface Props<T> {
    */
   text?: Text;
 }
+
+interface WithoutLabel<T> extends BaseProps<T> {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel<T> extends BaseProps<T> {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props<T> = WithoutLabel<T> | WithLabel<T>;
 
 interface State<T> {
   options: T[];
@@ -179,16 +188,18 @@ export default class CheckboxMultipleSelect<T> extends Component<
       id,
       error,
       color,
-      label,
       text = {},
       className = '',
-      placeholder
+      placeholder,
+      ...props
     } = this.props;
     const { loading } = this.state;
 
     return (
       <FormGroup className={className} color={color}>
-        <Label for={id}>{label}</Label>
+        {'label' in props && props.label ? (
+          <Label for={id}>{props.label}</Label>
+        ) : null}
         {placeholder ? (
           <p className="text-muted">
             <em>{placeholder}</em>

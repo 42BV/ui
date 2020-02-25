@@ -11,10 +11,10 @@ import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import { Translation } from '../../utilities/translation/translator';
 import {
-  getPicaInstance,
-  dataUrlToFile,
+  calculateScale,
   cropToAvatarEditorConfig,
-  calculateScale
+  dataUrlToFile,
+  getPicaInstance
 } from './utils';
 
 export interface Text {
@@ -61,17 +61,7 @@ export type Crop = CropRect | CropCircle;
 type Value = File | string;
 type ChangeValue = File | null;
 
-interface Props {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
+interface BaseProps {
   /**
    * Whether to crop as a circle or as a rectangle.
    */
@@ -113,6 +103,25 @@ interface Props {
    */
   text?: Text;
 }
+
+interface WithoutLabel extends BaseProps {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel extends BaseProps {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props = WithoutLabel | WithLabel;
 
 /*
   There are three modes in which this component can be.
@@ -266,12 +275,17 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   render() {
-    const { id, label, className, error, color } = this.props;
+    const { className, error, color, ...props } = this.props;
+
+    let label: React.ReactNode = null;
+    if ('label' in props && props.label) {
+      label = <Label for={props.id}>{props.label}</Label>;
+    }
 
     return (
       <div className={className}>
         <FormGroup color={color} className="img-upload">
-          <Label for={id}>{label}</Label>
+          {label}
           {this.renderMode()}
           {this.renderButtons()}
           {error}
@@ -294,7 +308,7 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   renderNoFile() {
-    const { id } = this.props;
+    const id = 'id' in this.props ? this.props.id : undefined;
 
     return (
       <Fragment>
@@ -338,14 +352,19 @@ export default class ImageUpload extends Component<Props, State> {
 
   renderFileSelected() {
     const { imageSrc } = this.state;
-    const { label, crop } = this.props;
+    const { crop, ...props } = this.props;
+
+    let alt = '';
+    if ('label' in props && props.label) {
+      alt = props.label;
+    }
 
     return (
       <div className="d-flex justify-content-center">
         <img
           style={{ borderRadius: crop.type === 'rect' ? 0 : '50%' }}
           className="img-fluid elevated-3"
-          alt={label}
+          alt={alt}
           src={imageSrc}
         />
       </div>

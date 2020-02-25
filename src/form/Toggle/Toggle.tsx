@@ -5,17 +5,7 @@ import { Color } from '../types';
 
 import withJarb from '../withJarb/withJarb';
 
-interface Props {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
+interface BaseProps {
   /**
    * The color of Toggle element.
    */
@@ -58,39 +48,65 @@ interface Props {
   className?: string;
 }
 
+interface WithoutLabel extends BaseProps {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel extends BaseProps {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props = WithoutLabel | WithLabel;
+
 /**
  * FormToggle is a a form element which allows the user to activate or
  * deactivate a certain state.
  */
 export function FormToggle(props: Props) {
-  const {
-    id,
-    label,
-    value,
-    color,
-    toggleColor,
-    onChange,
-    onBlur,
-    error,
-    className = ''
-  } = props;
+  const { color, error, className = '' } = props;
+
+  const toggle = getToggle(props);
 
   return (
     <FormGroup className={className} color={color}>
-      <Label for={id}>
-        {label}
-        <Toggle
-          id={id}
-          color={toggleColor}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-        />
-      </Label>
-
+      {toggle}
       {error}
     </FormGroup>
   );
+}
+
+function getToggle(props: Props) {
+  const { id, value, toggleColor, onChange, onBlur } = props;
+
+  const toggle = (
+    <Toggle
+      id={id}
+      color={toggleColor}
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+    />
+  );
+
+  if ('label' in props && props.label) {
+    return (
+      <Label for={id}>
+        {props.label}
+        {toggle}
+      </Label>
+    );
+  }
+
+  return toggle;
 }
 
 /**

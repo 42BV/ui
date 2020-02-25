@@ -1,7 +1,6 @@
 import React from 'react';
-import { FormGroup, Label, Input } from 'reactstrap';
+import { Button, Col, FormGroup, Input, Label, Row } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
-import { Button, Row, Col } from 'reactstrap';
 
 import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
@@ -12,23 +11,13 @@ import ModalPicker from '../ModalPicker';
 import EmptyModal from '../EmptyModal';
 import { AddButtonCallback, AddButtonOptions } from '../types';
 import {
-  OptionEqual,
-  OptionForValue,
   FetchOptionsCallback,
-  isOptionSelected
+  isOptionSelected,
+  OptionEqual,
+  OptionForValue
 } from '../../option';
 
-interface Props<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
+interface BaseProps<T> {
   /**
    * The placeholder of the form element.
    */
@@ -98,6 +87,25 @@ interface Props<T> {
    */
   className?: string;
 }
+
+interface WithoutLabel<T> extends BaseProps<T> {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel<T> extends BaseProps<T> {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props<T> = WithoutLabel<T> | WithLabel<T>;
 
 export interface State<T> {
   isOpen: boolean;
@@ -216,11 +224,13 @@ export default class ModalPickerMultiple<T> extends React.Component<
 
   render() {
     const value = this.props.value;
-    const { id, label, placeholder, error, color, className = '' } = this.props;
+    const { placeholder, error, color, className = '', ...props } = this.props;
 
     return (
       <FormGroup className={className} color={color}>
-        <Label for={id}>{label}</Label>
+        {'label' in props && props.label ? (
+          <Label for={props.id}>{props.label}</Label>
+        ) : null}
 
         <div>
           {this.renderTagsInMoreOrLess(value)}
