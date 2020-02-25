@@ -53,6 +53,20 @@ storiesOf('core|SearchInput', module)
       </Card>
     );
   })
+  .add('with placeholder', () => {
+    const [query, setQuery] = useState('');
+
+    return (
+      <Card body>
+        <p>You searched for: {query}</p>
+        <SearchInput
+          value={query}
+          onChange={setQuery}
+          placeholder="Search..."
+        />
+      </Card>
+    );
+  })
   .add('with external value', () => {
     const [query, setQuery] = useState('');
 

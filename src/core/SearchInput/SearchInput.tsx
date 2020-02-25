@@ -39,6 +39,11 @@ interface Props extends ModifiedInputProps {
   debounceSettings?: DebounceSettings;
 
   /**
+   * The placeholder of the form element.
+   */
+  placeholder?: string;
+
+  /**
    * The default value that the form element currently has.
    * In the future this will be called `defaultValue` instead
    * of `value`.
@@ -95,6 +100,7 @@ export default function SearchInput(props: Props) {
   const {
     debounce = 500,
     debounceSettings,
+    placeholder,
     value,
     onChange,
     showIcon = true,
@@ -140,6 +146,7 @@ export default function SearchInput(props: Props) {
       defaultValue={value}
       onChange={event => handleChange.current(event.target.value)}
       onKeyUp={handleKeyUp}
+      placeholder={placeholder}
       {...rest}
     />
   );
