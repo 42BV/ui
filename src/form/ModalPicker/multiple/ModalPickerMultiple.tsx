@@ -14,7 +14,9 @@ import {
   FetchOptionsCallback,
   isOptionSelected,
   OptionEqual,
-  OptionForValue
+  OptionForValue,
+  RenderOptions,
+  RenderOptionsOption
 } from '../../option';
 
 interface BaseProps<T> {
@@ -105,7 +107,25 @@ interface WithLabel<T> extends BaseProps<T> {
   label: React.ReactNode;
 }
 
-export type Props<T> = WithoutLabel<T> | WithLabel<T>;
+interface WithoutLabelButRenderOptions<T> extends WithLabel<T> {
+  /**
+   * Callback to customize display of options.
+   */
+  renderOptions: RenderOptions<T>;
+}
+
+interface WithLabelAndRenderOptions<T> extends WithLabel<T> {
+  /**
+   * Callback to customize display of options.
+   */
+  renderOptions: RenderOptions<T>;
+}
+
+export type Props<T> =
+  | WithoutLabel<T>
+  | WithLabel<T>
+  | WithoutLabelButRenderOptions<T>
+  | WithLabelAndRenderOptions<T>;
 
 export interface State<T> {
   isOpen: boolean;
@@ -289,7 +309,13 @@ export default class ModalPickerMultiple<T> extends React.Component<
       return <EmptyModal userHasSearched={this.state.userHasSearched} />;
     }
 
-    const { optionForValue, isOptionEqual } = this.props;
+    const { optionForValue, isOptionEqual, ...props } = this.props;
+
+    if ('renderOptions' in props && props.renderOptions) {
+      return props.renderOptions(
+        this.mapOptions({ page, selected, optionForValue, isOptionEqual })
+      );
+    }
 
     return page.content.map(option => {
       const label = optionForValue(option);
@@ -314,6 +340,33 @@ export default class ModalPickerMultiple<T> extends React.Component<
           </Label>
         </FormGroup>
       );
+    });
+  }
+
+  mapOptions({
+    page,
+    selected,
+    optionForValue,
+    isOptionEqual
+  }: {
+    page: Page<T>;
+    selected: T[];
+    optionForValue: OptionForValue<T>;
+    isOptionEqual?: OptionEqual<T>;
+  }): RenderOptionsOption<T>[] {
+    return page.content.map(option => {
+      const isSelected = isOptionSelected({
+        option,
+        optionForValue,
+        isOptionEqual,
+        value: selected
+      });
+
+      return {
+        option,
+        isSelected,
+        toggle: () => this.itemClicked(option, isSelected)
+      };
     });
   }
 

@@ -7,11 +7,14 @@ import ModalPickerSingle, { State } from './ModalPickerSingle';
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
 import {
-  pageOfUsers,
   adminUser,
-  userUser,
-  coordinatorUser
+  coordinatorUser,
+  pageOfUsers,
+  userUser
 } from '../../../test/fixtures';
+import { ListGroup, ListGroupItem } from 'reactstrap';
+import * as optionTypesAndFunctions from '../../option';
+import { RenderOptionsOption } from '../../option';
 
 describe('Component: ModalPickerSingle', () => {
   let modalPickerSingle: ShallowWrapper;
@@ -20,45 +23,72 @@ describe('Component: ModalPickerSingle', () => {
   let onBlurSpy: jest.Mock<any, any>;
   let fetchOptionsSpy: jest.Mock<any, any>;
   let addButtonCallbackSpy: jest.Mock<any, any>;
+  let renderOptionsSpy: jest.Mock<any, any>;
 
   function setup({
     value,
     showAddButton,
     canSearch = undefined,
-    label = 'Best Friend'
+    hasLabel = true,
+    spyOnRenderOptions
   }: {
     value?: User;
     showAddButton: boolean;
     canSearch?: boolean;
-    label?: string | null;
+    hasLabel?: boolean;
+    spyOnRenderOptions?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
     fetchOptionsSpy = jest.fn();
     addButtonCallbackSpy = jest.fn();
 
+    if (spyOnRenderOptions) {
+      renderOptionsSpy = jest.fn((options: RenderOptionsOption<User>[]) => {
+        return (
+          <ListGroup>
+            {options.map((option: RenderOptionsOption<User>) => (
+              <ListGroupItem key={option.option.id} onClick={option.toggle}>
+                {option.option.email}
+              </ListGroupItem>
+            ))}
+          </ListGroup>
+        );
+      });
+    }
+
     const addButton = showAddButton
       ? { label: 'Add color', onClick: addButtonCallbackSpy }
       : undefined;
 
     const props = {
-      id: 'bestFriend',
       name: 'bestFriend',
-      label,
       placeholder: 'Select your best friend',
       optionForValue: (user: User) => user.email,
+      renderOptions: renderOptionsSpy,
       canSearch,
       fetchOptions: fetchOptionsSpy,
       addButton,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
-      error: 'Some error',
-      color: 'success'
+      error: 'Some error'
     };
 
-    // @ts-ignore
-    modalPickerSingle = shallow(<ModalPickerSingle {...props} />);
+    if (hasLabel) {
+      modalPickerSingle = shallow<ModalPickerSingle<User>>(
+        <ModalPickerSingle
+          id="bestFriend"
+          label="Best Friend"
+          color="success"
+          {...props}
+        />
+      );
+    } else {
+      modalPickerSingle = shallow<ModalPickerSingle<User>>(
+        <ModalPickerSingle color="success" {...props} />
+      );
+    }
   }
 
   describe('lifecycle events', () => {
@@ -133,7 +163,7 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     it('should render without label', () => {
-      setup({ value: adminUser, showAddButton: false, label: null });
+      setup({ value: adminUser, showAddButton: false, hasLabel: false });
       expect(toJson(modalPickerSingle)).toMatchSnapshot(
         'Component: ModalPickerSingle => ui => should render without label'
       );
@@ -394,6 +424,49 @@ describe('Component: ModalPickerSingle', () => {
             done();
           });
         }
+      });
+    });
+
+    describe('renderOptions', () => {
+      it('should when renderOptions is provided use that callback to render options', () => {
+        const isOptionSelectedSpy = jest
+          .spyOn(optionTypesAndFunctions, 'isOptionSelected')
+          .mockReturnValue(false);
+
+        setup({ showAddButton: false, spyOnRenderOptions: true });
+
+        modalPickerSingle.setState({
+          isOpen: true,
+          page: pageOfUsers
+        });
+
+        expect(renderOptionsSpy).toHaveBeenCalledTimes(1);
+        expect(isOptionSelectedSpy).toHaveBeenCalledTimes(
+          pageOfUsers.content.length
+        );
+      });
+
+      it('should when renderOptions is provided call itemClicked on the option that is selected', () => {
+        setup({ showAddButton: false, spyOnRenderOptions: true });
+
+        modalPickerSingle.setState({
+          isOpen: true,
+          page: pageOfUsers
+        });
+
+        // @ts-ignore
+        modalPickerSingle
+          .find('ListGroupItem')
+          .at(0)
+          .props()
+          // @ts-ignore
+          .onClick();
+        modalPickerSingle.update();
+
+        // @ts-ignore
+        expect(modalPickerSingle.state().selected).toEqual(
+          pageOfUsers.content[0]
+        );
       });
     });
   });

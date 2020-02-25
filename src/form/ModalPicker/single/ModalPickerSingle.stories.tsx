@@ -4,9 +4,11 @@ import { storiesOf } from '@storybook/react';
 import ModalPickerSingle, { JarbModalPickerSingle } from './ModalPickerSingle';
 import { FinalForm, Form } from '../../story-utils';
 import { pageWithContentAndExactSize } from '../../../test/utils';
-import { userUser, adminUser } from '../../../test/fixtures';
+import { adminUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 import { Icon, Tooltip } from '../../..';
+import Avatar from '../../../core/Avatar/Avatar';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 storiesOf('Form/ModalPicker/ModalPickerSingle', module)
   .add('basic', () => {
@@ -93,6 +95,47 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
+          isOptionEqual={(a: User, b: User) => a.id === b.id}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          value={value}
+          onChange={setValue}
+        />
+      </Form>
+    );
+  })
+  .add('custom renderOptions', () => {
+    const [value, setValue] = useState<User | undefined>();
+
+    return (
+      <Form>
+        <ModalPickerSingle<User>
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          optionForValue={(user: User) => user.email}
+          renderOptions={options => (
+            <ListGroup>
+              {options.map(({ option, isSelected, toggle }) => (
+                <ListGroupItem
+                  key={option.email}
+                  onClick={toggle}
+                  className="d-flex justify-content-between align-items-center clickable"
+                >
+                  <span>
+                    <Avatar
+                      src="https://www.placecage.com/100/100"
+                      alt={option.email}
+                    />
+                    {option.email}
+                  </span>
+                  {isSelected ? <Icon icon="check" color="primary" /> : null}
+                </ListGroupItem>
+              ))}
+            </ListGroup>
+          )}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
           fetchOptions={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
