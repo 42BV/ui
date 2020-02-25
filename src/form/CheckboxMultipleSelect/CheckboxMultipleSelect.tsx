@@ -103,7 +103,7 @@ interface Props<T> {
   /**
    * The placeholder of the form element.
    */
-  placeholder: string;
+  placeholder?: string;
 
   /**
    * Optionally customized text within the component.
@@ -189,9 +189,11 @@ export default class CheckboxMultipleSelect<T> extends Component<
     return (
       <FormGroup className={className} color={color}>
         <Label for={id}>{label}</Label>
-        <p className="text-muted">
-          <em>{placeholder}</em>
-        </p>
+        {placeholder ? (
+          <p className="text-muted">
+            <em>{placeholder}</em>
+          </p>
+        ) : null}
         {loading ? (
           <div>
             <Spinner color="black" size={16} />

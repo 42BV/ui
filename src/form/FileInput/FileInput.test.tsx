@@ -10,14 +10,22 @@ describe('Component: FileInput', () => {
   let onChangeSpy: jest.Mock<any, any>;
   let onBlurSpy: jest.Mock<any, any>;
 
-  function setup({ value, valid }: { value?: File; valid?: boolean }) {
+  function setup({
+    value,
+    valid,
+    hasPlaceholder = true
+  }: {
+    value?: File;
+    valid?: boolean;
+    hasPlaceholder?: boolean;
+  }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
 
     fileInput = shallow(
       <FileInput
         id="file-upload-with-button"
-        placeholder="Upload a file here"
+        placeholder={hasPlaceholder ? 'Upload a file here' : undefined}
         label="Upload a file here"
         accept="text/plain"
         value={value}
@@ -46,6 +54,14 @@ describe('Component: FileInput', () => {
 
       expect(toJson(fileInput)).toMatchSnapshot(
         'Component: FileInput => ui => empty value'
+      );
+    });
+
+    test('without placeholder', () => {
+      setup({ value: undefined, valid: false, hasPlaceholder: false });
+
+      expect(toJson(fileInput)).toMatchSnapshot(
+        'Component: FileInput => ui => without placeholder'
       );
     });
   });

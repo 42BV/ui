@@ -16,11 +16,13 @@ describe('Component: RadioGroup', () => {
   function setup({
     value,
     isOptionEnabled,
-    text
+    text,
+    hasPlaceholder = true
   }: {
     value?: User;
     isOptionEnabled?: OptionEnabledCallback<User>;
     text?: Text;
+    hasPlaceholder?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -29,7 +31,7 @@ describe('Component: RadioGroup', () => {
       <RadioGroup
         id="subject"
         label="Subject"
-        placeholder="Please enter your subject"
+        placeholder={hasPlaceholder ? 'Please enter your subject' : undefined}
         text={text}
         isOptionEnabled={isOptionEnabled}
         optionForValue={(user: User) => user?.email}
@@ -70,6 +72,18 @@ describe('Component: RadioGroup', () => {
       expect(radios.at(0).props().checked).toBe(false);
       expect(radios.at(1).props().checked).toBe(false);
       expect(radios.at(2).props().checked).toBe(false);
+    });
+
+    test('without placeholder', () => {
+      setup({
+        value: adminUser,
+        isOptionEnabled: undefined,
+        hasPlaceholder: false
+      });
+
+      expect(toJson(radioGroup)).toMatchSnapshot(
+        'Component: RadioGroup => ui => without placeholder'
+      );
     });
   });
 

@@ -37,13 +37,15 @@ describe('Component: Input', () => {
     type,
     mask,
     position,
-    valid
+    valid,
+    hasPlaceholder = true
   }: {
     value?: string;
     type?: InputType;
     mask?: Mask;
     position?: Position;
     valid?: boolean;
+    hasPlaceholder?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -56,7 +58,9 @@ describe('Component: Input', () => {
       <Input
         id="firstName"
         label="First name"
-        placeholder="Please enter your first name"
+        placeholder={
+          hasPlaceholder ? 'Please enter your first name' : undefined
+        }
         type={type}
         value={value}
         onChange={onChangeSpy}
@@ -93,6 +97,14 @@ describe('Component: Input', () => {
 
       expect(toJson(input)).toMatchSnapshot(
         'Component: Input => ui => with mask'
+      );
+    });
+
+    test('without placeholder', () => {
+      setup({ value: 'Maarten', hasPlaceholder: false });
+
+      expect(toJson(input)).toMatchSnapshot(
+        'Component: Input => ui => without placeholder'
       );
     });
 

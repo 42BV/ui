@@ -18,6 +18,17 @@ storiesOf('Form|Textarea', module)
       </Form>
     );
   })
+  .add('without placeholder', () => {
+    return (
+      <Form>
+        <Textarea
+          id="description"
+          label="Description"
+          onChange={value => action(`onChange: ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>
