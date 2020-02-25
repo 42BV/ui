@@ -7,8 +7,8 @@ import { User } from '../../test/types';
 import {
   adminUser,
   coordinatorUser,
-  userUser,
-  pageOfUsers
+  pageOfUsers,
+  userUser
 } from '../../test/fixtures';
 import { OptionEnabledCallback } from '../option';
 
@@ -22,31 +22,37 @@ describe('Component: CheckboxMultipleSelect', () => {
     value,
     isOptionEnabled,
     text,
-    hasPlaceholder = true
+    hasPlaceholder = true,
+    hasLabel = true
   }: {
     value?: User[];
     isOptionEnabled?: OptionEnabledCallback<User>;
     text?: Text;
     hasPlaceholder?: boolean;
+    hasLabel?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
 
-    checkboxMultipleSelect = shallow(
-      <CheckboxMultipleSelect
-        id="subject"
-        label="Subject"
-        placeholder={hasPlaceholder ? 'Please select your subjects' : undefined}
-        text={text}
-        isOptionEnabled={isOptionEnabled}
-        optionForValue={(user: User) => user.email}
-        options={[adminUser, coordinatorUser, userUser]}
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        error="Some error"
-      />
-    );
+    const props = {
+      placeholder: hasPlaceholder ? 'Please select your subjects' : undefined,
+      text,
+      isOptionEnabled,
+      optionForValue: (user: User) => user.email,
+      options: [adminUser, coordinatorUser, userUser],
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      error: 'Some error'
+    };
+
+    if (hasLabel) {
+      checkboxMultipleSelect = shallow(
+        <CheckboxMultipleSelect id="subject" label="Subject" {...props} />
+      );
+    } else {
+      checkboxMultipleSelect = shallow(<CheckboxMultipleSelect {...props} />);
+    }
   }
 
   describe('ui', () => {
@@ -94,6 +100,18 @@ describe('Component: CheckboxMultipleSelect', () => {
 
       expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
         'Component: CheckboxMultipleSelect => ui => without placeholder'
+      );
+    });
+
+    test('without label', () => {
+      setup({
+        value: [adminUser],
+        isOptionEnabled: undefined,
+        hasLabel: false
+      });
+
+      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
+        'Component: CheckboxMultipleSelect => ui => without label'
       );
     });
   });

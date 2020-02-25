@@ -13,31 +13,39 @@ describe('Component: Textarea', () => {
 
   function setup({
     value,
-    hasPlaceholder = true
+    hasPlaceholder = true,
+    hasLabel = true
   }: {
     value?: string;
     hasPlaceholder?: boolean;
+    hasLabel?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
     onFocusSpy = jest.fn();
 
-    textarea = shallow(
-      <Textarea
-        id="firstName"
-        label="First name"
-        placeholder={
-          hasPlaceholder ? 'Please enter your first name' : undefined
-        }
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        onFocus={onFocusSpy}
-        error="Some error"
-        color="success"
-        valid={true}
-      />
-    );
+    const props = {
+      placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      onFocus: onFocusSpy,
+      error: 'Some error',
+      valid: true
+    };
+
+    if (hasLabel) {
+      textarea = shallow(
+        <Textarea
+          id="firstName"
+          label="First name"
+          color="success"
+          {...props}
+        />
+      );
+    } else {
+      textarea = shallow(<Textarea color="success" {...props} />);
+    }
   }
 
   describe('ui', () => {
@@ -53,6 +61,14 @@ describe('Component: Textarea', () => {
 
       expect(toJson(textarea)).toMatchSnapshot(
         'Component: textarea => ui => without placeholder'
+      );
+    });
+
+    test('without label', () => {
+      setup({ value: 'Maarten', hasLabel: false });
+
+      expect(toJson(textarea)).toMatchSnapshot(
+        'Component: textarea => ui => without label'
       );
     });
   });

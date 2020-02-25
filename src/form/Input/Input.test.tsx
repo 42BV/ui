@@ -38,7 +38,8 @@ describe('Component: Input', () => {
     mask,
     position,
     valid,
-    hasPlaceholder = true
+    hasPlaceholder = true,
+    hasLabel = true
   }: {
     value?: string;
     type?: InputType;
@@ -46,6 +47,7 @@ describe('Component: Input', () => {
     position?: Position;
     valid?: boolean;
     hasPlaceholder?: boolean;
+    hasLabel?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -54,25 +56,26 @@ describe('Component: Input', () => {
     const icon: IconType = '3d_rotation';
     const addon = position !== undefined ? { icon, position } : undefined;
 
-    input = shallow(
-      <Input
-        id="firstName"
-        label="First name"
-        placeholder={
-          hasPlaceholder ? 'Please enter your first name' : undefined
-        }
-        type={type}
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        onFocus={onFocusSpy}
-        error="Some error"
-        color="success"
-        valid={valid}
-        mask={mask}
-        addon={addon}
-      />
-    );
+    const props = {
+      placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,
+      type,
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      onFocus: onFocusSpy,
+      error: 'Some error',
+      valid,
+      mask,
+      addon
+    };
+
+    if (hasLabel) {
+      input = shallow(
+        <Input id="firstName" label="First name" color="success" {...props} />
+      );
+    } else {
+      input = shallow(<Input color="success" {...props} />);
+    }
   }
 
   describe('ui', () => {
@@ -105,6 +108,14 @@ describe('Component: Input', () => {
 
       expect(toJson(input)).toMatchSnapshot(
         'Component: Input => ui => without placeholder'
+      );
+    });
+
+    test('without label', () => {
+      setup({ value: 'Maarten', hasLabel: false });
+
+      expect(toJson(input)).toMatchSnapshot(
+        'Component: Input => ui => without label'
       );
     });
 

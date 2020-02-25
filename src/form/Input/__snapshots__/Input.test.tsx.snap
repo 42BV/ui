@@ -283,6 +283,25 @@ exports[`Component: Input ui with mask: Component: Input => ui => with mask 1`] 
 </FormGroup>
 `;
 
+exports[`Component: Input ui without label: Component: Input => ui => without label 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Input
+    key="input"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    placeholder="Please enter your first name"
+    type="text"
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: Input ui without placeholder: Component: Input => ui => without placeholder 1`] = `
 <FormGroup
   className=""

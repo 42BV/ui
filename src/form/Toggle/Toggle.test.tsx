@@ -10,33 +10,69 @@ describe('Component: FormToggle', () => {
   let onBlurSpy: jest.Mock<any, any>;
   let onChangeSpy: jest.Mock<any, any>;
 
-  function setup() {
+  function setup({
+    hasLabel = true,
+    emptyLabel = false
+  }: {
+    hasLabel?: boolean;
+    emptyLabel?: boolean;
+  }) {
     onBlurSpy = jest.fn();
     onChangeSpy = jest.fn();
 
-    formToggle = shallow(
-      <FormToggle
-        id="active"
-        label="Is active"
-        toggleColor="primary"
-        color="success"
-        value={true}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        error="Some error"
-      />
-    );
+    const props = {
+      value: true,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      error: 'Some error'
+    };
+
+    if (hasLabel) {
+      formToggle = shallow(
+        <FormToggle
+          id="active"
+          label={emptyLabel ? '' : 'Is active'}
+          toggleColor="primary"
+          color="success"
+          {...props}
+        />
+      );
+    } else {
+      formToggle = shallow(
+        <FormToggle toggleColor="primary" color="success" {...props} />
+      );
+    }
   }
 
-  test('ui', () => {
-    setup();
+  describe('ui', () => {
+    test('with label', () => {
+      setup({});
 
-    expect(toJson(formToggle)).toMatchSnapshot('Component: FormToggle');
+      expect(toJson(formToggle)).toMatchSnapshot(
+        'Component: FormToggle => ui => with label'
+      );
+    });
+
+    test('without label', () => {
+      setup({ hasLabel: false });
+
+      expect(toJson(formToggle)).toMatchSnapshot(
+        'Component: FormToggle => ui => without label'
+      );
+    });
+
+    test('with empty label', () => {
+      setup({ emptyLabel: true });
+
+      expect(toJson(formToggle)).toMatchSnapshot(
+        'Component: FormToggle => ui => with empty label'
+      );
+    });
   });
 
   describe('events', () => {
     test('onChange', () => {
-      setup();
+      setup({});
       const toggle = formToggle.find('Toggle');
       // @ts-ignore
       toggle.props().onChange(true);
@@ -52,7 +88,7 @@ describe('Component: FormToggle', () => {
     });
 
     test('onBlur', () => {
-      setup();
+      setup({});
       const toggle = formToggle.find('Toggle');
 
       // @ts-ignore

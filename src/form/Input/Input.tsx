@@ -9,17 +9,7 @@ import Addon, { Props as AddonProps } from './Addon/Addon';
 import { Mask } from './types';
 import { Color } from '../types';
 
-export interface Props {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
+interface BaseProps {
   /**
    * The placeholder of the form element.
    */
@@ -90,6 +80,25 @@ export interface Props {
   className?: string;
 }
 
+interface WithoutLabel extends BaseProps {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel extends BaseProps {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props = WithoutLabel | WithLabel;
+
 /**
  * Input is a basic form element which allows the user to enter text.
  *
@@ -97,8 +106,6 @@ export interface Props {
  */
 export default function Input(props: Props) {
   const {
-    id,
-    label,
     placeholder,
     value,
     onChange,
@@ -115,7 +122,7 @@ export default function Input(props: Props) {
   } = props;
 
   const inputProps = {
-    id,
+    id: 'id' in props ? props.id : undefined,
     type,
     valid,
     invalid: valid === false ? true : undefined,
@@ -157,7 +164,9 @@ export default function Input(props: Props) {
 
   return (
     <FormGroup className={className} color={color}>
-      <Label for={id}>{label}</Label>
+      {'label' in props && props.label ? (
+        <Label for={props.id}>{props.label}</Label>
+      ) : null}
       {content}
       {error}
     </FormGroup>

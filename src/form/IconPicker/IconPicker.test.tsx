@@ -7,7 +7,13 @@ import { SearchInput, Icon, IconType, Pager } from '../..';
 import { UncontrolledPopover, Button } from 'reactstrap';
 
 describe('Component: IconPicker', () => {
-  function setup({ value }: { value?: IconType }) {
+  function setup({
+    value,
+    hasLabel = true
+  }: {
+    value?: IconType;
+    hasLabel?: boolean;
+  }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
     const searchInputSetValueSpy = jest.fn();
@@ -15,7 +21,7 @@ describe('Component: IconPicker', () => {
     const props = {
       id: 'bestFriend',
       name: 'bestFriend',
-      label: 'Best Friend',
+      label: hasLabel ? 'Best Friend' : undefined,
       placeholder: 'Select your best friend',
       value,
       onChange: onChangeSpy,
@@ -73,6 +79,12 @@ describe('Component: IconPicker', () => {
         .onChange('asdlfjalsdjflajsdlf');
 
       expect(toJson(updateIconPicker())).toMatchSnapshot();
+    });
+
+    test('without label', () => {
+      const { iconPicker } = setup({ value: undefined, hasLabel: false });
+
+      expect(toJson(iconPicker)).toMatchSnapshot();
     });
   });
 

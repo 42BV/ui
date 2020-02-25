@@ -37,6 +37,27 @@ exports[`Component: Textarea ui with value: Component: textarea => ui => with va
 </FormGroup>
 `;
 
+exports[`Component: Textarea ui without label: Component: textarea => ui => without label 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <TextareaAutosize
+    className="form-control"
+    inputRef={[Function]}
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    onHeightChange={[Function]}
+    placeholder="Please enter your first name"
+    useCacheForDOMMeasurements={false}
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: Textarea ui without placeholder: Component: textarea => ui => without placeholder 1`] = `
 <FormGroup
   className=""

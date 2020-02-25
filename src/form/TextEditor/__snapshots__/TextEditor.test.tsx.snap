@@ -36,6 +36,26 @@ exports[`Component: TextEditor ui with value: Component: textEditor => ui => wit
 </FormGroup>
 `;
 
+exports[`Component: TextEditor ui without label: Component: textEditor => ui => without label 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Quill
+    className=""
+    modules={Object {}}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    placeholder="Please enter your first name"
+    theme="snow"
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: TextEditor ui without placeholder: Component: textEditor => ui => without placeholder 1`] = `
 <FormGroup
   className=""

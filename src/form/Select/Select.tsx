@@ -1,17 +1,17 @@
 import React from 'react';
-import { FormGroup, Label, Input as RSInput } from 'reactstrap';
-import { get, constant } from 'lodash';
+import { FormGroup, Input as RSInput, Label } from 'reactstrap';
+import { constant, get } from 'lodash';
 import { InputType } from 'reactstrap/lib/Input';
 
 import withJarb from '../withJarb/withJarb';
 import { Color } from '../types';
 import { t } from '../../utilities/translation/translation';
 import {
+  isOptionSelected,
+  OptionEnabledCallback,
   OptionEqual,
   OptionForValue,
-  OptionEnabledCallback,
-  OptionsFetcher,
-  isOptionSelected
+  OptionsFetcher
 } from '../option';
 import { useOptions } from '../useOptions';
 import Loading from '../../core/Loading/Loading';
@@ -23,12 +23,8 @@ export interface Text {
    */
   loadingMessage?: string;
 }
-interface Props<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
 
+interface BaseProps<T> {
   /**
    * The value that the form element currently has.
    */
@@ -94,11 +90,6 @@ interface Props<T> {
   className?: string;
 
   /**
-   * The label of the form element.
-   */
-  label: string;
-
-  /**
    * The placeholder of the form element.
    */
   placeholder?: string;
@@ -110,17 +101,34 @@ interface Props<T> {
   text?: Text;
 }
 
+interface WithoutLabel<T> extends BaseProps<T> {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel<T> extends BaseProps<T> {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props<T> = WithoutLabel<T> | WithLabel<T>;
+
 /**
  * Select is a form element for which the value can be selected
  * from a limited range.
  */
 export default function Select<T>(props: Props<T>) {
   const {
-    id,
     value,
     error,
     color,
-    label,
     text = {},
     className = '',
     valid,
@@ -147,7 +155,7 @@ export default function Select<T>(props: Props<T>) {
 
   const isOptionEnabled = get(props, 'isOptionEnabled', constant(true));
   const inputProps = {
-    id,
+    id: 'id' in props ? props.id : undefined,
     valid,
     invalid: valid === false ? true : undefined,
     type: 'select' as InputType,
@@ -169,7 +177,9 @@ export default function Select<T>(props: Props<T>) {
 
   return (
     <FormGroup className={className} color={color}>
-      <Label for={id}>{label}</Label>
+      {'label' in props && props.label ? (
+        <Label for={props.id}>{props.label}</Label>
+      ) : null}
       {loading ? (
         <Loading className="mt-2">
           {t({

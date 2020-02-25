@@ -6,17 +6,7 @@ import classNames from 'classnames';
 import withJarb from '../withJarb/withJarb';
 import { Color } from '../types';
 
-interface Props {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: string;
-
+interface BaseProps {
   /**
    * The placeholder of the form element.
    */
@@ -64,6 +54,25 @@ interface Props {
   className?: string;
 }
 
+interface WithoutLabel extends BaseProps {
+  id?: string;
+  label?: never;
+}
+
+interface WithLabel extends BaseProps {
+  /**
+   * The id of the form element.
+   */
+  id: string;
+
+  /**
+   * The label of the form element.
+   */
+  label: string;
+}
+
+export type Props = WithoutLabel | WithLabel;
+
 /**
  * Textarea is a basic form element which allows the user to enter large
  * texts, autogrows when the user enters a lot of text.
@@ -71,7 +80,6 @@ interface Props {
 export default function Textarea(props: Props) {
   const {
     id,
-    label,
     placeholder,
     onBlur,
     onFocus,
@@ -97,7 +105,9 @@ export default function Textarea(props: Props) {
 
   return (
     <FormGroup className={className} color={color}>
-      <Label for={id}>{label}</Label>
+      {'label' in props && props.label ? (
+        <Label for={props.id}>{props.label}</Label>
+      ) : null}
       <TextareaAutosize className={classes} {...inputProps} />
       {error}
     </FormGroup>

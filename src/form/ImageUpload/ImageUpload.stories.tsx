@@ -37,6 +37,21 @@ storiesOf('Form|ImageUpload', module)
       </Form>
     );
   })
+  .add('without label', () => {
+    return (
+      <Form>
+        <ImageUpload
+          id="image-uploader"
+          crop={{
+            type: 'rect',
+            width: 500,
+            height: 400
+          }}
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>
