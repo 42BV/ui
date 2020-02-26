@@ -17,42 +17,42 @@ describe('Component: DateTimeInput', () => {
   function setup({
     value,
     isDateAllowed,
-    label
+    hasLabel = true
   }: {
     value?: Date;
     isDateAllowed?: IsDateAllowed;
-    label?: string;
+    hasLabel?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
     onFocusSpy = jest.fn();
 
-    dateTimeInput = shallow(
-      <DateTimeInput
-        id="birthDate"
-        label={label}
-        placeholder="Please enter your birthdate"
-        isDateAllowed={isDateAllowed}
-        dateFormat="YYYY-MM-DD"
-        timeFormat="HH:mm:ss"
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        onFocus={onFocusSpy}
-        error="Some error"
-        color="success"
-        valid={true}
-      />
-    );
+    const props = {
+      id: 'birthDate',
+      placeholder: 'Please enter your birthdate',
+      isDateAllowed,
+      dateFormat: 'YYYY-MM-DD',
+      timeFormat: 'HH:mm:ss',
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      onFocus: onFocusSpy,
+      error: 'Some error',
+      valid: true
+    };
+
+    if (hasLabel) {
+      dateTimeInput = shallow(
+        <DateTimeInput label="Birthdate" color="success" {...props} />
+      );
+    } else {
+      dateTimeInput = shallow(<DateTimeInput color="success" {...props} />);
+    }
   }
 
   describe('ui', () => {
     test('with label', () => {
-      setup({
-        label: 'Birthdate',
-        value: new Date(2000, 0, 1, 12, 30, 40),
-        isDateAllowed: undefined
-      });
+      setup({ value: new Date(2000, 0, 1, 12, 30, 40) });
 
       expect(toJson(dateTimeInput)).toMatchSnapshot(
         'Component: DateTimeInput => ui => with label'
@@ -62,12 +62,21 @@ describe('Component: DateTimeInput', () => {
     test('without label', () => {
       setup({
         value: new Date(2000, 0, 1, 12, 30, 40),
-        isDateAllowed: undefined,
-        label: undefined
+        hasLabel: false
       });
 
       expect(toJson(dateTimeInput)).toMatchSnapshot(
         'Component: DateTimeInput => ui => without label'
+      );
+    });
+
+    test('with format error', () => {
+      setup({ value: new Date(2000, 0, 1, 12, 30, 40) });
+
+      dateTimeInput.setState({ hasFormatError: true });
+
+      expect(toJson(dateTimeInput)).toMatchSnapshot(
+        'Component: DateTimeInput => ui => with format error'
       );
     });
   });
@@ -115,11 +124,7 @@ describe('Component: DateTimeInput', () => {
   describe('events', () => {
     describe('onChange', () => {
       it('should when the value is a string which is a valid date set the value', () => {
-        setup({
-          value: undefined,
-          isDateAllowed: undefined,
-          label: 'Birthdate'
-        });
+        setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
         // @ts-ignore
@@ -134,11 +139,7 @@ describe('Component: DateTimeInput', () => {
       });
 
       it('should when the value is a string which is not a valid value call set the value with null', () => {
-        setup({
-          value: undefined,
-          isDateAllowed: undefined,
-          label: 'Birthdate'
-        });
+        setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
         // @ts-ignore
@@ -151,11 +152,7 @@ describe('Component: DateTimeInput', () => {
       });
 
       it('should set the value when a valid moment object is given', () => {
-        setup({
-          value: undefined,
-          isDateAllowed: undefined,
-          label: 'Birthdate'
-        });
+        setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
 
@@ -172,7 +169,7 @@ describe('Component: DateTimeInput', () => {
     });
 
     test('onFocus', () => {
-      setup({ value: undefined, isDateAllowed: undefined, label: 'Birthdate' });
+      setup({});
 
       const dateTime = dateTimeInput.find(Datetime);
       // @ts-ignore
@@ -183,11 +180,7 @@ describe('Component: DateTimeInput', () => {
 
     describe('isValidDate', () => {
       it('should when "isDateAllowed" is not defined always be true', () => {
-        setup({
-          value: undefined,
-          isDateAllowed: undefined,
-          label: 'Birthdate'
-        });
+        setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
 
@@ -197,11 +190,7 @@ describe('Component: DateTimeInput', () => {
 
       it('should when "isDateAllowed" is defined use that to determine the valid date', () => {
         const isDateAllowedSpy = jest.fn();
-        setup({
-          value: undefined,
-          isDateAllowed: isDateAllowedSpy,
-          label: 'Birthdate'
-        });
+        setup({ isDateAllowed: isDateAllowedSpy });
 
         const dateTime = dateTimeInput.find(Datetime);
 
@@ -220,7 +209,7 @@ describe('Component: DateTimeInput', () => {
     test('becomes empty', () => {
       const value = new Date(1989, 2, 21);
 
-      setup({ value, isDateAllowed: undefined, label: 'Birthdate' });
+      setup({ value });
 
       let dateTime = dateTimeInput.find(Datetime);
       expect(dateTime.props().value).toBe(value);
@@ -232,7 +221,7 @@ describe('Component: DateTimeInput', () => {
     });
 
     test('becomes filled', () => {
-      setup({ value: undefined, isDateAllowed: undefined, label: 'Birthdate' });
+      setup({});
 
       let dateTime = dateTimeInput.find(Datetime);
       expect(dateTime.props().value).toBe(undefined);

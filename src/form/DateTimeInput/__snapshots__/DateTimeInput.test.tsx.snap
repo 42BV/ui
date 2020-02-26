@@ -1,5 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput => ui => with format error 1`] = `
+<FormGroup
+  className="date-time-input "
+  color="success"
+  tag="div"
+>
+  <Label
+    for="birthDate"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Birthdate
+     
+    <span
+      className="date-time-input-format text-danger"
+    >
+      (
+      YYYY-MM-DD HH:mm:ss
+      )
+    </span>
+  </Label>
+  <DateTime
+    className=""
+    closeOnSelect={true}
+    closeOnTab={true}
+    dateFormat="YYYY-MM-DD"
+    defaultValue=""
+    input={true}
+    inputProps={
+      Object {
+        "invalid": true,
+        "mask": Array [
+          /\\\\d/,
+          /\\\\d/,
+          /\\\\d/,
+          /\\\\d/,
+          "-",
+          /\\\\d/,
+          /\\\\d/,
+          "-",
+          /\\\\d/,
+          /\\\\d/,
+          " ",
+          /\\\\d/,
+          /\\\\d/,
+          ":",
+          /\\\\d/,
+          /\\\\d/,
+          ":",
+          /\\\\d/,
+          /\\\\d/,
+        ],
+        "placeholder": "Please enter your birthdate",
+      }
+    }
+    isValidDate={[Function]}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    onNavigateBack={[Function]}
+    onNavigateForward={[Function]}
+    onViewModeChange={[Function]}
+    renderInput={[Function]}
+    strictParsing={true}
+    timeConstraints={Object {}}
+    timeFormat="HH:mm:ss"
+    utc={false}
+    value={2000-01-01T11:30:40.000Z}
+  />
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui => with label 1`] = `
 <FormGroup
   className="date-time-input "
