@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import lodash from 'lodash';
@@ -33,7 +33,6 @@ describe('Component: SearchInput', () => {
       debounce,
       debounceSettings,
       onChange: onChangeSpy,
-      showIcon,
       placeholder: 'Search...'
     };
 
@@ -47,6 +46,19 @@ describe('Component: SearchInput', () => {
     if (withChildren) {
       // eslint-disable-next-line react/display-name
       props.children = () => <h1>Children</h1>;
+    }
+
+    switch (showIcon) {
+      case true:
+        // Ignore the typescript error because it doesn't know about label here
+        // @ts-ignore
+        props.showIcon = true;
+        break;
+      case false:
+        props.showIcon = false;
+        break;
+      default:
+        break;
     }
 
     const searchInput = shallow(<SearchInput {...props} />);

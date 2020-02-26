@@ -1,11 +1,11 @@
-import React, { useRef, KeyboardEvent, useEffect } from 'react';
+import React, { KeyboardEvent, useEffect, useRef } from 'react';
 import { debounce as lodashDebounce, DebounceSettings } from 'lodash';
 import {
+  FormGroup,
   Input,
-  InputProps,
   InputGroup,
   InputGroupAddon,
-  FormGroup,
+  InputProps,
   Label
 } from 'reactstrap';
 
@@ -63,13 +63,6 @@ interface BaseProps extends ModifiedInputProps {
   onChange: (value: string) => void;
 
   /**
-   * Whether or not to show a magnifying glass icon.
-   *
-   * Defaults to true.
-   */
-  showIcon?: boolean;
-
-  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
@@ -112,7 +105,49 @@ interface WithLabel extends BaseProps {
   label: React.ReactNode;
 }
 
-export type Props = WithoutLabel | WithLabel;
+interface WithLabelButWithoutIcon extends WithLabel {
+  showIcon?: false;
+  size?: never;
+}
+
+interface WithoutLabelAndIcon extends WithoutLabel {
+  showIcon?: false;
+  size?: never;
+}
+
+interface WithLabelAndIcon extends BaseProps {
+  /**
+   * Whether or not to show a magnifying glass icon.
+   *
+   * Defaults to true.
+   */
+  showIcon: true;
+
+  /**
+   * Optional size you want to give the icon.
+   */
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+}
+
+interface WithoutLabelButWithIcon extends WithoutLabel {
+  /**
+   * Whether or not to show a magnifying glass icon.
+   *
+   * Defaults to true.
+   */
+  showIcon: true;
+
+  /**
+   * Optional size you want to give the icon.
+   */
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+}
+
+export type Props =
+  | WithLabelButWithoutIcon
+  | WithoutLabelAndIcon
+  | WithLabelAndIcon
+  | WithoutLabelButWithIcon;
 
 /**
  * SearchInput is a component which shows an input field which has
@@ -132,6 +167,7 @@ export default function SearchInput(props: Props) {
     showIcon = true,
     className = '',
     children,
+    size,
     ...rest
   } = props;
 
@@ -160,39 +196,41 @@ export default function SearchInput(props: Props) {
     }
   }
 
-  // We map value to defaultValue so this component is completely
-  // controlled by us. Otherwise the value of the <Input> will only
-  // update after the onChange. Which would never work because it is
-  // debounced.
+  function getInput() {
+    // We map value to defaultValue so this component is completely
+    // controlled by us. Otherwise the value of the <Input> will only
+    // update after the onChange. Which would never work because it is
+    // debounced.
 
-  const input = (
-    <Input
-      id={'id' in props ? props.id : undefined}
-      className={!showIcon ? className : ''}
-      innerRef={inputRef}
-      defaultValue={value}
-      onChange={event => handleChange.current(event.target.value)}
-      onKeyUp={handleKeyUp}
-      placeholder={placeholder}
-      {...rest}
-    />
-  );
+    const inputProps = {
+      id: 'id' in props ? props.id : undefined,
+      innerRef: inputRef,
+      defaultValue: value,
+      onChange: event => handleChange.current(event.target.value),
+      onKeyUp: handleKeyUp,
+      placeholder: placeholder,
+      ...rest
+    };
 
-  const searchInput = showIcon ? (
-    <InputGroup className={className} size={rest.size}>
-      <InputGroupAddon addonType="prepend">
-        <Icon icon="search" />
-      </InputGroupAddon>
-      {input}
-    </InputGroup>
-  ) : (
-    input
-  );
+    console.log(showIcon);
+    if (showIcon) {
+      return (
+        <InputGroup className={className} size={size}>
+          <InputGroupAddon addonType="prepend">
+            <Icon icon="search" />
+          </InputGroupAddon>
+          <Input {...inputProps} />
+        </InputGroup>
+      );
+    }
+
+    return <Input className={className} {...inputProps} />;
+  }
 
   const searchInputWrapper = children ? (
-    <>{children(searchInput, { setValue })}</>
+    <>{children(getInput(), { setValue })}</>
   ) : (
-    searchInput
+    getInput()
   );
 
   return 'label' in props ? (
