@@ -5,7 +5,7 @@ import Spinner from '../Spinner/Spinner';
 import { Icon, IconType } from '../Icon';
 import useShowSpinner from './useShowSpinner';
 
-import { Color } from '../types';
+import { BootstrapSize, Color } from '../types';
 
 export type IconPosition = 'left' | 'right';
 
@@ -73,7 +73,7 @@ interface WithIconAndText extends BaseProps {
    *
    * Defaults to 'md'.
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: BootstrapSize;
 }
 
 interface WithIcon extends BaseProps {
@@ -99,7 +99,7 @@ interface WithText extends BaseProps {
    *
    * Defaults to 'md'.
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: BootstrapSize;
 }
 
 export type Props = WithIcon | WithText | WithIconAndText;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
+import { BootstrapSize } from '../types';
 
 export interface Props {
   /**
@@ -15,7 +15,7 @@ export interface Props {
    *
    * @default md
    */
-  size?: 'lg' | 'sm' | 'md';
+  size?: BootstrapSize;
 
   /**
    * Optional callback for what needs to happen when the button is clicked.
@@ -53,8 +53,9 @@ export default function SubmitButton({
       inProgress={inProgress}
       className={`float-right ${className}`}
       onClick={onClick}
+      icon="save"
     >
-      <Icon icon="save" /> {children}
+      {children}
     </Button>
   );
 }

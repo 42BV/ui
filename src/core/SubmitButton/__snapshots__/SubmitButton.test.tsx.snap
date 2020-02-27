@@ -4,15 +4,12 @@ exports[`Component: SubmitButton ui with all optional params: Component: SubmitB
 <Button
   className="float-right extra-css-class"
   color="primary"
+  icon="save"
   inProgress={true}
   onClick={[MockFunction]}
   size="lg"
   type="submit"
 >
-  <Icon
-    icon="save"
-  />
-   
   Submit
 </Button>
 `;
@@ -21,14 +18,11 @@ exports[`Component: SubmitButton ui with all required props: Component: SubmitBu
 <Button
   className="float-right "
   color="primary"
+  icon="save"
   inProgress={true}
   onClick={[MockFunction]}
   type="submit"
 >
-  <Icon
-    icon="save"
-  />
-   
   Submit
 </Button>
 `;
