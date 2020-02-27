@@ -34,6 +34,8 @@ interface IconProps extends BaseProps {
    * The icon to use as the Addon.
    */
   icon: IconType;
+
+  text?: never;
 }
 
 interface TextProps extends BaseProps {
@@ -41,6 +43,8 @@ interface TextProps extends BaseProps {
    * The text to use as the Addon.
    */
   text: string;
+
+  icon?: never;
 }
 
 export type Props = IconProps | TextProps;
