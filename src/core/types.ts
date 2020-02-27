@@ -9,3 +9,5 @@ export type Color =
   | 'muted'
   | 'dark'
   | 'light';
+
+export type BootstrapSize = 'xs' | 'sm' | 'md' | 'lg';

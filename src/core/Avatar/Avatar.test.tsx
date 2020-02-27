@@ -2,12 +2,13 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Avatar, { Size } from './Avatar';
+import Avatar from './Avatar';
+import { BootstrapSize } from '../types';
 
 describe('Component: Avatar', () => {
   let avatar: ShallowWrapper;
 
-  function setup({ size }: { size?: Size }) {
+  function setup({ size }: { size?: BootstrapSize }) {
     avatar = shallow(
       <Avatar
         className="red"

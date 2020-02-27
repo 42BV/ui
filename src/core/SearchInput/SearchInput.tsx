@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 
 import { Icon } from '../Icon';
+import { BootstrapSize } from '../types';
 
 interface SearchInputApi {
   /**
@@ -126,7 +127,7 @@ interface WithLabelAndIcon extends BaseProps {
   /**
    * Optional size you want to give the icon.
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: BootstrapSize;
 }
 
 interface WithoutLabelButWithIcon extends WithoutLabel {
@@ -140,7 +141,7 @@ interface WithoutLabelButWithIcon extends WithoutLabel {
   /**
    * Optional size you want to give the icon.
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: BootstrapSize;
 }
 
 export type Props =

@@ -2,8 +2,7 @@ import React, { ReactNode } from 'react';
 import { UncontrolledTooltip } from 'reactstrap';
 import classNames from 'classnames';
 import { uniqueId } from 'lodash';
-
-export type Size = 'xs' | 'sm' | 'md' | 'lg';
+import { BootstrapSize } from '../types';
 
 interface Props {
   /**
@@ -26,7 +25,7 @@ interface Props {
    *
    * @default md
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: BootstrapSize;
 
   /**
    * Optional extra CSS class you want to add to the component.
