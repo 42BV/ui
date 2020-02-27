@@ -9,7 +9,7 @@ import { BootstrapSize, Color } from '../types';
 
 export type IconPosition = 'left' | 'right';
 
-interface BaseProps {
+export interface BaseProps {
   /**
    * Optionally the type of button it is, defaults to 'button'.
    *
@@ -81,6 +81,12 @@ interface WithIcon extends BaseProps {
    * The Icon you want to use.
    */
   icon: IconType;
+
+  iconPosition?: IconPosition;
+
+  children?: never;
+  outline?: never;
+  size?: never;
 }
 
 interface WithText extends BaseProps {
@@ -100,6 +106,9 @@ interface WithText extends BaseProps {
    * Defaults to 'md'.
    */
   size?: BootstrapSize;
+
+  icon?: never;
+  iconPosition?: never;
 }
 
 export type Props = WithIcon | WithText | WithIconAndText;
@@ -133,14 +142,12 @@ export default function Button({
     }
   }
 
-  const children = 'children' in props ? props.children : undefined;
-  const icon = 'icon' in props ? props.icon : undefined;
   const disabled = 'disabled' in props ? props.disabled : undefined;
 
-  if (children !== undefined) {
+  if ('children' in props) {
+    const children = props.children;
     const outline = 'outline' in props ? props.outline : undefined;
     const size = 'size' in props ? props.size : 'md';
-    const iconPosition = 'iconPosition' in props ? props.iconPosition : 'left';
 
     const buttonProps = {
       type,
@@ -158,8 +165,14 @@ export default function Button({
         >
           {showSpinner ? (
             <Spinner size={16} color={outline ? '' : 'white'} />
-          ) : icon !== undefined ? (
-            <Icon icon={icon} className={`material-icons-${iconPosition}`} />
+          ) : 'icon' in props && props.icon ? (
+            <Icon
+              icon={props.icon}
+              className={
+                'material-icons-' +
+                ('iconPosition' in props ? props.iconPosition : 'left')
+              }
+            />
           ) : null}
           {children}
         </RSButton>
@@ -168,6 +181,7 @@ export default function Button({
   } else {
     // We know that at this point it must be have icon,
     // because the Button now extends WithIcon.
+    const icon = props.icon;
     const iconCast = icon as IconType;
 
     return (
@@ -186,4 +200,16 @@ export default function Button({
       </span>
     );
   }
+}
+
+export function isWithIcon(props: Props): props is WithIcon {
+  return props.children === undefined && props.icon !== undefined;
+}
+
+export function isWithIconAndText(props: Props): props is WithIconAndText {
+  return props.children !== undefined && props.icon !== undefined;
+}
+
+export function isWithText(props: Props): props is WithText {
+  return props.children !== undefined && props.icon === undefined;
 }

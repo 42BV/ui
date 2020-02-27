@@ -115,18 +115,31 @@ describe('Component: ConfirmButton', () => {
     let confirmButton: ShallowWrapper;
     let onConfirmSpy: jest.Mock<any, any>;
 
-    function setup({ button, icon }: { icon?: IconType; button?: string }) {
+    type Props =
+      | { icon: IconType; button?: never }
+      | { button: string; icon?: never };
+
+    function setup({ button, icon }: Props) {
       onConfirmSpy = jest.fn();
 
-      confirmButton = shallow(
-        <ConfirmButton
-          onConfirm={onConfirmSpy}
-          dialogText="Are you sure you want a ConfirmButton?"
-          icon={icon}
-        >
-          {button}
-        </ConfirmButton>
-      );
+      const props = {
+        onConfirm: onConfirmSpy,
+        dialogText: 'Are you sure you want a ConfirmButton?'
+      };
+
+      if (icon && button) {
+        confirmButton = shallow(
+          <ConfirmButton icon={icon} {...props}>
+            {button}
+          </ConfirmButton>
+        );
+      } else if (icon) {
+        confirmButton = shallow(<ConfirmButton icon={icon} {...props} />);
+      } else {
+        confirmButton = shallow(
+          <ConfirmButton {...props}>{button}</ConfirmButton>
+        );
+      }
     }
 
     function openModal() {

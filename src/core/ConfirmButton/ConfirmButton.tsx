@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
-import Button from '../Button/Button';
+import Button, {
+  BaseProps as ButtonBaseProps,
+  isWithIcon,
+  isWithIconAndText,
+  isWithText,
+  Props as ButtonProps
+} from '../Button/Button';
 import { Color } from '../types';
 import IconType from '../Icon/types';
 import { t } from '../../utilities/translation/translation';
@@ -89,6 +95,8 @@ interface WithIcon extends BaseProps {
    * The Icon you want to use.
    */
   icon: IconType;
+
+  children?: never;
 }
 
 interface WithText extends BaseProps {
@@ -96,6 +104,8 @@ interface WithText extends BaseProps {
    * Optionally the text of the button.
    */
   children: React.ReactNode;
+
+  icon?: never;
 }
 
 type Props = WithIcon | WithText | WithIconAndText;
@@ -116,8 +126,6 @@ export default function ConfirmButton({
   className,
   ...props
 }: Props) {
-  const children = 'children' in props ? props.children : undefined;
-  const icon = 'icon' in props ? props.icon : undefined;
   const [isOpen, setOpen] = useState(false);
   const { modalHeader, confirm, cancel } = text;
 
@@ -131,19 +139,34 @@ export default function ConfirmButton({
     onConfirm(event);
   }
 
+  function getProps() {
+    const buttonProps: ButtonBaseProps = {
+      onClick: openModal,
+      color,
+      inProgress: !!inProgress
+    };
+
+    if (isWithIcon(props) || isWithIconAndText(props)) {
+      const withIcon = buttonProps as WithIcon | WithIconAndText;
+
+      withIcon.icon = props.icon;
+    }
+
+    if (isWithText(props) || isWithIconAndText(props)) {
+      const withText = buttonProps as WithText | WithIconAndText;
+
+      withText.children = props.children;
+    }
+
+    return buttonProps as ButtonProps;
+  }
+
   return (
     <div
       className={className}
-      style={{ display: icon && !children ? 'inline' : 'block' }}
+      style={{ display: 'children' in props ? 'block' : 'inline' }}
     >
-      <Button
-        onClick={openModal}
-        icon={icon}
-        color={color}
-        inProgress={!!inProgress}
-      >
-        {children}
-      </Button>
+      <Button {...getProps()} />
 
       <Modal isOpen={isOpen} toggle={() => setOpen(false)}>
         <ModalHeader toggle={() => setOpen(false)}>
