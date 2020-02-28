@@ -119,7 +119,7 @@
     "node-sass": "4.13.1",
     "np": "6.0.0",
     "prettier": "1.19.1",
-    "react": "16.12.0",
+    "react": "16.13.0",
     "react-async": "10.0.0",
     "react-docgen-typescript-loader": "3.6.0",
     "react-dom": "16.12.0",
