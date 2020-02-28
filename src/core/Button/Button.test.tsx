@@ -92,6 +92,24 @@ describe('Component: Button', () => {
           expect(toJson(button)).toMatchSnapshot();
         });
       });
+
+      describe('tag', () => {
+        test('use span by default', () => {
+          const button = shallow(<Button onClick={jest.fn()}>Save</Button>);
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+
+        test('can override tag', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} tag="div">
+              Save
+            </Button>
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+      });
     });
 
     describe('button with icon', () => {
@@ -158,6 +176,28 @@ describe('Component: Button', () => {
           expect(toJson(button)).toMatchSnapshot();
         });
       });
+
+      describe('tag', () => {
+        test('use span by default', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} icon="save">
+              Save
+            </Button>
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+
+        test('can override tag', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} icon="save" tag="div">
+              Save
+            </Button>
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+      });
     });
 
     describe('icon', () => {
@@ -191,6 +231,22 @@ describe('Component: Button', () => {
         test('is enabled', () => {
           const button = shallow(
             <Button onClick={jest.fn()} icon="save" disabled={false} />
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+      });
+
+      describe('tag', () => {
+        test('use span by default', () => {
+          const button = shallow(<Button onClick={jest.fn()} icon="save" />);
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+
+        test('can override tag', () => {
+          const button = shallow(
+            <Button onClick={jest.fn()} icon="save" tag="div" />
           );
 
           expect(toJson(button)).toMatchSnapshot();

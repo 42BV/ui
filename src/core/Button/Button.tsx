@@ -11,6 +11,13 @@ export type IconPosition = 'left' | 'right';
 
 interface BaseProps {
   /**
+   * Optionally the tag you want to use for the wrapper of the button.
+   *
+   * @default span
+   */
+  tag?: 'span' | 'div';
+
+  /**
    * Optionally the type of button it is, defaults to 'button'.
    *
    * @default button
@@ -114,6 +121,7 @@ export type Props = WithIcon | WithText | WithIconAndText;
  * clicked when performing some call to the back-end.
  */
 export default function Button({
+  tag = 'span',
   type = 'button',
   color = 'primary',
   inProgress,
@@ -133,11 +141,37 @@ export default function Button({
     }
   }
 
-  const children = 'children' in props ? props.children : undefined;
-  const icon = 'icon' in props ? props.icon : undefined;
-  const disabled = 'disabled' in props ? props.disabled : undefined;
+  function getContent() {
+    const icon = 'icon' in props ? props.icon : undefined;
+    const disabled = 'disabled' in props ? props.disabled : undefined;
 
-  if (children !== undefined) {
+    if ('children' in props) {
+      return getRSButton(props.children, disabled, icon);
+    }
+
+    if (showSpinner) {
+      return <Spinner size={24} color="" />;
+    }
+
+    // We know that at this point it must have an icon,
+    // because the Button now extends WithIcon.
+    const iconCast = props.icon as IconType;
+
+    return (
+      <Icon
+        onClick={handleOnClick}
+        icon={iconCast}
+        color={color}
+        disabled={inProgress || disabled}
+      />
+    );
+  }
+
+  function getRSButton(
+    children: React.ReactNode,
+    disabled?: boolean,
+    icon?: IconType
+  ) {
     const outline = 'outline' in props ? props.outline : undefined;
     const size = 'size' in props ? props.size : 'md';
     const iconPosition = 'iconPosition' in props ? props.iconPosition : 'left';
@@ -150,40 +184,26 @@ export default function Button({
     };
 
     return (
-      <span className={`button ${className} ${color}`}>
-        <RSButton
-          onClick={handleOnClick}
-          disabled={inProgress || disabled}
-          {...buttonProps}
-        >
-          {showSpinner ? (
-            <Spinner size={16} color={outline ? '' : 'white'} />
-          ) : icon !== undefined ? (
-            <Icon icon={icon} className={`material-icons-${iconPosition}`} />
-          ) : null}
-          {children}
-        </RSButton>
-      </span>
+      <RSButton
+        onClick={handleOnClick}
+        disabled={inProgress || disabled}
+        {...buttonProps}
+      >
+        {showSpinner ? (
+          <Spinner size={16} color={outline ? '' : 'white'} />
+        ) : icon !== undefined ? (
+          <Icon icon={icon} className={`material-icons-${iconPosition}`} />
+        ) : null}
+        {children}
+      </RSButton>
+    );
+  }
+
+  if (tag === 'span') {
+    return (
+      <span className={`button ${className} ${color}`}>{getContent()}</span>
     );
   } else {
-    // We know that at this point it must be have icon,
-    // because the Button now extends WithIcon.
-    const iconCast = icon as IconType;
-
-    return (
-      <span className={`button ${className} ${color}`}>
-        {showSpinner ? (
-          // Color is empty string so we can override the color
-          <Spinner size={24} color="" />
-        ) : (
-          <Icon
-            onClick={handleOnClick}
-            icon={iconCast}
-            color={color}
-            disabled={inProgress || disabled}
-          />
-        )}
-      </span>
-    );
+    return <div className={`button ${className} ${color}`}>{getContent()}</div>;
   }
 }

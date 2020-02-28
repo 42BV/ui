@@ -142,6 +142,38 @@ exports[`Component: Button ui button size use md by default 1`] = `
 </span>
 `;
 
+exports[`Component: Button ui button tag can override tag 1`] = `
+<div
+  className="button  primary"
+>
+  <Button
+    color="primary"
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    Save
+  </Button>
+</div>
+`;
+
+exports[`Component: Button ui button tag use span by default 1`] = `
+<span
+  className="button  primary"
+>
+  <Button
+    color="primary"
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    Save
+  </Button>
+</span>
+`;
+
 exports[`Component: Button ui button with icon normal inProgress is false 1`] = `
 <span
   className="button  primary"
@@ -246,6 +278,46 @@ exports[`Component: Button ui button with icon outline inProgress is true 1`] = 
 </span>
 `;
 
+exports[`Component: Button ui button with icon tag can override tag 1`] = `
+<div
+  className="button  primary"
+>
+  <Button
+    color="primary"
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Icon
+      className="material-icons-left"
+      icon="save"
+    />
+    Save
+  </Button>
+</div>
+`;
+
+exports[`Component: Button ui button with icon tag use span by default 1`] = `
+<span
+  className="button  primary"
+>
+  <Button
+    color="primary"
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    <Icon
+      className="material-icons-left"
+      icon="save"
+    />
+    Save
+  </Button>
+</span>
+`;
+
 exports[`Component: Button ui icon disabled is disabled 1`] = `
 <span
   className="button  primary"
@@ -291,6 +363,30 @@ exports[`Component: Button ui icon inProgress inProgress is true 1`] = `
   <Spinner
     color=""
     size={24}
+  />
+</span>
+`;
+
+exports[`Component: Button ui icon tag can override tag 1`] = `
+<div
+  className="button  primary"
+>
+  <Icon
+    color="primary"
+    icon="save"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`Component: Button ui icon tag use span by default 1`] = `
+<span
+  className="button  primary"
+>
+  <Icon
+    color="primary"
+    icon="save"
+    onClick={[Function]}
   />
 </span>
 `;
