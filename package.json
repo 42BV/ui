@@ -41,7 +41,7 @@
     "pica": "5.1.0",
     "@tippy.js/react": "3.1.1",
     "react-avatar-editor": "12.0.0-beta.0",
-    "react-bootstrap-typeahead": "4.0.0-alpha.6",
+    "react-bootstrap-typeahead": "4.0.0-rc.1",
     "react-color": "2.18.0",
     "react-datetime": "2.16.3",
     "react-display-name": "0.2.5",
