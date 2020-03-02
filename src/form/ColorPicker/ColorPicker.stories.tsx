@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import ColorPicker, { JarbColorPicker } from './ColorPicker';
 import { FinalForm, Form } from '../story-utils';
+import { Tooltip, Icon } from '../..';
 
 function isToDark(value?: string) {
   if (!value) {
@@ -51,6 +52,33 @@ storiesOf('Form|ColorPicker', module)
           <ColorPicker
             id="color"
             label="Color"
+            placeholder="Please select your favorite color"
+            value={value}
+            onChange={setValue}
+          />
+        </Form>
+      </div>
+    );
+  })
+  .add('with custom label', () => {
+    const [value, setValue] = useState<string | undefined>();
+
+    return (
+      <div>
+        <Form>
+          <ColorPicker
+            id="color"
+            label={
+              <div className="d-flex justify-content-between">
+                <span>Color</span>
+                <Tooltip
+                  className="ml-1"
+                  content="Use the color picker to select a color"
+                >
+                  <Icon icon="info"></Icon>
+                </Tooltip>
+              </div>
+            }
             placeholder="Please select your favorite color"
             value={value}
             onChange={setValue}

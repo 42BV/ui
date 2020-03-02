@@ -8,6 +8,7 @@ import CheckboxMultipleSelect, {
 import { FinalForm, Form } from '../story-utils';
 import { pageOfUsers, userUser } from '../../test/fixtures';
 import { User } from '../../test/types';
+import { Tooltip, Icon } from '../..';
 
 interface SubjectOption {
   value: string;
@@ -102,6 +103,36 @@ storiesOf('Form|CheckboxMultipleSelect', module)
         <Form>
           <CheckboxMultipleSelect
             id="subject"
+            placeholder="Please select your subjects"
+            optionForValue={(option: SubjectOption) => option.label}
+            isOptionEnabled={option => option.value !== 'awesome'}
+            options={options}
+            value={value}
+            onChange={setValue}
+          />
+        </Form>
+      </div>
+    );
+  })
+  .add('with custom label', () => {
+    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
+
+    return (
+      <div>
+        <Form>
+          <CheckboxMultipleSelect
+            id="subject"
+            label={
+              <div className="d-flex justify-content-between">
+                <span>Subject</span>
+                <Tooltip
+                  className="ml-1"
+                  content="Please select your most important subject"
+                >
+                  <Icon icon="info"></Icon>
+                </Tooltip>
+              </div>
+            }
             placeholder="Please select your subjects"
             optionForValue={(option: SubjectOption) => option.label}
             isOptionEnabled={option => option.value !== 'awesome'}

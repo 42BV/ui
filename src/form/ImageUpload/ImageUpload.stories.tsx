@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import ImageUpload, { JarbImageUpload, requireImage } from './ImageUpload';
 import { Form, FinalForm } from '../story-utils';
+import { Tooltip, Icon } from '../..';
 
 storiesOf('Form|ImageUpload', module)
   .add('rect', () => {
@@ -42,6 +43,33 @@ storiesOf('Form|ImageUpload', module)
       <Form>
         <ImageUpload
           id="image-uploader"
+          crop={{
+            type: 'rect',
+            width: 500,
+            height: 400
+          }}
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    return (
+      <Form>
+        <ImageUpload
+          id="image-uploader"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Profile photo</span>
+              <Tooltip
+                className="ml-1"
+                style={{ zIndex: 101 }}
+                content="You can edit the photo after you've selected it"
+              >
+                <Icon icon="info"></Icon>
+              </Tooltip>
+            </div>
+          }
           crop={{
             type: 'rect',
             width: 500,

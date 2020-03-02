@@ -8,6 +8,7 @@ import { userUser, adminUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
 import TypeaheadMultiple, { JarbTypeaheadMultiple } from './TypeaheadMultiple';
+import { Icon, Tooltip } from '../../..';
 
 storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
   .add('basic', () => {
@@ -46,6 +47,32 @@ storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
       <Form>
         <TypeaheadMultiple
           id="friends"
+          placeholder="Please provide all your friends"
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          onChange={value => action(`onChange: ${value}`)}
+        />
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    return (
+      <Form>
+        <TypeaheadMultiple
+          id="friends"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Friends</span>
+              <Tooltip
+                className="ml-1"
+                content="It is nice to have lots of friends"
+              >
+                <Icon icon="info"></Icon>
+              </Tooltip>
+            </div>
+          }
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>

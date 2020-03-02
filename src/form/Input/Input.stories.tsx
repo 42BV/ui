@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Input, { JarbInput } from './Input';
 import { Form, FinalForm } from '../story-utils';
+import { Tooltip, Icon } from '../..';
 
 function isSuperman(value: string) {
   return value === 'superman' ? undefined : 'Not "superman"';
@@ -73,6 +74,28 @@ storiesOf('Form|Input', module)
     return (
       <Form>
         <Input
+          placeholder="Please enter your first name"
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    return (
+      <Form>
+        <Input
+          id="firstName"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>First name</span>
+              <Tooltip
+                className="ml-1"
+                content="Your first name is on your birth certificate"
+              >
+                <Icon icon="info"></Icon>
+              </Tooltip>
+            </div>
+          }
           placeholder="Please enter your first name"
           onChange={value => action(`You entered ${value}`)}
         />

@@ -6,6 +6,7 @@ import { FinalForm, Form } from '../../story-utils';
 import { pageWithContentAndExactSize } from '../../../test/utils';
 import { userUser, adminUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
+import { Icon, Tooltip } from '../../..';
 
 storiesOf('Form/ModalPicker/ModalPickerSingle', module)
   .add('basic', () => {
@@ -109,6 +110,33 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
       <Form>
         <ModalPickerSingle
           id="bestFriend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          value={value}
+          onChange={setValue}
+        />
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    const [value, setValue] = useState<User | undefined>(undefined);
+
+    return (
+      <Form>
+        <ModalPickerSingle
+          id="bestFriend"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Best friend</span>
+              <Tooltip className="ml-1" content="BFF for life!">
+                <Icon icon="info"></Icon>
+              </Tooltip>
+            </div>
+          }
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}

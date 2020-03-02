@@ -118,7 +118,7 @@ interface WithLabel extends BaseProps {
   /**
    * The label of the form element.
    */
-  label: string;
+  label: React.ReactNode;
 }
 
 export type Props = WithoutLabel | WithLabel;
@@ -355,7 +355,7 @@ export default class ImageUpload extends Component<Props, State> {
     const { crop, ...props } = this.props;
 
     let alt = '';
-    if ('label' in props && props.label) {
+    if ('label' in props && props.label && typeof props.label === 'string') {
       alt = props.label;
     }
 

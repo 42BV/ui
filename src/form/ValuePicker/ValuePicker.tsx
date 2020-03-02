@@ -134,7 +134,7 @@ interface SingleValuePickerWithLabel<T> extends SingleValuePicker<T> {
   /**
    * The label of the form element.
    */
-  label: string;
+  label: React.ReactNode;
 }
 
 interface MultipleValuePickerWithLabel<T> extends MultipleValuePicker<T> {
@@ -146,7 +146,7 @@ interface MultipleValuePickerWithLabel<T> extends MultipleValuePicker<T> {
   /**
    * The label of the form element.
    */
-  label: string;
+  label: React.ReactNode;
 }
 
 type Props<T> =
