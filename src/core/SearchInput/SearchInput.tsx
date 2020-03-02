@@ -189,14 +189,18 @@ export default function SearchInput(props: Props) {
     input
   );
 
-  return 'label' in props ? (
-    <FormGroup>
-      <Label for={props.id}>{props.label}</Label>
-      {children ? <>{children(searchInput, { setValue })}</> : searchInput}
-    </FormGroup>
-  ) : children ? (
+  const searchInputWrapper = children ? (
     <>{children(searchInput, { setValue })}</>
   ) : (
     searchInput
+  );
+
+  return 'label' in props ? (
+    <FormGroup>
+      <Label for={props.id}>{props.label}</Label>
+      {searchInputWrapper}
+    </FormGroup>
+  ) : (
+    searchInputWrapper
   );
 }

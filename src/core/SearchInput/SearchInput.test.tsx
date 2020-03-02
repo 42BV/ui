@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json';
 
 import lodash from 'lodash';
 
-import SearchInput from './SearchInput';
+import SearchInput, { Props } from './SearchInput';
 import { Input } from 'reactstrap';
 
 describe('Component: SearchInput', () => {
@@ -12,12 +12,14 @@ describe('Component: SearchInput', () => {
     debounce,
     showIcon,
     debounceSettings,
-    showLabel
+    showLabel,
+    withChildren
   }: {
     debounce?: number;
     showIcon?: boolean;
     debounceSettings?: lodash.DebounceSettings;
     showLabel?: boolean;
+    withChildren?: boolean;
   }) {
     // @ts-ignore
     jest.spyOn(lodash, 'debounce').mockImplementation(fn => {
@@ -26,32 +28,28 @@ describe('Component: SearchInput', () => {
 
     const onChangeSpy = jest.fn();
 
-    let searchInput;
+    const props: Props = {
+      value: '',
+      debounce,
+      debounceSettings,
+      onChange: onChangeSpy,
+      showIcon,
+      placeholder: 'Search...'
+    };
+
     if (showLabel) {
-      searchInput = shallow(
-        <SearchInput
-          value=""
-          debounce={debounce}
-          debounceSettings={debounceSettings}
-          onChange={onChangeSpy}
-          showIcon={showIcon}
-          placeholder="Search..."
-          id="search"
-          label="Search"
-        />
-      );
-    } else {
-      searchInput = shallow(
-        <SearchInput
-          value=""
-          debounce={debounce}
-          debounceSettings={debounceSettings}
-          onChange={onChangeSpy}
-          showIcon={showIcon}
-          placeholder="Search..."
-        />
-      );
+      // @ts-ignore
+      props.id = 'search';
+      //@ts-ignore
+      props.label = 'Search';
     }
+
+    if (withChildren) {
+      // eslint-disable-next-line react/display-name
+      props.children = () => <h1>Children</h1>;
+    }
+
+    const searchInput = shallow(<SearchInput {...props} />);
 
     return { searchInput, onChangeSpy };
   }
@@ -77,6 +75,16 @@ describe('Component: SearchInput', () => {
 
     test('with label', () => {
       const { searchInput } = setup({ showIcon: false, showLabel: true });
+
+      expect(toJson(searchInput)).toMatchSnapshot();
+    });
+
+    test('with label and children', () => {
+      const { searchInput } = setup({
+        showIcon: false,
+        showLabel: true,
+        withChildren: true
+      });
 
       expect(toJson(searchInput)).toMatchSnapshot();
     });
