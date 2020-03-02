@@ -5,6 +5,7 @@ import Checkbox, { JarbRadioGroup } from './RadioGroup';
 import { FinalForm, Form, resolveAfter } from '../story-utils';
 import { pageOfUsers, randomUser } from '../../test/fixtures';
 import { User } from '../../test/types';
+import { Icon, Tooltip } from '../..';
 
 interface SubjectOption {
   value: string;
@@ -113,6 +114,44 @@ storiesOf('Form|RadioGroup', module)
       <Form>
         <Checkbox<SubjectOption>
           id="subject"
+          placeholder="Please enter your subject"
+          optionForValue={(option: SubjectOption) => option.label}
+          isOptionEnabled={option => option.value !== 'awesome'}
+          options={[
+            { value: 'awesome', label: 'Awesome shit' },
+            { value: 'super', label: 'Super shit' },
+            { value: 'great', label: 'Great shit' },
+            { value: 'good', label: 'good shit' }
+          ]}
+          value={subject}
+          onChange={setSubject}
+        />
+
+        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    const [subject, setSubject] = useState<SubjectOption | undefined>(
+      undefined
+    );
+
+    return (
+      <Form>
+        <Checkbox<SubjectOption>
+          id="subject"
+          label={
+            <>
+              <span>Subject</span>
+              <Tooltip
+                className="ml-1 position-relative"
+                style={{ top: 4 }}
+                content="Subjects are the best"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </>
+          }
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
           isOptionEnabled={option => option.value !== 'awesome'}

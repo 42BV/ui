@@ -57,7 +57,7 @@ interface Props {
   /**
    * The label of the form element.
    */
-  label: string;
+  label: React.ReactNode;
 
   /**
    * Optionally the placeholder of the form element.

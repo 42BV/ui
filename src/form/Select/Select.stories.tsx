@@ -6,6 +6,7 @@ import Select, { JarbSelect } from './Select';
 import { FinalForm, Form, resolveAfter } from '../story-utils';
 import { pageOfUsers, userUser, randomUser } from '../../test/fixtures';
 import { User } from '../../test/types';
+import { Icon, Tooltip } from '../..';
 
 interface SubjectOption {
   value: string;
@@ -90,6 +91,33 @@ storiesOf('Form|Select', module)
       <Form>
         <Select
           id="subject"
+          placeholder="Please enter your subject"
+          optionForValue={(option: SubjectOption) => option.label}
+          isOptionEnabled={option => option.value !== 'awesome'}
+          options={[
+            { value: 'awesome', label: 'Awesome shit' },
+            { value: 'super', label: 'Super shit' },
+            { value: 'great', label: 'Great shit' },
+            { value: 'good', label: 'good shit' }
+          ]}
+          onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    return (
+      <Form>
+        <Select
+          id="subject"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Subject</span>
+              <Tooltip className="ml-1" content="The subject of your essay">
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
           isOptionEnabled={option => option.value !== 'awesome'}

@@ -114,7 +114,7 @@ interface WithLabel<T> extends BaseProps<T> {
   /**
    * The label of the form element.
    */
-  label: string;
+  label: React.ReactNode;
 }
 
 export type Props<T> = WithoutLabel<T> | WithLabel<T>;

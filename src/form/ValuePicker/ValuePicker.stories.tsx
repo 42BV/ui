@@ -9,6 +9,7 @@ import ValuePicker, { JarbValuePicker } from './ValuePicker';
 
 import { FinalForm, Form } from '../story-utils';
 import Button from '../../core/Button/Button';
+import { Tooltip, Icon } from '../..';
 
 const small = Promise.resolve(
   pageWithContentAndExactSize([userUser, adminUser])
@@ -118,6 +119,45 @@ storiesOf('Form|ValuePicker/multiple', module)
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() => promise}
+          optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+        />
+
+        <p>Use these buttons to trigger a morph</p>
+        <Button className="mx-2" onClick={() => setSize('small')}>
+          Small
+        </Button>
+        <Button onClick={() => setSize('large')}>Large</Button>
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    const [value, setValue] = useState<User[] | undefined>(undefined);
+
+    const [size, setSize] = useState('small');
+
+    const promise = sizes[size];
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={true}
+          id="bestFriend"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Best friend</span>
+              <Tooltip
+                className="ml-1"
+                content="Don't be jealous of your best friends wife"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
           placeholder="Select your best friend"
           canSearch={true}
           fetchOptions={() => promise}
@@ -244,6 +284,48 @@ storiesOf('Form|ValuePicker/single', module)
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() => promise}
+          optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+        />
+
+        <p>Use these buttons to trigger a morph</p>
+        <Button className="mr-1" onClick={() => setSize('small')}>
+          Small
+        </Button>
+        <Button className="mr-1" onClick={() => setSize('medium')}>
+          Medium
+        </Button>
+        <Button onClick={() => setSize('large')}>Large</Button>
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    const [value, setValue] = useState<User | undefined>(undefined);
+
+    const [size, setSize] = useState('small');
+
+    const promise = sizes[size];
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={false}
+          id="bestFriend"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Best friend</span>
+              <Tooltip
+                className="ml-1"
+                content="Don't be jealous of your best friends wife"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
           placeholder="Select your best friend"
           canSearch={true}
           fetchOptions={() => promise}

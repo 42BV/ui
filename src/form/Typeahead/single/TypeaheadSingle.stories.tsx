@@ -7,6 +7,7 @@ import { Form, FinalForm } from '../../story-utils';
 import { userUser, adminUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 import TypeaheadSingle, { JarbTypeaheadSingle } from './TypeaheadSingle';
+import { Tooltip, Icon } from '../../..';
 
 storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
   .add('basic', () => {
@@ -45,6 +46,32 @@ storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
       <Form>
         <TypeaheadSingle
           id="bestFriend"
+          placeholder="Please provide your best friend"
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          onChange={value => action(`onChange: ${value}`)}
+        />
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    return (
+      <Form>
+        <TypeaheadSingle
+          id="bestFriend"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Best friend</span>
+              <Tooltip
+                className="ml-1"
+                content="Are you your best friend's best friend?"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
           placeholder="Please provide your best friend"
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>

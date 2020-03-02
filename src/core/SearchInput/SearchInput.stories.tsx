@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import SearchInput from './SearchInput';
 
 import { Card } from 'reactstrap';
-import { Select, Button } from '../..';
+import { Select, Button, Tooltip, Icon } from '../..';
 
 storiesOf('core|SearchInput', module)
   .addParameters({ component: SearchInput })
@@ -76,6 +76,28 @@ storiesOf('core|SearchInput', module)
         <SearchInput
           id="search"
           label="Search"
+          value={query}
+          onChange={setQuery}
+        />
+      </Card>
+    );
+  })
+  .add('with custom label', () => {
+    const [query, setQuery] = useState('');
+
+    return (
+      <Card body>
+        <p>You searched for: {query}</p>
+        <SearchInput
+          id="search"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Search</span>
+              <Tooltip className="ml-1" content="Search the following fields">
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
           value={query}
           onChange={setQuery}
         />

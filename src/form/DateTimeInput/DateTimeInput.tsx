@@ -27,7 +27,7 @@ export interface Props {
   /**
    * The label of the form element.
    */
-  label?: string;
+  label?: React.ReactNode;
 
   /**
    * The placeholder of the form element.

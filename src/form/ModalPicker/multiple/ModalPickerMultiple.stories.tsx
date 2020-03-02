@@ -10,6 +10,7 @@ import ModalPickerMultiple, {
 } from './ModalPickerMultiple';
 
 import { FinalForm, Form } from '../../story-utils';
+import { Tooltip, Icon } from '../../..';
 
 storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
   .add('default', () => {
@@ -126,6 +127,36 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
       <Form>
         <ModalPickerMultiple<User>
           id="bestFriend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+        />
+      </Form>
+    );
+  })
+  .add('with custom label', () => {
+    const [value, setValue] = useState<User[] | undefined>([]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple<User>
+          id="bestFriend"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Best friend</span>
+              <Tooltip
+                className="ml-1"
+                content="Your best friend is the one you trust the most"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
           placeholder="Select your best friend"
           canSearch={true}
           fetchOptions={() =>

@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Toggle, { FormToggle, JarbFormToggle } from './Toggle';
 import { Form, FinalForm } from '../story-utils';
+import { Icon, Tooltip } from '../..';
 
 storiesOf('Form|Toggle', module)
   .add('basic', () => {
@@ -77,6 +78,29 @@ storiesOf('Form|Toggle', module)
       <Form>
         <FormToggle
           id="agree"
+          toggleColor="primary"
+          onChange={value => action(`onChange: ${value}`)}
+        />
+      </Form>
+    );
+  })
+  .add('without custom label', () => {
+    return (
+      <Form>
+        <FormToggle
+          id="agree"
+          label={
+            <>
+              <span>Agree</span>
+              <Tooltip
+                className="position-absolute"
+                style={{ left: 140 }}
+                content="Always agree to any terms without reading them"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </>
+          }
           toggleColor="primary"
           onChange={value => action(`onChange: ${value}`)}
         />
