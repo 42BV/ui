@@ -8,7 +8,7 @@ import CheckboxMultipleSelect, {
 import { FinalForm, Form } from '../story-utils';
 import { pageOfUsers, userUser } from '../../test/fixtures';
 import { User } from '../../test/types';
-import { Tooltip, Icon } from '../..';
+import { Icon, Tooltip } from '../..';
 
 interface SubjectOption {
   value: string;
@@ -37,6 +37,32 @@ storiesOf('Form|CheckboxMultipleSelect', module)
             value={value}
             onChange={setValue}
           />
+        </Form>
+      </div>
+    );
+  })
+  .add('horizontal', () => {
+    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
+
+    return (
+      <div>
+        <Form>
+          <CheckboxMultipleSelect
+            id="subject"
+            label="Subject"
+            placeholder="Please select your subjects"
+            optionForValue={(option: SubjectOption) => option.label}
+            isOptionEnabled={option => option.value !== 'awesome'}
+            options={options.filter((_, index) => index < 5)}
+            value={value}
+            onChange={setValue}
+            horizontal={true}
+          />
+
+          <p>
+            <strong>Disclaimer:</strong> horizontal mode works best when there
+            are not too many items
+          </p>
         </Form>
       </div>
     );

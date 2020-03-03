@@ -213,7 +213,6 @@ export default function SearchInput(props: Props) {
       ...rest
     };
 
-    console.log(showIcon);
     if (showIcon) {
       return (
         <InputGroup className={className} size={size}>

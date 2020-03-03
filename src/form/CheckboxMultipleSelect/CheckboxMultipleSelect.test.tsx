@@ -23,13 +23,15 @@ describe('Component: CheckboxMultipleSelect', () => {
     isOptionEnabled,
     text,
     hasPlaceholder = true,
-    hasLabel = true
+    hasLabel = true,
+    horizontal
   }: {
     value?: User[];
     isOptionEnabled?: OptionEnabledCallback<User>;
     text?: Text;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
+    horizontal?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -43,7 +45,8 @@ describe('Component: CheckboxMultipleSelect', () => {
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
-      error: 'Some error'
+      error: 'Some error',
+      horizontal
     };
 
     if (hasLabel) {
@@ -57,7 +60,7 @@ describe('Component: CheckboxMultipleSelect', () => {
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: [adminUser], isOptionEnabled: undefined });
+      setup({ value: [adminUser] });
 
       expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
         'Component: CheckboxMultipleSelect => ui => with value'
@@ -92,11 +95,7 @@ describe('Component: CheckboxMultipleSelect', () => {
     });
 
     test('without placeholder', () => {
-      setup({
-        value: [adminUser],
-        isOptionEnabled: undefined,
-        hasPlaceholder: false
-      });
+      setup({ value: [adminUser], hasPlaceholder: false });
 
       expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
         'Component: CheckboxMultipleSelect => ui => without placeholder'
@@ -104,14 +103,18 @@ describe('Component: CheckboxMultipleSelect', () => {
     });
 
     test('without label', () => {
-      setup({
-        value: [adminUser],
-        isOptionEnabled: undefined,
-        hasLabel: false
-      });
+      setup({ value: [adminUser], hasLabel: false });
 
       expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
         'Component: CheckboxMultipleSelect => ui => without label'
+      );
+    });
+
+    test('horizontal', () => {
+      setup({ value: [adminUser], horizontal: true });
+
+      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
+        'Component: CheckboxMultipleSelect => ui => horizontal'
       );
     });
   });

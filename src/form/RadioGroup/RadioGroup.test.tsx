@@ -18,13 +18,15 @@ describe('Component: RadioGroup', () => {
     isOptionEnabled,
     text,
     hasPlaceholder = true,
-    hasLabel = true
+    hasLabel = true,
+    horizontal
   }: {
     value?: User;
     isOptionEnabled?: OptionEnabledCallback<User>;
     text?: Text;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
+    horizontal?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -39,7 +41,8 @@ describe('Component: RadioGroup', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      valid: false
+      valid: false,
+      horizontal
     };
 
     if (hasLabel) {
@@ -99,6 +102,18 @@ describe('Component: RadioGroup', () => {
 
       expect(toJson(radioGroup)).toMatchSnapshot(
         'Component: RadioGroup => ui => without label'
+      );
+    });
+
+    test('horizontal', () => {
+      setup({
+        value: adminUser,
+        isOptionEnabled: undefined,
+        horizontal: true
+      });
+
+      expect(toJson(radioGroup)).toMatchSnapshot(
+        'Component: RadioGroup => ui => horizontal'
       );
     });
   });

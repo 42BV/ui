@@ -104,6 +104,13 @@ interface BaseProps<T> {
    * This text should already be translated.
    */
   text?: Text;
+
+  /**
+   * Whether or not to show the RadioGroup horizontally.
+   *
+   * Defaults to `false`
+   */
+  horizontal?: boolean;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -134,7 +141,8 @@ export default function RadioGroup<T>(props: Props<T>) {
     onChange,
     onBlur,
     optionForValue,
-    isOptionEqual
+    isOptionEqual,
+    horizontal = false
   } = props;
 
   const { options, loading } = useOptions({
@@ -172,7 +180,7 @@ export default function RadioGroup<T>(props: Props<T>) {
           const label = optionForValue(option);
 
           return (
-            <FormGroup key={label} check>
+            <FormGroup key={label} check inline={horizontal}>
               <Label check>
                 <Input
                   type="radio"

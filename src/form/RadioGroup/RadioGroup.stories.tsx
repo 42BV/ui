@@ -40,6 +40,39 @@ storiesOf('Form|RadioGroup', module)
       </Form>
     );
   })
+  .add('horizontal', () => {
+    const [subject, setSubject] = useState<SubjectOption | undefined>(
+      undefined
+    );
+
+    return (
+      <Form>
+        <Checkbox<SubjectOption>
+          id="subject"
+          label="Subject"
+          placeholder="Please enter your subject"
+          optionForValue={(option: SubjectOption) => option.label}
+          isOptionEnabled={option => option.value !== 'awesome'}
+          options={[
+            { value: 'awesome', label: 'Awesome shit' },
+            { value: 'super', label: 'Super shit' },
+            { value: 'great', label: 'Great shit' },
+            { value: 'good', label: 'good shit' }
+          ]}
+          value={subject}
+          onChange={setSubject}
+          horizontal={true}
+        />
+
+        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
+
+        <p>
+          <strong>Disclaimer:</strong> horizontal mode works best when there are
+          not too many items
+        </p>
+      </Form>
+    );
+  })
   .add('fetched options', () => {
     const [subject, setSubject] = useState<User>(randomUser());
 

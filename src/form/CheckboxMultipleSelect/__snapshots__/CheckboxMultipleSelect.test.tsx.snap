@@ -1,5 +1,126 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMultipleSelect => ui => horizontal 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="subject"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Subject
+  </Label>
+  <p
+    className="text-muted"
+  >
+    <em>
+      Please select your subjects
+    </em>
+  </p>
+  <FormGroup
+    check={true}
+    inline={true}
+    key="admin@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={true}
+        disabled={false}
+        onChange={[Function]}
+        type="checkbox"
+        value={0}
+      />
+       
+      admin@42.nl
+    </Label>
+  </FormGroup>
+  <FormGroup
+    check={true}
+    inline={true}
+    key="coordinator@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={false}
+        disabled={false}
+        onChange={[Function]}
+        type="checkbox"
+        value={1}
+      />
+       
+      coordinator@42.nl
+    </Label>
+  </FormGroup>
+  <FormGroup
+    check={true}
+    inline={true}
+    key="user@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={false}
+        disabled={false}
+        onChange={[Function]}
+        type="checkbox"
+        value={2}
+      />
+       
+      user@42.nl
+    </Label>
+  </FormGroup>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMultipleSelect => ui => with value 1`] = `
 <FormGroup
   className=""
@@ -60,6 +181,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
     >
       <FormGroup
         check={true}
+        inline={false}
         key="admin@42.nl"
         tag="div"
       >
@@ -89,6 +211,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
       </FormGroup>
       <FormGroup
         check={true}
+        inline={false}
         key="coordinator@42.nl"
         tag="div"
       >
@@ -118,6 +241,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
       </FormGroup>
       <FormGroup
         check={true}
+        inline={false}
         key="user@42.nl"
         tag="div"
       >
@@ -196,6 +320,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
     >
       <FormGroup
         check={true}
+        inline={false}
         key="admin@42.nl"
         tag="div"
       >
@@ -225,6 +350,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
       </FormGroup>
       <FormGroup
         check={true}
+        inline={false}
         key="coordinator@42.nl"
         tag="div"
       >
@@ -254,6 +380,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
       </FormGroup>
       <FormGroup
         check={true}
+        inline={false}
         key="user@42.nl"
         tag="div"
       >
@@ -340,6 +467,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
     >
       <FormGroup
         check={true}
+        inline={false}
         key="admin@42.nl"
         tag="div"
       >
@@ -369,6 +497,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
       </FormGroup>
       <FormGroup
         check={true}
+        inline={false}
         key="coordinator@42.nl"
         tag="div"
       >
@@ -398,6 +527,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
       </FormGroup>
       <FormGroup
         check={true}
+        inline={false}
         key="user@42.nl"
         tag="div"
       >
