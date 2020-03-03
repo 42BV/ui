@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => with value 1`] = `
+exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => horizontal 1`] = `
 <FormGroup
   className=""
   tag="fieldset"
@@ -17,6 +17,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
   </p>
   <FormGroup
     check={true}
+    inline={true}
     key="admin@42.nl"
     tag="div"
   >
@@ -46,6 +47,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
   </FormGroup>
   <FormGroup
     check={true}
+    inline={true}
     key="coordinator@42.nl"
     tag="div"
   >
@@ -75,6 +77,116 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
   </FormGroup>
   <FormGroup
     check={true}
+    inline={true}
+    key="user@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={false}
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="user@42.nl"
+      />
+       
+      user@42.nl
+    </Label>
+  </FormGroup>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => with value 1`] = `
+<FormGroup
+  className=""
+  tag="fieldset"
+>
+  <legend>
+    Subject
+  </legend>
+  <p
+    className="text-muted"
+  >
+    <em>
+      Please enter your subject
+    </em>
+  </p>
+  <FormGroup
+    check={true}
+    inline={false}
+    key="admin@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={true}
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="admin@42.nl"
+      />
+       
+      admin@42.nl
+    </Label>
+  </FormGroup>
+  <FormGroup
+    check={true}
+    inline={false}
+    key="coordinator@42.nl"
+    tag="div"
+  >
+    <Label
+      check={true}
+      tag="label"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Input
+        checked={false}
+        disabled={false}
+        onChange={[Function]}
+        type="radio"
+        value="coordinator@42.nl"
+      />
+       
+      coordinator@42.nl
+    </Label>
+  </FormGroup>
+  <FormGroup
+    check={true}
+    inline={false}
     key="user@42.nl"
     tag="div"
   >
@@ -120,6 +232,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
   </p>
   <FormGroup
     check={true}
+    inline={false}
     key="admin@42.nl"
     tag="div"
   >
@@ -149,6 +262,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
   </FormGroup>
   <FormGroup
     check={true}
+    inline={false}
     key="coordinator@42.nl"
     tag="div"
   >
@@ -178,6 +292,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
   </FormGroup>
   <FormGroup
     check={true}
+    inline={false}
     key="user@42.nl"
     tag="div"
   >
@@ -219,6 +334,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
   </legend>
   <FormGroup
     check={true}
+    inline={false}
     key="admin@42.nl"
     tag="div"
   >
@@ -248,6 +364,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
   </FormGroup>
   <FormGroup
     check={true}
+    inline={false}
     key="coordinator@42.nl"
     tag="div"
   >
@@ -277,6 +394,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
   </FormGroup>
   <FormGroup
     check={true}
+    inline={false}
     key="user@42.nl"
     tag="div"
   >

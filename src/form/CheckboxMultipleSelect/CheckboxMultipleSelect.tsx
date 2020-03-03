@@ -100,6 +100,13 @@ interface BaseProps<T> {
    * This text should already be translated.
    */
   text?: Text;
+
+  /**
+   * Whether or not to show the CheckboxMultipleSelect horizontally.
+   *
+   * Defaults to `false`
+   */
+  horizontal?: boolean;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -226,49 +233,59 @@ export default class CheckboxMultipleSelect<T> extends Component<
   }
 
   renderCheckboxes() {
+    const { horizontal = false } = this.props;
+
+    if (horizontal) {
+      return this.renderOptions(this.state.options, true);
+    } else {
+      const { options } = this.state;
+
+      const chunks = chunk(options, 10);
+
+      return (
+        <Row>
+          {chunks.map((options, index) => {
+            return (
+              <Col xs="auto" key={index} style={{ width: '300px' }}>
+                {this.renderOptions(options, false)}
+              </Col>
+            );
+          })}
+        </Row>
+      );
+    }
+  }
+
+  renderOptions(options: T[], horizontal: boolean) {
     const { optionForValue, value, isOptionEqual } = this.props;
-
-    const { options } = this.state;
-
-    const chunks = chunk(options, 10);
 
     const isOptionEnabled = get(this.props, 'isOptionEnabled', constant(true));
 
-    return (
-      <Row>
-        {chunks.map((options, index) => {
-          return (
-            <Col xs="auto" key={index} style={{ width: '300px' }}>
-              {options.map((option, index) => {
-                const label = optionForValue(option);
+    return options.map((option, index) => {
+      const label = optionForValue(option);
 
-                const isChecked = isOptionSelected({
-                  option,
-                  optionForValue,
-                  isOptionEqual,
-                  value
-                });
+      const isChecked = isOptionSelected({
+        option,
+        optionForValue,
+        isOptionEqual,
+        value
+      });
 
-                return (
-                  <FormGroup check key={label}>
-                    <Label check>
-                      <RSInput
-                        type="checkbox"
-                        checked={isChecked}
-                        value={index}
-                        disabled={!isOptionEnabled(option)}
-                        onChange={() => this.optionClicked(option, isChecked)}
-                      />{' '}
-                      {label}
-                    </Label>
-                  </FormGroup>
-                );
-              })}
-            </Col>
-          );
-        })}
-      </Row>
-    );
+      return (
+        <FormGroup check key={label} inline={horizontal}>
+          <Label check>
+            <RSInput
+              type="checkbox"
+              checked={isChecked}
+              value={index}
+              disabled={!isOptionEnabled(option)}
+              onChange={() => this.optionClicked(option, isChecked)}
+            />{' '}
+            {label}
+          </Label>
+        </FormGroup>
+      );
+    });
   }
 }
 

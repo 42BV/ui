@@ -125,6 +125,7 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
               >
                 <FormGroup
                   check={true}
+                  inline={false}
                   key="admin@42.nl"
                   tag="div"
                 >
@@ -171,6 +172,7 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
                 </FormGroup>
                 <FormGroup
                   check={true}
+                  inline={false}
                   key="coordinator@42.nl"
                   tag="div"
                 >
@@ -217,6 +219,7 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
                 </FormGroup>
                 <FormGroup
                   check={true}
+                  inline={false}
                   key="user@42.nl"
                   tag="div"
                 >
@@ -742,6 +745,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
         </p>
         <FormGroup
           check={true}
+          inline={false}
           key="admin@42.nl"
           tag="div"
         >
@@ -788,6 +792,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
         </FormGroup>
         <FormGroup
           check={true}
+          inline={false}
           key="coordinator@42.nl"
           tag="div"
         >
@@ -834,6 +839,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
         </FormGroup>
         <FormGroup
           check={true}
+          inline={false}
           key="user@42.nl"
           tag="div"
         >
