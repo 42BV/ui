@@ -3,7 +3,7 @@ import { FormFeedback } from 'reactstrap';
 import { useErrorsForValidator } from '@42.nl/react-error-store';
 
 import { Meta, MetaError } from '../types';
-import { keyForError, errorMessage } from './utils';
+import { errorMessage, keyForError } from './utils';
 import { useSettledErrors } from './useSettledErrors';
 import { useOnChange } from './useOnChange';
 import { OnChange } from './types';
@@ -29,6 +29,11 @@ interface Props {
    * they are removed.
    */
   onChange?: OnChange;
+
+  /**
+   * Optionally: classes to put on the div around the errors.
+   */
+  className?: string;
 }
 
 /**
@@ -40,7 +45,7 @@ interface Props {
  * is `Entity.property`.
  */
 export default function FormError(props: Props) {
-  const { value, meta, validator, onChange } = props;
+  const { value, meta, validator, onChange, className } = props;
   const backEndErrors = useErrorsForValidator(validator);
   const frontEndErrors = useSettledErrors(meta, value);
 
@@ -53,7 +58,7 @@ export default function FormError(props: Props) {
   }
 
   return (
-    <>
+    <div className={className}>
       {frontEndErrors.map((e: MetaError) => (
         <FormFeedback key={keyForError(e)}>{errorMessage(e)}</FormFeedback>
       ))}
@@ -61,7 +66,6 @@ export default function FormError(props: Props) {
       {backEndErrors.map((e: string) => (
         <FormFeedback key={e}>{errorMessage(e)}</FormFeedback>
       ))}
-    </>
+    </div>
   );
 }
-

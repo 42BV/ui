@@ -1,5 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => formError 1`] = `
+<div
+  className="withjarb-tooltip"
+>
+  <FormFeedback
+    key=""
+    tag="div"
+  />
+</div>
+`;
+
+exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => jarbField 1`] = `
+<ForwardRef(TippyWrapper)
+  boundary="viewport"
+  className="border-0"
+  content={
+    <React.Fragment>
+       
+      <Field
+        name="firstName"
+        render={[Function]}
+        subscription={
+          Object {
+            "active": true,
+            "error": true,
+            "touched": true,
+            "validating": true,
+            "value": true,
+          }
+        }
+      />
+       
+    </React.Fragment>
+  }
+  distance={7}
+  maxWidth={350}
+  placement="bottom"
+>
+  <div
+    className="w-100"
+    style={
+      Object {
+        "outline": 0,
+      }
+    }
+    tabIndex={0}
+  >
+    <Input
+      color=""
+      onBlur={[MockFunction]}
+      onChange={[Function]}
+      value="value"
+    />
+  </div>
+</ForwardRef(TippyWrapper)>
+`;
+
 exports[`HoC: withJarb should throw an error when detecting illegal props 1`] = `
 "
         withJarb: illegal props detected on \\"JarbInput\\".
@@ -17,12 +74,12 @@ exports[`HoC: withJarb should throw an error when detecting illegal props 1`] = 
 `;
 
 exports[`HoC: withJarb ui: withJarb => ui => formError 1`] = `
-<Fragment>
+<div>
   <FormFeedback
     key=""
     tag="div"
   />
-</Fragment>
+</div>
 `;
 
 exports[`HoC: withJarb ui: withJarb => ui => jarbField 1`] = `

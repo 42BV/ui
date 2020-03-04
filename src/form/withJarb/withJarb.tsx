@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { FieldRenderProps, Field } from 'react-final-form';
+import React from 'react';
+import { Field, FieldRenderProps } from 'react-final-form';
 import { JarbField, JarbFieldProps } from '@42.nl/jarb-final-form';
 import getDisplayName from 'react-display-name';
 import { clearErrorsForValidator } from '@42.nl/react-error-store';
-import { pick, omit } from 'lodash';
+import { omit, pick } from 'lodash';
 
 import FormError from '../FormError/FormError';
 import { getState } from '../utils';
+import Tooltip from '../../core/Tooltip/Tooltip';
+import { useHasErrors } from './useHasErrors/useHasErrors';
 
 // This is a list of props that `withJarb` will pass to the `final-form`
 // Field, but not the wrapper.
@@ -32,6 +34,7 @@ interface FieldCompatible<Value, ChangeValue> {
   color?: string;
   valid?: boolean;
   error?: React.ReactNode;
+  errorMode?: 'tooltip' | 'below';
 }
 
 /**
@@ -69,7 +72,8 @@ export default function withJarb<
         | 'color'
         | 'valid'
         | 'error'
-      >
+        | 'label'
+      > & { label?: string }
   ) {
     const illegalProps = managedProps.filter(p => props[p] !== undefined);
 
@@ -92,9 +96,10 @@ export default function withJarb<
       `);
     }
 
-    const [hasErrors, setHasErrors] = useState(false);
+    const [hasErrors, setHasErrors] = useHasErrors();
 
     const {
+      errorMode = 'below',
       name,
       jarb,
       validators,
@@ -134,6 +139,7 @@ export default function withJarb<
             meta={field.meta}
             validator={jarb.validator}
             onChange={setHasErrors}
+            className={errorMode === 'tooltip' ? 'withjarb-tooltip' : undefined}
           />
         )}
       />
@@ -155,12 +161,27 @@ export default function withJarb<
         asyncValidators={asyncValidators}
         asyncValidatorsDebounce={asyncValidatorsDebounce}
         subscription={fieldSubscription}
-        render={field => (
-          <Wrapper
-            {...wrapperProps}
-            {...mapFieldRenderProps(error, field, jarb.validator, hasErrors)}
-          />
-        )}
+        render={field => {
+          return hasErrors && errorMode === 'tooltip' ? (
+            <Tooltip
+              content={error}
+              tag="div"
+              className="w-100"
+              placement="bottom"
+            >
+              <Wrapper
+                {...wrapperProps}
+                {...mapFieldRenderProps(field, jarb.validator, hasErrors)}
+              />
+            </Tooltip>
+          ) : (
+            <Wrapper
+              {...wrapperProps}
+              {...mapFieldRenderProps(field, jarb.validator, hasErrors)}
+              error={error}
+            />
+          );
+        }}
         {...fieldProps}
       />
     );
@@ -170,7 +191,6 @@ export default function withJarb<
 }
 
 function mapFieldRenderProps<T>(
-  error: React.ReactNode,
   props: FieldRenderProps<T, any>,
   validator: string,
   hasErrors: boolean
@@ -189,8 +209,7 @@ function mapFieldRenderProps<T>(
     },
     onFocus: input.onFocus,
     onBlur: input.onBlur,
-    value: input.value,
-    error
+    value: input.value
   };
 }
 

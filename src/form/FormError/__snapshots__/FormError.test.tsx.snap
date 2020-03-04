@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: FormError ui both errors: Component: FormError => ui => has both errors 1`] = `
-<Fragment>
+<div>
   <FormFeedback
     key="ERROR_REQUIRED"
     tag="div"
@@ -14,27 +14,27 @@ exports[`Component: FormError ui both errors: Component: FormError => ui => has 
   >
     back-end error
   </FormFeedback>
-</Fragment>
+</div>
 `;
 
 exports[`Component: FormError ui has back-end errors: Component: FormError => ui => has back-end errors 1`] = `
-<Fragment>
+<div>
   <FormFeedback
     key="back-end error"
     tag="div"
   >
     back-end error
   </FormFeedback>
-</Fragment>
+</div>
 `;
 
 exports[`Component: FormError ui has front-end errors: Component: FormError => ui => has front-end errors 1`] = `
-<Fragment>
+<div>
   <FormFeedback
     key="ERROR_REQUIRED"
     tag="div"
   >
     Name is required
   </FormFeedback>
-</Fragment>
+</div>
 `;

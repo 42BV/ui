@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 import * as reactErrorStore from '@42.nl/react-error-store';
 
 import withJarb from './withJarb';
+import * as useHasErrors from './useHasErrors/useHasErrors';
 
 import { validMeta } from '../../test/fixtures';
 
@@ -23,6 +24,10 @@ describe('HoC: withJarb', () => {
   function setup() {
     onBlurSpy = jest.fn();
     onChangeSpy = jest.fn();
+
+    jest
+      .spyOn(useHasErrors, 'useHasErrors')
+      .mockImplementation(() => [false, jest.fn()]);
 
     jarbFieldParent = shallow(
       <JarbInput
@@ -61,6 +66,43 @@ describe('HoC: withJarb', () => {
     expect(toJson(jarbFieldParent)).toMatchSnapshot('withJarb => ui');
     expect(toJson(jarbField)).toMatchSnapshot('withJarb => ui => jarbField');
     expect(toJson(formError)).toMatchSnapshot('withJarb => ui => formError');
+  });
+
+  test('errorMode: tooltip', () => {
+    jest
+      .spyOn(useHasErrors, 'useHasErrors')
+      .mockImplementation(() => [true, jest.fn()]);
+
+    const jarbInput = shallow(
+      <JarbInput
+        name="firstName"
+        jarb={{ validator: 'User.email', label: 'First name' }}
+        validators={[isSuperman]}
+        initialValue="beheer@42.nl"
+        errorMode="tooltip"
+      />
+    );
+
+    const input = { onBlur: onBlurSpy, onChange: onChangeSpy, value: 'value' };
+
+    const tooltip = shallow(
+      // @ts-ignore
+      jarbInput.props().render({ input, meta: validMeta })
+    );
+
+    const tooltipFormError = shallow(
+      tooltip
+        .props()
+        // @ts-ignore
+        .content.props.children[1].props.render({ input, meta: validMeta })
+    );
+
+    expect(toJson(tooltip)).toMatchSnapshot(
+      'withJarb => errorMode: tooltip => jarbField'
+    );
+    expect(toJson(tooltipFormError)).toMatchSnapshot(
+      'withJarb => errorMode: tooltip => formError'
+    );
   });
 
   it('should throw an error when detecting illegal props', () => {
