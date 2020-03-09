@@ -1,5 +1,259 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: ModalPickerSingle ui should render button left: Component: ModalPickerSingle => ui => should render button left 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best Friend
+  </Label>
+  <ModalPickerOpener
+    alignButton="left"
+    label="Select your best friend"
+    openModal={[Function]}
+    values="admin@42.nl"
+  />
+  Some error
+  <ModalPicker
+    canSearch={true}
+    closeModal={[Function]}
+    fetchOptions={[Function]}
+    isOpen={false}
+    modalSaved={[Function]}
+    page={
+      Object {
+        "content": Array [],
+        "first": true,
+        "last": true,
+        "number": 0,
+        "numberOfElements": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0,
+      }
+    }
+    pageChanged={[Function]}
+    placeholder="Select your best friend"
+    query=""
+    saveButtonEnabled={false}
+  >
+    <Row
+      className="mt-3"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <EmptyModal
+          userHasSearched={false}
+        />
+      </Col>
+    </Row>
+  </ModalPicker>
+</FormGroup>
+`;
+
+exports[`Component: ModalPickerSingle ui should render button right with value: Component: ModalPickerSingle => ui => should render button right with value 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best Friend
+  </Label>
+  <ModalPickerOpener
+    alignButton="right"
+    label="Select your best friend"
+    openModal={[Function]}
+    values="admin@42.nl"
+  />
+  Some error
+  <ModalPicker
+    canSearch={true}
+    closeModal={[Function]}
+    fetchOptions={[Function]}
+    isOpen={false}
+    modalSaved={[Function]}
+    page={
+      Object {
+        "content": Array [],
+        "first": true,
+        "last": true,
+        "number": 0,
+        "numberOfElements": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0,
+      }
+    }
+    pageChanged={[Function]}
+    placeholder="Select your best friend"
+    query=""
+    saveButtonEnabled={false}
+  >
+    <Row
+      className="mt-3"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <EmptyModal
+          userHasSearched={false}
+        />
+      </Col>
+    </Row>
+  </ModalPicker>
+</FormGroup>
+`;
+
+exports[`Component: ModalPickerSingle ui should render button right without value: Component: ModalPickerSingle => ui => should render button right without value 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best Friend
+  </Label>
+  <ModalPickerOpener
+    alignButton="right"
+    label="Select your best friend"
+    openModal={[Function]}
+  />
+  Some error
+  <ModalPicker
+    canSearch={true}
+    closeModal={[Function]}
+    fetchOptions={[Function]}
+    isOpen={false}
+    modalSaved={[Function]}
+    page={
+      Object {
+        "content": Array [],
+        "first": true,
+        "last": true,
+        "number": 0,
+        "numberOfElements": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0,
+      }
+    }
+    pageChanged={[Function]}
+    placeholder="Select your best friend"
+    query=""
+    saveButtonEnabled={false}
+  >
+    <Row
+      className="mt-3"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <EmptyModal
+          userHasSearched={false}
+        />
+      </Col>
+    </Row>
+  </ModalPicker>
+</FormGroup>
+`;
+
 exports[`Component: ModalPickerSingle ui should render without label: Component: ModalPickerSingle => ui => should render without label 1`] = `
 <FormGroup
   className=""

@@ -16,6 +16,7 @@ import * as testUtils from '../../../test/utils';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import * as optionTypesAndFunctions from '../../option';
 import { RenderOptionsOption } from '../../option';
+import { ButtonAlignment } from '../types';
 
 describe('Component: ModalPickerMultiple', () => {
   let modalPickerMultiple: ShallowWrapper;
@@ -31,13 +32,15 @@ describe('Component: ModalPickerMultiple', () => {
     showAddButton,
     canSearch = undefined,
     hasLabel = true,
-    spyOnRenderOptions
+    spyOnRenderOptions,
+    alignButton
   }: {
     value?: User[];
     showAddButton: boolean;
     canSearch?: boolean;
     hasLabel?: boolean;
     spyOnRenderOptions?: boolean;
+    alignButton?: ButtonAlignment;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -73,7 +76,8 @@ describe('Component: ModalPickerMultiple', () => {
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
-      error: 'Some error'
+      error: 'Some error',
+      alignButton
     };
 
     if (hasLabel) {
@@ -218,6 +222,27 @@ describe('Component: ModalPickerMultiple', () => {
 
       expect(toJson(modalPickerMultiple)).toMatchSnapshot(
         'Component: ModalPickerMultiple => ui => should render properly without label'
+      );
+    });
+
+    it('should render button left', () => {
+      setup({ value: [adminUser], showAddButton: false, alignButton: 'left' });
+      expect(toJson(modalPickerMultiple)).toMatchSnapshot(
+        'Component: ModalPickerSingle => ui => should render button left'
+      );
+    });
+
+    it('should render button right without value', () => {
+      setup({ value: undefined, showAddButton: false, alignButton: 'right' });
+      expect(toJson(modalPickerMultiple)).toMatchSnapshot(
+        'Component: ModalPickerSingle => ui => should render button right without value'
+      );
+    });
+
+    it('should render button right with value', () => {
+      setup({ value: [adminUser], showAddButton: false, alignButton: 'right' });
+      expect(toJson(modalPickerMultiple)).toMatchSnapshot(
+        'Component: ModalPickerSingle => ui => should render button right with value'
       );
     });
   });

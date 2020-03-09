@@ -5,7 +5,7 @@ import { emptyPage, Page } from '@42.nl/spring-connect';
 import ModalPicker from '../ModalPicker';
 import EmptyModal from '../EmptyModal';
 
-import { AddButtonCallback, AddButtonOptions } from '../types';
+import { AddButtonCallback, AddButtonOptions, ButtonAlignment } from '../types';
 import withJarb from '../../withJarb/withJarb';
 import { Color } from '../../types';
 import {
@@ -87,6 +87,12 @@ interface BaseProps<T> {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optionally the position the button should be aligned to
+   * within it's container.
+   */
+  alignButton?: ButtonAlignment;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -233,6 +239,7 @@ export default class ModalPickerSingle<T> extends React.Component<
       color,
       optionForValue,
       className = '',
+      alignButton,
       ...props
     } = this.props;
 
@@ -245,6 +252,7 @@ export default class ModalPickerSingle<T> extends React.Component<
         <ModalPickerOpener
           openModal={() => this.openModal()}
           label={placeholder}
+          alignButton={alignButton}
           values={selected ? optionForValue(selected) : undefined}
         />
 

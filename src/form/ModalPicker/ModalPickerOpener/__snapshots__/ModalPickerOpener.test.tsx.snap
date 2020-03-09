@@ -1,11 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: ModalPickerOpener ui button aligned left with values: Component: ModalPickerOpener => ui => button aligned left with values 1`] = `
+<div
+  className="d-flex align-items-center flex-row-reverse justify-content-end"
+>
+  <span
+    className="text-truncate position-relative ml-1"
+  >
+    admin@42.nl
+  </span>
+  <Button
+    className="flex-grow-0 flex-shrink-0"
+    color="primary"
+    onClick={[MockFunction]}
+    tag="button"
+  >
+    Best friend
+  </Button>
+</div>
+`;
+
+exports[`Component: ModalPickerOpener ui button aligned left without values: Component: ModalPickerOpener => ui => button aligned left without values 1`] = `
+<div
+  className="d-flex align-items-center flex-row-reverse justify-content-end"
+>
+  <Button
+    className="flex-grow-0 flex-shrink-0"
+    color="primary"
+    onClick={[MockFunction]}
+    tag="button"
+  >
+    Best friend
+  </Button>
+</div>
+`;
+
+exports[`Component: ModalPickerOpener ui button aligned right with values: Component: ModalPickerOpener => ui => button aligned right with values 1`] = `
+<div
+  className="d-flex align-items-center justify-content-between"
+>
+  <span
+    className="text-truncate position-relative mr-1"
+  >
+    admin@42.nl
+  </span>
+  <Button
+    className="flex-grow-0 flex-shrink-0"
+    color="primary"
+    onClick={[MockFunction]}
+    tag="button"
+  >
+    Best friend
+  </Button>
+</div>
+`;
+
+exports[`Component: ModalPickerOpener ui button aligned right without values: Component: ModalPickerOpener => ui => button aligned right without values 1`] = `
+<div
+  className="d-flex align-items-center justify-content-end"
+>
+  <Button
+    className="flex-grow-0 flex-shrink-0"
+    color="primary"
+    onClick={[MockFunction]}
+    tag="button"
+  >
+    Best friend
+  </Button>
+</div>
+`;
+
 exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener => ui => with tooltip 1`] = `
 <div
   className="d-flex align-items-center"
 >
   <span
-    className="text-truncate mr-1 position-relative"
+    className="text-truncate position-relative mr-1"
   >
     <Tooltip
       className="w-100 h-100 position-absolute"
@@ -32,7 +102,7 @@ exports[`Component: ModalPickerOpener ui with values: Component: ModalPickerOpen
   className="d-flex align-items-center"
 >
   <span
-    className="text-truncate mr-1 position-relative"
+    className="text-truncate position-relative mr-1"
   >
     admin@42.nl
   </span>
