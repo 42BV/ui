@@ -192,6 +192,53 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
       </Form>
     );
   })
+  .add('button alignment', () => {
+    const [value, setValue] = useState<User | undefined>(undefined);
+
+    return (
+      <Form>
+        <ModalPickerSingle
+          id="bestFriend"
+          label="Default"
+          placeholder="Select your best friend"
+          canSearch={true}
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          value={value}
+          onChange={setValue}
+          alignButton="default"
+        />
+        <ModalPickerSingle
+          id="bestFriend"
+          label="Button on the left"
+          placeholder="Select your best friend"
+          canSearch={true}
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          value={value}
+          onChange={setValue}
+          alignButton="left"
+        />
+        <ModalPickerSingle
+          id="bestFriend"
+          label="Button on the right"
+          placeholder="Select your best friend"
+          canSearch={true}
+          optionForValue={(user: User) => user.email}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          value={value}
+          onChange={setValue}
+          alignButton="right"
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

@@ -4,14 +4,17 @@ import { ModalPickerOpener } from './ModalPickerOpener';
 import { adminUser } from '../../../test/fixtures';
 import toJson from 'enzyme-to-json';
 import * as useComponentOverflow from './useComponentOverflow/useComponentOverflow';
+import { ButtonAlignment } from '../types';
 
 describe('Component: ModalPickerOpener', () => {
   function setup({
     hasValues = false,
-    withTooltip = false
+    withTooltip = false,
+    alignButton
   }: {
     hasValues?: boolean;
     withTooltip?: boolean;
+    alignButton?: ButtonAlignment;
   }) {
     const openModalSpy = jest.fn();
     const values = hasValues ? adminUser.email : undefined;
@@ -25,6 +28,7 @@ describe('Component: ModalPickerOpener', () => {
         openModal={openModalSpy}
         label="Best friend"
         values={values}
+        alignButton={alignButton}
       />
     );
 
@@ -54,6 +58,40 @@ describe('Component: ModalPickerOpener', () => {
 
       expect(toJson(modalPickerOpener)).toMatchSnapshot(
         'Component: ModalPickerOpener => ui => with tooltip'
+      );
+    });
+
+    test('button aligned right without values', () => {
+      const { modalPickerOpener } = setup({ alignButton: 'right' });
+      expect(toJson(modalPickerOpener)).toMatchSnapshot(
+        'Component: ModalPickerOpener => ui => button aligned right without values'
+      );
+    });
+
+    test('button aligned right with values', () => {
+      const { modalPickerOpener } = setup({
+        hasValues: true,
+        alignButton: 'right'
+      });
+      expect(toJson(modalPickerOpener)).toMatchSnapshot(
+        'Component: ModalPickerOpener => ui => button aligned right with values'
+      );
+    });
+
+    test('button aligned left without values', () => {
+      const { modalPickerOpener } = setup({ alignButton: 'left' });
+      expect(toJson(modalPickerOpener)).toMatchSnapshot(
+        'Component: ModalPickerOpener => ui => button aligned left without values'
+      );
+    });
+
+    test('button aligned left with values', () => {
+      const { modalPickerOpener } = setup({
+        hasValues: true,
+        alignButton: 'left'
+      });
+      expect(toJson(modalPickerOpener)).toMatchSnapshot(
+        'Component: ModalPickerOpener => ui => button aligned left with values'
       );
     });
   });

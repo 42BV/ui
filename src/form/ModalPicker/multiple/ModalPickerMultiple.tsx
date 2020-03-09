@@ -8,7 +8,7 @@ import Tag from '../../../core/Tag/Tag';
 import { Color } from '../../types';
 import ModalPicker from '../ModalPicker';
 import EmptyModal from '../EmptyModal';
-import { AddButtonCallback, AddButtonOptions } from '../types';
+import { AddButtonCallback, AddButtonOptions, ButtonAlignment } from '../types';
 import {
   FetchOptionsCallback,
   isOptionSelected,
@@ -88,6 +88,12 @@ interface BaseProps<T> {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optionally the position the button should be aligned to
+   * within it's container.
+   */
+  alignButton?: ButtonAlignment;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -242,6 +248,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
       color,
       className = '',
       optionForValue,
+      alignButton,
       ...props
     } = this.props;
 
@@ -255,8 +262,13 @@ export default class ModalPickerMultiple<T> extends React.Component<
           openModal={() => this.openModal()}
           label={placeholder}
           values={
-            value ? <>{value.map(optionForValue).join(', ')}</> : undefined
+            value && value.length > 0 ? (
+              <>{value.map(optionForValue).join(', ')}</>
+            ) : (
+              undefined
+            )
           }
+          alignButton={alignButton}
         />
 
         {error}

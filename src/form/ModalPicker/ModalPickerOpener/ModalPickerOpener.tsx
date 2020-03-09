@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { Button } from 'reactstrap';
 import Tooltip from '../../../core/Tooltip/Tooltip';
 import { useComponentOverflow } from './useComponentOverflow/useComponentOverflow';
+import { ButtonAlignment } from '../types';
+import classNames from 'classnames';
 
 interface Props {
   /**
@@ -18,19 +20,37 @@ interface Props {
    * The display of selected item(s).
    */
   values?: React.ReactNode;
+
+  /**
+   * Optionally the position the button should be aligned to
+   * within it's container.
+   */
+  alignButton?: ButtonAlignment;
 }
 
 export function ModalPickerOpener(props: Props) {
-  const { openModal, label, values } = props;
+  const { openModal, label, values, alignButton } = props;
 
   const ref = useRef<HTMLElement>(null);
 
   const isOverflowing = useComponentOverflow(ref, values);
 
+  const wrapperClassName = classNames('d-flex', 'align-items-center', {
+    'flex-row-reverse': alignButton === 'left',
+    'justify-content-between': alignButton === 'right' && values,
+    'justify-content-end':
+      alignButton === 'left' || (alignButton === 'right' && !values)
+  });
+
+  const truncatorClassName = classNames('text-truncate', 'position-relative', {
+    'ml-1': alignButton === 'left',
+    'mr-1': alignButton !== 'left'
+  });
+
   return (
-    <div className="d-flex align-items-center">
+    <div className={wrapperClassName}>
       {values ? (
-        <span className="text-truncate mr-1 position-relative" ref={ref}>
+        <span className={truncatorClassName} ref={ref}>
           {isOverflowing ? (
             <Tooltip
               content={values}

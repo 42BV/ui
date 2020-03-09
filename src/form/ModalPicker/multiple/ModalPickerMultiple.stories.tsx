@@ -10,7 +10,7 @@ import ModalPickerMultiple, {
 } from './ModalPickerMultiple';
 
 import { FinalForm, Form } from '../../story-utils';
-import { Tooltip, Icon } from '../../..';
+import { Icon, Tooltip } from '../../..';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import Avatar from '../../../core/Avatar/Avatar';
 
@@ -207,6 +207,52 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
+        />
+      </Form>
+    );
+  })
+  .add('button alignment', () => {
+    const [value, setValue] = useState<User[] | undefined>([]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple<User>
+          id="bestFriend"
+          label="Default"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+        />
+        <ModalPickerMultiple<User>
+          id="bestFriend"
+          label="Button on the left"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+          alignButton="left"
+        />
+        <ModalPickerMultiple<User>
+          id="bestFriend"
+          label="Button on the right"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+          alignButton="right"
         />
       </Form>
     );
