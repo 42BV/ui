@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, FormGroup, Input, Label, Row } from 'reactstrap';
+import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import ModalPicker from '../ModalPicker';
@@ -16,6 +16,7 @@ import {
   RenderOptions,
   RenderOptionsOption
 } from '../../option';
+import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 
 interface BaseProps<T> {
   /**
@@ -241,14 +242,11 @@ export default class ModalPickerSingle<T> extends React.Component<
           <Label for={props.id}>{props.label}</Label>
         ) : null}
 
-        <div>
-          {selected ? (
-            <span className="mr-1">{optionForValue(selected)}</span>
-          ) : null}
-          <Button color="primary" onClick={() => this.openModal()}>
-            {placeholder}
-          </Button>
-        </div>
+        <ModalPickerOpener
+          openModal={() => this.openModal()}
+          label={placeholder}
+          values={selected ? optionForValue(selected) : undefined}
+        />
 
         {error}
 

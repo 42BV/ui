@@ -137,21 +137,19 @@ describe('Component: ModalPickerMultiple', () => {
         showAddButton: false
       });
 
-      const moreOrLessContentArray = modalPickerMultiple
-        .find('MoreOrLess')
-        .at(0)
-        .props().content;
-
-      // @ts-ignore
-      expect(moreOrLessContentArray[0].props.text).toBe('admin@42.nl');
-      // @ts-ignore
-      expect(moreOrLessContentArray[1].props.text).toBe('user@42.nl');
+      expect(
+        modalPickerMultiple.find('ModalPickerOpener').props().values
+      ).toMatchSnapshot(
+        'Component: ModalPickerMultiple => ui => should render multiple labels with the selected values when the value array is not empty'
+      );
     });
 
     it('should render no labels when the value array is empty', () => {
       setup({ value: undefined, showAddButton: false });
 
-      expect(modalPickerMultiple.find('MoreOrLess').exists()).toBe(false);
+      expect(
+        modalPickerMultiple.find('ModalPickerOpener').props().values
+      ).toBeUndefined();
     });
 
     it('should render multiple labels inside the modal with the selected values when the selected property is not empty', () => {
@@ -237,10 +235,10 @@ describe('Component: ModalPickerMultiple', () => {
 
         // @ts-ignore
         modalPickerMultiple
-          .find('Button')
+          .find('ModalPickerOpener')
           .props()
           // @ts-ignore
-          .onClick();
+          .openModal();
         expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
         expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
 
@@ -278,10 +276,10 @@ describe('Component: ModalPickerMultiple', () => {
 
         // @ts-ignore
         modalPickerMultiple
-          .find('Button')
+          .find('ModalPickerOpener')
           .props()
           // @ts-ignore
-          .onClick();
+          .openModal();
 
         expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
         expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
@@ -488,60 +486,6 @@ describe('Component: ModalPickerMultiple', () => {
       ]);
     });
 
-    it('should remove the tag upon clicking', () => {
-      const value = [adminUser, userUser];
-      setup({ value, showAddButton: false });
-
-      modalPickerMultiple.setState({
-        page: pageOfUsers,
-        selected: value
-      });
-
-      const tags = modalPickerMultiple
-        .find('MoreOrLess')
-        .at(0)
-        .props().content;
-
-      // Click on user, user should be removed
-      // @ts-ignore
-      tags[0].props.onRemove(adminUser);
-      expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([userUser]);
-
-      // Click on admin, admin should be removed
-      // @ts-ignore
-      tags[1].props.onRemove(userUser);
-      expect(onChangeSpy).toHaveBeenCalledTimes(2);
-      expect(onChangeSpy).toHaveBeenCalledWith([adminUser]);
-    });
-
-    it('should remove the tag upon clicking', () => {
-      const value = [adminUser, userUser];
-      setup({ value, showAddButton: false });
-
-      modalPickerMultiple.setState({
-        page: pageOfUsers,
-        selected: value
-      });
-
-      const tags = modalPickerMultiple
-        .find('MoreOrLess')
-        .at(0)
-        .props().content;
-
-      // Click on user, user should be removed
-      // @ts-ignore
-      tags[0].props.onRemove(adminUser);
-      expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([userUser]);
-
-      // Click on admin, admin should be removed
-      // @ts-ignore
-      tags[1].props.onRemove(userUser);
-      expect(onChangeSpy).toHaveBeenCalledTimes(2);
-      expect(onChangeSpy).toHaveBeenCalledWith([adminUser]);
-    });
-
     it('should when the user removes a label inside the modal the label should be removed', () => {
       setup({ value: [adminUser, userUser], showAddButton: false });
 
@@ -706,31 +650,31 @@ describe('Component: ModalPickerMultiple', () => {
     test('becomes empty', () => {
       setup({ value: [adminUser], showAddButton: false });
 
-      //@ts-ignore
-      const moreOrLess = modalPickerMultiple.find('MoreOrLess').props();
-
-      //@ts-ignore
-      expect(moreOrLess.content[0].props.text).toBe('admin@42.nl');
+      expect(
+        modalPickerMultiple.find('ModalPickerOpener').props().values
+      ).toEqual(<React.Fragment>admin@42.nl</React.Fragment>);
 
       modalPickerMultiple.setProps({ value: undefined });
 
-      expect(modalPickerMultiple.find('MoreOrLess').exists()).toBe(false);
+      expect(
+        modalPickerMultiple.find('ModalPickerOpener').props().values
+      ).toBeUndefined();
     });
 
     test('becomes filled', () => {
       setup({ value: undefined, showAddButton: false });
 
-      expect(modalPickerMultiple.find('MoreOrLess').exists()).toBe(false);
+      expect(
+        modalPickerMultiple.find('ModalPickerOpener').props().values
+      ).toBeUndefined();
 
       modalPickerMultiple.setProps({
         value: [adminUser]
       });
 
-      //@ts-ignore
-      const moreOrLess = modalPickerMultiple.find('MoreOrLess').props();
-
-      //@ts-ignore
-      expect(moreOrLess.content[0].props.text).toBe('admin@42.nl');
+      expect(
+        modalPickerMultiple.find('ModalPickerOpener').props().values
+      ).toEqual(<React.Fragment>admin@42.nl</React.Fragment>);
     });
   });
 });

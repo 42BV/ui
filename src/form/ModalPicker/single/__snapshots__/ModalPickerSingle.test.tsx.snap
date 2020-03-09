@@ -6,20 +6,11 @@ exports[`Component: ModalPickerSingle ui should render without label: Component:
   color="success"
   tag="div"
 >
-  <div>
-    <span
-      className="mr-1"
-    >
-      admin@42.nl
-    </span>
-    <Button
-      color="primary"
-      onClick={[Function]}
-      tag="button"
-    >
-      Select your best friend
-    </Button>
-  </div>
+  <ModalPickerOpener
+    label="Select your best friend"
+    openModal={[Function]}
+    values="admin@42.nl"
+  />
   Some error
   <ModalPicker
     canSearch={true}
@@ -99,20 +90,11 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
   >
     Best Friend
   </Label>
-  <div>
-    <span
-      className="mr-1"
-    >
-      admin@42.nl
-    </span>
-    <Button
-      color="primary"
-      onClick={[Function]}
-      tag="button"
-    >
-      Select your best friend
-    </Button>
-  </div>
+  <ModalPickerOpener
+    label="Select your best friend"
+    openModal={[Function]}
+    values="admin@42.nl"
+  />
   Some error
   <ModalPicker
     canSearch={true}

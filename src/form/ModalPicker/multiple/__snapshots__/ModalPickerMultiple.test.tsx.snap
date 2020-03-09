@@ -1,36 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: ModalPickerMultiple ui should render multiple labels with the selected values when the value array is not empty: Component: ModalPickerMultiple => ui => should render multiple labels with the selected values when the value array is not empty 1`] = `
+<React.Fragment>
+  admin@42.nl, user@42.nl
+</React.Fragment>
+`;
+
 exports[`Component: ModalPickerMultiple ui should render properly without label: Component: ModalPickerMultiple => ui => should render properly without label 1`] = `
 <FormGroup
   className=""
   color="success"
   tag="div"
 >
-  <div>
-    <MoreOrLess
-      className="mb-2"
-      content={
-        Array [
-          <Tag
-            onRemove={[Function]}
-            text="admin@42.nl"
-          />,
-          <Tag
-            onRemove={[Function]}
-            text="user@42.nl"
-          />,
-        ]
-      }
-      limit={3}
-    />
-    <Button
-      color="primary"
-      onClick={[Function]}
-      tag="button"
-    >
-      Select your best friend
-    </Button>
-  </div>
+  <ModalPickerOpener
+    label="Select your best friend"
+    openModal={[Function]}
+    values={
+      <React.Fragment>
+        admin@42.nl, user@42.nl
+      </React.Fragment>
+    }
+  />
   Some error
   <ModalPicker
     canSearch={true}
@@ -110,31 +100,15 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
   >
     Best Friend
   </Label>
-  <div>
-    <MoreOrLess
-      className="mb-2"
-      content={
-        Array [
-          <Tag
-            onRemove={[Function]}
-            text="admin@42.nl"
-          />,
-          <Tag
-            onRemove={[Function]}
-            text="user@42.nl"
-          />,
-        ]
-      }
-      limit={3}
-    />
-    <Button
-      color="primary"
-      onClick={[Function]}
-      tag="button"
-    >
-      Select your best friend
-    </Button>
-  </div>
+  <ModalPickerOpener
+    label="Select your best friend"
+    openModal={[Function]}
+    values={
+      <React.Fragment>
+        admin@42.nl, user@42.nl
+      </React.Fragment>
+    }
+  />
   Some error
   <ModalPicker
     canSearch={true}

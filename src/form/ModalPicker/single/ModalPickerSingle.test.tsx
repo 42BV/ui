@@ -128,12 +128,17 @@ describe('Component: ModalPickerSingle', () => {
 
     it('should render a label with the selected value when the value is not empty', () => {
       setup({ value: adminUser, showAddButton: false });
-      expect(modalPickerSingle.find('span').text()).toBe('admin@42.nl');
+      expect(modalPickerSingle.find('ModalPickerOpener').props().values).toBe(
+        'admin@42.nl'
+      );
     });
 
     it('should not render a label when the value is empty', () => {
       setup({ value: undefined, showAddButton: false });
-      expect(modalPickerSingle.find('span').exists()).toBe(false);
+      expect(
+        // @ts-ignore
+        modalPickerSingle.find('ModalPickerOpener').props.values
+      ).toBeUndefined();
     });
 
     it('should render EmptyState when the totalElements of the page are zero', () => {
@@ -180,12 +185,11 @@ describe('Component: ModalPickerSingle', () => {
       const promise = Promise.resolve(pageOfUsers);
       fetchOptionsSpy.mockReturnValue(promise);
 
-      // @ts-ignore
       modalPickerSingle
-        .find('Button')
+        .find('ModalPickerOpener')
         .props()
         // @ts-ignore
-        .onClick();
+        .openModal();
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
       expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
@@ -260,7 +264,6 @@ describe('Component: ModalPickerSingle', () => {
       setup({ value: undefined, showAddButton: false });
       modalPickerSingle.setState({ isOpen: true });
 
-      // @ts-ignore
       modalPickerSingle
         .find('ModalPicker')
         .at(0)
@@ -285,7 +288,7 @@ describe('Component: ModalPickerSingle', () => {
         // @ts-ignore
         .modalSaved();
 
-      // @ts-ignore;
+      // @ts-ignore
       expect(modalPickerSingle.state().isOpen).toBe(false);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -475,25 +478,31 @@ describe('Component: ModalPickerSingle', () => {
     test('becomes empty', () => {
       setup({ value: adminUser, showAddButton: false });
 
-      const value = modalPickerSingle.find('span').text();
-      expect(value).toBe('admin@42.nl');
+      expect(modalPickerSingle.find('ModalPickerOpener').props().values).toBe(
+        'admin@42.nl'
+      );
 
       modalPickerSingle.setProps({ value: undefined });
 
-      expect(modalPickerSingle.find('span').exists()).toBe(false);
+      expect(
+        modalPickerSingle.find('ModalPickerOpener').props().values
+      ).toBeUndefined();
     });
 
     test('becomes filled', () => {
       setup({ value: undefined, showAddButton: false });
 
-      expect(modalPickerSingle.find('span').exists()).toBe(false);
+      expect(
+        modalPickerSingle.find('ModalPickerOpener').props().values
+      ).toBeUndefined();
 
       modalPickerSingle.setProps({
         value: adminUser
       });
 
-      const value = modalPickerSingle.find('span').text();
-      expect(value).toBe('admin@42.nl');
+      expect(modalPickerSingle.find('ModalPickerOpener').props().values).toBe(
+        'admin@42.nl'
+      );
     });
   });
 });
