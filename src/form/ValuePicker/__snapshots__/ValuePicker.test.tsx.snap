@@ -348,22 +348,30 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
             Best friend
           </label>
         </Label>
-        <div>
-          <Button
-            color="primary"
-            onClick={[Function]}
-            tag="button"
+        <ModalPickerOpener
+          label="Select your best friend"
+          openModal={[Function]}
+        >
+          <div
+            className="d-flex align-items-center"
           >
-            <button
-              aria-label={null}
-              className="btn btn-primary"
+            <Button
+              className="flex-grow-0 flex-shrink-0"
+              color="primary"
               onClick={[Function]}
-              type="button"
+              tag="button"
             >
-              Select your best friend
-            </button>
-          </Button>
-        </div>
+              <button
+                aria-label={null}
+                className="flex-grow-0 flex-shrink-0 btn btn-primary"
+                onClick={[Function]}
+                type="button"
+              >
+                Select your best friend
+              </button>
+            </Button>
+          </div>
+        </ModalPickerOpener>
         <ModalPicker
           canSearch={true}
           closeModal={[Function]}
@@ -580,22 +588,30 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
             Best friend
           </label>
         </Label>
-        <div>
-          <Button
-            color="primary"
-            onClick={[Function]}
-            tag="button"
+        <ModalPickerOpener
+          label="Select your best friend"
+          openModal={[Function]}
+        >
+          <div
+            className="d-flex align-items-center"
           >
-            <button
-              aria-label={null}
-              className="btn btn-primary"
+            <Button
+              className="flex-grow-0 flex-shrink-0"
+              color="primary"
               onClick={[Function]}
-              type="button"
+              tag="button"
             >
-              Select your best friend
-            </button>
-          </Button>
-        </div>
+              <button
+                aria-label={null}
+                className="flex-grow-0 flex-shrink-0 btn btn-primary"
+                onClick={[Function]}
+                type="button"
+              >
+                Select your best friend
+              </button>
+            </Button>
+          </div>
+        </ModalPickerOpener>
         <ModalPicker
           canSearch={true}
           closeModal={[Function]}

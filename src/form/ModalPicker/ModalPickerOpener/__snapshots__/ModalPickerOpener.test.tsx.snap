@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener => ui => with tooltip 1`] = `
+<div
+  className="d-flex align-items-center"
+>
+  <span
+    className="text-truncate mr-1 position-relative"
+  >
+    <Tooltip
+      className="w-100 h-100 position-absolute"
+      content="admin@42.nl"
+      tag="div"
+    >
+       
+    </Tooltip>
+    admin@42.nl
+  </span>
+  <Button
+    className="flex-grow-0 flex-shrink-0"
+    color="primary"
+    onClick={[MockFunction]}
+    tag="button"
+  >
+    Best friend
+  </Button>
+</div>
+`;
+
+exports[`Component: ModalPickerOpener ui with values: Component: ModalPickerOpener => ui => with values 1`] = `
+<div
+  className="d-flex align-items-center"
+>
+  <span
+    className="text-truncate mr-1 position-relative"
+  >
+    admin@42.nl
+  </span>
+  <Button
+    className="flex-grow-0 flex-shrink-0"
+    color="primary"
+    onClick={[MockFunction]}
+    tag="button"
+  >
+    Best friend
+  </Button>
+</div>
+`;
+
+exports[`Component: ModalPickerOpener ui without values: Component: ModalPickerOpener => ui => without values 1`] = `
+<div
+  className="d-flex align-items-center"
+>
+  <Button
+    className="flex-grow-0 flex-shrink-0"
+    color="primary"
+    onClick={[MockFunction]}
+    tag="button"
+  >
+    Best friend
+  </Button>
+</div>
+`;

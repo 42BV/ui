@@ -1,10 +1,9 @@
 import React from 'react';
-import { Button, Col, FormGroup, Input, Label, Row } from 'reactstrap';
+import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
-import MoreOrLess from '../../../core/MoreOrLess/MoreOrLess';
 import Tag from '../../../core/Tag/Tag';
 import { Color } from '../../types';
 import ModalPicker from '../ModalPicker';
@@ -18,6 +17,7 @@ import {
   RenderOptions,
   RenderOptionsOption
 } from '../../option';
+import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 
 interface BaseProps<T> {
   /**
@@ -202,14 +202,6 @@ export default class ModalPickerMultiple<T> extends React.Component<
     this.setState({ selected });
   }
 
-  tagClicked(tag: T) {
-    const value = this.props.value as T[];
-    const selected = value.filter(v => v !== tag);
-
-    this.props.onChange(selected);
-    doBlur(this.props.onBlur);
-  }
-
   fetchOptions(query: string) {
     this.setState({ query }, () => {
       this.loadPage(1);
@@ -244,7 +236,14 @@ export default class ModalPickerMultiple<T> extends React.Component<
 
   render() {
     const value = this.props.value;
-    const { placeholder, error, color, className = '', ...props } = this.props;
+    const {
+      placeholder,
+      error,
+      color,
+      className = '',
+      optionForValue,
+      ...props
+    } = this.props;
 
     return (
       <FormGroup className={className} color={color}>
@@ -252,12 +251,13 @@ export default class ModalPickerMultiple<T> extends React.Component<
           <Label for={props.id}>{props.label}</Label>
         ) : null}
 
-        <div>
-          {this.renderTagsInMoreOrLess(value)}
-          <Button color="primary" onClick={() => this.openModal()}>
-            {placeholder}
-          </Button>
-        </div>
+        <ModalPickerOpener
+          openModal={() => this.openModal()}
+          label={placeholder}
+          values={
+            value ? <>{value.map(optionForValue).join(', ')}</> : undefined
+          }
+        />
 
         {error}
         {this.renderModal()}
@@ -370,16 +370,6 @@ export default class ModalPickerMultiple<T> extends React.Component<
     });
   }
 
-  renderTagsInMoreOrLess(values?: T[]) {
-    const content = this.renderTags(v => this.tagClicked(v), values);
-
-    if (!content) {
-      return null;
-    }
-
-    return <MoreOrLess className="mb-2" limit={3} content={content} />;
-  }
-
   renderModalCurrentSelection() {
     const { selected } = this.state;
 
@@ -399,11 +389,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
     );
   }
 
-  renderTags(onClick: (value: T) => void, values?: T[]): JSX.Element[] | null {
-    if (!values) {
-      return null;
-    }
-
+  renderTags(onClick: (value: T) => void, values: T[]): JSX.Element[] | null {
     const { optionForValue } = this.props;
 
     return values.map(value => {
