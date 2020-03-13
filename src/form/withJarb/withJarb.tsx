@@ -73,7 +73,7 @@ export default function withJarb<
         | 'valid'
         | 'error'
         | 'label'
-      > & { label?: string }
+      >
   ) {
     const illegalProps = managedProps.filter(p => props[p] !== undefined);
 
