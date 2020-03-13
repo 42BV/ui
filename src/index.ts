@@ -28,6 +28,7 @@ export { default as SearchInput } from './core/SearchInput/SearchInput';
 export { default as Pager } from './core/Pager/Pager';
 
 // Form
+export { default as withJarb } from './form/withJarb/withJarb';
 export { default as Input, JarbInput } from './form/Input/Input';
 export { default as Textarea, JarbTextarea } from './form/Textarea/Textarea';
 export {
