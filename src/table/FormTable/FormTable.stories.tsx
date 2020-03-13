@@ -1233,9 +1233,516 @@ storiesOf('table/FormTable', module)
         </div>
       </Card>
     );
+  })
+  .add('copy / paste to spreadsheet', () => {
+    const [newPerson] = useState<Person>({
+      id: Math.random(),
+      firstName: '',
+      lastName: '',
+      age: 0,
+      eyeColor: '',
+      height: 0,
+      weight: 0,
+      jobTitle: '',
+      favoriteMovie: undefined,
+      favoriteFood: '',
+      birthDate: undefined,
+      sex: ''
+    });
+
+    const [page, setPage] = useState(1);
+    const [newPage, setNewPage] = useState<number>();
+    const [personsList, setPersonsList] = useState(persons);
+    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
+      emptyPage<Person>()
+    );
+    const [loading, setLoading] = useState<Person>();
+    const [dirtyPersons, setDirtyPersons] = useState<{ [id: number]: boolean }>(
+      {}
+    );
+    const [flashMessage, setFlashMessage] = useState<string>();
+    const [processingPaste, setProcessingPaste] = useState(false);
+
+    useEffect(() => {
+      const p = pageOf<Person>(personsList, page, 10);
+      p.content.push({ ...newPerson });
+      setDirtyPersons({});
+      setPageOfPersons(p);
+    }, [personsList, newPerson, page]);
+
+    useEffect(() => {
+      const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
+      return () => {
+        window.clearTimeout(timeout);
+      };
+    }, [flashMessage]);
+
+    async function onSubmit(data: Person, form: FormApi<Person>) {
+      setLoading(data);
+      await sleep(random(200, 1000));
+      const person = { ...data };
+      if (data.id === newPerson.id) {
+        person.id = Math.random();
+        setPersonsList([...personsList, person]);
+      } else {
+        setPersonsList(
+          personsList.map((p) => {
+            return p.id === person.id ? person : p;
+          })
+        );
+      }
+      setFlashMessage('Person saved successfully!');
+      window.setTimeout(
+        () => form.reset(data.id === newPerson.id ? newPerson : person),
+        1
+      );
+      setLoading(undefined);
+    }
+
+    async function deletePerson(person: Person) {
+      setLoading(person);
+      await sleep(random(200, 1000));
+      setPersonsList(personsList.filter((p) => p.id !== person.id));
+      setLoading(undefined);
+      setFlashMessage('Person deleted successfully!');
+    }
+
+    function setPersonDirty(isPristine: boolean, person: Person) {
+      if (!isPristine) {
+        if (!dirtyPersons[person.id]) {
+          setDirtyPersons({ ...dirtyPersons, [person.id]: true });
+        }
+      } else if (dirtyPersons[person.id]) {
+        setDirtyPersons({ ...dirtyPersons, [person.id]: false });
+      }
+    }
+
+    function confirmPage(pageNumber: number) {
+      if (Object.values(dirtyPersons).some((d) => d)) {
+        setNewPage(pageNumber);
+      } else {
+        setPage(pageNumber);
+      }
+    }
+
+    async function copy() {
+      const csv = [personKeys.join('\t')]
+        .concat(
+          persons.map((person) =>
+            personKeys
+              .map((key) => {
+                if (key === 'favoriteMovie') {
+                  const movie = person[key];
+
+                  return movie?.name ?? '';
+                } else {
+                  return person[key] ?? '';
+                }
+              })
+              .join('\t')
+          )
+        )
+        .join('\n');
+
+      await navigator.clipboard.writeText(csv);
+
+      setFlashMessage('Copied!');
+    }
+
+    async function paste() {
+      setProcessingPaste(true);
+
+      const text = await navigator.clipboard.readText();
+      const keys = [...personKeys];
+      const list: Person[] = [];
+
+      const rows = text.split('\n');
+
+      // Remove header line
+      rows.shift();
+
+      rows.forEach((row) => {
+        const person = {};
+        row.split('\t').forEach((value, index) => {
+          const key = keys[index];
+
+          switch (key) {
+            case 'favoriteMovie':
+              person[key] = { name: value };
+              break;
+            case 'birthDate':
+              person[key] = Date.parse(value);
+              break;
+            default:
+              person[key] = value;
+              break;
+          }
+        });
+        list.push(person as Person);
+      });
+
+      setPersonsList(list);
+      setProcessingPaste(false);
+      setFlashMessage(`Imported ${list.length} rows`);
+    }
+
+    useEffect(() => {
+      function preventOnInputElement(event: Event, action: () => void) {
+        if (
+          event.target instanceof HTMLTextAreaElement ||
+          event.target instanceof HTMLInputElement
+        ) {
+          return;
+        }
+
+        action();
+      }
+
+      function handleCopy(event: Event) {
+        preventOnInputElement(event, copy);
+      }
+
+      function handlePaste(event: Event) {
+        preventOnInputElement(event, paste);
+      }
+
+      document.addEventListener('paste', handlePaste, { passive: true });
+      document.addEventListener('copy', handleCopy, { passive: true });
+
+      return () => {
+        document.removeEventListener('paste', handlePaste);
+        document.removeEventListener('copy', handleCopy);
+      };
+    }, []);
+
+    return (
+      <Card body>
+        <div className="mb-2">
+          <Button icon="file_copy" onClick={copy}>
+            Copy
+          </Button>
+
+          <Button
+            onClick={paste}
+            className="ml-2"
+            icon="assignment"
+            inProgress={processingPaste}
+          >
+            Paste
+          </Button>
+        </div>
+
+        <p>Try copy pasting to excel / numbers and back.</p>
+
+        <p>
+          You can also use the copy and paste keyboard shortcuts when no input
+          is focussed.
+        </p>
+
+        {flashMessage ? (
+          <FlashMessage
+            onClose={() => setFlashMessage(undefined)}
+            color="success"
+          >
+            {flashMessage}
+          </FlashMessage>
+        ) : null}
+        <EpicTable hasRight={false}>
+          <EpicRow header>
+            <EpicHeader width={300} height={44}>
+              Actions
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              First name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Last name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Age
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Eye color
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Height
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Weight
+            </EpicHeader>
+            <EpicHeader width={200} height={44}>
+              Job title
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              Favorite movie
+            </EpicHeader>
+            <EpicHeader width={150} height={44}>
+              Favorite food
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              Birth date
+            </EpicHeader>
+            <EpicHeader width={200} height={44}>
+              Sex
+            </EpicHeader>
+          </EpicRow>
+          {pageOfPersons.content.map((person) => (
+            <EpicRow key={person.id}>
+              <EpicCell width={300} height={52}>
+                {loading && loading.id === person.id ? (
+                  <Loading text={{ loading: 'Processing...' }} />
+                ) : (
+                  <>
+                    <FormButton
+                      formId={'personForm' + person.id}
+                      type="submit"
+                      icon="save"
+                      className="mr-1"
+                      color={dirtyPersons[person.id] ? 'primary' : 'secondary'}
+                    >
+                      Save
+                    </FormButton>
+                    {dirtyPersons[person.id] ? (
+                      <FormButton
+                        formId={'personForm' + person.id}
+                        type="reset"
+                        icon="restore"
+                        color="secondary"
+                        className="mr-1"
+                      >
+                        Reset
+                      </FormButton>
+                    ) : null}
+                    {person.id !== newPerson.id ? (
+                      <ConfirmButton
+                        onConfirm={() => deletePerson(person)}
+                        icon="delete"
+                        color="danger"
+                        dialogText={`Are you sure you want to delete ${person.firstName} ${person.lastName}?`}
+                      >
+                        Delete
+                      </ConfirmButton>
+                    ) : null}
+                  </>
+                )}
+              </EpicCell>
+              <EpicForm
+                id={'personForm' + person.id}
+                width={1950}
+                height={52}
+                initialValues={person}
+                onSubmit={onSubmit}
+              >
+                <FormSpy
+                  subscription={{ pristine: true }}
+                  onChange={(formState) =>
+                    setPersonDirty(formState.pristine, person)
+                  }
+                />
+                <EpicFormCell width={300} height={52}>
+                  <JarbInput
+                    id={`firstName-${person.id}`}
+                    name="firstName"
+                    placeholder="Enter first name"
+                    jarb={{
+                      validator: 'Person.firstName',
+                      label: 'First name'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={100} height={52}>
+                  <JarbInput
+                    id={`lastName-${person.id}`}
+                    name="lastName"
+                    placeholder="Enter last name"
+                    jarb={{
+                      validator: 'Person.lastName',
+                      label: 'Last name'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={100} height={52}>
+                  <JarbInput
+                    id={`age-${person.id}`}
+                    name="age"
+                    type="number"
+                    placeholder="Enter age"
+                    jarb={{
+                      validator: 'Person.age',
+                      label: 'Age'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={100} height={52}>
+                  <JarbSelect
+                    id={`eyeColor-${person.id}`}
+                    name="eyeColor"
+                    placeholder="Enter eye color"
+                    options={['green', 'blue', 'brown']}
+                    optionForValue={(option) => option}
+                    jarb={{
+                      validator: 'Person.eyeColor',
+                      label: 'Eye color'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={100} height={52}>
+                  <JarbInput
+                    id={`age-${person.id}`}
+                    name="height"
+                    placeholder="Enter height"
+                    type="number"
+                    jarb={{
+                      validator: 'Person.height',
+                      label: 'Height'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={100} height={52}>
+                  <JarbInput
+                    id={`weight-${person.id}`}
+                    name="weight"
+                    type="number"
+                    placeholder="Enter weight"
+                    jarb={{
+                      validator: 'Person.weight',
+                      label: 'Weight'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={200} height={52}>
+                  <JarbInput
+                    id={`jobTitle-${person.id}`}
+                    name="jobTitle"
+                    placeholder="Enter job title"
+                    jarb={{
+                      validator: 'Person.jobTitle',
+                      label: 'Job title'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={300} height={52}>
+                  <JarbModalPickerSingle
+                    id={`favoriteMovie-${person.id}`}
+                    name="favoriteMovie"
+                    placeholder="Enter favorite movie"
+                    jarb={{
+                      validator: 'Person.favoriteMovie',
+                      label: 'Favorite movie'
+                    }}
+                    multiple={false}
+                    optionForValue={(option) => option.name}
+                    fetchOptions={(query, page, size) =>
+                      Promise.resolve(
+                        pageOf(
+                          movies
+                            .filter(
+                              (movie) =>
+                                query.length === 0 ||
+                                movie.name.indexOf(query) > 0
+                            )
+                            .slice((page - 1) * size, size),
+                          page,
+                          size
+                        )
+                      )
+                    }
+                    errorMode="tooltip"
+                    alignButton="right"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={150} height={52}>
+                  <JarbInput
+                    id={`favoriteFood-${person.id}`}
+                    name="favoriteFood"
+                    placeholder="Enter favorite food"
+                    jarb={{
+                      validator: 'Person.favoriteFood',
+                      label: 'Favorite food'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={300} height={52}>
+                  <JarbDateTimeInput
+                    id={`birthDate-${person.id}`}
+                    name="birthDate"
+                    placeholder="Enter birth date"
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat={false}
+                    jarb={{
+                      validator: 'Person.birthDate',
+                      label: 'Birthdate'
+                    }}
+                    errorMode="tooltip"
+                    mode="modal"
+                    allowNull={true}
+                  />
+                </EpicFormCell>
+
+                <EpicFormCell width={200} height={52}>
+                  <JarbRadioGroup
+                    id={`sex-${person.id}`}
+                    name="sex"
+                    className="ml-1"
+                    options={['male', 'female']}
+                    optionForValue={(option) => option}
+                    horizontal={true}
+                    jarb={{
+                      validator: 'Person.sex',
+                      label: 'Sex'
+                    }}
+                    errorMode="tooltip"
+                  />
+                </EpicFormCell>
+              </EpicForm>
+            </EpicRow>
+          ))}
+        </EpicTable>
+
+        <div className="d-flex justify-content-center">
+          <Pagination
+            className="my-3"
+            page={pageOfPersons}
+            onChange={confirmPage}
+          />
+          {newPage ? (
+            <OpenCloseModal
+              isOpen={true}
+              onClose={() => setNewPage(undefined)}
+              onSave={() => {
+                setPage(newPage);
+                setNewPage(undefined);
+              }}
+              text={{ save: 'Confirm' }}
+            >
+              All your changes will be lost if you navigate to another page. Are
+              you sure you want to go to page {newPage} and loose all your
+              progress?
+            </OpenCloseModal>
+          ) : null}
+        </div>
+      </Card>
+    );
   });
 
-interface Person {
+type Person = {
   id: number;
   firstName: string;
   lastName: string;
@@ -1248,7 +1755,22 @@ interface Person {
   favoriteFood: string;
   birthDate?: Date;
   sex: string;
-}
+};
+
+const personKeys: (keyof Person)[] = [
+  'id',
+  'firstName',
+  'lastName',
+  'age',
+  'eyeColor',
+  'height',
+  'weight',
+  'jobTitle',
+  'favoriteMovie',
+  'favoriteFood',
+  'birthDate',
+  'sex'
+];
 
 const persons: Person[] = [
   {
