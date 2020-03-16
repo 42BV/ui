@@ -6,23 +6,23 @@ import { Moment } from 'moment';
 import { JarbInput } from './Input/Input';
 import { FinalForm } from './story-utils';
 import {
-  JarbFileInput,
-  JarbImageUpload,
-  JarbTextEditor,
-  JarbTextarea,
-  JarbDateTimeInput,
-  JarbDateRangePicker,
-  JarbSelect,
-  JarbTypeaheadSingle,
-  JarbModalPickerSingle,
-  JarbTypeaheadMultiple,
-  JarbModalPickerMultiple,
-  requireFile,
-  limitFileSize,
-  requireImage,
-  limitImageSize,
   JarbCheckboxMultipleSelect,
-  JarbIconPicker
+  JarbDateRangePicker,
+  JarbDateTimeInput,
+  JarbFileInput,
+  JarbIconPicker,
+  JarbImageUpload,
+  JarbModalPickerMultiple,
+  JarbModalPickerSingle,
+  JarbSelect,
+  JarbTextarea,
+  JarbTextEditor,
+  JarbTypeaheadMultiple,
+  JarbTypeaheadSingle,
+  limitFileSize,
+  limitImageSize,
+  requireFile,
+  requireImage
 } from '..';
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
@@ -57,9 +57,15 @@ async function firstNameAvailable(value?: string) {
 
   await sleep(random(2000, 5000));
 
-  return ['Maarten', 'Jeffrey'].includes(value)
-    ? undefined
-    : 'First name not available';
+  return ['Maarten', 'Jeffrey'].includes(value) ? (
+    undefined
+  ) : (
+    <ul>
+      <li>First name not available</li>
+      <li>You can use Jeffrey</li>
+      <li>You can use Maarten</li>
+    </ul>
+  );
 }
 
 async function lastNameAvailable(value?: string) {
@@ -69,9 +75,15 @@ async function lastNameAvailable(value?: string) {
 
   await sleep(random(100, 500));
 
-  return ['Hus', 'van Hoven'].includes(value)
-    ? undefined
-    : 'Last name not available';
+  return ['Hus', 'van Hoven'].includes(value) ? (
+    undefined
+  ) : (
+    <ul>
+      <li>Last name not available</li>
+      <li>You can use Hus</li>
+      <li>You can use van Hoven</li>
+    </ul>
+  );
 }
 
 const mask = [

@@ -1,27 +1,16 @@
+import React from 'react';
 import { ValidationError } from '@42.nl/jarb-final-form';
 import { MetaError } from '../types';
 import {
-  Translation,
-  getTranslator
+  getTranslator,
+  Translation
 } from '../../utilities/translation/translator';
 
-export function keyForError(error: MetaError) {
-  if (typeof error === 'string') {
-    return error;
-  }
-
-  if ((error as ValidationError).type === undefined) {
-    return (error as Translation).key;
-  }
-
-  return (error as ValidationError).type;
-}
-
-export function errorMessage(error: MetaError): string {
+export function errorMessage(error: MetaError): React.ReactNode {
   const translator = getTranslator();
 
   // We consider it translated already
-  if (typeof error === 'string') {
+  if (typeof error === 'string' || React.isValidElement(error)) {
     return error;
   }
 

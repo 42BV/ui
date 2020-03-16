@@ -1,9 +1,11 @@
 import { ValidationError } from '@42.nl/jarb-final-form';
 
 import { Translation } from '../utilities/translation/translator';
+import { ReactNode } from 'react';
+
 export { Color } from '../core/types';
 
-export type MetaError = ValidationError | string | Translation;
+export type MetaError = ValidationError | ReactNode | Translation;
 
 /**
  * Defines the type of the Meta property as given by final-form.
