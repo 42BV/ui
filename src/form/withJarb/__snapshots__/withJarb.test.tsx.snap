@@ -5,7 +5,7 @@ exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => for
   className="withjarb-tooltip"
 >
   <FormFeedback
-    key=""
+    key="0"
     tag="div"
   />
 </div>
@@ -76,7 +76,7 @@ exports[`HoC: withJarb should throw an error when detecting illegal props 1`] = 
 exports[`HoC: withJarb ui: withJarb => ui => formError 1`] = `
 <div>
   <FormFeedback
-    key=""
+    key="0"
     tag="div"
   />
 </div>

@@ -1,32 +1,9 @@
-import { errorMessage, keyForError } from './utils';
+import React from 'react';
+import { errorMessage } from './utils';
 import {
   setTranslator,
   Translator
 } from '../../utilities/translation/translator';
-
-describe('keyForError', () => {
-  test('Error is a string', () => {
-    expect(keyForError('Serious error')).toBe('Serious error');
-  });
-
-  test('Error is a Translation', () => {
-    expect(
-      keyForError({ key: 'test', data: { age: 12 }, fallback: 'test' })
-    ).toBe('test');
-  });
-
-  test('Error is ValidationError', () => {
-    const error = {
-      type: 'ERROR_REQUIRED',
-      label: 'Name',
-      value: '',
-      reasons: {}
-    };
-
-    // @ts-ignore
-    expect(keyForError(error)).toBe('ERROR_REQUIRED');
-  });
-});
 
 describe('errorMessage', () => {
   let t: Translator;
@@ -42,6 +19,23 @@ describe('errorMessage', () => {
 
     expect(t).toHaveBeenCalledTimes(0);
     expect(error).toEqual('Serious error');
+  });
+
+  test('Error is a ReactNode', () => {
+    const error = errorMessage(
+      <ul>
+        <li>You are wrong!</li>
+        <li>This is not correct!</li>
+      </ul>
+    );
+
+    expect(t).toHaveBeenCalledTimes(0);
+    expect(error).toEqual(
+      <ul>
+        <li>You are wrong!</li>
+        <li>This is not correct!</li>
+      </ul>
+    );
   });
 
   test('Error is a Translation', () => {

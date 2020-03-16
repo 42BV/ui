@@ -3,7 +3,7 @@ import { FormFeedback } from 'reactstrap';
 import { useErrorsForValidator } from '@42.nl/react-error-store';
 
 import { Meta, MetaError } from '../types';
-import { errorMessage, keyForError } from './utils';
+import { errorMessage } from './utils';
 import { useSettledErrors } from './useSettledErrors';
 import { useOnChange } from './useOnChange';
 import { OnChange } from './types';
@@ -59,8 +59,8 @@ export default function FormError(props: Props) {
 
   return (
     <div className={className}>
-      {frontEndErrors.map((e: MetaError) => (
-        <FormFeedback key={keyForError(e)}>{errorMessage(e)}</FormFeedback>
+      {frontEndErrors.map((e: MetaError, index: number) => (
+        <FormFeedback key={`${index}`}>{errorMessage(e)}</FormFeedback>
       ))}
 
       {backEndErrors.map((e: string) => (

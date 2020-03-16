@@ -3,7 +3,7 @@
 exports[`Component: FormError ui both errors: Component: FormError => ui => has both errors 1`] = `
 <div>
   <FormFeedback
-    key="ERROR_REQUIRED"
+    key="0"
     tag="div"
   >
     Name is required
@@ -31,7 +31,7 @@ exports[`Component: FormError ui has back-end errors: Component: FormError => ui
 exports[`Component: FormError ui has front-end errors: Component: FormError => ui => has front-end errors 1`] = `
 <div>
   <FormFeedback
-    key="ERROR_REQUIRED"
+    key="0"
     tag="div"
   >
     Name is required
