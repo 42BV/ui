@@ -1,7 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { Card, Alert, Row, Col, Input } from 'reactstrap';
-import { groupBy, every, startsWith, lowerCase } from 'lodash';
+import { Alert, Card, Col, Input, Row } from 'reactstrap';
+import { every, groupBy, lowerCase, startsWith } from 'lodash';
 
 import { EpicTable } from './EpicTable';
 import { EpicRow } from './rows/EpicRow/EpicRow';
@@ -18,13 +18,13 @@ import { EpicSort } from './widgets/EpicSort/EpicSort';
 
 import { Direction } from './types';
 import {
-  Tag,
-  Pagination,
-  DateTimeInput,
   Button,
   ContentState,
   ContentStateMode,
-  pageOf
+  DateTimeInput,
+  pageOf,
+  Pagination,
+  Tag
 } from '../..';
 import moment from 'moment';
 import MoreOrLess from '../../core/MoreOrLess/MoreOrLess';
@@ -42,7 +42,7 @@ storiesOf('table|EpicTable', module)
       jobTitle: 200,
       favoriteMovie: 300,
       favoriteFood: 200,
-      birthDate: 200,
+      dateOfBirth: 200,
       sex: 200,
       actions: 300
     }));
@@ -61,7 +61,7 @@ storiesOf('table|EpicTable', module)
       jobTitle: '',
       favoriteMovie: '',
       favoriteFood: '',
-      birthDate: '',
+      dateOfBirth: '',
       sex: ''
     }));
 
@@ -384,29 +384,29 @@ storiesOf('table|EpicTable', module)
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
-              width={widths.birthDate}
+              width={widths.dateOfBirth}
               height={88}
-              onResize={width => changeSize('birthDate', width)}
+              onResize={width => changeSize('dateOfBirth', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
                   Birth date
                   <EpicSort
                     direction={
-                      sort.column === 'birthDate' ? sort.direction : 'NONE'
+                      sort.column === 'dateOfBirth' ? sort.direction : 'NONE'
                     }
-                    onChange={direction => changeSort('birthDate', direction)}
+                    onChange={direction => changeSort('dateOfBirth', direction)}
                   />
                 </EpicCellLayout>
 
                 <DateTimeInput
-                  id="birthdate"
+                  id="dateOfBirth"
                   dateFormat="YYYY-MM-DD"
                   placeholder="YYYY-MM-DD"
                   timeFormat={false}
                   onChange={date =>
                     filterChanged(
-                      'birthDate',
+                      'dateOfBirth',
                       date ? moment(date).format('YYYY-MM-DD') : ''
                     )
                   }
@@ -481,8 +481,8 @@ storiesOf('table|EpicTable', module)
                 <EpicCell width={widths.favoriteFood} height={44}>
                   {person.favoriteFood}
                 </EpicCell>
-                <EpicCell width={widths.birthDate} height={44}>
-                  {person.birthDate}
+                <EpicCell width={widths.dateOfBirth} height={44}>
+                  {person.dateOfBirth}
                 </EpicCell>
                 <EpicCell width={widths.sex} height={44}>
                   {person.sex}
@@ -510,10 +510,10 @@ storiesOf('table|EpicTable', module)
                       </Col>
 
                       <Col tag="dt" sm={3}>
-                        Birthdate
+                        Date of birth
                       </Col>
                       <Col tag="dd" sm={9}>
-                        {person.birthDate}
+                        {person.dateOfBirth}
                       </Col>
 
                       <Col tag="dt" sm={3}>
@@ -581,7 +581,7 @@ storiesOf('table|EpicTable', module)
             className="my-3"
             page={pageOfPersons}
             onChange={setPage}
-          ></Pagination>
+          />
         </div>
       </Card>
     );
@@ -659,7 +659,7 @@ storiesOf('table|EpicTable', module)
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.birthDate}
+                {person.dateOfBirth}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -673,7 +673,7 @@ storiesOf('table|EpicTable', module)
       </Card>
     );
   })
-  .add('no stipes', () => {
+  .add('no stripes', () => {
     return (
       <Card body>
         <EpicTable striped={false}>
@@ -746,7 +746,7 @@ storiesOf('table|EpicTable', module)
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.birthDate}
+                {person.dateOfBirth}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -893,7 +893,7 @@ storiesOf('table|EpicTable', module)
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.birthDate}
+                {person.dateOfBirth}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -1081,7 +1081,7 @@ storiesOf('table|EpicTable', module)
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.birthDate}
+                {person.dateOfBirth}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -1245,7 +1245,7 @@ storiesOf('table|EpicTable', module)
                     {person.favoriteFood}
                   </EpicCell>
                   <EpicCell width={100} height={44}>
-                    {person.birthDate}
+                    {person.dateOfBirth}
                   </EpicCell>
                   <EpicCell width={100} height={44}>
                     {person.sex}
@@ -1371,7 +1371,7 @@ storiesOf('table|EpicTable', module)
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.birthDate}
+                {person.dateOfBirth}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -1388,7 +1388,7 @@ storiesOf('table|EpicTable', module)
             className="my-3"
             page={pageOfPersons}
             onChange={setPage}
-          ></Pagination>
+          />
         </div>
       </Card>
     );
@@ -1476,7 +1476,7 @@ storiesOf('table|EpicTable', module)
                   {person.favoriteFood}
                 </EpicCell>
                 <EpicCell width={100} height={44}>
-                  {person.birthDate}
+                  {person.dateOfBirth}
                 </EpicCell>
                 <EpicCell width={100} height={44}>
                   {person.sex}
@@ -1584,7 +1584,7 @@ storiesOf('table|EpicTable', module)
                     {person.favoriteFood}
                   </EpicCell>
                   <EpicCell width={100} height={44}>
-                    {person.birthDate}
+                    {person.dateOfBirth}
                   </EpicCell>
                   <EpicCell width={100} height={44}>
                     {person.sex}
@@ -1612,10 +1612,10 @@ storiesOf('table|EpicTable', module)
                         </Col>
 
                         <Col tag="dt" sm={3}>
-                          Birthdate
+                          Date of birth
                         </Col>
                         <Col tag="dd" sm={9}>
-                          {person.birthDate}
+                          {person.dateOfBirth}
                         </Col>
 
                         <Col tag="dt" sm={3}>
@@ -1762,7 +1762,7 @@ storiesOf('table|EpicTable', module)
                           <p key={p.id}>{p.firstName}</p>
                         ))}
                         limit={3}
-                      ></MoreOrLess>
+                      />
                     </EpicDetail>
                   )}
                 </EpicDetailRow>
@@ -1905,7 +1905,7 @@ storiesOf('table|EpicTable', module)
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.birthDate}
+                {person.dateOfBirth}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -1922,7 +1922,7 @@ storiesOf('table|EpicTable', module)
             className="my-3"
             page={pageOfPersons}
             onChange={setPage}
-          ></Pagination>
+          />
         </div>
       </Card>
     );
@@ -1939,7 +1939,7 @@ interface Person {
   jobTitle: string;
   favoriteMovie: string;
   favoriteFood: string;
-  birthDate: string;
+  dateOfBirth: string;
   sex: string;
 }
 
@@ -1955,7 +1955,7 @@ const persons: Person[] = [
     jobTitle: 'Senior CodeMonkey',
     favoriteMovie: 'The Matrix',
     favoriteFood: 'Hamburgers',
-    birthDate: '2014-09-24',
+    dateOfBirth: '2014-09-24',
     sex: 'male'
   },
   {
@@ -1969,7 +1969,7 @@ const persons: Person[] = [
     jobTitle: 'Business Manager',
     favoriteMovie: 'Fear and loathing in Las Vegas',
     favoriteFood: 'Spaghetti',
-    birthDate: '2000-09-24',
+    dateOfBirth: '2000-09-24',
     sex: 'female'
   },
   {
@@ -1983,7 +1983,7 @@ const persons: Person[] = [
     jobTitle: 'Senior CodeMonkey',
     favoriteMovie: 'Lord of the Rings',
     favoriteFood: 'French Fries',
-    birthDate: '2014-09-24',
+    dateOfBirth: '2014-09-24',
     sex: 'male'
   },
   {
@@ -1997,7 +1997,7 @@ const persons: Person[] = [
     jobTitle: 'Thespian',
     favoriteMovie: 'Star Trek',
     favoriteFood: 'Kosher',
-    birthDate: '1900-09-24',
+    dateOfBirth: '1900-09-24',
     sex: 'male'
   },
   {
@@ -2012,7 +2012,7 @@ const persons: Person[] = [
     favoriteMovie: 'Taxi',
     favoriteFood:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, at nam alias ad culpa quae deleniti. Autem eveniet mollitia veritatis reprehenderit ea, tempora vero voluptatem. Dolore repudiandae voluptate quam quidem.,',
-    birthDate: '2014-09-24',
+    dateOfBirth: '2014-09-24',
     sex: 'male'
   },
   {
@@ -2026,7 +2026,7 @@ const persons: Person[] = [
     jobTitle: 'Retired',
     favoriteMovie: 'Driving miss Daisy',
     favoriteFood: 'Prunes',
-    birthDate: '1940-09-24',
+    dateOfBirth: '1940-09-24',
     sex: 'female'
   },
   {
@@ -2040,7 +2040,7 @@ const persons: Person[] = [
     jobTitle: 'Retired',
     favoriteMovie: 'Driving miss Daisy',
     favoriteFood: 'Prunes',
-    birthDate: '1938-09-24',
+    dateOfBirth: '1938-09-24',
     sex: 'male'
   },
   {
@@ -2053,8 +2053,8 @@ const persons: Person[] = [
     weight: 5,
     jobTitle: 'Ace pilot',
     favoriteMovie: 'Gundam wing',
-    favoriteFood: 'Applepie',
-    birthDate: '2010-09-24',
+    favoriteFood: 'Apple pie',
+    dateOfBirth: '2010-09-24',
     sex: 'male'
   },
   {
@@ -2068,7 +2068,7 @@ const persons: Person[] = [
     jobTitle: 'Voice actor',
     favoriteMovie: 'Guyver',
     favoriteFood: 'Snakes',
-    birthDate: '1960-09-24',
+    dateOfBirth: '1960-09-24',
     sex: 'male'
   },
   {
@@ -2079,10 +2079,10 @@ const persons: Person[] = [
     eyeColor: 'brown',
     height: 3,
     weight: 5,
-    jobTitle: 'Captian',
+    jobTitle: 'Captain',
     favoriteMovie: 'Star Trek',
     favoriteFood: 'Replicated',
-    birthDate: '2100-09-24',
+    dateOfBirth: '2100-09-24',
     sex: 'male'
   },
   {
@@ -2096,7 +2096,7 @@ const persons: Person[] = [
     jobTitle: 'Blacksmith',
     favoriteMovie: 'Not without my daughter',
     favoriteFood: 'Pears',
-    birthDate: '1989-09-24',
+    dateOfBirth: '1989-09-24',
     sex: 'male'
   },
   {
@@ -2110,7 +2110,7 @@ const persons: Person[] = [
     jobTitle: 'Gardner',
     favoriteMovie: 'The Gardner',
     favoriteFood: 'Cauliflower',
-    birthDate: '2019-09-24',
+    dateOfBirth: '2019-09-24',
     sex: 'male'
   },
   {
@@ -2124,7 +2124,7 @@ const persons: Person[] = [
     jobTitle: 'Baker',
     favoriteMovie: 'Halloween',
     favoriteFood: 'Cake',
-    birthDate: '1980-09-24',
+    dateOfBirth: '1980-09-24',
     sex: 'male'
   },
   {
@@ -2137,8 +2137,8 @@ const persons: Person[] = [
     weight: 5,
     jobTitle: 'Student',
     favoriteMovie: 'Highlander',
-    favoriteFood: 'Icecream',
-    birthDate: '1980-09-24',
+    favoriteFood: 'Ice cream',
+    dateOfBirth: '1980-09-24',
     sex: 'female'
   },
   {
@@ -2152,7 +2152,7 @@ const persons: Person[] = [
     jobTitle: 'Commander',
     favoriteMovie: 'Search for Spock',
     favoriteFood: 'Jamba',
-    birthDate: '2200-09-24',
+    dateOfBirth: '2200-09-24',
     sex: 'male'
   },
   {
@@ -2166,7 +2166,7 @@ const persons: Person[] = [
     jobTitle: 'Captain',
     favoriteMovie: 'Wrath of Khan',
     favoriteFood: 'Coffee',
-    birthDate: '2240-09-24',
+    dateOfBirth: '2240-09-24',
     sex: 'female'
   },
   {
@@ -2180,7 +2180,7 @@ const persons: Person[] = [
     jobTitle: 'Captain',
     favoriteMovie: 'Next generation',
     favoriteFood: 'Tea Earl Grey Hot',
-    birthDate: '2200-09-24',
+    dateOfBirth: '2200-09-24',
     sex: 'male'
   },
   {
@@ -2194,7 +2194,7 @@ const persons: Person[] = [
     jobTitle: 'Spider-man',
     favoriteMovie: 'Spider-man',
     favoriteFood: 'Webs',
-    birthDate: '1990-09-24',
+    dateOfBirth: '1990-09-24',
     sex: 'male'
   },
   {
@@ -2208,7 +2208,7 @@ const persons: Person[] = [
     jobTitle: 'Journalist',
     favoriteMovie: 'Superman returns',
     favoriteFood: 'Kryptonite',
-    birthDate: '1960-01-01',
+    dateOfBirth: '1960-01-01',
     sex: 'male'
   },
   {
@@ -2222,7 +2222,7 @@ const persons: Person[] = [
     jobTitle: 'CEO',
     favoriteMovie: 'Batman begins',
     favoriteFood: 'Bats',
-    birthDate: '1955-01-01',
+    dateOfBirth: '1955-01-01',
     sex: 'male'
   },
   {
@@ -2236,7 +2236,7 @@ const persons: Person[] = [
     jobTitle: 'Curator',
     favoriteMovie: 'Wonderwoman',
     favoriteFood: 'Greek',
-    birthDate: '1990-01-01',
+    dateOfBirth: '1990-01-01',
     sex: 'female'
   },
   {
@@ -2250,7 +2250,7 @@ const persons: Person[] = [
     jobTitle: 'CEO',
     favoriteMovie: 'Ironman',
     favoriteFood: 'Shoarma',
-    birthDate: '1980-01-01',
+    dateOfBirth: '1980-01-01',
     sex: 'male'
   },
   {
@@ -2263,8 +2263,8 @@ const persons: Person[] = [
     weight: 55,
     jobTitle: 'Captain',
     favoriteMovie: 'Winter soldier',
-    favoriteFood: 'Applepie',
-    birthDate: '1920-01-01',
+    favoriteFood: 'Apple pie',
+    dateOfBirth: '1920-01-01',
     sex: 'male'
   },
   {
@@ -2278,7 +2278,7 @@ const persons: Person[] = [
     jobTitle: 'Black widow',
     favoriteMovie: 'Avengers',
     favoriteFood: 'Stroganov',
-    birthDate: '1995-01-01',
+    dateOfBirth: '1995-01-01',
     sex: 'female'
   },
   {
@@ -2292,7 +2292,7 @@ const persons: Person[] = [
     jobTitle: 'Smasher',
     favoriteMovie: 'The Incredible Hulk',
     favoriteFood: 'Gammarays',
-    birthDate: '1975-01-01',
+    dateOfBirth: '1975-01-01',
     sex: 'male'
   }
 ];

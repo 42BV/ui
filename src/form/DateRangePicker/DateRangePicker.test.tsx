@@ -7,8 +7,8 @@ import DateRangePicker, { Value } from './DateRangePicker';
 describe('Component: DateRangePicker', () => {
   let dateRangePicker: ShallowWrapper;
 
-  let onChangeSpy: jest.Mock<any, any>;
-  let onFocusSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onFocusSpy: jest.Mock;
 
   function setup({ value, onFocus }: { value: Value; onFocus: boolean }) {
     onChangeSpy = jest.fn();

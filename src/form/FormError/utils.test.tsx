@@ -94,7 +94,7 @@ describe('errorMessage', () => {
     test('ERROR_MAXIMUM_LENGTH', () => {
       const error = {
         type: 'ERROR_MAXIMUM_LENGTH',
-        label: 'Eyecolor',
+        label: 'Eye color',
         value: '',
         reasons: {
           maximumLength: 13
@@ -106,12 +106,12 @@ describe('errorMessage', () => {
       expect(t).toHaveBeenCalledTimes(1);
       expect(t).toHaveBeenCalledWith({
         data: {
-          label: 'Eyecolor',
+          label: 'Eye color',
           reasons: { maximumLength: 13 },
           type: 'ERROR_MAXIMUM_LENGTH',
           value: ''
         },
-        fallback: 'Eyecolor must be smaller than 13 characters',
+        fallback: 'Eye color must be smaller than 13 characters',
         key: 'JarbFinalForm.VALIDATION.MAXIMUM_LENGTH'
       });
     });

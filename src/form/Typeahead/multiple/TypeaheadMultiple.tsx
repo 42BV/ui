@@ -104,7 +104,7 @@ interface State<T> {
  * wants to select beforehand. Scenario: you are building a system
  * for a trading company, the users need to enter some trading code
  * from a big list. The users know each code by heart since they
- * work with the system daily. This is a nice usecase for the TypeaheadMultiple
+ * work with the system daily. This is a nice use case for the TypeaheadMultiple
  * because the user can type in faster than the can select from a
  * ModalPickerMultiple.
  */

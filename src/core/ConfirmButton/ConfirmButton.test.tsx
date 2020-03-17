@@ -113,7 +113,7 @@ describe('Component: ConfirmButton', () => {
 
   describe('events', () => {
     let confirmButton: ShallowWrapper;
-    let onConfirmSpy: jest.Mock<any, any>;
+    let onConfirmSpy: jest.Mock;
 
     type Props =
       | { icon: IconType; button?: never }

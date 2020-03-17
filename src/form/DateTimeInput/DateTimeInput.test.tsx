@@ -10,9 +10,9 @@ import DateTimeInput, { IsDateAllowed, maskedInput } from './DateTimeInput';
 describe('Component: DateTimeInput', () => {
   let dateTimeInput: ShallowWrapper;
 
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
-  let onFocusSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
+  let onFocusSpy: jest.Mock;
 
   function setup({
     value,
@@ -28,8 +28,8 @@ describe('Component: DateTimeInput', () => {
     onFocusSpy = jest.fn();
 
     const props = {
-      id: 'birthDate',
-      placeholder: 'Please enter your birthdate',
+      id: 'dateOfBirth',
+      placeholder: 'Please enter your date of birth',
       isDateAllowed,
       dateFormat: 'YYYY-MM-DD',
       timeFormat: 'HH:mm:ss',
@@ -43,7 +43,7 @@ describe('Component: DateTimeInput', () => {
 
     if (hasLabel) {
       dateTimeInput = shallow(
-        <DateTimeInput label="Birthdate" color="success" {...props} />
+        <DateTimeInput label="Date of birth" color="success" {...props} />
       );
     } else {
       dateTimeInput = shallow(<DateTimeInput color="success" {...props} />);
@@ -81,10 +81,10 @@ describe('Component: DateTimeInput', () => {
     });
   });
 
-  describe('lifecyle events', () => {
+  describe('lifecycle events', () => {
     describe('componentDidMount', () => {
       it('should not an error when dateFormat is filled in', () => {
-        // @ts-ignore;
+        // @ts-ignore
         const dateTimeInput = new DateTimeInput();
         dateTimeInput.props = { dateFormat: 'YYYY-MM-DD', timeFormat: false };
 
@@ -96,7 +96,7 @@ describe('Component: DateTimeInput', () => {
       });
 
       it('should not an error when timeFormat is filled in', () => {
-        // @ts-ignore;
+        // @ts-ignore
         const dateTimeInput = new DateTimeInput();
         dateTimeInput.props = { dateFormat: false, timeFormat: 'HH:mm:ss' };
 
@@ -107,7 +107,7 @@ describe('Component: DateTimeInput', () => {
         );
       });
 
-      it('should throw an error when dateFormat and timeformat are both false', () => {
+      it('should throw an error when dateFormat and timeFormat are both false', () => {
         // @ts-ignore;
         const dateTimeInput = new DateTimeInput();
         dateTimeInput.props = { dateFormat: false, timeFormat: false };

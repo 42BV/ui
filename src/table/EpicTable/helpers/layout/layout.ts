@@ -4,7 +4,12 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import { Children, cloneElement, createElement, ReactElement } from 'react';
+import React, {
+  Children,
+  cloneElement,
+  createElement,
+  ReactElement
+} from 'react';
 import { isFragment } from 'react-is';
 
 import { EpicExpanderRow } from '../../rows/EpicExpanderRow/EpicExpanderRow';
@@ -95,9 +100,9 @@ type EpicTableLayoutConfig = {
  * The user is given a semantic based API by the EpicTable. This api
  * for the user of the library feels very nice (at least that is the goal).
  *
- * Unfortunately the semantic UI is not a datastructure which can be
+ * Unfortunately the semantic UI is not a data structure which can be
  * used to render the table directly. The `epicTableLayout` therefore
- * takes the semantic UI and transforms it into a datastructure which
+ * takes the semantic UI and transforms it into a data structure which
  * can actually be rendered.
  *
  * The problem is this: to create a fixed left, a gooey center and
@@ -246,7 +251,7 @@ export function epicTableLayout(
   let totalDesiredCenterWidth = -1;
   let totalDesiredCenterHeight = -1;
 
-  // Increases whenever an epic-row is encounted, used to determine
+  // Increases whenever an epic-row is encountered, used to determine
   // if the row is striped. Needs a separate counter because other
   // rows can be mixed with epic-row's.
   let epicRowNumber = 1;
@@ -300,7 +305,7 @@ export function epicTableLayout(
       }
     }, 0);
 
-    return (totalHeight += cellHeight);
+    return totalHeight + cellHeight;
   }, 0);
 
   return {

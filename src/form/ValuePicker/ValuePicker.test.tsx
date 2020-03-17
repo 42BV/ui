@@ -11,16 +11,16 @@ import * as testUtils from '../../test/utils';
 import {
   adminUser,
   coordinatorUser,
-  userUser,
-  nobodyUser
+  nobodyUser,
+  userUser
 } from '../../test/fixtures';
 import { act } from 'react-dom/test-utils';
 
 describe('Component: ValuePicker', () => {
   let valuePicker: ReactWrapper;
 
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
 
   function setup({
     fetchOptions,

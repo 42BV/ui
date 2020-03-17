@@ -426,14 +426,14 @@ export default class ImageUpload extends Component<Props, State> {
           onClick={() => this.rotateLeft()}
           color="secondary"
           icon="rotate_left"
-        ></Button>
+        />
 
         <Button
           className="ml-1 mt-2"
           onClick={() => this.rotateRight()}
           color="secondary"
           icon="rotate_right"
-        ></Button>
+        />
 
         <Button
           className="ml-3"
@@ -510,7 +510,7 @@ export function limitImageSize(size: number, label: string): ImageValidator {
       return undefined;
     }
 
-    // Older browers will not support this so we skip the check.
+    // Older browsers will not support this so we skip the check.
     /* istanbul ignore if */
     if (value.size === undefined) {
       return undefined;

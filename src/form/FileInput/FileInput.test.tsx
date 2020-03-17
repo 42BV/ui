@@ -2,13 +2,13 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import FileInput, { requireFile, limitFileSize } from './FileInput';
+import FileInput, { limitFileSize, requireFile } from './FileInput';
 
 describe('Component: FileInput', () => {
   let fileInput: ShallowWrapper;
 
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
 
   function setup({
     value,

@@ -2,10 +2,10 @@ import { Page } from '@42.nl/spring-connect';
 import { useEffect, useState } from 'react';
 
 import {
-  OptionsFetcher,
-  OptionForValue,
+  isOptionSelected,
   OptionEqual,
-  isOptionSelected
+  OptionForValue,
+  OptionsFetcher
 } from './option';
 
 interface UseOptionConfig<T> {

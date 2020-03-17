@@ -16,7 +16,7 @@ interface Props<T> {
    * Can only be called if the `isStepClickable` for this step
    * returns `true`.
    *
-   * @param {T} step The step which is cliced
+   * @param {T} step The step which is clicked
    * @param {number} index The index of the step that was clicked
    */
   onClick?(step: T, index: number): void;
@@ -24,7 +24,7 @@ interface Props<T> {
   /**
    * Callback to determine the bootstrap color of the step.
    *
-   * The color also determines if an icon is shown in the cirle
+   * The color also determines if an icon is shown in the circle
    * or a number.
    *
    * @param {T} step The step you must provide the color for

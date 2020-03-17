@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import Tooltip from './Tooltip';
 import Tag from '../Tag/Tag';
-import { Row, Col, Button } from 'reactstrap';
+import { Button, Col, Row } from 'reactstrap';
 
 storiesOf('core|Tooltip', module)
   .addParameters({ component: Tooltip })
@@ -50,7 +50,7 @@ storiesOf('core|Tooltip', module)
           </Tooltip>
         </Col>
       </Row>
-      <hr></hr>
+      <hr />
 
       <h6>Alignment-modifier</h6>
       <Row className="mt-3">
@@ -94,7 +94,7 @@ storiesOf('core|Tooltip', module)
         </Col>
       </Row>
 
-      <hr></hr>
+      <hr />
 
       <h6>Distance</h6>
       <Row className="mt-4">
@@ -185,7 +185,7 @@ storiesOf('core|Tooltip', module)
         </Col>
       </Row>
 
-      <hr></hr>
+      <hr />
       <h6>Interactive</h6>
 
       <Row className="mt-4">

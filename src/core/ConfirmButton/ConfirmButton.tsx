@@ -58,7 +58,7 @@ interface BaseProps {
   onConfirm: (event: React.MouseEvent<HTMLElement>) => void;
 
   /**
-   * Whether or not the action you are performing is currenlty in
+   * Whether or not the action you are performing is currently in
    * progress. If so a spinner is rendered inside of the button.
    * This behavior is optional and default to `false`.
    *
@@ -114,7 +114,7 @@ type Props = WithIcon | WithText | WithIconAndText;
  * The ConfirmButton asks the user if he / she is sure he wants to
  * perform the action.
  *
- * The obvious usecase is a delete button which asks the user if
+ * The obvious use case is a delete button which asks the user if
  * he is sure he wants to delete something.
  */
 export default function ConfirmButton({

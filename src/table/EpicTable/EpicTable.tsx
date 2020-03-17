@@ -4,7 +4,7 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import React, { useRef, Fragment, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import { FixedHeader } from './helpers/FixedHeader/FixedHeader';
@@ -17,8 +17,8 @@ import { useCalculateActualHeight } from './helpers/useCalculateActualHeight';
 import { useAdjustHeightOfActiveDetailRow } from './helpers/useAdjustHeightOfActiveDetailRow';
 
 interface Props {
-  // What I really want to expres here is is that children only
-  // accepts rows or `Fragments` containing rows But I cannot expres
+  // What I really want to express here is is that children only
+  // accepts rows or `Fragments` containing rows But I cannot express
   // this properly so it is unfortunately of type 'any'.
 
   /**

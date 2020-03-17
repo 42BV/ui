@@ -23,7 +23,7 @@ interface Props {
    * this callback you enable the resizing of the EpicHeader.
    *
    * You can never resize the width to less of the original width to
-   * prevent colomns from becoming to small.
+   * prevent columns from becoming to small.
    *
    * When this callback is called you should store the `width` and
    * pass it back into the EpicHeader as the `width` property.

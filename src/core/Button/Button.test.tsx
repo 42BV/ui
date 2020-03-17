@@ -201,7 +201,7 @@ describe('Component: Button', () => {
 
   describe('events', () => {
     let button: ShallowWrapper;
-    let onClickSpy: jest.Mock<any, any>;
+    let onClickSpy: jest.Mock;
 
     describe('onClick', () => {
       function setup({

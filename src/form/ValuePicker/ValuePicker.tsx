@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Color } from '../types';
-import { FetchOptionsCallback, OptionForValue, OptionEqual } from '../option';
+import { FetchOptionsCallback, OptionEqual, OptionForValue } from '../option';
 import withJarb from '../withJarb/withJarb';
 
 import ModalPickerMultiple from '../ModalPicker/multiple/ModalPickerMultiple';
@@ -217,10 +217,7 @@ export default function ValuePicker<T>(props: Props<T>) {
     );
   }
 
-  // Have to do `props.multiple === true` here otherwise it does not
-  // understand that `multiple` determines if it is a SingleValuePicker<T>
-  // or a MultipleValuePicker<T>;
-  if (props.multiple === true) {
+  if (props.multiple) {
     const { fetchOptions, multiple, ...rest } = props;
 
     if (totalElements < 11) {

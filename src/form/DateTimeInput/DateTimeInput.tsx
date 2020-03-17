@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { FormGroup, Label, Input } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 import Datetime from 'react-datetime';
-import { get, constant } from 'lodash';
+import { constant, get } from 'lodash';
 import moment, { Moment } from 'moment';
 import MaskedInput from 'react-text-mask';
 import { Color } from '../types';
@@ -123,7 +123,7 @@ export default class DateTimeInput extends Component<Props, State> {
 
   inputRef = undefined;
 
-  // Is either a valid momentjs object when selected via picker,
+  // Is either a valid MomentJS object when selected via picker,
   // or a string when the user typed in a value manually.
   onChange(value: string | Moment) {
     const { dateFormat, timeFormat } = this.props;

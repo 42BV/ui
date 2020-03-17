@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { useAsync } from 'react-async';
-import { Card, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 
 import AsyncList from './AsyncList';
 
@@ -190,7 +190,7 @@ storiesOf('core|Async/AsyncList', module)
     );
   })
 
-  .add('when empty with custom emtpy', () => {
+  .add('when empty with custom empty', () => {
     const state = useAsync(emptyData);
 
     return (

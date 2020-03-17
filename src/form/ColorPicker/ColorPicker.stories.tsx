@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import ColorPicker, { JarbColorPicker } from './ColorPicker';
 import { FinalForm, Form } from '../story-utils';
-import { Tooltip, Icon } from '../..';
+import { Icon, Tooltip } from '../..';
 
 function isToDark(value?: string) {
   if (!value) {
@@ -93,7 +93,7 @@ storiesOf('Form|ColorPicker', module)
         <JarbColorPicker
           id="color"
           name="color"
-          label="Colol"
+          label="Color"
           placeholder="Please select your favorite color"
           validators={[isToDark]}
           jarb={{

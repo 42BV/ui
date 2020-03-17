@@ -7,7 +7,7 @@ exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput
   tag="div"
 >
   <Label
-    for="birthDate"
+    for="dateOfBirth"
     tag="label"
     widths={
       Array [
@@ -19,7 +19,7 @@ exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput
       ]
     }
   >
-    Birthdate
+    Date of birth
      
     <span
       className="date-time-input-format text-danger"
@@ -60,7 +60,7 @@ exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput
           /\\\\d/,
           /\\\\d/,
         ],
-        "placeholder": "Please enter your birthdate",
+        "placeholder": "Please enter your date of birth",
       }
     }
     isValidDate={[Function]}
@@ -88,7 +88,7 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
   tag="div"
 >
   <Label
-    for="birthDate"
+    for="dateOfBirth"
     tag="label"
     widths={
       Array [
@@ -100,7 +100,7 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
       ]
     }
   >
-    Birthdate
+    Date of birth
      
     <span
       className="date-time-input-format text-muted"
@@ -141,7 +141,7 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
           /\\\\d/,
           /\\\\d/,
         ],
-        "placeholder": "Please enter your birthdate",
+        "placeholder": "Please enter your date of birth",
       }
     }
     isValidDate={[Function]}
@@ -199,7 +199,7 @@ exports[`Component: DateTimeInput ui without label: Component: DateTimeInput => 
           /\\\\d/,
           /\\\\d/,
         ],
-        "placeholder": "Please enter your birthdate",
+        "placeholder": "Please enter your date of birth",
       }
     }
     isValidDate={[Function]}

@@ -16,8 +16,8 @@ import * as testUtils from '../../test/utils';
 describe('Component: ImageUpload', () => {
   let imgUpload: ShallowWrapper;
 
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
 
   function setup({
     value,

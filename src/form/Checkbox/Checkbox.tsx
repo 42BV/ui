@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Input } from 'reactstrap';
+import { FormGroup, Input, Label } from 'reactstrap';
 
 import withJarb from '../withJarb/withJarb';
 import { Color } from '../types';
@@ -114,9 +114,7 @@ export default function Checkbox(props: Props) {
               // the fact that we say value is boolean | undefined.
 
               // @ts-ignore
-              const indeterminate = value === undefined || value === '';
-
-              e.indeterminate = indeterminate;
+              e.indeterminate = value === undefined || value === '';
             }
           }}
         />{' '}

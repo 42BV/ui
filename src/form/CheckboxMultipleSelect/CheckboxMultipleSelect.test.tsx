@@ -15,8 +15,8 @@ import { OptionEnabledCallback } from '../option';
 describe('Component: CheckboxMultipleSelect', () => {
   let checkboxMultipleSelect: ShallowWrapper;
 
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
 
   function setup({
     value,

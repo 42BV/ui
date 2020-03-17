@@ -20,11 +20,11 @@ import { RenderOptionsOption } from '../../option';
 describe('Component: ModalPickerMultiple', () => {
   let modalPickerMultiple: ShallowWrapper;
 
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
-  let fetchOptionsSpy: jest.Mock<any, any>;
-  let addButtonCallbackSpy: jest.Mock<any, any>;
-  let renderOptionsSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
+  let fetchOptionsSpy: jest.Mock;
+  let addButtonCallbackSpy: jest.Mock;
+  let renderOptionsSpy: jest.Mock;
 
   function setup({
     value,

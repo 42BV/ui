@@ -7,7 +7,7 @@ import SubmitButton, { Props } from './SubmitButton';
 
 describe('Component: SubmitButton', () => {
   let submitButton: ShallowWrapper;
-  let onClickSpy: jest.Mock<any, any>;
+  let onClickSpy: jest.Mock;
 
   function setup(props?: Partial<Props>) {
     onClickSpy = jest.fn();

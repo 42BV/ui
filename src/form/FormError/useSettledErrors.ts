@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { isArray } from 'lodash';
 
 import { Meta, MetaError } from '../types';
 
 /**
  * Final form considers a form to be `valid` when it is `validating`
- * the input. Basically you are innocent until proven quilty.
+ * the input. Basically you are innocent until proven guilty.
  *
  * This is annoying when the user has already made an error. Each
  * time that the input in `validating` the input is considered `valid`
@@ -19,14 +19,14 @@ import { Meta, MetaError } from '../types';
  * The solution is `useSettledErrors`, it basically debounces the
  * errors, this means that if N changes happen in rapid succession
  * only the last state change is shown.
- * 
+ *
  * It also stores the `value` and the resulting `error` whenever an
  * error does occur. This way when the same value is encountered it
  * will return the previous error. This way when `final-form` is
- * running async validations we still consider it an error. 
+ * running async validations we still consider it an error.
  *
  * @param meta
- * @param any
+ * @param value
  */
 export function useSettledErrors(meta: Meta, value: any): MetaError[] {
   const { error, active, touched } = meta;
@@ -51,8 +51,8 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
     }
 
     function hideErrors() {
-      // Only hide the errors when there are no errors. 
-      // And the value did not have an error previously, this can 
+      // Only hide the errors when there are no errors.
+      // And the value did not have an error previously, this can
       // be true when an async call is made and final-form considers
       // it valid again. We say when that value previously has an
       // error it is likely to still have an error.
@@ -92,7 +92,15 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
     return () => {
       window.clearTimeout(timeout);
     };
-  }, [hasErrors, active, touched, errors, settledErrors.length, errorCache, value]);
+  }, [
+    hasErrors,
+    active,
+    touched,
+    errors,
+    settledErrors.length,
+    errorCache,
+    value
+  ]);
 
   return settledErrors;
 }

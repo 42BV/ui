@@ -7,8 +7,8 @@ import Toggle, { FormToggle } from './Toggle';
 describe('Component: FormToggle', () => {
   let formToggle: ShallowWrapper;
 
-  let onBlurSpy: jest.Mock<any, any>;
-  let onChangeSpy: jest.Mock<any, any>;
+  let onBlurSpy: jest.Mock;
+  let onChangeSpy: jest.Mock;
 
   function setup({
     hasLabel = true,
@@ -100,8 +100,8 @@ describe('Component: FormToggle', () => {
 
 describe('Component: Toggle', () => {
   let toggle: ShallowWrapper;
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
 
   function setup({ value }: { value?: boolean }) {
     onChangeSpy = jest.fn();

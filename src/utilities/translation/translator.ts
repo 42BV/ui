@@ -42,7 +42,7 @@ export function getTranslator(): Translator {
 }
 
 /**
- * Lets you set a new translator to be used througout `@42.nl/ui`.
+ * Lets you set a new translator to be used throughout `@42.nl/ui`.
  *
  * @param {Translator} _translator The new translator
  */

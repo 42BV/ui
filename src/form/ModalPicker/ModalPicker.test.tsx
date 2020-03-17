@@ -8,11 +8,11 @@ import ModalPicker from './ModalPicker';
 describe('Component: ModalPicker', () => {
   let modalPicker: ShallowWrapper;
 
-  let fetchDataSpy: jest.Mock<any, any>;
-  let loadPageSpy: jest.Mock<any, any>;
-  let closeModalSpy: jest.Mock<any, any>;
-  let modalSavedSpy: jest.Mock<any, any>;
-  let addButtonSpy: jest.Mock<any, any>;
+  let fetchDataSpy: jest.Mock;
+  let loadPageSpy: jest.Mock;
+  let closeModalSpy: jest.Mock;
+  let modalSavedSpy: jest.Mock;
+  let addButtonSpy: jest.Mock;
 
   function setup({
     showAddButton,

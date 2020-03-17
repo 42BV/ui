@@ -175,7 +175,7 @@ export default class CheckboxMultipleSelect<T> extends Component<
 
     // Always copy the `value` so the `selected` is a fresh array.
     // Otherwise the selection will be the same as the value, which
-    // causes values to be commited and the cancel button will not
+    // causes values to be committed and the cancel button will not
     // do anything.
     let selected = isArray(value) ? [...value] : [];
 
