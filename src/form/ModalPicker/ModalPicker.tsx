@@ -1,13 +1,13 @@
 import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 import {
+  Button,
+  Col,
   Modal,
-  ModalHeader,
   ModalBody,
   ModalFooter,
-  Button,
-  Row,
-  Col
+  ModalHeader,
+  Row
 } from 'reactstrap';
 
 import Pagination from '../../core/Pagination/Pagination';
@@ -129,7 +129,7 @@ export default function ModalPicker(props: Props) {
           <Row>
             <Col>
               <SearchInput
-                value={query}
+                defaultValue={query}
                 placeholder={t({
                   overrideText: text.placeholder,
                   key: 'ModalPicker.SEARCH',
