@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Toggle ui: Component: Toggle => ui 1`] = `
+<span
+  className="toggle-container toggle-primary"
+>
+  <input
+    checked={true}
+    id="toggle"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    type="checkbox"
+  />
+</span>
+`;

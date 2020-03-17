@@ -78,11 +78,7 @@ export {
   requireImage,
   limitImageSize
 } from './form/ImageUpload/ImageUpload';
-export {
-  FormToggle,
-  default as Toggle,
-  JarbFormToggle
-} from './form/Toggle/Toggle';
+export { default as Toggle } from './core/Toggle/Toggle';
 export { default as FormError } from './form/FormError/FormError';
 export {
   default as CheckboxMultipleSelect,

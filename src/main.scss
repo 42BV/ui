@@ -31,6 +31,7 @@
 @import './core/Tag/Tag';
 @import './core/Popover/Popover';
 @import './core/OpenCloseModal/OpenCloseModal';
+@import './core/Toggle/Toggle';
 
 // Form components
 @import './form/ImageUpload/ImageUpload';
@@ -39,7 +40,6 @@
 @import './form/FileInput/FileInput';
 @import './form/FormError/FormError';
 @import './form/TextEditor/TextEditor';
-@import './form/Toggle/Toggle';
 @import './form/Typeahead/Typeahead';
 @import './form/ColorPicker/ColorPicker';
 @import './form/withJarb/withJarb';
