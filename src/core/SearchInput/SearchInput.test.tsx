@@ -29,7 +29,7 @@ describe('Component: SearchInput', () => {
     const onChangeSpy = jest.fn();
 
     const props: Props = {
-      value: '',
+      defaultValue: '',
       debounce,
       debounceSettings,
       onChange: onChangeSpy,
@@ -181,7 +181,7 @@ describe('Component: SearchInput', () => {
 
       const searchInput = mount(
         <SearchInput
-          value=""
+          defaultValue=""
           debounce={300}
           onChange={onChangeSpy}
           showIcon={true}

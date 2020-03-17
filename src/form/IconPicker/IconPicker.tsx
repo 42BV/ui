@@ -152,7 +152,7 @@ export default function IconPicker(props: Props) {
   const classes = classNames('icon-picker', className);
 
   return (
-    <SearchInput value={query} onChange={onSearch} debounce={0}>
+    <SearchInput defaultValue={query} onChange={onSearch} debounce={0}>
       {(searchInput, searchInputApi) => (
         <FormGroup className={classes} color={color}>
           {'label' in props && props.label ? (

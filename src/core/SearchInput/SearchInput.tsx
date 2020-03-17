@@ -25,10 +25,10 @@ type ModifiedInputProps = Omit<
   InputProps,
   // We are going to override onChange so it sends out strings.
   | 'onChange'
-  // Value is only going to accept strings
+  // We want to remove the value because we use defaultValue,
+  // we do not want the user to accidentally use it.
   | 'value'
-  // We want to remove the defaultValue because we are going to set it
-  // ourselves, we do not want the user to accidentally use it.
+  // defaultValue is only going to accept strings.
   | 'defaultValue'
 >;
 
@@ -53,10 +53,8 @@ interface BaseProps extends ModifiedInputProps {
 
   /**
    * The default value that the form element currently has.
-   * In the future this will be called `defaultValue` instead
-   * of `value`.
    */
-  value: string;
+  defaultValue: string;
 
   /**
    * Called when the value changes after the debounce period.
@@ -163,7 +161,7 @@ export default function SearchInput(props: Props) {
     debounce = 500,
     debounceSettings,
     placeholder,
-    value,
+    defaultValue,
     onChange,
     showIcon = true,
     className = '',
@@ -206,7 +204,7 @@ export default function SearchInput(props: Props) {
     const inputProps = {
       id: 'id' in props ? props.id : undefined,
       innerRef: inputRef,
-      defaultValue: value,
+      defaultValue,
       onChange: event => handleChange.current(event.target.value),
       onKeyUp: handleKeyUp,
       placeholder: placeholder,

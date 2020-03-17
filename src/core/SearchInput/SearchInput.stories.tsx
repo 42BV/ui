@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import SearchInput from './SearchInput';
 
 import { Card } from 'reactstrap';
-import { Select, Button, Tooltip, Icon } from '../..';
+import { Button, Icon, Select, Tooltip } from '../..';
 
 storiesOf('core/SearchInput', module)
   .addParameters({ component: SearchInput })
@@ -14,7 +14,7 @@ storiesOf('core/SearchInput', module)
     return (
       <Card body>
         <p>You searched for: {query}</p>
-        <SearchInput value={query} onChange={setQuery} />
+        <SearchInput defaultValue={query} onChange={setQuery} />
       </Card>
     );
   })
@@ -24,7 +24,11 @@ storiesOf('core/SearchInput', module)
     return (
       <Card body>
         <p>You searched for: {query}</p>
-        <SearchInput value={query} onChange={setQuery} showIcon={false} />
+        <SearchInput
+          defaultValue={query}
+          onChange={setQuery}
+          showIcon={false}
+        />
       </Card>
     );
   })
@@ -34,7 +38,7 @@ storiesOf('core/SearchInput', module)
     return (
       <Card body>
         <p>You searched for: {query}</p>
-        <SearchInput value={query} onChange={setQuery} debounce={1000} />
+        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000} />
       </Card>
     );
   })
@@ -45,7 +49,7 @@ storiesOf('core/SearchInput', module)
       <Card body>
         <p>You searched for: {query}</p>
         <SearchInput
-          value={query}
+          defaultValue={query}
           onChange={setQuery}
           debounce={1000}
           debounceSettings={{ leading: true, trailing: true }}
@@ -60,7 +64,7 @@ storiesOf('core/SearchInput', module)
       <Card body>
         <p>You searched for: {query}</p>
         <SearchInput
-          value={query}
+          defaultValue={query}
           onChange={setQuery}
           placeholder="Search..."
         />
@@ -76,7 +80,7 @@ storiesOf('core/SearchInput', module)
         <SearchInput
           id="search"
           label="Search"
-          value={query}
+          defaultValue={query}
           onChange={setQuery}
         />
       </Card>
@@ -98,7 +102,7 @@ storiesOf('core/SearchInput', module)
               </Tooltip>
             </div>
           }
-          value={query}
+          defaultValue={query}
           onChange={setQuery}
         />
       </Card>
@@ -111,7 +115,7 @@ storiesOf('core/SearchInput', module)
       <Card body>
         <p>You searched for: {query}</p>
 
-        <SearchInput value={query} onChange={setQuery} debounce={1000}>
+        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000}>
           {(searchInput, { setValue }) => (
             <>
               {searchInput}
