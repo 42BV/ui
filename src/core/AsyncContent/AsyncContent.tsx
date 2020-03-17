@@ -86,7 +86,7 @@ export type Props<T> = {
  *    render function and it provides the `state.data` for you to render.
  *
  * 4. When the state has loaded successfully will ask via the `isEmpty`
- *    callback if you consider the `stata.data` empty. It will then
+ *    callback if you consider the `state.data` empty. It will then
  *    render the `emptyContent` when defined or by default show
  *    a `ContentState` in the `empty` mode.
  *

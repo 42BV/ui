@@ -7,7 +7,7 @@ import Pager from './Pager';
 
 describe('Component: Pager', () => {
   let pager: ShallowWrapper;
-  let onChangeSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
 
   function setup({
     number,
@@ -47,25 +47,19 @@ describe('Component: Pager', () => {
     test('normal', () => {
       setup({ number: 5, totalPages: 10 });
 
-      expect(toJson(pager)).toMatchSnapshot(
-        'Component: Pager => normal'
-      );
+      expect(toJson(pager)).toMatchSnapshot('Component: Pager => normal');
     });
 
     test('first', () => {
       setup({ number: 1, totalPages: 10 });
 
-      expect(toJson(pager)).toMatchSnapshot(
-        'Component: Pager => first'
-      );
+      expect(toJson(pager)).toMatchSnapshot('Component: Pager => first');
     });
 
     test('last', () => {
       setup({ number: 10, totalPages: 10 });
 
-      expect(toJson(pager)).toMatchSnapshot(
-        'Component: Pager => last'
-      );
+      expect(toJson(pager)).toMatchSnapshot('Component: Pager => last');
     });
   });
 
@@ -90,4 +84,3 @@ describe('Component: Pager', () => {
     });
   });
 });
-

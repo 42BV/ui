@@ -30,7 +30,7 @@ interface Props {
   /**
    * Optional value that allows you to interact with the Tooltip. This is useful for when
    * you have a clickable component inside of your Tooltip.
-   * When set to true, the Tooltip will no longer dissapear when clicked
+   * When set to true, the Tooltip will no longer disappear when clicked
    */
   interactive?: boolean;
 

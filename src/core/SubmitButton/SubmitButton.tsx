@@ -28,7 +28,7 @@ export interface Props {
   children?: React.ReactNode;
 
   /**
-   * Whether or not the action you are performing is currenlty in
+   * Whether or not the action you are performing is currently in
    * progress. If so a spinner is rendered inside of the button.
    */
   inProgress: boolean;

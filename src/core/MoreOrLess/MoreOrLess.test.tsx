@@ -77,12 +77,12 @@ describe('Component: MoreOrLess', () => {
       setup({
         exceedsLimit: true,
         text: {
-          more: amount => `Laad ${amount} meer...`
+          more: amount => `Load ${amount} more...`
         }
       });
 
       expect(moreOrLess.find('div[role="button"]').text()).toEqual(
-        'Laad 3 meer...'
+        'Load 3 more...'
       );
     });
   });

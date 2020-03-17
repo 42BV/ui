@@ -4,8 +4,8 @@ import { action } from '@storybook/addon-actions';
 
 import TextEditor, { JarbTextEditor } from './TextEditor';
 
-import { Form, FinalForm } from '../story-utils';
-import { Tooltip, Icon } from '../..';
+import { FinalForm, Form } from '../story-utils';
+import { Icon, Tooltip } from '../..';
 
 storiesOf('Form|TextEditor', module)
   .add('basic', () => {
@@ -103,7 +103,7 @@ storiesOf('Form|TextEditor', module)
               <span>Description</span>
               <Tooltip
                 className="ml-1"
-                content="Be sure to secure agains XSS attacks"
+                content="Be sure to secure against XSS attacks"
               >
                 <Icon icon="info" />
               </Tooltip>

@@ -29,7 +29,7 @@ storiesOf('core|NavigationItem', module)
     return (
       <BrowserRouter>
         <NavigationItem
-          show={() => true && true}
+          show={() => true}
           to="/dashboard"
           icon="dashboard"
           text="Dashboard"

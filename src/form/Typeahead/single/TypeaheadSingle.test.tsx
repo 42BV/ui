@@ -15,9 +15,9 @@ import { User } from '../../../test/types';
 describe('Component: TypeaheadSingle', () => {
   let typeaheadSingle: ShallowWrapper;
 
-  let fetchOptionsSpy: jest.Mock<any, any>;
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
+  let fetchOptionsSpy: jest.Mock;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
 
   function setup({
     value,

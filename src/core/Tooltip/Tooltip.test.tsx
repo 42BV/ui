@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Tooltip from './Tooltip';
 
@@ -62,7 +62,7 @@ describe('Component: Tooltip', () => {
       </Tooltip>
     );
 
-    //Test if the outline is overriden when specified
+    //Test if the outline is overridden when specified
     expect(tooltip.find('span').props().style).toEqual({ outline: 20 });
   });
 });

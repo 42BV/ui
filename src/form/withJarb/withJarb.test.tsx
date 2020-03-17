@@ -18,8 +18,8 @@ describe('HoC: withJarb', () => {
   let jarbField: ShallowWrapper;
   let formError: ShallowWrapper;
 
-  let onBlurSpy: jest.Mock<any, any>;
-  let onChangeSpy: jest.Mock<any, any>;
+  let onBlurSpy: jest.Mock;
+  let onChangeSpy: jest.Mock;
 
   function setup() {
     onBlurSpy = jest.fn();

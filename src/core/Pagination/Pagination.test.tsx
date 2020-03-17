@@ -7,7 +7,7 @@ import Pagination, { pagesFor } from './Pagination';
 
 describe('Component: Pagination', () => {
   let pagination: ShallowWrapper;
-  let onChangeSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
 
   function setup({
     number,

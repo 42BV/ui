@@ -28,7 +28,7 @@ type ModifiedInputProps = Omit<
   // Value is only going to accept strings
   | 'value'
   // We want to remove the defaultValue because we are going to set it
-  // ourselves, we do not want the user to accidentaly use it.
+  // ourselves, we do not want the user to accidentally use it.
   | 'defaultValue'
 >;
 

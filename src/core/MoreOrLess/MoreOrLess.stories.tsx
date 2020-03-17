@@ -10,7 +10,7 @@ storiesOf('core|MoreOrLess', module)
       <div className="text-center">
         <MoreOrLess
           limit={3}
-          content={['aap', 'noot', 'mies', 'huis', 'boom', 'ship'].map(
+          content={['aap', 'noot', 'mies', 'huis', 'boom', 'schip'].map(
             label => (
               <span key={label}>{label} </span>
             )

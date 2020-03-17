@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormGroup, Label, Button, UncontrolledPopover } from 'reactstrap';
+import { Button, FormGroup, Label, UncontrolledPopover } from 'reactstrap';
 import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 
@@ -160,7 +160,7 @@ export default function ColorPicker(props: Props) {
         <SketchPicker
           color={colorValue}
           onChange={color => setColorValue(color.hex)}
-        ></SketchPicker>
+        />
 
         <div className="d-flex justify-content-between my-1 p-1">
           <Button

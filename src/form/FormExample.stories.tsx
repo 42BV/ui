@@ -196,11 +196,11 @@ storiesOf('Form|Example', module).add('jarb form', () => {
       />
 
       <JarbDateTimeInput
-        name="birthdate"
-        jarb={{ validator: 'User.birthdate', label: 'Birthdate' }}
-        id="birthdate"
-        label="Birthdate"
-        placeholder="Please enter your birthdate"
+        name="dateOfBirth"
+        jarb={{ validator: 'User.dateOfBirth', label: 'Date of birth' }}
+        id="dateOfBirth"
+        label="Date of birth"
+        placeholder="Please enter your date of birth"
         dateFormat="YYYY-MM-DD"
         timeFormat={false}
         isDateAllowed={(date: Moment) => {

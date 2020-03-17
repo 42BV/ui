@@ -4,7 +4,7 @@ import { listenerConfig } from './EpicResize';
 import { useEpicResizeListenerCleanup } from './useEpicResizeListenerCleanup';
 
 describe('useEpicResizeListenerCleanup', () => {
-  test('that the event listeners are destoyed', () => {
+  test('that the event listeners are destroyed', () => {
     const spy = jest.spyOn(window, 'removeEventListener');
 
     function resize() {
@@ -27,8 +27,16 @@ describe('useEpicResizeListenerCleanup', () => {
     // this happens
     //expect(window.removeEventListener).toBeCalledTimes(2);
 
-    expect(window.removeEventListener).toBeCalledWith('mousemove', resize, listenerConfig);
-    expect(window.removeEventListener).toBeCalledWith('mouseup', resizeEnd, listenerConfig);
+    expect(window.removeEventListener).toBeCalledWith(
+      'mousemove',
+      resize,
+      listenerConfig
+    );
+    expect(window.removeEventListener).toBeCalledWith(
+      'mouseup',
+      resizeEnd,
+      listenerConfig
+    );
 
     (spy as jest.Mock).mockClear();
   });

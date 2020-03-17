@@ -208,7 +208,7 @@ export function limitFileSize(size: number, label: string): FileValidator {
       return undefined;
     }
 
-    // Older browers will not support this so we skip the check.
+    // Older browsers will not support this so we skip the check.
     /* istanbul ignore if */
     if (value.size === undefined) {
       return undefined;

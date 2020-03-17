@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Row, FormFeedback } from 'reactstrap';
+import { Col, FormFeedback, Row } from 'reactstrap';
 import { get } from 'lodash';
 import { Color, DistributiveOmit } from '../types';
 
@@ -185,7 +185,7 @@ export default class DateRangePicker extends Component<Props, State> {
 
     if (fromDate && toDate) {
       const isBefore = fromDate < toDate;
-      if (isBefore === false) {
+      if (!isBefore) {
         const { from, to, text = {} } = this.props;
 
         return (

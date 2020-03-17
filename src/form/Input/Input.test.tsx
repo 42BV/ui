@@ -28,9 +28,9 @@ const mask: Mask = [
 describe('Component: Input', () => {
   let input: ShallowWrapper;
 
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
-  let onFocusSpy: jest.Mock<any, any>;
+  let onChangeSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
+  let onFocusSpy: jest.Mock;
 
   function setup({
     value,

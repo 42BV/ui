@@ -105,7 +105,7 @@ interface State<T> {
  * wants to select beforehand. Scenario: you are building a system
  * for a trading company, the users need to enter some trading code
  * from a big list. The users know each code by heart since they
- * work with the system daily. This is a nice usecase for the TypeaheadSingle
+ * work with the system daily. This is a nice use case for the TypeaheadSingle
  * because the user can type in faster than the can select from a
  * ModalPickerSingle.
  */
@@ -132,7 +132,7 @@ export default class TypeaheadSingle<T> extends Component<Props<T>, State<T>> {
     doBlur(this.props.onBlur);
   }
 
-  async fetchOpions(query: string) {
+  async fetchOptions(query: string) {
     const { optionForValue } = this.props;
 
     this.setState({ isLoading: true });
@@ -193,7 +193,7 @@ export default class TypeaheadSingle<T> extends Component<Props<T>, State<T>> {
             placeholder={placeholder}
             selected={selected}
             options={this.state.options}
-            onSearch={query => this.fetchOpions(query)}
+            onSearch={query => this.fetchOptions(query)}
             onChange={value => this.onChange(value)}
             onFocus={onFocus}
             inputProps={{

@@ -3,17 +3,17 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import DateTimeInput, { JarbDateTimeInput } from './DateTimeInput';
-import { Form, FinalForm } from '../story-utils';
-import { Tooltip, Icon } from '../..';
+import { FinalForm, Form } from '../story-utils';
+import { Icon, Tooltip } from '../..';
 
 storiesOf('Form|DateTime/DateTimeInput', module)
   .add('date and time', () => {
     return (
       <Form>
         <DateTimeInput
-          id="birthdate"
-          label="Birthdate"
-          placeholder="Please enter your birthdate and time"
+          id="dateOfBirth"
+          label="Date of birth"
+          placeholder="Please enter your date and time of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
           isDateAllowed={date => {
@@ -28,9 +28,9 @@ storiesOf('Form|DateTime/DateTimeInput', module)
     return (
       <Form>
         <DateTimeInput
-          id="birthdate"
-          label="Birthdate"
-          placeholder="Please enter your birthdate"
+          id="dateOfBirth"
+          label="Date of birth"
+          placeholder="Please enter your date of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat={false}
           isDateAllowed={date => {
@@ -62,10 +62,10 @@ storiesOf('Form|DateTime/DateTimeInput', module)
     return (
       <Form>
         <DateTimeInput
-          id="birthdate"
+          id="dateOfBirth"
           label={
             <>
-              <span>Birthdate</span>
+              <span>Date of birth</span>
               <Tooltip
                 className="position-relative ml-1"
                 style={{ top: 5 }}
@@ -75,7 +75,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
               </Tooltip>
             </>
           }
-          placeholder="Please enter your birthdate and time"
+          placeholder="Please enter your date and time of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
           isDateAllowed={date => {
@@ -90,10 +90,10 @@ storiesOf('Form|DateTime/DateTimeInput', module)
     return (
       <FinalForm>
         <JarbDateTimeInput
-          id="birthdate"
-          name="birthdate"
-          label="Birthdate"
-          placeholder="Please enter your birthdate and time"
+          id="dateOfBirth"
+          name="dateOfBirth"
+          label="Date of birth"
+          placeholder="Please enter your date and time of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
           isDateAllowed={date => {
