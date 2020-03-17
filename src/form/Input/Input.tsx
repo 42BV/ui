@@ -3,11 +3,10 @@ import RTMaskedInput from 'react-text-mask';
 import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
 import { InputType } from 'reactstrap/lib/Input';
 import withJarb from '../withJarb/withJarb';
-
-export type Mask = (string | RegExp)[];
-
 import { FieldCompatible } from '../types';
 import { useId } from '../../hooks/useId/useId';
+
+export type Mask = (string | RegExp)[];
 
 export type Props = FieldCompatible<string, string> & {
   /**
@@ -47,19 +46,19 @@ export default function Input(props: Props) {
   const {
     id,
     label,
-    placeholder,
     value,
     onChange,
-    onBlur,
     onFocus,
-    innerRef,
-    type = 'text',
-    error,
-    color,
+    onBlur,
     valid,
+    error,
+    placeholder,
+    color,
+    className = '',
+    type = 'text',
     mask,
     addon,
-    className = ''
+    innerRef
   } = props;
 
   const innerId = useId({ id });
@@ -71,7 +70,7 @@ export default function Input(props: Props) {
     invalid: valid === false ? true : undefined,
     value,
     innerRef,
-    placeholder: placeholder ? placeholder : '',
+    placeholder,
     onFocus,
     onChange: (event: ChangeEvent<HTMLInputElement>) =>
       onChange(event.target.value),

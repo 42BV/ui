@@ -57,14 +57,14 @@ export default function TextEditor(props: Props) {
   const {
     id,
     label,
-    placeholder,
+    value,
     onChange,
-    onBlur,
     onFocus,
+    onBlur,
     valid,
     error,
+    placeholder,
     color,
-    value,
     className = '',
     modules,
     formats

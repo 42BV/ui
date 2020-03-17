@@ -25,7 +25,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -48,7 +48,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser()]))
           }
           addButton={{
@@ -81,7 +81,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           placeholder="Select your best friend"
           canSearch={false}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser()]))
           }
           addButton={{
@@ -113,7 +113,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -136,7 +136,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -178,7 +178,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           id="bestFriend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -210,7 +210,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           }
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -232,7 +232,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Default"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -246,7 +246,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Button on the left"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -261,7 +261,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Button on the right"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -284,7 +284,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -324,7 +324,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )

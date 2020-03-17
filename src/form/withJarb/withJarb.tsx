@@ -63,14 +63,14 @@ export default function withJarb<
     props: JarbFieldProps<Value, any> &
       Omit<
         P,
+        | 'label'
+        | 'value'
+        | 'onChange'
         | 'onFocus'
         | 'onBlur'
-        | 'onChange'
-        | 'value'
-        | 'color'
         | 'valid'
         | 'error'
-        | 'label'
+        | 'color'
       >
   ) {
     const illegalProps = managedProps.filter((p) => props[p] !== undefined);

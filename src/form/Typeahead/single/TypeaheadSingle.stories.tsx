@@ -3,11 +3,11 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { pageWithContentAndExactSize } from '../../../test/utils';
-import { Form, FinalForm } from '../../story-utils';
-import { userUser, adminUser } from '../../../test/fixtures';
+import { FinalForm, Form } from '../../story-utils';
+import { adminUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 import TypeaheadSingle, { JarbTypeaheadSingle } from './TypeaheadSingle';
-import { Tooltip, Icon } from '../../..';
+import { Icon, Tooltip } from '../../..';
 
 storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
   .add('basic', () => {
@@ -18,7 +18,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
           label="Best friend"
           placeholder="Please provide your best friend"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -35,7 +35,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
           id="bestFriend"
           label="Best friend"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -52,7 +52,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
           id="bestFriend"
           placeholder="Please provide your best friend"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -80,7 +80,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
           }
           placeholder="Please provide your best friend"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -99,7 +99,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
           label="Best friend"
           placeholder="Please provide your best friend"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )

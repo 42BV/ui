@@ -41,7 +41,10 @@ type Text = {
   clear?: string;
 };
 
-type Props = FieldCompatible<IconType, IconType | undefined> & {
+type Props = Omit<
+  FieldCompatible<IconType, IconType | undefined>,
+  'onFocus' | 'valid'
+> & {
   /**
    * Optionally customized text within the component.
    * This text should already be translated.
@@ -56,14 +59,15 @@ type Props = FieldCompatible<IconType, IconType | undefined> & {
  */
 export default function IconPicker(props: Props) {
   const {
+    id,
     label,
     value,
-    color,
-    placeholder,
-    className,
-    error,
     onChange,
     onBlur,
+    error,
+    placeholder,
+    color,
+    className = '',
     text = {}
   } = props;
 
@@ -93,7 +97,7 @@ export default function IconPicker(props: Props) {
   const classes = classNames('icon-picker', className);
 
   return (
-    <SearchInput defaultValue={query} onChange={onSearch} debounce={0}>
+    <SearchInput defaultValue={query} onChange={onSearch} debounce={0} id={id}>
       {(searchInput, searchInputApi) => (
         <FormGroup className={classes} color={color}>
           {label ? <Label>{label}</Label> : null}

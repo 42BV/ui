@@ -23,7 +23,7 @@ describe('Component: TypeaheadMultiple', () => {
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
   }) {
-    const fetchOptionsSpy = jest.fn();
+    const optionsSpy = jest.fn();
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
@@ -32,7 +32,7 @@ describe('Component: TypeaheadMultiple', () => {
         ? 'Please provide your best friend'
         : undefined,
       optionForValue: (user: User) => user.email,
-      fetchOptions: fetchOptionsSpy,
+      options: optionsSpy,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -47,7 +47,7 @@ describe('Component: TypeaheadMultiple', () => {
       <TypeaheadMultiple {...props} {...labelProps} />
     );
 
-    return { typeaheadMultiple, fetchOptionsSpy, onChangeSpy, onBlurSpy };
+    return { typeaheadMultiple, optionsSpy, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
@@ -163,16 +163,16 @@ describe('Component: TypeaheadMultiple', () => {
       });
     });
 
-    it('should fetchOptions when the user starts typing in the input field', async (done) => {
-      expect.assertions(3);
+    it('should fetch options when the user starts typing in the input field', async () => {
+      expect.assertions(4);
 
-      const { typeaheadMultiple, fetchOptionsSpy } = setup({
+      const { typeaheadMultiple, optionsSpy } = setup({
         value: undefined
       });
 
       const { resolve, promise } = resolvablePromise();
 
-      fetchOptionsSpy.mockReturnValue(promise);
+      optionsSpy.mockReturnValue(promise);
 
       let asyncTypeahead = typeaheadMultiple.find('div').children().first();
 
@@ -184,35 +184,32 @@ describe('Component: TypeaheadMultiple', () => {
         expect(asyncTypeahead.props().isLoading).toBe(true);
       });
 
-      try {
-        resolve(pageOfUsers());
+      resolve(pageOfUsers());
 
-        await promise;
-
+      await waitForUI(() => {
         asyncTypeahead = typeaheadMultiple.find('div').children().first();
 
-        expect(asyncTypeahead.props().options).toEqual([
-          {
-            label: 'admin@42.nl',
-            value: adminUser()
-          },
-          {
-            label: 'coordinator@42.nl',
-            value: coordinatorUser()
-          },
-          {
-            label: 'user@42.nl',
-            value: userUser()
-          }
-        ]);
-
         expect(asyncTypeahead.props().isLoading).toBe(false);
+      });
 
-        done();
-      } catch (error) {
-        console.error(error);
-        done.fail();
-      }
+      asyncTypeahead = typeaheadMultiple.find('div').children().first();
+
+      expect(asyncTypeahead.props().options).toEqual([
+        {
+          label: 'admin@42.nl',
+          value: adminUser()
+        },
+        {
+          label: 'coordinator@42.nl',
+          value: coordinatorUser()
+        },
+        {
+          label: 'user@42.nl',
+          value: userUser()
+        }
+      ]);
+
+      expect(asyncTypeahead.props().isLoading).toBe(false);
     });
 
     describe('value changes', () => {

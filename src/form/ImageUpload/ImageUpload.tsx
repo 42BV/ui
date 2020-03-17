@@ -65,7 +65,7 @@ type ChangeValue = File | null;
 
 export type Props = Omit<
   FieldCompatible<Value, ChangeValue>,
-  'placeholder' | 'valid'
+  'valid' | 'placeholder'
 > & {
   /**
    * Whether to crop as a circle or as a rectangle.
@@ -252,7 +252,7 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   render() {
-    const { className, error, color, label } = this.props;
+    const { label, error, color, className } = this.props;
 
     return (
       <div className={className}>
@@ -285,6 +285,7 @@ export default class ImageUpload extends Component<Props, State> {
         <input
           id={this.innerId}
           onChange={(event) => this.imgSelected(event)}
+          onFocus={this.props.onFocus}
           type="file"
           accept="image/*"
           ref={this.inputRef}

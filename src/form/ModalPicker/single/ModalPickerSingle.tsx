@@ -21,12 +21,13 @@ import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import { FieldCompatible } from '../../types';
 import { uniqueId } from 'lodash';
+import { doBlur } from '../../utils';
 
 export type DisplayValue<T> = (values?: T) => React.ReactNode;
 
 type Props<T> = Omit<
   FieldCompatible<T, T | undefined>,
-  'placeholder' | 'valid'
+  'valid' | 'placeholder'
 > & {
   /**
    * The placeholder of the form element.
@@ -42,7 +43,7 @@ type Props<T> = Omit<
   /**
    * Callback to fetch the options to display to the user.
    */
-  fetchOptions: FetchOptionsCallback<T>;
+  options: FetchOptionsCallback<T>;
 
   /**
    * Optionally an add button to display in the Modal. Can
@@ -143,6 +144,8 @@ export default class ModalPickerSingle<T> extends React.Component<
     if (selected) {
       this.props.onChange(selected);
     }
+
+    doBlur(this.props.onBlur);
   }
 
   closeModal() {
@@ -171,7 +174,7 @@ export default class ModalPickerSingle<T> extends React.Component<
 
     this.setState({ userHasSearched: query !== '' });
 
-    const page: Page<T> = await this.props.fetchOptions(query, pageNumber, 10);
+    const page: Page<T> = await this.props.options(query, pageNumber, 10);
 
     this.setState({ page });
   }
@@ -196,18 +199,19 @@ export default class ModalPickerSingle<T> extends React.Component<
     const selected = this.props.value;
     const {
       label,
-      placeholder,
       error,
+      placeholder,
       color,
-      optionForValue,
       className = '',
+      optionForValue,
       alignButton,
       displayValues = (value: T) => (
         <ModalPickerValueTruncator
           values={value}
           optionForValue={optionForValue}
         />
-      )
+      ),
+      onFocus
     } = this.props;
 
     const modalPickerOpenerProps = {
@@ -216,7 +220,8 @@ export default class ModalPickerSingle<T> extends React.Component<
       alignButton,
       displayValues,
       onClear: () => this.props.onChange(undefined),
-      values: selected
+      values: selected,
+      onFocus
     };
 
     return (
@@ -252,7 +257,7 @@ export default class ModalPickerSingle<T> extends React.Component<
         isOpen={isOpen}
         page={page}
         canSearch={canSearch}
-        fetchOptions={(query: string) => this.fetchOptions(query)}
+        options={(query: string) => this.fetchOptions(query)}
         pageChanged={(page: number) => {
           this.loadPage(page);
         }}

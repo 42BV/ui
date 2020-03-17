@@ -2,15 +2,11 @@ import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 
 import withJarb from '../withJarb/withJarb';
-import { Color } from '../..';
+import { FieldCompatible } from '../types';
 import { doBlur } from '../utils';
+import { useId } from '../../hooks/useId/useId';
 
-type Props = {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
+type Props = Omit<FieldCompatible<boolean, boolean>, 'value' | 'label'> & {
   /**
    * The value that the form element currently has.
    *
@@ -24,45 +20,9 @@ type Props = {
   value?: boolean;
 
   /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value: boolean) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
    * The label of the form element.
    */
   label: React.ReactNode;
-
-  /**
-   * Optionally the placeholder of the form element.
-   */
-  placeholder?: string;
 
   /**
    * Optionally whether to support the indeterminate state.
@@ -76,21 +36,24 @@ type Props = {
 export default function Checkbox(props: Props) {
   const {
     id,
-    onChange,
-    onBlur,
-    error,
-    color,
     label,
-    className = '',
-    placeholder,
     value,
+    onChange,
+    onFocus,
+    onBlur,
     valid,
+    error,
+    placeholder,
+    color,
+    className = '',
     allowIndeterminate
   } = props;
 
   const checked = !!value;
 
   const invalid = valid === false ? true : undefined;
+
+  const innerId = useId({ id });
 
   function onClick() {
     onChange(!checked);
@@ -99,12 +62,13 @@ export default function Checkbox(props: Props) {
 
   return (
     <FormGroup check className={className} color={color}>
-      <Label for={id} check>
+      <Label for={innerId} check>
         <Input
-          id={id}
+          id={innerId}
           type="checkbox"
           checked={checked}
           onChange={onClick}
+          onFocus={onFocus}
           valid={valid}
           invalid={invalid}
           innerRef={(e) => {

@@ -6,75 +6,21 @@ import { Page } from '@42.nl/spring-connect';
 
 import withJarb from '../withJarb/withJarb';
 import Spinner from '../../core/Spinner/Spinner';
-import {
-  isOptionSelected,
-  keyForOption,
-  OptionEnabledCallback,
-  OptionEqual,
-  OptionForValue,
-  OptionsFetcher,
-  UniqueKeyForValue
-} from '../option';
+import { isOptionSelected, keyForOption, OptionsFetcher } from '../option';
 import { t } from '../../utilities/translation/translation';
 import { doBlur } from '../utils';
-import { FieldCompatible } from '../types';
+import { MultiFieldWithOptionsCompatible } from '../types';
 
-export type Text = {
-  /**
-   * The message to show when the CheckboxMultipleSelect is loading. Defaults
-   * to `loading...`
-   */
-  loadingMessage?: string;
-};
-
-export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> & {
-  /**
-   * Is either an array of options or a callback which fetches
-   * the options asynchronously.
-   */
-  options: OptionsFetcher<T> | T[];
-
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
-
-  /**
-   * Optional callback which is called for every option to determine
-   * if the option can be selected. By default all options can be
-   * selected.
-   */
-  isOptionEnabled?: OptionEnabledCallback<T>;
-
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-
+export type Props<T> = Omit<
+  MultiFieldWithOptionsCompatible<T, T[]>,
+  'valid'
+> & {
   /**
    * Whether or not to show the CheckboxMultipleSelect horizontally.
    *
    * Defaults to `false`
    */
   horizontal?: boolean;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
 };
 
 type State<T> = {
@@ -224,7 +170,8 @@ export default class CheckboxMultipleSelect<T> extends Component<
       optionForValue,
       uniqueKeyForValue,
       value,
-      isOptionEqual
+      isOptionEqual,
+      onFocus
     } = this.props;
 
     const isOptionEnabled = get(this.props, 'isOptionEnabled', constant(true));
@@ -250,6 +197,7 @@ export default class CheckboxMultipleSelect<T> extends Component<
               value={index}
               disabled={!isOptionEnabled(option)}
               onChange={() => this.optionClicked(option, isChecked)}
+              onFocus={onFocus}
             />{' '}
             {label}
           </Label>

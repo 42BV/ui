@@ -59,13 +59,14 @@ export default class FileInput extends Component<Props> {
   render() {
     const {
       label,
-      accept,
-      placeholder,
-      error,
-      color,
       value,
+      onFocus,
       valid,
-      className = ''
+      error,
+      placeholder,
+      color,
+      className = '',
+      accept
     } = this.props;
 
     const name = get(value, 'name', '');
@@ -85,6 +86,7 @@ export default class FileInput extends Component<Props> {
           type="file"
           onClick={(event) => this.onClick(event)}
           onChange={(event) => this.onChange(event)}
+          onFocus={onFocus}
         />
 
         <InputGroup>

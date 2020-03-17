@@ -22,7 +22,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -44,7 +44,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser()]))
           }
           addButton={{
@@ -53,7 +53,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
               // Just a fake implementation of how this could work.
               // In real life you probably want to pop a modal window
               // to create the friend.
-              return new Promise(resolve => {
+              return new Promise((resolve) => {
                 setTimeout(() => {
                   resolve(adminUser());
                 }, 1000);
@@ -77,7 +77,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={false}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser]))
           }
           value={value}
@@ -98,7 +98,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={(user: User) => user.email}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -120,7 +120,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          renderOptions={options => (
+          renderOptions={(options) => (
             <ListGroup>
               {options.map(({ option, isSelected, toggle }) => (
                 <ListGroupItem
@@ -141,7 +141,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
             </ListGroup>
           )}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -162,7 +162,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -191,7 +191,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -213,7 +213,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -228,7 +228,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -243,7 +243,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -265,18 +265,18 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          optionForValue={user => user.email}
-          fetchOptions={() =>
+          optionForValue={(user) => user.email}
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
           }
           value={value}
-          onChange={user => setValue(user)}
-          displayValues={user => {
+          onChange={(user) => setValue(user)}
+          displayValues={(user) => {
             return user ? (
               <>
-                {user.roles.some(role => role === 'ADMIN') ? (
+                {user.roles.some((role) => role === 'ADMIN') ? (
                   <Icon icon="supervised_user_circle" />
                 ) : (
                   <Icon icon="supervisor_account" />
@@ -300,7 +300,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           placeholder="Select your best friend"
           canSearch={false}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser]))
           }
           jarb={{

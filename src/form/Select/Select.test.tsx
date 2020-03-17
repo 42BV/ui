@@ -2,10 +2,11 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Select, { Text } from './Select';
+import Select from './Select';
 import { User } from '../../test/types';
 import { adminUser, coordinatorUser, userUser } from '../../test/fixtures';
 import { OptionEnabledCallback } from '../option';
+import { Text } from '../types';
 
 describe('Component: Select', () => {
   let select: ShallowWrapper;

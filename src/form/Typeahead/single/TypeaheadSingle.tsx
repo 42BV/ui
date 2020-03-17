@@ -15,7 +15,7 @@ type Props<T> = FieldCompatible<T, T | undefined> & {
   /**
    * Callback to fetch the options to display to the user.
    */
-  fetchOptions: FetchOptionsCallback<T>;
+  options: FetchOptionsCallback<T>;
 
   /**
    * Callback to convert an value of type T to an option to show
@@ -44,17 +44,17 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
   const {
     id,
     label,
-    placeholder,
-    error,
     value,
-    color,
-    optionForValue,
-    onFocus,
-    valid,
-    className = '',
     onChange,
+    onFocus,
     onBlur,
-    fetchOptions
+    valid,
+    error,
+    placeholder,
+    color,
+    className = '',
+    options: fetchOptions,
+    optionForValue
   } = props;
 
   const [options, setOptions] = useState<TypeaheadOption<T>[]>([]);

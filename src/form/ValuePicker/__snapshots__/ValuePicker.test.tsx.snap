@@ -3,7 +3,13 @@
 exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelect\` component when \`totalElements\` is less than 11 1`] = `
 <ValuePicker
   canSearch={true}
-  fetchOptions={
+  id="bestFriend"
+  label="Best friend"
+  multiple={true}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  optionForValue={[Function]}
+  options={
     [MockFunction] {
       "calls": Array [
         Array [
@@ -29,12 +35,6 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
       ],
     }
   }
-  id="bestFriend"
-  label="Best friend"
-  multiple={true}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  optionForValue={[Function]}
   placeholder="Select your best friend"
 >
   <CheckboxMultipleSelect
@@ -277,7 +277,13 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
 exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\` when \`totalElements\` is more than 10 1`] = `
 <ValuePicker
   canSearch={true}
-  fetchOptions={
+  id="bestFriend"
+  label="Best friend"
+  multiple={true}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  optionForValue={[Function]}
+  options={
     [MockFunction] {
       "calls": Array [
         Array [
@@ -303,17 +309,16 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
       ],
     }
   }
-  id="bestFriend"
-  label="Best friend"
-  multiple={true}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  optionForValue={[Function]}
   placeholder="Select your best friend"
 >
   <ModalPickerMultiple
     canSearch={true}
-    fetchOptions={
+    id="bestFriend"
+    label="Best friend"
+    onBlur={[MockFunction]}
+    onChange={[MockFunction]}
+    optionForValue={[Function]}
+    options={
       [MockFunction] {
         "calls": Array [
           Array [
@@ -339,11 +344,6 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
         ],
       }
     }
-    id="bestFriend"
-    label="Best friend"
-    onBlur={[MockFunction]}
-    onChange={[MockFunction]}
-    optionForValue={[Function]}
     placeholder="Select your best friend"
   >
     <FormGroup
@@ -405,9 +405,9 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
         <ModalPicker
           canSearch={true}
           closeModal={[Function]}
-          fetchOptions={[Function]}
           isOpen={false}
           modalSaved={[Function]}
+          options={[Function]}
           page={
             Object {
               "content": Array [
@@ -495,7 +495,13 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
 exports[`Component: ValuePicker should when booting render a loading spinner and request an initial page 1`] = `
 <ValuePicker
   canSearch={true}
-  fetchOptions={
+  id="bestFriend"
+  label="Best friend"
+  multiple={false}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  optionForValue={[Function]}
+  options={
     [MockFunction] {
       "calls": Array [
         Array [
@@ -512,12 +518,6 @@ exports[`Component: ValuePicker should when booting render a loading spinner and
       ],
     }
   }
-  id="bestFriend"
-  label="Best friend"
-  multiple={false}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  optionForValue={[Function]}
   placeholder="Select your best friend"
 >
   <div>
@@ -554,7 +554,13 @@ exports[`Component: ValuePicker should when booting render a loading spinner and
 exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` when \`totalElements\` is more than than 10 1`] = `
 <ValuePicker
   canSearch={true}
-  fetchOptions={
+  id="bestFriend"
+  label="Best friend"
+  multiple={false}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  optionForValue={[Function]}
+  options={
     [MockFunction] {
       "calls": Array [
         Array [
@@ -580,17 +586,16 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
       ],
     }
   }
-  id="bestFriend"
-  label="Best friend"
-  multiple={false}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  optionForValue={[Function]}
   placeholder="Select your best friend"
 >
   <ModalPickerSingle
     canSearch={true}
-    fetchOptions={
+    id="bestFriend"
+    label="Best friend"
+    onBlur={[MockFunction]}
+    onChange={[MockFunction]}
+    optionForValue={[Function]}
+    options={
       [MockFunction] {
         "calls": Array [
           Array [
@@ -616,11 +621,6 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
         ],
       }
     }
-    id="bestFriend"
-    label="Best friend"
-    onBlur={[MockFunction]}
-    onChange={[MockFunction]}
-    optionForValue={[Function]}
     placeholder="Select your best friend"
   >
     <FormGroup
@@ -682,9 +682,9 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
         <ModalPicker
           canSearch={true}
           closeModal={[Function]}
-          fetchOptions={[Function]}
           isOpen={false}
           modalSaved={[Function]}
+          options={[Function]}
           page={
             Object {
               "content": Array [
@@ -772,7 +772,13 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
 exports[`Component: ValuePicker single should render a \`RadioGroup\` component when \`totalElements\` is less than 4 1`] = `
 <ValuePicker
   canSearch={true}
-  fetchOptions={
+  id="bestFriend"
+  label="Best friend"
+  multiple={false}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  optionForValue={[Function]}
+  options={
     [MockFunction] {
       "calls": Array [
         Array [
@@ -798,12 +804,6 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
       ],
     }
   }
-  id="bestFriend"
-  label="Best friend"
-  multiple={false}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  optionForValue={[Function]}
   placeholder="Select your best friend"
 >
   <RadioGroup
@@ -845,6 +845,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
           >
             <Label
               check={true}
+              htmlFor="bestFriend"
               tag="label"
               widths={
                 Array [
@@ -858,10 +859,12 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
             >
               <label
                 className="form-check-label"
+                htmlFor="bestFriend"
               >
                 <Input
                   checked={false}
                   disabled={false}
+                  id="bestFriend"
                   onChange={[Function]}
                   type="radio"
                   value="admin@42.nl"
@@ -870,6 +873,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
                     checked={false}
                     className="form-check-input"
                     disabled={false}
+                    id="bestFriend"
                     onChange={[Function]}
                     type="radio"
                     value="admin@42.nl"
@@ -892,6 +896,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
           >
             <Label
               check={true}
+              htmlFor="bestFriend"
               tag="label"
               widths={
                 Array [
@@ -905,10 +910,12 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
             >
               <label
                 className="form-check-label"
+                htmlFor="bestFriend"
               >
                 <Input
                   checked={false}
                   disabled={false}
+                  id="bestFriend"
                   onChange={[Function]}
                   type="radio"
                   value="coordinator@42.nl"
@@ -917,6 +924,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
                     checked={false}
                     className="form-check-input"
                     disabled={false}
+                    id="bestFriend"
                     onChange={[Function]}
                     type="radio"
                     value="coordinator@42.nl"
@@ -939,6 +947,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
           >
             <Label
               check={true}
+              htmlFor="bestFriend"
               tag="label"
               widths={
                 Array [
@@ -952,10 +961,12 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
             >
               <label
                 className="form-check-label"
+                htmlFor="bestFriend"
               >
                 <Input
                   checked={false}
                   disabled={false}
+                  id="bestFriend"
                   onChange={[Function]}
                   type="radio"
                   value="user@42.nl"
@@ -964,6 +975,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
                     checked={false}
                     className="form-check-input"
                     disabled={false}
+                    id="bestFriend"
                     onChange={[Function]}
                     type="radio"
                     value="user@42.nl"
@@ -984,7 +996,13 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
 exports[`Component: ValuePicker single should render a \`Select\` component when \`totalElements\` is less than 11 but more than 3 1`] = `
 <ValuePicker
   canSearch={true}
-  fetchOptions={
+  id="bestFriend"
+  label="Best friend"
+  multiple={false}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  optionForValue={[Function]}
+  options={
     [MockFunction] {
       "calls": Array [
         Array [
@@ -1010,12 +1028,6 @@ exports[`Component: ValuePicker single should render a \`Select\` component when
       ],
     }
   }
-  id="bestFriend"
-  label="Best friend"
-  multiple={false}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  optionForValue={[Function]}
   placeholder="Select your best friend"
 >
   <Select

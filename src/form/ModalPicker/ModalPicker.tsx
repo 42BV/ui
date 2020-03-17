@@ -56,7 +56,7 @@ type Props = {
   /**
    * Callback to fetch the options to display to the user.
    */
-  fetchOptions: (query: string) => void;
+  options: (query: string) => void;
 
   /**
    * Callback for when the page changes.
@@ -108,7 +108,7 @@ export default function ModalPicker(props: Props) {
     children,
     query,
     canSearch,
-    fetchOptions,
+    options,
     pageChanged,
     closeModal,
     modalSaved,
@@ -135,7 +135,7 @@ export default function ModalPicker(props: Props) {
                   key: 'ModalPicker.SEARCH',
                   fallback: 'Search...'
                 })}
-                onChange={(value) => fetchOptions(value)}
+                onChange={(value) => options(value)}
               />
             </Col>
           </Row>

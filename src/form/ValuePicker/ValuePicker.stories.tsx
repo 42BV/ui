@@ -80,7 +80,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() => promise}
+          options={() => promise}
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
@@ -109,7 +109,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() => promise}
+          options={() => promise}
           optionForValue={(user: User) => user.email}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
           value={value}
@@ -138,7 +138,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           id="bestFriend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() => promise}
+          options={() => promise}
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
@@ -177,7 +177,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           }
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() => promise}
+          options={() => promise}
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
@@ -206,7 +206,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() => promise}
+          options={() => promise}
           jarb={{
             validator: 'Hero.name',
             label: 'Best friend'
@@ -239,7 +239,7 @@ storiesOf('Form/ValuePicker/single', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() => promise}
+          options={() => promise}
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
@@ -271,7 +271,7 @@ storiesOf('Form/ValuePicker/single', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() => promise}
+          options={() => promise}
           optionForValue={(user: User) => user.email}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
           value={value}
@@ -303,7 +303,7 @@ storiesOf('Form/ValuePicker/single', module)
           id="bestFriend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() => promise}
+          options={() => promise}
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
@@ -345,7 +345,7 @@ storiesOf('Form/ValuePicker/single', module)
           }
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() => promise}
+          options={() => promise}
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
@@ -377,7 +377,7 @@ storiesOf('Form/ValuePicker/single', module)
           placeholder="Select your best friend"
           canSearch={true}
           optionForValue={(user: User) => user.email}
-          fetchOptions={() => promise}
+          options={() => promise}
           jarb={{
             validator: 'Hero.name',
             label: 'Best friend'

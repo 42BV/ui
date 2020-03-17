@@ -106,19 +106,19 @@ export default function DateTimeInput(props: Props) {
   const {
     id,
     label,
-    placeholder,
-    valid,
+    value,
     onFocus,
+    valid,
+    error,
+    placeholder,
+    color,
+    className = '',
     dateFormat,
     timeFormat,
-    color,
-    value,
-    error,
     locale,
     utc = true,
     mode = 'default',
-    text,
-    className = ''
+    text
   } = props;
 
   const isDateAllowed = get(props, 'isDateAllowed', constant(true));

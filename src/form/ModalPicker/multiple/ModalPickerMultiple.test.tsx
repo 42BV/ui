@@ -23,7 +23,7 @@ describe('Component: ModalPickerMultiple', () => {
 
   let onChangeSpy: jest.Mock;
   let onBlurSpy: jest.Mock;
-  let fetchOptionsSpy: jest.Mock;
+  let optionsSpy: jest.Mock;
   let addButtonCallbackSpy: jest.Mock;
   let renderOptionsSpy: jest.Mock;
 
@@ -48,7 +48,7 @@ describe('Component: ModalPickerMultiple', () => {
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
-    fetchOptionsSpy = jest.fn();
+    optionsSpy = jest.fn();
     addButtonCallbackSpy = jest.fn();
 
     if (spyOnRenderOptions) {
@@ -76,7 +76,7 @@ describe('Component: ModalPickerMultiple', () => {
       isOptionEqual: hasIsOptionEqual
         ? (a: User, b: User) => a.id === b.id
         : undefined,
-      fetchOptions: fetchOptionsSpy,
+      options: optionsSpy,
       optionForValue: (user: User) => user.email,
       renderOptions: renderOptionsSpy,
       addButton,
@@ -291,15 +291,15 @@ describe('Component: ModalPickerMultiple', () => {
         });
 
         const promise = Promise.resolve(pageOfUsers());
-        fetchOptionsSpy.mockReturnValue(promise);
+        optionsSpy.mockReturnValue(promise);
 
         modalPickerMultiple
           .find('ModalPickerOpener')
           .props()
           // @ts-expect-error Test mock
           .openModal();
-        expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-        expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
+        expect(optionsSpy).toHaveBeenCalledTimes(1);
+        expect(optionsSpy).toHaveBeenCalledWith('', 1, 10);
 
         try {
           await promise;
@@ -333,7 +333,7 @@ describe('Component: ModalPickerMultiple', () => {
         });
 
         const promise = Promise.resolve(pageOfUsers());
-        fetchOptionsSpy.mockReturnValue(promise);
+        optionsSpy.mockReturnValue(promise);
 
         modalPickerMultiple
           .find('ModalPickerOpener')
@@ -341,8 +341,8 @@ describe('Component: ModalPickerMultiple', () => {
           // @ts-expect-error Test mock
           .openModal();
 
-        expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-        expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
+        expect(optionsSpy).toHaveBeenCalledTimes(1);
+        expect(optionsSpy).toHaveBeenCalledWith('', 1, 10);
 
         try {
           await promise;
@@ -366,14 +366,14 @@ describe('Component: ModalPickerMultiple', () => {
       });
 
       const promise = Promise.resolve(pageOfUsers());
-      fetchOptionsSpy.mockReturnValue(promise);
+      optionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerMultiple.find('ModalPicker').at(0);
       // @ts-expect-error Test mock
-      modalPicker.props().fetchOptions('tes');
+      modalPicker.props().options('tes');
 
-      expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('tes', 1, 10);
+      expect(optionsSpy).toHaveBeenCalledTimes(1);
+      expect(optionsSpy).toHaveBeenCalledWith('tes', 1, 10);
     });
 
     it('should when the user moves to another page load the new page', async (done) => {
@@ -383,14 +383,14 @@ describe('Component: ModalPickerMultiple', () => {
       modalPickerMultiple.setState({ query: 'search' });
 
       const promise = Promise.resolve(pageOfUsers());
-      fetchOptionsSpy.mockReturnValue(promise);
+      optionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerMultiple.find('ModalPicker').at(0);
       // @ts-expect-error Test mock
       modalPicker.props().pageChanged(42);
 
-      expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('search', 42, 10);
+      expect(optionsSpy).toHaveBeenCalledTimes(1);
+      expect(optionsSpy).toHaveBeenCalledWith('search', 42, 10);
 
       try {
         await promise;

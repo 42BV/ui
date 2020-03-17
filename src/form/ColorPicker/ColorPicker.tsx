@@ -4,7 +4,7 @@ import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 
 import withJarb from '../withJarb/withJarb';
-import { Color } from '../..';
+import { FieldCompatible } from '../types';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import Popover from '../../core/Popover/Popover';
@@ -27,12 +27,10 @@ type Text = {
   select?: string;
 };
 
-type Props = {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
+type Props = Omit<
+  FieldCompatible<string, string>,
+  'value' | 'onChange' | 'onFocus' | 'valid'
+> & {
   /**
    * The color that the form element currently has in hex.
    */
@@ -44,40 +42,9 @@ type Props = {
   onChange: (value?: string) => void;
 
   /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
    * The label of the form element.
    */
   label: React.ReactNode;
-
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder: string;
 
   /**
    * Optionally customized text within the component.
@@ -95,12 +62,12 @@ export default function ColorPicker(props: Props) {
     id,
     label,
     value,
-    color,
-    placeholder,
-    className,
-    error,
     onChange,
     onBlur,
+    error,
+    placeholder,
+    color,
+    className = '',
     text = {}
   } = props;
 

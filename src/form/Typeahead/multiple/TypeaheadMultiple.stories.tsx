@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { pageWithContentAndExactSize } from '../../../test/utils';
-import { Form, FinalForm } from '../../story-utils';
-import { userUser, adminUser } from '../../../test/fixtures';
+import { FinalForm, Form } from '../../story-utils';
+import { adminUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
 import TypeaheadMultiple, { JarbTypeaheadMultiple } from './TypeaheadMultiple';
@@ -19,7 +19,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
           label="Friends"
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -36,7 +36,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
           id="friends"
           label="Friends"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -53,7 +53,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
           id="friends"
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -81,7 +81,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
           }
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
@@ -100,7 +100,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
           label="Friends"
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          options={() =>
             Promise.resolve(
               pageWithContentAndExactSize([userUser(), adminUser()])
             )

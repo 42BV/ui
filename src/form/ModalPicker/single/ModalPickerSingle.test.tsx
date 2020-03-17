@@ -22,7 +22,7 @@ describe('Component: ModalPickerSingle', () => {
 
   let onChangeSpy: jest.Mock;
   let onBlurSpy: jest.Mock;
-  let fetchOptionsSpy: jest.Mock;
+  let optionsSpy: jest.Mock;
   let addButtonCallbackSpy: jest.Mock;
   let renderOptionsSpy: jest.Mock;
 
@@ -45,7 +45,7 @@ describe('Component: ModalPickerSingle', () => {
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
-    fetchOptionsSpy = jest.fn();
+    optionsSpy = jest.fn();
     addButtonCallbackSpy = jest.fn();
 
     if (spyOnRenderOptions) {
@@ -72,7 +72,7 @@ describe('Component: ModalPickerSingle', () => {
       optionForValue: (user: User) => user.email,
       renderOptions: renderOptionsSpy,
       canSearch,
-      fetchOptions: fetchOptionsSpy,
+      options: optionsSpy,
       addButton,
       value,
       onChange: onChangeSpy,
@@ -229,7 +229,7 @@ describe('Component: ModalPickerSingle', () => {
       });
 
       const promise = Promise.resolve(pageOfUsers());
-      fetchOptionsSpy.mockReturnValue(promise);
+      optionsSpy.mockReturnValue(promise);
 
       modalPickerSingle
         .find('ModalPickerOpener')
@@ -237,8 +237,8 @@ describe('Component: ModalPickerSingle', () => {
         // @ts-expect-error Test mock
         .openModal();
 
-      expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('', 1, 10);
+      expect(optionsSpy).toHaveBeenCalledTimes(1);
+      expect(optionsSpy).toHaveBeenCalledWith('', 1, 10);
 
       try {
         await promise;
@@ -266,14 +266,14 @@ describe('Component: ModalPickerSingle', () => {
       });
 
       const promise = Promise.resolve(pageOfUsers());
-      fetchOptionsSpy.mockReturnValue(promise);
+      optionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerSingle.find('ModalPicker').at(0);
       // @ts-expect-error Test mock
-      modalPicker.props().fetchOptions('tes');
+      modalPicker.props().options('tes');
 
-      expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('tes', 1, 10);
+      expect(optionsSpy).toHaveBeenCalledTimes(1);
+      expect(optionsSpy).toHaveBeenCalledWith('tes', 1, 10);
     });
 
     it('should when the user moves to another page load the new page', async (done) => {
@@ -283,14 +283,14 @@ describe('Component: ModalPickerSingle', () => {
       modalPickerSingle.setState({ query: 'search' });
 
       const promise = Promise.resolve(pageOfUsers());
-      fetchOptionsSpy.mockReturnValue(promise);
+      optionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerSingle.find('ModalPicker').at(0);
       // @ts-expect-error Test mock
       modalPicker.props().pageChanged(42);
 
-      expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
-      expect(fetchOptionsSpy).toHaveBeenCalledWith('search', 42, 10);
+      expect(optionsSpy).toHaveBeenCalledTimes(1);
+      expect(optionsSpy).toHaveBeenCalledWith('search', 42, 10);
 
       try {
         await promise;

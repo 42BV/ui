@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import CheckboxMultipleSelect, { Text } from './CheckboxMultipleSelect';
+import CheckboxMultipleSelect from './CheckboxMultipleSelect';
 import { User } from '../../test/types';
 import {
   adminUser,
@@ -11,6 +11,7 @@ import {
   userUser
 } from '../../test/fixtures';
 import { OptionEnabledCallback } from '../option';
+import { Text } from '../types';
 
 describe('Component: CheckboxMultipleSelect', () => {
   let checkboxMultipleSelect: ShallowWrapper;

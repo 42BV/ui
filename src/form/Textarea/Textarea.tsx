@@ -17,14 +17,14 @@ export default function Textarea(props: Props) {
   const {
     id,
     label,
-    placeholder,
-    onBlur,
-    onFocus,
-    onChange,
     value,
-    color,
-    error,
+    onChange,
+    onFocus,
+    onBlur,
     valid,
+    error,
+    placeholder,
+    color,
     className = ''
   } = props;
 

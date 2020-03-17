@@ -5,76 +5,13 @@ import { InputType } from 'reactstrap/lib/Input';
 
 import withJarb from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
-import {
-  isOptionSelected,
-  keyForOption,
-  OptionEnabledCallback,
-  OptionEqual,
-  OptionForValue,
-  OptionsFetcher,
-  UniqueKeyForValue
-} from '../option';
+import { isOptionSelected, keyForOption } from '../option';
 import { useOptions } from '../useOptions';
 import Loading from '../../core/Loading/Loading';
 import { useId } from '../../hooks/useId/useId';
-import { FieldCompatible } from '../types';
+import { FieldWithOptionsCompatible } from '../types';
 
-export type Text = {
-  /**
-   * The message to show when the select is loading. Defaults
-   * to `loading...`
-   */
-  loadingMessage?: string;
-};
-
-export type Props<T> = FieldCompatible<T, T> & {
-  /**
-   * Is either an array of options or a callback which fetches
-   * the options asynchronously.
-   */
-  options: OptionsFetcher<T> | T[];
-
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
-
-  /**
-   * Optional callback which is called for every option to determine
-   * if the option can be selected. By default all options can be
-   * selected.
-   */
-  isOptionEnabled?: OptionEnabledCallback<T>;
-
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-
-  /**
-   * Optionally a value to detect changes and trigger
-   * the optionsFetcher to reload the options.
-   */
-  watch?: any;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
-};
+export type Props<T> = FieldWithOptionsCompatible<T, T>;
 
 /**
  * Select is a form element for which the value can be selected
@@ -85,17 +22,18 @@ export default function Select<T>(props: Props<T>) {
     id,
     label,
     value,
-    error,
-    color,
-    text = {},
-    className = '',
-    valid,
-    placeholder,
     onChange,
+    onFocus,
     onBlur,
-    uniqueKeyForValue,
+    valid,
+    error,
+    placeholder,
+    color,
+    className = '',
     optionForValue,
     isOptionEqual,
+    uniqueKeyForValue,
+    text = {},
     watch
   } = props;
 
@@ -128,6 +66,7 @@ export default function Select<T>(props: Props<T>) {
       const index = parseInt(event.target.value, 10);
       onChange(options[index]);
     },
+    onFocus,
     onBlur,
     className: value === undefined ? 'showing-placeholder' : ''
   };

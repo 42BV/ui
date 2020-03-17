@@ -305,7 +305,7 @@ export function TotalForm() {
         label="Best friend"
         optionForValue={userAsOption}
         placeholder="Please provide your best friend"
-        fetchOptions={() => Promise.resolve(pageOfUsers())}
+        options={() => Promise.resolve(pageOfUsers())}
       />
 
       <JarbModalPickerSingle
@@ -316,7 +316,7 @@ export function TotalForm() {
         placeholder="Select your best friend"
         canSearch={true}
         optionForValue={userAsOption}
-        fetchOptions={() => Promise.resolve(pageOfUsers())}
+        options={() => Promise.resolve(pageOfUsers())}
         validators={requiredValidator}
       />
 
@@ -327,7 +327,7 @@ export function TotalForm() {
         label="Friends"
         optionForValue={userAsOption}
         placeholder="Please provide all your friends"
-        fetchOptions={() => Promise.resolve(pageOfUsers())}
+        options={() => Promise.resolve(pageOfUsers())}
         validators={requiredValidator}
       />
 
@@ -338,7 +338,7 @@ export function TotalForm() {
         label="Friends"
         placeholder="Please provide all your friends"
         optionForValue={userAsOption}
-        fetchOptions={() => Promise.resolve(pageOfUsers())}
+        options={() => Promise.resolve(pageOfUsers())}
         canSearch={true}
         validators={requiredValidator}
       />

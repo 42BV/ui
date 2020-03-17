@@ -326,7 +326,7 @@ storiesOf('table/FormTable', module)
                     }}
                     multiple={false}
                     optionForValue={(option) => option.name}
-                    fetchOptions={(query, page, size) =>
+                    options={(query, page, size) =>
                       Promise.resolve(
                         pageOf(
                           movies
@@ -709,7 +709,7 @@ storiesOf('table/FormTable', module)
                       }}
                       multiple={false}
                       optionForValue={(option) => option.name}
-                      fetchOptions={(query, page, size) =>
+                      options={(query, page, size) =>
                         Promise.resolve(
                           pageOf(
                             movies
@@ -1154,7 +1154,7 @@ storiesOf('table/FormTable', module)
                     }}
                     multiple={false}
                     optionForValue={(option) => option.name}
-                    fetchOptions={(query, page, size) =>
+                    options={(query, page, size) =>
                       Promise.resolve(
                         pageOf(
                           movies
@@ -1646,7 +1646,7 @@ storiesOf('table/FormTable', module)
                     }}
                     multiple={false}
                     optionForValue={(option) => option.name}
-                    fetchOptions={(query, page, size) =>
+                    options={(query, page, size) =>
                       Promise.resolve(
                         pageOf(
                           movies

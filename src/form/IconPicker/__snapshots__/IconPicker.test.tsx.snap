@@ -42,7 +42,7 @@ exports[`Component: IconPicker ui no results 1`] = `
         <CardHeader
           tag="div"
         >
-          &lt;SearchInput defaultValue="asdlfjalsdjflajsdlf" onChange={[Function: onSearch]} debounce={0}&gt;
+          &lt;SearchInput defaultValue="asdlfjalsdjflajsdlf" onChange={[Function: onSearch]} debounce={0} id="bestFriend"&gt;
   [function]
 &lt;/SearchInput&gt;
         </CardHeader>
@@ -147,7 +147,7 @@ exports[`Component: IconPicker ui with selected value 1`] = `
         <CardHeader
           tag="div"
         >
-          &lt;SearchInput defaultValue="" onChange={[Function: onSearch]} debounce={0}&gt;
+          &lt;SearchInput defaultValue="" onChange={[Function: onSearch]} debounce={0} id="bestFriend"&gt;
   [function]
 &lt;/SearchInput&gt;
         </CardHeader>
@@ -831,7 +831,7 @@ exports[`Component: IconPicker ui without label 1`] = `
         <CardHeader
           tag="div"
         >
-          &lt;SearchInput defaultValue="" onChange={[Function: onSearch]} debounce={0}&gt;
+          &lt;SearchInput defaultValue="" onChange={[Function: onSearch]} debounce={0} id="bestFriend"&gt;
   [function]
 &lt;/SearchInput&gt;
         </CardHeader>
@@ -1529,7 +1529,7 @@ exports[`Component: IconPicker ui without selected value 1`] = `
         <CardHeader
           tag="div"
         >
-          &lt;SearchInput defaultValue="" onChange={[Function: onSearch]} debounce={0}&gt;
+          &lt;SearchInput defaultValue="" onChange={[Function: onSearch]} debounce={0} id="bestFriend"&gt;
   [function]
 &lt;/SearchInput&gt;
         </CardHeader>

@@ -38,6 +38,11 @@ type BaseProps = {
    * This text should already be translated.
    */
   text?: Text;
+
+  /**
+   * Optional callback for when the form element is focused.
+   */
+  onFocus?: () => void;
 };
 
 type ModalPickerSingleOpenerProps<T> = BaseProps & {
@@ -62,6 +67,7 @@ export function ModalPickerOpener<T>(props: Props<T>) {
     displayValues,
     alignButton,
     onClear,
+    onFocus,
     text = {}
   } = props;
 
@@ -94,7 +100,12 @@ export function ModalPickerOpener<T>(props: Props<T>) {
         </TextButton>
       ) : null}
 
-      <Button color="primary" onClick={openModal} className={buttonClassName}>
+      <Button
+        color="primary"
+        onClick={openModal}
+        className={buttonClassName}
+        onFocus={onFocus}
+      >
         {label}
       </Button>
     </div>

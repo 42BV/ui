@@ -31,7 +31,10 @@ export type ChangeValue = {
   to: Date;
 };
 
-type Props = FieldCompatible<Value, ChangeValue | null> & {
+type Props = Omit<
+  FieldCompatible<Value, ChangeValue | null>,
+  'id' | 'label' | 'placeholder'
+> & {
   /**
    * The properties for the `from` DateTimeInput element.
    */
@@ -111,6 +114,14 @@ export default class DateRangePicker extends Component<Props, State> {
     }
   }
 
+  onBlur() {
+    const blur = this.props.onBlur;
+
+    if (blur) {
+      blur();
+    }
+  }
+
   afterChange() {
     const { fromDate, toDate } = this.state;
 
@@ -127,9 +138,9 @@ export default class DateRangePicker extends Component<Props, State> {
 
   render() {
     const {
-      className = '',
       valid,
       color,
+      className = '',
       mode,
       horizontal = true
     } = this.props;
@@ -142,6 +153,7 @@ export default class DateRangePicker extends Component<Props, State> {
             value={this.state.fromDate}
             onChange={(date) => this.fromDateChanged(date)}
             onFocus={() => this.onFocus()}
+            onBlur={() => this.onBlur()}
             valid={valid}
             color={color}
             mode={mode}
@@ -157,6 +169,7 @@ export default class DateRangePicker extends Component<Props, State> {
             value={this.state.toDate}
             onChange={(date) => this.toDateChanged(date)}
             onFocus={() => this.onFocus()}
+            onBlur={() => this.onBlur()}
             valid={valid}
             color={color}
             mode={mode}

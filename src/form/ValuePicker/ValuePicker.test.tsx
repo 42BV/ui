@@ -40,7 +40,7 @@ describe('Component: ValuePicker', () => {
         label="Best friend"
         placeholder="Select your best friend"
         canSearch={true}
-        fetchOptions={fetchOptions}
+        options={fetchOptions}
         optionForValue={(user: User) => user.email}
         value={undefined}
         onChange={onChangeSpy}

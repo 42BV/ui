@@ -15,22 +15,21 @@ import {
   OptionEqual,
   OptionForValue,
   RenderOptions,
-  RenderOptionsOption,
-  UniqueKeyForValue
+  RenderOptionsOption
 } from '../../option';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
-import { FieldCompatible } from '../../types';
+import { MultiFieldWithOptionsCompatible } from '../../types';
 import { uniqueId } from 'lodash';
 
 export type DisplayValues<T> = (values?: T[]) => React.ReactNode;
 
 export type Props<T> = Omit<
-  FieldCompatible<T[], T[] | undefined>,
-  'valid' | 'placeholder'
+  MultiFieldWithOptionsCompatible<T, T[] | undefined>,
+  'valid' | 'placeholder' | 'options' | 'isOptionEnabled' | 'watch'
 > & {
   /**
-   * The placeholder of the form element.	   * The placeholder of the form element.
+   * The placeholder of the form element.
    */
   placeholder: string;
 
@@ -43,7 +42,7 @@ export type Props<T> = Omit<
   /**
    * Callback to fetch the options to display to the user.
    */
-  fetchOptions: FetchOptionsCallback<T>;
+  options: FetchOptionsCallback<T>;
 
   /**
    * Optionally an add button to display in the Modal. Can
@@ -51,21 +50,6 @@ export type Props<T> = Omit<
    * before.
    */
   addButton?: AddButtonOptions<T>;
-
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
 
   /**
    * Optionally the position the button should be aligned to
@@ -77,13 +61,6 @@ export type Props<T> = Omit<
    * Optionally callback to display the selected items.
    */
   displayValues?: DisplayValues<T>;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
 
   /**
    * Callback to customize display of options.
@@ -185,7 +162,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
     const query = this.state.query;
 
     this.setState({ userHasSearched: query !== '' });
-    const page: Page<T> = await this.props.fetchOptions(query, pageNumber, 10);
+    const page: Page<T> = await this.props.options(query, pageNumber, 10);
 
     this.setState({ page });
   }
@@ -211,8 +188,8 @@ export default class ModalPickerMultiple<T> extends React.Component<
     const value = this.props.value;
     const {
       label,
-      placeholder,
       error,
+      placeholder,
       color,
       className = '',
       optionForValue,
@@ -222,7 +199,8 @@ export default class ModalPickerMultiple<T> extends React.Component<
           values={values}
           optionForValue={optionForValue}
         />
-      )
+      ),
+      onFocus
     } = this.props;
 
     const modalPickerOpenerProps = {
@@ -231,7 +209,8 @@ export default class ModalPickerMultiple<T> extends React.Component<
       alignButton,
       displayValues,
       onClear: () => this.props.onChange(undefined),
-      values: value && value.length > 0 ? value : undefined
+      values: value && value.length > 0 ? value : undefined,
+      onFocus
     };
 
     return (
@@ -266,7 +245,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
         isOpen={isOpen}
         page={page}
         canSearch={canSearch}
-        fetchOptions={(query: string) => this.fetchOptions(query)}
+        options={(query: string) => this.fetchOptions(query)}
         pageChanged={(page: number) => {
           this.loadPage(page);
         }}

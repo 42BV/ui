@@ -10,20 +10,24 @@ describe('Component: DateRangePicker', () => {
 
   let onChangeSpy: jest.Mock;
   let onFocusSpy: jest.Mock;
+  let onBlurSpy: jest.Mock;
 
   function setup({
     value,
     onFocus,
     mode,
-    horizontal
+    horizontal,
+    onBlur
   }: {
     value: Value;
     onFocus: boolean;
     mode?: Mode;
     horizontal?: boolean;
+    onBlur?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onFocusSpy = jest.fn();
+    onBlurSpy = jest.fn();
 
     dateRangePicker = shallow(
       <DateRangePicker
@@ -31,6 +35,7 @@ describe('Component: DateRangePicker', () => {
         horizontal={horizontal}
         onChange={onChangeSpy}
         onFocus={onFocus ? onFocusSpy : undefined}
+        onBlur={onBlur ? onBlurSpy : undefined}
         from={{
           id: 'fromId',
           label: 'From Date',
@@ -260,6 +265,53 @@ describe('Component: DateRangePicker', () => {
         inputs.at(1).prop('onFocus')();
 
         expect(onFocusSpy).toBeCalledTimes(0);
+      });
+    });
+
+    describe('onBlur', () => {
+      it('should call onBlur when it is defined in the props', () => {
+        setup({
+          value: {
+            from: undefined,
+            to: new Date(2010, 0, 1, 12, 30, 40)
+          },
+          onFocus: true,
+          onBlur: true
+        });
+
+        const inputs = dateRangePicker.find('DateTimeInput');
+
+        // @ts-expect-error Test mock
+        inputs.at(0).prop('onBlur')();
+
+        expect(onBlurSpy).toBeCalledTimes(1);
+
+        // @ts-expect-error Test mock
+        inputs.at(1).prop('onBlur')();
+
+        expect(onBlurSpy).toBeCalledTimes(2);
+      });
+
+      it('should not call onBlur when it is undefined in the props', () => {
+        setup({
+          value: {
+            from: undefined,
+            to: new Date(2010, 0, 1, 12, 30, 40)
+          },
+          onFocus: false
+        });
+
+        const inputs = dateRangePicker.find('DateTimeInput');
+
+        // @ts-expect-error Test mock
+        inputs.at(0).prop('onBlur')();
+
+        expect(onBlurSpy).toBeCalledTimes(0);
+
+        // @ts-expect-error Test mock
+        inputs.at(1).prop('onBlur')();
+
+        expect(onBlurSpy).toBeCalledTimes(0);
       });
     });
   });

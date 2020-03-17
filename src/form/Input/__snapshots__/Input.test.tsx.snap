@@ -369,7 +369,6 @@ exports[`Component: Input ui without placeholder: Component: Input => ui => with
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
-    placeholder=""
     type="text"
     value="Maarten"
   />

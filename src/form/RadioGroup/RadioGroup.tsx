@@ -4,25 +4,17 @@ import { constant, get } from 'lodash';
 
 import withJarb from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
-import {
-  isOptionSelected,
-  keyForOption,
-  OptionEnabledCallback,
-  OptionEqual,
-  OptionForValue,
-  OptionsFetcher,
-  UniqueKeyForValue
-} from '../option';
+import { isOptionSelected, keyForOption } from '../option';
 import { doBlur } from '../utils';
 import Loading from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
 import TextButton from '../../core/TextButton/TextButton';
-import { FieldCompatible } from '../types';
+import { FieldWithOptionsCompatible } from '../types';
 
 export type Text = {
   /**
-   * The message to show when the select is loading. Defaults
-   * to `loading...`
+   * The message to show when the form element is loading.
+   * Defaults to `loading...`
    */
   loadingMessage?: string;
 
@@ -32,34 +24,10 @@ export type Text = {
   clear?: string;
 };
 
-export type Props<T> = FieldCompatible<T, T | undefined> & {
-  /**
-   * Is either an array of options or a callback which fetches
-   * the options asynchronously.
-   */
-  options: OptionsFetcher<T> | T[];
-
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
-
-  /**
-   * Optional callback which is called for every option to determine
-   * if the option can be selected. By default all options can be
-   * selected.
-   */
-  isOptionEnabled?: OptionEnabledCallback<T>;
+export type Props<T> = Omit<
+  FieldWithOptionsCompatible<T, T | undefined>,
+  'valid' | 'text'
+> & {
   /**
    * Optionally customized text within the component.
    * This text should already be translated.
@@ -79,19 +47,6 @@ export type Props<T> = FieldCompatible<T, T | undefined> & {
    * Defaults to `false`
    */
   canClear?: boolean;
-
-  /**
-   * Optionally a value to detect changes and trigger
-   * the optionsFetcher to reload the options.
-   */
-  watch?: any;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
 };
 
 /**
@@ -100,21 +55,23 @@ export type Props<T> = FieldCompatible<T, T | undefined> & {
  */
 export default function RadioGroup<T>(props: Props<T>) {
   const {
+    id,
     label,
     value,
-    error,
-    color,
-    text = {},
-    className = '',
-    placeholder,
     onChange,
+    onFocus,
     onBlur,
-    uniqueKeyForValue,
+    error,
+    placeholder,
+    color,
+    className = '',
     optionForValue,
     isOptionEqual,
+    uniqueKeyForValue,
+    text = {},
+    watch,
     horizontal = false,
-    canClear = false,
-    watch
+    canClear = false
   } = props;
 
   const { options, loading } = useOptions({
@@ -177,8 +134,9 @@ export default function RadioGroup<T>(props: Props<T>) {
 
             return (
               <FormGroup key={key} check inline={horizontal}>
-                <Label check>
+                <Label check htmlFor={id}>
                   <Input
+                    id={id}
                     type="radio"
                     value={label}
                     checked={isOptionSelected({
@@ -190,6 +148,7 @@ export default function RadioGroup<T>(props: Props<T>) {
                     })}
                     disabled={!isOptionEnabled(option)}
                     onChange={() => onRadioClicked(option)}
+                    onFocus={onFocus}
                   />{' '}
                   {label}
                 </Label>

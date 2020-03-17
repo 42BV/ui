@@ -46,9 +46,9 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
   <ModalPicker
     canSearch={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
     modalSaved={[Function]}
+    options={[Function]}
     page={
       Object {
         "content": Array [],
@@ -146,9 +146,9 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
   <ModalPicker
     canSearch={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
     modalSaved={[Function]}
+    options={[Function]}
     page={
       Object {
         "content": Array [],
@@ -232,9 +232,9 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
   <ModalPicker
     canSearch={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
     modalSaved={[Function]}
+    options={[Function]}
     page={
       Object {
         "content": Array [],
@@ -326,9 +326,9 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
   <ModalPicker
     canSearch={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
     modalSaved={[Function]}
+    options={[Function]}
     page={
       Object {
         "content": Array [],
@@ -435,9 +435,9 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
   <ModalPicker
     canSearch={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
     modalSaved={[Function]}
+    options={[Function]}
     page={
       Object {
         "content": Array [],
@@ -534,9 +534,9 @@ exports[`Component: ModalPickerMultiple ui should use custom display function to
   <ModalPicker
     canSearch={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
     modalSaved={[Function]}
+    options={[Function]}
     page={
       Object {
         "content": Array [],
