@@ -84,7 +84,6 @@ exports[`Component: SearchInput ui with label 1`] = `
         "current": null,
       }
     }
-    label="Search"
     onChange={[Function]}
     onKeyUp={[Function]}
     placeholder="Search..."

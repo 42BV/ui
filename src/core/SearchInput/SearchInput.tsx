@@ -30,6 +30,15 @@ type ModifiedInputProps = Omit<
   | 'value'
   // defaultValue is only going to accept strings.
   | 'defaultValue'
+  // We are going to override size to use it for icon size.
+  | 'size'
+  // id is required when a label is specified.
+  | 'id'
+  // children is going to accept a function instead of a ReactNode.
+  | 'children'
+  // We are going to override some properties to be able to provide docs.
+  | 'placeholder'
+  | 'className'
 >;
 
 interface BaseProps extends ModifiedInputProps {
@@ -166,8 +175,7 @@ export default function SearchInput(props: Props) {
     showIcon = true,
     className = '',
     children,
-    size,
-    ...rest
+    size
   } = props;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -207,8 +215,7 @@ export default function SearchInput(props: Props) {
       defaultValue,
       onChange: event => handleChange.current(event.target.value),
       onKeyUp: handleKeyUp,
-      placeholder: placeholder,
-      ...rest
+      placeholder: placeholder
     };
 
     if (showIcon) {
