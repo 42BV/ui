@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { useAsync } from 'react-async';
-import { Card, ListGroup, ListGroupItem, Button } from 'reactstrap';
-import { Page, emptyPage } from '@42.nl/spring-connect';
+import { Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
+import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import AsyncPage from './AsyncPage';
 
@@ -191,7 +191,7 @@ storiesOf('core|async/AsyncPage', module)
     );
   })
 
-  .add('when empty with custom title', () => {
+  .add('when empty with custom content', () => {
     const state = useAsync(emptyData);
 
     return (
