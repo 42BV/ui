@@ -6,7 +6,7 @@ import { FinalForm, Form, resolveAfter } from '../story-utils';
 import { pageOfUsers, randomUser } from '../../test/fixtures';
 import { User } from '../../test/types';
 import { Icon, pageOf, Tooltip } from '../..';
-import Toggle from '../Toggle/Toggle';
+import Toggle from '../../core/Toggle/Toggle';
 
 interface SubjectOption {
   value: string;
