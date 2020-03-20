@@ -1,5 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: TextEditor ui with custom toolbar: Component: textEditor => ui => with custom toolbar 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Quill
+    className=""
+    modules={
+      Object {
+        "toolbar": Object {
+          "container": Array [],
+        },
+      }
+    }
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    placeholder="Please enter your first name"
+    theme="snow"
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: TextEditor ui with value: Component: textEditor => ui => with value 1`] = `
 <FormGroup
   className=""

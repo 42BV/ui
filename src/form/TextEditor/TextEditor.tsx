@@ -2,6 +2,7 @@ import React from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import ReactQuill from 'react-quill';
 import classNames from 'classnames';
+import { StringMap } from 'quill';
 
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
@@ -53,6 +54,11 @@ interface BaseProps {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optional configuration option to i.e. customize the toolbar.
+   */
+  modules?: StringMap;
 }
 
 interface WithoutLabel extends BaseProps {
@@ -99,17 +105,18 @@ export default function TextEditor(props: Props) {
     error,
     color,
     value,
-    className = ''
+    className = '',
+    modules
   } = props;
 
   const inputProps = {
     id,
     placeholder,
-    //@ts-ignore
-    onChange: content => onChange(content),
+    onChange: (content: string) => onChange(content),
     onBlur: () => doBlur(onBlur),
     onFocus,
-    value
+    value,
+    modules
   };
 
   const classes = classNames({ 'is-invalid': valid === false });
