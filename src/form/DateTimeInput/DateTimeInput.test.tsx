@@ -5,7 +5,9 @@ import toJson from 'enzyme-to-json';
 import moment from 'moment';
 import Datetime from 'react-datetime';
 
-import DateTimeInput, { IsDateAllowed, maskedInput } from './DateTimeInput';
+import DateTimeInput, { IsDateAllowed } from './DateTimeInput';
+import * as FormatError from './useHasFormatError/useHasFormatError';
+import * as IsModalOpen from './useIsModalOpen/useIsModalOpen';
 
 describe('Component: DateTimeInput', () => {
   let dateTimeInput: ShallowWrapper;
@@ -17,11 +19,13 @@ describe('Component: DateTimeInput', () => {
   function setup({
     value,
     isDateAllowed,
-    hasLabel = true
+    hasLabel = true,
+    mode
   }: {
     value?: Date;
     isDateAllowed?: IsDateAllowed;
     hasLabel?: boolean;
+    mode?: 'modal' | 'default';
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -38,7 +42,8 @@ describe('Component: DateTimeInput', () => {
       onBlur: onBlurSpy,
       onFocus: onFocusSpy,
       error: 'Some error',
-      valid: true
+      valid: true,
+      mode
     };
 
     if (hasLabel) {
@@ -71,53 +76,104 @@ describe('Component: DateTimeInput', () => {
     });
 
     test('with format error', () => {
-      setup({ value: new Date(2000, 0, 1, 12, 30, 40) });
+      const useHasFormatErrorSpy = jest
+        .spyOn(FormatError, 'useHasFormatError')
+        .mockImplementation(() => [true, jest.fn()]);
 
-      dateTimeInput.setState({ hasFormatError: true });
+      setup({ value: new Date(2000, 0, 1, 12, 30, 40), hasLabel: true });
 
       expect(toJson(dateTimeInput)).toMatchSnapshot(
         'Component: DateTimeInput => ui => with format error'
+      );
+
+      useHasFormatErrorSpy.mockRestore();
+    });
+
+    test('with date picker in modal', () => {
+      setup({ mode: 'modal' });
+
+      expect(toJson(dateTimeInput)).toMatchSnapshot(
+        'Component: DateTimeInput => ui => with date picker in modal'
+      );
+    });
+
+    test('MaskedInput', () => {
+      setup({});
+
+      const input = shallow(
+        dateTimeInput
+          .find('DateTime')
+          .props()
+          // @ts-ignore
+          .renderInput({ id: 10 })
+      );
+
+      expect(toJson(input)).toMatchSnapshot(
+        'Component: DateTimeInput => ui => MaskedInput'
+      );
+    });
+
+    test('InputGroup', () => {
+      setup({ mode: 'modal' });
+
+      const inputGroup = shallow(
+        dateTimeInput
+          .find('DateTime')
+          .props()
+          // @ts-ignore
+          .renderInput({ id: 10 })
+      );
+
+      expect(toJson(inputGroup)).toMatchSnapshot(
+        'Component: DateTimeInput => ui => InputGroup'
       );
     });
   });
 
   describe('lifecycle events', () => {
-    describe('componentDidMount', () => {
-      it('should not an error when dateFormat is filled in', () => {
-        // @ts-ignore
-        const dateTimeInput = new DateTimeInput();
-        dateTimeInput.props = { dateFormat: 'YYYY-MM-DD', timeFormat: false };
-
-        expect(() => {
-          dateTimeInput.componentDidMount();
-        }).not.toThrowError(
-          'DateTimeInput: dateFormat and timeFormat cannot both be false'
+    it('should not throw an error when dateFormat is filled in', () => {
+      expect(() => {
+        shallow(
+          <DateTimeInput
+            id="dateOfBirth"
+            dateFormat="YYYY-MM-DD"
+            timeFormat={false}
+            onChange={jest.fn()}
+          />
         );
-      });
+      }).not.toThrowError(
+        'DateTimeInput: dateFormat and timeFormat cannot both be false'
+      );
+    });
 
-      it('should not an error when timeFormat is filled in', () => {
-        // @ts-ignore
-        const dateTimeInput = new DateTimeInput();
-        dateTimeInput.props = { dateFormat: false, timeFormat: 'HH:mm:ss' };
-
-        expect(() => {
-          dateTimeInput.componentDidMount();
-        }).not.toThrowError(
-          'DateTimeInput: dateFormat and timeFormat cannot both be false'
+    it('should not throw an error when timeFormat is filled in', () => {
+      expect(() => {
+        shallow(
+          <DateTimeInput
+            id="dateOfBirth"
+            dateFormat={false}
+            timeFormat="HH:mm:ss"
+            onChange={jest.fn()}
+          />
         );
-      });
+      }).not.toThrowError(
+        'DateTimeInput: dateFormat and timeFormat cannot both be false'
+      );
+    });
 
-      it('should throw an error when dateFormat and timeFormat are both false', () => {
-        // @ts-ignore;
-        const dateTimeInput = new DateTimeInput();
-        dateTimeInput.props = { dateFormat: false, timeFormat: false };
-
-        expect(() => {
-          dateTimeInput.componentDidMount();
-        }).toThrowError(
-          'DateTimeInput: dateFormat and timeFormat cannot both be false'
+    it('should throw an error when dateFormat and timeFormat are both false', () => {
+      expect(() => {
+        shallow(
+          <DateTimeInput
+            id="dateOfBirth"
+            dateFormat={false}
+            timeFormat={false}
+            onChange={jest.fn()}
+          />
         );
-      });
+      }).toThrowError(
+        'DateTimeInput: dateFormat and timeFormat cannot both be false'
+      );
     });
   });
 
@@ -203,6 +259,79 @@ describe('Component: DateTimeInput', () => {
         expect(isDateAllowedSpy).toHaveBeenCalledWith(date, current);
       });
     });
+
+    describe('toggle modal', () => {
+      test('open modal on button click', () => {
+        const setIsModalOpenSpy = jest.fn();
+        const useIsModalOpenSpy = jest
+          .spyOn(IsModalOpen, 'useIsModalOpen')
+          .mockReturnValue([false, setIsModalOpenSpy]);
+
+        setup({ mode: 'modal' });
+
+        const inputGroup = shallow(
+          dateTimeInput
+            .find('DateTime')
+            .props()
+            // @ts-ignore
+            .renderInput({ id: 10 })
+        );
+
+        // @ts-ignore
+        inputGroup
+          .find('Addon')
+          .props()
+          // @ts-ignore
+          .onClick();
+
+        expect(setIsModalOpenSpy).toBeCalledTimes(1);
+        expect(setIsModalOpenSpy).toBeCalledWith(true);
+
+        useIsModalOpenSpy.mockRestore();
+      });
+
+      test('close modal', () => {
+        const setIsModalOpenSpy = jest.fn();
+        const useIsModalOpenSpy = jest
+          .spyOn(IsModalOpen, 'useIsModalOpen')
+          .mockReturnValue([true, setIsModalOpenSpy]);
+
+        setup({ mode: 'modal' });
+
+        // @ts-ignore
+        dateTimeInput
+          .find('DateTimeModal')
+          .props()
+          // @ts-ignore
+          .onClose();
+
+        expect(setIsModalOpenSpy).toBeCalledTimes(1);
+        expect(setIsModalOpenSpy).toBeCalledWith(false);
+
+        useIsModalOpenSpy.mockRestore();
+      });
+
+      test('close modal on clicking select button', () => {
+        const setIsModalOpenSpy = jest.fn();
+        const useIsModalOpenSpy = jest
+          .spyOn(IsModalOpen, 'useIsModalOpen')
+          .mockReturnValue([true, setIsModalOpenSpy]);
+
+        setup({ mode: 'modal' });
+
+        // @ts-ignore
+        dateTimeInput
+          .find('DateTimeModal')
+          .props()
+          // @ts-ignore
+          .onSave(moment());
+
+        expect(setIsModalOpenSpy).toBeCalledTimes(1);
+        expect(setIsModalOpenSpy).toBeCalledWith(false);
+
+        useIsModalOpenSpy.mockRestore();
+      });
+    });
   });
 
   describe('value changes', () => {
@@ -233,9 +362,4 @@ describe('Component: DateTimeInput', () => {
       expect(dateTime.props().value).toBe(value);
     });
   });
-});
-
-test('MaskedInputWrapper', () => {
-  const input = shallow(maskedInput({ id: 10 }));
-  expect(toJson(input)).toMatchSnapshot('maskedInput');
 });

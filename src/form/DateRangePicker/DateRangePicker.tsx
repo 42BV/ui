@@ -88,6 +88,12 @@ interface Props {
    * Optionally the error message to render.
    */
   error?: React.ReactNode;
+
+  /**
+   * Whether or not the date picker should be displayed in a modal.
+   * Defaults to opening in a tooltip-like layout.
+   */
+  mode?: 'modal' | 'default';
 }
 
 interface State {
@@ -148,7 +154,7 @@ export default class DateRangePicker extends Component<Props, State> {
   }
 
   render() {
-    const { className = '', valid, color } = this.props;
+    const { className = '', valid, color, mode } = this.props;
 
     return (
       <Row className={`date-range-picker ${className}`}>
@@ -160,6 +166,7 @@ export default class DateRangePicker extends Component<Props, State> {
             onFocus={() => this.onFocus()}
             valid={valid}
             color={color}
+            mode={mode}
           />
         </Col>
         <Col sm="12" md="6">
@@ -170,6 +177,7 @@ export default class DateRangePicker extends Component<Props, State> {
             onFocus={() => this.onFocus()}
             valid={valid}
             color={color}
+            mode={mode}
           />
         </Col>
         <Col xs="12" className="mb-2">

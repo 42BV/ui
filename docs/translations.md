@@ -163,6 +163,9 @@ Here is a JSON notation containing all keys and default translations:
   "OpenCloseModal": {
     "CANCEL": "Cancel",
     "SAVE": "Save"
+  },
+  "DateTimeModal": {
+    "SELECT": "Select"
   }
 }
 ```

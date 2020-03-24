@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { FormGroup, Input, Label } from 'reactstrap';
+import React from 'react';
+import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 import Datetime from 'react-datetime';
 import { constant, get } from 'lodash';
 import moment, { Moment } from 'moment';
@@ -12,6 +12,11 @@ import { combineFormat, formatToMask, isDate } from './utils';
 
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
+import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
+import classNames from 'classnames';
+import { useHasFormatError } from './useHasFormatError/useHasFormatError';
+import { useIsModalOpen } from './useIsModalOpen/useIsModalOpen';
+import Addon from '../Input/Addon/Addon';
 
 /**
  * Callback which returns whether a date is selectable.
@@ -61,7 +66,7 @@ export interface Props {
 
   /**
    * Optional Callback which returns whether a date is selectable.
-   * Is ran for every date which is displayed. By defaults every
+   * Is ran for every date which is displayed. By default every
    * date can be selected.
    */
   isDateAllowed?: IsDateAllowed;
@@ -106,27 +111,57 @@ export interface Props {
    * Useful for styling the component.
    */
   className?: string;
-}
 
-interface State {
-  hasFormatError: boolean;
+  /**
+   * Whether or not the date picker should be displayed in a modal.
+   * Defaults to opening in a tooltip-like layout.
+   */
+  mode?: 'modal' | 'default';
+
+  /**
+   * Optionally customized text within the DateTimeModal component.
+   * This text should already be translated.
+   */
+  text?: Text;
 }
 
 /**
  * DateTimeInput is a form element which allows the user to select:
  * date and times, times, and dates.
  */
-export default class DateTimeInput extends Component<Props, State> {
-  state = {
-    hasFormatError: false
-  };
+export default function DateTimeInput(props: Props) {
+  const [hasFormatError, setHasFormatError] = useHasFormatError();
+  const [isModalOpen, setIsModalOpen] = useIsModalOpen();
 
-  inputRef = undefined;
+  const {
+    id,
+    label,
+    placeholder,
+    valid,
+    onFocus,
+    dateFormat,
+    timeFormat,
+    color,
+    value,
+    error,
+    locale,
+    mode = 'default',
+    text,
+    className = ''
+  } = props;
+
+  const isDateAllowed = get(props, 'isDateAllowed', constant(true));
+
+  if (!dateFormat && !timeFormat) {
+    throw new Error(
+      'DateTimeInput: dateFormat and timeFormat cannot both be false. This is a programmer error.'
+    );
+  }
 
   // Is either a valid MomentJS object when selected via picker,
   // or a string when the user typed in a value manually.
-  onChange(value: string | Moment) {
-    const { dateFormat, timeFormat } = this.props;
+  function onChange(value: string | Moment) {
+    const { onChange, onBlur } = props;
 
     if (typeof value === 'string') {
       if (isDate(value, dateFormat, timeFormat)) {
@@ -135,89 +170,82 @@ export default class DateTimeInput extends Component<Props, State> {
           combineFormat(dateFormat, timeFormat)
         );
 
-        this.props.onChange(date.toDate());
-        this.setState({ hasFormatError: false });
+        onChange(date.toDate());
+        setHasFormatError(false);
       } else {
-        this.props.onChange(null);
-
-        this.setState({ hasFormatError: true });
+        onChange(null);
+        setHasFormatError(true);
       }
     } else {
-      this.props.onChange(value.toDate());
-      doBlur(this.props.onBlur);
-      this.setState({ hasFormatError: false });
+      onChange(value.toDate());
+      doBlur(onBlur);
+      setHasFormatError(false);
     }
+
+    setIsModalOpen(false);
   }
 
-  componentDidMount() {
-    const { dateFormat, timeFormat } = this.props;
+  const formGroupClassName = classNames('date-time-input', className, {
+    'with-modal': mode === 'modal'
+  });
 
-    if (!dateFormat && !timeFormat) {
-      throw new Error(
-        'DateTimeInput: dateFormat and timeFormat cannot both be false. This is a programmer error.'
-      );
-    }
-  }
-
-  render() {
-    const {
-      id,
-      label,
-      placeholder,
-      dateFormat,
-      timeFormat,
-      color,
-      valid,
-      value,
-      error,
-      locale,
-      onFocus,
-      className = ''
-    } = this.props;
-
-    const { hasFormatError } = this.state;
-    const format = combineFormat(dateFormat, timeFormat);
-    const isDateAllowed = get(this.props, 'isDateAllowed', constant(true));
-
-    return (
-      <FormGroup className={`date-time-input ${className}`} color={color}>
-        {label ? (
-          <Label for={id}>
-            {label}{' '}
-            <span
-              className={`date-time-input-format ${
-                value && hasFormatError ? 'text-danger' : 'text-muted'
-              }`}
-            >
-              ({format})
-            </span>
-          </Label>
-        ) : null}
-        <Datetime
-          inputProps={{
-            // TODO: Figure out if we should do this the hacky way
-            // @see documentation react-datetime
-            // @ts-ignore
-            mask: formatToMask(dateFormat, timeFormat),
-            placeholder,
-            invalid: valid === false || (value && hasFormatError)
-          }}
-          renderInput={maskedInput}
-          onChange={x => this.onChange(x)}
-          onFocus={onFocus}
-          value={value}
+  return (
+    <FormGroup className={formGroupClassName} color={color}>
+      {label ? (
+        <Label for={id}>
+          {label}{' '}
+          <span
+            className={`date-time-input-format ${
+              value && hasFormatError ? 'text-danger' : 'text-muted'
+            }`}
+          >
+            ({combineFormat(dateFormat, timeFormat)})
+          </span>
+        </Label>
+      ) : null}
+      <Datetime
+        inputProps={{
+          // TODO: Figure out if we should do this the hacky way
+          // @see documentation react-datetime
+          // @ts-ignore
+          mask: formatToMask(dateFormat, timeFormat),
+          placeholder,
+          invalid: valid === false || (value !== undefined && hasFormatError)
+        }}
+        open={mode === 'modal' ? false : undefined}
+        renderInput={props =>
+          mode === 'modal'
+            ? maskedInputGroup(props, () => setIsModalOpen(true))
+            : maskedInput(props)
+        }
+        onChange={onChange}
+        onFocus={onFocus}
+        value={value}
+        dateFormat={dateFormat}
+        timeFormat={timeFormat}
+        closeOnSelect={true}
+        locale={locale}
+        isValidDate={(date: Moment, current?: Moment) =>
+          isDateAllowed(date, current)
+        }
+      />
+      {error}
+      {mode === 'modal' ? (
+        <DateTimeModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onSave={onChange}
           dateFormat={dateFormat}
           timeFormat={timeFormat}
-          closeOnSelect={true}
+          defaultValue={value}
+          isDateAllowed={isDateAllowed}
+          label={placeholder}
           locale={locale}
-          isValidDate={(date: Moment, current?: Moment) =>
-            isDateAllowed(date, current)
-          }
+          text={text}
         />
-        {error}
-      </FormGroup>
-    );
-  }
+      ) : null}
+    </FormGroup>
+  );
 }
 
 /**
@@ -229,6 +257,15 @@ export const JarbDateTimeInput = withJarb<Date, Date | null, Props>(
 
 export function maskedInput(props: {}) {
   return <MaskedInput {...props} render={reactStrapInput} />;
+}
+
+export function maskedInputGroup(props: {}, onClick: () => void) {
+  return (
+    <InputGroup>
+      <MaskedInput {...props} render={reactStrapInput} />
+      <Addon position="right" onClick={onClick} icon="calendar_today" />
+    </InputGroup>
+  );
 }
 
 export function reactStrapInput(
