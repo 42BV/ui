@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -82,6 +82,27 @@ storiesOf('Form|DateTime/DateTimeInput', module)
             return date.isBefore(new Date());
           }}
           onChange={() => action('value changed')}
+        />
+      </Form>
+    );
+  })
+  .add('open in modal', () => {
+    const [value, setValue] = useState();
+
+    return (
+      <Form>
+        <DateTimeInput
+          id="dateOfBirth"
+          label="Date of birth"
+          placeholder="Please enter your date and time of birth"
+          dateFormat="YYYY-MM-DD"
+          timeFormat="HH:mm:ss"
+          isDateAllowed={date => {
+            return date.isBefore(new Date());
+          }}
+          value={value}
+          onChange={setValue}
+          mode="modal"
         />
       </Form>
     );

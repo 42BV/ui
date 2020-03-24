@@ -1,8 +1,124 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: DateTimeInput ui InputGroup: Component: DateTimeInput => ui => InputGroup 1`] = `
+<div
+  className="input-group"
+>
+  <t
+    id={10}
+    render={[Function]}
+  />
+  <Addon
+    icon="calendar_today"
+    onClick={[Function]}
+    position="right"
+  />
+</div>
+`;
+
+exports[`Component: DateTimeInput ui MaskedInput: Component: DateTimeInput => ui => MaskedInput 1`] = `
+<Input
+  id={10}
+  innerRef={[Function]}
+  onBlur={[Function]}
+  onChange={[Function]}
+  type="text"
+/>
+`;
+
+exports[`Component: DateTimeInput ui with date picker in modal: Component: DateTimeInput => ui => with date picker in modal 1`] = `
+<FormGroup
+  className="date-time-input with-modal"
+  color="success"
+  tag="div"
+>
+  <Label
+    for="dateOfBirth"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Date of birth
+     
+    <span
+      className="date-time-input-format text-muted"
+    >
+      (
+      YYYY-MM-DD HH:mm:ss
+      )
+    </span>
+  </Label>
+  <DateTime
+    className=""
+    closeOnSelect={true}
+    closeOnTab={true}
+    dateFormat="YYYY-MM-DD"
+    defaultValue=""
+    input={true}
+    inputProps={
+      Object {
+        "invalid": false,
+        "mask": Array [
+          /\\\\d/,
+          /\\\\d/,
+          /\\\\d/,
+          /\\\\d/,
+          "-",
+          /\\\\d/,
+          /\\\\d/,
+          "-",
+          /\\\\d/,
+          /\\\\d/,
+          " ",
+          /\\\\d/,
+          /\\\\d/,
+          ":",
+          /\\\\d/,
+          /\\\\d/,
+          ":",
+          /\\\\d/,
+          /\\\\d/,
+        ],
+        "placeholder": "Please enter your date of birth",
+      }
+    }
+    isValidDate={[Function]}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    onNavigateBack={[Function]}
+    onNavigateForward={[Function]}
+    onViewModeChange={[Function]}
+    open={false}
+    renderInput={[Function]}
+    strictParsing={true}
+    timeConstraints={Object {}}
+    timeFormat="HH:mm:ss"
+    utc={false}
+  />
+  Some error
+  <DateTimeModal
+    dateFormat="YYYY-MM-DD"
+    isDateAllowed={[Function]}
+    isOpen={false}
+    label="Please enter your date of birth"
+    onClose={[Function]}
+    onSave={[Function]}
+    timeFormat="HH:mm:ss"
+  />
+</FormGroup>
+`;
+
 exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput => ui => with format error 1`] = `
 <FormGroup
-  className="date-time-input "
+  className="date-time-input"
   color="success"
   tag="div"
 >
@@ -83,7 +199,7 @@ exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput
 
 exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui => with label 1`] = `
 <FormGroup
-  className="date-time-input "
+  className="date-time-input"
   color="success"
   tag="div"
 >
@@ -164,7 +280,7 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
 
 exports[`Component: DateTimeInput ui without label: Component: DateTimeInput => ui => without label 1`] = `
 <FormGroup
-  className="date-time-input "
+  className="date-time-input"
   color="success"
   tag="div"
 >
@@ -218,14 +334,4 @@ exports[`Component: DateTimeInput ui without label: Component: DateTimeInput => 
   />
   Some error
 </FormGroup>
-`;
-
-exports[`MaskedInputWrapper: maskedInput 1`] = `
-<Input
-  id={10}
-  innerRef={[Function]}
-  onBlur={[Function]}
-  onChange={[Function]}
-  type="text"
-/>
 `;

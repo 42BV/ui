@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: DateTimeModal ui with value: Component: DateTimeModal => ui => with value 1`] = `
+<OpenCloseModal
+  className="date-time-modal"
+  isOpen={true}
+  onClose={[MockFunction]}
+  onSave={[Function]}
+  size="sm"
+  text={
+    Object {
+      "save": "Select",
+    }
+  }
+>
+  <DateTime
+    className=""
+    closeOnSelect={false}
+    closeOnTab={true}
+    dateFormat="YYYY-MM-DD"
+    defaultValue=""
+    input={false}
+    inputProps={Object {}}
+    isValidDate={[Function]}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onNavigateBack={[Function]}
+    onNavigateForward={[Function]}
+    onViewModeChange={[Function]}
+    open={true}
+    strictParsing={true}
+    timeConstraints={Object {}}
+    timeFormat="HH:II:SS"
+    utc={false}
+    value={"2020-01-31T23:00:00.000Z"}
+  />
+</OpenCloseModal>
+`;
+
+exports[`Component: DateTimeModal ui without value: Component: DateTimeModal => ui => without value 1`] = `
+<OpenCloseModal
+  className="date-time-modal"
+  isOpen={true}
+  onClose={[MockFunction]}
+  onSave={[Function]}
+  size="sm"
+  text={
+    Object {
+      "save": "Select",
+    }
+  }
+>
+  <DateTime
+    className=""
+    closeOnSelect={false}
+    closeOnTab={true}
+    dateFormat="YYYY-MM-DD"
+    defaultValue=""
+    input={false}
+    inputProps={Object {}}
+    isValidDate={[Function]}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onNavigateBack={[Function]}
+    onNavigateForward={[Function]}
+    onViewModeChange={[Function]}
+    open={true}
+    strictParsing={true}
+    timeConstraints={Object {}}
+    timeFormat="HH:II:SS"
+    utc={false}
+    value=""
+  />
+</OpenCloseModal>
+`;

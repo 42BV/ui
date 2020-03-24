@@ -10,7 +10,15 @@ describe('Component: DateRangePicker', () => {
   let onChangeSpy: jest.Mock;
   let onFocusSpy: jest.Mock;
 
-  function setup({ value, onFocus }: { value: Value; onFocus: boolean }) {
+  function setup({
+    value,
+    onFocus,
+    mode
+  }: {
+    value: Value;
+    onFocus: boolean;
+    mode?: 'modal' | 'default';
+  }) {
     onChangeSpy = jest.fn();
     onFocusSpy = jest.fn();
 
@@ -37,6 +45,7 @@ describe('Component: DateRangePicker', () => {
         }}
         color="danger"
         valid={false}
+        mode={mode}
       />
     );
   }
@@ -68,6 +77,20 @@ describe('Component: DateRangePicker', () => {
         'Component: DateRangePicker => ui => with errors'
       );
       expect(dateRangePicker.find('FormFeedback').length).toBe(1);
+    });
+
+    test('open in modal', () => {
+      setup({
+        value: {
+          from: new Date(2200, 0, 1, 12, 30, 40),
+          to: new Date(2010, 0, 1, 12, 30, 40)
+        },
+        onFocus: false,
+        mode: 'modal'
+      });
+      expect(toJson(dateRangePicker)).toMatchSnapshot(
+        'Component: DateRangePicker => ui => open in modal'
+      );
     });
   });
 
