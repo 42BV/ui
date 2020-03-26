@@ -26,6 +26,7 @@ export { default as AsyncPage } from './core/AsyncPage/AsyncPage';
 export { default as AsyncList } from './core/AsyncList/AsyncList';
 export { default as SearchInput } from './core/SearchInput/SearchInput';
 export { default as Pager } from './core/Pager/Pager';
+export { OpenCloseModal } from './core/OpenCloseModal/OpenCloseModal';
 
 // Form
 export { default as withJarb } from './form/withJarb/withJarb';

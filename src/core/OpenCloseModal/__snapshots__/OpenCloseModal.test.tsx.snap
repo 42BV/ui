@@ -1,0 +1,274 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseModal => ui => custom button texts 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={false}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    Choose something
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <RadioGroup
+      onChange={[MockFunction]}
+      optionForValue={[Function]}
+      options={
+        Array [
+          "local",
+          "development",
+          "test",
+          "acceptation",
+          "production",
+        ]
+      }
+    />
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Button
+      className="ml-1"
+      color="secondary"
+      onClick={[Function]}
+    >
+      Stop please
+    </Button>
+    <Button
+      className="ml-1"
+      color="primary"
+      onClick={[Function]}
+    >
+      Select me
+    </Button>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => ui => with label 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    Choose something
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <RadioGroup
+      onChange={[MockFunction]}
+      optionForValue={[Function]}
+      options={
+        Array [
+          "local",
+          "development",
+          "test",
+          "acceptation",
+          "production",
+        ]
+      }
+    />
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Button
+      className="ml-1"
+      color="secondary"
+      onClick={[Function]}
+    >
+      Cancel
+    </Button>
+    <Button
+      className="ml-1"
+      color="primary"
+      onClick={[Function]}
+    >
+      Save
+    </Button>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`Component: OpenCloseModal ui without buttons: Component: OpenCloseModal => ui => without buttons 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={false}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    Choose something
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <RadioGroup
+      onChange={[MockFunction]}
+      optionForValue={[Function]}
+      options={
+        Array [
+          "local",
+          "development",
+          "test",
+          "acceptation",
+          "production",
+        ]
+      }
+    />
+  </ModalBody>
+</Modal>
+`;
+
+exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal => ui => without label 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={false}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalBody
+    tag="div"
+  >
+    <RadioGroup
+      onChange={[MockFunction]}
+      optionForValue={[Function]}
+      options={
+        Array [
+          "local",
+          "development",
+          "test",
+          "acceptation",
+          "production",
+        ]
+      }
+    />
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Button
+      className="ml-1"
+      color="secondary"
+      onClick={[Function]}
+    >
+      Cancel
+    </Button>
+    <Button
+      className="ml-1"
+      color="primary"
+      onClick={[Function]}
+    >
+      Save
+    </Button>
+  </ModalFooter>
+</Modal>
+`;

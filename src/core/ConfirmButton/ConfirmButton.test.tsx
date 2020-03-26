@@ -154,7 +154,7 @@ describe('Component: ConfirmButton', () => {
         .onClick(event);
 
       // @ts-ignore
-      expect(confirmButton.find('Modal').props().isOpen).toBe(true);
+      expect(confirmButton.find('OpenCloseModal').props().isOpen).toBe(true);
     }
 
     it('should open the Modal when the ConfirmButton button is clicked', () => {
@@ -174,12 +174,12 @@ describe('Component: ConfirmButton', () => {
         .onClick(event);
 
       // @ts-ignore
-      expect(confirmButton.find('Modal').props().isOpen).toBe(true);
+      expect(confirmButton.find('OpenCloseModal').props().isOpen).toBe(true);
 
       expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
 
-    it('should close the Modal when the Cancel button is clicked', () => {
+    it('should close the Modal', () => {
       setup({
         button: 'Delete',
         icon: undefined
@@ -188,50 +188,10 @@ describe('Component: ConfirmButton', () => {
       openModal();
 
       // @ts-ignore
-      confirmButton
-        .find('Button')
-        .at(1)
-        .prop('onClick')();
+      confirmButton.find('OpenCloseModal').prop('onClose')();
 
       // @ts-ignore
-      expect(confirmButton.find('Modal').props().isOpen).toBe(false);
-    });
-
-    it('should close the Modal when the Header is clicked', () => {
-      setup({
-        button: 'Delete',
-        icon: undefined
-      });
-
-      openModal();
-
-      // @ts-ignore
-      confirmButton
-        .find('ModalHeader')
-        .props()
-        // @ts-ignore
-        .toggle();
-
-      // @ts-ignore
-      expect(confirmButton.find('Modal').props().isOpen).toBe(false);
-    });
-
-    it('should close the Modal the user clicks outside the Modal', () => {
-      setup({
-        button: 'Delete',
-        icon: undefined
-      });
-
-      openModal();
-
-      confirmButton
-        .find('Modal')
-        .props()
-        // @ts-ignore
-        .toggle();
-
-      // @ts-ignore
-      expect(confirmButton.find('Modal').props().isOpen).toBe(false);
+      expect(confirmButton.find('OpenCloseModal').props().isOpen).toBe(false);
     });
 
     it('should close and save the Modal when the Accept button is clicked', () => {
@@ -241,20 +201,17 @@ describe('Component: ConfirmButton', () => {
       });
 
       openModal();
-      const event = new Event('click');
 
       // @ts-ignore
       confirmButton
-        .find('Button')
-        .at(2)
+        .find('OpenCloseModal')
         // @ts-ignore
-        .prop('onClick')(event);
+        .prop('onSave')();
 
       expect(onConfirmSpy).toHaveBeenCalledTimes(1);
-      expect(onConfirmSpy).toHaveBeenCalledWith(event);
 
       // @ts-ignore
-      expect(confirmButton.find('Modal').props().isOpen).toBe(false);
+      expect(confirmButton.find('OpenCloseModal').props().isOpen).toBe(false);
     });
   });
 });

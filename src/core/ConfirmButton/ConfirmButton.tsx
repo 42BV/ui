@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 import Button, {
   BaseProps as ButtonBaseProps,
@@ -11,6 +10,7 @@ import Button, {
 import { Color } from '../types';
 import IconType from '../Icon/types';
 import { t } from '../../utilities/translation/translation';
+import { OpenCloseModal } from '../../core/OpenCloseModal/OpenCloseModal';
 
 interface Text {
   /**
@@ -55,7 +55,7 @@ interface BaseProps {
    * Basically replaces the logic you would normally put in an `onClick`
    * event in a normal button.
    */
-  onConfirm: (event: React.MouseEvent<HTMLElement>) => void;
+  onConfirm: () => void;
 
   /**
    * Whether or not the action you are performing is currently in
@@ -134,9 +134,9 @@ export default function ConfirmButton({
     setOpen(true);
   }
 
-  function saveModal(event: React.MouseEvent<HTMLElement>) {
+  function saveModal() {
     setOpen(false);
-    onConfirm(event);
+    onConfirm();
   }
 
   function getProps() {
@@ -168,32 +168,30 @@ export default function ConfirmButton({
     >
       <Button {...getProps()} />
 
-      <Modal isOpen={isOpen} toggle={() => setOpen(false)}>
-        <ModalHeader toggle={() => setOpen(false)}>
-          {t({
-            overrideText: modalHeader,
-            key: 'ConfirmButton.MODAL_HEADER',
-            fallback: 'Confirmation'
-          })}
-        </ModalHeader>
-        <ModalBody>{dialogText}</ModalBody>
-        <ModalFooter>
-          <Button color="secondary" onClick={() => setOpen(false)}>
-            {t({
-              overrideText: cancel,
-              key: 'ConfirmButton.CANCEL',
-              fallback: 'Cancel'
-            })}
-          </Button>
-          <Button color="primary" onClick={e => saveModal(e)}>
-            {t({
-              overrideText: confirm,
-              key: 'ConfirmButton.CONFIRM',
-              fallback: 'Confirm'
-            })}
-          </Button>
-        </ModalFooter>
-      </Modal>
+      <OpenCloseModal
+        isOpen={isOpen}
+        onClose={() => setOpen(false)}
+        onSave={() => saveModal()}
+        label={t({
+          overrideText: modalHeader,
+          key: 'ConfirmButton.MODAL_HEADER',
+          fallback: 'Confirmation'
+        })}
+        text={{
+          cancel: t({
+            overrideText: cancel,
+            key: 'ConfirmButton.CANCEL',
+            fallback: 'Cancel'
+          }),
+          save: t({
+            overrideText: confirm,
+            key: 'ConfirmButton.CONFIRM',
+            fallback: 'Confirm'
+          })
+        }}
+      >
+        {dialogText}
+      </OpenCloseModal>
     </div>
   );
 }
