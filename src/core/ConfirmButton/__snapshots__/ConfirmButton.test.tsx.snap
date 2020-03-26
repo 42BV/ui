@@ -16,70 +16,26 @@ exports[`Component: ConfirmButton ui button and icon: Component: ConfirmButton =
   >
     Delete user
   </Button>
-  <Modal
-    autoFocus={true}
-    backdrop={true}
-    backdropTransition={
-      Object {
-        "mountOnEnter": true,
-        "timeout": 150,
-      }
-    }
-    centered={false}
-    fade={true}
+  <OpenCloseModal
     isOpen={false}
-    keyboard={true}
-    modalTransition={
+    label="Confirmation"
+    onClose={[Function]}
+    onSave={[Function]}
+    text={
       Object {
-        "timeout": 300,
+        "cancel": "Cancel",
+        "save": "Confirm",
       }
     }
-    onClosed={[Function]}
-    onOpened={[Function]}
-    returnFocusAfterClose={true}
-    role="dialog"
-    scrollable={false}
-    toggle={[Function]}
-    unmountOnClose={true}
-    zIndex={1050}
   >
-    <ModalHeader
-      charCode={215}
-      closeAriaLabel="Close"
-      tag="h5"
-      toggle={[Function]}
-      wrapTag="div"
-    >
-      Confirmation
-    </ModalHeader>
-    <ModalBody
-      tag="div"
-    >
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    </ModalBody>
-    <ModalFooter
-      tag="div"
-    >
-      <Button
-        color="secondary"
-        onClick={[Function]}
-      >
-        Cancel
-      </Button>
-      <Button
-        color="primary"
-        onClick={[Function]}
-      >
-        Confirm
-      </Button>
-    </ModalFooter>
-  </Modal>
+    <p>
+      Are you sure you want to 
+      <strong>
+        delete
+      </strong>
+       the user?
+    </p>
+  </OpenCloseModal>
 </div>
 `;
 
@@ -100,70 +56,26 @@ exports[`Component: ConfirmButton ui custom class, color and texts: Component: C
   >
     Delete user
   </Button>
-  <Modal
-    autoFocus={true}
-    backdrop={true}
-    backdropTransition={
-      Object {
-        "mountOnEnter": true,
-        "timeout": 150,
-      }
-    }
-    centered={false}
-    fade={true}
+  <OpenCloseModal
     isOpen={false}
-    keyboard={true}
-    modalTransition={
+    label="PLEASE SAY YES"
+    onClose={[Function]}
+    onSave={[Function]}
+    text={
       Object {
-        "timeout": 300,
+        "cancel": "NO",
+        "save": "YES",
       }
     }
-    onClosed={[Function]}
-    onOpened={[Function]}
-    returnFocusAfterClose={true}
-    role="dialog"
-    scrollable={false}
-    toggle={[Function]}
-    unmountOnClose={true}
-    zIndex={1050}
   >
-    <ModalHeader
-      charCode={215}
-      closeAriaLabel="Close"
-      tag="h5"
-      toggle={[Function]}
-      wrapTag="div"
-    >
-      PLEASE SAY YES
-    </ModalHeader>
-    <ModalBody
-      tag="div"
-    >
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    </ModalBody>
-    <ModalFooter
-      tag="div"
-    >
-      <Button
-        color="secondary"
-        onClick={[Function]}
-      >
-        NO
-      </Button>
-      <Button
-        color="primary"
-        onClick={[Function]}
-      >
-        YES
-      </Button>
-    </ModalFooter>
-  </Modal>
+    <p>
+      Are you sure you want to 
+      <strong>
+        delete
+      </strong>
+       the user?
+    </p>
+  </OpenCloseModal>
 </div>
 `;
 
@@ -182,70 +94,26 @@ exports[`Component: ConfirmButton ui only button: Component: ConfirmButton => ui
   >
     Delete user
   </Button>
-  <Modal
-    autoFocus={true}
-    backdrop={true}
-    backdropTransition={
-      Object {
-        "mountOnEnter": true,
-        "timeout": 150,
-      }
-    }
-    centered={false}
-    fade={true}
+  <OpenCloseModal
     isOpen={false}
-    keyboard={true}
-    modalTransition={
+    label="Confirmation"
+    onClose={[Function]}
+    onSave={[Function]}
+    text={
       Object {
-        "timeout": 300,
+        "cancel": "Cancel",
+        "save": "Confirm",
       }
     }
-    onClosed={[Function]}
-    onOpened={[Function]}
-    returnFocusAfterClose={true}
-    role="dialog"
-    scrollable={false}
-    toggle={[Function]}
-    unmountOnClose={true}
-    zIndex={1050}
   >
-    <ModalHeader
-      charCode={215}
-      closeAriaLabel="Close"
-      tag="h5"
-      toggle={[Function]}
-      wrapTag="div"
-    >
-      Confirmation
-    </ModalHeader>
-    <ModalBody
-      tag="div"
-    >
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    </ModalBody>
-    <ModalFooter
-      tag="div"
-    >
-      <Button
-        color="secondary"
-        onClick={[Function]}
-      >
-        Cancel
-      </Button>
-      <Button
-        color="primary"
-        onClick={[Function]}
-      >
-        Confirm
-      </Button>
-    </ModalFooter>
-  </Modal>
+    <p>
+      Are you sure you want to 
+      <strong>
+        delete
+      </strong>
+       the user?
+    </p>
+  </OpenCloseModal>
 </div>
 `;
 
@@ -263,70 +131,26 @@ exports[`Component: ConfirmButton ui only icon in progress: Component: ConfirmBu
     inProgress={true}
     onClick={[Function]}
   />
-  <Modal
-    autoFocus={true}
-    backdrop={true}
-    backdropTransition={
-      Object {
-        "mountOnEnter": true,
-        "timeout": 150,
-      }
-    }
-    centered={false}
-    fade={true}
+  <OpenCloseModal
     isOpen={false}
-    keyboard={true}
-    modalTransition={
+    label="Confirmation"
+    onClose={[Function]}
+    onSave={[Function]}
+    text={
       Object {
-        "timeout": 300,
+        "cancel": "Cancel",
+        "save": "Confirm",
       }
     }
-    onClosed={[Function]}
-    onOpened={[Function]}
-    returnFocusAfterClose={true}
-    role="dialog"
-    scrollable={false}
-    toggle={[Function]}
-    unmountOnClose={true}
-    zIndex={1050}
   >
-    <ModalHeader
-      charCode={215}
-      closeAriaLabel="Close"
-      tag="h5"
-      toggle={[Function]}
-      wrapTag="div"
-    >
-      Confirmation
-    </ModalHeader>
-    <ModalBody
-      tag="div"
-    >
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    </ModalBody>
-    <ModalFooter
-      tag="div"
-    >
-      <Button
-        color="secondary"
-        onClick={[Function]}
-      >
-        Cancel
-      </Button>
-      <Button
-        color="primary"
-        onClick={[Function]}
-      >
-        Confirm
-      </Button>
-    </ModalFooter>
-  </Modal>
+    <p>
+      Are you sure you want to 
+      <strong>
+        delete
+      </strong>
+       the user?
+    </p>
+  </OpenCloseModal>
 </div>
 `;
 
@@ -344,69 +168,25 @@ exports[`Component: ConfirmButton ui only icon: Component: ConfirmButton => ui =
     inProgress={false}
     onClick={[Function]}
   />
-  <Modal
-    autoFocus={true}
-    backdrop={true}
-    backdropTransition={
-      Object {
-        "mountOnEnter": true,
-        "timeout": 150,
-      }
-    }
-    centered={false}
-    fade={true}
+  <OpenCloseModal
     isOpen={false}
-    keyboard={true}
-    modalTransition={
+    label="Confirmation"
+    onClose={[Function]}
+    onSave={[Function]}
+    text={
       Object {
-        "timeout": 300,
+        "cancel": "Cancel",
+        "save": "Confirm",
       }
     }
-    onClosed={[Function]}
-    onOpened={[Function]}
-    returnFocusAfterClose={true}
-    role="dialog"
-    scrollable={false}
-    toggle={[Function]}
-    unmountOnClose={true}
-    zIndex={1050}
   >
-    <ModalHeader
-      charCode={215}
-      closeAriaLabel="Close"
-      tag="h5"
-      toggle={[Function]}
-      wrapTag="div"
-    >
-      Confirmation
-    </ModalHeader>
-    <ModalBody
-      tag="div"
-    >
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    </ModalBody>
-    <ModalFooter
-      tag="div"
-    >
-      <Button
-        color="secondary"
-        onClick={[Function]}
-      >
-        Cancel
-      </Button>
-      <Button
-        color="primary"
-        onClick={[Function]}
-      >
-        Confirm
-      </Button>
-    </ModalFooter>
-  </Modal>
+    <p>
+      Are you sure you want to 
+      <strong>
+        delete
+      </strong>
+       the user?
+    </p>
+  </OpenCloseModal>
 </div>
 `;

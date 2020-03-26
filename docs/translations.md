@@ -159,6 +159,10 @@ Here is a JSON notation containing all keys and default translations:
   },
   "RadioGroup": {
     "LOADING": "Loading..."
+  },
+  "OpenCloseModal": {
+    "CANCEL": "Cancel",
+    "SAVE": "Save"
   }
 }
 ```
