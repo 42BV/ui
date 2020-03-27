@@ -47,9 +47,7 @@ describe('Component: DateTimeModal', () => {
   describe('events', () => {
     it('should update internal value when a date is selected', () => {
       const setValueSpy = jest.fn();
-      const useValueSpy = jest
-        .spyOn(Value, 'useValue')
-        .mockReturnValue(['', setValueSpy]);
+      jest.spyOn(Value, 'useValue').mockReturnValue(['', setValueSpy]);
       const { dateTimeModal } = setup({});
 
       const value = new Date(2020, 2, 1, 0, 0, 0);
@@ -63,8 +61,6 @@ describe('Component: DateTimeModal', () => {
 
       expect(setValueSpy).toBeCalledTimes(1);
       expect(setValueSpy).toBeCalledWith(value);
-
-      useValueSpy.mockRestore();
     });
 
     it('should not update external value when a date is selected', () => {

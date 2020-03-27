@@ -167,7 +167,8 @@
     ],
     "transform": {
       "\\.tsx?$": "ts-jest"
-    }
+    },
+    "restoreMocks": true
   },
   "lint-staged": {
     "{src,tests}/**/*.{js,jsx,json,scss,ts,tsx}": [
