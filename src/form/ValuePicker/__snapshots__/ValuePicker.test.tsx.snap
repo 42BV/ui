@@ -743,11 +743,11 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
     placeholder="Select your best friend"
   >
     <FormGroup
-      className=""
+      className="radio-group "
       tag="fieldset"
     >
       <fieldset
-        className="form-group"
+        className="radio-group  form-group"
       >
         <legend>
           Best friend
