@@ -76,7 +76,7 @@ describe('Component: DateTimeInput', () => {
     });
 
     test('with format error', () => {
-      const useHasFormatErrorSpy = jest
+      jest
         .spyOn(FormatError, 'useHasFormatError')
         .mockImplementation(() => [true, jest.fn()]);
 
@@ -85,8 +85,6 @@ describe('Component: DateTimeInput', () => {
       expect(toJson(dateTimeInput)).toMatchSnapshot(
         'Component: DateTimeInput => ui => with format error'
       );
-
-      useHasFormatErrorSpy.mockRestore();
     });
 
     test('with date picker in modal', () => {
@@ -263,7 +261,7 @@ describe('Component: DateTimeInput', () => {
     describe('toggle modal', () => {
       test('open modal on button click', () => {
         const setIsModalOpenSpy = jest.fn();
-        const useIsModalOpenSpy = jest
+        jest
           .spyOn(IsModalOpen, 'useIsModalOpen')
           .mockReturnValue([false, setIsModalOpenSpy]);
 
@@ -286,13 +284,11 @@ describe('Component: DateTimeInput', () => {
 
         expect(setIsModalOpenSpy).toBeCalledTimes(1);
         expect(setIsModalOpenSpy).toBeCalledWith(true);
-
-        useIsModalOpenSpy.mockRestore();
       });
 
       test('close modal', () => {
         const setIsModalOpenSpy = jest.fn();
-        const useIsModalOpenSpy = jest
+        jest
           .spyOn(IsModalOpen, 'useIsModalOpen')
           .mockReturnValue([true, setIsModalOpenSpy]);
 
@@ -307,13 +303,11 @@ describe('Component: DateTimeInput', () => {
 
         expect(setIsModalOpenSpy).toBeCalledTimes(1);
         expect(setIsModalOpenSpy).toBeCalledWith(false);
-
-        useIsModalOpenSpy.mockRestore();
       });
 
       test('close modal on clicking select button', () => {
         const setIsModalOpenSpy = jest.fn();
-        const useIsModalOpenSpy = jest
+        jest
           .spyOn(IsModalOpen, 'useIsModalOpen')
           .mockReturnValue([true, setIsModalOpenSpy]);
 
@@ -328,8 +322,6 @@ describe('Component: DateTimeInput', () => {
 
         expect(setIsModalOpenSpy).toBeCalledTimes(1);
         expect(setIsModalOpenSpy).toBeCalledWith(false);
-
-        useIsModalOpenSpy.mockRestore();
       });
     });
   });
