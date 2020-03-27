@@ -160,7 +160,11 @@ export default function RadioGroup<T>(props: Props<T>) {
   }
 
   return (
-    <FormGroup tag="fieldset" className={className} color={color}>
+    <FormGroup
+      tag="fieldset"
+      className={'radio-group ' + className}
+      color={color}
+    >
       {'label' in props && props.label ? <legend>{props.label}</legend> : null}
       {placeholder ? (
         <p className="text-muted">

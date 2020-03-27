@@ -2,7 +2,7 @@
 
 exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => horizontal 1`] = `
 <FormGroup
-  className=""
+  className="radio-group "
   tag="fieldset"
 >
   <legend>
@@ -111,7 +111,7 @@ exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => hor
 
 exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => with value 1`] = `
 <FormGroup
-  className=""
+  className="radio-group "
   tag="fieldset"
 >
   <legend>
@@ -220,7 +220,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
 
 exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => without label 1`] = `
 <FormGroup
-  className=""
+  className="radio-group "
   tag="fieldset"
 >
   <p
@@ -326,7 +326,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
 
 exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => ui => without placeholder 1`] = `
 <FormGroup
-  className=""
+  className="radio-group "
   tag="fieldset"
 >
   <legend>
