@@ -150,8 +150,8 @@ storiesOf('Form|Example', module).add('jarb form', () => {
 
       <JarbInput
         name="phone"
-        jarb={{ validator: 'User.lastName', label: 'Phone' }}
-        id="lastName"
+        jarb={{ validator: 'User.phone', label: 'Phone' }}
+        id="phone"
         label="Phone"
         mask={mask}
         placeholder="Please enter your phone number"
