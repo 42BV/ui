@@ -313,7 +313,32 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
 >
   <ModalPickerMultiple
     canSearch={true}
-    fetchOptions={[Function]}
+    fetchOptions={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "",
+            1,
+            1,
+          ],
+          Array [
+            "",
+            1,
+            10,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": Promise {},
+          },
+          Object {
+            "type": "return",
+            "value": Promise {},
+          },
+        ],
+      }
+    }
     id="bestFriend"
     label="Best friend"
     onBlur={[MockFunction]}
@@ -553,7 +578,32 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
 >
   <ModalPickerSingle
     canSearch={true}
-    fetchOptions={[Function]}
+    fetchOptions={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            "",
+            1,
+            1,
+          ],
+          Array [
+            "",
+            1,
+            10,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": Promise {},
+          },
+          Object {
+            "type": "return",
+            "value": Promise {},
+          },
+        ],
+      }
+    }
     id="bestFriend"
     label="Best friend"
     onBlur={[MockFunction]}
