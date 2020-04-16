@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Color } from '../types';
 import { FetchOptionsCallback, OptionEqual, OptionForValue } from '../option';
 import withJarb from '../withJarb/withJarb';
@@ -179,26 +179,16 @@ export default function ValuePicker<T>(props: Props<T>) {
   const [booting, setBooting] = useState(true);
   const [totalElements, setTotalElements] = useState(0);
 
-  const fetchOptionsCallback = useCallback(
-    async (query: string, pageNumber: number, size: number) => {
-      const page = await fetchOptions(query, pageNumber, size);
-
-      setTotalElements(page.totalElements);
-
-      return page;
-    },
-    [fetchOptions]
-  );
-
   useEffect(() => {
     async function boot() {
-      await fetchOptionsCallback('', 1, 1);
+      const page = await fetchOptions('', 1, 1);
+      setTotalElements(page.totalElements);
 
       setBooting(false);
     }
 
     boot();
-  }, [fetchOptionsCallback]);
+  }, [fetchOptions]);
 
   // Until we know the number of totalElements the ValuePicker is booting.
   // and we do not shown anything to the user yet.
@@ -223,30 +213,22 @@ export default function ValuePicker<T>(props: Props<T>) {
     if (totalElements < 11) {
       return (
         <CheckboxMultipleSelect
-          options={() => fetchOptionsCallback('', 1, 10)}
+          options={() => fetchOptions('', 1, 10)}
           {...rest}
         />
       );
     } else {
-      return (
-        <ModalPickerMultiple fetchOptions={fetchOptionsCallback} {...rest} />
-      );
+      return <ModalPickerMultiple fetchOptions={fetchOptions} {...rest} />;
     }
   } else {
     const { fetchOptions, multiple, ...rest } = props;
 
     if (totalElements < 4) {
-      return (
-        <RadioGroup options={() => fetchOptionsCallback('', 1, 3)} {...rest} />
-      );
+      return <RadioGroup options={() => fetchOptions('', 1, 3)} {...rest} />;
     } else if (totalElements < 11) {
-      return (
-        <Select options={() => fetchOptionsCallback('', 1, 10)} {...rest} />
-      );
+      return <Select options={() => fetchOptions('', 1, 10)} {...rest} />;
     } else {
-      return (
-        <ModalPickerSingle fetchOptions={fetchOptionsCallback} {...rest} />
-      );
+      return <ModalPickerSingle fetchOptions={fetchOptions} {...rest} />;
     }
   }
 }
