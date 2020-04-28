@@ -100,6 +100,11 @@ export {
   default as RadioGroup,
   JarbRadioGroup
 } from './form/RadioGroup/RadioGroup';
+export {
+  default as NewPasswordInput,
+  JarbNewPasswordInput,
+  isStrongPassword
+} from './form/NewPasswordInput/NewPasswordInput';
 
 // Table
 export { EpicTable } from './table/EpicTable/EpicTable';

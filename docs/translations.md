@@ -166,6 +166,17 @@ Here is a JSON notation containing all keys and default translations:
   },
   "DateTimeModal": {
     "SELECT": "Select"
+  },
+  "NewPasswordInput": {
+    "NOT_STRONG_ENOUGH": "Password does not follow rules"
+  },
+  "PasswordStrength": {
+    "LOWERCASE": "Must contain at least one lowercase letter",
+    "UPPERCASE": "Must contain at least one lowercase letter",
+    "NUMBER": "Must contain at least one number",
+    "SPECIAL_CHARACTER": "Must contain at least one special character ({{specialChars}})",
+    "MINIMUM_LENGTH": "Must contain at least {{minimumLength}} characters",
+    "NO_SPACE": "Must not contain any space"
   }
 }
 ```

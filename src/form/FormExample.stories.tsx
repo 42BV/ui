@@ -6,6 +6,7 @@ import { Moment } from 'moment';
 import { JarbInput } from './Input/Input';
 import { FinalForm } from './story-utils';
 import {
+  isStrongPassword,
   JarbCheckboxMultipleSelect,
   JarbDateRangePicker,
   JarbDateTimeInput,
@@ -29,6 +30,7 @@ import { User } from '../test/types';
 import { JarbColorPicker } from './ColorPicker/ColorPicker';
 import { JarbCheckbox } from './Checkbox/Checkbox';
 import { JarbRadioGroup } from './RadioGroup/RadioGroup';
+import { JarbNewPasswordInput } from './NewPasswordInput/NewPasswordInput';
 
 function sleep(ms: number) {
   return new Promise(resolve => {
@@ -193,6 +195,27 @@ storiesOf('Form|Example', module).add('jarb form', () => {
         label="User name"
         placeholder="Please enter your user name"
         validators={requiredValidator}
+      />
+
+      <JarbNewPasswordInput
+        name="password"
+        jarb={{ validator: 'User.password', label: 'Password' }}
+        id="password"
+        label="Password"
+        placeholder="Please enter your password"
+        validators={[
+          isStrongPassword(
+            [
+              'lowercase',
+              'uppercase',
+              'number',
+              'specialChar',
+              'minimumLength',
+              'noSpace'
+            ],
+            10
+          )
+        ]}
       />
 
       <JarbDateTimeInput
