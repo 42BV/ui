@@ -15,18 +15,21 @@ describe('Component: OpenCloseModal', () => {
     isOpen = false,
     hasLabel = true,
     hasCustomText = false,
-    hasButtons = true
+    hasButtons = true,
+    inProgress = undefined
   }: {
     isOpen?: boolean;
     hasLabel?: boolean;
     hasCustomText?: boolean;
     hasButtons?: boolean;
+    inProgress?: boolean;
   }) {
     onCloseSpy = jest.fn();
     onSaveSpy = jest.fn();
 
     const props = {
       isOpen,
+      inProgress,
       onClose: onCloseSpy,
       text: hasCustomText
         ? { cancel: 'Stop please', save: 'Select me' }
@@ -89,6 +92,14 @@ describe('Component: OpenCloseModal', () => {
 
       expect(toJson(openCloseModal)).toMatchSnapshot(
         'Component: OpenCloseModal => ui => custom button texts'
+      );
+    });
+
+    test('in progress', () => {
+      setup({ inProgress: true });
+
+      expect(toJson(openCloseModal)).toMatchSnapshot(
+        'Component: OpenCloseModal => ui => in progress'
       );
     });
   });
