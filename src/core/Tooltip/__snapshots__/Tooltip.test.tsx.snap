@@ -2,7 +2,6 @@
 
 exports[`Component: Tooltip ui default: Component: Tooltip => ui => default 1`] = `
 <ForwardRef(TippyWrapper)
-  boundary="viewport"
   className="border-0"
   content={
     <React.Fragment>
@@ -13,8 +12,13 @@ exports[`Component: Tooltip ui default: Component: Tooltip => ui => default 1`] 
        
     </React.Fragment>
   }
-  distance={7}
   maxWidth={350}
+  offset={
+    Array [
+      0,
+      7,
+    ]
+  }
   placement="top"
 >
   <span
@@ -34,7 +38,6 @@ exports[`Component: Tooltip ui default: Component: Tooltip => ui => default 1`] 
 
 exports[`Component: Tooltip ui with custom tag: Component: Tooltip => ui => with tag 1`] = `
 <ForwardRef(TippyWrapper)
-  boundary="viewport"
   className="border-0"
   content={
     <React.Fragment>
@@ -43,8 +46,13 @@ exports[`Component: Tooltip ui with custom tag: Component: Tooltip => ui => with
        
     </React.Fragment>
   }
-  distance={7}
   maxWidth={350}
+  offset={
+    Array [
+      0,
+      7,
+    ]
+  }
   placement="top"
 >
   <div

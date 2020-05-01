@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Popover ui default: Component: Popover => ui => default 1`] = `
+<ForwardRef(TippyWrapper)
+  className="border-0 tippy-popover"
+  content={
+    <React.Fragment>
+      Popover content
+    </React.Fragment>
+  }
+  hideOnClick={true}
+  interactive={true}
+  offset={
+    Array [
+      0,
+      7,
+    ]
+  }
+  placement="top"
+  zIndex={1049}
+>
+  <span
+    tabIndex={0}
+  >
+    <div>
+      The popover should be wrapped around this div, in a span
+    </div>
+  </span>
+</ForwardRef(TippyWrapper)>
+`;
+
+exports[`Component: Popover ui with custom tag: Component: Popover => ui => with tag 1`] = `
+<ForwardRef(TippyWrapper)
+  className="border-0 tippy-popover"
+  content={
+    <React.Fragment>
+      Popover content
+    </React.Fragment>
+  }
+  hideOnClick={true}
+  interactive={true}
+  offset={
+    Array [
+      0,
+      7,
+    ]
+  }
+  placement="top"
+  zIndex={1049}
+>
+  <div
+    tabIndex={0}
+  >
+    target
+  </div>
+</ForwardRef(TippyWrapper)>
+`;
+
+exports[`Component: Popover ui with optional properties: Component: Popover => ui => with optional properties 1`] = `
+<ForwardRef(TippyWrapper)
+  className="border-0 tippy-popover"
+  content={
+    <React.Fragment>
+      Popover content
+    </React.Fragment>
+  }
+  hideOnClick={false}
+  interactive={true}
+  offset={
+    Array [
+      0,
+      10,
+    ]
+  }
+  placement="bottom"
+  visible={true}
+  zIndex={1049}
+>
+  <span
+    style={
+      Object {
+        "marginTop": 5,
+        "padding": 10,
+      }
+    }
+    tabIndex={0}
+  >
+    <div>
+      The popover should be wrapped around this div, in a div
+    </div>
+  </span>
+</ForwardRef(TippyWrapper)>
+`;

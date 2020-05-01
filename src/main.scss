@@ -9,6 +9,13 @@
 @import './styling/form';
 @import './styling/dropdowns';
 
+// External
+@import '~react-bootstrap-typeahead/css/Typeahead.css';
+@import '~react-bootstrap-typeahead/css/Typeahead-bs4.css';
+@import '~react-quill/dist/quill.snow.css';
+@import '~overlayscrollbars/css/OverlayScrollbars.css';
+@import '~tippy.js/dist/tippy.css';
+
 // Core components
 @import './core/Avatar/Avatar';
 @import './core/Button/Button';
@@ -23,13 +30,7 @@
 @import './core/ProgressStepper/ProgressStepper';
 @import './core/Spinner/Spinner';
 @import './core/Tag/Tag';
-
-// External
-@import '~react-bootstrap-typeahead/css/Typeahead.css';
-@import '~react-bootstrap-typeahead/css/Typeahead-bs4.css';
-@import '~react-quill/dist/quill.snow.css';
-@import '~overlayscrollbars/css/OverlayScrollbars.css';
-@import '~tippy.js/dist/tippy.css';
+@import './core/Popover/Popover';
 
 // Form components
 @import './form/ImageUpload/ImageUpload';

@@ -13,7 +13,6 @@ exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => for
 
 exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => jarbField 1`] = `
 <ForwardRef(TippyWrapper)
-  boundary="viewport"
   className="border-0"
   content={
     <React.Fragment>
@@ -34,8 +33,13 @@ exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => jar
        
     </React.Fragment>
   }
-  distance={7}
   maxWidth={350}
+  offset={
+    Array [
+      0,
+      7,
+    ]
+  }
   placement="bottom"
 >
   <div

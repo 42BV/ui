@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import * as Popper from 'popper.js';
-import Tippy from '@tippy.js/react';
+import Tippy from '@tippyjs/react';
 
 /*** Tooltip component based on the Tippy Library ***/
 interface Props {
@@ -22,10 +22,14 @@ interface Props {
   placement?: Popper.Placement;
 
   /**
-   * Optional distance that the tooltip will show up relative from the target.
-   * Possible values: number (px), string (with units "rem" only).
+   * Optional offset that the popover will show up relative from the target.
    */
-  distance?: number | string;
+  offset?: number;
+
+  /**
+   * Optional distance that the tooltip will show up relative from the target.
+   */
+  distance?: number;
 
   /**
    * Optional value that allows you to interact with the Tooltip. This is useful for when
@@ -68,6 +72,7 @@ export default function Tooltip({
   children,
   placement = 'top',
   content,
+  offset = 0,
   distance = 7,
   interactive,
   maxWidth = 350,
@@ -82,9 +87,8 @@ export default function Tooltip({
       className="border-0"
       content={<> {content} </>}
       placement={placement}
-      distance={distance}
+      offset={[offset, distance]}
       interactive={interactive}
-      boundary="viewport"
       maxWidth={maxWidth}
     >
       <Tag className={className} style={{ outline: 0, ...style }} tabIndex={0}>

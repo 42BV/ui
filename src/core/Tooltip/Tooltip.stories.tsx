@@ -71,7 +71,7 @@ storiesOf('core|Tooltip', module)
     </>
   ))
 
-  .add('width & distance', () => (
+  .add('width, distance and offset', () => (
     <>
       <h6>Max width</h6>
       <Row className="mt-4">
@@ -100,15 +100,32 @@ storiesOf('core|Tooltip', module)
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Tooltip content="far away" distance={15}>
-            <Tag color="success" text="Hover me!" />
+            <Tag color="success" text="far away" />
           </Tooltip>
 
           <Tooltip content="default distance">
-            <Tag color="success" text="Hover me!" />
+            <Tag color="success" text="default offset" />
           </Tooltip>
 
           <Tooltip content="very close" distance={3}>
-            <Tag color="success" text="Hover me!" />
+            <Tag color="success" text="very close" />
+          </Tooltip>
+        </Col>
+      </Row>
+
+      <h6>Offset</h6>
+      <Row className="mt-4">
+        <Col className="d-flex justify-content-around">
+          <Tooltip content="far away" offset={100}>
+            <Tag color="success" text="far away" />
+          </Tooltip>
+
+          <Tooltip content="default offset">
+            <Tag color="success" text="default offset" />
+          </Tooltip>
+
+          <Tooltip content="very close" offset={-100}>
+            <Tag color="success" text="very close" />
           </Tooltip>
         </Col>
       </Row>
