@@ -16,6 +16,13 @@ type Props = {
   isOpen: boolean;
 
   /**
+   * Whether or not the save action you are performing is currently in
+   * progress. If so a spinner is rendered inside of the button.
+   * This behavior is optional and default to `false`.
+   */
+  inProgress?: boolean;
+
+  /**
    * Callback for when the modal should close.
    */
   onClose: () => void;
@@ -56,6 +63,7 @@ type Props = {
 export function OpenCloseModal(props: Props) {
   const {
     isOpen,
+    inProgress,
     onClose,
     onSave,
     children,
@@ -85,7 +93,12 @@ export function OpenCloseModal(props: Props) {
               fallback: 'Cancel'
             })}
           </Button>
-          <Button className="ml-1" color="primary" onClick={() => onSave()}>
+          <Button
+            className="ml-1"
+            color="primary"
+            inProgress={inProgress}
+            onClick={() => onSave()}
+          >
             {t({
               overrideText: text?.save,
               key: 'OpenCloseModal.SAVE',

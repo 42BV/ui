@@ -10,11 +10,17 @@ import RadioGroup from '../../form/RadioGroup/RadioGroup';
 storiesOf('core|OpenCloseModal', module)
   .add('basic', () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const [choice, setChoice] = useState();
 
     function onSave() {
       action('save button was clicked');
-      setIsOpen(false);
+
+      setInProgress(true);
+
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 2000);
     }
 
     function onClose() {
@@ -27,6 +33,7 @@ storiesOf('core|OpenCloseModal', module)
         <Button onClick={() => setIsOpen(true)}>Start inquiry</Button>
         <OpenCloseModal
           isOpen={isOpen}
+          inProgress={inProgress}
           onClose={onClose}
           onSave={onSave}
           label="What are you doing?"
