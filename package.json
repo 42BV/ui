@@ -22,7 +22,7 @@
     "start": "npm run storybook",
     "test": "jest",
     "test:watch": "jest --watch --coverage",
-    "test-all": "npm run lint && npm run tsc && jest --coverage",
+    "test-all": "npm run lint && npm run tsc && jest --coverage --no-cache",
     "build": "npm run clean && rollup -c",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "storybook:build": "build-storybook -c storybook -o docs/storybook",
