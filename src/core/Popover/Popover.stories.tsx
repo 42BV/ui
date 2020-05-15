@@ -80,10 +80,14 @@ storiesOf('core|Popover', module)
         <Row className="my-3">
           <Col className="d-flex justify-content-around align-items-center">
             Status: {isOpen ? 'opened' : 'closed'}
-            <Popover isOpen={isOpen} onClickOutside={() => setIsOpen(false)} target="Open">
+            <Popover
+              isOpen={isOpen}
+              onClickOutside={() => setIsOpen(false)}
+              target="Open"
+            >
               <NiceCard />
             </Popover>
-            <Button onClick={() => setIsOpen(!isOpen)}>Show / hide</Button>
+            <Button onClick={() => setIsOpen(true)}>Show</Button>
           </Col>
           <Col>
             <p>
