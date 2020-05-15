@@ -14,11 +14,10 @@ interface Props {
   isOpen?: boolean;
 
   /**
-   * Optionally whether or not the popover should hide on outside click,
-   * by default this is `true`. Is useful for when wanting to take
-   * complete control over the popover.
+   * Optionally callback that gets triggered when clicked outside the popover.
+   * Is useful for when wanting to take complete control over the popover.
    */
-  hideOnClick?: boolean;
+  onClickOutside?: () => void;
 
   /**
    * Content shown inside of the popover.
@@ -80,7 +79,7 @@ export default function Popover({
   tag = 'span',
   className,
   isOpen,
-  hideOnClick = true,
+  onClickOutside,
   style
 }: Props) {
   const Tag = tag;
@@ -88,7 +87,7 @@ export default function Popover({
   return (
     <Tippy
       visible={isOpen}
-      hideOnClick={hideOnClick}
+      onClickOutside={onClickOutside}
       className="border-0 tippy-popover"
       content={<>{children}</>}
       placement={placement}

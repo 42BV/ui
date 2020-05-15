@@ -53,8 +53,35 @@ storiesOf('core|Popover', module)
         <Row className="my-3">
           <Col className="d-flex justify-content-around align-items-center">
             Status: {isOpen ? 'opened' : 'closed'}
-            <Popover isOpen={isOpen} hideOnClick={false} target="Open">
+            <Popover isOpen={isOpen} target="Open">
               <TinyCrud />
+            </Popover>
+            <Button onClick={() => setIsOpen(!isOpen)}>Show / hide</Button>
+          </Col>
+          <Col>
+            <p>
+              Note: you can take complete controll over the Popover by using the{' '}
+              <pre className="d-inline text-info">isOpen</pre> prop. Once you
+              make it <pre className="d-inline text-info">true</pre> or{' '}
+              <pre className="d-inline text-info">false</pre> the hover behavior
+              will be disabled.
+            </p>
+          </Col>
+        </Row>
+      </div>
+    );
+  })
+
+  .add('on click outside', () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <div className="d-flex flex-column">
+        <Row className="my-3">
+          <Col className="d-flex justify-content-around align-items-center">
+            Status: {isOpen ? 'opened' : 'closed'}
+            <Popover isOpen={isOpen} onClickOutside={() => setIsOpen(false)} target="Open">
+              <NiceCard />
             </Popover>
             <Button onClick={() => setIsOpen(!isOpen)}>Show / hide</Button>
           </Col>
@@ -68,10 +95,9 @@ storiesOf('core|Popover', module)
             </p>
 
             <p>
-              In combination with a{' '}
-              <pre className="d-inline text-info">hideOnClick</pre> with the
-              value <pre className="d-inline text-info">false</pre> you can even
-              prevent the popover from closing when the modal is opened.
+              In combination with{' '}
+              <pre className="d-inline text-info">onClickOutside</pre> you can
+              close the popover when clicked anywhere outside the popover.
             </p>
           </Col>
         </Row>

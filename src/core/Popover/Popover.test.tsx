@@ -48,7 +48,7 @@ describe('Component: Popover', () => {
           isOpen={true}
           distance={10}
           placement="bottom"
-          hideOnClick={false}
+          onClickOutside={jest.fn()}
           target={
             <div>The popover should be wrapped around this div, in a div</div>
           }

@@ -8,7 +8,6 @@ exports[`Component: Popover ui default: Component: Popover => ui => default 1`] 
       Popover content
     </React.Fragment>
   }
-  hideOnClick={true}
   interactive={true}
   offset={
     Array [
@@ -37,7 +36,6 @@ exports[`Component: Popover ui with custom tag: Component: Popover => ui => with
       Popover content
     </React.Fragment>
   }
-  hideOnClick={true}
   interactive={true}
   offset={
     Array [
@@ -64,7 +62,6 @@ exports[`Component: Popover ui with optional properties: Component: Popover => u
       Popover content
     </React.Fragment>
   }
-  hideOnClick={false}
   interactive={true}
   offset={
     Array [
@@ -72,6 +69,7 @@ exports[`Component: Popover ui with optional properties: Component: Popover => u
       10,
     ]
   }
+  onClickOutside={[MockFunction]}
   placement="bottom"
   visible={true}
   zIndex={1049}
