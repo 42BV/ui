@@ -85,6 +85,11 @@ interface WithIconAndText extends BaseProps {
   icon: IconType;
 
   /**
+   * Optionally the size of the icon in pixels.
+   */
+  iconSize?: number;
+
+  /**
    * Optionally the text of the button.
    */
   children: React.ReactNode;
@@ -96,6 +101,11 @@ interface WithIcon extends BaseProps {
    */
   icon: IconType;
 
+  /**
+   * Optionally the size of the icon in pixels.
+   */
+  iconSize?: number;
+
   children?: never;
 }
 
@@ -106,6 +116,7 @@ interface WithText extends BaseProps {
   children: React.ReactNode;
 
   icon?: never;
+  iconSize?: never;
 }
 
 type Props = WithIcon | WithText | WithIconAndText;
@@ -150,6 +161,7 @@ export default function ConfirmButton({
       const withIcon = buttonProps as WithIcon | WithIconAndText;
 
       withIcon.icon = props.icon;
+      withIcon.iconSize = props.iconSize;
     }
 
     if (isWithText(props) || isWithIconAndText(props)) {

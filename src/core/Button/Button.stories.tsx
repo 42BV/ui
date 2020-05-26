@@ -322,6 +322,154 @@ storiesOf('core|buttons/Button', module)
       </Row>
     );
   })
+  .add('icon size', () => {
+    return (
+      <Row>
+        <Col xs={12}>
+          <h4>Button with small icon</h4>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="primary"
+            iconSize={10}
+          >
+            primary
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="secondary"
+            iconSize={10}
+          >
+            secondary
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="success"
+            iconSize={10}
+          >
+            success
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="info"
+            iconSize={10}
+          >
+            info
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="warning"
+            iconSize={10}
+          >
+            warning
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="danger"
+            iconSize={10}
+          >
+            danger
+          </Button>
+          <hr />
+        </Col>
+        <Col xs={12}>
+          <h4>Button with default icon</h4>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="primary"
+          >
+            primary
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="secondary"
+          >
+            secondary
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="success"
+          >
+            success
+          </Button>
+          <Button icon="save" onClick={action('Button clicked')} color="info">
+            info
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="warning"
+          >
+            warning
+          </Button>
+          <Button icon="save" onClick={action('Button clicked')} color="danger">
+            danger
+          </Button>
+          <hr />
+        </Col>
+        <Col xs={12}>
+          <h4>Button with large icon</h4>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="primary"
+            iconSize={30}
+          >
+            primary
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="secondary"
+            iconSize={30}
+          >
+            secondary
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="success"
+            iconSize={30}
+          >
+            success
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="info"
+            iconSize={30}
+          >
+            info
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="warning"
+            iconSize={30}
+          >
+            warning
+          </Button>
+          <Button
+            icon="save"
+            onClick={action('Button clicked')}
+            color="danger"
+            iconSize={30}
+          >
+            danger
+          </Button>
+          <hr />
+        </Col>
+      </Row>
+    );
+  })
   .add('as outline', () => {
     return (
       <Row>

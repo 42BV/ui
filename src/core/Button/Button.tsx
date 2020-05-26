@@ -59,6 +59,11 @@ interface WithIconAndText extends BaseProps {
   iconPosition?: IconPosition;
 
   /**
+   * Optionally the size of the icon in pixels.
+   */
+  iconSize?: number;
+
+  /**
    * Optionally the text of the button.
    */
   children: React.ReactNode;
@@ -83,6 +88,11 @@ interface WithIcon extends BaseProps {
   icon: IconType;
 
   iconPosition?: IconPosition;
+
+  /**
+   * Optionally the size of the icon in pixels.
+   */
+  iconSize?: number;
 
   children?: never;
   outline?: never;
@@ -172,6 +182,7 @@ export default function Button({
                 'material-icons-' +
                 ('iconPosition' in props ? props.iconPosition : 'left')
               }
+              size={props.iconSize}
             />
           ) : null}
           {children}
@@ -195,6 +206,7 @@ export default function Button({
             icon={iconCast}
             color={color}
             disabled={inProgress || disabled}
+            size={props.iconSize}
           />
         )}
       </span>
