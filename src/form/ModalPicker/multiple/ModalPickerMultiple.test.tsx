@@ -33,7 +33,8 @@ describe('Component: ModalPickerMultiple', () => {
     canSearch = undefined,
     hasLabel = true,
     spyOnRenderOptions,
-    alignButton
+    alignButton,
+    hasDisplayValues = false
   }: {
     value?: User[];
     showAddButton: boolean;
@@ -41,6 +42,7 @@ describe('Component: ModalPickerMultiple', () => {
     hasLabel?: boolean;
     spyOnRenderOptions?: boolean;
     alignButton?: ButtonAlignment;
+    hasDisplayValues?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -77,7 +79,14 @@ describe('Component: ModalPickerMultiple', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      alignButton
+      alignButton,
+      displayValues: hasDisplayValues
+        ? (users?: User[]) => (
+            <span>
+              {users ? users.map(user => user.id).join(', ') : 'none selected'}
+            </span>
+          )
+        : undefined
     };
 
     if (hasLabel) {
@@ -228,21 +237,32 @@ describe('Component: ModalPickerMultiple', () => {
     it('should render button left', () => {
       setup({ value: [adminUser], showAddButton: false, alignButton: 'left' });
       expect(toJson(modalPickerMultiple)).toMatchSnapshot(
-        'Component: ModalPickerSingle => ui => should render button left'
+        'Component: ModalPickerMultiple => ui => should render button left'
       );
     });
 
     it('should render button right without value', () => {
       setup({ value: undefined, showAddButton: false, alignButton: 'right' });
       expect(toJson(modalPickerMultiple)).toMatchSnapshot(
-        'Component: ModalPickerSingle => ui => should render button right without value'
+        'Component: ModalPickerMultiple => ui => should render button right without value'
       );
     });
 
     it('should render button right with value', () => {
       setup({ value: [adminUser], showAddButton: false, alignButton: 'right' });
       expect(toJson(modalPickerMultiple)).toMatchSnapshot(
-        'Component: ModalPickerSingle => ui => should render button right with value'
+        'Component: ModalPickerMultiple => ui => should render button right with value'
+      );
+    });
+
+    it('should use custom display function to render values', () => {
+      setup({
+        value: [adminUser],
+        showAddButton: false,
+        hasDisplayValues: true
+      });
+      expect(toJson(modalPickerMultiple)).toMatchSnapshot(
+        'Component: ModalPickerMultiple => ui => should use custom display function to render values'
       );
     });
   });

@@ -32,7 +32,8 @@ describe('Component: ModalPickerSingle', () => {
     canSearch = undefined,
     hasLabel = true,
     spyOnRenderOptions,
-    alignButton
+    alignButton,
+    hasDisplayValues = false
   }: {
     value?: User;
     showAddButton: boolean;
@@ -40,6 +41,7 @@ describe('Component: ModalPickerSingle', () => {
     hasLabel?: boolean;
     spyOnRenderOptions?: boolean;
     alignButton?: ButtonAlignment;
+    hasDisplayValues?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -76,7 +78,10 @@ describe('Component: ModalPickerSingle', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      alignButton
+      alignButton,
+      displayValues: hasDisplayValues
+        ? (user?: User) => <span>{user ? user.id : 'none selected'}</span>
+        : undefined
     };
 
     if (hasLabel) {
@@ -196,6 +201,13 @@ describe('Component: ModalPickerSingle', () => {
       setup({ value: adminUser, showAddButton: false, alignButton: 'right' });
       expect(toJson(modalPickerSingle)).toMatchSnapshot(
         'Component: ModalPickerSingle => ui => should render button right with value'
+      );
+    });
+
+    it('should use custom display function to render values', () => {
+      setup({ value: adminUser, showAddButton: false, hasDisplayValues: true });
+      expect(toJson(modalPickerSingle)).toMatchSnapshot(
+        'Component: ModalPickerSingle => ui => should use custom display function to render values'
       );
     });
   });

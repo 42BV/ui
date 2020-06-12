@@ -406,3 +406,99 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
   </ModalPicker>
 </FormGroup>
 `;
+
+exports[`Component: ModalPickerSingle ui should use custom display function to render values: Component: ModalPickerSingle => ui => should use custom display function to render values 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best Friend
+  </Label>
+  <ModalPickerOpener
+    displayValues={[Function]}
+    label="Select your best friend"
+    openModal={[Function]}
+    values={
+      Object {
+        "active": true,
+        "email": "admin@42.nl",
+        "firstName": "admin",
+        "id": 42,
+        "lastName": "user",
+        "roles": Array [
+          "ADMIN",
+        ],
+      }
+    }
+  />
+  Some error
+  <ModalPicker
+    canSearch={true}
+    closeModal={[Function]}
+    fetchOptions={[Function]}
+    isOpen={false}
+    modalSaved={[Function]}
+    page={
+      Object {
+        "content": Array [],
+        "first": true,
+        "last": true,
+        "number": 0,
+        "numberOfElements": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0,
+      }
+    }
+    pageChanged={[Function]}
+    placeholder="Select your best friend"
+    query=""
+    saveButtonEnabled={false}
+  >
+    <Row
+      className="mt-3"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <EmptyModal
+          userHasSearched={false}
+        />
+      </Col>
+    </Row>
+  </ModalPicker>
+</FormGroup>
+`;

@@ -10,7 +10,9 @@ exports[`Component: Async|AsyncList ui 1`] = `
         Object {
           "active": true,
           "email": "admin@42.nl",
+          "firstName": "admin",
           "id": 42,
+          "lastName": "user",
           "roles": Array [
             "ADMIN",
           ],
@@ -18,7 +20,9 @@ exports[`Component: Async|AsyncList ui 1`] = `
         Object {
           "active": false,
           "email": "coordinator@42.nl",
+          "firstName": "coordinator",
           "id": 777,
+          "lastName": "user",
           "roles": Array [
             "ADMIN",
             "USER",
@@ -27,7 +31,9 @@ exports[`Component: Async|AsyncList ui 1`] = `
         Object {
           "active": false,
           "email": "user@42.nl",
+          "firstName": "test",
           "id": 1337,
+          "lastName": "user",
           "roles": Array [
             "USER",
           ],

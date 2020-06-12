@@ -5,7 +5,11 @@ import { useComponentOverflow } from './useComponentOverflow/useComponentOverflo
 import { ButtonAlignment } from '../types';
 import classNames from 'classnames';
 
-interface Props {
+export type DisplayValues<T> = (
+  values?: T | T[] | React.ReactNode
+) => React.ReactNode;
+
+interface Props<T> {
   /**
    * Function to open the modal, called when the button is clicked.
    */
@@ -17,9 +21,15 @@ interface Props {
   label: React.ReactNode;
 
   /**
-   * The display of selected item(s).
+   * The selected item(s).
    */
-  values?: React.ReactNode;
+  values?: T | T[] | React.ReactNode;
+
+  /**
+   * Optionally callback to display the selected item(s).
+   * @param values
+   */
+  displayValues?: DisplayValues<T>;
 
   /**
    * Optionally the position the button should be aligned to
@@ -28,8 +38,8 @@ interface Props {
   alignButton?: ButtonAlignment;
 }
 
-export function ModalPickerOpener(props: Props) {
-  const { openModal, label, values, alignButton } = props;
+export function ModalPickerOpener<T>(props: Props<T>) {
+  const { openModal, label, values, displayValues, alignButton } = props;
 
   const ref = useRef<HTMLElement>(null);
 
@@ -42,15 +52,17 @@ export function ModalPickerOpener(props: Props) {
       alignButton === 'left' || (alignButton === 'right' && !values)
   });
 
-  const truncatorClassName = classNames('text-truncate', 'position-relative', {
-    'ml-1': alignButton === 'left',
-    'mr-1': alignButton !== 'left'
+  const buttonClassName = classNames('flex-grow-0', 'flex-shrink-0', {
+    'mr-1': values && alignButton === 'left',
+    'ml-1': values && alignButton !== 'left'
   });
 
   return (
     <div className={wrapperClassName}>
-      {values ? (
-        <span className={truncatorClassName} ref={ref}>
+      {displayValues ? (
+        displayValues(values)
+      ) : values ? (
+        <span className="text-truncate position-relative" ref={ref}>
           {isOverflowing ? (
             <Tooltip
               content={values}
@@ -63,11 +75,7 @@ export function ModalPickerOpener(props: Props) {
           {values}
         </span>
       ) : null}
-      <Button
-        color="primary"
-        onClick={openModal}
-        className="flex-grow-0 flex-shrink-0"
-      >
+      <Button color="primary" onClick={openModal} className={buttonClassName}>
         {label}
       </Button>
     </div>

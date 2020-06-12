@@ -71,6 +71,8 @@ describe('Component: Select', () => {
         value: {
           id: -1,
           email: 'none',
+          firstName: 'none',
+          lastName: 'none',
           active: false,
           roles: []
         },

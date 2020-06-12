@@ -48,7 +48,9 @@ exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle =>
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
+              "firstName": "admin",
               "id": 42,
+              "lastName": "user",
               "roles": Array [
                 "ADMIN",
               ],
@@ -95,7 +97,9 @@ exports[`Component: TypeaheadSingle ui without label: Component: TypeaheadSingle
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
+              "firstName": "admin",
               "id": 42,
+              "lastName": "user",
               "roles": Array [
                 "ADMIN",
               ],
@@ -157,7 +161,9 @@ exports[`Component: TypeaheadSingle ui without placeholder: Component: Typeahead
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
+              "firstName": "admin",
               "id": 42,
+              "lastName": "user",
               "roles": Array [
                 "ADMIN",
               ],

@@ -19,6 +19,8 @@ export function randomUser(): User {
   return {
     id,
     email: `user-${id}@42.nl`,
+    firstName: `user-${id}`,
+    lastName: 'random',
     active: true,
     roles: [UserRole.ADMIN]
   };
@@ -27,6 +29,8 @@ export function randomUser(): User {
 const admin = {
   id: 42,
   email: 'admin@42.nl',
+  firstName: 'admin',
+  lastName: 'user',
   active: true,
   roles: [UserRole.ADMIN]
 };
@@ -36,6 +40,8 @@ export const adminUser = Object.freeze(admin);
 const user = {
   id: 1337,
   email: 'user@42.nl',
+  firstName: 'test',
+  lastName: 'user',
   active: false,
   roles: [UserRole.USER]
 };
@@ -45,6 +51,8 @@ export const userUser = Object.freeze(user);
 const coordinator = {
   id: 777,
   email: 'coordinator@42.nl',
+  firstName: 'coordinator',
+  lastName: 'user',
   active: false,
   roles: [UserRole.ADMIN, UserRole.USER]
 };
@@ -54,6 +62,8 @@ export const coordinatorUser = Object.freeze(coordinator);
 const nobody = {
   id: 999,
   email: 'nobody@42.nl',
+  firstName: 'no',
+  lastName: 'body',
   active: false,
   roles: []
 };

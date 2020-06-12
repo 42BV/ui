@@ -10,11 +10,13 @@ describe('Component: ModalPickerOpener', () => {
   function setup({
     hasValues = false,
     withTooltip = false,
-    alignButton
+    alignButton,
+    hasDisplayValues = false
   }: {
     hasValues?: boolean;
     withTooltip?: boolean;
     alignButton?: ButtonAlignment;
+    hasDisplayValues?: boolean;
   }) {
     const openModalSpy = jest.fn();
     const values = hasValues ? adminUser.email : undefined;
@@ -29,6 +31,11 @@ describe('Component: ModalPickerOpener', () => {
         label="Best friend"
         values={values}
         alignButton={alignButton}
+        displayValues={
+          hasDisplayValues
+            ? (value: string) => <span>{value.toUpperCase()}</span>
+            : undefined
+        }
       />
     );
 
@@ -92,6 +99,16 @@ describe('Component: ModalPickerOpener', () => {
       });
       expect(toJson(modalPickerOpener)).toMatchSnapshot(
         'Component: ModalPickerOpener => ui => button aligned left with values'
+      );
+    });
+
+    test('custom display values', () => {
+      const { modalPickerOpener } = setup({
+        hasValues: true,
+        hasDisplayValues: true
+      });
+      expect(toJson(modalPickerOpener)).toMatchSnapshot(
+        'Component: ModalPickerOpener => ui => custom display values'
       );
     });
   });

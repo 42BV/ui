@@ -257,6 +257,44 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
       </Form>
     );
   })
+  .add('display values', () => {
+    const [value, setValue] = useState<User[] | undefined>([]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple<User>
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          fetchOptions={() =>
+            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+          }
+          optionForValue={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+          displayValues={(users?: User[]) => {
+            return users ? (
+              <>
+                {users.map((user, index) => (
+                  <>
+                    {index > 0 ? ', ' : ''}
+                    {user.roles.some(role => role === 'ADMIN') ? (
+                      <Icon icon="supervised_user_circle" />
+                    ) : (
+                      <Icon icon="supervisor_account" />
+                    )}
+                    {user.firstName}
+                    <b>{user.lastName}</b>
+                  </>
+                ))}
+              </>
+            ) : null;
+          }}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>
