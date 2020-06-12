@@ -16,7 +16,10 @@ import {
   RenderOptions,
   RenderOptionsOption
 } from '../../option';
-import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
+import {
+  DisplayValues,
+  ModalPickerOpener
+} from '../ModalPickerOpener/ModalPickerOpener';
 
 interface BaseProps<T> {
   /**
@@ -93,6 +96,11 @@ interface BaseProps<T> {
    * within it's container.
    */
   alignButton?: ButtonAlignment;
+
+  /**
+   * Optionally callback to display the selected item.
+   */
+  displayValues?: DisplayValues<T>;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -240,8 +248,21 @@ export default class ModalPickerSingle<T> extends React.Component<
       optionForValue,
       className = '',
       alignButton,
+      displayValues,
       ...props
     } = this.props;
+
+    const modalPickerOpenerProps = {
+      openModal: () => this.openModal(),
+      label: placeholder,
+      alignButton,
+      displayValues,
+      values: displayValues
+        ? selected
+        : selected
+        ? optionForValue(selected)
+        : undefined
+    };
 
     return (
       <FormGroup className={className} color={color}>
@@ -249,12 +270,7 @@ export default class ModalPickerSingle<T> extends React.Component<
           <Label for={props.id}>{props.label}</Label>
         ) : null}
 
-        <ModalPickerOpener
-          openModal={() => this.openModal()}
-          label={placeholder}
-          alignButton={alignButton}
-          values={selected ? optionForValue(selected) : undefined}
-        />
+        <ModalPickerOpener {...modalPickerOpenerProps} />
 
         {error}
 

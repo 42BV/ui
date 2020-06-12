@@ -5,12 +5,12 @@ exports[`Component: ModalPickerOpener ui button aligned left with values: Compon
   className="d-flex align-items-center flex-row-reverse justify-content-end"
 >
   <span
-    className="text-truncate position-relative ml-1"
+    className="text-truncate position-relative"
   >
     admin@42.nl
   </span>
   <Button
-    className="flex-grow-0 flex-shrink-0"
+    className="flex-grow-0 flex-shrink-0 mr-1"
     color="primary"
     onClick={[MockFunction]}
     tag="button"
@@ -40,12 +40,12 @@ exports[`Component: ModalPickerOpener ui button aligned right with values: Compo
   className="d-flex align-items-center justify-content-between"
 >
   <span
-    className="text-truncate position-relative mr-1"
+    className="text-truncate position-relative"
   >
     admin@42.nl
   </span>
   <Button
-    className="flex-grow-0 flex-shrink-0"
+    className="flex-grow-0 flex-shrink-0 ml-1"
     color="primary"
     onClick={[MockFunction]}
     tag="button"
@@ -70,12 +70,30 @@ exports[`Component: ModalPickerOpener ui button aligned right without values: Co
 </div>
 `;
 
+exports[`Component: ModalPickerOpener ui custom display values: Component: ModalPickerOpener => ui => custom display values 1`] = `
+<div
+  className="d-flex align-items-center"
+>
+  <span>
+    ADMIN@42.NL
+  </span>
+  <Button
+    className="flex-grow-0 flex-shrink-0 ml-1"
+    color="primary"
+    onClick={[MockFunction]}
+    tag="button"
+  >
+    Best friend
+  </Button>
+</div>
+`;
+
 exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener => ui => with tooltip 1`] = `
 <div
   className="d-flex align-items-center"
 >
   <span
-    className="text-truncate position-relative mr-1"
+    className="text-truncate position-relative"
   >
     <Tooltip
       className="w-100 h-100 position-absolute"
@@ -87,7 +105,7 @@ exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener =
     admin@42.nl
   </span>
   <Button
-    className="flex-grow-0 flex-shrink-0"
+    className="flex-grow-0 flex-shrink-0 ml-1"
     color="primary"
     onClick={[MockFunction]}
     tag="button"
@@ -102,12 +120,12 @@ exports[`Component: ModalPickerOpener ui with values: Component: ModalPickerOpen
   className="d-flex align-items-center"
 >
   <span
-    className="text-truncate position-relative mr-1"
+    className="text-truncate position-relative"
   >
     admin@42.nl
   </span>
   <Button
-    className="flex-grow-0 flex-shrink-0"
+    className="flex-grow-0 flex-shrink-0 ml-1"
     color="primary"
     onClick={[MockFunction]}
     tag="button"
