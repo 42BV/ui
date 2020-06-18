@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import { Button } from 'reactstrap';
+import { SketchPicker } from 'react-color';
+import Popover from '../../core/Popover/Popover';
 
 import ColorPicker from './ColorPicker';
-import { UncontrolledPopover, Button } from 'reactstrap';
-import { SketchPicker } from 'react-color';
 
 describe('Component: ColorPicker', () => {
   function setup({ value }: { value?: string }) {
@@ -53,23 +54,19 @@ describe('Component: ColorPicker', () => {
         value: undefined
       });
 
-      const popover = colorPicker.find(UncontrolledPopover);
+      const popover = colorPicker.find(Popover);
 
       expect(popover.props().isOpen).toBe(false);
 
-      // Check that the target is the same.
-      expect(popover.props().target).toBe('color-picker-popover');
-      expect(
-        colorPicker
-          .find(Button)
-          .at(0)
-          .props().id
-      ).toBe('color-picker-popover');
+      popover
+        //@ts-ignore
+        .shallow('target')
+        .find(Button)
+        .props()
+        //@ts-ignore
+        .onClick();
 
-      // @ts-ignore
-      popover.props().toggle();
-
-      expect(colorPicker.find(UncontrolledPopover).props().isOpen).toBe(true);
+      expect(colorPicker.find(Popover).props().isOpen).toBe(true);
     });
 
     it('should when the user selects a color close the popover and call onChange', () => {
@@ -88,12 +85,12 @@ describe('Component: ColorPicker', () => {
       //@ts-ignore
       colorPicker
         .find(Button)
-        .at(2)
+        .at(1)
         .props()
         // @ts-ignore
         .onClick();
 
-      expect(colorPicker.find(UncontrolledPopover).props().isOpen).toBe(false);
+      expect(colorPicker.find(Popover).props().isOpen).toBe(false);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('#424242');
@@ -126,14 +123,12 @@ describe('Component: ColorPicker', () => {
         //@ts-ignore
         colorPicker
           .find(Button)
-          .at(1)
+          .at(0)
           .props()
           // @ts-ignore
           .onClick();
 
-        expect(colorPicker.find(UncontrolledPopover).props().isOpen).toBe(
-          false
-        );
+        expect(colorPicker.find(Popover).props().isOpen).toBe(false);
 
         expect(onChangeSpy).toHaveBeenCalledTimes(0);
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
@@ -163,14 +158,12 @@ describe('Component: ColorPicker', () => {
         //@ts-ignore
         colorPicker
           .find(Button)
-          .at(1)
+          .at(0)
           .props()
           // @ts-ignore
           .onClick();
 
-        expect(colorPicker.find(UncontrolledPopover).props().isOpen).toBe(
-          false
-        );
+        expect(colorPicker.find(Popover).props().isOpen).toBe(false);
 
         expect(onChangeSpy).toHaveBeenCalledTimes(0);
         expect(onBlurSpy).toHaveBeenCalledTimes(0);

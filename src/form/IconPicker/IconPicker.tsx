@@ -3,10 +3,9 @@ import {
   Button,
   FormGroup,
   Label,
-  PopoverBody,
-  PopoverHeader,
-  UncontrolledPopover,
-  UncontrolledTooltip
+  Card,
+  CardHeader,
+  CardBody
 } from 'reactstrap';
 import classNames from 'classnames';
 
@@ -19,6 +18,8 @@ import SearchInput from '../../core/SearchInput/SearchInput';
 import { pageOf } from '../../utilities/page/page';
 import ContentState from '../../core/ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
+import Tooltip from '../../core/Tooltip/Tooltip';
+import Popover from '../../core/Popover/Popover';
 
 interface Text {
   /**
@@ -174,70 +175,68 @@ export default function IconPicker(props: Props) {
                 </u>
               </div>
             ) : null}
-            <Button id="icon-picker-popover" type="button" color="primary">
-              {placeholder}
-            </Button>
+            <Popover
+              placement="bottom"
+              isOpen={isOpen}
+              target={
+                <Button
+                  type="button"
+                  color="primary"
+                  onClick={() => {
+                    if (isOpen) {
+                      searchInputApi.setValue('');
+                    }
+
+                    setIsOpen(!isOpen);
+                  }}
+                >
+                  {placeholder}
+                </Button>
+              }
+            >
+              <Card>
+                <CardHeader>{searchInput}</CardHeader>
+                <CardBody>
+                  <div style={{ width: 250, height: 250 }}>
+                    {!isEmpty ? (
+                      iconsPage.content.map(icon => (
+                        <span key={icon} className="d-inline-block">
+                          <Tooltip placement="top" distance={18} content={icon}>
+                            <Icon
+                              className="m-2"
+                              icon={icon}
+                              onClick={() => onIconSelected(icon)}
+                            />
+                          </Tooltip>
+                        </span>
+                      ))
+                    ) : (
+                      <ContentState
+                        mode="no-results"
+                        title={t({
+                          key: 'IconPicker.NO_RESULTS.TITLE',
+                          fallback: 'No icons found',
+                          overrideText: text.noResultsTitle
+                        })}
+                        subTitle={t({
+                          key: 'IconPicker.NO_RESULTS.SUBTITLE',
+                          fallback:
+                            'No icons were found, please try again with a different query.',
+                          overrideText: text.noResultsSubtitle
+                        })}
+                      />
+                    )}
+                  </div>
+
+                  <div className="my-2 text-center">
+                    <Pager page={iconsPage} onChange={setPageNumber} />
+                  </div>
+                </CardBody>
+              </Card>
+            </Popover>
           </div>
 
           {error}
-
-          <UncontrolledPopover
-            placement="bottom"
-            isOpen={isOpen}
-            target="icon-picker-popover"
-            trigger="legacy"
-            toggle={() => {
-              if (isOpen) {
-                searchInputApi.setValue('');
-              }
-
-              setIsOpen(!isOpen);
-            }}
-          >
-            <PopoverHeader>{searchInput}</PopoverHeader>
-            <PopoverBody>
-              <div style={{ width: 250, height: 250 }}>
-                {!isEmpty ? (
-                  iconsPage.content.map((icon, index) => {
-                    const tooltipId = `icon-${index}`;
-
-                    return (
-                      <span key={icon} className="d-inline-block">
-                        <Icon
-                          id={tooltipId}
-                          className="m-2"
-                          icon={icon}
-                          onClick={() => onIconSelected(icon)}
-                        />
-                        <UncontrolledTooltip placement="top" target={tooltipId}>
-                          {icon}
-                        </UncontrolledTooltip>
-                      </span>
-                    );
-                  })
-                ) : (
-                  <ContentState
-                    mode="no-results"
-                    title={t({
-                      key: 'IconPicker.NO_RESULTS.TITLE',
-                      fallback: 'No icons found',
-                      overrideText: text.noResultsTitle
-                    })}
-                    subTitle={t({
-                      key: 'IconPicker.NO_RESULTS.SUBTITLE',
-                      fallback:
-                        'No icons were found, please try again with a different query.',
-                      overrideText: text.noResultsSubtitle
-                    })}
-                  />
-                )}
-              </div>
-
-              <div className="my-2 text-center">
-                <Pager page={iconsPage} onChange={setPageNumber} />
-              </div>
-            </PopoverBody>
-          </UncontrolledPopover>
         </FormGroup>
       )}
     </SearchInput>

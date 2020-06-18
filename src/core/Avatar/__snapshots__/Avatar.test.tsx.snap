@@ -4,24 +4,22 @@ exports[`Component: Avatar ui default size: Component: Avatar => ui => default s
 <span
   className="avatar red"
 >
-  <UncontrolledTooltip
-    delay={250}
+  <Tooltip
+    content="A picture of a tomato"
+    distance={7}
     placement="top"
-    target="tooltip1"
   >
-    A picture of a tomato
-  </UncontrolledTooltip>
-  <span
-    className="img-placeholder"
-    id="tooltip1"
-  >
-    <img
-      alt="A picture of a tomato"
-      src="http://lorempixel.com/200/200/"
-    />
-  </span>
-  <h1>
-    Children
-  </h1>
+    <span
+      className="img-placeholder"
+    >
+      <img
+        alt="A picture of a tomato"
+        src="http://lorempixel.com/200/200/"
+      />
+    </span>
+    <h1>
+      Children
+    </h1>
+  </Tooltip>
 </span>
 `;
