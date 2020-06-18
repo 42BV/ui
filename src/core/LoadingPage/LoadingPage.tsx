@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import React, { CSSProperties } from 'react';
 import Spinner from '../Spinner/Spinner';
+import { useShowAfter } from '../useShowAfter/useShowAfter';
 
 interface Props {
   /**
@@ -8,6 +9,18 @@ interface Props {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optional extra CSSProperties you want to add to the component.
+   * Useful for styling the component.
+   */
+  style?: CSSProperties;
+
+  /**
+   * Optionally a height, by default this will be the full height
+   * of the view port.
+   */
+  height?: number;
 }
 
 /**
@@ -15,25 +28,22 @@ interface Props {
  *
  * Use this for showing a loading indicator when navigating to pages that fetch data.
  */
-export default function LoadingPage({ className }: Props) {
+export default function LoadingPage({ className, style, height }: Props) {
   const size = 150;
 
-  const [showSpinner, setShowSpinner] = useState(false);
-  useEffect(() => {
-    const timeoutId = window.setTimeout(() => {
-      setShowSpinner(true);
-    }, 200);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, []);
+  const showSpinner = useShowAfter(200);
 
   return (
-    <div className={classNames('loading-page', className)}>
+    <div className={classNames('loading-page', className)} style={style}>
       <div
-        className="vh-100 d-flex flex-column justify-content-center align-items-center"
-        style={{ marginTop: -(size / 2) }}
+        className={classNames(
+          'd-flex flex-column justify-content-center align-items-center',
+          { 'vh-100': height === undefined }
+        )}
+        style={{
+          marginTop: height === undefined ? -(size / 2) : undefined,
+          height
+        }}
       >
         {showSpinner && <Spinner size={size} color="#f0ad4e" />}
       </div>

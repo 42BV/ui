@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: LoadingPage ui default 1`] = `
+<div
+  className="loading-page"
+>
+  <div
+    className="d-flex flex-column justify-content-center align-items-center vh-100"
+    style={
+      Object {
+        "height": undefined,
+        "marginTop": -75,
+      }
+    }
+  >
+    <Spinner
+      color="#f0ad4e"
+      size={150}
+    />
+  </div>
+</div>
+`;
+
+exports[`Component: LoadingPage ui with custom height 1`] = `
+<div
+  className="loading-page"
+>
+  <div
+    className="d-flex flex-column justify-content-center align-items-center"
+    style={
+      Object {
+        "height": 200,
+        "marginTop": undefined,
+      }
+    }
+  >
+    <Spinner
+      color="#f0ad4e"
+      size={150}
+    />
+  </div>
+</div>
+`;
+
+exports[`Component: LoadingPage ui with no spinner because it is not after the timeout 1`] = `
+<div
+  className="loading-page"
+>
+  <div
+    className="d-flex flex-column justify-content-center align-items-center vh-100"
+    style={
+      Object {
+        "height": undefined,
+        "marginTop": -75,
+      }
+    }
+  />
+</div>
+`;

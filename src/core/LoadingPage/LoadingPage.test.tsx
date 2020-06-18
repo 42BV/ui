@@ -1,49 +1,35 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+
+import * as ShowAfter from '../useShowAfter/useShowAfter';
 
 import LoadingPage from './LoadingPage';
 
 describe('Component: LoadingPage', () => {
-  let container: HTMLElement;
+  function setup({ show, height }: { show: boolean; height?: number }) {
+    jest.spyOn(ShowAfter, 'useShowAfter').mockReturnValue(show);
 
-  beforeEach(() => {
-    jest.useFakeTimers();
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
+    return shallow(<LoadingPage height={height} />);
+  }
 
-  afterEach(() => {
-    document.body.removeChild(container);
-    // @ts-ignore
-    container = null;
-  });
+  describe('ui', () => {
+    test('default', () => {
+      const loadingPage = setup({ show: true });
 
-  it('should render loading page and show the spinner after 200 milliseconds', () => {
-    act(() => {
-      ReactDOM.render(<LoadingPage />, container);
+      expect(toJson(loadingPage)).toMatchSnapshot();
     });
 
-    expect(container.querySelector('svg')).toBe(null);
+    test('with no spinner because it is not after the timeout', () => {
+      const loadingPage = setup({ show: false });
 
-    act(() => {
-      jest.advanceTimersByTime(1000);
+      expect(toJson(loadingPage)).toMatchSnapshot();
     });
 
-    expect(container.querySelector('svg')).not.toBe(null);
-  });
+    test('with custom height', () => {
+      const loadingPage = setup({ show: true, height: 200 });
 
-  it('should when unmounting cancel the timeout', () => {
-    jest.spyOn(window, 'setTimeout');
-    jest.spyOn(window, 'clearTimeout');
-
-    act(() => {
-      ReactDOM.render(<LoadingPage />, container);
+      expect(toJson(loadingPage)).toMatchSnapshot();
     });
-
-    ReactDOM.unmountComponentAtNode(container);
-
-    expect(window.clearTimeout).toHaveBeenCalledTimes(1);
   });
 });
