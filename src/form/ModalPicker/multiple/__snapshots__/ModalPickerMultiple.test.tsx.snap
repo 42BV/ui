@@ -24,6 +24,7 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
   <ModalPickerOpener
     alignButton="left"
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values={
       <React.Fragment>
@@ -113,6 +114,7 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
   <ModalPickerOpener
     alignButton="right"
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values={
       <React.Fragment>
@@ -202,6 +204,7 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
   <ModalPickerOpener
     alignButton="right"
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
   />
   Some error
@@ -276,6 +279,7 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
 >
   <ModalPickerOpener
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values={
       <React.Fragment>
@@ -364,6 +368,7 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
   </Label>
   <ModalPickerOpener
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values={
       <React.Fragment>
@@ -453,6 +458,7 @@ exports[`Component: ModalPickerMultiple ui should use custom display function to
   <ModalPickerOpener
     displayValues={[Function]}
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values={
       Array [

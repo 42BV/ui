@@ -332,6 +332,23 @@ describe('Component: ModalPickerSingle', () => {
       expect(onChangeSpy).toHaveBeenCalledWith(adminUser);
     });
 
+    it('should when the user clicks the clear button clear the value', () => {
+      setup({ value: adminUser, showAddButton: false });
+
+      modalPickerSingle.setState({ isOpen: true });
+      modalPickerSingle.setState({ selected: adminUser });
+
+      // @ts-ignore
+      modalPickerSingle
+        .find('ModalPickerOpener')
+        .props()
+        // @ts-ignore
+        .onClear();
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(undefined);
+    });
+
     it('should when the user selects an option store the value', () => {
       setup({ value: adminUser, showAddButton: false });
       modalPickerSingle.setState({

@@ -185,7 +185,7 @@ describe('Component: ColorPicker', () => {
 
       // @ts-ignore
       colorPicker
-        .find('u')
+        .find('TextButton')
         .props()
         // @ts-ignore
         .onClick();

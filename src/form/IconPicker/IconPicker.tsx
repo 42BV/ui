@@ -20,6 +20,7 @@ import ContentState from '../../core/ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
 import Tooltip from '../../core/Tooltip/Tooltip';
 import Popover from '../../core/Popover/Popover';
+import TextButton from '../../core/TextButton/TextButton';
 
 interface Text {
   /**
@@ -162,17 +163,16 @@ export default function IconPicker(props: Props) {
             {value ? (
               <div className="d-flex justify-content-between">
                 <Icon id="icon-picker-value" className="pt-2" icon={value} />
-                <u
-                  role="button"
-                  className="align-self-center mx-3 clickable font-weight-lighter"
+                <TextButton
                   onClick={() => onIconSelected(undefined)}
+                  className="mx-3"
                 >
                   {t({
                     key: 'IconPicker.CLEAR',
                     fallback: 'Clear',
                     overrideText: text.clear
                   })}
-                </u>
+                </TextButton>
               </div>
             ) : null}
             <Popover

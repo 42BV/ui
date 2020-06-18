@@ -63,7 +63,7 @@ interface BaseProps<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T) => void;
+  onChange: (value?: T) => void;
 
   /**
    * Optional callback for when the form element is blurred.
@@ -257,6 +257,7 @@ export default class ModalPickerSingle<T> extends React.Component<
       label: placeholder,
       alignButton,
       displayValues,
+      onClear: () => this.props.onChange(undefined),
       values: displayValues
         ? selected
         : selected

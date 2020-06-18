@@ -224,7 +224,13 @@ export default function ValuePicker<T>(props: Props<T>) {
     const { fetchOptions, multiple, ...rest } = props;
 
     if (totalElements < 4) {
-      return <RadioGroup options={() => fetchOptions('', 1, 3)} {...rest} />;
+      return (
+        <RadioGroup
+          options={() => fetchOptions('', 1, 3)}
+          canClear={true}
+          {...rest}
+        />
+      );
     } else if (totalElements < 11) {
       return <Select options={() => fetchOptions('', 1, 10)} {...rest} />;
     } else {

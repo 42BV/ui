@@ -187,7 +187,7 @@ describe('Component: IconPicker', () => {
       const { iconPicker, onBlurSpy, onChangeSpy } = setup({ value: 'home' });
 
       iconPicker
-        .find('u')
+        .find('TextButton')
         .props()
         // @ts-ignore
         .onClick();

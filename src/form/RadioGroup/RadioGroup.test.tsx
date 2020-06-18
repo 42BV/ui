@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import RadioGroup, { Text } from './RadioGroup';
@@ -8,18 +8,14 @@ import { adminUser, coordinatorUser, userUser } from '../../test/fixtures';
 import { OptionEnabledCallback } from '../option';
 
 describe('Component: RadioGroup', () => {
-  let radioGroup: ShallowWrapper;
-
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-
   function setup({
     value,
     isOptionEnabled,
     text,
     hasPlaceholder = true,
     hasLabel = true,
-    horizontal
+    horizontal,
+    canClear
   }: {
     value?: User;
     isOptionEnabled?: OptionEnabledCallback<User>;
@@ -27,9 +23,10 @@ describe('Component: RadioGroup', () => {
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
     horizontal?: boolean;
+    canClear?: boolean;
   }) {
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
 
     const props = {
       placeholder: hasPlaceholder ? 'Please enter your subject' : undefined,
@@ -42,19 +39,26 @@ describe('Component: RadioGroup', () => {
       onBlur: onBlurSpy,
       error: 'Some error',
       valid: false,
-      horizontal
+      horizontal,
+      label: hasLabel ? 'Subject' : undefined,
+      canClear
     };
 
-    if (hasLabel) {
-      radioGroup = shallow(<RadioGroup label="Subject" {...props} />);
-    } else {
-      radioGroup = shallow(<RadioGroup {...props} />);
-    }
+    const radioGroup = shallow(<RadioGroup {...props} />);
+
+    return {
+      radioGroup,
+      onChangeSpy,
+      onBlurSpy
+    };
   }
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: adminUser, isOptionEnabled: undefined });
+      const { radioGroup } = setup({
+        value: adminUser,
+        isOptionEnabled: undefined
+      });
 
       expect(toJson(radioGroup)).toMatchSnapshot(
         'Component: RadioGroup => ui => with value'
@@ -62,7 +66,7 @@ describe('Component: RadioGroup', () => {
     });
 
     test('when value is not in options select nothing', () => {
-      setup({
+      const { radioGroup } = setup({
         value: {
           id: -1,
           email: 'none',
@@ -84,7 +88,7 @@ describe('Component: RadioGroup', () => {
     });
 
     test('without placeholder', () => {
-      setup({
+      const { radioGroup } = setup({
         value: adminUser,
         isOptionEnabled: undefined,
         hasPlaceholder: false
@@ -96,7 +100,7 @@ describe('Component: RadioGroup', () => {
     });
 
     test('without label', () => {
-      setup({
+      const { radioGroup } = setup({
         value: adminUser,
         isOptionEnabled: undefined,
         hasLabel: false
@@ -108,7 +112,7 @@ describe('Component: RadioGroup', () => {
     });
 
     test('horizontal', () => {
-      setup({
+      const { radioGroup } = setup({
         value: adminUser,
         isOptionEnabled: undefined,
         horizontal: true
@@ -122,7 +126,10 @@ describe('Component: RadioGroup', () => {
 
   describe('events', () => {
     test('onChange', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { radioGroup, onChangeSpy } = setup({
+        value: undefined,
+        isOptionEnabled: undefined
+      });
 
       const radio = radioGroup.find('Input').at(0);
 
@@ -133,9 +140,29 @@ describe('Component: RadioGroup', () => {
       expect(onChangeSpy).toHaveBeenCalledWith(adminUser);
     });
 
+    it('should clear the value when the cancel button is clicked', () => {
+      const { radioGroup, onChangeSpy } = setup({
+        value: adminUser,
+        canClear: true
+      });
+
+      // @ts-ignore
+      radioGroup
+        .find('TextButton')
+        .props()
+        // @ts-ignore
+        .onClick();
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(undefined);
+    });
+
     describe('isOptionEnabled', () => {
       it('should when "isOptionEnabled" is not defined always be true', () => {
-        setup({ value: adminUser, isOptionEnabled: undefined });
+        const { radioGroup } = setup({
+          value: adminUser,
+          isOptionEnabled: undefined
+        });
 
         const radios = radioGroup.find('Input');
         expect(radios.length).toBe(3);
@@ -152,7 +179,10 @@ describe('Component: RadioGroup', () => {
         // Disabled all option now
         isOptionEnabledSpy.mockReturnValue(false);
 
-        setup({ value: undefined, isOptionEnabled: isOptionEnabledSpy });
+        const { radioGroup } = setup({
+          value: undefined,
+          isOptionEnabled: isOptionEnabledSpy
+        });
 
         const radios = radioGroup.find('Input');
         expect(radios.length).toBe(3);
@@ -174,7 +204,10 @@ describe('Component: RadioGroup', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      setup({ value: userUser, isOptionEnabled: undefined });
+      const { radioGroup } = setup({
+        value: userUser,
+        isOptionEnabled: undefined
+      });
 
       let radios = radioGroup.find('Input');
 
@@ -192,7 +225,10 @@ describe('Component: RadioGroup', () => {
     });
 
     test('becomes filled', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { radioGroup } = setup({
+        value: undefined,
+        isOptionEnabled: undefined
+      });
 
       let radios = radioGroup.find('Input');
 

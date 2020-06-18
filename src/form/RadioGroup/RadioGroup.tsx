@@ -15,6 +15,7 @@ import {
 import { doBlur } from '../utils';
 import Loading from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
+import TextButton from '../../core/TextButton/TextButton';
 
 export interface Text {
   /**
@@ -22,6 +23,11 @@ export interface Text {
    * to `loading...`
    */
   loadingMessage?: string;
+
+  /**
+   * The text of the clear button
+   */
+  clear?: string;
 }
 
 interface BaseProps<T> {
@@ -38,7 +44,7 @@ interface BaseProps<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T) => void;
+  onChange: (value?: T) => void;
 
   /**
    * Optional callback for when the form element is blurred.
@@ -111,6 +117,13 @@ interface BaseProps<T> {
    * Defaults to `false`
    */
   horizontal?: boolean;
+
+  /**
+   * Whether or not to show a "clear" button.
+   *
+   * Defaults to `false`
+   */
+  canClear?: boolean;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -142,7 +155,8 @@ export default function RadioGroup<T>(props: Props<T>) {
     onBlur,
     optionForValue,
     isOptionEqual,
-    horizontal = false
+    horizontal = false,
+    canClear = false
   } = props;
 
   const { options, loading } = useOptions({
@@ -171,6 +185,7 @@ export default function RadioGroup<T>(props: Props<T>) {
           <em>{placeholder}</em>
         </p>
       ) : null}
+
       {loading ? (
         <Loading>
           {t({
@@ -180,29 +195,43 @@ export default function RadioGroup<T>(props: Props<T>) {
           })}
         </Loading>
       ) : (
-        options.map(option => {
-          const label = optionForValue(option);
+        <>
+          {canClear && value ? (
+            <div className="mb-1">
+              <TextButton onClick={() => onChange(undefined)}>
+                {t({
+                  key: 'RadioGroup.CLEAR',
+                  fallback: 'Clear',
+                  overrideText: text.clear
+                })}
+              </TextButton>
+            </div>
+          ) : null}
 
-          return (
-            <FormGroup key={label} check inline={horizontal}>
-              <Label check>
-                <Input
-                  type="radio"
-                  value={label}
-                  checked={isOptionSelected({
-                    option,
-                    optionForValue,
-                    isOptionEqual,
-                    value
-                  })}
-                  disabled={!isOptionEnabled(option)}
-                  onChange={() => onRadioClicked(option)}
-                />{' '}
-                {label}
-              </Label>
-            </FormGroup>
-          );
-        })
+          {options.map(option => {
+            const label = optionForValue(option);
+
+            return (
+              <FormGroup key={label} check inline={horizontal}>
+                <Label check>
+                  <Input
+                    type="radio"
+                    value={label}
+                    checked={isOptionSelected({
+                      option,
+                      optionForValue,
+                      isOptionEqual,
+                      value
+                    })}
+                    disabled={!isOptionEnabled(option)}
+                    onChange={() => onRadioClicked(option)}
+                  />{' '}
+                  {label}
+                </Label>
+              </FormGroup>
+            );
+          })}
+        </>
       )}
 
       {error}

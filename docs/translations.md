@@ -110,7 +110,10 @@ Here is a JSON notation containing all keys and default translations:
   "ModalPicker": {
     "SEARCH": "Search...",
     "CANCEL": "Cancel",
-    "SELECT": "Select"
+    "SELECT": "Select",
+  },
+  "ModalPickerOpener": {
+    "CLEAR": "Clear",
   },
   "Select": {
     "LOADING": "Loading..."
@@ -158,7 +161,8 @@ Here is a JSON notation containing all keys and default translations:
     "LOADING": "Loading...",
   },
   "RadioGroup": {
-    "LOADING": "Loading..."
+    "LOADING": "Loading...",
+    "CLEAR": "Clear"
   },
   "OpenCloseModal": {
     "CANCEL": "Cancel",

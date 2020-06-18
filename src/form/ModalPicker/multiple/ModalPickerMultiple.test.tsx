@@ -427,6 +427,24 @@ describe('Component: ModalPickerMultiple', () => {
       expect(onChangeSpy).toHaveBeenCalledWith([adminUser, userUser]);
     });
 
+    it('should when the user clicks the clear button clear the value', () => {
+      const value = [adminUser, userUser];
+      setup({ value, showAddButton: false });
+
+      modalPickerMultiple.setState({ isOpen: true });
+      modalPickerMultiple.setState({ selected: value });
+
+      // @ts-ignore
+      modalPickerMultiple
+        .find('ModalPickerOpener')
+        .props()
+        // @ts-ignore
+        .onClear();
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(undefined);
+    });
+
     it('should when the user selects an option store the value', () => {
       setup({ value: [adminUser, coordinatorUser], showAddButton: false });
       modalPickerMultiple.setState({
