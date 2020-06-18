@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
-import { UncontrolledTooltip } from 'reactstrap';
 import classNames from 'classnames';
-import { uniqueId } from 'lodash';
 import { BootstrapSize } from '../types';
+import Tooltip from '../Tooltip/Tooltip';
 
 interface Props {
   /**
@@ -41,17 +40,32 @@ interface Props {
 export default function Avatar({ size, className, alt, src, children }: Props) {
   const sizeClass = size ? `avatar-${size}` : null;
   const classes = classNames('avatar', sizeClass, className);
-  const tooltip = uniqueId('tooltip');
 
   return (
     <span className={classes}>
-      <UncontrolledTooltip placement="top" target={tooltip} delay={250}>
-        {alt}
-      </UncontrolledTooltip>
-      <span id={tooltip} className="img-placeholder">
-        <img alt={alt} src={src} />
-      </span>
-      {children}
+      <Tooltip
+        placement="top"
+        content={alt}
+        distance={tooltipDistanceFromSize(size)}
+      >
+        <span className="img-placeholder">
+          <img alt={alt} src={src} />
+        </span>
+        {children}
+      </Tooltip>
     </span>
   );
+}
+
+function tooltipDistanceFromSize(size?: BootstrapSize) {
+  switch (size) {
+    case 'lg':
+      return 42;
+    case 'md':
+      return 32;
+    case 'sm':
+      return 22;
+  }
+
+  return 7;
 }

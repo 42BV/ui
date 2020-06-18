@@ -4,7 +4,8 @@ import toJson from 'enzyme-to-json';
 
 import IconPicker from './IconPicker';
 import { SearchInput, Icon, IconType, Pager } from '../..';
-import { UncontrolledPopover, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
+import Popover from '../../core/Popover/Popover';
 
 describe('Component: IconPicker', () => {
   function setup({
@@ -94,20 +95,21 @@ describe('Component: IconPicker', () => {
         value: undefined
       });
 
-      const popover = iconPicker.find(UncontrolledPopover);
+      const popover = iconPicker.find(Popover);
 
       expect(popover.props().isOpen).toBe(false);
 
-      // Check that the target is the same.
-      expect(popover.props().target).toBe('icon-picker-popover');
-      expect(iconPicker.find(Button).props().id).toBe('icon-picker-popover');
-
-      // @ts-ignore
-      popover.props().toggle();
+      popover
+        //@ts-ignore
+        .shallow('target')
+        .find(Button)
+        .props()
+        //@ts-ignore
+        .onClick();
 
       expect(
         updateIconPicker()
-          .find(UncontrolledPopover)
+          .find(Popover)
           .props().isOpen
       ).toBe(true);
     });
@@ -173,7 +175,7 @@ describe('Component: IconPicker', () => {
         //@ts-ignore
         .onClick();
 
-      expect(iconPicker.find(UncontrolledPopover).props().isOpen).toBe(false);
+      expect(iconPicker.find(Popover).props().isOpen).toBe(false);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('3d_rotation');
@@ -196,28 +198,36 @@ describe('Component: IconPicker', () => {
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should when closes the popover clear the query', () => {
+    it('should when the popover closes clear the query', () => {
       const { iconPicker, updateIconPicker, searchInputSetValueSpy } = setup({
         value: undefined
       });
 
-      let popover = iconPicker.find(UncontrolledPopover);
+      let popover = iconPicker.find(Popover);
 
       expect(popover.props().isOpen).toBe(false);
 
-      // @ts-ignore
-      popover.props().toggle();
+      popover
+        //@ts-ignore
+        .shallow('target')
+        .find(Button)
+        .props()
+        //@ts-ignore
+        .onClick();
 
       const updatedIconPicker = updateIconPicker();
 
-      expect(updatedIconPicker.find(UncontrolledPopover).props().isOpen).toBe(
-        true
-      );
+      expect(updatedIconPicker.find(Popover).props().isOpen).toBe(true);
 
-      popover = updatedIconPicker.find(UncontrolledPopover);
+      popover = updatedIconPicker.find(Popover);
 
-      // @ts-ignore
-      popover.props().toggle();
+      popover
+        //@ts-ignore
+        .shallow('target')
+        .find(Button)
+        .props()
+        //@ts-ignore
+        .onClick();
 
       expect(searchInputSetValueSpy).toBeCalledTimes(1);
       expect(searchInputSetValueSpy).toBeCalledWith('');

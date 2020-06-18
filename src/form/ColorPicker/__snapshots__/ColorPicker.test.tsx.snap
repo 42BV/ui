@@ -49,68 +49,73 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
         Clear
       </u>
     </div>
-    <Button
-      color="primary"
-      id="color-picker-popover"
-      tag="button"
-      type="button"
+    <Popover
+      isOpen={false}
+      placement="bottom"
+      target={
+        <Button
+          color="primary"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Select your best friend
+        </Button>
+      }
     >
-      Select your best friend
-    </Button>
+      <Card
+        body={true}
+        className="p-0"
+        tag="div"
+      >
+        <ColorPicker
+          color="#cdcdcd"
+          disableAlpha={false}
+          onChange={[Function]}
+          presetColors={
+            Array [
+              "#D0021B",
+              "#F5A623",
+              "#F8E71C",
+              "#8B572A",
+              "#7ED321",
+              "#417505",
+              "#BD10E0",
+              "#9013FE",
+              "#4A90E2",
+              "#50E3C2",
+              "#B8E986",
+              "#000000",
+              "#4A4A4A",
+              "#9B9B9B",
+              "#FFFFFF",
+            ]
+          }
+          styles={Object {}}
+          width={200}
+        />
+        <div
+          className="d-flex justify-content-between my-1 p-1"
+        >
+          <Button
+            color="secondary"
+            onClick={[Function]}
+            tag="button"
+          >
+            Cancel
+          </Button>
+          <Button
+            color="primary"
+            onClick={[Function]}
+            tag="button"
+          >
+            Select
+          </Button>
+        </div>
+      </Card>
+    </Popover>
   </div>
   Some error
-  <UncontrolledPopover
-    isOpen={false}
-    placement="bottom"
-    target="color-picker-popover"
-    toggle={[Function]}
-    trigger="legacy"
-  >
-    <ColorPicker
-      color="#cdcdcd"
-      disableAlpha={false}
-      onChange={[Function]}
-      presetColors={
-        Array [
-          "#D0021B",
-          "#F5A623",
-          "#F8E71C",
-          "#8B572A",
-          "#7ED321",
-          "#417505",
-          "#BD10E0",
-          "#9013FE",
-          "#4A90E2",
-          "#50E3C2",
-          "#B8E986",
-          "#000000",
-          "#4A4A4A",
-          "#9B9B9B",
-          "#FFFFFF",
-        ]
-      }
-      styles={Object {}}
-      width={200}
-    />
-    <div
-      className="d-flex justify-content-between my-1 p-1"
-    >
-      <Button
-        color="secondary"
-        onClick={[Function]}
-        tag="button"
-      >
-        Cancel
-      </Button>
-      <Button
-        color="primary"
-        onClick={[Function]}
-        tag="button"
-      >
-        Select
-      </Button>
-    </div>
-  </UncontrolledPopover>
 </FormGroup>
 `;
 
@@ -138,67 +143,72 @@ exports[`Component: ColorPicker ui without selected value 1`] = `
   <div
     className="d-flex"
   >
-    <Button
-      color="primary"
-      id="color-picker-popover"
-      tag="button"
-      type="button"
+    <Popover
+      isOpen={false}
+      placement="bottom"
+      target={
+        <Button
+          color="primary"
+          onClick={[Function]}
+          tag="button"
+          type="button"
+        >
+          Select your best friend
+        </Button>
+      }
     >
-      Select your best friend
-    </Button>
+      <Card
+        body={true}
+        className="p-0"
+        tag="div"
+      >
+        <ColorPicker
+          color="#ffffff"
+          disableAlpha={false}
+          onChange={[Function]}
+          presetColors={
+            Array [
+              "#D0021B",
+              "#F5A623",
+              "#F8E71C",
+              "#8B572A",
+              "#7ED321",
+              "#417505",
+              "#BD10E0",
+              "#9013FE",
+              "#4A90E2",
+              "#50E3C2",
+              "#B8E986",
+              "#000000",
+              "#4A4A4A",
+              "#9B9B9B",
+              "#FFFFFF",
+            ]
+          }
+          styles={Object {}}
+          width={200}
+        />
+        <div
+          className="d-flex justify-content-between my-1 p-1"
+        >
+          <Button
+            color="secondary"
+            onClick={[Function]}
+            tag="button"
+          >
+            Cancel
+          </Button>
+          <Button
+            color="primary"
+            onClick={[Function]}
+            tag="button"
+          >
+            Select
+          </Button>
+        </div>
+      </Card>
+    </Popover>
   </div>
   Some error
-  <UncontrolledPopover
-    isOpen={false}
-    placement="bottom"
-    target="color-picker-popover"
-    toggle={[Function]}
-    trigger="legacy"
-  >
-    <ColorPicker
-      color="#ffffff"
-      disableAlpha={false}
-      onChange={[Function]}
-      presetColors={
-        Array [
-          "#D0021B",
-          "#F5A623",
-          "#F8E71C",
-          "#8B572A",
-          "#7ED321",
-          "#417505",
-          "#BD10E0",
-          "#9013FE",
-          "#4A90E2",
-          "#50E3C2",
-          "#B8E986",
-          "#000000",
-          "#4A4A4A",
-          "#9B9B9B",
-          "#FFFFFF",
-        ]
-      }
-      styles={Object {}}
-      width={200}
-    />
-    <div
-      className="d-flex justify-content-between my-1 p-1"
-    >
-      <Button
-        color="secondary"
-        onClick={[Function]}
-        tag="button"
-      >
-        Cancel
-      </Button>
-      <Button
-        color="primary"
-        onClick={[Function]}
-        tag="button"
-      >
-        Select
-      </Button>
-    </div>
-  </UncontrolledPopover>
 </FormGroup>
 `;

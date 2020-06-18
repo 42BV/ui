@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 
 import Avatar from './Avatar';
 import { BootstrapSize } from '../types';
+import Tooltip from '../Tooltip/Tooltip';
 
 describe('Component: Avatar', () => {
   let avatar: ShallowWrapper;
@@ -30,15 +31,56 @@ describe('Component: Avatar', () => {
       );
     });
 
-    test('non default size', () => {
+    test('xs size', () => {
       setup({ size: 'xs' });
+
+      expect(avatar.find(Tooltip).props().distance).toBe(7);
 
       expect(
         avatar
           .find('span')
           .first()
           .props().className
-      ).toContain('avatar-xs');
+      ).toBe('avatar avatar-xs red');
+    });
+
+    test('sm size', () => {
+      setup({ size: 'sm' });
+
+      expect(avatar.find(Tooltip).props().distance).toBe(22);
+
+      expect(
+        avatar
+          .find('span')
+          .first()
+          .props().className
+      ).toBe('avatar avatar-sm red');
+    });
+
+    test('md size', () => {
+      setup({ size: 'md' });
+
+      expect(avatar.find(Tooltip).props().distance).toBe(32);
+
+      expect(
+        avatar
+          .find('span')
+          .first()
+          .props().className
+      ).toBe('avatar avatar-md red');
+    });
+
+    test('lg size', () => {
+      setup({ size: 'lg' });
+
+      expect(avatar.find(Tooltip).props().distance).toBe(42);
+
+      expect(
+        avatar
+          .find('span')
+          .first()
+          .props().className
+      ).toBe('avatar avatar-lg red');
     });
   });
 });

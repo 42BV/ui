@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, FormGroup, Label, UncontrolledPopover } from 'reactstrap';
+import { Button, FormGroup, Label, Card } from 'reactstrap';
 import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 
@@ -7,6 +7,7 @@ import withJarb from '../withJarb/withJarb';
 import { Color } from '../types';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
+import Popover from '../../core/Popover/Popover';
 
 interface Text {
   /**
@@ -141,51 +142,57 @@ export default function ColorPicker(props: Props) {
             </u>
           </div>
         ) : null}
-        <Button id="color-picker-popover" type="button" color="primary">
-          {placeholder}
-        </Button>
+        <Popover
+          placement="bottom"
+          isOpen={isOpen}
+          target={
+            <Button
+              type="button"
+              color="primary"
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            >
+              {placeholder}
+            </Button>
+          }
+        >
+          <Card body className="p-0">
+            <SketchPicker
+              color={colorValue}
+              onChange={color => setColorValue(color.hex)}
+            />
+
+            <div className="d-flex justify-content-between my-1 p-1">
+              <Button
+                color="secondary"
+                onClick={() => {
+                  const resetColorValue = value ? value : '#ffffff';
+                  setColorValue(resetColorValue);
+                  setIsOpen(false);
+                }}
+              >
+                {t({
+                  key: 'ColorPicker.CANCEL',
+                  fallback: 'Cancel',
+                  overrideText: text.cancel
+                })}
+              </Button>
+              <Button
+                color="primary"
+                onClick={() => onColorSelected(colorValue)}
+              >
+                {t({
+                  key: 'ColorPicker.SELECT',
+                  fallback: 'Select',
+                  overrideText: text.select
+                })}
+              </Button>
+            </div>
+          </Card>
+        </Popover>
       </div>
-
       {error}
-
-      <UncontrolledPopover
-        placement="bottom"
-        isOpen={isOpen}
-        target="color-picker-popover"
-        trigger="legacy"
-        toggle={() => {
-          setIsOpen(true);
-        }}
-      >
-        <SketchPicker
-          color={colorValue}
-          onChange={color => setColorValue(color.hex)}
-        />
-
-        <div className="d-flex justify-content-between my-1 p-1">
-          <Button
-            color="secondary"
-            onClick={() => {
-              const resetColorValue = value ? value : '#ffffff';
-              setColorValue(resetColorValue);
-              setIsOpen(false);
-            }}
-          >
-            {t({
-              key: 'ColorPicker.CANCEL',
-              fallback: 'Cancel',
-              overrideText: text.cancel
-            })}
-          </Button>
-          <Button color="primary" onClick={() => onColorSelected(colorValue)}>
-            {t({
-              key: 'ColorPicker.SELECT',
-              fallback: 'Select',
-              overrideText: text.select
-            })}
-          </Button>
-        </div>
-      </UncontrolledPopover>
     </FormGroup>
   );
 }

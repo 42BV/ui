@@ -4,7 +4,7 @@
   Is done on .popover and not on .color-picker because a popover
   is rendered in the <body> by react-strap.
 */
-.popover {
+.color-picker {
   .sketch-picker {
     box-shadow: none !important;
   }
