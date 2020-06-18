@@ -375,6 +375,7 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
         </Label>
         <ModalPickerOpener
           label="Select your best friend"
+          onClear={[Function]}
           openModal={[Function]}
         >
           <div
@@ -646,6 +647,7 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
         </Label>
         <ModalPickerOpener
           label="Select your best friend"
+          onClear={[Function]}
           openModal={[Function]}
         >
           <div
@@ -795,6 +797,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
   placeholder="Select your best friend"
 >
   <RadioGroup
+    canClear={true}
     canSearch={true}
     id="bestFriend"
     label="Best friend"

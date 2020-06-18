@@ -8,6 +8,7 @@ import { Color } from '../types';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import Popover from '../../core/Popover/Popover';
+import TextButton from '../../core/TextButton/TextButton';
 
 interface Text {
   /**
@@ -129,17 +130,16 @@ export default function ColorPicker(props: Props) {
                 style={{ backgroundColor: value, width: 42 }}
               />
             </div>
-            <u
-              role="button"
-              className="align-self-center mx-3 clickable font-weight-lighter"
+            <TextButton
               onClick={() => onColorSelected(undefined)}
+              className="mx-3"
             >
               {t({
                 key: 'ColorPicker.CLEAR',
                 fallback: 'Clear',
                 overrideText: text.clear
               })}
-            </u>
+            </TextButton>
           </div>
         ) : null}
         <Popover

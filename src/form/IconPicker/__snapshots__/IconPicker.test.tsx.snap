@@ -120,13 +120,12 @@ exports[`Component: IconPicker ui with selected value 1`] = `
         icon="3d_rotation"
         id="icon-picker-value"
       />
-      <u
-        className="align-self-center mx-3 clickable font-weight-lighter"
+      <TextButton
+        className="mx-3"
         onClick={[Function]}
-        role="button"
       >
         Clear
-      </u>
+      </TextButton>
     </div>
     <Popover
       isOpen={false}

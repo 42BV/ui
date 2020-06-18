@@ -24,6 +24,7 @@ exports[`Component: ModalPickerSingle ui should render button left: Component: M
   <ModalPickerOpener
     alignButton="left"
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values="admin@42.nl"
   />
@@ -109,6 +110,7 @@ exports[`Component: ModalPickerSingle ui should render button right with value: 
   <ModalPickerOpener
     alignButton="right"
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values="admin@42.nl"
   />
@@ -194,6 +196,7 @@ exports[`Component: ModalPickerSingle ui should render button right without valu
   <ModalPickerOpener
     alignButton="right"
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
   />
   Some error
@@ -262,6 +265,7 @@ exports[`Component: ModalPickerSingle ui should render without label: Component:
 >
   <ModalPickerOpener
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values="admin@42.nl"
   />
@@ -346,6 +350,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
   </Label>
   <ModalPickerOpener
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values="admin@42.nl"
   />
@@ -431,6 +436,7 @@ exports[`Component: ModalPickerSingle ui should use custom display function to r
   <ModalPickerOpener
     displayValues={[Function]}
     label="Select your best friend"
+    onClear={[Function]}
     openModal={[Function]}
     values={
       Object {

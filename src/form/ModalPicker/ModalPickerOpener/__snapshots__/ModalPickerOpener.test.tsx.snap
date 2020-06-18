@@ -9,6 +9,12 @@ exports[`Component: ModalPickerOpener ui button aligned left with values: Compon
   >
     admin@42.nl
   </span>
+  <TextButton
+    className="mx-3"
+    onClick={[MockFunction]}
+  >
+    Clear
+  </TextButton>
   <Button
     className="flex-grow-0 flex-shrink-0 mr-1"
     color="primary"
@@ -44,6 +50,12 @@ exports[`Component: ModalPickerOpener ui button aligned right with values: Compo
   >
     admin@42.nl
   </span>
+  <TextButton
+    className="mx-3"
+    onClick={[MockFunction]}
+  >
+    Clear
+  </TextButton>
   <Button
     className="flex-grow-0 flex-shrink-0 ml-1"
     color="primary"
@@ -77,6 +89,12 @@ exports[`Component: ModalPickerOpener ui custom display values: Component: Modal
   <span>
     ADMIN@42.NL
   </span>
+  <TextButton
+    className="mx-3"
+    onClick={[MockFunction]}
+  >
+    Clear
+  </TextButton>
   <Button
     className="flex-grow-0 flex-shrink-0 ml-1"
     color="primary"
@@ -104,6 +122,12 @@ exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener =
     </Tooltip>
     admin@42.nl
   </span>
+  <TextButton
+    className="mx-3"
+    onClick={[MockFunction]}
+  >
+    Clear
+  </TextButton>
   <Button
     className="flex-grow-0 flex-shrink-0 ml-1"
     color="primary"
@@ -124,6 +148,12 @@ exports[`Component: ModalPickerOpener ui with values: Component: ModalPickerOpen
   >
     admin@42.nl
   </span>
+  <TextButton
+    className="mx-3"
+    onClick={[MockFunction]}
+  >
+    Clear
+  </TextButton>
   <Button
     className="flex-grow-0 flex-shrink-0 ml-1"
     color="primary"

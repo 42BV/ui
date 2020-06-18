@@ -41,13 +41,12 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
           }
         />
       </div>
-      <u
-        className="align-self-center mx-3 clickable font-weight-lighter"
+      <TextButton
+        className="mx-3"
         onClick={[Function]}
-        role="button"
       >
         Clear
-      </u>
+      </TextButton>
     </div>
     <Popover
       isOpen={false}

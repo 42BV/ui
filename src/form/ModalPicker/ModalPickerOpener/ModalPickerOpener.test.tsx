@@ -19,6 +19,8 @@ describe('Component: ModalPickerOpener', () => {
     hasDisplayValues?: boolean;
   }) {
     const openModalSpy = jest.fn();
+    const onClearSpy = jest.fn();
+
     const values = hasValues ? adminUser.email : undefined;
 
     jest
@@ -30,6 +32,7 @@ describe('Component: ModalPickerOpener', () => {
         openModal={openModalSpy}
         label="Best friend"
         values={values}
+        onClear={onClearSpy}
         alignButton={alignButton}
         displayValues={
           hasDisplayValues
@@ -39,7 +42,7 @@ describe('Component: ModalPickerOpener', () => {
       />
     );
 
-    return { modalPickerOpener, openModalSpy };
+    return { modalPickerOpener, openModalSpy, onClearSpy };
   }
 
   describe('ui', () => {
@@ -125,6 +128,19 @@ describe('Component: ModalPickerOpener', () => {
         .onClick();
 
       expect(openModalSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call onClear when the clear button is clicked', () => {
+      const { modalPickerOpener, onClearSpy } = setup({ hasValues: true });
+
+      // @ts-ignore
+      modalPickerOpener
+        .find('TextButton')
+        .props()
+        // @ts-ignore
+        .onClick();
+
+      expect(onClearSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

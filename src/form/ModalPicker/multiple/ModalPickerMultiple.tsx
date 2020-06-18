@@ -64,7 +64,7 @@ interface BaseProps<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T[]) => void;
+  onChange: (value?: T[]) => void;
 
   /**
    * Optional callback for when the form element is blurred.
@@ -266,6 +266,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
       label: placeholder,
       alignButton,
       displayValues,
+      onClear: () => this.props.onChange(undefined),
       values:
         value && value.length > 0 ? (
           displayValues ? (
@@ -431,6 +432,6 @@ export default class ModalPickerMultiple<T> extends React.Component<
  */
 export const JarbModalPickerMultiple = withJarb<
   any[],
-  any[] | null,
+  any[] | null | undefined,
   Props<any>
 >(ModalPickerMultiple);
