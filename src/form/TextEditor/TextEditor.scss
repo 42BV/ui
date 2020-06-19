@@ -1,5 +1,5 @@
 .quill {
-  .ql-container {
+  .ql-editor {
     min-height: 132px;
   }
 
@@ -13,7 +13,8 @@
   }
 
   &.is-invalid {
-    .ql-toolbar, .ql-container {
+    .ql-toolbar,
+    .ql-container {
       border-color: $danger;
     }
   }
