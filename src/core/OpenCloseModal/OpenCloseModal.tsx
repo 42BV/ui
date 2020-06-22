@@ -3,6 +3,7 @@ import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Button from '../Button/Button';
 import { t } from '../../utilities/translation/translation';
 import { BootstrapSize } from '../types';
+import { useBodyFixOnModalClose } from '../useBodyFixOnModalClose/useBodyFixOnModalClose';
 
 type Text = {
   cancel?: string;
@@ -72,6 +73,8 @@ export function OpenCloseModal(props: Props) {
     size,
     className
   } = props;
+
+  useBodyFixOnModalClose(isOpen);
 
   return (
     <Modal
