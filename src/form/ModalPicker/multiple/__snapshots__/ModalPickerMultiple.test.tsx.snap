@@ -23,13 +23,23 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
   </Label>
   <ModalPickerOpener
     alignButton="left"
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
     values={
-      <React.Fragment>
-        admin@42.nl
-      </React.Fragment>
+      Array [
+        Object {
+          "active": true,
+          "email": "admin@42.nl",
+          "firstName": "admin",
+          "id": 42,
+          "lastName": "user",
+          "roles": Array [
+            "ADMIN",
+          ],
+        },
+      ]
     }
   />
   Some error
@@ -113,13 +123,23 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
   </Label>
   <ModalPickerOpener
     alignButton="right"
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
     values={
-      <React.Fragment>
-        admin@42.nl
-      </React.Fragment>
+      Array [
+        Object {
+          "active": true,
+          "email": "admin@42.nl",
+          "firstName": "admin",
+          "id": 42,
+          "lastName": "user",
+          "roles": Array [
+            "ADMIN",
+          ],
+        },
+      ]
     }
   />
   Some error
@@ -203,6 +223,7 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
   </Label>
   <ModalPickerOpener
     alignButton="right"
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
@@ -265,12 +286,6 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
 </FormGroup>
 `;
 
-exports[`Component: ModalPickerMultiple ui should render multiple labels with the selected values when the value array is not empty: Component: ModalPickerMultiple => ui => should render multiple labels with the selected values when the value array is not empty 1`] = `
-<React.Fragment>
-  admin@42.nl, user@42.nl
-</React.Fragment>
-`;
-
 exports[`Component: ModalPickerMultiple ui should render properly without label: Component: ModalPickerMultiple => ui => should render properly without label 1`] = `
 <FormGroup
   className=""
@@ -278,13 +293,33 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
   tag="div"
 >
   <ModalPickerOpener
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
     values={
-      <React.Fragment>
-        admin@42.nl, user@42.nl
-      </React.Fragment>
+      Array [
+        Object {
+          "active": true,
+          "email": "admin@42.nl",
+          "firstName": "admin",
+          "id": 42,
+          "lastName": "user",
+          "roles": Array [
+            "ADMIN",
+          ],
+        },
+        Object {
+          "active": false,
+          "email": "user@42.nl",
+          "firstName": "test",
+          "id": 1337,
+          "lastName": "user",
+          "roles": Array [
+            "USER",
+          ],
+        },
+      ]
     }
   />
   Some error
@@ -367,13 +402,33 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
     Best Friend
   </Label>
   <ModalPickerOpener
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
     values={
-      <React.Fragment>
-        admin@42.nl, user@42.nl
-      </React.Fragment>
+      Array [
+        Object {
+          "active": true,
+          "email": "admin@42.nl",
+          "firstName": "admin",
+          "id": 42,
+          "lastName": "user",
+          "roles": Array [
+            "ADMIN",
+          ],
+        },
+        Object {
+          "active": false,
+          "email": "user@42.nl",
+          "firstName": "test",
+          "id": 1337,
+          "lastName": "user",
+          "roles": Array [
+            "USER",
+          ],
+        },
+      ]
     }
   />
   Some error

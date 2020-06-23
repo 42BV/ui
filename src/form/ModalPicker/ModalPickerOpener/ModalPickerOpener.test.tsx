@@ -3,20 +3,18 @@ import { shallow } from 'enzyme';
 import { ModalPickerOpener } from './ModalPickerOpener';
 import { adminUser } from '../../../test/fixtures';
 import toJson from 'enzyme-to-json';
-import * as useComponentOverflow from './useComponentOverflow/useComponentOverflow';
+import * as useComponentOverflow from '../ModalPickerValueTruncator/useComponentOverflow/useComponentOverflow';
 import { ButtonAlignment } from '../types';
 
 describe('Component: ModalPickerOpener', () => {
   function setup({
     hasValues = false,
     withTooltip = false,
-    alignButton,
-    hasDisplayValues = false
+    alignButton
   }: {
     hasValues?: boolean;
     withTooltip?: boolean;
     alignButton?: ButtonAlignment;
-    hasDisplayValues?: boolean;
   }) {
     const openModalSpy = jest.fn();
     const onClearSpy = jest.fn();
@@ -34,10 +32,8 @@ describe('Component: ModalPickerOpener', () => {
         values={values}
         onClear={onClearSpy}
         alignButton={alignButton}
-        displayValues={
-          hasDisplayValues
-            ? (value: string) => <span>{value.toUpperCase()}</span>
-            : undefined
+        displayValues={(value: string) =>
+          value ? <span>{value.toUpperCase()}</span> : null
         }
       />
     );
@@ -102,16 +98,6 @@ describe('Component: ModalPickerOpener', () => {
       });
       expect(toJson(modalPickerOpener)).toMatchSnapshot(
         'Component: ModalPickerOpener => ui => button aligned left with values'
-      );
-    });
-
-    test('custom display values', () => {
-      const { modalPickerOpener } = setup({
-        hasValues: true,
-        hasDisplayValues: true
-      });
-      expect(toJson(modalPickerOpener)).toMatchSnapshot(
-        'Component: ModalPickerOpener => ui => custom display values'
       );
     });
   });

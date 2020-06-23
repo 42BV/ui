@@ -137,9 +137,9 @@ describe('Component: ModalPickerSingle', () => {
 
     it('should render a label with the selected value when the value is not empty', () => {
       setup({ value: adminUser, showAddButton: false });
-      expect(modalPickerSingle.find('ModalPickerOpener').props().values).toBe(
-        'admin@42.nl'
-      );
+      expect(
+        modalPickerSingle.find('ModalPickerOpener').props().values
+      ).toEqual(adminUser);
     });
 
     it('should not render a label when the value is empty', () => {
@@ -532,9 +532,9 @@ describe('Component: ModalPickerSingle', () => {
     test('becomes empty', () => {
       setup({ value: adminUser, showAddButton: false });
 
-      expect(modalPickerSingle.find('ModalPickerOpener').props().values).toBe(
-        'admin@42.nl'
-      );
+      expect(
+        modalPickerSingle.find('ModalPickerOpener').props().values
+      ).toEqual(adminUser);
 
       modalPickerSingle.setProps({ value: undefined });
 
@@ -554,9 +554,9 @@ describe('Component: ModalPickerSingle', () => {
         value: adminUser
       });
 
-      expect(modalPickerSingle.find('ModalPickerOpener').props().values).toBe(
-        'admin@42.nl'
-      );
+      expect(
+        modalPickerSingle.find('ModalPickerOpener').props().values
+      ).toEqual(adminUser);
     });
   });
 });

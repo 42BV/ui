@@ -17,10 +17,10 @@ import {
   RenderOptions,
   RenderOptionsOption
 } from '../../option';
-import {
-  DisplayValues,
-  ModalPickerOpener
-} from '../ModalPickerOpener/ModalPickerOpener';
+import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
+import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
+
+export type DisplayValues<T> = (values?: T[]) => React.ReactNode;
 
 interface BaseProps<T> {
   /**
@@ -257,7 +257,12 @@ export default class ModalPickerMultiple<T> extends React.Component<
       className = '',
       optionForValue,
       alignButton,
-      displayValues,
+      displayValues = (values: T[]) => (
+        <ModalPickerValueTruncator
+          values={values}
+          optionForValue={optionForValue}
+        />
+      ),
       ...props
     } = this.props;
 
@@ -267,16 +272,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
       alignButton,
       displayValues,
       onClear: () => this.props.onChange(undefined),
-      values:
-        value && value.length > 0 ? (
-          displayValues ? (
-            value
-          ) : (
-            <>{value.map(optionForValue).join(', ')}</>
-          )
-        ) : (
-          undefined
-        )
+      values: value && value.length > 0 ? value : undefined
     };
 
     return (

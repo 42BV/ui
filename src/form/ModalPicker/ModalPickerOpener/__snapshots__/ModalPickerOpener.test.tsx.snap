@@ -4,10 +4,8 @@ exports[`Component: ModalPickerOpener ui button aligned left with values: Compon
 <div
   className="d-flex align-items-center flex-row-reverse justify-content-end"
 >
-  <span
-    className="text-truncate position-relative"
-  >
-    admin@42.nl
+  <span>
+    ADMIN@42.NL
   </span>
   <TextButton
     className="mx-3"
@@ -45,10 +43,8 @@ exports[`Component: ModalPickerOpener ui button aligned right with values: Compo
 <div
   className="d-flex align-items-center justify-content-between"
 >
-  <span
-    className="text-truncate position-relative"
-  >
-    admin@42.nl
+  <span>
+    ADMIN@42.NL
   </span>
   <TextButton
     className="mx-3"
@@ -82,7 +78,7 @@ exports[`Component: ModalPickerOpener ui button aligned right without values: Co
 </div>
 `;
 
-exports[`Component: ModalPickerOpener ui custom display values: Component: ModalPickerOpener => ui => custom display values 1`] = `
+exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener => ui => with tooltip 1`] = `
 <div
   className="d-flex align-items-center"
 >
@@ -106,47 +102,12 @@ exports[`Component: ModalPickerOpener ui custom display values: Component: Modal
 </div>
 `;
 
-exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener => ui => with tooltip 1`] = `
-<div
-  className="d-flex align-items-center"
->
-  <span
-    className="text-truncate position-relative"
-  >
-    <Tooltip
-      className="w-100 h-100 position-absolute"
-      content="admin@42.nl"
-      tag="div"
-    >
-       
-    </Tooltip>
-    admin@42.nl
-  </span>
-  <TextButton
-    className="mx-3"
-    onClick={[MockFunction]}
-  >
-    Clear
-  </TextButton>
-  <Button
-    className="flex-grow-0 flex-shrink-0 ml-1"
-    color="primary"
-    onClick={[MockFunction]}
-    tag="button"
-  >
-    Best friend
-  </Button>
-</div>
-`;
-
 exports[`Component: ModalPickerOpener ui with values: Component: ModalPickerOpener => ui => with values 1`] = `
 <div
   className="d-flex align-items-center"
 >
-  <span
-    className="text-truncate position-relative"
-  >
-    admin@42.nl
+  <span>
+    ADMIN@42.NL
   </span>
   <TextButton
     className="mx-3"
