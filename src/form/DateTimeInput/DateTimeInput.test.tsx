@@ -205,6 +205,30 @@ describe('Component: DateTimeInput', () => {
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
       });
 
+      it('should be marked as invalid when the value is a string which is not a valid value', () => {
+        setup({});
+
+        const dateTime = dateTimeInput.find(Datetime);
+        // @ts-ignore
+        dateTime.props().onChange('2000-__-__ __:__:__');
+
+        const updatedDateTime = dateTimeInput.find(Datetime);
+        // @ts-ignore
+        expect(updatedDateTime.props().inputProps.invalid).toBe(true);
+      });
+
+      it('should be marked as invalid when the value is a string which is not a valid value and the input was initialized with a value', () => {
+        setup({ value: new Date('2020-01-01T11:00:00.000Z') });
+
+        const dateTime = dateTimeInput.find(Datetime);
+        // @ts-ignore
+        dateTime.props().onChange('2000-__-__ __:__:__');
+
+        const updatedDateTime = dateTimeInput.find(Datetime);
+        // @ts-ignore
+        expect(updatedDateTime.props().inputProps.invalid).toBe(true);
+      });
+
       it('should set the value when a valid moment object is given', () => {
         setup({});
 
