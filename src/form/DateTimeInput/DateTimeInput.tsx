@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 import Datetime from 'react-datetime';
-import { constant, get } from 'lodash';
+import { constant, get, isEmpty } from 'lodash';
 import moment, { Moment } from 'moment';
 import MaskedInput from 'react-text-mask';
 import { Color } from '../types';
@@ -174,7 +174,7 @@ export default function DateTimeInput(props: Props) {
         setHasFormatError(false);
       } else {
         onChange(null);
-        setHasFormatError(true);
+        setHasFormatError(!isEmpty(value));
       }
     } else {
       onChange(value.toDate());
@@ -210,7 +210,7 @@ export default function DateTimeInput(props: Props) {
           // @ts-ignore
           mask: formatToMask(dateFormat, timeFormat),
           placeholder,
-          invalid: valid === false || (value !== undefined && hasFormatError)
+          invalid: valid === false || hasFormatError
         }}
         open={mode === 'modal' ? false : undefined}
         renderInput={props =>
