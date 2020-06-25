@@ -152,9 +152,7 @@ describe('Component: ModalPickerMultiple', () => {
 
       expect(
         modalPickerMultiple.find('ModalPickerOpener').props().values
-      ).toMatchSnapshot(
-        'Component: ModalPickerMultiple => ui => should render multiple labels with the selected values when the value array is not empty'
-      );
+      ).toEqual([adminUser, userUser]);
     });
 
     it('should render no labels when the value array is empty', () => {
@@ -715,7 +713,7 @@ describe('Component: ModalPickerMultiple', () => {
 
       expect(
         modalPickerMultiple.find('ModalPickerOpener').props().values
-      ).toEqual(<React.Fragment>admin@42.nl</React.Fragment>);
+      ).toEqual([adminUser]);
 
       modalPickerMultiple.setProps({ value: undefined });
 
@@ -737,7 +735,7 @@ describe('Component: ModalPickerMultiple', () => {
 
       expect(
         modalPickerMultiple.find('ModalPickerOpener').props().values
-      ).toEqual(<React.Fragment>admin@42.nl</React.Fragment>);
+      ).toEqual([adminUser]);
     });
   });
 });

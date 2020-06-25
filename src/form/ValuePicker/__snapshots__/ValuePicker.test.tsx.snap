@@ -374,6 +374,7 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
           </label>
         </Label>
         <ModalPickerOpener
+          displayValues={[Function]}
           label="Select your best friend"
           onClear={[Function]}
           openModal={[Function]}
@@ -381,6 +382,9 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
           <div
             className="d-flex align-items-center"
           >
+            <ModalPickerValueTruncator
+              optionForValue={[Function]}
+            />
             <Button
               className="flex-grow-0 flex-shrink-0"
               color="primary"
@@ -646,6 +650,7 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
           </label>
         </Label>
         <ModalPickerOpener
+          displayValues={[Function]}
           label="Select your best friend"
           onClear={[Function]}
           openModal={[Function]}
@@ -653,6 +658,9 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
           <div
             className="d-flex align-items-center"
           >
+            <ModalPickerValueTruncator
+              optionForValue={[Function]}
+            />
             <Button
               className="flex-grow-0 flex-shrink-0"
               color="primary"

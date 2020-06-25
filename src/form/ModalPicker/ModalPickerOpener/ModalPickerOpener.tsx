@@ -1,21 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Button } from 'reactstrap';
-import Tooltip from '../../../core/Tooltip/Tooltip';
-import { useComponentOverflow } from './useComponentOverflow/useComponentOverflow';
 import { ButtonAlignment } from '../types';
 import classNames from 'classnames';
 import { t } from '../../../utilities/translation/translation';
 import TextButton from '../../../core/TextButton/TextButton';
-
-export type DisplayValues<T> = (
-  values?: T | T[] | React.ReactNode
-) => React.ReactNode;
+import { DisplayValue } from '../single/ModalPickerSingle';
+import { DisplayValues } from '../multiple/ModalPickerMultiple';
 
 interface Text {
   clear?: string;
 }
 
-interface Props<T> {
+interface BaseProps<T> {
   /**
    * Function to open the modal, called when the button is clicked.
    */
@@ -32,17 +28,6 @@ interface Props<T> {
   onClear?: () => void;
 
   /**
-   * The selected item(s).
-   */
-  values?: T | T[] | React.ReactNode;
-
-  /**
-   * Optionally callback to display the selected item(s).
-   * @param values
-   */
-  displayValues?: DisplayValues<T>;
-
-  /**
    * Optionally the position the button should be aligned to
    * within it's container.
    */
@@ -55,6 +40,20 @@ interface Props<T> {
   text?: Text;
 }
 
+interface ModalPickerSingleOpenerProps<T> extends BaseProps<T> {
+  values?: T;
+  displayValues: DisplayValue<T>;
+}
+
+interface ModalPickerMultipleOpenerProps<T> extends BaseProps<T> {
+  values?: T[];
+  displayValues: DisplayValues<T>;
+}
+
+type Props<T> =
+  | ModalPickerSingleOpenerProps<T>
+  | ModalPickerMultipleOpenerProps<T>;
+
 export function ModalPickerOpener<T>(props: Props<T>) {
   const {
     openModal,
@@ -65,10 +64,6 @@ export function ModalPickerOpener<T>(props: Props<T>) {
     onClear,
     text = {}
   } = props;
-
-  const ref = useRef<HTMLElement>(null);
-
-  const isOverflowing = useComponentOverflow(ref, values);
 
   const wrapperClassName = classNames('d-flex', 'align-items-center', {
     'flex-row-reverse': alignButton === 'left',
@@ -82,24 +77,12 @@ export function ModalPickerOpener<T>(props: Props<T>) {
     'ml-1': values && alignButton !== 'left'
   });
 
+  // @ts-ignore
+  const displayValue = displayValues(values);
+
   return (
     <div className={wrapperClassName}>
-      {displayValues ? (
-        displayValues(values)
-      ) : values ? (
-        <span className="text-truncate position-relative" ref={ref}>
-          {isOverflowing ? (
-            <Tooltip
-              content={values}
-              className="w-100 h-100 position-absolute"
-              tag="div"
-            >
-              {' '}
-            </Tooltip>
-          ) : null}
-          {values}
-        </span>
-      ) : null}
+      {displayValue}
 
       {values && onClear ? (
         <TextButton onClick={onClear} className="mx-3">

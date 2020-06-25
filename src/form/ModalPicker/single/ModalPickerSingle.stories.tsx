@@ -249,13 +249,13 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          optionForValue={(user: User) => user.email}
+          optionForValue={user => user.email}
           fetchOptions={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
           }
           value={value}
-          onChange={setValue}
-          displayValues={(user?: User) => {
+          onChange={user => setValue(user)}
+          displayValues={user => {
             return user ? (
               <>
                 {user.roles.some(role => role === 'ADMIN') ? (

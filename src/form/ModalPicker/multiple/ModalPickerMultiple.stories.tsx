@@ -273,7 +273,7 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
-          displayValues={(users?: User[]) => {
+          displayValues={users => {
             return users ? (
               <>
                 {users.map((user, index) => (

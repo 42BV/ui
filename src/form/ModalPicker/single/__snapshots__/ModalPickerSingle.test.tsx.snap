@@ -23,10 +23,22 @@ exports[`Component: ModalPickerSingle ui should render button left: Component: M
   </Label>
   <ModalPickerOpener
     alignButton="left"
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
-    values="admin@42.nl"
+    values={
+      Object {
+        "active": true,
+        "email": "admin@42.nl",
+        "firstName": "admin",
+        "id": 42,
+        "lastName": "user",
+        "roles": Array [
+          "ADMIN",
+        ],
+      }
+    }
   />
   Some error
   <ModalPicker
@@ -109,10 +121,22 @@ exports[`Component: ModalPickerSingle ui should render button right with value: 
   </Label>
   <ModalPickerOpener
     alignButton="right"
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
-    values="admin@42.nl"
+    values={
+      Object {
+        "active": true,
+        "email": "admin@42.nl",
+        "firstName": "admin",
+        "id": 42,
+        "lastName": "user",
+        "roles": Array [
+          "ADMIN",
+        ],
+      }
+    }
   />
   Some error
   <ModalPicker
@@ -195,6 +219,7 @@ exports[`Component: ModalPickerSingle ui should render button right without valu
   </Label>
   <ModalPickerOpener
     alignButton="right"
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
@@ -264,10 +289,22 @@ exports[`Component: ModalPickerSingle ui should render without label: Component:
   tag="div"
 >
   <ModalPickerOpener
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
-    values="admin@42.nl"
+    values={
+      Object {
+        "active": true,
+        "email": "admin@42.nl",
+        "firstName": "admin",
+        "id": 42,
+        "lastName": "user",
+        "roles": Array [
+          "ADMIN",
+        ],
+      }
+    }
   />
   Some error
   <ModalPicker
@@ -349,10 +386,22 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
     Best Friend
   </Label>
   <ModalPickerOpener
+    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
-    values="admin@42.nl"
+    values={
+      Object {
+        "active": true,
+        "email": "admin@42.nl",
+        "firstName": "admin",
+        "id": 42,
+        "lastName": "user",
+        "roles": Array [
+          "ADMIN",
+        ],
+      }
+    }
   />
   Some error
   <ModalPicker
