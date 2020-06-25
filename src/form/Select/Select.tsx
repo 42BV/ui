@@ -99,6 +99,12 @@ interface BaseProps<T> {
    * This text should already be translated.
    */
   text?: Text;
+
+  /**
+   * Optionally a value to detect changes and trigger
+   * the optionsFetcher to reload the options.
+   */
+  watch?: any;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -136,14 +142,16 @@ export default function Select<T>(props: Props<T>) {
     onChange,
     onBlur,
     optionForValue,
-    isOptionEqual
+    isOptionEqual,
+    watch
   } = props;
 
   const { options, loading } = useOptions({
     optionsOrFetcher: props.options,
     value,
     isOptionEqual,
-    optionForValue
+    optionForValue,
+    watch
   });
 
   function selectDefaultOption(option?: HTMLOptionElement | null) {

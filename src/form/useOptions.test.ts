@@ -8,6 +8,7 @@ import {
   nobodyUser
 } from '../test/fixtures';
 import { pageOf } from '../utilities/page/page';
+import { User } from '../test/types';
 
 describe('useOptions', () => {
   describe('when optionsOrFetcher is an array', () => {
@@ -44,8 +45,8 @@ describe('useOptions', () => {
     });
   });
 
-  describe('when optionsOrFetcher is an a function', () => {
-    test('that when `optionsOrFetcher` is an a function that the options are fetched', async () => {
+  describe('when optionsOrFetcher is a function', () => {
+    test('that the options are fetched', async () => {
       const config = {
         optionsOrFetcher: () =>
           Promise.resolve(pageOf([adminUser, userUser], 1)),
@@ -67,6 +68,48 @@ describe('useOptions', () => {
 
       expect(result.current).toEqual({
         options: [adminUser, userUser],
+        loading: false
+      });
+    });
+
+    test('that when the watch value changes the options are fetched again', async () => {
+      const { result, waitForNextUpdate, rerender } = renderHook(
+        ({ watch }) =>
+          useOptions({
+            // @ts-ignore
+            optionsOrFetcher: () =>
+              Promise.resolve(
+                pageOf(
+                  watch === 'filter' ? [adminUser] : [adminUser, userUser],
+                  1
+                )
+              ),
+            value: undefined,
+            optionForValue: (user: User) => user.email,
+            isOptionEqual: (a, b) => a.id === b.id,
+            watch
+          }),
+        { initialProps: { watch: 'nofilter' } }
+      );
+
+      expect(result.current).toEqual({
+        options: [],
+        loading: true
+      });
+
+      await waitForNextUpdate();
+
+      expect(result.current).toEqual({
+        options: [adminUser, userUser],
+        loading: false
+      });
+
+      rerender({ watch: 'filter' });
+
+      await waitForNextUpdate();
+
+      expect(result.current).toEqual({
+        options: [adminUser],
         loading: false
       });
     });

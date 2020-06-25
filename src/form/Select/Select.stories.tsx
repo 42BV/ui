@@ -6,7 +6,7 @@ import Select, { JarbSelect } from './Select';
 import { FinalForm, Form, resolveAfter } from '../story-utils';
 import { pageOfUsers, userUser, randomUser } from '../../test/fixtures';
 import { User } from '../../test/types';
-import { Icon, Tooltip } from '../..';
+import { Icon, pageOf, Tooltip } from '../..';
 
 interface SubjectOption {
   value: string;
@@ -128,6 +128,85 @@ storiesOf('Form|Select', module)
             { value: 'good', label: 'good shit' }
           ]}
           onChange={value => action(`You entered ${value}`)}
+        />
+      </Form>
+    );
+  })
+  .add('value based options', () => {
+    const [brand, setBrand] = useState<string>();
+    const [model, setModel] = useState<string>();
+
+    const allOptions = {
+      Audi: ['A1', 'A2', 'A3', 'M5'],
+      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
+      Mercedes: ['Viano', 'Vito', 'Sprinter']
+    };
+
+    return (
+      <Form>
+        <Select
+          id="brand"
+          label="Brand"
+          placeholder="Please select your brand"
+          optionForValue={option => option}
+          options={Object.keys(allOptions)}
+          onChange={value => {
+            setBrand(value);
+            setModel(undefined);
+          }}
+          value={brand}
+        />
+        <Select
+          id="model"
+          label="Model"
+          placeholder={
+            brand ? 'Please select your model' : 'Please select a brand first'
+          }
+          optionForValue={(option: string) => option}
+          options={brand ? allOptions[brand] : []}
+          onChange={value => setModel(value)}
+          value={model}
+        />
+      </Form>
+    );
+  })
+  .add('value based async options', () => {
+    const [brand, setBrand] = useState<string>();
+    const [model, setModel] = useState<string>();
+
+    const allOptions = {
+      Audi: ['A1', 'A2', 'A3', 'M5'],
+      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
+      Mercedes: ['Viano', 'Vito', 'Sprinter']
+    };
+
+    return (
+      <Form>
+        <Select
+          id="brand"
+          label="Brand"
+          placeholder="Please select your brand"
+          optionForValue={option => option}
+          options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
+          onChange={value => {
+            setBrand(value);
+            setModel(undefined);
+          }}
+          value={brand}
+        />
+        <Select
+          id="model"
+          label="Model"
+          placeholder={
+            brand ? 'Please select your model' : 'Please select a brand first'
+          }
+          optionForValue={(option: string) => option}
+          options={() =>
+            resolveAfter(pageOf(brand ? allOptions[brand] : [], 1))
+          }
+          onChange={(value: string) => setModel(value)}
+          value={model}
+          watch={brand}
         />
       </Form>
     );

@@ -5,7 +5,8 @@ import Checkbox, { JarbRadioGroup } from './RadioGroup';
 import { FinalForm, Form, resolveAfter } from '../story-utils';
 import { pageOfUsers, randomUser } from '../../test/fixtures';
 import { User } from '../../test/types';
-import { Icon, Tooltip } from '../..';
+import { Icon, pageOf, Tooltip } from '../..';
+import Toggle from '../Toggle/Toggle';
 
 interface SubjectOption {
   value: string;
@@ -261,6 +262,90 @@ storiesOf('Form|RadioGroup', module)
         />
 
         {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
+      </Form>
+    );
+  })
+  .add('value based options', () => {
+    const [subject, setSubject] = useState<SubjectOption | undefined>(
+      undefined
+    );
+    const [filtered, setFiltered] = useState(false);
+
+    const allOptions = [
+      { value: 'awesome', label: 'Awesome shit' },
+      { value: 'super', label: 'Super shit' },
+      { value: 'great', label: 'Great shit' },
+      { value: 'good', label: 'good shit' }
+    ];
+
+    const filteredOptions = allOptions.filter(
+      option => option.value !== 'awesome'
+    );
+
+    return (
+      <Form>
+        <div className="mb-3">
+          <Toggle
+            color="primary"
+            onChange={setFiltered}
+            value={filtered}
+            className="mr-2"
+          />
+          Filter options
+        </div>
+        <Checkbox<SubjectOption>
+          id="subject"
+          label="Subject"
+          placeholder="Please enter your subject"
+          optionForValue={(option: SubjectOption) => option.label}
+          isOptionEnabled={option => option.value !== 'awesome'}
+          options={filtered ? filteredOptions : allOptions}
+          value={subject}
+          onChange={setSubject}
+        />
+
+        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
+      </Form>
+    );
+  })
+  .add('value based async options', () => {
+    const [brand, setBrand] = useState<string>();
+    const [model, setModel] = useState<string>();
+
+    const allOptions = {
+      Audi: ['A1', 'A2', 'A3', 'M5'],
+      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
+      Mercedes: ['Viano', 'Vito', 'Sprinter']
+    };
+
+    return (
+      <Form>
+        <Checkbox
+          id="brand"
+          label="Brand"
+          placeholder="Please select your brand"
+          optionForValue={option => option}
+          options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
+          value={brand}
+          onChange={value => {
+            setBrand(value);
+            setModel(undefined);
+          }}
+        />
+        <Checkbox
+          id="model"
+          label="Model"
+          placeholder={
+            brand ? 'Please select your model' : 'Please select a brand first'
+          }
+          optionForValue={(option: string) => option}
+          options={() =>
+            resolveAfter(pageOf(brand ? allOptions[brand] : [], 1))
+          }
+          value={model}
+          onChange={setModel}
+          watch={brand}
+        />
       </Form>
     );
   })

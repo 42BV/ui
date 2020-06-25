@@ -73,7 +73,7 @@
     "@storybook/addon-docs": "5.3.13",
     "@storybook/preset-scss": "1.0.2",
     "@storybook/react": "5.3.13",
-    "@testing-library/react-hooks": "3.2.1",
+    "@testing-library/react-hooks": "3.3.0",
     "@types/classnames": "2.2.9",
     "@types/enzyme": "3.10.5",
     "@types/enzyme-adapter-react-16": "1.0.6",

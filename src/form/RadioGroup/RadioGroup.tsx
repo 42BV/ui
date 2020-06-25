@@ -124,6 +124,12 @@ interface BaseProps<T> {
    * Defaults to `false`
    */
   canClear?: boolean;
+
+  /**
+   * Optionally a value to detect changes and trigger
+   * the optionsFetcher to reload the options.
+   */
+  watch?: any;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -156,14 +162,16 @@ export default function RadioGroup<T>(props: Props<T>) {
     optionForValue,
     isOptionEqual,
     horizontal = false,
-    canClear = false
+    canClear = false,
+    watch
   } = props;
 
   const { options, loading } = useOptions({
     optionsOrFetcher: props.options,
     value,
     isOptionEqual,
-    optionForValue
+    optionForValue,
+    watch
   });
 
   const isOptionEnabled = get(props, 'isOptionEnabled', constant(true));

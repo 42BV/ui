@@ -7,12 +7,14 @@ import {
   OptionForValue,
   OptionsFetcher
 } from './option';
+import { isEqual } from 'lodash';
 
 interface UseOptionConfig<T> {
   optionsOrFetcher: OptionsFetcher<T> | T[];
   value?: T;
   optionForValue: OptionForValue<T>;
   isOptionEqual?: OptionEqual<T>;
+  watch?: any;
 }
 
 interface UseOptionResult<T> {
@@ -21,7 +23,13 @@ interface UseOptionResult<T> {
 }
 
 export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
-  const { optionsOrFetcher, value, optionForValue, isOptionEqual } = config;
+  const {
+    optionsOrFetcher,
+    value,
+    optionForValue,
+    isOptionEqual,
+    watch
+  } = config;
 
   const [loading, setLoading] = useState(
     () => !Array.isArray(optionsOrFetcher)
@@ -32,6 +40,8 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
   );
 
   const [optionsLoaded, setOptionsLoaded] = useState(false);
+
+  const [watchedValue, setWatchedValue] = useState(watch);
 
   // Load the options when the options is a OptionsFetcher once.
   useEffect(() => {
@@ -53,8 +63,32 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
 
     if (!Array.isArray(optionsOrFetcher)) {
       loadOption(optionsOrFetcher);
+    } else {
+      setOptions(optionsOrFetcher);
     }
   }, [optionsLoaded, optionsOrFetcher]);
+
+  // Reload the options when the options is an OptionsFetcher and
+  // watch value changed
+  useEffect(() => {
+    async function loadOption(fetcher: OptionsFetcher<T>) {
+      setLoading(true);
+
+      const page: Page<T> = await fetcher();
+
+      setOptions(page.content);
+      setLoading(false);
+
+      setOptionsLoaded(true);
+    }
+
+    if (!Array.isArray(optionsOrFetcher)) {
+      if (!isEqual(watchedValue, watch)) {
+        loadOption(optionsOrFetcher);
+        setWatchedValue(watch);
+      }
+    }
+  }, [watch, optionsOrFetcher, watchedValue]);
 
   // When the options are loaded make sure that the options always
   // contain the value that the user has selected.
