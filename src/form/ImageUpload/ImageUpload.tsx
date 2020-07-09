@@ -178,7 +178,25 @@ export default class ImageUpload extends Component<Props, State> {
         mode: Mode.FILE_SELECTED,
         imageSrc
       });
+    } else if (imageSrc) {
+      this.readFile(imageSrc, (result: string) =>
+        this.setState({
+          mode: Mode.FILE_SELECTED,
+          imageSrc: result,
+          fileName: imageSrc.name
+        })
+      );
     }
+  }
+
+  readFile(file: File, callback: (result: string) => void) {
+    reader.onloadend = () => {
+      /* istanbul ignore else */
+      if (typeof reader.result === 'string') {
+        callback(reader.result);
+      }
+    };
+    reader.readAsDataURL(file);
   }
 
   imgSelected({ target: { files } }: React.ChangeEvent<HTMLInputElement>) {
@@ -186,20 +204,15 @@ export default class ImageUpload extends Component<Props, State> {
     if (files) {
       const file = files[0];
 
-      reader.onloadend = () => {
-        /* istanbul ignore else */
-        if (typeof reader.result === 'string') {
-          this.setState({
-            imageSrc: reader.result,
-            mode: Mode.EDIT,
-            fileName: file.name,
-            rotate: 0,
-            scale: 1
-          });
-        }
-      };
-
-      reader.readAsDataURL(file);
+      this.readFile(file, (result: string) =>
+        this.setState({
+          imageSrc: result,
+          mode: Mode.EDIT,
+          fileName: file.name,
+          rotate: 0,
+          scale: 1
+        })
+      );
     }
   }
 

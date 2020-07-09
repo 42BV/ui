@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import ImageUpload, { JarbImageUpload, requireImage } from './ImageUpload';
 import { Form, FinalForm } from '../story-utils';
 import { Tooltip, Icon } from '../..';
+import FileInput from '../FileInput/FileInput';
 
 storiesOf('Form|ImageUpload', module)
   .add('rect', () => {
@@ -77,6 +78,32 @@ storiesOf('Form|ImageUpload', module)
           }}
           onChange={value => action(`You entered ${value}`)}
         />
+      </Form>
+    );
+  })
+  .add('File as initial value', () => {
+    const [file, setFile] = useState<File | null>();
+    return (
+      <Form>
+        <FileInput
+          id="image-uploader"
+          label="Choose an image"
+          accept="image/*"
+          onChange={setFile}
+        />
+        {file ? (
+          <ImageUpload
+            id="image-uploader"
+            label="Profile photo"
+            crop={{
+              type: 'rect',
+              width: 500,
+              height: 400
+            }}
+            value={file}
+            onChange={setFile}
+          />
+        ) : null}
       </Form>
     );
   })

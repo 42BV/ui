@@ -103,6 +103,28 @@ describe('Component: ImageUpload', () => {
         imageSrc: 'maarten.png'
       });
     });
+
+    test('it should show the image when the value is a File', () => {
+      // @ts-ignore
+      const imgUpload = new ImageUpload();
+
+      imgUpload.props = { value: new File([''], 'maarten.png') };
+      jest.spyOn(imgUpload, 'setState').mockImplementation(() => undefined);
+      jest
+        .spyOn(imgUpload, 'readFile')
+        .mockImplementation((file: File, callback: (result: string) => void) =>
+          callback('test')
+        );
+
+      imgUpload.componentDidMount();
+
+      expect(imgUpload.setState).toHaveBeenCalledTimes(1);
+      expect(imgUpload.setState).toHaveBeenCalledWith({
+        mode: 'file-selected',
+        fileName: 'maarten.png',
+        imageSrc: 'test'
+      });
+    });
   });
 
   describe('ui', () => {
