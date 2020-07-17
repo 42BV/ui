@@ -116,7 +116,7 @@ describe('Component: ModalPickerSingle', () => {
 
   describe('ui', () => {
     it('should render', () => {
-      setup({ value: adminUser, showAddButton: false });
+      setup({ value: adminUser(), showAddButton: false });
       expect(toJson(modalPickerSingle)).toMatchSnapshot(
         'Component: ModalPickerSingle => ui => should render'
       );
@@ -124,7 +124,7 @@ describe('Component: ModalPickerSingle', () => {
 
     it('should not render search canSearch is false', () => {
       setup({
-        value: adminUser,
+        value: adminUser(),
         showAddButton: false,
         canSearch: false
       });
@@ -136,10 +136,11 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     it('should render a label with the selected value when the value is not empty', () => {
-      setup({ value: adminUser, showAddButton: false });
+      const value = adminUser();
+      setup({ value, showAddButton: false });
       expect(
         modalPickerSingle.find('ModalPickerOpener').props().values
-      ).toEqual(adminUser);
+      ).toEqual(value);
     });
 
     it('should not render a label when the value is empty', () => {
@@ -160,11 +161,11 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     it('should render the options with the correct checked state', () => {
-      setup({ value: adminUser, showAddButton: false });
+      setup({ value: adminUser(), showAddButton: false });
 
       modalPickerSingle.setState({
-        page: pageOfUsers,
-        selected: { ...adminUser }
+        page: pageOfUsers(),
+        selected: { ...adminUser() }
       });
 
       const admin = modalPickerSingle.find('Input').at(0);
@@ -177,14 +178,14 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     it('should render without label', () => {
-      setup({ value: adminUser, showAddButton: false, hasLabel: false });
+      setup({ value: adminUser(), showAddButton: false, hasLabel: false });
       expect(toJson(modalPickerSingle)).toMatchSnapshot(
         'Component: ModalPickerSingle => ui => should render without label'
       );
     });
 
     it('should render button left', () => {
-      setup({ value: adminUser, showAddButton: false, alignButton: 'left' });
+      setup({ value: adminUser(), showAddButton: false, alignButton: 'left' });
       expect(toJson(modalPickerSingle)).toMatchSnapshot(
         'Component: ModalPickerSingle => ui => should render button left'
       );
@@ -198,14 +199,18 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     it('should render button right with value', () => {
-      setup({ value: adminUser, showAddButton: false, alignButton: 'right' });
+      setup({ value: adminUser(), showAddButton: false, alignButton: 'right' });
       expect(toJson(modalPickerSingle)).toMatchSnapshot(
         'Component: ModalPickerSingle => ui => should render button right with value'
       );
     });
 
     it('should use custom display function to render values', () => {
-      setup({ value: adminUser, showAddButton: false, hasDisplayValues: true });
+      setup({
+        value: adminUser(),
+        showAddButton: false,
+        hasDisplayValues: true
+      });
       expect(toJson(modalPickerSingle)).toMatchSnapshot(
         'Component: ModalPickerSingle => ui => should use custom display function to render values'
       );
@@ -214,12 +219,14 @@ describe('Component: ModalPickerSingle', () => {
 
   describe('events', () => {
     it('should open the modal when the select button is clicked', async done => {
+      const value = adminUser();
+
       setup({
-        value: adminUser,
+        value,
         showAddButton: false
       });
 
-      const promise = Promise.resolve(pageOfUsers);
+      const promise = Promise.resolve(pageOfUsers());
       fetchOptionsSpy.mockReturnValue(promise);
 
       modalPickerSingle
@@ -236,12 +243,12 @@ describe('Component: ModalPickerSingle', () => {
 
         const state = modalPickerSingle.state() as State<User>;
 
-        expect(state.selected).toEqual(adminUser);
+        expect(state.selected).toEqual(value);
         expect(state.isOpen).toBe(true);
         expect(state.query).toBe('');
 
         expect(state.userHasSearched).toBe(false);
-        expect(state.page).toBe(pageOfUsers);
+        expect(state.page).toEqual(pageOfUsers());
 
         done();
       } catch (error) {
@@ -256,7 +263,7 @@ describe('Component: ModalPickerSingle', () => {
         showAddButton: false
       });
 
-      const promise = Promise.resolve(pageOfUsers);
+      const promise = Promise.resolve(pageOfUsers());
       fetchOptionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerSingle.find('ModalPicker').at(0);
@@ -271,7 +278,7 @@ describe('Component: ModalPickerSingle', () => {
       setup({ value: undefined, showAddButton: false });
       modalPickerSingle.setState({ query: 'search' });
 
-      const promise = Promise.resolve(pageOfUsers);
+      const promise = Promise.resolve(pageOfUsers());
       fetchOptionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerSingle.find('ModalPicker').at(0);
@@ -287,7 +294,7 @@ describe('Component: ModalPickerSingle', () => {
         const state = modalPickerSingle.state() as State<User>;
 
         expect(state.userHasSearched).toBe(true);
-        expect(state.page).toBe(pageOfUsers);
+        expect(state.page).toEqual(pageOfUsers());
 
         expect(state.query).toBe('search');
         done();
@@ -313,7 +320,7 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     it('should when the user clicks save it should close the modal and select the value', () => {
-      setup({ value: adminUser, showAddButton: false });
+      setup({ value: adminUser(), showAddButton: false });
 
       modalPickerSingle.setState({ isOpen: true });
       modalPickerSingle.setState({ selected: adminUser });
@@ -333,10 +340,11 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     it('should when the user clicks the clear button clear the value', () => {
-      setup({ value: adminUser, showAddButton: false });
+      const value = adminUser();
+      setup({ value, showAddButton: false });
 
       modalPickerSingle.setState({ isOpen: true });
-      modalPickerSingle.setState({ selected: adminUser });
+      modalPickerSingle.setState({ selected: value });
 
       // @ts-ignore
       modalPickerSingle
@@ -350,10 +358,10 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     it('should when the user selects an option store the value', () => {
-      setup({ value: adminUser, showAddButton: false });
+      setup({ value: adminUser(), showAddButton: false });
       modalPickerSingle.setState({
-        page: pageOfUsers,
-        selected: adminUser
+        page: pageOfUsers(),
+        selected: adminUser()
       });
 
       // @ts-ignore
@@ -365,7 +373,7 @@ describe('Component: ModalPickerSingle', () => {
         .onChange();
 
       // @ts-ignore
-      expect(modalPickerSingle.state().selected).toEqual(coordinatorUser);
+      expect(modalPickerSingle.state().selected).toEqual(coordinatorUser());
 
       // @ts-ignore
       modalPickerSingle
@@ -376,7 +384,7 @@ describe('Component: ModalPickerSingle', () => {
         .onChange();
 
       // @ts-ignore
-      expect(modalPickerSingle.state().selected).toEqual(userUser);
+      expect(modalPickerSingle.state().selected).toEqual(userUser());
 
       // @ts-ignore
       modalPickerSingle
@@ -387,18 +395,18 @@ describe('Component: ModalPickerSingle', () => {
         .onChange();
 
       // @ts-ignore
-      expect(modalPickerSingle.state().selected).toEqual(adminUser);
+      expect(modalPickerSingle.state().selected).toEqual(adminUser());
     });
 
     describe('addButton', () => {
       it('should add an item on the first position, when the promise resolves', async done => {
         setup({
-          value: adminUser,
+          value: adminUser(),
           showAddButton: true
         });
         modalPickerSingle.setState({
           isOpen: true,
-          page: testUtils.pageWithContent([adminUser])
+          page: testUtils.pageWithContent([adminUser()])
         });
 
         const { promise, resolve } = testUtils.resolvablePromise();
@@ -418,7 +426,7 @@ describe('Component: ModalPickerSingle', () => {
         expect(modalPickerSingle.state().isOpen).toBe(false);
         expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
 
-        resolve(userUser);
+        resolve(userUser());
 
         try {
           await promise;
@@ -433,9 +441,9 @@ describe('Component: ModalPickerSingle', () => {
             expect(
               // @ts-ignore
               modalPickerSingle.instance().itemClicked
-            ).toHaveBeenCalledWith(userUser);
+            ).toHaveBeenCalledWith(userUser());
 
-            expect(state.page.content).toEqual([userUser, adminUser]);
+            expect(state.page.content).toEqual([userUser(), adminUser()]);
 
             expect(state.isOpen).toBe(true);
 
@@ -494,12 +502,12 @@ describe('Component: ModalPickerSingle', () => {
 
         modalPickerSingle.setState({
           isOpen: true,
-          page: pageOfUsers
+          page: pageOfUsers()
         });
 
         expect(renderOptionsSpy).toHaveBeenCalledTimes(1);
         expect(isOptionSelectedSpy).toHaveBeenCalledTimes(
-          pageOfUsers.content.length
+          pageOfUsers().content.length
         );
       });
 
@@ -508,7 +516,7 @@ describe('Component: ModalPickerSingle', () => {
 
         modalPickerSingle.setState({
           isOpen: true,
-          page: pageOfUsers
+          page: pageOfUsers()
         });
 
         // @ts-ignore
@@ -522,7 +530,7 @@ describe('Component: ModalPickerSingle', () => {
 
         // @ts-ignore
         expect(modalPickerSingle.state().selected).toEqual(
-          pageOfUsers.content[0]
+          pageOfUsers().content[0]
         );
       });
     });
@@ -530,11 +538,13 @@ describe('Component: ModalPickerSingle', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      setup({ value: adminUser, showAddButton: false });
+      const value = adminUser();
+
+      setup({ value, showAddButton: false });
 
       expect(
         modalPickerSingle.find('ModalPickerOpener').props().values
-      ).toEqual(adminUser);
+      ).toEqual(value);
 
       modalPickerSingle.setProps({ value: undefined });
 
@@ -550,13 +560,15 @@ describe('Component: ModalPickerSingle', () => {
         modalPickerSingle.find('ModalPickerOpener').props().values
       ).toBeUndefined();
 
+      const value = adminUser();
+
       modalPickerSingle.setProps({
-        value: adminUser
+        value
       });
 
       expect(
         modalPickerSingle.find('ModalPickerOpener').props().values
-      ).toEqual(adminUser);
+      ).toEqual(value);
     });
   });
 });

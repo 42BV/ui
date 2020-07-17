@@ -34,7 +34,8 @@ describe('Component: ModalPickerMultiple', () => {
     hasLabel = true,
     spyOnRenderOptions,
     alignButton,
-    hasDisplayValues = false
+    hasDisplayValues = false,
+    hasIsOptionEqual = false
   }: {
     value?: User[];
     showAddButton: boolean;
@@ -43,6 +44,7 @@ describe('Component: ModalPickerMultiple', () => {
     spyOnRenderOptions?: boolean;
     alignButton?: ButtonAlignment;
     hasDisplayValues?: boolean;
+    hasIsOptionEqual?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -71,6 +73,9 @@ describe('Component: ModalPickerMultiple', () => {
       name: 'bestFriend',
       placeholder: 'Select your best friend',
       canSearch,
+      isOptionEqual: hasIsOptionEqual
+        ? (a: User, b: User) => a.id === b.id
+        : undefined,
       fetchOptions: fetchOptionsSpy,
       optionForValue: (user: User) => user.email,
       renderOptions: renderOptionsSpy,
@@ -122,7 +127,7 @@ describe('Component: ModalPickerMultiple', () => {
   describe('ui', () => {
     it('should render', () => {
       setup({
-        value: [adminUser, userUser],
+        value: [adminUser(), userUser()],
         showAddButton: false
       });
 
@@ -133,7 +138,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should not render search canSearch is false', () => {
       setup({
-        value: [adminUser, userUser],
+        value: [adminUser(), userUser()],
         showAddButton: false,
         canSearch: false
       });
@@ -146,13 +151,13 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render multiple labels with the selected values when the value array is not empty', () => {
       setup({
-        value: [adminUser, userUser],
+        value: [adminUser(), userUser()],
         showAddButton: false
       });
 
       expect(
         modalPickerMultiple.find('ModalPickerOpener').props().values
-      ).toEqual([adminUser, userUser]);
+      ).toEqual([adminUser(), userUser()]);
     });
 
     it('should render no labels when the value array is empty', () => {
@@ -166,7 +171,7 @@ describe('Component: ModalPickerMultiple', () => {
     it('should render multiple labels inside the modal with the selected values when the selected property is not empty', () => {
       setup({ value: undefined, showAddButton: false });
       modalPickerMultiple.setState({
-        selected: [adminUser, userUser]
+        selected: [adminUser(), userUser()]
       });
 
       expect(
@@ -205,10 +210,10 @@ describe('Component: ModalPickerMultiple', () => {
     });
 
     it('should render the options with the correct checked state', () => {
-      setup({ value: [adminUser, coordinatorUser], showAddButton: false });
+      setup({ value: [adminUser(), coordinatorUser()], showAddButton: false });
       modalPickerMultiple.setState({
-        page: pageOfUsers,
-        selected: [{ ...adminUser }, { ...coordinatorUser }]
+        page: pageOfUsers(),
+        selected: [adminUser(), coordinatorUser()]
       });
 
       const admin = modalPickerMultiple.find('Input').at(0);
@@ -222,7 +227,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render properly without label', () => {
       setup({
-        value: [adminUser, userUser],
+        value: [adminUser(), userUser()],
         showAddButton: false,
         hasLabel: false
       });
@@ -233,7 +238,11 @@ describe('Component: ModalPickerMultiple', () => {
     });
 
     it('should render button left', () => {
-      setup({ value: [adminUser], showAddButton: false, alignButton: 'left' });
+      setup({
+        value: [adminUser()],
+        showAddButton: false,
+        alignButton: 'left'
+      });
       expect(toJson(modalPickerMultiple)).toMatchSnapshot(
         'Component: ModalPickerMultiple => ui => should render button left'
       );
@@ -247,7 +256,11 @@ describe('Component: ModalPickerMultiple', () => {
     });
 
     it('should render button right with value', () => {
-      setup({ value: [adminUser], showAddButton: false, alignButton: 'right' });
+      setup({
+        value: [adminUser()],
+        showAddButton: false,
+        alignButton: 'right'
+      });
       expect(toJson(modalPickerMultiple)).toMatchSnapshot(
         'Component: ModalPickerMultiple => ui => should render button right with value'
       );
@@ -255,7 +268,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should use custom display function to render values', () => {
       setup({
-        value: [adminUser],
+        value: [adminUser()],
         showAddButton: false,
         hasDisplayValues: true
       });
@@ -269,11 +282,11 @@ describe('Component: ModalPickerMultiple', () => {
     describe('opening the modal', () => {
       it('should open the modal when the select button is clicked', async done => {
         setup({
-          value: [adminUser, userUser],
+          value: [adminUser(), userUser()],
           showAddButton: false
         });
 
-        const promise = Promise.resolve(pageOfUsers);
+        const promise = Promise.resolve(pageOfUsers());
         fetchOptionsSpy.mockReturnValue(promise);
 
         // @ts-ignore
@@ -290,12 +303,12 @@ describe('Component: ModalPickerMultiple', () => {
 
           const state = modalPickerMultiple.state() as State<User>;
 
-          expect(state.selected).toEqual([adminUser, userUser]);
+          expect(state.selected).toEqual([adminUser(), userUser()]);
           expect(state.isOpen).toBe(true);
           expect(state.query).toBe('');
 
           expect(state.userHasSearched).toBe(false);
-          expect(state.page).toBe(pageOfUsers);
+          expect(state.page).toEqual(pageOfUsers());
 
           // @ts-ignore
           const value = modalPickerMultiple.instance().props.value;
@@ -314,7 +327,7 @@ describe('Component: ModalPickerMultiple', () => {
           showAddButton: false
         });
 
-        const promise = Promise.resolve(pageOfUsers);
+        const promise = Promise.resolve(pageOfUsers());
         fetchOptionsSpy.mockReturnValue(promise);
 
         // @ts-ignore
@@ -348,7 +361,7 @@ describe('Component: ModalPickerMultiple', () => {
         showAddButton: false
       });
 
-      const promise = Promise.resolve(pageOfUsers);
+      const promise = Promise.resolve(pageOfUsers());
       fetchOptionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerMultiple.find('ModalPicker').at(0);
@@ -363,7 +376,7 @@ describe('Component: ModalPickerMultiple', () => {
       setup({ value: undefined, showAddButton: false });
       modalPickerMultiple.setState({ query: 'search' });
 
-      const promise = Promise.resolve(pageOfUsers);
+      const promise = Promise.resolve(pageOfUsers());
       fetchOptionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerMultiple.find('ModalPicker').at(0);
@@ -379,7 +392,7 @@ describe('Component: ModalPickerMultiple', () => {
         const state = modalPickerMultiple.state() as State<User>;
 
         expect(state.userHasSearched).toBe(true);
-        expect(state.page).toBe(pageOfUsers);
+        expect(state.page).toEqual(pageOfUsers());
 
         expect(state.query).toBe('search');
         done();
@@ -405,7 +418,7 @@ describe('Component: ModalPickerMultiple', () => {
     });
 
     it('should when the user clicks save, it should close the modal and select the value', () => {
-      const value = [adminUser, userUser];
+      const value = [adminUser(), userUser()];
       setup({ value, showAddButton: false });
 
       modalPickerMultiple.setState({ isOpen: true });
@@ -422,162 +435,286 @@ describe('Component: ModalPickerMultiple', () => {
       expect(modalPickerMultiple.state().isOpen).toBe(false);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([adminUser, userUser]);
+      expect(onChangeSpy).toHaveBeenCalledWith([adminUser(), userUser()]);
     });
 
-    it('should when the user clicks the clear button clear the value', () => {
-      const value = [adminUser, userUser];
-      setup({ value, showAddButton: false });
+    describe('onChange', () => {
+      it('should when the user clicks the clear button clear the value', () => {
+        const value = [adminUser(), userUser()];
+        setup({ value, showAddButton: false });
 
-      modalPickerMultiple.setState({ isOpen: true });
-      modalPickerMultiple.setState({ selected: value });
+        modalPickerMultiple.setState({ isOpen: true });
+        modalPickerMultiple.setState({ selected: value });
 
-      // @ts-ignore
-      modalPickerMultiple
-        .find('ModalPickerOpener')
-        .props()
         // @ts-ignore
-        .onClear();
+        modalPickerMultiple
+          .find('ModalPickerOpener')
+          .props()
+          // @ts-ignore
+          .onClear();
 
-      expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith(undefined);
-    });
-
-    it('should when the user selects an option store the value', () => {
-      setup({ value: [adminUser, coordinatorUser], showAddButton: false });
-      modalPickerMultiple.setState({
-        page: pageOfUsers,
-        selected: [adminUser, coordinatorUser]
+        expect(onChangeSpy).toHaveBeenCalledTimes(1);
+        expect(onChangeSpy).toHaveBeenCalledWith(undefined);
       });
 
-      // admin, and coordinator should be selected
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([
-        adminUser,
-        coordinatorUser
-      ]);
+      describe('isOptionEqual', () => {
+        it('should when there is no isOptionEqual fall back to simple equality check', () => {
+          const admin = adminUser();
+          // @ts-ignore
+          admin.x = Math.random();
+          const coordinator = coordinatorUser();
+          const user = userUser();
 
-      // Click on admin, he should be removed
-      // @ts-ignore
-      modalPickerMultiple
-        .find('Input')
-        .at(0)
-        .props()
-        // @ts-ignore
-        .onChange();
-      modalPickerMultiple.update();
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([coordinatorUser]);
+          setup({
+            value: [admin, coordinator],
+            showAddButton: false,
+            hasIsOptionEqual: false
+          });
+          modalPickerMultiple.setState({
+            page: testUtils.pageWithContent([admin, coordinator, user]),
+            selected: [admin, coordinator]
+          });
 
-      // Click on admin again, he should be added
-      // @ts-ignore
-      modalPickerMultiple
-        .find('Input')
-        .at(0)
-        .props()
-        // @ts-ignore
-        .onChange();
-      modalPickerMultiple.update();
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([
-        coordinatorUser,
-        adminUser
-      ]);
+          // admin, and coordinator should be selected
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            admin,
+            coordinator
+          ]);
 
-      // Click on coordinator, he should be removed
-      // @ts-ignore
-      modalPickerMultiple
-        .find('Input')
-        .at(1)
-        .props()
-        // @ts-ignore
-        .onChange();
-      // @ts-ignore
-      modalPickerMultiple.update();
+          // Click on admin, he should be removed
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(0)
+            .props()
+            // @ts-ignore
+            .onChange();
+          modalPickerMultiple.update();
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([coordinator]);
 
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([adminUser]);
+          // Click on admin again, he should be added
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(0)
+            .props()
+            // @ts-ignore
+            .onChange();
+          modalPickerMultiple.update();
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            coordinator,
+            admin
+          ]);
 
-      // Click on user again, he should be added
-      // @ts-ignore
-      modalPickerMultiple
-        .find('Input')
-        .at(1)
-        .props()
-        // @ts-ignore
-        .onChange();
-      // @ts-ignore
-      modalPickerMultiple.update();
+          // Click on coordinator, he should be removed
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(1)
+            .props()
+            // @ts-ignore
+            .onChange();
+          // @ts-ignore
+          modalPickerMultiple.update();
 
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([
-        adminUser,
-        coordinatorUser
-      ]);
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([admin]);
 
-      // Click on user, he should be added
-      // @ts-ignore
-      modalPickerMultiple
-        .find('Input')
-        .at(2)
-        .props()
-        // @ts-ignore
-        .onChange();
-      modalPickerMultiple.update();
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([
-        adminUser,
-        coordinatorUser,
-        userUser
-      ]);
+          // Click on user again, he should be added
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(1)
+            .props()
+            // @ts-ignore
+            .onChange();
+          // @ts-ignore
+          modalPickerMultiple.update();
 
-      // Click on user again, he should be removed
-      // @ts-ignore
-      modalPickerMultiple
-        .find('Input')
-        .at(2)
-        .props()
-        // @ts-ignore
-        .onChange();
-      modalPickerMultiple.update();
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([
-        adminUser,
-        coordinatorUser
-      ]);
-    });
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            admin,
+            coordinator
+          ]);
 
-    it('should when the user removes a label inside the modal the label should be removed', () => {
-      setup({ value: [adminUser, userUser], showAddButton: false });
+          // Click on user, he should be added
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(2)
+            .props()
+            // @ts-ignore
+            .onChange();
+          modalPickerMultiple.update();
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            admin,
+            coordinator,
+            user
+          ]);
 
-      modalPickerMultiple.setState({
-        page: pageOfUsers,
-        selected: [adminUser, userUser]
+          // Click on user again, he should be removed
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(2)
+            .props()
+            // @ts-ignore
+            .onChange();
+          modalPickerMultiple.update();
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            admin,
+            coordinator
+          ]);
+        });
+
+        it('should when there is a custom isOptionEqual use that for the equality check', () => {
+          setup({
+            value: [adminUser(), coordinatorUser()],
+            showAddButton: false,
+            hasIsOptionEqual: true
+          });
+          modalPickerMultiple.setState({
+            page: pageOfUsers(),
+            selected: [adminUser(), coordinatorUser()]
+          });
+
+          // admin, and coordinator should be selected
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            adminUser(),
+            coordinatorUser()
+          ]);
+
+          // Click on admin, he should be removed
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(0)
+            .props()
+            // @ts-ignore
+            .onChange();
+          modalPickerMultiple.update();
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            coordinatorUser()
+          ]);
+
+          // Click on admin again, he should be added
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(0)
+            .props()
+            // @ts-ignore
+            .onChange();
+          modalPickerMultiple.update();
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            coordinatorUser(),
+            adminUser()
+          ]);
+
+          // Click on coordinator, he should be removed
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(1)
+            .props()
+            // @ts-ignore
+            .onChange();
+          // @ts-ignore
+          modalPickerMultiple.update();
+
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([adminUser()]);
+
+          // Click on user again, he should be added
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(1)
+            .props()
+            // @ts-ignore
+            .onChange();
+          // @ts-ignore
+          modalPickerMultiple.update();
+
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            adminUser(),
+            coordinatorUser()
+          ]);
+
+          // Click on user, he should be added
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(2)
+            .props()
+            // @ts-ignore
+            .onChange();
+          modalPickerMultiple.update();
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            adminUser(),
+            coordinatorUser(),
+            userUser()
+          ]);
+
+          // Click on user again, he should be removed
+          // @ts-ignore
+          modalPickerMultiple
+            .find('Input')
+            .at(2)
+            .props()
+            // @ts-ignore
+            .onChange();
+          modalPickerMultiple.update();
+          // @ts-ignore
+          expect(modalPickerMultiple.state().selected).toEqual([
+            adminUser(),
+            coordinatorUser()
+          ]);
+        });
       });
 
-      const adminTag = modalPickerMultiple.find('Tag').at(0);
-      const userTag = modalPickerMultiple.find('Tag').at(1);
+      it('should when the user removes a label inside the modal the label should be removed', () => {
+        setup({ value: [adminUser(), userUser()], showAddButton: false });
 
-      // @ts-ignore
-      adminTag.props().onRemove(adminUser, true);
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([userUser]);
+        modalPickerMultiple.setState({
+          page: pageOfUsers(),
+          selected: [adminUser(), userUser()]
+        });
 
-      // @ts-ignore
-      userTag.props().onRemove(userUser, true);
-      // @ts-ignore
-      expect(modalPickerMultiple.state().selected).toEqual([]);
+        const adminTag = modalPickerMultiple.find('Tag').at(0);
+        const userTag = modalPickerMultiple.find('Tag').at(1);
+
+        // @ts-ignore
+        adminTag.props().onRemove(adminUser(), true);
+        // @ts-ignore
+        expect(modalPickerMultiple.state().selected).toEqual([userUser()]);
+
+        // @ts-ignore
+        userTag.props().onRemove(userUser(), true);
+        // @ts-ignore
+        expect(modalPickerMultiple.state().selected).toEqual([]);
+      });
     });
 
     describe('addButton', () => {
       it('should add an item on the first position, when the promise resolves', async done => {
         setup({
-          value: [adminUser],
+          value: [adminUser()],
           showAddButton: true
         });
         modalPickerMultiple.setState({
           isOpen: true,
-          page: testUtils.pageWithContent([adminUser])
+          page: testUtils.pageWithContent([adminUser()])
         });
 
         const { promise, resolve } = testUtils.resolvablePromise();
@@ -597,7 +734,7 @@ describe('Component: ModalPickerMultiple', () => {
         expect(modalPickerMultiple.state().isOpen).toBe(false);
         expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
 
-        resolve(coordinatorUser);
+        resolve(coordinatorUser());
 
         try {
           await promise;
@@ -612,9 +749,12 @@ describe('Component: ModalPickerMultiple', () => {
             expect(
               // @ts-ignore
               modalPickerMultiple.instance().itemClicked
-            ).toHaveBeenCalledWith(coordinatorUser, true);
+            ).toHaveBeenCalledWith(coordinatorUser(), true);
 
-            expect(state.page.content).toEqual([coordinatorUser, adminUser]);
+            expect(state.page.content).toEqual([
+              coordinatorUser(),
+              adminUser()
+            ]);
 
             expect(state.isOpen).toBe(true);
 
@@ -628,7 +768,7 @@ describe('Component: ModalPickerMultiple', () => {
 
       it('should hide when the promise is rejected', async done => {
         setup({
-          value: [adminUser],
+          value: [adminUser()],
           showAddButton: true
         });
         modalPickerMultiple.setState({ isOpen: true });
@@ -673,12 +813,12 @@ describe('Component: ModalPickerMultiple', () => {
 
         modalPickerMultiple.setState({
           isOpen: true,
-          page: pageOfUsers
+          page: pageOfUsers()
         });
 
         expect(renderOptionsSpy).toHaveBeenCalledTimes(1);
         expect(isOptionSelectedSpy).toHaveBeenCalledTimes(
-          pageOfUsers.content.length
+          pageOfUsers().content.length
         );
       });
 
@@ -687,7 +827,7 @@ describe('Component: ModalPickerMultiple', () => {
 
         modalPickerMultiple.setState({
           isOpen: true,
-          page: pageOfUsers
+          page: pageOfUsers()
         });
 
         // @ts-ignore
@@ -701,7 +841,7 @@ describe('Component: ModalPickerMultiple', () => {
 
         // @ts-ignore
         expect(modalPickerMultiple.state().selected).toEqual([
-          pageOfUsers.content[0]
+          pageOfUsers().content[0]
         ]);
       });
     });
@@ -709,11 +849,13 @@ describe('Component: ModalPickerMultiple', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      setup({ value: [adminUser], showAddButton: false });
+      const value = [adminUser()];
+
+      setup({ value: value, showAddButton: false });
 
       expect(
         modalPickerMultiple.find('ModalPickerOpener').props().values
-      ).toEqual([adminUser]);
+      ).toEqual(value);
 
       modalPickerMultiple.setProps({ value: undefined });
 
@@ -730,12 +872,12 @@ describe('Component: ModalPickerMultiple', () => {
       ).toBeUndefined();
 
       modalPickerMultiple.setProps({
-        value: [adminUser]
+        value: [adminUser()]
       });
 
       expect(
         modalPickerMultiple.find('ModalPickerOpener').props().values
-      ).toEqual([adminUser]);
+      ).toEqual([adminUser()]);
     });
   });
 });

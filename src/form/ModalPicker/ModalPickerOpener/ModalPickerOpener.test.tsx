@@ -19,7 +19,7 @@ describe('Component: ModalPickerOpener', () => {
     const openModalSpy = jest.fn();
     const onClearSpy = jest.fn();
 
-    const values = hasValues ? adminUser.email : undefined;
+    const values = hasValues ? adminUser().email : undefined;
 
     jest
       .spyOn(useComponentOverflow, 'useComponentOverflow')

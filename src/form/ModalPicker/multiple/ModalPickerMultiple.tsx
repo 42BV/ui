@@ -208,7 +208,13 @@ export default class ModalPickerMultiple<T> extends React.Component<
     let selected = this.state.selected as T[];
 
     if (isChecked) {
-      selected = selected.filter(v => v !== item);
+      const { isOptionEqual } = this.props;
+
+      const filterFn = isOptionEqual
+        ? (v: T) => !isOptionEqual(item, v)
+        : (v: T) => v !== item;
+
+      selected = selected.filter(filterFn);
     } else {
       selected.push(item);
     }
