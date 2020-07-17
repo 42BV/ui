@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -8,53 +8,70 @@ import { Icon, Tooltip } from '../..';
 
 storiesOf('Form|Toggle', module)
   .add('basic', () => {
+    const [primary, setPrimary] = useState(true);
+    const [secondary, setSecondary] = useState(true);
+    const [info, setInfo] = useState(true);
+    const [success, setSuccess] = useState(true);
+    const [warning, setWarning] = useState(true);
+    const [danger, setDanger] = useState(true);
+    const [light, setLight] = useState(true);
+    const [dark, setDark] = useState(true);
+
     return (
       <div className="text-center">
         <Toggle
           color="primary"
-          onChange={action('onChange')}
+          value={primary}
+          onChange={value => setPrimary(value)}
           onBlur={action('onBlur')}
         />
         primary <br />
         <Toggle
           color="secondary"
-          onChange={action('onChange')}
+          value={secondary}
+          onChange={value => setSecondary(value)}
           onBlur={action('onBlur')}
         />
         secondary <br />
         <Toggle
           color="info"
-          onChange={action('onChange')}
+          value={info}
+          onChange={value => setInfo(value)}
           onBlur={action('onBlur')}
         />
         info <br />
         <Toggle
           color="success"
-          onChange={action('onChange')}
+          value={success}
+          onChange={value => setSuccess(value)}
           onBlur={action('onBlur')}
         />
         success <br />
         <Toggle
           color="warning"
-          onChange={action('onChange')}
+          value={warning}
+          onChange={value => setWarning(value)}
           onBlur={action('onBlur')}
         />
         warning <br />
         <Toggle
           color="danger"
-          onChange={action('onChange')}
+          value={danger}
+          onChange={value => setDanger(value)}
           onBlur={action('onBlur')}
         />
         danger <br />
         <Toggle
           color="light"
-          onChange={action('onChange')}
+          value={light}
+          onChange={value => setLight(value)}
           onBlur={action('onBlur')}
         />
         light <br />
         <Toggle
           color="dark"
-          onChange={action('onChange')}
+          value={dark}
+          onChange={value => setDark(value)}
           onBlur={action('onBlur')}
         />
         dark
@@ -62,29 +79,37 @@ storiesOf('Form|Toggle', module)
     );
   })
   .add('form', () => {
+    const [agree, setAgree] = useState(false);
+
     return (
       <Form>
         <FormToggle
           id="agree"
           label="Agree"
           toggleColor="primary"
-          onChange={value => action(`onChange: ${value}`)}
+          value={agree}
+          onChange={value => setAgree(value)}
         />
       </Form>
     );
   })
   .add('without label', () => {
+    const [agree, setAgree] = useState(false);
+
     return (
       <Form>
         <FormToggle
           id="agree"
           toggleColor="primary"
-          onChange={value => action(`onChange: ${value}`)}
+          value={agree}
+          onChange={value => setAgree(value)}
         />
       </Form>
     );
   })
-  .add('without custom label', () => {
+  .add('with custom label', () => {
+    const [agree, setAgree] = useState(false);
+
     return (
       <Form>
         <FormToggle
@@ -102,7 +127,8 @@ storiesOf('Form|Toggle', module)
             </>
           }
           toggleColor="primary"
-          onChange={value => action(`onChange: ${value}`)}
+          value={agree}
+          onChange={value => setAgree(value)}
         />
       </Form>
     );
