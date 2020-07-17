@@ -77,7 +77,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
           label="Subject"
           placeholder="Please select your subjects"
           optionForValue={(user: User) => user.email}
-          options={() => Promise.resolve(pageOfUsers)}
+          options={() => Promise.resolve(pageOfUsers())}
           value={value}
           onChange={setValue}
         />
@@ -85,7 +85,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<User[] | undefined>([userUser]);
+    const [value, setValue] = useState<User[] | undefined>([userUser()]);
 
     return (
       <Form>
@@ -94,7 +94,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
           label="Subject"
           placeholder="Please select your subjects"
           optionForValue={(user: User) => user.email}
-          options={() => Promise.resolve(pageOfUsers)}
+          options={() => Promise.resolve(pageOfUsers())}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
           value={value}
           onChange={setValue}

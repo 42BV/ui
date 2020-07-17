@@ -13,7 +13,7 @@ import { action } from '@storybook/addon-actions';
 function loadData(): Promise<User[]> {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(pageOfUsers.content);
+      resolve(pageOfUsers().content);
     }, 1000);
   });
 }

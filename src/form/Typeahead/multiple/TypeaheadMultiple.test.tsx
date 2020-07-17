@@ -55,7 +55,7 @@ describe('Component: TypeaheadMultiple', () => {
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: [adminUser] });
+      setup({ value: [adminUser()] });
 
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => with value'
@@ -63,7 +63,7 @@ describe('Component: TypeaheadMultiple', () => {
     });
 
     test('without placeholder', () => {
-      setup({ value: [adminUser], hasPlaceholder: false });
+      setup({ value: [adminUser()], hasPlaceholder: false });
 
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => without placeholder'
@@ -71,7 +71,7 @@ describe('Component: TypeaheadMultiple', () => {
     });
 
     test('without label', () => {
-      setup({ value: [adminUser], hasLabel: false });
+      setup({ value: [adminUser()], hasLabel: false });
 
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => without label'
@@ -124,7 +124,7 @@ describe('Component: TypeaheadMultiple', () => {
     test('fetchOptions', async done => {
       setup({ value: undefined });
 
-      const promise = Promise.resolve(pageOfUsers);
+      const promise = Promise.resolve(pageOfUsers());
 
       fetchOptionsSpy.mockReturnValue(promise);
 
@@ -142,15 +142,15 @@ describe('Component: TypeaheadMultiple', () => {
           options: [
             {
               label: 'admin@42.nl',
-              value: adminUser
+              value: adminUser()
             },
             {
               label: 'coordinator@42.nl',
-              value: coordinatorUser
+              value: coordinatorUser()
             },
             {
               label: 'user@42.nl',
-              value: userUser
+              value: userUser()
             }
           ]
         });
@@ -164,7 +164,7 @@ describe('Component: TypeaheadMultiple', () => {
 
     describe('value changes', () => {
       test('becomes empty', () => {
-        setup({ value: [adminUser] });
+        setup({ value: [adminUser()] });
 
         let asyncTypeahead = typeaheadMultiple
           .find('div')
@@ -173,7 +173,7 @@ describe('Component: TypeaheadMultiple', () => {
         expect(asyncTypeahead.props().selected).toEqual([
           {
             label: 'admin@42.nl',
-            value: adminUser
+            value: adminUser()
           }
         ]);
 
@@ -197,8 +197,10 @@ describe('Component: TypeaheadMultiple', () => {
           .first();
         expect(asyncTypeahead.props().selected).toEqual([]);
 
+        const value = adminUser();
+
         typeaheadMultiple.setProps({
-          value: [adminUser]
+          value: [value]
         });
 
         asyncTypeahead = typeaheadMultiple
@@ -208,7 +210,7 @@ describe('Component: TypeaheadMultiple', () => {
         expect(asyncTypeahead.props().selected).toEqual([
           {
             label: 'admin@42.nl',
-            value: adminUser
+            value
           }
         ]);
 

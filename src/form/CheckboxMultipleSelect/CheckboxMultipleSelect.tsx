@@ -180,7 +180,13 @@ export default class CheckboxMultipleSelect<T> extends Component<
     let selected = isArray(value) ? [...value] : [];
 
     if (isChecked) {
-      selected = selected.filter(v => v !== option);
+      const { isOptionEqual } = this.props;
+
+      const filterFn = isOptionEqual
+        ? (v: T) => !isOptionEqual(option, v)
+        : (v: T) => v !== option;
+
+      selected = selected.filter(filterFn);
     } else {
       selected.push(option);
     }

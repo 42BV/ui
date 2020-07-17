@@ -68,9 +68,9 @@ describe('Component: ValuePicker', () => {
     it('should render a `RadioGroup` component when `totalElements` is less than 4', async done => {
       const promise = Promise.resolve(
         testUtils.pageWithContentAndExactSize([
-          adminUser,
-          coordinatorUser,
-          userUser
+          adminUser(),
+          coordinatorUser(),
+          userUser()
         ])
       );
 
@@ -105,10 +105,10 @@ describe('Component: ValuePicker', () => {
     it('should render a `Select` component when `totalElements` is less than 11 but more than 3', async done => {
       const promise = Promise.resolve(
         testUtils.pageWithContentAndExactSize([
-          adminUser,
-          coordinatorUser,
-          userUser,
-          nobodyUser
+          adminUser(),
+          coordinatorUser(),
+          userUser(),
+          nobodyUser()
         ])
       );
 
@@ -142,7 +142,7 @@ describe('Component: ValuePicker', () => {
 
     it('should render a `ModalPickerSingle` when `totalElements` is more than than 10', async done => {
       const promise = Promise.resolve(
-        testUtils.pageWithContent([adminUser, coordinatorUser, userUser])
+        testUtils.pageWithContent([adminUser(), coordinatorUser(), userUser()])
       );
 
       const fetchOptionsSpy = jest.fn(() => promise);
@@ -178,9 +178,9 @@ describe('Component: ValuePicker', () => {
     it('should render a `CheckboxMultipleSelect` component when `totalElements` is less than 11', async done => {
       const promise = Promise.resolve(
         testUtils.pageWithContentAndExactSize([
-          adminUser,
-          coordinatorUser,
-          userUser
+          adminUser(),
+          coordinatorUser(),
+          userUser()
         ])
       );
 
@@ -214,7 +214,7 @@ describe('Component: ValuePicker', () => {
 
     it('should render a `ModalPickerMultiple` when `totalElements` is more than 10', async done => {
       const promise = Promise.resolve(
-        testUtils.pageWithContent([adminUser, coordinatorUser, userUser])
+        testUtils.pageWithContent([adminUser(), coordinatorUser(), userUser()])
       );
 
       const fetchOptionsSpy = jest.fn(() => promise);

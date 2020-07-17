@@ -55,7 +55,7 @@ describe('Component: TypeaheadSingle', () => {
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: adminUser });
+      setup({ value: adminUser() });
 
       expect(toJson(typeaheadSingle)).toMatchSnapshot(
         'Component: TypeaheadSingle => ui => with value'
@@ -63,7 +63,7 @@ describe('Component: TypeaheadSingle', () => {
     });
 
     test('without placeholder', () => {
-      setup({ value: adminUser, hasPlaceholder: false });
+      setup({ value: adminUser(), hasPlaceholder: false });
 
       expect(toJson(typeaheadSingle)).toMatchSnapshot(
         'Component: TypeaheadSingle => ui => without placeholder'
@@ -71,7 +71,7 @@ describe('Component: TypeaheadSingle', () => {
     });
 
     test('without label', () => {
-      setup({ value: adminUser, hasLabel: false });
+      setup({ value: adminUser(), hasLabel: false });
 
       expect(toJson(typeaheadSingle)).toMatchSnapshot(
         'Component: TypeaheadSingle => ui => without label'
@@ -103,15 +103,17 @@ describe('Component: TypeaheadSingle', () => {
           .children()
           .first();
 
+        const value = adminUser();
+
         asyncTypeahead.props().onChange([
           {
             label: 'Maarten',
-            value: adminUser
+            value
           }
         ]);
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(adminUser);
+        expect(onChangeSpy).toHaveBeenCalledWith(value);
 
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
       });
@@ -121,7 +123,7 @@ describe('Component: TypeaheadSingle', () => {
       test('value does not match query', async done => {
         setup({ value: undefined });
 
-        const promise = Promise.resolve(pageOfUsers);
+        const promise = Promise.resolve(pageOfUsers());
 
         fetchOptionsSpy.mockReturnValue(promise);
 
@@ -140,15 +142,15 @@ describe('Component: TypeaheadSingle', () => {
             options: [
               {
                 label: 'admin@42.nl',
-                value: adminUser
+                value: adminUser()
               },
               {
                 label: 'coordinator@42.nl',
-                value: coordinatorUser
+                value: coordinatorUser()
               },
               {
                 label: 'user@42.nl',
-                value: userUser
+                value: userUser()
               }
             ]
           });
@@ -165,7 +167,7 @@ describe('Component: TypeaheadSingle', () => {
       test('value matches query', async done => {
         setup({ value: undefined });
 
-        const promise = Promise.resolve(pageOfUsers);
+        const promise = Promise.resolve(pageOfUsers());
 
         fetchOptionsSpy.mockReturnValue(promise);
 
@@ -184,21 +186,21 @@ describe('Component: TypeaheadSingle', () => {
             options: [
               {
                 label: 'admin@42.nl',
-                value: adminUser
+                value: adminUser()
               },
               {
                 label: 'coordinator@42.nl',
-                value: coordinatorUser
+                value: coordinatorUser()
               },
               {
                 label: 'user@42.nl',
-                value: userUser
+                value: userUser()
               }
             ]
           });
 
           expect(onChangeSpy).toHaveBeenCalledTimes(1);
-          expect(onChangeSpy).toHaveBeenCalledWith(adminUser);
+          expect(onChangeSpy).toHaveBeenCalledWith(adminUser());
 
           done();
         } catch (error) {
@@ -210,7 +212,9 @@ describe('Component: TypeaheadSingle', () => {
 
     describe('value changes', () => {
       test('becomes empty', () => {
-        setup({ value: adminUser });
+        const value = adminUser();
+
+        setup({ value: adminUser() });
 
         let asyncTypeahead = typeaheadSingle
           .find('div')
@@ -220,7 +224,7 @@ describe('Component: TypeaheadSingle', () => {
         expect(asyncTypeahead.props().selected).toEqual([
           {
             label: 'admin@42.nl',
-            value: adminUser
+            value
           }
         ]);
 
@@ -244,8 +248,10 @@ describe('Component: TypeaheadSingle', () => {
           .first();
         expect(asyncTypeahead.props().selected).toEqual([]);
 
+        const value = adminUser();
+
         typeaheadSingle.setProps({
-          value: adminUser
+          value
         });
 
         asyncTypeahead = typeaheadSingle
@@ -255,7 +261,7 @@ describe('Component: TypeaheadSingle', () => {
         expect(asyncTypeahead.props().selected).toEqual([
           {
             label: 'admin@42.nl',
-            value: adminUser
+            value
           }
         ]);
 

@@ -34,7 +34,7 @@ describe('Component: Select', () => {
       text,
       isOptionEnabled,
       optionForValue: (user: User) => user?.email,
-      options: [adminUser, coordinatorUser, userUser],
+      options: [adminUser(), coordinatorUser(), userUser()],
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -51,7 +51,7 @@ describe('Component: Select', () => {
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: adminUser, isOptionEnabled: undefined });
+      setup({ value: adminUser(), isOptionEnabled: undefined });
 
       expect(toJson(select)).toMatchSnapshot(
         'Component: Select => ui => with value'
@@ -86,7 +86,7 @@ describe('Component: Select', () => {
 
     test('without placeholder', () => {
       setup({
-        value: adminUser,
+        value: adminUser(),
         isOptionEnabled: undefined,
         hasPlaceholder: false
       });
@@ -98,7 +98,7 @@ describe('Component: Select', () => {
 
     test('without label', () => {
       setup({
-        value: adminUser,
+        value: adminUser(),
         isOptionEnabled: undefined,
         hasLabel: false
       });
@@ -127,7 +127,7 @@ describe('Component: Select', () => {
     });
 
     it('should not select the placeholder as the default value when value is not an empty string', () => {
-      setup({ value: adminUser, isOptionEnabled: undefined });
+      setup({ value: adminUser(), isOptionEnabled: undefined });
 
       const defaultOption = select.find('option').first();
       expect(defaultOption.text()).toBe('Please enter your subject');
@@ -161,7 +161,7 @@ describe('Component: Select', () => {
       rsInput.props().onChange({ target: { value: 0 } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith(adminUser);
+      expect(onChangeSpy).toHaveBeenCalledWith(adminUser());
     });
 
     test('onBlur', () => {
@@ -176,7 +176,7 @@ describe('Component: Select', () => {
 
     describe('isOptionEnabled', () => {
       it('should when "isOptionEnabled" is not defined always be true', () => {
-        setup({ value: adminUser, isOptionEnabled: undefined });
+        setup({ value: adminUser(), isOptionEnabled: undefined });
 
         const options = select.find('option');
         expect(options.length).toBe(4);
@@ -205,9 +205,9 @@ describe('Component: Select', () => {
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
-          [adminUser],
-          [coordinatorUser],
-          [userUser]
+          [adminUser()],
+          [coordinatorUser()],
+          [userUser()]
         ]);
       });
     });
@@ -215,7 +215,7 @@ describe('Component: Select', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      setup({ value: userUser, isOptionEnabled: undefined });
+      setup({ value: userUser(), isOptionEnabled: undefined });
 
       let rsInput = select.find('Input');
       expect(rsInput.props().value).toBe(2);
@@ -232,7 +232,7 @@ describe('Component: Select', () => {
       let rsInput = select.find('Input');
       expect(rsInput.props().value).toBe(undefined);
 
-      select.setProps({ value: coordinatorUser });
+      select.setProps({ value: coordinatorUser() });
 
       rsInput = select.find('Input');
       expect(rsInput.props().value).toBe(1);

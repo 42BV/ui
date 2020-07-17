@@ -11,36 +11,53 @@ import { FinalForm, Form } from '../story-utils';
 import Button from '../../core/Button/Button';
 import { Tooltip, Icon } from '../..';
 
-const small = Promise.resolve(
-  pageWithContentAndExactSize([userUser, adminUser])
-);
+/*
+  Storing users here instead of calling the fixtures again so
+  options remain selected.
+*/
+const user = userUser();
+const admin = adminUser();
+
+const randomUser1 = randomUser();
+const randomUser2 = randomUser();
+const randomUser3 = randomUser();
+const randomUser4 = randomUser();
+const randomUser5 = randomUser();
+const randomUser6 = randomUser();
+const randomUser7 = randomUser();
+const randomUser8 = randomUser();
+const randomUser9 = randomUser();
+const randomUser10 = randomUser();
+const randomUser11 = randomUser();
+
+const small = Promise.resolve(pageWithContentAndExactSize([user, admin]));
 
 const medium = Promise.resolve(
   pageWithContentAndExactSize([
-    userUser,
-    adminUser,
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser()
+    user,
+    admin,
+    randomUser1,
+    randomUser2,
+    randomUser3,
+    randomUser4
   ])
 );
 
 const large = Promise.resolve(
   pageWithContent([
-    userUser,
-    adminUser,
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser(),
-    randomUser()
+    user,
+    admin,
+    randomUser1,
+    randomUser2,
+    randomUser3,
+    randomUser4,
+    randomUser5,
+    randomUser6,
+    randomUser7,
+    randomUser8,
+    randomUser9,
+    randomUser10,
+    randomUser11
   ])
 );
 
@@ -78,7 +95,7 @@ storiesOf('Form|ValuePicker/multiple', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<User[] | undefined>([userUser]);
+    const [value, setValue] = useState<User[] | undefined>([user]);
 
     const [size, setSize] = useState('small');
 

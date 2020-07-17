@@ -33,7 +33,7 @@ describe('Component: RadioGroup', () => {
       text,
       isOptionEnabled,
       optionForValue: (user: User) => user?.email,
-      options: [adminUser, coordinatorUser, userUser],
+      options: [adminUser(), coordinatorUser(), userUser()],
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -56,7 +56,7 @@ describe('Component: RadioGroup', () => {
   describe('ui', () => {
     test('with value', () => {
       const { radioGroup } = setup({
-        value: adminUser,
+        value: adminUser(),
         isOptionEnabled: undefined
       });
 
@@ -89,7 +89,7 @@ describe('Component: RadioGroup', () => {
 
     test('without placeholder', () => {
       const { radioGroup } = setup({
-        value: adminUser,
+        value: adminUser(),
         isOptionEnabled: undefined,
         hasPlaceholder: false
       });
@@ -101,7 +101,7 @@ describe('Component: RadioGroup', () => {
 
     test('without label', () => {
       const { radioGroup } = setup({
-        value: adminUser,
+        value: adminUser(),
         isOptionEnabled: undefined,
         hasLabel: false
       });
@@ -113,7 +113,7 @@ describe('Component: RadioGroup', () => {
 
     test('horizontal', () => {
       const { radioGroup } = setup({
-        value: adminUser,
+        value: adminUser(),
         isOptionEnabled: undefined,
         horizontal: true
       });
@@ -137,12 +137,12 @@ describe('Component: RadioGroup', () => {
       radio.props().onChange({ target: { value: 0 } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith(adminUser);
+      expect(onChangeSpy).toHaveBeenCalledWith(adminUser());
     });
 
     it('should clear the value when the cancel button is clicked', () => {
       const { radioGroup, onChangeSpy } = setup({
-        value: adminUser,
+        value: adminUser(),
         canClear: true
       });
 
@@ -160,7 +160,7 @@ describe('Component: RadioGroup', () => {
     describe('isOptionEnabled', () => {
       it('should when "isOptionEnabled" is not defined always be true', () => {
         const { radioGroup } = setup({
-          value: adminUser,
+          value: adminUser(),
           isOptionEnabled: undefined
         });
 
@@ -194,9 +194,9 @@ describe('Component: RadioGroup', () => {
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
-          [adminUser],
-          [coordinatorUser],
-          [userUser]
+          [adminUser()],
+          [coordinatorUser()],
+          [userUser()]
         ]);
       });
     });
@@ -205,7 +205,7 @@ describe('Component: RadioGroup', () => {
   describe('value changes', () => {
     test('becomes empty', () => {
       const { radioGroup } = setup({
-        value: userUser,
+        value: userUser(),
         isOptionEnabled: undefined
       });
 
@@ -236,7 +236,7 @@ describe('Component: RadioGroup', () => {
       expect(radios.at(1).props().checked).toBe(false);
       expect(radios.at(2).props().checked).toBe(false);
 
-      radioGroup.setProps({ value: coordinatorUser });
+      radioGroup.setProps({ value: coordinatorUser() });
 
       radios = radioGroup.find('Input');
 

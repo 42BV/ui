@@ -44,7 +44,7 @@ storiesOf('Form|Select', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(user: User) => user.email}
-          options={() => resolveAfter(pageOfUsers)}
+          options={() => resolveAfter(pageOfUsers())}
           value={subject}
           onChange={setSubject}
         />
@@ -58,9 +58,9 @@ storiesOf('Form|Select', module)
           id="subject"
           label="Subject"
           placeholder="Please enter your subject"
-          value={userUser}
+          value={userUser()}
           optionForValue={(user: User) => user.email}
-          options={() => Promise.resolve(pageOfUsers)}
+          options={() => Promise.resolve(pageOfUsers())}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
           onChange={value => action(`You entered ${value}`)}
         />

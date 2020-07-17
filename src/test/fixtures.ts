@@ -26,57 +26,59 @@ export function randomUser(): User {
   };
 }
 
-const admin = {
-  id: 42,
-  email: 'admin@42.nl',
-  firstName: 'admin',
-  lastName: 'user',
-  active: true,
-  roles: [UserRole.ADMIN]
-};
+export function adminUser() {
+  return {
+    id: 42,
+    email: 'admin@42.nl',
+    firstName: 'admin',
+    lastName: 'user',
+    active: true,
+    roles: [UserRole.ADMIN]
+  };
+}
 
-export const adminUser = Object.freeze(admin);
+export function userUser() {
+  return {
+    id: 1337,
+    email: 'user@42.nl',
+    firstName: 'test',
+    lastName: 'user',
+    active: false,
+    roles: [UserRole.USER]
+  };
+}
 
-const user = {
-  id: 1337,
-  email: 'user@42.nl',
-  firstName: 'test',
-  lastName: 'user',
-  active: false,
-  roles: [UserRole.USER]
-};
+export function coordinatorUser() {
+  return {
+    id: 777,
+    email: 'coordinator@42.nl',
+    firstName: 'coordinator',
+    lastName: 'user',
+    active: false,
+    roles: [UserRole.ADMIN, UserRole.USER]
+  };
+}
 
-export const userUser = Object.freeze(user);
+export function nobodyUser() {
+  return {
+    id: 999,
+    email: 'nobody@42.nl',
+    firstName: 'no',
+    lastName: 'body',
+    active: false,
+    roles: []
+  };
+}
 
-const coordinator = {
-  id: 777,
-  email: 'coordinator@42.nl',
-  firstName: 'coordinator',
-  lastName: 'user',
-  active: false,
-  roles: [UserRole.ADMIN, UserRole.USER]
-};
-
-export const coordinatorUser = Object.freeze(coordinator);
-
-const nobody = {
-  id: 999,
-  email: 'nobody@42.nl',
-  firstName: 'no',
-  lastName: 'body',
-  active: false,
-  roles: []
-};
-
-export const nobodyUser = Object.freeze(nobody);
-
-export const pageOfUsers: Page<User> = Object.freeze({
-  content: [adminUser, coordinatorUser, userUser],
-  last: false,
-  totalElements: 9,
-  totalPages: 3,
-  size: 3,
-  number: 2,
-  first: false,
-  numberOfElements: 3
-});
+export function pageOfUsers(): Page<User> {
+  return {
+    content: [adminUser(), coordinatorUser(), userUser()],
+    last: false,
+    totalElements: 9,
+    totalPages: 3,
+    size: 3,
+    number: 2,
+    first: false,
+    numberOfElements: 3
+  };
+}

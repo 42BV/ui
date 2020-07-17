@@ -23,7 +23,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={setValue}
@@ -43,7 +45,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser]))
+            Promise.resolve(pageWithContentAndExactSize([userUser()]))
           }
           addButton={{
             label: 'Create friend',
@@ -53,7 +55,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
               // to create the friend.
               return new Promise(resolve => {
                 setTimeout(() => {
-                  resolve(adminUser);
+                  resolve(adminUser());
                 }, 1000);
               });
             }
@@ -97,7 +99,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           optionForValue={(user: User) => user.email}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={setValue}
@@ -138,7 +142,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           )}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={setValue}
@@ -157,7 +163,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={setValue}
@@ -184,7 +192,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={setValue}
@@ -204,7 +214,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={setValue}
@@ -217,7 +229,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={setValue}
@@ -230,7 +244,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={setValue}
@@ -251,7 +267,9 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           optionForValue={user => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           value={value}
           onChange={user => setValue(user)}

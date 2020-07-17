@@ -39,7 +39,7 @@ describe('Component: Async|AsyncList', () => {
     const state = {
       isLoading: false,
       isFulfilled: true,
-      data: pageOfUsers.content
+      data: pageOfUsers().content
     };
 
     const { asyncList } = setup({ state });
@@ -54,6 +54,6 @@ describe('isEmpty', () => {
   });
 
   it('should consider it empty when the totalElements is zero', () => {
-    expect(isEmpty(pageOfUsers.content)).toBe(false);
+    expect(isEmpty(pageOfUsers().content)).toBe(false);
   });
 });

@@ -146,7 +146,7 @@ storiesOf('Form|RadioGroup', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(user: User) => user.email}
-          options={() => resolveAfter(pageOfUsers)}
+          options={() => resolveAfter(pageOfUsers())}
           value={subject}
           onChange={setSubject}
         />
@@ -165,7 +165,7 @@ storiesOf('Form|RadioGroup', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(user: User) => user.email}
-          options={() => Promise.resolve(pageOfUsers)}
+          options={() => Promise.resolve(pageOfUsers())}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
           value={subject}
           onChange={setSubject}

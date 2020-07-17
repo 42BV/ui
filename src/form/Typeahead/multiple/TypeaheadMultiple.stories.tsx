@@ -20,7 +20,9 @@ storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           onChange={value => action(`onChange: ${value}`)}
         />
@@ -35,7 +37,9 @@ storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
           label="Friends"
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           onChange={value => action(`onChange: ${value}`)}
         />
@@ -50,7 +54,9 @@ storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           onChange={value => action(`onChange: ${value}`)}
         />
@@ -76,7 +82,9 @@ storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           onChange={value => action(`onChange: ${value}`)}
         />
@@ -93,7 +101,9 @@ storiesOf('Form|Typeahead/JarbTypeaheadMultiple', module)
           placeholder="Please provide all your friends"
           optionForValue={(user: User) => user.email}
           fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser, adminUser]))
+            Promise.resolve(
+              pageWithContentAndExactSize([userUser(), adminUser()])
+            )
           }
           jarb={{
             validator: 'User.friends',

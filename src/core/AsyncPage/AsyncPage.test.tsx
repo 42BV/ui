@@ -40,7 +40,7 @@ describe('Component: AsyncPage', () => {
     const state = {
       isLoading: false,
       isFulfilled: true,
-      data: pageOfUsers
+      data: pageOfUsers()
     };
 
     const { asyncPage } = setup({ state });
@@ -55,6 +55,6 @@ describe('isEmpty', () => {
   });
 
   it('should consider it empty when the totalElements is zero', () => {
-    expect(isEmpty(pageOfUsers)).toBe(false);
+    expect(isEmpty(pageOfUsers())).toBe(false);
   });
 });

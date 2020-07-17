@@ -14,7 +14,7 @@ import { action } from '@storybook/addon-actions';
 function loadData(): Promise<Page<User>> {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(pageOfUsers);
+      resolve(pageOfUsers());
     }, 1000);
   });
 }

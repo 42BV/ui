@@ -16,9 +16,9 @@ describe('Component: ModalPickerValueTruncator', () => {
     const optionForValueSpy = jest.fn(user => user.email);
 
     const values = hasSingleValue
-      ? userUser
+      ? userUser()
       : hasMultipleValues
-      ? [adminUser, userUser]
+      ? [adminUser(), userUser()]
       : undefined;
 
     const modalPickerValueTruncator = shallow(

@@ -14,8 +14,8 @@ describe('useOptions', () => {
   describe('when optionsOrFetcher is an array', () => {
     test('that the options are used as is and loading is false', () => {
       const config = {
-        optionsOrFetcher: [userUser, coordinatorUser, adminUser],
-        value: userUser,
+        optionsOrFetcher: [userUser(), coordinatorUser(), adminUser()],
+        value: userUser(),
         optionForValue: user => user.email,
         isOptionEqual: (a, b) => a.id === b.id
       };
@@ -23,15 +23,15 @@ describe('useOptions', () => {
       const { result } = renderHook(() => useOptions(config));
 
       expect(result.current).toEqual({
-        options: [userUser, coordinatorUser, adminUser],
+        options: [userUser(), coordinatorUser(), adminUser()],
         loading: false
       });
     });
 
     test('that when the value is set but not in options that it is added to the options on the first place', () => {
       const config = {
-        optionsOrFetcher: [userUser, coordinatorUser, adminUser],
-        value: nobodyUser,
+        optionsOrFetcher: [userUser(), coordinatorUser(), adminUser()],
+        value: nobodyUser(),
         optionForValue: user => user.email,
         isOptionEqual: (a, b) => a.id === b.id
       };
@@ -39,7 +39,7 @@ describe('useOptions', () => {
       const { result } = renderHook(() => useOptions(config));
 
       expect(result.current).toEqual({
-        options: [nobodyUser, userUser, coordinatorUser, adminUser],
+        options: [nobodyUser(), userUser(), coordinatorUser(), adminUser()],
         loading: false
       });
     });
@@ -49,7 +49,7 @@ describe('useOptions', () => {
     test('that the options are fetched', async () => {
       const config = {
         optionsOrFetcher: () =>
-          Promise.resolve(pageOf([adminUser, userUser], 1)),
+          Promise.resolve(pageOf([adminUser(), userUser()], 1)),
         value: undefined,
         optionForValue: user => user.email,
         isOptionEqual: (a, b) => a.id === b.id
@@ -67,7 +67,7 @@ describe('useOptions', () => {
       await waitForNextUpdate();
 
       expect(result.current).toEqual({
-        options: [adminUser, userUser],
+        options: [adminUser(), userUser()],
         loading: false
       });
     });
@@ -80,7 +80,9 @@ describe('useOptions', () => {
             optionsOrFetcher: () =>
               Promise.resolve(
                 pageOf(
-                  watch === 'filter' ? [adminUser] : [adminUser, userUser],
+                  watch === 'filter'
+                    ? [adminUser()]
+                    : [adminUser(), userUser()],
                   1
                 )
               ),
@@ -100,7 +102,7 @@ describe('useOptions', () => {
       await waitForNextUpdate();
 
       expect(result.current).toEqual({
-        options: [adminUser, userUser],
+        options: [adminUser(), userUser()],
         loading: false
       });
 
@@ -109,7 +111,7 @@ describe('useOptions', () => {
       await waitForNextUpdate();
 
       expect(result.current).toEqual({
-        options: [adminUser],
+        options: [adminUser()],
         loading: false
       });
     });
@@ -117,8 +119,8 @@ describe('useOptions', () => {
     test('that when the value is set but not in options that it is added to the options on the first place', async () => {
       const config = {
         optionsOrFetcher: () =>
-          Promise.resolve(pageOf([adminUser, userUser], 1)),
-        value: nobodyUser,
+          Promise.resolve(pageOf([adminUser(), userUser()], 1)),
+        value: nobodyUser(),
         optionForValue: user => user.email,
         isOptionEqual: (a, b) => a.id === b.id
       };
@@ -128,14 +130,14 @@ describe('useOptions', () => {
       );
 
       expect(result.current).toEqual({
-        options: [nobodyUser],
+        options: [nobodyUser()],
         loading: true
       });
 
       await waitForNextUpdate();
 
       expect(result.current).toEqual({
-        options: [nobodyUser, adminUser, userUser],
+        options: [nobodyUser(), adminUser(), userUser()],
         loading: false
       });
     });
