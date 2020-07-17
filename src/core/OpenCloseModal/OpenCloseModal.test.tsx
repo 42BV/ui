@@ -16,13 +16,15 @@ describe('Component: OpenCloseModal', () => {
     hasLabel = true,
     hasCustomText = false,
     hasButtons = true,
-    inProgress = undefined
+    inProgress = undefined,
+    stickyFooter = undefined
   }: {
     isOpen?: boolean;
     hasLabel?: boolean;
     hasCustomText?: boolean;
     hasButtons?: boolean;
     inProgress?: boolean;
+    stickyFooter?: boolean;
   }) {
     onCloseSpy = jest.fn();
     onSaveSpy = jest.fn();
@@ -30,6 +32,7 @@ describe('Component: OpenCloseModal', () => {
     const props = {
       isOpen,
       inProgress,
+      stickyFooter,
       onClose: onCloseSpy,
       text: hasCustomText
         ? { cancel: 'Stop please', save: 'Select me' }
@@ -100,6 +103,14 @@ describe('Component: OpenCloseModal', () => {
 
       expect(toJson(openCloseModal)).toMatchSnapshot(
         'Component: OpenCloseModal => ui => in progress'
+      );
+    });
+
+    test('sans sticky footer', () => {
+      setup({ stickyFooter: false });
+
+      expect(toJson(openCloseModal)).toMatchSnapshot(
+        'Component: OpenCloseModal => ui => sans sticky'
       );
     });
   });
