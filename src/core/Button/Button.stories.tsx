@@ -127,6 +127,87 @@ storiesOf('core|buttons/Button', module)
       </Row>
     );
   })
+  .add('sizes', () => {
+    return (
+      <Row>
+        <Col xs={12}>
+          <h4>Button</h4>
+          <Button onClick={action('Button clicked')} color="primary" size="sm">
+            sm
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            color="secondary"
+            size="md"
+          >
+            md
+          </Button>
+          <Button onClick={action('Button clicked')} color="success" size="lg">
+            lg
+          </Button>
+          <hr />
+        </Col>
+        <Col xs={12}>
+          <h4>Button in progress</h4>
+          <Button
+            onClick={action('Button clicked')}
+            inProgress={true}
+            color="primary"
+            size="sm"
+          >
+            primary
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            inProgress={true}
+            color="secondary"
+            size="md"
+          >
+            secondary
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            inProgress={true}
+            color="success"
+            size="lg"
+          >
+            success
+          </Button>
+
+          <hr />
+        </Col>
+        <Col xs={12}>
+          <h4>Button disabled</h4>
+          <Button
+            onClick={action('Button clicked')}
+            color="primary"
+            disabled={true}
+            size="sm"
+          >
+            primary
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            color="secondary"
+            disabled={true}
+            size="md"
+          >
+            secondary
+          </Button>
+          <Button
+            onClick={action('Button clicked')}
+            color="success"
+            disabled={true}
+            size="lg"
+          >
+            success
+          </Button>
+
+          <hr />
+        </Col>
+      </Row>
+    );
+  })
   .add('as button with icon', () => {
     return (
       <Row>
@@ -969,6 +1050,47 @@ storiesOf('core|buttons/Button', module)
             color="danger"
             disabled={true}
           />
+          <hr />
+        </Col>
+      </Row>
+    );
+  })
+  .add('full width', () => {
+    return (
+      <Row>
+        <Col xs={12}>
+          <h4>Button</h4>
+          <Button
+            onClick={action('Button clicked')}
+            color="primary"
+            fullWidth={true}
+          >
+            primary
+          </Button>
+          <hr />
+        </Col>
+        <Col xs={12}>
+          <h4>Button in progress</h4>
+          <Button
+            onClick={action('Button clicked')}
+            inProgress={true}
+            color="primary"
+            fullWidth={true}
+          >
+            primary
+          </Button>
+          <hr />
+        </Col>
+        <Col xs={12}>
+          <h4>Button disabled</h4>
+          <Button
+            onClick={action('Button clicked')}
+            color="primary"
+            disabled={true}
+            fullWidth={true}
+          >
+            primary
+          </Button>
           <hr />
         </Col>
       </Row>

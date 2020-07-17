@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Button from '../Button/Button';
-import { BootstrapSize } from '../types';
+import Button, { ButtonSize } from '../Button/Button';
 
 export interface Props {
   /**
@@ -11,11 +10,11 @@ export interface Props {
   className?: string;
 
   /**
-   * Optionally the size of the button, defaults to md.
+   * Optionally the size of the button
    *
-   * @default md
+   * Defaults to 'md'.
    */
-  size?: BootstrapSize;
+  size?: ButtonSize;
 
   /**
    * Optional callback for what needs to happen when the button is clicked.

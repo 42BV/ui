@@ -5,6 +5,7 @@ exports[`Component: Button ui button disabled is disabled 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     disabled={true}
     onClick={[Function]}
@@ -22,8 +23,26 @@ exports[`Component: Button ui button disabled is enabled 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     disabled={false}
+    onClick={[Function]}
+    size="md"
+    tag="button"
+    type="button"
+  >
+    Save
+  </Button>
+</span>
+`;
+
+exports[`Component: Button ui button full-width 1`] = `
+<span
+  className="button  primary"
+>
+  <Button
+    block={true}
+    color="primary"
     onClick={[Function]}
     size="md"
     tag="button"
@@ -39,6 +58,7 @@ exports[`Component: Button ui button normal inProgress is false 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     onClick={[Function]}
     size="md"
@@ -55,6 +75,7 @@ exports[`Component: Button ui button normal inProgress is true 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     disabled={true}
     onClick={[Function]}
@@ -76,6 +97,7 @@ exports[`Component: Button ui button outline inProgress is false 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     onClick={[Function]}
     outline={true}
@@ -93,6 +115,7 @@ exports[`Component: Button ui button outline inProgress is true 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     disabled={true}
     onClick={[Function]}
@@ -115,6 +138,7 @@ exports[`Component: Button ui button size can override size 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     onClick={[Function]}
     size="sm"
@@ -131,6 +155,7 @@ exports[`Component: Button ui button size use md by default 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     onClick={[Function]}
     size="md"
@@ -147,6 +172,7 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     onClick={[Function]}
     size="md"
@@ -167,6 +193,7 @@ exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     disabled={true}
     onClick={[Function]}
@@ -188,6 +215,7 @@ exports[`Component: Button ui button with icon normal with icon on the right 1`]
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     onClick={[Function]}
     size="md"
@@ -208,6 +236,7 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     onClick={[Function]}
     outline={true}
@@ -229,6 +258,7 @@ exports[`Component: Button ui button with icon outline inProgress is true 1`] = 
   className="button  primary"
 >
   <Button
+    block={false}
     color="primary"
     disabled={true}
     onClick={[Function]}

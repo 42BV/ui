@@ -92,6 +92,16 @@ describe('Component: Button', () => {
           expect(toJson(button)).toMatchSnapshot();
         });
       });
+
+      test('full-width', () => {
+        const button = shallow(
+          <Button onClick={jest.fn()} fullWidth={true}>
+            Save
+          </Button>
+        );
+
+        expect(toJson(button)).toMatchSnapshot();
+      });
     });
 
     describe('button with icon', () => {
