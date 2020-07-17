@@ -197,4 +197,38 @@ storiesOf('core|buttons/ConfirmButton', module)
         </ConfirmButton>
       </div>
     );
+  })
+  .add('full width', () => {
+    return (
+      <div className="text-center">
+        <p>When not in progress:</p>
+        <ConfirmButton
+          fullWidth={true}
+          onConfirm={action('Accept clicked')}
+          dialogText={
+            <p>
+              Are you sure you want to <strong>delete</strong> the user?
+            </p>
+          }
+        >
+          Delete user
+        </ConfirmButton>
+
+        <hr />
+
+        <p>When in progress:</p>
+        <ConfirmButton
+          fullWidth={true}
+          onConfirm={action('Accept clicked')}
+          inProgress={true}
+          dialogText={
+            <p>
+              Are you sure you want to <strong>delete</strong> the user?
+            </p>
+          }
+        >
+          Delete user
+        </ConfirmButton>
+      </div>
+    );
   });

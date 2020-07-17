@@ -5,7 +5,8 @@ import Button, {
   isWithIcon,
   isWithIconAndText,
   isWithText,
-  Props as ButtonProps
+  Props as ButtonProps,
+  ButtonSize
 } from '../Button/Button';
 import { Color } from '../types';
 import IconType from '../Icon/types';
@@ -93,6 +94,21 @@ interface WithIconAndText extends BaseProps {
    * Optionally the text of the button.
    */
   children: React.ReactNode;
+
+  /**
+   * Optionally the size of the button.
+   *
+   * Defaults to 'md'.
+   */
+  size?: ButtonSize;
+
+  /**
+   * Optionally whether or not the button should take the full width
+   * available.
+   *
+   * Defauts to `false`
+   */
+  fullWidth?: boolean;
 }
 
 interface WithIcon extends BaseProps {
@@ -107,6 +123,8 @@ interface WithIcon extends BaseProps {
   iconSize?: number;
 
   children?: never;
+  size?: never;
+  fullWidth?: never;
 }
 
 interface WithText extends BaseProps {
@@ -114,6 +132,21 @@ interface WithText extends BaseProps {
    * Optionally the text of the button.
    */
   children: React.ReactNode;
+
+  /**
+   * Optionally the size of the button.
+   *
+   * Defaults to 'md'.
+   */
+  size?: ButtonSize;
+
+  /**
+   * Optionally whether or not the button should take the full width
+   * available.
+   *
+   * Defauts to `false`
+   */
+  fullWidth?: boolean;
 
   icon?: never;
   iconSize?: never;
@@ -168,6 +201,8 @@ export default function ConfirmButton({
       const withText = buttonProps as WithText | WithIconAndText;
 
       withText.children = props.children;
+      withText.fullWidth = props.fullWidth;
+      withText.size = props.size;
     }
 
     return buttonProps as ButtonProps;

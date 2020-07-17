@@ -5,7 +5,9 @@ import Spinner from '../Spinner/Spinner';
 import { Icon, IconType } from '../Icon';
 import useShowSpinner from './useShowSpinner';
 
-import { BootstrapSize, Color } from '../types';
+import { Color } from '../types';
+
+export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export type IconPosition = 'left' | 'right';
 
@@ -74,11 +76,19 @@ interface WithIconAndText extends BaseProps {
   outline?: boolean;
 
   /**
-   * Optionally the size of the button, defaults to md.
+   * Optionally the size of the button.
    *
    * Defaults to 'md'.
    */
-  size?: BootstrapSize;
+  size?: ButtonSize;
+
+  /**
+   * Optionally whether or not the button should take the full width
+   * available.
+   *
+   * Defauts to `false`
+   */
+  fullWidth?: boolean;
 }
 
 interface WithIcon extends BaseProps {
@@ -97,6 +107,7 @@ interface WithIcon extends BaseProps {
   children?: never;
   outline?: never;
   size?: never;
+  fullWidth?: never;
 }
 
 interface WithText extends BaseProps {
@@ -111,11 +122,19 @@ interface WithText extends BaseProps {
   outline?: boolean;
 
   /**
-   * Optionally the size of the button, defaults to md.
+   * Optionally the size of the button.
    *
    * Defaults to 'md'.
    */
-  size?: BootstrapSize;
+  size?: ButtonSize;
+
+  /**
+   * Optionally whether or not the button should take the full width
+   * available.
+   *
+   * Defauts to `false`
+   */
+  fullWidth?: boolean;
 
   icon?: never;
   iconPosition?: never;
@@ -158,12 +177,14 @@ export default function Button({
     const children = props.children;
     const outline = 'outline' in props ? props.outline : undefined;
     const size = 'size' in props ? props.size : 'md';
+    const fullWidth = 'fullWidth' in props ? props.fullWidth : false;
 
     const buttonProps = {
       type,
       size,
       color,
-      outline
+      outline,
+      block: fullWidth
     };
 
     return (
