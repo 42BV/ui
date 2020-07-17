@@ -7,9 +7,13 @@ import { JarbInput } from './Input/Input';
 import { FinalForm } from './story-utils';
 import {
   isStrongPassword,
+  JarbCheckbox,
   JarbCheckboxMultipleSelect,
+  JarbColorPicker,
   JarbDateRangePicker,
+  JarbRadioGroup,
   JarbDateTimeInput,
+  JarbNewPasswordInput,
   JarbFileInput,
   JarbIconPicker,
   JarbImageUpload,
@@ -27,10 +31,7 @@ import {
 } from '..';
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
-import { JarbColorPicker } from './ColorPicker/ColorPicker';
-import { JarbCheckbox } from './Checkbox/Checkbox';
-import { JarbRadioGroup } from './RadioGroup/RadioGroup';
-import { JarbNewPasswordInput } from './NewPasswordInput/NewPasswordInput';
+import { ModalForm } from '../core/OpenCloseModal/OpenCloseModal.stories';
 
 function sleep(ms: number) {
   return new Promise(resolve => {
@@ -123,9 +124,19 @@ export function userAsOption(user: User): string {
   return user.email;
 }
 
-storiesOf('Form|Example', module).add('jarb form', () => {
+storiesOf('Form|Example', module)
+  .add('jarb form', () => {
+    return (
+      <FinalForm>
+        <TotalForm />
+      </FinalForm>
+    );
+  })
+  .add('jarb form in modal', ModalForm);
+
+export function TotalForm() {
   return (
-    <FinalForm>
+    <>
       <JarbInput
         name="firstName"
         jarb={{ validator: 'User.email', label: 'First name' }}
@@ -376,6 +387,6 @@ storiesOf('Form|Example', module).add('jarb form', () => {
         placeholder="Do you agree to the terms?"
         validators={requiredValidator}
       />
-    </FinalForm>
+    </>
   );
-});
+}

@@ -26,6 +26,7 @@ exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseM
   scrollable={false}
   toggle={[Function]}
   unmountOnClose={true}
+  wrapClassName="open-close-modal open-close-modal--sticky"
   zIndex={1050}
 >
   <ModalHeader
@@ -60,6 +61,7 @@ exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseM
     <Button
       className="ml-1"
       color="secondary"
+      icon="cancel"
       onClick={[Function]}
     >
       Stop please
@@ -67,6 +69,7 @@ exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseM
     <Button
       className="ml-1"
       color="primary"
+      icon="save"
       onClick={[Function]}
     >
       Select me
@@ -101,6 +104,7 @@ exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => 
   scrollable={false}
   toggle={[Function]}
   unmountOnClose={true}
+  wrapClassName="open-close-modal open-close-modal--sticky"
   zIndex={1050}
 >
   <ModalHeader
@@ -135,6 +139,7 @@ exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => 
     <Button
       className="ml-1"
       color="secondary"
+      icon="cancel"
       onClick={[Function]}
     >
       Cancel
@@ -142,7 +147,86 @@ exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => 
     <Button
       className="ml-1"
       color="primary"
+      icon="save"
       inProgress={true}
+      onClick={[Function]}
+    >
+      Save
+    </Button>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`Component: OpenCloseModal ui sans sticky footer: Component: OpenCloseModal => ui => sans sticky 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={false}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  wrapClassName="open-close-modal "
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    Choose something
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <RadioGroup
+      onChange={[MockFunction]}
+      optionForValue={[Function]}
+      options={
+        Array [
+          "local",
+          "development",
+          "test",
+          "acceptation",
+          "production",
+        ]
+      }
+    />
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Button
+      className="ml-1"
+      color="secondary"
+      icon="cancel"
+      onClick={[Function]}
+    >
+      Cancel
+    </Button>
+    <Button
+      className="ml-1"
+      color="primary"
+      icon="save"
       onClick={[Function]}
     >
       Save
@@ -177,6 +261,7 @@ exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => u
   scrollable={false}
   toggle={[Function]}
   unmountOnClose={true}
+  wrapClassName="open-close-modal open-close-modal--sticky"
   zIndex={1050}
 >
   <ModalHeader
@@ -211,6 +296,7 @@ exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => u
     <Button
       className="ml-1"
       color="secondary"
+      icon="cancel"
       onClick={[Function]}
     >
       Cancel
@@ -218,6 +304,7 @@ exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => u
     <Button
       className="ml-1"
       color="primary"
+      icon="save"
       onClick={[Function]}
     >
       Save
@@ -252,6 +339,7 @@ exports[`Component: OpenCloseModal ui without buttons: Component: OpenCloseModal
   scrollable={false}
   toggle={[Function]}
   unmountOnClose={true}
+  wrapClassName="open-close-modal open-close-modal--sticky"
   zIndex={1050}
 >
   <ModalHeader
@@ -309,6 +397,7 @@ exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal =
   scrollable={false}
   toggle={[Function]}
   unmountOnClose={true}
+  wrapClassName="open-close-modal open-close-modal--sticky"
   zIndex={1050}
 >
   <ModalBody
@@ -334,6 +423,7 @@ exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal =
     <Button
       className="ml-1"
       color="secondary"
+      icon="cancel"
       onClick={[Function]}
     >
       Cancel
@@ -341,6 +431,7 @@ exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal =
     <Button
       className="ml-1"
       color="primary"
+      icon="save"
       onClick={[Function]}
     >
       Save

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { Form } from 'react-final-form';
+import { Card } from 'reactstrap';
 
 import { OpenCloseModal } from './OpenCloseModal';
-import { Card } from 'reactstrap';
 import Button from '../Button/Button';
 import RadioGroup from '../../form/RadioGroup/RadioGroup';
+import { TotalForm } from '../../form/FormExample.stories';
+import { range } from 'lodash';
 
 storiesOf('core|OpenCloseModal', module)
   .add('basic', () => {
@@ -48,6 +51,59 @@ storiesOf('core|OpenCloseModal', module)
             ]}
             optionForValue={option => option}
           />
+        </OpenCloseModal>
+      </Card>
+    );
+  })
+  .add('with form', ModalForm)
+  .add('sticky', () => {
+    const [isOpenSticky, setIsOpenSticky] = useState(false);
+    const [isOpenSansSticky, setIsOpenSansSticky] = useState(false);
+
+    return (
+      <Card body>
+        <p>
+          <Button onClick={() => setIsOpenSticky(true)}>With sticky</Button>
+        </p>
+
+        <p>
+          <Button onClick={() => setIsOpenSansSticky(true)}>Sans sticky</Button>
+        </p>
+
+        <OpenCloseModal
+          stickyFooter={true}
+          isOpen={isOpenSticky}
+          onSave={() => setIsOpenSticky(false)}
+          onClose={() => setIsOpenSticky(false)}
+          label="Sticky footer"
+          size="sm"
+        >
+          {range(0, 10).map(number => (
+            <p key={number}>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
+              modi, facilis officia provident maiores voluptate minus officiis
+              tempora minima blanditiis. Distinctio rem iste omnis inventore
+              ratione facere voluptates quam suscipit!
+            </p>
+          ))}
+        </OpenCloseModal>
+
+        <OpenCloseModal
+          stickyFooter={false}
+          isOpen={isOpenSansSticky}
+          onSave={() => setIsOpenSansSticky(false)}
+          onClose={() => setIsOpenSansSticky(false)}
+          label="No sticky footer"
+          size="sm"
+        >
+          {range(0, 10).map(number => (
+            <p key={number}>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
+              modi, facilis officia provident maiores voluptate minus officiis
+              tempora minima blanditiis. Distinctio rem iste omnis inventore
+              ratione facere voluptates quam suscipit!
+            </p>
+          ))}
         </OpenCloseModal>
       </Card>
     );
@@ -95,7 +151,7 @@ storiesOf('core|OpenCloseModal', module)
       </Card>
     );
   })
-  .add('custom button text', () => {
+  .add('custom button text and icons', () => {
     const [isOpen, setIsOpen] = useState(false);
     const [choice, setChoice] = useState();
 
@@ -106,7 +162,7 @@ storiesOf('core|OpenCloseModal', module)
 
     function onClose() {
       alert(
-        `Darn! You tricked and the diamond fell in an endless hole in the ground...`
+        `Darn! You tripped and the diamond fell in an endless hole in the ground...`
       );
       setIsOpen(false);
     }
@@ -120,7 +176,10 @@ storiesOf('core|OpenCloseModal', module)
         <OpenCloseModal
           isOpen={isOpen}
           onClose={onClose}
+          cancelIcon="360"
           onSave={onSave}
+          saveIcon="attach_money"
+          modalBodyClassName="bg-warning"
           label="It's a special gift!"
           text={{
             save: 'Confirm',
@@ -141,3 +200,57 @@ storiesOf('core|OpenCloseModal', module)
       </Card>
     );
   });
+
+export function ModalForm() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  async function onSave() {
+    action('save button was clicked');
+
+    await new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    });
+
+    setIsOpen(false);
+  }
+
+  function onClose() {
+    action('modal was closed');
+    setIsOpen(false);
+  }
+
+  return (
+    <Card body>
+      <Button onClick={() => setIsOpen(true)}>Open form</Button>
+
+      <Form onSubmit={onSave}>
+        {({ submitting, handleSubmit }) => (
+          <OpenCloseModal
+            isOpen={isOpen}
+            inProgress={submitting}
+            onClose={onClose}
+            onSave={handleSubmit}
+            label="Form example"
+            size="lg"
+          >
+            <TotalForm />
+          </OpenCloseModal>
+        )}
+      </Form>
+
+      <p className="mt-2">
+        Note: the <pre className="d-inline text-info">Form</pre> element should
+        wrap the <pre className="d-inline text-info">OpenCloseModal</pre>
+        not the other way around. Otherwise you cannot use the inProgress prop,
+        and you cannot use submit in onSave.
+      </p>
+
+      <p className="mt-2">
+        Also try to keep the modal forms limited. Sometimes it is better to just
+        create a create / edit page if a form is very large.
+      </p>
+    </Card>
+  );
+}

@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import { t } from '../../utilities/translation/translation';
 import { BootstrapSize } from '../types';
 import { useBodyFixOnModalClose } from '../useBodyFixOnModalClose/useBodyFixOnModalClose';
+import { IconType } from '../Icon';
 
 type Text = {
   cancel?: string;
@@ -27,6 +28,20 @@ type Props = {
    * Callback for when the modal should close.
    */
   onClose: () => void;
+
+  /**
+   * Optionally the icon of the save button.
+   *
+   * Defaults to `save`
+   */
+  saveIcon?: IconType;
+
+  /**
+   * Optionally icon of the cancel button.
+   *
+   * Defaults to `cancel`
+   */
+  cancelIcon?: IconType;
 
   /**
    * Callback for when the save button is clicked.
@@ -55,10 +70,24 @@ type Props = {
   size?: BootstrapSize;
 
   /**
+   * Whether the footer should stick to the bottom of the modal.
+   * This allows the user to always click the close and save buttons.
+   *
+   * Defaults to `true`.
+   */
+  stickyFooter?: boolean;
+
+  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optional extra CSS class you want to add to the <ModalBody>.
+   * Useful for styling the component.
+   */
+  modalBodyClassName?: string;
 };
 
 export function OpenCloseModal(props: Props) {
@@ -71,13 +100,20 @@ export function OpenCloseModal(props: Props) {
     label,
     text,
     size,
-    className
+    className,
+    saveIcon = 'save',
+    cancelIcon = 'cancel',
+    stickyFooter = true,
+    modalBodyClassName
   } = props;
 
   useBodyFixOnModalClose(isOpen);
 
   return (
     <Modal
+      wrapClassName={`open-close-modal ${
+        stickyFooter ? 'open-close-modal--sticky' : ''
+      }`}
       isOpen={isOpen}
       toggle={() => onClose()}
       size={size}
@@ -86,10 +122,15 @@ export function OpenCloseModal(props: Props) {
       {label ? (
         <ModalHeader toggle={() => onClose()}>{label}</ModalHeader>
       ) : null}
-      <ModalBody>{children}</ModalBody>
+      <ModalBody className={modalBodyClassName}>{children}</ModalBody>
       {onSave ? (
         <ModalFooter>
-          <Button className="ml-1" color="secondary" onClick={() => onClose()}>
+          <Button
+            className="ml-1"
+            color="secondary"
+            icon={cancelIcon}
+            onClick={() => onClose()}
+          >
             {t({
               overrideText: text?.cancel,
               key: 'OpenCloseModal.CANCEL',
@@ -100,6 +141,7 @@ export function OpenCloseModal(props: Props) {
             className="ml-1"
             color="primary"
             inProgress={inProgress}
+            icon={saveIcon}
             onClick={() => onSave()}
           >
             {t({
