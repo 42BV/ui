@@ -1,6 +1,8 @@
 import '../src/main.scss';
 import {setConstraints} from "@42.nl/jarb-final-form/lib";
 
+import "./show-code-fix.scss";
+
 setConstraints({
   Person: {
     firstName: {

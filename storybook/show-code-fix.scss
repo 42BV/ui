@@ -1,0 +1,24 @@
+/* 
+  Hack to fix "show code" buttons see: 
+  
+  https://github.com/42BV/ui/issues/94 
+*/
+
+pre.hljs {
+  color: inherit;
+
+  code {
+    .tag,
+    .token {
+      display: inline;
+      margin-right: 0px;
+      cursor: auto;
+      color: inherit;
+      background-color: rgba(0, 0, 0, 0);
+      padding-left: 0;
+      padding-right: 0;
+      font-size: 1em;
+      font-weight: normal;
+    }
+  }
+}
