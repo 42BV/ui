@@ -94,6 +94,19 @@ type EpicTableLayoutConfig = {
    * needs to become the height of the detail row.
    */
   activeDetailRowChanged: (detailRowRef: HTMLDivElement) => void;
+
+  /**
+   * The index of the row which is currently hovered.
+   *
+   * Value can be -1 to indicate no row is hovered.
+   */
+  hoveredRow: number;
+
+  /**
+   * Callback for when the hover changed. Receives the index of
+   * the row which has been changed, and the current hover status.
+   */
+  hoverChanged: (index: number, hover: boolean) => void;
 };
 
 /**
@@ -233,7 +246,14 @@ type EpicTableLayoutConfig = {
 export function epicTableLayout(
   config: EpicTableLayoutConfig
 ): EpicTableLayout {
-  const { children, epicTableRect, hasRight, activeDetailRowChanged } = config;
+  const {
+    children,
+    epicTableRect,
+    hasRight,
+    activeDetailRowChanged,
+    hoveredRow,
+    hoverChanged
+  } = config;
 
   // Will contain all the first columns as sections.
   const left: EpicTableLayoutSection[] = [];
@@ -323,7 +343,7 @@ export function epicTableLayout(
 
     const lastCellInRowIndex = Children.count(cells) - 1;
 
-    const isHeader = row.props.header;
+    const { header: isHeader, onClick } = row.props;
 
     // When new header starts end the section and start a new one.
     if (isHeader) {
@@ -360,7 +380,13 @@ export function epicTableLayout(
       const left = cellIndex === 0;
       const right = hasRight && cellIndex === lastCellInRowIndex;
 
-      const clone = cloneElement(cell, { odd: isRowOdd, key: cellIndex });
+      const clone = cloneElement(cell, {
+        key: cellIndex,
+        odd: isRowOdd,
+        hover: hoveredRow === index,
+        onRowClick: onClick,
+        onHoverChanged: value => hoverChanged(index, value)
+      });
 
       // The first cell should be bucketed on the left
       if (left) {

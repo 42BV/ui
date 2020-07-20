@@ -3,6 +3,9 @@
 exports[`Component: EpicCell ui 1`] = `
 <div
   className="epic-table-cell border-bottom p-1"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
   style={
     Object {
       "height": 44,

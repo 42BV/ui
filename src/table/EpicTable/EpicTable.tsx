@@ -103,6 +103,8 @@ export function EpicTable({
     null
   );
 
+  const [hoveredRow, setHoveredRow] = useState(-1);
+
   const headerRefs: HeaderRef[] = [];
 
   function registerHeader(ref, index) {
@@ -117,13 +119,23 @@ export function EpicTable({
     setActiveDetailRow(detailRowRef);
   }
 
+  function hoverChanged(index: number, value: boolean) {
+    if (value) {
+      setHoveredRow(index);
+    } else {
+      setHoveredRow(-1);
+    }
+  }
+
   const epicTableRect = useEpicTableRect(epicTableEl);
 
   const layout = epicTableLayout({
     children,
     epicTableRect,
     hasRight,
-    activeDetailRowChanged
+    activeDetailRowChanged,
+    hoveredRow,
+    hoverChanged
   });
 
   const {
