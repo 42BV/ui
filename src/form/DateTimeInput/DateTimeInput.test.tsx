@@ -5,7 +5,7 @@ import toJson from 'enzyme-to-json';
 import moment from 'moment';
 import Datetime from 'react-datetime';
 
-import DateTimeInput, { IsDateAllowed } from './DateTimeInput';
+import DateTimeInput, { IsDateAllowed, Mode } from './DateTimeInput';
 import * as FormatError from './useHasFormatError/useHasFormatError';
 import * as IsModalOpen from './useIsModalOpen/useIsModalOpen';
 
@@ -25,7 +25,7 @@ describe('Component: DateTimeInput', () => {
     value?: Date;
     isDateAllowed?: IsDateAllowed;
     hasLabel?: boolean;
-    mode?: 'modal' | 'default';
+    mode?: Mode;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();

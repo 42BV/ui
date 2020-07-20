@@ -3,6 +3,7 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import DateRangePicker, { Value } from './DateRangePicker';
+import { Mode } from '../DateTimeInput/DateTimeInput';
 
 describe('Component: DateRangePicker', () => {
   let dateRangePicker: ShallowWrapper;
@@ -13,11 +14,13 @@ describe('Component: DateRangePicker', () => {
   function setup({
     value,
     onFocus,
-    mode
+    mode,
+    horizontal
   }: {
     value: Value;
     onFocus: boolean;
-    mode?: 'modal' | 'default';
+    mode?: Mode;
+    horizontal?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onFocusSpy = jest.fn();
@@ -25,6 +28,7 @@ describe('Component: DateRangePicker', () => {
     dateRangePicker = shallow(
       <DateRangePicker
         value={value}
+        horizontal={horizontal}
         onChange={onChangeSpy}
         onFocus={onFocus ? onFocusSpy : undefined}
         from={{
@@ -90,6 +94,20 @@ describe('Component: DateRangePicker', () => {
       });
       expect(toJson(dateRangePicker)).toMatchSnapshot(
         'Component: DateRangePicker => ui => open in modal'
+      );
+    });
+
+    test('vertical', () => {
+      setup({
+        value: {
+          from: new Date(2200, 0, 1, 12, 30, 40),
+          to: new Date(2010, 0, 1, 12, 30, 40)
+        },
+        onFocus: false,
+        horizontal: false
+      });
+      expect(toJson(dateRangePicker)).toMatchSnapshot(
+        'Component: DateRangePicker => ui => horizontal'
       );
     });
   });
