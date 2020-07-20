@@ -23,6 +23,8 @@ import Addon from '../Input/Addon/Addon';
  */
 export type IsDateAllowed = (date: Moment, selectedDate?: Moment) => boolean;
 
+export type Mode = 'modal' | 'default';
+
 export interface Props {
   /**
    * The id of the form element.
@@ -116,7 +118,7 @@ export interface Props {
    * Whether or not the date picker should be displayed in a modal.
    * Defaults to opening in a tooltip-like layout.
    */
-  mode?: 'modal' | 'default';
+  mode?: Mode;
 
   /**
    * Optionally customized text within the DateTimeModal component.

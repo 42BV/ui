@@ -4,7 +4,8 @@ import { get } from 'lodash';
 import { Color, DistributiveOmit } from '../types';
 
 import DateTimeInput, {
-  Props as DateTimeInputProps
+  Props as DateTimeInputProps,
+  Mode
 } from '../DateTimeInput/DateTimeInput';
 
 import withJarb from '../withJarb/withJarb';
@@ -93,7 +94,14 @@ interface Props {
    * Whether or not the date picker should be displayed in a modal.
    * Defaults to opening in a tooltip-like layout.
    */
-  mode?: 'modal' | 'default';
+  mode?: Mode;
+
+  /**
+   * Whether or not the date picker should be shown horizontally.
+   *
+   * Defaults to `true`.
+   */
+  horizontal?: boolean;
 }
 
 interface State {
@@ -154,11 +162,17 @@ export default class DateRangePicker extends Component<Props, State> {
   }
 
   render() {
-    const { className = '', valid, color, mode } = this.props;
+    const {
+      className = '',
+      valid,
+      color,
+      mode,
+      horizontal = true
+    } = this.props;
 
     return (
       <Row className={`date-range-picker ${className}`}>
-        <Col sm="12" md="6">
+        <Col sm="12" md={horizontal ? '6' : '12'}>
           <DateTimeInput
             {...this.props.from}
             value={this.state.fromDate}
@@ -169,7 +183,11 @@ export default class DateRangePicker extends Component<Props, State> {
             mode={mode}
           />
         </Col>
-        <Col sm="12" md="6">
+        <Col
+          sm="12"
+          md={horizontal ? '6' : '12'}
+          className={!horizontal ? 'mt-2' : undefined}
+        >
           <DateTimeInput
             {...this.props.to}
             value={this.state.toDate}
