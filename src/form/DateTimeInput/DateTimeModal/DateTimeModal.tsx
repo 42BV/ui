@@ -110,6 +110,7 @@ export function DateTimeModal(props: Props) {
       text={text}
       size="sm"
       className="date-time-modal"
+      stickyFooter={false}
     >
       <Datetime
         input={false}
