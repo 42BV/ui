@@ -131,6 +131,7 @@ export { Direction } from './table/EpicTable/types';
 export { t } from './utilities/translation/translation';
 export { setTranslator } from './utilities/translation/translator';
 export { pageOf } from './utilities/page/page';
+export { useBodyFixOnModalClose } from './core/useBodyFixOnModalClose/useBodyFixOnModalClose';
 
 // Types
 export { Color } from './core/types';
