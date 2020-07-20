@@ -69,6 +69,13 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
+
+    &--hover {
+      // Must be transparent otherwise the shadow of the left / right
+      // columns are negated, important so it wins from the --odd
+      background-color: rgba($gray-400, 0.8) !important;
+      cursor: pointer;
+    }
   }
 
   &-expander-row,

@@ -10,6 +10,13 @@ export interface Props {
    * Whether or not this EpicRow is a header.
    */
   header?: boolean;
+
+  /**
+   * Optional callback for what needs to happen when the `EpicRow` is
+   * clicked. When the callback exists the row will have a hover
+   * effect.
+   */
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => any;
 }
 
 /**

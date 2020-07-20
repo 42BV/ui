@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { Alert, Card, Col, Input, Row } from 'reactstrap';
 import { every, groupBy, lowerCase, startsWith } from 'lodash';
 
@@ -443,7 +444,7 @@ storiesOf('table|EpicTable', module)
 
           {pageOfPersons.content.map((person, index) => (
             <Fragment key={person.id}>
-              <EpicRow>
+              <EpicRow onClick={() => setDetail(index)}>
                 <EpicCell width={widths.firstName} height={44}>
                   <EpicSelection
                     checked={selected.some(p => p.id === person.id)}
@@ -488,7 +489,8 @@ storiesOf('table|EpicTable', module)
                   {person.sex}
                 </EpicCell>
                 <EpicCell width={widths.actions} height={44}>
-                  <Button icon="delete" /> <Button icon="edit" />
+                  <Button icon="delete" onClick={action('delete')} />
+                  <Button icon="edit" onClick={action('edit')} />
                 </EpicCell>
               </EpicRow>
               <EpicDetailRow active={index === detail} left={300}>
@@ -665,7 +667,100 @@ storiesOf('table|EpicTable', module)
                 {person.sex}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                <Button icon="delete" /> <Button icon="edit" />
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
+              </EpicCell>
+            </EpicRow>
+          ))}
+        </EpicTable>
+      </Card>
+    );
+  })
+  .add('with row click', () => {
+    function onRowClick(person: Person) {
+      alert(`You clicked ${person.firstName} ${person.lastName}`);
+    }
+
+    return (
+      <Card body>
+        <EpicTable>
+          <EpicRow header>
+            <EpicHeader width={300} height={44}>
+              First name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Last name
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Age
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Eye color
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Height
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Weight
+            </EpicHeader>
+            <EpicHeader width={200} height={44}>
+              Job title
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              Favorite movie
+            </EpicHeader>
+            <EpicHeader width={150} height={44}>
+              Favorite food
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Birth date
+            </EpicHeader>
+            <EpicHeader width={100} height={44}>
+              Sex
+            </EpicHeader>
+            <EpicHeader width={300} height={44}>
+              Actions
+            </EpicHeader>
+          </EpicRow>
+
+          {persons.map(person => (
+            <EpicRow key={person.id} onClick={() => onRowClick(person)}>
+              <EpicCell width={300} height={44}>
+                {person.firstName}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.lastName}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.age}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.eyeColor}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.height}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.weight}
+              </EpicCell>
+              <EpicCell width={200} height={44}>
+                {person.jobTitle}
+              </EpicCell>
+              <EpicCell width={300} height={44}>
+                {person.favoriteMovie}
+              </EpicCell>
+              <EpicCell width={150} height={44}>
+                {person.favoriteFood}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.dateOfBirth}
+              </EpicCell>
+              <EpicCell width={100} height={44}>
+                {person.sex}
+              </EpicCell>
+              <EpicCell width={300} height={44}>
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
               </EpicCell>
             </EpicRow>
           ))}
@@ -752,7 +847,8 @@ storiesOf('table|EpicTable', module)
                 {person.sex}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                <Button icon="delete" /> <Button icon="edit" />
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
               </EpicCell>
             </EpicRow>
           ))}
@@ -791,7 +887,8 @@ storiesOf('table|EpicTable', module)
                 {person.age}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                <Button icon="delete" /> <Button icon="edit" />
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
               </EpicCell>
             </EpicRow>
           ))}
@@ -815,7 +912,8 @@ storiesOf('table|EpicTable', module)
                 {person.age}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                <Button icon="delete" /> <Button icon="edit" />
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
               </EpicCell>
             </EpicRow>
           ))}
@@ -1087,7 +1185,8 @@ storiesOf('table|EpicTable', module)
                 {person.sex}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                <Button icon="delete" /> <Button icon="edit" />
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
               </EpicCell>
             </EpicRow>
           ))}
@@ -1159,7 +1258,8 @@ storiesOf('table|EpicTable', module)
                 {person.eyeColor}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                <Button icon="delete" /> <Button icon="edit" />
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
               </EpicCell>
             </EpicRow>
           ))}
@@ -1251,7 +1351,8 @@ storiesOf('table|EpicTable', module)
                     {person.sex}
                   </EpicCell>
                   <EpicCell width={300} height={44}>
-                    <Button icon="delete" /> <Button icon="edit" />
+                    <Button icon="delete" onClick={action('delete')} />
+                    <Button icon="edit" onClick={action('edit')} />
                   </EpicCell>
                 </EpicRow>
               ))}
@@ -1282,7 +1383,8 @@ storiesOf('table|EpicTable', module)
                     <EpicCellLayout mode="horizontal">
                       {person.lastName}
                       <div>
-                        <Button icon="delete" /> <Button icon="edit" />
+                        <Button icon="delete" onClick={action('delete')} />
+                        <Button icon="edit" onClick={action('edit')} />
                       </div>
                     </EpicCellLayout>
                   </EpicCell>
@@ -1377,7 +1479,8 @@ storiesOf('table|EpicTable', module)
                 {person.sex}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                <Button icon="delete" /> <Button icon="edit" />
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
               </EpicCell>
             </EpicRow>
           ))}
@@ -1482,7 +1585,8 @@ storiesOf('table|EpicTable', module)
                   {person.sex}
                 </EpicCell>
                 <EpicCell width={300} height={44}>
-                  <Button icon="delete" /> <Button icon="edit" />
+                  <Button icon="delete" onClick={action('delete')} />
+                  <Button icon="edit" onClick={action('edit')} />
                 </EpicCell>
               </EpicRow>
               <EpicExpanderRow active={index === expanded} height={58}>
@@ -1590,7 +1694,8 @@ storiesOf('table|EpicTable', module)
                     {person.sex}
                   </EpicCell>
                   <EpicCell width={300} height={44}>
-                    <Button icon="delete" /> <Button icon="edit" />
+                    <Button icon="delete" onClick={action('delete')} />
+                    <Button icon="edit" onClick={action('edit')} />
                   </EpicCell>
                 </EpicRow>
                 <EpicDetailRow active={index === detail} left={300}>
@@ -1751,7 +1856,8 @@ storiesOf('table|EpicTable', module)
                     {person.weight}
                   </EpicCell>
                   <EpicCell width={300} height={44}>
-                    <Button icon="delete" /> <Button icon="edit" />
+                    <Button icon="delete" onClick={action('delete')} />
+                    <Button icon="edit" onClick={action('edit')} />
                   </EpicCell>
                 </EpicRow>
                 <EpicDetailRow active={index === detail} left={300}>
@@ -1911,7 +2017,8 @@ storiesOf('table|EpicTable', module)
                 {person.sex}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                <Button icon="delete" /> <Button icon="edit" />
+                <Button icon="delete" onClick={action('delete')} />
+                <Button icon="edit" onClick={action('edit')} />
               </EpicCell>
             </EpicRow>
           ))}
