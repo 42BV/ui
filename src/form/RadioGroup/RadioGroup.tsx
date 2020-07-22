@@ -7,10 +7,12 @@ import { Color } from '../types';
 import { t } from '../../utilities/translation/translation';
 import {
   isOptionSelected,
+  keyForOption,
   OptionEnabledCallback,
   OptionEqual,
   OptionForValue,
-  OptionsFetcher
+  OptionsFetcher,
+  UniqueKeyForValue
 } from '../option';
 import { doBlur } from '../utils';
 import Loading from '../../core/Loading/Loading';
@@ -130,6 +132,13 @@ interface BaseProps<T> {
    * the optionsFetcher to reload the options.
    */
   watch?: any;
+
+  /**
+   * Optional callback to get a unique key for an item.
+   * This is used to provide each option in the form element a unique key.
+   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
+   */
+  uniqueKeyForValue?: UniqueKeyForValue<T>;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -159,6 +168,7 @@ export default function RadioGroup<T>(props: Props<T>) {
     placeholder,
     onChange,
     onBlur,
+    uniqueKeyForValue,
     optionForValue,
     isOptionEqual,
     horizontal = false,
@@ -218,15 +228,21 @@ export default function RadioGroup<T>(props: Props<T>) {
 
           {options.map(option => {
             const label = optionForValue(option);
+            const key = keyForOption({
+              option,
+              uniqueKeyForValue,
+              optionForValue
+            });
 
             return (
-              <FormGroup key={label} check inline={horizontal}>
+              <FormGroup key={key} check inline={horizontal}>
                 <Label check>
                   <Input
                     type="radio"
                     value={label}
                     checked={isOptionSelected({
                       option,
+                      uniqueKeyForValue,
                       optionForValue,
                       isOptionEqual,
                       value

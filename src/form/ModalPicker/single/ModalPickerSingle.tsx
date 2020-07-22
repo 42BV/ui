@@ -11,10 +11,12 @@ import { Color } from '../../types';
 import {
   FetchOptionsCallback,
   isOptionSelected,
+  keyForOption,
   OptionEqual,
   OptionForValue,
   RenderOptions,
-  RenderOptionsOption
+  RenderOptionsOption,
+  UniqueKeyForValue
 } from '../../option';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
@@ -101,6 +103,13 @@ interface BaseProps<T> {
    * Optionally callback to display the selected item.
    */
   displayValues?: DisplayValue<T>;
+
+  /**
+   * Optional callback to get a unique key for an item.
+   * This is used to provide each option in the form element a unique key.
+   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
+   */
+  uniqueKeyForValue?: UniqueKeyForValue<T>;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -323,7 +332,12 @@ export default class ModalPickerSingle<T> extends React.Component<
       return <EmptyModal userHasSearched={this.state.userHasSearched} />;
     }
 
-    const { optionForValue, isOptionEqual, ...props } = this.props;
+    const {
+      optionForValue,
+      isOptionEqual,
+      uniqueKeyForValue,
+      ...props
+    } = this.props;
 
     if ('renderOptions' in props && props.renderOptions) {
       return props.renderOptions(
@@ -333,20 +347,21 @@ export default class ModalPickerSingle<T> extends React.Component<
 
     return page.content.map((option: T) => {
       const label = optionForValue(option);
+      const key = keyForOption({ option, uniqueKeyForValue, optionForValue });
 
       const isChecked = isOptionSelected({
         option,
+        uniqueKeyForValue,
         optionForValue,
         isOptionEqual,
         value: selected
       });
 
       return (
-        <FormGroup key={label} check>
+        <FormGroup key={key} check>
           <Label check>
             <Input
               type="radio"
-              name={label}
               checked={isChecked}
               onChange={() => this.itemClicked(option)}
             />

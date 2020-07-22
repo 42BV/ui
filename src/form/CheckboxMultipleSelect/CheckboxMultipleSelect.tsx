@@ -9,10 +9,12 @@ import Spinner from '../../core/Spinner/Spinner';
 import { Color } from '../types';
 import {
   isOptionSelected,
+  keyForOption,
   OptionEnabledCallback,
   OptionEqual,
   OptionForValue,
-  OptionsFetcher
+  OptionsFetcher,
+  UniqueKeyForValue
 } from '../option';
 import { t } from '../../utilities/translation/translation';
 import { doBlur } from '../utils';
@@ -107,6 +109,13 @@ interface BaseProps<T> {
    * Defaults to `false`
    */
   horizontal?: boolean;
+
+  /**
+   * Optional callback to get a unique key for an item.
+   * This is used to provide each option in the form element a unique key.
+   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
+   */
+  uniqueKeyForValue?: UniqueKeyForValue<T>;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -171,7 +180,13 @@ export default class CheckboxMultipleSelect<T> extends Component<
   }
 
   optionClicked(option: T, isChecked: boolean) {
-    const { value, onChange, onBlur } = this.props;
+    const {
+      value,
+      onChange,
+      onBlur,
+      uniqueKeyForValue,
+      optionForValue
+    } = this.props;
 
     // Always copy the `value` so the `selected` is a fresh array.
     // Otherwise the selection will be the same as the value, which
@@ -184,7 +199,9 @@ export default class CheckboxMultipleSelect<T> extends Component<
 
       const filterFn = isOptionEqual
         ? (v: T) => !isOptionEqual(option, v)
-        : (v: T) => v !== option;
+        : (v: T) =>
+            keyForOption({ option: v, uniqueKeyForValue, optionForValue }) !==
+            keyForOption({ option, uniqueKeyForValue, optionForValue });
 
       selected = selected.filter(filterFn);
     } else {
@@ -263,22 +280,29 @@ export default class CheckboxMultipleSelect<T> extends Component<
   }
 
   renderOptions(options: T[], horizontal: boolean) {
-    const { optionForValue, value, isOptionEqual } = this.props;
+    const {
+      optionForValue,
+      uniqueKeyForValue,
+      value,
+      isOptionEqual
+    } = this.props;
 
     const isOptionEnabled = get(this.props, 'isOptionEnabled', constant(true));
 
     return options.map((option, index) => {
       const label = optionForValue(option);
+      const key = keyForOption({ option, uniqueKeyForValue, optionForValue });
 
       const isChecked = isOptionSelected({
         option,
+        uniqueKeyForValue,
         optionForValue,
         isOptionEqual,
         value
       });
 
       return (
-        <FormGroup check key={label} inline={horizontal}>
+        <FormGroup check key={key} inline={horizontal}>
           <Label check>
             <RSInput
               type="checkbox"

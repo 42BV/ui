@@ -8,10 +8,12 @@ import { Color } from '../types';
 import { t } from '../../utilities/translation/translation';
 import {
   isOptionSelected,
+  keyForOption,
   OptionEnabledCallback,
   OptionEqual,
   OptionForValue,
-  OptionsFetcher
+  OptionsFetcher,
+  UniqueKeyForValue
 } from '../option';
 import { useOptions } from '../useOptions';
 import Loading from '../../core/Loading/Loading';
@@ -105,6 +107,13 @@ interface BaseProps<T> {
    * the optionsFetcher to reload the options.
    */
   watch?: any;
+
+  /**
+   * Optional callback to get a unique key for an item.
+   * This is used to provide each option in the form element a unique key.
+   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
+   */
+  uniqueKeyForValue?: UniqueKeyForValue<T>;
 }
 
 interface WithoutLabel<T> extends BaseProps<T> {
@@ -141,6 +150,7 @@ export default function Select<T>(props: Props<T>) {
     placeholder,
     onChange,
     onBlur,
+    uniqueKeyForValue,
     optionForValue,
     isOptionEqual,
     watch
@@ -149,6 +159,7 @@ export default function Select<T>(props: Props<T>) {
   const { options, loading } = useOptions({
     optionsOrFetcher: props.options,
     value,
+    uniqueKeyForValue,
     isOptionEqual,
     optionForValue,
     watch
@@ -179,7 +190,13 @@ export default function Select<T>(props: Props<T>) {
   const indexOfValue =
     value !== undefined
       ? options.findIndex(option =>
-          isOptionSelected({ option, optionForValue, isOptionEqual, value })
+          isOptionSelected({
+            option,
+            uniqueKeyForValue,
+            optionForValue,
+            isOptionEqual,
+            value
+          })
         )
       : undefined;
 
@@ -207,10 +224,15 @@ export default function Select<T>(props: Props<T>) {
 
           {options.map((option, index) => {
             const label = optionForValue(option);
+            const key = keyForOption({
+              option,
+              uniqueKeyForValue,
+              optionForValue
+            });
 
             return (
               <option
-                key={label}
+                key={key}
                 // @ts-ignore
                 value={index}
                 disabled={!isOptionEnabled(option)}

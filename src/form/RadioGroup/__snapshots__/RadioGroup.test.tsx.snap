@@ -18,7 +18,7 @@ exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => hor
   <FormGroup
     check={true}
     inline={true}
-    key="admin@42.nl"
+    key="42"
     tag="div"
   >
     <Label
@@ -48,7 +48,7 @@ exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => hor
   <FormGroup
     check={true}
     inline={true}
-    key="coordinator@42.nl"
+    key="777"
     tag="div"
   >
     <Label
@@ -78,7 +78,7 @@ exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => hor
   <FormGroup
     check={true}
     inline={true}
-    key="user@42.nl"
+    key="1337"
     tag="div"
   >
     <Label
@@ -127,7 +127,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
   <FormGroup
     check={true}
     inline={false}
-    key="admin@42.nl"
+    key="42"
     tag="div"
   >
     <Label
@@ -157,7 +157,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
   <FormGroup
     check={true}
     inline={false}
-    key="coordinator@42.nl"
+    key="777"
     tag="div"
   >
     <Label
@@ -187,7 +187,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
   <FormGroup
     check={true}
     inline={false}
-    key="user@42.nl"
+    key="1337"
     tag="div"
   >
     <Label
@@ -233,7 +233,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
   <FormGroup
     check={true}
     inline={false}
-    key="admin@42.nl"
+    key="42"
     tag="div"
   >
     <Label
@@ -263,7 +263,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
   <FormGroup
     check={true}
     inline={false}
-    key="coordinator@42.nl"
+    key="777"
     tag="div"
   >
     <Label
@@ -293,7 +293,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
   <FormGroup
     check={true}
     inline={false}
-    key="user@42.nl"
+    key="1337"
     tag="div"
   >
     <Label
@@ -335,7 +335,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
   <FormGroup
     check={true}
     inline={false}
-    key="admin@42.nl"
+    key="42"
     tag="div"
   >
     <Label
@@ -365,7 +365,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
   <FormGroup
     check={true}
     inline={false}
-    key="coordinator@42.nl"
+    key="777"
     tag="div"
   >
     <Label
@@ -395,7 +395,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
   <FormGroup
     check={true}
     inline={false}
-    key="user@42.nl"
+    key="1337"
     tag="div"
   >
     <Label

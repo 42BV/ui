@@ -36,21 +36,21 @@ exports[`Component: Select ui with value: Component: Select => ui => with value 
     </option>
     <option
       disabled={false}
-      key="admin@42.nl"
+      key="42"
       value={0}
     >
       admin@42.nl
     </option>
     <option
       disabled={false}
-      key="coordinator@42.nl"
+      key="777"
       value={1}
     >
       coordinator@42.nl
     </option>
     <option
       disabled={false}
-      key="user@42.nl"
+      key="1337"
       value={2}
     >
       user@42.nl
@@ -80,21 +80,21 @@ exports[`Component: Select ui without label: Component: Select => ui => without 
     </option>
     <option
       disabled={false}
-      key="admin@42.nl"
+      key="42"
       value={0}
     >
       admin@42.nl
     </option>
     <option
       disabled={false}
-      key="coordinator@42.nl"
+      key="777"
       value={1}
     >
       coordinator@42.nl
     </option>
     <option
       disabled={false}
-      key="user@42.nl"
+      key="1337"
       value={2}
     >
       user@42.nl
@@ -137,21 +137,21 @@ exports[`Component: Select ui without placeholder: Component: Select => ui => wi
     <option />
     <option
       disabled={false}
-      key="admin@42.nl"
+      key="42"
       value={0}
     >
       admin@42.nl
     </option>
     <option
       disabled={false}
-      key="coordinator@42.nl"
+      key="777"
       value={1}
     >
       coordinator@42.nl
     </option>
     <option
       disabled={false}
-      key="user@42.nl"
+      key="1337"
       value={2}
     >
       user@42.nl

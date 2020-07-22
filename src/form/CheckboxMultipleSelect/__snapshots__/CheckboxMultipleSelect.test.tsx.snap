@@ -30,7 +30,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
   <FormGroup
     check={true}
     inline={true}
-    key="admin@42.nl"
+    key="42"
     tag="div"
   >
     <Label
@@ -60,7 +60,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
   <FormGroup
     check={true}
     inline={true}
-    key="coordinator@42.nl"
+    key="777"
     tag="div"
   >
     <Label
@@ -90,7 +90,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
   <FormGroup
     check={true}
     inline={true}
-    key="user@42.nl"
+    key="1337"
     tag="div"
   >
     <Label
@@ -182,7 +182,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
       <FormGroup
         check={true}
         inline={false}
-        key="admin@42.nl"
+        key="42"
         tag="div"
       >
         <Label
@@ -212,7 +212,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
       <FormGroup
         check={true}
         inline={false}
-        key="coordinator@42.nl"
+        key="777"
         tag="div"
       >
         <Label
@@ -242,7 +242,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
       <FormGroup
         check={true}
         inline={false}
-        key="user@42.nl"
+        key="1337"
         tag="div"
       >
         <Label
@@ -321,7 +321,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
       <FormGroup
         check={true}
         inline={false}
-        key="admin@42.nl"
+        key="42"
         tag="div"
       >
         <Label
@@ -351,7 +351,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
       <FormGroup
         check={true}
         inline={false}
-        key="coordinator@42.nl"
+        key="777"
         tag="div"
       >
         <Label
@@ -381,7 +381,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
       <FormGroup
         check={true}
         inline={false}
-        key="user@42.nl"
+        key="1337"
         tag="div"
       >
         <Label
@@ -468,7 +468,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
       <FormGroup
         check={true}
         inline={false}
-        key="admin@42.nl"
+        key="42"
         tag="div"
       >
         <Label
@@ -498,7 +498,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
       <FormGroup
         check={true}
         inline={false}
-        key="coordinator@42.nl"
+        key="777"
         tag="div"
       >
         <Label
@@ -528,7 +528,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
       <FormGroup
         check={true}
         inline={false}
-        key="user@42.nl"
+        key="1337"
         tag="div"
       >
         <Label

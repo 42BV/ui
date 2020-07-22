@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Color } from '../types';
-import { FetchOptionsCallback, OptionEqual, OptionForValue } from '../option';
+import {
+  FetchOptionsCallback,
+  OptionEqual,
+  OptionForValue,
+  UniqueKeyForValue
+} from '../option';
 import withJarb from '../withJarb/withJarb';
 
 import ModalPickerMultiple from '../ModalPicker/multiple/ModalPickerMultiple';
@@ -79,6 +84,13 @@ interface BaseValuePickerProps<T> {
    * This text should already be translated.
    */
   text?: Text;
+
+  /**
+   * Optional callback to get a unique key for an item.
+   * This is used to provide each option in the form element a unique key.
+   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
+   */
+  uniqueKeyForValue?: UniqueKeyForValue<T>;
 }
 
 interface SingleValuePicker<T> extends BaseValuePickerProps<T> {

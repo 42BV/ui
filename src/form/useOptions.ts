@@ -5,13 +5,15 @@ import {
   isOptionSelected,
   OptionEqual,
   OptionForValue,
-  OptionsFetcher
+  OptionsFetcher,
+  UniqueKeyForValue
 } from './option';
 import { isEqual } from 'lodash';
 
 interface UseOptionConfig<T> {
   optionsOrFetcher: OptionsFetcher<T> | T[];
   value?: T;
+  uniqueKeyForValue?: UniqueKeyForValue<T>;
   optionForValue: OptionForValue<T>;
   isOptionEqual?: OptionEqual<T>;
   watch?: any;
@@ -26,6 +28,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
   const {
     optionsOrFetcher,
     value,
+    uniqueKeyForValue,
     optionForValue,
     isOptionEqual,
     watch
@@ -96,13 +99,26 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
     if (value) {
       if (
         !options.some(option =>
-          isOptionSelected({ option, optionForValue, isOptionEqual, value })
+          isOptionSelected({
+            option,
+            uniqueKeyForValue,
+            optionForValue,
+            isOptionEqual,
+            value
+          })
         )
       ) {
         setOptions([value, ...options]);
       }
     }
-  }, [value, options, isOptionEqual, optionForValue, setOptions]);
+  }, [
+    value,
+    options,
+    isOptionEqual,
+    uniqueKeyForValue,
+    optionForValue,
+    setOptions
+  ]);
 
   return { loading, options };
 }

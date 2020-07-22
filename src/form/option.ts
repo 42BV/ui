@@ -7,6 +7,11 @@ import { ReactNode } from 'react';
  */
 export type OptionForValue<T> = (value: T) => string;
 
+/**
+ * Callback to determine the unique identifier for a given value of type T.
+ */
+export type UniqueKeyForValue<T> = (value: T) => string;
+
 export type OptionEqual<T> = (a: T, b: T) => boolean;
 
 export type RenderOptionsOption<T> = {
@@ -54,6 +59,7 @@ export type FetchOptionsCallback<T> = (
 
 type IsOptionSelectedConfig<T> = {
   option: T;
+  uniqueKeyForValue?: UniqueKeyForValue<T>;
   optionForValue: OptionForValue<T>;
   isOptionEqual?: OptionEqual<T>;
   value?: T[] | T;
@@ -61,6 +67,7 @@ type IsOptionSelectedConfig<T> = {
 
 export function isOptionSelected<T>({
   option,
+  uniqueKeyForValue,
   optionForValue,
   isOptionEqual,
   value
@@ -73,15 +80,45 @@ export function isOptionSelected<T>({
     if (isOptionEqual) {
       return value.some(v => isOptionEqual(v, option));
     } else {
-      const label = optionForValue(option);
-      return value.some(v => label === optionForValue(v));
+      const key = keyForOption({ option, uniqueKeyForValue, optionForValue });
+      return value.some(
+        v =>
+          key === keyForOption({ option: v, uniqueKeyForValue, optionForValue })
+      );
     }
   } else {
     if (isOptionEqual) {
       return isOptionEqual(value, option);
     } else {
-      const label = optionForValue(option);
-      return label === optionForValue(value);
+      const key = keyForOption({ option, uniqueKeyForValue, optionForValue });
+      return (
+        key ===
+        keyForOption({ option: value, uniqueKeyForValue, optionForValue })
+      );
     }
   }
+}
+
+type KeyForOptionConfig<T> = {
+  option: T;
+  uniqueKeyForValue?: UniqueKeyForValue<T>;
+  optionForValue: OptionForValue<T>;
+};
+
+export function keyForOption<T>({
+  option,
+  uniqueKeyForValue,
+  optionForValue
+}: KeyForOptionConfig<T>) {
+  if (uniqueKeyForValue) {
+    return uniqueKeyForValue(option);
+  }
+
+  // @ts-ignore
+  if (option.id) {
+    // @ts-ignore
+    return `${option.id}`;
+  }
+
+  return optionForValue(option);
 }

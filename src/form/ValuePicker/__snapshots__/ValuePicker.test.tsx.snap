@@ -126,7 +126,7 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
                 <FormGroup
                   check={true}
                   inline={false}
-                  key="admin@42.nl"
+                  key="42"
                   tag="div"
                 >
                   <div
@@ -173,7 +173,7 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
                 <FormGroup
                   check={true}
                   inline={false}
-                  key="coordinator@42.nl"
+                  key="777"
                   tag="div"
                 >
                   <div
@@ -220,7 +220,7 @@ exports[`Component: ValuePicker multiple should render a \`CheckboxMultipleSelec
                 <FormGroup
                   check={true}
                   inline={false}
-                  key="user@42.nl"
+                  key="1337"
                   tag="div"
                 >
                   <div
@@ -835,7 +835,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
         <FormGroup
           check={true}
           inline={false}
-          key="admin@42.nl"
+          key="42"
           tag="div"
         >
           <div
@@ -882,7 +882,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
         <FormGroup
           check={true}
           inline={false}
-          key="coordinator@42.nl"
+          key="777"
           tag="div"
         >
           <div
@@ -929,7 +929,7 @@ exports[`Component: ValuePicker single should render a \`RadioGroup\` component 
         <FormGroup
           check={true}
           inline={false}
-          key="user@42.nl"
+          key="1337"
           tag="div"
         >
           <div
@@ -1073,28 +1073,28 @@ exports[`Component: ValuePicker single should render a \`Select\` component when
             </option>
             <option
               disabled={false}
-              key="admin@42.nl"
+              key="42"
               value={0}
             >
               admin@42.nl
             </option>
             <option
               disabled={false}
-              key="coordinator@42.nl"
+              key="777"
               value={1}
             >
               coordinator@42.nl
             </option>
             <option
               disabled={false}
-              key="user@42.nl"
+              key="1337"
               value={2}
             >
               user@42.nl
             </option>
             <option
               disabled={false}
-              key="nobody@42.nl"
+              key="999"
               value={3}
             >
               nobody@42.nl
