@@ -132,6 +132,7 @@ export { t } from './utilities/translation/translation';
 export { setTranslator } from './utilities/translation/translator';
 export { pageOf } from './utilities/page/page';
 export { useBodyFixOnModalClose } from './core/useBodyFixOnModalClose/useBodyFixOnModalClose';
+export { configure } from './config/config';
 
 // Types
 export { Color } from './core/types';

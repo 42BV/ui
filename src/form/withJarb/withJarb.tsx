@@ -9,6 +9,7 @@ import FormError from '../FormError/FormError';
 import { getState } from '../utils';
 import Tooltip from '../../core/Tooltip/Tooltip';
 import { useHasErrors } from './useHasErrors/useHasErrors';
+import { MarkedAsRequiredLabel } from './components/MarkedAsRequiredLabel/MarkedAsRequiredLabel';
 
 // This is a list of props that `withJarb` will pass to the `final-form`
 // Field, but not the wrapper.
@@ -35,6 +36,7 @@ interface FieldCompatible<Value, ChangeValue> {
   valid?: boolean;
   error?: React.ReactNode;
   errorMode?: 'tooltip' | 'below';
+  label?: React.ReactNode;
 }
 
 /**
@@ -112,6 +114,13 @@ export default function withJarb<
     // Bit magical this one but this makes TypeScript accept all other
     // props as the Props to the wrapped component.
     const wrapperProps = (omit(rest, passedFieldProps) as unknown) as P;
+
+    wrapperProps.label = (
+      <MarkedAsRequiredLabel
+        validator={jarb.validator}
+        label={wrapperProps.label}
+      />
+    );
 
     const fieldProps = pick(rest, [
       'initialValue',

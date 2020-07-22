@@ -181,6 +181,9 @@ Here is a JSON notation containing all keys and default translations:
     "SPECIAL_CHARACTER": "Must contain at least one special character ({{specialChars}})",
     "MINIMUM_LENGTH": "Must contain at least {{minimumLength}} characters",
     "NO_SPACE": "Must not contain any space"
+  },
+  "withJarb": {
+    "REQUIRED_MARK": " *"
   }
 }
 ```

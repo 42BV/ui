@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: MarkedAsRequiredLabel should not render anything when label is undefined: Component: MarkedAsRequiredLabel => should return undefined when label is undefined 1`] = `""`;
+
+exports[`Component: MarkedAsRequiredLabel should render label with required mark when constraints include field validator: Component: MarkedAsRequiredLabel => should render label with required mark when constraints include field validator 1`] = `
+<Fragment>
+  First Name
+   *
+</Fragment>
+`;
+
+exports[`Component: MarkedAsRequiredLabel should render label without required mark when constraints are not defined: Component: MarkedAsRequiredLabel => should render label without required mark when constraints are not defined 1`] = `
+<Fragment>
+  First Name
+</Fragment>
+`;
+
+exports[`Component: MarkedAsRequiredLabel should render label without required mark when constraints does not include field validator: Component: MarkedAsRequiredLabel => should render label without required mark when constraints does not include field validator 1`] = `
+<Fragment>
+  First Name
+</Fragment>
+`;
+
+exports[`Component: MarkedAsRequiredLabel should render label without required mark when constraints include field validator but field is not required: Component: MarkedAsRequiredLabel => should render label without required mark when constraints include field validator but field is not required 1`] = `
+<Fragment>
+  First Name
+</Fragment>
+`;
+
+exports[`Component: MarkedAsRequiredLabel should render label without required mark when label is a custom component: Component: MarkedAsRequiredLabel => should render label without required mark when label is a custom component 1`] = `
+<Fragment>
+  <Tooltip
+    content="This field is required"
+  >
+    First Name
+  </Tooltip>
+</Fragment>
+`;
+
+exports[`Component: MarkedAsRequiredLabel should render label without required mark when showRequiredMarkInLabel is disabled in config: Component: MarkedAsRequiredLabel => should render label without required mark when showRequiredMarkInLabel is disabled in config 1`] = `
+<Fragment>
+  First Name
+</Fragment>
+`;

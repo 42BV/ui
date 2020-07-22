@@ -53,6 +53,11 @@ exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => jar
   >
     <Input
       color=""
+      label={
+        <MarkedAsRequiredLabel
+          validator="User.email"
+        />
+      }
       onBlur={[MockFunction]}
       onChange={[Function]}
       value="value"
@@ -105,7 +110,12 @@ exports[`HoC: withJarb ui: withJarb => ui => jarbField 1`] = `
     />
   }
   id="firstName"
-  label="First name"
+  label={
+    <MarkedAsRequiredLabel
+      label="First name"
+      validator="User.email"
+    />
+  }
   onBlur={[MockFunction]}
   onChange={[Function]}
   placeholder="Please enter your first name"
