@@ -20,6 +20,10 @@
       cursor: pointer;
     }
   }
+  canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
   .img-upload-wrapper {
     @extend .text-center;
     padding-top: 3rem;
