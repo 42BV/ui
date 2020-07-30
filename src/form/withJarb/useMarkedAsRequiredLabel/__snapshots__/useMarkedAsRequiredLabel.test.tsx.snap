@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hook: useMarkedAsRequiredLabel should render label with required mark when constraints include field validator: Hook: useMarkedAsRequiredLabel => should render label with required mark when constraints include field validator 1`] = `
+<React.Fragment>
+  First Name
+   *
+</React.Fragment>
+`;
+
+exports[`Hook: useMarkedAsRequiredLabel should render label without required mark when label is a custom component: Hook: useMarkedAsRequiredLabel => should render label without required mark when label is a custom component 1`] = `
+<Tooltip
+  content="This field is required"
+>
+  First Name
+</Tooltip>
+`;

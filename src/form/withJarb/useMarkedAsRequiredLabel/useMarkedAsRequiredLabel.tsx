@@ -1,16 +1,19 @@
 import React from 'react';
-import { isRequired } from '@42.nl/jarb-final-form';
-import { getConfig } from '../../../../config/config';
-import { t } from '../../../../utilities/translation/translation';
 
-type Props = {
+import { isRequired } from '@42.nl/jarb-final-form';
+
+import { getConfig } from '../../../config/config';
+import { t } from '../../../utilities/translation/translation';
+
+export function useMarkedAsRequiredLabel({
+  label,
+  validator
+}: {
   label?: React.ReactNode;
   validator: string;
-};
-
-export function MarkedAsRequiredLabel({ label, validator }: Props) {
+}) {
   if (!label) {
-    return null;
+    return label;
   }
 
   const { showRequiredMarkInLabel } = getConfig();
@@ -31,5 +34,5 @@ export function MarkedAsRequiredLabel({ label, validator }: Props) {
     );
   }
 
-  return <>{label}</>;
+  return label;
 }

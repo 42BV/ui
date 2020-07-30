@@ -9,7 +9,7 @@ import FormError from '../FormError/FormError';
 import { getState } from '../utils';
 import Tooltip from '../../core/Tooltip/Tooltip';
 import { useHasErrors } from './useHasErrors/useHasErrors';
-import { MarkedAsRequiredLabel } from './components/MarkedAsRequiredLabel/MarkedAsRequiredLabel';
+import { useMarkedAsRequiredLabel } from './useMarkedAsRequiredLabel/useMarkedAsRequiredLabel';
 
 // This is a list of props that `withJarb` will pass to the `final-form`
 // Field, but not the wrapper.
@@ -115,12 +115,10 @@ export default function withJarb<
     // props as the Props to the wrapped component.
     const wrapperProps = (omit(rest, passedFieldProps) as unknown) as P;
 
-    wrapperProps.label = (
-      <MarkedAsRequiredLabel
-        validator={jarb.validator}
-        label={wrapperProps.label}
-      />
-    );
+    wrapperProps.label = useMarkedAsRequiredLabel({
+      label: wrapperProps.label,
+      validator: jarb.validator
+    });
 
     const fieldProps = pick(rest, [
       'initialValue',
