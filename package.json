@@ -1,6 +1,6 @@
 {
   "name": "@42.nl/ui",
-  "version": "2.22.1",
+  "version": "2.22.2",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
