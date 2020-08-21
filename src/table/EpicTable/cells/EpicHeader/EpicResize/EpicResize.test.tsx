@@ -58,6 +58,43 @@ describe('Component: EpicResize', () => {
       expect(document.body.classList.contains('user-select-none')).toBe(false);
     });
 
+    it('should when onResize changes update the throttle', () => {
+      let mouseMove;
+
+      jest.spyOn(window, 'addEventListener').mockImplementation((type, fn) => {
+        if (type === 'mousemove') {
+          mouseMove = fn;
+        }
+      });
+
+      const oldResizeSpy = jest.fn();
+
+      const epicResize = mount(
+        <EpicResize width={300} onResize={oldResizeSpy} />
+      );
+
+      // @ts-ignore
+      epicResize
+        .find('div')
+        .props()
+        // @ts-ignore
+        .onMouseDown({ clientX: 300 });
+
+      mouseMove({ clientX: 342, preventDefault: jest.fn() });
+      expect(oldResizeSpy).toBeCalledTimes(1);
+
+      const newResizeSpy = jest.fn();
+
+      epicResize.setProps({ onResize: newResizeSpy });
+
+      mouseMove({ clientX: 342, preventDefault: jest.fn() });
+      // The old one should not be called again
+      expect(oldResizeSpy).toBeCalledTimes(1);
+
+      // The new should be called instead
+      expect(newResizeSpy).toBeCalledTimes(1);
+    });
+
     it('should not allow resizing to below the initial width', () => {
       let mouseMove;
 
