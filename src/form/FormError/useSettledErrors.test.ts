@@ -170,31 +170,41 @@ describe('useSettledErrors', () => {
       expect(result.current).toEqual([]);
     });
 
-    test('that errors are cached by value', () => {
+    test('that errors are cached by value, but removed after a while', () => {
+      // We start with a value "small-error" which will produce a "Small error"
       const { result, rerender } = setup({
         meta: { error: 'Small error', active: true },
         value: 'small-error'
       });
 
-      // Show first errors
+      // Show the error coming from the active to showErrors
       act(() => {
-        jest.advanceTimersToNextTimer();
+        jest.advanceTimersByTime(5000);
       });
-
-      // It should start of with the error
       expect(result.current).toEqual(['Small error']);
 
-      // Set the value to 'small-error' with no error, to simulate an
-      // async validation which `final-form` will set the error to
-      // undefined
-      rerender({ meta: { active: true, error: undefined }, value: 'small-error' });
+      // Set the value to "small-error" with no error (undefined), to
+      // simulate an async validation which `final-form` will set the
+      // error to undefined
+      rerender({
+        meta: { active: true, error: undefined },
+        value: 'small-error'
+      });
 
       // It should use the error from the cache, even though error
-      // was undefined
+      // was undefined. But set a a timer to clear it after
+      // 2000 milliseconds.
       act(() => {
-        jest.advanceTimersToNextTimer();
+        jest.advanceTimersByTime(100);
       });
       expect(result.current).toEqual(['Small error']);
+
+      // It should clear the error after 2000 milliseconds
+      act(() => {
+        jest.advanceTimersByTime(2000);
+      });
+
+      expect(result.current).toEqual([]);
     });
   });
 });
