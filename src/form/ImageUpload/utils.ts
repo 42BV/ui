@@ -64,3 +64,8 @@ export function calculateScale(scale: number, delta: number): number {
 
   return clamped;
 }
+
+// Replace any part after the last dot in the filename with .png
+export function replaceFileExtension(fileName: string) {
+  return fileName.replace(/\.[\w]+$/, '.png');
+}

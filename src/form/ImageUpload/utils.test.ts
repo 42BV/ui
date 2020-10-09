@@ -2,7 +2,8 @@ import {
   getPicaInstance,
   dataUrlToFile,
   cropToAvatarEditorConfig,
-  calculateScale
+  calculateScale,
+  replaceFileExtension
 } from './utils';
 
 test('getPicaInstance', () => {
@@ -56,4 +57,23 @@ test('calculateScale', () => {
   // clamp
   expect(calculateScale(1, 800)).toBe(1);
   expect(calculateScale(10, -800)).toBe(10);
+});
+
+test('replaceFileExtension', () => {
+  expect(replaceFileExtension('')).toBe('');
+  expect(replaceFileExtension('test')).toBe('test');
+  expect(replaceFileExtension('test.png')).toBe('test.png');
+  expect(replaceFileExtension('test.jpg')).toBe('test.png');
+  expect(replaceFileExtension('test.jpeg')).toBe('test.png');
+  expect(replaceFileExtension('test.svg')).toBe('test.png');
+  expect(replaceFileExtension('test.gif')).toBe('test.png');
+  expect(replaceFileExtension('test.bmp')).toBe('test.png');
+  expect(replaceFileExtension('test.tif')).toBe('test.png');
+  expect(replaceFileExtension('test.tiff')).toBe('test.png');
+  expect(replaceFileExtension('test.webp')).toBe('test.png');
+  expect(replaceFileExtension('test.bladiebla')).toBe('test.png');
+  expect(replaceFileExtension('test.bladiebla.jpg')).toBe('test.bladiebla.png');
+  expect(replaceFileExtension('test.jpg2')).toBe('test.png');
+  expect(replaceFileExtension('test.jpg_2')).toBe('test.png');
+  expect(replaceFileExtension('test...jpg')).toBe('test...png');
 });

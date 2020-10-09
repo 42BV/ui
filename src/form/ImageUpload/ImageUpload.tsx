@@ -14,7 +14,8 @@ import {
   calculateScale,
   cropToAvatarEditorConfig,
   dataUrlToFile,
-  getPicaInstance
+  getPicaInstance,
+  replaceFileExtension
 } from './utils';
 
 export interface Text {
@@ -102,6 +103,13 @@ interface BaseProps {
    * Optionally customized text you want to use in this component.
    */
   text?: Text;
+
+  /**
+   * Optionally whether to keep the original file extension or to
+   * replace it with .png (because the output is always a PNG file).
+   * Defaults to false.
+   */
+  keepOriginalFileExtension?: boolean;
 }
 
 interface WithoutLabel extends BaseProps {
@@ -219,7 +227,7 @@ export default class ImageUpload extends Component<Props, State> {
   async onCrop() {
     /* istanbul ignore else */
     if (this.editorRef.current) {
-      const { crop } = this.props;
+      const { crop, keepOriginalFileExtension = false } = this.props;
 
       const canvas = this.editorRef.current.getImage();
       const config = cropToAvatarEditorConfig(crop);
@@ -239,12 +247,15 @@ export default class ImageUpload extends Component<Props, State> {
       );
 
       const dataUrl = picaCanvas.toDataURL('image/png', 1.0);
-      const file = dataUrlToFile(dataUrl, this.state.fileName);
+      const fileName = keepOriginalFileExtension
+        ? this.state.fileName
+        : replaceFileExtension(this.state.fileName);
+      const file = dataUrlToFile(dataUrl, fileName);
 
       this.props.onChange(file);
       doBlur(this.props.onBlur);
 
-      this.setState({ mode: Mode.FILE_SELECTED, imageSrc: dataUrl });
+      this.setState({ mode: Mode.FILE_SELECTED, imageSrc: dataUrl, fileName });
     }
   }
 

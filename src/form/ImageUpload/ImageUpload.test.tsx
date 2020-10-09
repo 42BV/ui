@@ -24,13 +24,15 @@ describe('Component: ImageUpload', () => {
     cropType,
     text,
     hasLabel = true,
-    emptyLabel = false
+    emptyLabel = false,
+    keepOriginalFileExtension
   }: {
     value?: File | string;
     cropType: 'rect' | 'circle';
     text?: Text;
     hasLabel?: boolean;
     emptyLabel?: boolean;
+    keepOriginalFileExtension?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -46,7 +48,8 @@ describe('Component: ImageUpload', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      text
+      text,
+      keepOriginalFileExtension
     };
 
     if (hasLabel) {
@@ -378,7 +381,11 @@ describe('Component: ImageUpload', () => {
         .spyOn(imgUploadUtils, 'dataUrlToFile')
         .mockImplementation(() => file);
 
-      imgUpload.setState({ imageSrc: 'maarten.png', mode: 'edit' });
+      imgUpload.setState({
+        imageSrc: 'maarten.png',
+        mode: 'edit',
+        fileName: 'maarten.png'
+      });
 
       const instance = imgUpload.instance();
       // @ts-ignore
@@ -420,7 +427,132 @@ describe('Component: ImageUpload', () => {
         expect(instance.setState).toHaveBeenCalledTimes(1);
         expect(instance.setState).toHaveBeenCalledWith({
           mode: 'file-selected',
-          imageSrc: 'Some base 64 string'
+          imageSrc: 'Some base 64 string',
+          fileName: 'maarten.png'
+        });
+
+        done();
+      } catch (error) {
+        console.error(error);
+        done.fail();
+      }
+    });
+
+    it('should replace the file extension when keepOriginalFileExtension is undefined', async done => {
+      setup({ value: undefined, cropType: 'circle' });
+
+      const { promise, resolve } = testUtils.resolvablePromise();
+
+      const resizeSpy = jest.fn(() => {
+        return promise;
+      });
+
+      jest.spyOn(imgUploadUtils, 'getPicaInstance').mockImplementation(() => {
+        return {
+          resize: resizeSpy
+        };
+      });
+
+      const file = new File([''], 'maarten.jpg');
+
+      jest
+        .spyOn(imgUploadUtils, 'dataUrlToFile')
+        .mockImplementation(() => file);
+
+      imgUpload.setState({
+        imageSrc: 'maarten.jpg',
+        mode: 'edit',
+        fileName: 'maarten.jpg'
+      });
+
+      const instance = imgUpload.instance();
+      // @ts-ignore
+      instance.editorRef = {
+        current: { getImage: jest.fn(() => 'fakeCanvas') }
+      };
+      jest.spyOn(instance, 'setState');
+
+      try {
+        await imgUpload
+          .find('Button')
+          .at(3)
+          .simulate('click');
+
+        resolve({
+          toDataURL: jest.fn(() => 'Some base 64 string')
+        });
+
+        await promise;
+
+        expect(instance.setState).toHaveBeenCalledTimes(1);
+        expect(instance.setState).toHaveBeenCalledWith({
+          mode: 'file-selected',
+          imageSrc: 'Some base 64 string',
+          fileName: 'maarten.png'
+        });
+
+        done();
+      } catch (error) {
+        console.error(error);
+        done.fail();
+      }
+    });
+
+    it('should not replace the file extension when keepOriginalFileExtension is true', async done => {
+      setup({
+        value: undefined,
+        cropType: 'circle',
+        keepOriginalFileExtension: true
+      });
+
+      const { promise, resolve } = testUtils.resolvablePromise();
+
+      const resizeSpy = jest.fn(() => {
+        return promise;
+      });
+
+      jest.spyOn(imgUploadUtils, 'getPicaInstance').mockImplementation(() => {
+        return {
+          resize: resizeSpy
+        };
+      });
+
+      const file = new File([''], 'maarten.jpg');
+
+      jest
+        .spyOn(imgUploadUtils, 'dataUrlToFile')
+        .mockImplementation(() => file);
+
+      imgUpload.setState({
+        imageSrc: 'maarten.jpg',
+        mode: 'edit',
+        fileName: 'maarten.jpg'
+      });
+
+      const instance = imgUpload.instance();
+      // @ts-ignore
+      instance.editorRef = {
+        current: { getImage: jest.fn(() => 'fakeCanvas') }
+      };
+      jest.spyOn(instance, 'setState');
+
+      try {
+        await imgUpload
+          .find('Button')
+          .at(3)
+          .simulate('click');
+
+        resolve({
+          toDataURL: jest.fn(() => 'Some base 64 string')
+        });
+
+        await promise;
+
+        expect(instance.setState).toHaveBeenCalledTimes(1);
+        expect(instance.setState).toHaveBeenCalledWith({
+          mode: 'file-selected',
+          imageSrc: 'Some base 64 string',
+          fileName: 'maarten.jpg'
         });
 
         done();
