@@ -22,12 +22,14 @@ exports[`Component: Input ui defaults to text: Component: Input => ui => default
     First name
   </Label>
   <Input
+    disabled={false}
     id="firstName"
     key="input"
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
     placeholder="Please enter your first name"
+    readOnly={false}
     type="text"
     value="Maarten"
   />
@@ -57,6 +59,7 @@ exports[`Component: Input ui is invalid: Component: Input => is invalid 1`] = `
     First name
   </Label>
   <Input
+    disabled={false}
     id="firstName"
     invalid={true}
     key="input"
@@ -64,6 +67,7 @@ exports[`Component: Input ui is invalid: Component: Input => is invalid 1`] = `
     onChange={[Function]}
     onFocus={[MockFunction]}
     placeholder="Please enter your first name"
+    readOnly={false}
     type="text"
     valid={false}
   />
@@ -93,12 +97,14 @@ exports[`Component: Input ui is valid: Component: Input => is valid 1`] = `
     First name
   </Label>
   <Input
+    disabled={false}
     id="firstName"
     key="input"
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
     placeholder="Please enter your first name"
+    readOnly={false}
     type="text"
     valid={true}
   />
@@ -137,12 +143,14 @@ exports[`Component: Input ui position left: Component: Input => position left 1`
       position="left"
     />
     <Input
+      disabled={false}
       id="firstName"
       key="input"
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={[MockFunction]}
       placeholder="Please enter your first name"
+      readOnly={false}
       type="text"
     />
   </InputGroup>
@@ -175,12 +183,14 @@ exports[`Component: Input ui position right: Component: Input => position right 
     tag="div"
   >
     <Input
+      disabled={false}
       id="firstName"
       key="input"
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={[MockFunction]}
       placeholder="Please enter your first name"
+      readOnly={false}
       type="text"
     />
     <Addon
@@ -216,12 +226,14 @@ exports[`Component: Input ui type email: Component: Input => ui => type email 1`
     First name
   </Label>
   <Input
+    disabled={false}
     id="firstName"
     key="input"
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
     placeholder="Please enter your first name"
+    readOnly={false}
     type="email"
     value="Maarten"
   />
@@ -251,6 +263,7 @@ exports[`Component: Input ui with mask: Component: Input => ui => with mask 1`] 
     First name
   </Label>
   <t
+    disabled={false}
     id="firstName"
     key="mask"
     mask={
@@ -275,6 +288,7 @@ exports[`Component: Input ui with mask: Component: Input => ui => with mask 1`] 
     onChange={[Function]}
     onFocus={[MockFunction]}
     placeholder="Please enter your first name"
+    readOnly={false}
     render={[Function]}
     type="text"
     value="Maarten"
@@ -290,11 +304,13 @@ exports[`Component: Input ui without label: Component: Input => ui => without la
   tag="div"
 >
   <Input
+    disabled={false}
     key="input"
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
     placeholder="Please enter your first name"
+    readOnly={false}
     type="text"
     value="Maarten"
   />
@@ -324,12 +340,14 @@ exports[`Component: Input ui without placeholder: Component: Input => ui => with
     First name
   </Label>
   <Input
+    disabled={false}
     id="firstName"
     key="input"
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
     placeholder=""
+    readOnly={false}
     type="text"
     value="Maarten"
   />

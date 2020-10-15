@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Input, { JarbInput } from './Input';
 import { Form, FinalForm } from '../story-utils';
-import { Tooltip, Icon } from '../..';
+import { Tooltip, Icon, Button } from '../..';
 
 function isSuperman(value: string) {
   return value === 'superman' ? undefined : 'Not "superman"';
@@ -99,6 +99,64 @@ storiesOf('Form|Input', module)
           placeholder="Please enter your first name"
           onChange={value => action(`You entered ${value}`)}
         />
+      </Form>
+    );
+  })
+  .add('disabled', () => {
+    const [isDisabled, setDisabled] = useState<boolean>(true);
+
+    return (
+      <Form>
+        <Input
+          id="firstName"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>First name</span>
+              <Tooltip
+                className="ml-1"
+                content="Your first name is on your birth certificate"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
+          placeholder="Please enter your first name"
+          disabled={isDisabled}
+          onChange={value => action(`You entered ${value}`)}
+        />
+
+        <Button onClick={() => setDisabled(!isDisabled)}>
+          Toggle disabled state
+        </Button>
+      </Form>
+    );
+  })
+  .add('readOnly', () => {
+    const [isReadOnly, setReadOnly] = useState<boolean>(true);
+
+    return (
+      <Form>
+        <Input
+          id="firstName"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>First name</span>
+              <Tooltip
+                className="ml-1"
+                content="Your first name is on your birth certificate"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
+          placeholder="Please enter your first name"
+          readOnly={isReadOnly}
+          onChange={value => action(`You entered ${value}`)}
+        />
+
+        <Button onClick={() => setReadOnly(!isReadOnly)}>
+          Toggle readOnly state
+        </Button>
       </Form>
     );
   })

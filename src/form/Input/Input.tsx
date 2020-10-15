@@ -78,6 +78,22 @@ interface BaseProps {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optionally whether or not the form element is disabled.
+   * A disabled form element is a form element that can't be edited. Also, it won't be included when submitting the form.
+   *
+   * Defaults to `false`
+   */
+  disabled?: boolean;
+
+  /**
+   * Optionally whether or not the form element is read-only.
+   * A read-only form element is a form element that can't be edited, but will be included when submitting the form.
+   *
+   * Defaults to `false`
+   */
+  readOnly?: boolean;
 }
 
 interface WithoutLabel extends BaseProps {
@@ -118,7 +134,9 @@ export default function Input(props: Props) {
     valid,
     mask,
     addon,
-    className = ''
+    className = '',
+    disabled,
+    readOnly
   } = props;
 
   const inputProps = {
@@ -132,7 +150,9 @@ export default function Input(props: Props) {
     onFocus,
     onChange: (event: ChangeEvent<HTMLInputElement>) =>
       onChange(event.target.value),
-    onBlur
+    onBlur,
+    disabled,
+    readOnly
   };
 
   // Cannot pass a reference when the input requires a mask

@@ -39,7 +39,9 @@ describe('Component: Input', () => {
     position,
     valid,
     hasPlaceholder = true,
-    hasLabel = true
+    hasLabel = true,
+    disabled = false,
+    readOnly = false
   }: {
     value?: string;
     type?: InputType;
@@ -48,6 +50,8 @@ describe('Component: Input', () => {
     valid?: boolean;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
+    disabled?: boolean;
+    readOnly?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -66,7 +70,9 @@ describe('Component: Input', () => {
       error: 'Some error',
       valid,
       mask,
-      addon
+      addon,
+      disabled,
+      readOnly
     };
 
     if (hasLabel) {
@@ -181,6 +187,58 @@ describe('Component: Input', () => {
       rsInput.props().onFocus();
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('disabled', () => {
+    test('input is disabled when the prop is set to true', () => {
+      setup({ value: 'Maarten', type: 'text', disabled: true });
+
+      let rsInput = input.find('Input');
+      expect(rsInput.props().disabled).toBeTruthy();
+
+      input.setProps({ disabled: false });
+
+      rsInput = input.find('Input');
+      expect(rsInput.props().disabled).toBeFalsy();
+    });
+
+    test('input is not disabled when the prop is set to false', () => {
+      setup({ value: 'Maarten', type: 'text', disabled: false });
+
+      let rsInput = input.find('Input');
+      expect(rsInput.props().disabled).toBeFalsy();
+
+      input.setProps({ disabled: true });
+
+      rsInput = input.find('Input');
+      expect(rsInput.props().disabled).toBeTruthy();
+    });
+  });
+
+  describe('readOnly', () => {
+    test('input is read-only when the prop is set to true', () => {
+      setup({ value: 'Maarten', type: 'text', readOnly: true });
+
+      let rsInput = input.find('Input');
+      expect(rsInput.props().readOnly).toBeTruthy();
+
+      input.setProps({ readOnly: false });
+
+      rsInput = input.find('Input');
+      expect(rsInput.props().readOnly).toBeFalsy();
+    });
+
+    test('is not read-only when the prop is set to false', () => {
+      setup({ value: 'Maarten', type: 'text', readOnly: false });
+
+      let rsInput = input.find('Input');
+      expect(rsInput.props().readOnly).toBeFalsy();
+
+      input.setProps({ readOnly: true });
+
+      rsInput = input.find('Input');
+      expect(rsInput.props().readOnly).toBeTruthy();
     });
   });
 
