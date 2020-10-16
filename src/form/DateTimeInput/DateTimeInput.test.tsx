@@ -6,8 +6,9 @@ import moment from 'moment';
 import Datetime from 'react-datetime';
 
 import DateTimeInput, { IsDateAllowed, Mode } from './DateTimeInput';
-import * as FormatError from './useHasFormatError/useHasFormatError';
-import * as IsModalOpen from './useIsModalOpen/useIsModalOpen';
+import * as FormatError from './hooks/useHasFormatError';
+import * as IsModalOpen from './hooks/useIsModalOpen';
+import * as UseSetLastStringValue from './hooks/useSetLastStringValue';
 
 describe('Component: DateTimeInput', () => {
   let dateTimeInput: ShallowWrapper;
@@ -15,6 +16,7 @@ describe('Component: DateTimeInput', () => {
   let onChangeSpy: jest.Mock;
   let onBlurSpy: jest.Mock;
   let onFocusSpy: jest.Mock;
+  let setUseSetLastStringValueSpy: jest.Mock;
 
   function setup({
     value,
@@ -30,6 +32,11 @@ describe('Component: DateTimeInput', () => {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
     onFocusSpy = jest.fn();
+
+    setUseSetLastStringValueSpy = jest.fn();
+    jest
+      .spyOn(UseSetLastStringValue, 'useSetLastStringValue')
+      .mockReturnValue(['', setUseSetLastStringValueSpy]);
 
     const props = {
       id: 'dateOfBirth',
@@ -190,9 +197,15 @@ describe('Component: DateTimeInput', () => {
         );
 
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
+
+        // should set the lastStringValue to the string of the date
+        expect(setUseSetLastStringValueSpy).toBeCalledTimes(1);
+        expect(setUseSetLastStringValueSpy).toBeCalledWith(
+          '2000-01-01 12:00:00'
+        );
       });
 
-      it('should when the value is a string which is not a valid value call set the value with null', () => {
+      it('should when the value is a string which is not a valid value call onChange with null', () => {
         setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
@@ -203,6 +216,12 @@ describe('Component: DateTimeInput', () => {
         expect(onChangeSpy).toHaveBeenCalledWith(null);
 
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
+
+        // should set the lastStringValue to the invalid string
+        expect(setUseSetLastStringValueSpy).toBeCalledTimes(1);
+        expect(setUseSetLastStringValueSpy).toBeCalledWith(
+          '2000-__-__ __:__:__'
+        );
       });
 
       it('should be marked as invalid when the value is a string which is not a valid value', () => {
@@ -243,6 +262,12 @@ describe('Component: DateTimeInput', () => {
         expect(onChangeSpy).toHaveBeenCalledWith(date);
 
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
+
+        // should set the lastStringValue to the format of the date
+        expect(setUseSetLastStringValueSpy).toBeCalledTimes(1);
+        expect(setUseSetLastStringValueSpy).toBeCalledWith(
+          '1989-03-21 00:00:00'
+        );
       });
     });
 
@@ -362,14 +387,14 @@ describe('Component: DateTimeInput', () => {
       dateTimeInput.setProps({ value: undefined });
 
       dateTime = dateTimeInput.find(Datetime);
-      expect(dateTime.props().value).toBe(undefined);
+      expect(dateTime.props().value).toBe('');
     });
 
     test('becomes filled', () => {
       setup({});
 
       let dateTime = dateTimeInput.find(Datetime);
-      expect(dateTime.props().value).toBe(undefined);
+      expect(dateTime.props().value).toBe('');
 
       const value = new Date(1989, 2, 21);
       dateTimeInput.setProps({ value });

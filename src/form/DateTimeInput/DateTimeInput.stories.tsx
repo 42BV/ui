@@ -114,15 +114,61 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           id="dateOfBirth"
           name="dateOfBirth"
           label="Date of birth"
-          placeholder="Please enter your date and time of birth"
+          placeholder="Please enter your date of birth"
           dateFormat="YYYY-MM-DD"
-          timeFormat="HH:mm:ss"
+          timeFormat={false}
           isDateAllowed={date => {
             return date.isBefore(new Date());
           }}
           jarb={{
             validator: 'User.birthday',
             label: 'Birthday'
+          }}
+        />
+
+        <JarbDateTimeInput
+          id="weddingDay"
+          name="weddingDay"
+          label="Wedding day"
+          placeholder="Please enter your wedding day"
+          dateFormat="YYYY-MM-DD"
+          timeFormat={false}
+          isDateAllowed={date => {
+            return date.isAfter(new Date());
+          }}
+          mode="modal"
+          jarb={{
+            validator: 'User.weddingDay',
+            label: 'Weddingday'
+          }}
+        />
+
+        <JarbDateTimeInput
+          id="sunset"
+          name="sunset"
+          label="Sunset"
+          placeholder="Please enter the time the sun sets"
+          dateFormat={false}
+          timeFormat="HH:mm:ss"
+          isDateAllowed={date => {
+            return date.isBefore(new Date());
+          }}
+          jarb={{
+            validator: 'User.sunset',
+            label: 'Sunset'
+          }}
+        />
+
+        <JarbDateTimeInput
+          id="dueDate"
+          name="dueDate"
+          label="Due date"
+          placeholder="Please enter the due date for when the ticket needs to be resolved"
+          dateFormat="YYYY-MM-DD"
+          timeFormat="HH:mm:ss"
+          jarb={{
+            validator: 'Issue.dueDate',
+            label: 'Due date'
           }}
         />
       </FinalForm>

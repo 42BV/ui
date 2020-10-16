@@ -14,9 +14,10 @@ import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
 import classNames from 'classnames';
-import { useHasFormatError } from './useHasFormatError/useHasFormatError';
-import { useIsModalOpen } from './useIsModalOpen/useIsModalOpen';
+import { useHasFormatError } from './hooks/useHasFormatError';
+import { useIsModalOpen } from './hooks/useIsModalOpen';
 import Addon from '../Input/Addon/Addon';
+import { useSetLastStringValue } from './hooks/useSetLastStringValue';
 
 /**
  * Callback which returns whether a date is selectable.
@@ -132,7 +133,20 @@ export interface Props {
  * date and times, times, and dates.
  */
 export default function DateTimeInput(props: Props) {
+  /*
+    When the user enter an invalid string. We call `onChange(null)` 
+    to indicate that the value is no longer a valid date. This will
+    however cause the input to become empty, if the developer sends
+    the `value` right back to us.
+
+    That is why we track the last known string value and use that as 
+    the value when the value is not a date. This way the user's input
+    is not lost when he enters an invalid date.
+  */
+  const [lastStringValue, setLastStringValue] = useSetLastStringValue();
+
   const [hasFormatError, setHasFormatError] = useHasFormatError();
+
   const [isModalOpen, setIsModalOpen] = useIsModalOpen();
 
   const {
@@ -167,6 +181,8 @@ export default function DateTimeInput(props: Props) {
 
     if (typeof value === 'string') {
       if (isDate(value, dateFormat, timeFormat)) {
+        setLastStringValue(value);
+
         const date = moment(
           value.trim(), // value includes an empty char at the back for some reason.
           combineFormat(dateFormat, timeFormat)
@@ -175,10 +191,18 @@ export default function DateTimeInput(props: Props) {
         onChange(date.toDate());
         setHasFormatError(false);
       } else {
+        setLastStringValue(value);
+
         onChange(null);
+
         setHasFormatError(!isEmpty(value));
       }
     } else {
+      const valueAsString = moment(value.toDate()).format(
+        combineFormat(dateFormat, timeFormat)
+      );
+      setLastStringValue(valueAsString);
+
       onChange(value.toDate());
       doBlur(onBlur);
       setHasFormatError(false);
@@ -212,7 +236,8 @@ export default function DateTimeInput(props: Props) {
           // @ts-ignore
           mask: formatToMask(dateFormat, timeFormat),
           placeholder,
-          invalid: valid === false || hasFormatError
+          invalid: valid === false || hasFormatError,
+          id
         }}
         open={mode === 'modal' ? false : undefined}
         renderInput={props =>
@@ -222,7 +247,7 @@ export default function DateTimeInput(props: Props) {
         }
         onChange={onChange}
         onFocus={onFocus}
-        value={value}
+        value={value ? value : lastStringValue}
         dateFormat={dateFormat}
         timeFormat={timeFormat}
         closeOnSelect={true}

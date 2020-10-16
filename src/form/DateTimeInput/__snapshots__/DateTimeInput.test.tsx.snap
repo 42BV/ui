@@ -64,6 +64,7 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
     input={true}
     inputProps={
       Object {
+        "id": "dateOfBirth",
         "invalid": false,
         "mask": Array [
           /\\\\d/,
@@ -102,6 +103,7 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
     timeConstraints={Object {}}
     timeFormat="HH:mm:ss"
     utc={false}
+    value=""
   />
   Some error
   <DateTimeModal
@@ -154,6 +156,7 @@ exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput
     input={true}
     inputProps={
       Object {
+        "id": "dateOfBirth",
         "invalid": true,
         "mask": Array [
           /\\\\d/,
@@ -235,6 +238,7 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
     input={true}
     inputProps={
       Object {
+        "id": "dateOfBirth",
         "invalid": false,
         "mask": Array [
           /\\\\d/,
@@ -293,6 +297,7 @@ exports[`Component: DateTimeInput ui without label: Component: DateTimeInput => 
     input={true}
     inputProps={
       Object {
+        "id": "dateOfBirth",
         "invalid": false,
         "mask": Array [
           /\\\\d/,
