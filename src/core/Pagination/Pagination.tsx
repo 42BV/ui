@@ -7,6 +7,8 @@ import {
   PaginationLink
 } from 'reactstrap';
 
+import { Icon } from '../Icon';
+
 interface Props<T> {
   /**
    * Represents Spring's page abstraction.
@@ -19,17 +21,34 @@ interface Props<T> {
   onChange: (pageNumber: number) => void;
 
   /**
+   * Whether or not to show the previous and next buttons.
+   *
+   * Defaults to `true`
+   */
+  showPreviousAndNextButtons?: boolean;
+
+  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optionally customized text to use within the component.
+   */
+  text?: Text;
 }
 
 /**
  * The Pagination component is an enhanced Bootstrap pagination component. It supports working with `Page`s and shows a fixed
  * layout for the number of pages, indicating that multiple pages exist for the min and max ranges (e.g. 1 ... 4 5 6 ... 10).
  */
-export default function Pagination<T>({ page, onChange, className }: Props<T>) {
+export default function Pagination<T>({
+  page,
+  onChange,
+  className,
+  showPreviousAndNextButtons = true
+}: Props<T>) {
   const { first, last, totalPages } = page;
 
   // Don't bother to render if there is nothing to paginate.
@@ -42,6 +61,13 @@ export default function Pagination<T>({ page, onChange, className }: Props<T>) {
 
   return (
     <RPagination className={className}>
+      {showPreviousAndNextButtons ? (
+        <PaginationItem disabled={first}>
+          <PaginationLink onClick={() => onChange(current - 1)}>
+            <Icon icon="arrow_back" size={14} />
+          </PaginationLink>
+        </PaginationItem>
+      ) : null}
       {content.map((item, index) => (
         <PaginationItem active={item === current} key={index}>
           {item !== '...' ? (
@@ -55,6 +81,13 @@ export default function Pagination<T>({ page, onChange, className }: Props<T>) {
           )}
         </PaginationItem>
       ))}
+      {showPreviousAndNextButtons ? (
+        <PaginationItem disabled={last}>
+          <PaginationLink onClick={() => onChange(current + 1)}>
+            <Icon icon="arrow_forward" size={14} />
+          </PaginationLink>
+        </PaginationItem>
+      ) : null}
     </RPagination>
   );
 }

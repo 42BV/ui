@@ -19,11 +19,6 @@ interface Text {
    * @default OK
    */
   previous?: string;
-
-  /**
-   * Optionally customized text to use within the component.
-   */
-  text?: Text;
 }
 
 interface Props<T> {
