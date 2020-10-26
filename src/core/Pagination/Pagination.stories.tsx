@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { range } from 'lodash';
+
+import { pageOf } from '../../utilities/page/page';
 
 import Pagination from './Pagination';
 
 storiesOf('core|Pagination', module)
   .addParameters({ component: Pagination })
   .add('default', () => {
-    const page = {
-      content: [1, 2, 3],
-      last: false,
-      totalElements: 100,
-      totalPages: 10,
-      size: 10,
-      number: 5,
-      first: false,
-      numberOfElements: 10
-    };
+    const [pageNumber, setPageNumber] = useState(5);
+
+    const page = pageOf(range(1, 100), pageNumber, 10);
 
     return (
-      <div className="text-center">
-        <Pagination page={page} onChange={action('page changed')} />
+      <div className="d-flex justify-content-center">
+        <Pagination page={page} onChange={setPageNumber} />
+      </div>
+    );
+  })
+  .add('without previous and next', () => {
+    const [pageNumber, setPageNumber] = useState(5);
+
+    const page = pageOf(range(1, 100), pageNumber, 10);
+
+    return (
+      <div className="d-flex justify-content-center">
+        <Pagination
+          page={page}
+          onChange={setPageNumber}
+          showPreviousAndNextButtons={false}
+        />
       </div>
     );
   });

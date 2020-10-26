@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 import { Page } from '@42.nl/spring-connect';
 
 import Pagination, { pagesFor } from './Pagination';
+import { Icon } from '../Icon';
 
 describe('Component: Pagination', () => {
   let pagination: ShallowWrapper;
@@ -11,10 +12,12 @@ describe('Component: Pagination', () => {
 
   function setup({
     number,
-    totalPages
+    totalPages,
+    showPreviousAndNextButtons
   }: {
     number: number;
     totalPages: number;
+    showPreviousAndNextButtons?: boolean;
   }) {
     const page: Page<any> = {
       content: [],
@@ -31,7 +34,8 @@ describe('Component: Pagination', () => {
 
     const props = {
       page,
-      onChange: onChangeSpy
+      onChange: onChangeSpy,
+      showPreviousAndNextButtons
     };
 
     pagination = shallow(<Pagination {...props} />);
@@ -45,7 +49,7 @@ describe('Component: Pagination', () => {
     });
 
     test('middle', () => {
-      setup({ number: 5, totalPages: 10 });
+      setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: false });
 
       expect(toJson(pagination)).toMatchSnapshot(
         'Component: Pagination => ui => middle'
@@ -53,7 +57,7 @@ describe('Component: Pagination', () => {
     });
 
     test('no previous', () => {
-      setup({ number: 1, totalPages: 10 });
+      setup({ number: 1, totalPages: 10, showPreviousAndNextButtons: false });
 
       expect(toJson(pagination)).toMatchSnapshot(
         'Component: Pagination => ui => no previous'
@@ -61,17 +65,54 @@ describe('Component: Pagination', () => {
     });
 
     test('no next', () => {
-      setup({ number: 10, totalPages: 10 });
+      setup({ number: 10, totalPages: 10, showPreviousAndNextButtons: false });
 
       expect(toJson(pagination)).toMatchSnapshot(
         'Component: Pagination => ui => no next'
       );
     });
+
+    test('with previous and next buttons', () => {
+      setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: true });
+
+      const items = pagination.find('PaginationItem');
+
+      const previousPaginationItem = items.at(0);
+      const nextPaginationItem = items.at(8);
+
+      expect(previousPaginationItem.props().disabled).toBe(false);
+      expect(previousPaginationItem.find(Icon).props().icon).toBe('arrow_back');
+
+      expect(nextPaginationItem.props().disabled).toBe(false);
+      expect(nextPaginationItem.find(Icon).props().icon).toBe('arrow_forward');
+
+      expect(toJson(pagination)).toMatchSnapshot(
+        'Component: Pagination => ui => with previous and next buttons'
+      );
+    });
+
+    it('should disable the previous button when on the first page', () => {
+      setup({ number: 1, totalPages: 3, showPreviousAndNextButtons: true });
+
+      const items = pagination.find('PaginationItem');
+
+      // Prev button
+      expect(items.at(0).props().disabled).toBe(true);
+    });
+
+    it('should disable the next button when on the last page', () => {
+      setup({ number: 3, totalPages: 3, showPreviousAndNextButtons: true });
+
+      const items = pagination.find('PaginationItem');
+
+      // Next button
+      expect(items.at(4).props().disabled).toBe(true);
+    });
   });
 
   describe('events', () => {
-    it('should call onChange a pagination links are clicked', () => {
-      setup({ number: 5, totalPages: 10 });
+    it('should call onChange when pagination links are clicked', () => {
+      setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: false });
 
       const links = pagination.find('PaginationLink');
 
@@ -99,6 +140,26 @@ describe('Component: Pagination', () => {
 
       expect(onChangeSpy).toHaveBeenCalledTimes(5);
       expect(onChangeSpy).toHaveBeenCalledWith(10);
+    });
+
+    describe('previous and next buttons', () => {
+      it('should have previous and next buttons which move the page forward or backwards', () => {
+        setup({ number: 2, totalPages: 3, showPreviousAndNextButtons: true });
+
+        const links = pagination.find('PaginationLink');
+
+        // Previous button
+        links.at(0).simulate('click');
+
+        expect(onChangeSpy).toHaveBeenCalledTimes(1);
+        expect(onChangeSpy).toHaveBeenCalledWith(1);
+
+        // Next button
+        links.at(4).simulate('click');
+
+        expect(onChangeSpy).toHaveBeenCalledTimes(2);
+        expect(onChangeSpy).toHaveBeenCalledWith(3);
+      });
     });
   });
 });
