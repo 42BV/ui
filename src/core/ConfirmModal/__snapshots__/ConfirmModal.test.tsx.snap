@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: ConfirmModal ui custom texts: Component: ConfirmModal => ui => custom texts 1`] = `
+<OpenCloseModal
+  isOpen={true}
+  label="Perform dangerous action"
+  onClose={[Function]}
+  onSave={[Function]}
+  text={
+    Object {
+      "cancel": "NO",
+      "save": "YES",
+    }
+  }
+>
+  <p>
+    Are you sure you want to 
+    <strong>
+      delete
+    </strong>
+     all users in the database?
+  </p>
+</OpenCloseModal>
+`;
+
+exports[`Component: ConfirmModal ui default texts: Component: ConfirmModal => ui => default texts 1`] = `
+<OpenCloseModal
+  isOpen={true}
+  label="Confirmation"
+  onClose={[Function]}
+  onSave={[Function]}
+  text={
+    Object {
+      "cancel": "Cancel",
+      "save": "Confirm",
+    }
+  }
+>
+  <p>
+    Are you sure you want to 
+    <strong>
+      delete
+    </strong>
+     the user?
+  </p>
+</OpenCloseModal>
+`;
