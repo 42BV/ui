@@ -10,8 +10,7 @@ import Button, {
 } from '../Button/Button';
 import { Color } from '../types';
 import IconType from '../Icon/types';
-import { t } from '../../utilities/translation/translation';
-import { OpenCloseModal } from '../../core/OpenCloseModal/OpenCloseModal';
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
 interface Text {
   /**
@@ -215,30 +214,15 @@ export default function ConfirmButton({
     >
       <Button {...getProps()} />
 
-      <OpenCloseModal
+      <ConfirmModal
         isOpen={isOpen}
         onClose={() => setOpen(false)}
         onSave={() => saveModal()}
-        label={t({
-          overrideText: modalHeader,
-          key: 'ConfirmButton.MODAL_HEADER',
-          fallback: 'Confirmation'
-        })}
-        text={{
-          cancel: t({
-            overrideText: cancel,
-            key: 'ConfirmButton.CANCEL',
-            fallback: 'Cancel'
-          }),
-          save: t({
-            overrideText: confirm,
-            key: 'ConfirmButton.CONFIRM',
-            fallback: 'Confirm'
-          })
-        }}
-      >
-        {dialogText}
-      </OpenCloseModal>
+        label={modalHeader}
+        modalText={dialogText}
+        cancelText={cancel}
+        confirmText={confirm}
+      />
     </div>
   );
 }

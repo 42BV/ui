@@ -16,26 +16,20 @@ exports[`Component: ConfirmButton ui button and icon: Component: ConfirmButton =
   >
     Delete user
   </Button>
-  <OpenCloseModal
+  <ConfirmModal
     isOpen={false}
-    label="Confirmation"
+    modalText={
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    }
     onClose={[Function]}
     onSave={[Function]}
-    text={
-      Object {
-        "cancel": "Cancel",
-        "save": "Confirm",
-      }
-    }
-  >
-    <p>
-      Are you sure you want to 
-      <strong>
-        delete
-      </strong>
-       the user?
-    </p>
-  </OpenCloseModal>
+  />
 </div>
 `;
 
@@ -56,26 +50,23 @@ exports[`Component: ConfirmButton ui custom class, color and texts: Component: C
   >
     Delete user
   </Button>
-  <OpenCloseModal
+  <ConfirmModal
+    cancelText="NO"
+    confirmText="YES"
     isOpen={false}
     label="PLEASE SAY YES"
+    modalText={
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    }
     onClose={[Function]}
     onSave={[Function]}
-    text={
-      Object {
-        "cancel": "NO",
-        "save": "YES",
-      }
-    }
-  >
-    <p>
-      Are you sure you want to 
-      <strong>
-        delete
-      </strong>
-       the user?
-    </p>
-  </OpenCloseModal>
+  />
 </div>
 `;
 
@@ -94,26 +85,20 @@ exports[`Component: ConfirmButton ui only button: Component: ConfirmButton => ui
   >
     Delete user
   </Button>
-  <OpenCloseModal
+  <ConfirmModal
     isOpen={false}
-    label="Confirmation"
+    modalText={
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    }
     onClose={[Function]}
     onSave={[Function]}
-    text={
-      Object {
-        "cancel": "Cancel",
-        "save": "Confirm",
-      }
-    }
-  >
-    <p>
-      Are you sure you want to 
-      <strong>
-        delete
-      </strong>
-       the user?
-    </p>
-  </OpenCloseModal>
+  />
 </div>
 `;
 
@@ -131,26 +116,20 @@ exports[`Component: ConfirmButton ui only icon in progress: Component: ConfirmBu
     inProgress={true}
     onClick={[Function]}
   />
-  <OpenCloseModal
+  <ConfirmModal
     isOpen={false}
-    label="Confirmation"
+    modalText={
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    }
     onClose={[Function]}
     onSave={[Function]}
-    text={
-      Object {
-        "cancel": "Cancel",
-        "save": "Confirm",
-      }
-    }
-  >
-    <p>
-      Are you sure you want to 
-      <strong>
-        delete
-      </strong>
-       the user?
-    </p>
-  </OpenCloseModal>
+  />
 </div>
 `;
 
@@ -168,25 +147,19 @@ exports[`Component: ConfirmButton ui only icon: Component: ConfirmButton => ui =
     inProgress={false}
     onClick={[Function]}
   />
-  <OpenCloseModal
+  <ConfirmModal
     isOpen={false}
-    label="Confirmation"
+    modalText={
+      <p>
+        Are you sure you want to 
+        <strong>
+          delete
+        </strong>
+         the user?
+      </p>
+    }
     onClose={[Function]}
     onSave={[Function]}
-    text={
-      Object {
-        "cancel": "Cancel",
-        "save": "Confirm",
-      }
-    }
-  >
-    <p>
-      Are you sure you want to 
-      <strong>
-        delete
-      </strong>
-       the user?
-    </p>
-  </OpenCloseModal>
+  />
 </div>
 `;

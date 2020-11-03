@@ -154,7 +154,7 @@ describe('Component: ConfirmButton', () => {
         .onClick(event);
 
       // @ts-ignore
-      expect(confirmButton.find('OpenCloseModal').props().isOpen).toBe(true);
+      expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(true);
     }
 
     it('should open the Modal when the ConfirmButton button is clicked', () => {
@@ -174,7 +174,7 @@ describe('Component: ConfirmButton', () => {
         .onClick(event);
 
       // @ts-ignore
-      expect(confirmButton.find('OpenCloseModal').props().isOpen).toBe(true);
+      expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(true);
 
       expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
@@ -188,10 +188,10 @@ describe('Component: ConfirmButton', () => {
       openModal();
 
       // @ts-ignore
-      confirmButton.find('OpenCloseModal').prop('onClose')();
+      confirmButton.find('ConfirmModal').prop('onClose')();
 
       // @ts-ignore
-      expect(confirmButton.find('OpenCloseModal').props().isOpen).toBe(false);
+      expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(false);
     });
 
     it('should close and save the Modal when the Accept button is clicked', () => {
@@ -204,14 +204,14 @@ describe('Component: ConfirmButton', () => {
 
       // @ts-ignore
       confirmButton
-        .find('OpenCloseModal')
+        .find('ConfirmModal')
         // @ts-ignore
         .prop('onSave')();
 
       expect(onConfirmSpy).toHaveBeenCalledTimes(1);
 
       // @ts-ignore
-      expect(confirmButton.find('OpenCloseModal').props().isOpen).toBe(false);
+      expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(false);
     });
   });
 });
