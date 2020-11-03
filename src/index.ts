@@ -4,6 +4,7 @@ export { default as AvatarStack } from './core/Avatar/AvatarStack';
 export { default as Button } from './core/Button/Button';
 export { default as useShowSpinner } from './core/Button/useShowSpinner';
 export { default as ConfirmButton } from './core/ConfirmButton/ConfirmButton';
+export { default as ConfirmModal } from './core/ConfirmModal/ConfirmModal';
 export {
   default as ContentState,
   ContentStateMode
