@@ -15,12 +15,14 @@ describe('Component: TextEditor', () => {
     value,
     hasPlaceholder = true,
     hasLabel = true,
-    hasToolbarOptions = false
+    hasModules = false,
+    formats = undefined
   }: {
     value?: string;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
-    hasToolbarOptions?: boolean;
+    hasModules?: boolean;
+    formats?: string[];
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -34,13 +36,12 @@ describe('Component: TextEditor', () => {
       onFocus: onFocusSpy,
       error: 'Some error',
       valid: true,
-      modules: hasToolbarOptions
+      modules: hasModules
         ? {
-            toolbar: {
-              container: []
-            }
+            toolbar: ['bold']
           }
-        : undefined
+        : undefined,
+      formats
     };
 
     if (hasLabel) {
@@ -82,11 +83,19 @@ describe('Component: TextEditor', () => {
       );
     });
 
-    test('with custom toolbar', () => {
-      setup({ value: 'Maarten', hasLabel: false, hasToolbarOptions: true });
+    test('with modules', () => {
+      setup({ value: 'Maarten', hasLabel: false, hasModules: true });
 
       expect(toJson(textEditor)).toMatchSnapshot(
-        'Component: textEditor => ui => with custom toolbar'
+        'Component: textEditor => ui => with modules'
+      );
+    });
+
+    test('with formats', () => {
+      setup({ value: 'Maarten', hasLabel: false, formats: ['italic'] });
+
+      expect(toJson(textEditor)).toMatchSnapshot(
+        'Component: textEditor => ui => with formats'
       );
     });
   });

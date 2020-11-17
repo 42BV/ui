@@ -109,7 +109,7 @@ describe('Component: AsyncContent', () => {
     test('with retry button', () => {
       const reloadSpy = jest.fn();
 
-      jest.spyOn(console, 'error');
+      jest.spyOn(console, 'error').mockImplementation(() => undefined);
       const state = {
         isLoading: false,
         isFulfilled: false,
@@ -129,7 +129,7 @@ describe('Component: AsyncContent', () => {
     });
 
     test('without retry button', () => {
-      jest.spyOn(console, 'error');
+      jest.spyOn(console, 'error').mockImplementation(() => undefined);
       const state = {
         isLoading: false,
         isFulfilled: false,
@@ -147,7 +147,7 @@ describe('Component: AsyncContent', () => {
     test('should not render when showRetryButton is undefined', () => {
       const reloadSpy = jest.fn();
 
-      jest.spyOn(console, 'error');
+      jest.spyOn(console, 'error').mockImplementation(() => undefined);
       const state = {
         isLoading: false,
         isFulfilled: false,

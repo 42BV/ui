@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: TextEditor ui with custom toolbar: Component: textEditor => ui => with custom toolbar 1`] = `
+exports[`Component: TextEditor ui with formats: Component: textEditor => ui => with formats 1`] = `
 <FormGroup
   className=""
   color="success"
@@ -8,11 +8,41 @@ exports[`Component: TextEditor ui with custom toolbar: Component: textEditor => 
 >
   <Quill
     className=""
+    formats={
+      Array [
+        "italic",
+      ]
+    }
+    modules={Object {}}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[MockFunction]}
+    placeholder="Please enter your first name"
+    theme="snow"
+    value="Maarten"
+  />
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: TextEditor ui with modules: Component: textEditor => ui => with modules 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Quill
+    className=""
+    formats={
+      Array [
+        "bold",
+      ]
+    }
     modules={
       Object {
-        "toolbar": Object {
-          "container": Array [],
-        },
+        "toolbar": Array [
+          "bold",
+        ],
       }
     }
     onBlur={[Function]}
@@ -49,6 +79,16 @@ exports[`Component: TextEditor ui with value: Component: textEditor => ui => wit
   </Label>
   <Quill
     className=""
+    formats={
+      Array [
+        "header",
+        "list",
+        "bold",
+        "italic",
+        "underline",
+        "link",
+      ]
+    }
     id="firstName"
     modules={Object {}}
     onBlur={[Function]}
@@ -70,6 +110,16 @@ exports[`Component: TextEditor ui without label: Component: textEditor => ui => 
 >
   <Quill
     className=""
+    formats={
+      Array [
+        "header",
+        "list",
+        "bold",
+        "italic",
+        "underline",
+        "link",
+      ]
+    }
     modules={Object {}}
     onBlur={[Function]}
     onChange={[Function]}
@@ -105,6 +155,16 @@ exports[`Component: TextEditor ui without placeholder: Component: textEditor => 
   </Label>
   <Quill
     className=""
+    formats={
+      Array [
+        "header",
+        "list",
+        "bold",
+        "italic",
+        "underline",
+        "link",
+      ]
+    }
     id="firstName"
     modules={Object {}}
     onBlur={[Function]}

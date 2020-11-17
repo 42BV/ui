@@ -89,6 +89,43 @@ storiesOf('Form|TextEditor', module)
     );
   })
   .add('custom toolbar', () => {
+    return (
+      <Form>
+        <TextEditor
+          id="description"
+          label="Description"
+          placeholder="Please add a description"
+          onChange={value => action(`onChange: ${value}`)}
+          modules={{
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+              ['blockquote', 'code-block'],
+
+              [{ header: 1 }, { header: 2 }], // custom button values
+              [{ list: 'ordered' }, { list: 'bullet' }],
+              [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+              [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+              [{ direction: 'rtl' }], // text direction
+
+              [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+              [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+              [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+              [{ font: [] }],
+              [{ align: [] }],
+
+              ['link', 'image', 'video'],
+
+              ['clean']
+            ]
+          }}
+        />
+
+        {disclaimer}
+      </Form>
+    );
+  })
+  .add('custom toolbar option', () => {
     const placeholders = [{ label: 'First name', value: 'firstName' }];
 
     useEffect(() => {
@@ -168,6 +205,45 @@ storiesOf('Form|TextEditor', module)
             }
           }}
         />
+        {disclaimer}
+      </Form>
+    );
+  })
+  .add('manual formats', () => {
+    return (
+      <Form>
+        <TextEditor
+          id="description"
+          label="Description"
+          placeholder="Please add a description"
+          onChange={value => action(`onChange: ${value}`)}
+          modules={{
+            // This determines what is in the toolbar. But not
+            // which formats are supported. Quill does this to
+            // allow bold text to be pasted or entered with a
+            // shortcut, but not show a toolbar button.
+            toolbar: ['italic', 'underline', 'strike']
+          }}
+          // These are the formats which are allowed to be used.
+          // When you include a format here you can paste or use
+          // the shortcut to use the format. In this case we allow
+          // text to be bold, but we do not include it in the toolbar.
+          // This means that using the ctrl-b shortcut, or pasting bold
+          // text, will result in bold text.
+          formats={['bold', 'italic', 'underline', 'strike']}
+        />
+
+        <p>
+          This example shows how to use the <strong>formats</strong> props. Even
+          though there is no bold button in the toolbar you can still paste bold
+          text or use the ctrl-b shortcut.
+        </p>
+
+        <p>
+          This is achieved by not including <strong>bold</strong> in the toolbar
+          but only including it in the <strong>formats</strong> prop.
+        </p>
+
         {disclaimer}
       </Form>
     );

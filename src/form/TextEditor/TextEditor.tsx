@@ -7,6 +7,7 @@ import { StringMap } from 'quill';
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { Color } from '../types';
+import { formatsFromToolbarModule } from './utils';
 
 interface BaseProps {
   /**
@@ -57,8 +58,30 @@ interface BaseProps {
 
   /**
    * Optional configuration option to i.e. customize the toolbar.
+   *
+   * @see https://quilljs.com/docs/modules/
    */
   modules?: StringMap;
+
+  /**
+   * Optional configuration to determine which `Quill` formats are
+   * allowed. A format in `Quill` is: bold text, headers, links,
+   * colors, etc etc. If something is not in the `formats` it is not
+   * allowed in the `TextEditor`.
+   *
+   * In Quill it is possible to not show an item in the toolbar but
+   * allow it in the `formats`. For example you can remove the "bold"
+   * item from the toolbar but allow it in the `formats`. This way the
+   * user can still copy paste bold text into the `TextEditor`, or use
+   * the ctrl-b keyboard shortcut to make bold text.
+   *
+   * By default the `formats` will be the same as the allowed `toolbar`
+   * items in the `modules` prop. This way you do not need to keep
+   * `formats` and `modules.toolbar` in sync.
+   *
+   * @see https://quilljs.com/docs/formats/
+   */
+  formats?: string[];
 }
 
 interface WithoutLabel extends BaseProps {
@@ -106,7 +129,8 @@ export default function TextEditor(props: Props) {
     color,
     value,
     className = '',
-    modules
+    modules,
+    formats
   } = props;
 
   const inputProps = {
@@ -116,7 +140,8 @@ export default function TextEditor(props: Props) {
     onBlur: () => doBlur(onBlur),
     onFocus,
     value,
-    modules
+    modules,
+    formats: formats ? formats : formatsFromToolbarModule(modules)
   };
 
   const classes = classNames({ 'is-invalid': valid === false });
