@@ -110,6 +110,15 @@ export interface Props {
   locale?: string;
 
   /**
+   * When true, input time values will be interpreted as UTC (Zulu time)
+   * by Moment.js. Otherwise they will default to the user's local
+   * timezone.
+   *
+   * Defaults to true.
+   */
+  utc?: boolean;
+
+  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
@@ -161,6 +170,7 @@ export default function DateTimeInput(props: Props) {
     value,
     error,
     locale,
+    utc = true,
     mode = 'default',
     text,
     className = ''
@@ -187,7 +197,6 @@ export default function DateTimeInput(props: Props) {
           value.trim(), // value includes an empty char at the back for some reason.
           combineFormat(dateFormat, timeFormat)
         );
-
         onChange(date.toDate());
         setHasFormatError(false);
       } else {
@@ -246,12 +255,13 @@ export default function DateTimeInput(props: Props) {
             : maskedInput(props)
         }
         onChange={onChange}
-        onFocus={onFocus}
+        onOpen={onFocus}
         value={value ? value : lastStringValue}
         dateFormat={dateFormat}
         timeFormat={timeFormat}
         closeOnSelect={true}
         locale={locale}
+        utc={utc}
         isValidDate={(date: Moment, current?: Moment) =>
           isDateAllowed(date, current)
         }
@@ -268,6 +278,7 @@ export default function DateTimeInput(props: Props) {
           isDateAllowed={isDateAllowed}
           label={placeholder}
           locale={locale}
+          utc={utc}
           text={text}
         />
       ) : null}

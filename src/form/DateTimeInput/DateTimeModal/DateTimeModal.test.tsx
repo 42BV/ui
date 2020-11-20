@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import Datetime from 'react-datetime';
 
 import { DateTimeModal } from './DateTimeModal';
 
@@ -54,7 +55,7 @@ describe('Component: DateTimeModal', () => {
 
       // @ts-ignore
       dateTimeModal
-        .find('DateTime')
+        .find(Datetime)
         .props()
         // @ts-ignore
         .onChange(value);
@@ -70,7 +71,7 @@ describe('Component: DateTimeModal', () => {
 
       // @ts-ignore
       dateTimeModal
-        .find('DateTime')
+        .find(Datetime)
         .props()
         // @ts-ignore
         .onChange(value);
@@ -86,7 +87,7 @@ describe('Component: DateTimeModal', () => {
 
       // @ts-ignore
       dateTimeModal
-        .find('DateTime')
+        .find(Datetime)
         .props()
         // @ts-ignore
         .onChange(value);
@@ -109,7 +110,7 @@ describe('Component: DateTimeModal', () => {
 
       // @ts-ignore
       dateTimeModal
-        .find('DateTime')
+        .find(Datetime)
         .props()
         // @ts-ignore
         .onChange(value);
@@ -135,7 +136,7 @@ describe('Component: DateTimeModal', () => {
 
       // @ts-ignore
       dateTimeModal
-        .find('DateTime')
+        .find(Datetime)
         .props()
         // @ts-ignore
         .isValidDate(value, current);

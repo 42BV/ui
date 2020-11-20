@@ -33,6 +33,7 @@ export { default as TextButton } from './core/TextButton/TextButton';
 export { useShowAfter } from './core/useShowAfter/useShowAfter';
 
 // Form
+export { AutoSave } from './form/AutoSave/AutoSave';
 export { default as withJarb } from './form/withJarb/withJarb';
 export { default as Input, JarbInput } from './form/Input/Input';
 export { default as Textarea, JarbTextarea } from './form/Textarea/Textarea';

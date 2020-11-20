@@ -115,7 +115,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           name="dateOfBirth"
           label="Date of birth"
           placeholder="Please enter your date of birth"
-          dateFormat="YYYY-MM-DD"
+          dateFormat="DD-MM-YYYY"
           timeFormat={false}
           isDateAllowed={date => {
             return date.isBefore(new Date());
@@ -131,7 +131,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           name="weddingDay"
           label="Wedding day"
           placeholder="Please enter your wedding day"
-          dateFormat="YYYY-MM-DD"
+          dateFormat="DD-MM-YYYY"
           timeFormat={false}
           isDateAllowed={date => {
             return date.isAfter(new Date());
@@ -164,7 +164,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           name="dueDate"
           label="Due date"
           placeholder="Please enter the due date for when the ticket needs to be resolved"
-          dateFormat="YYYY-MM-DD"
+          dateFormat="DD-MM-YYYY"
           timeFormat="HH:mm:ss"
           jarb={{
             validator: 'Issue.dueDate',

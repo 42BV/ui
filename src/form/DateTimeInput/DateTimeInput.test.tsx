@@ -106,8 +106,9 @@ describe('Component: DateTimeInput', () => {
       setup({});
 
       const input = shallow(
+        // @ts-ignore
         dateTimeInput
-          .find('DateTime')
+          .find(Datetime)
           .props()
           // @ts-ignore
           .renderInput({ id: 10 })
@@ -122,8 +123,9 @@ describe('Component: DateTimeInput', () => {
       setup({ mode: 'modal' });
 
       const inputGroup = shallow(
+        // @ts-ignore
         dateTimeInput
-          .find('DateTime')
+          .find(Datetime)
           .props()
           // @ts-ignore
           .renderInput({ id: 10 })
@@ -276,7 +278,7 @@ describe('Component: DateTimeInput', () => {
 
       const dateTime = dateTimeInput.find(Datetime);
       // @ts-ignore
-      dateTime.props().onFocus();
+      dateTime.props().onOpen();
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });
@@ -317,8 +319,9 @@ describe('Component: DateTimeInput', () => {
         setup({ mode: 'modal' });
 
         const inputGroup = shallow(
+          // @ts-ignore
           dateTimeInput
-            .find('DateTime')
+            .find(Datetime)
             .props()
             // @ts-ignore
             .renderInput({ id: 10 })

@@ -35,7 +35,7 @@
   "dependencies": {
     "bootstrap": "4.4.1",
     "material-design-icons": "3.0.1",
-    "moment": "2.24.0",
+    "moment": "2.29.1",
     "overlayscrollbars": "1.10.3",
     "overlayscrollbars-react": "0.2.1",
     "pica": "5.1.0",
@@ -44,7 +44,7 @@
     "react-avatar-editor": "11.0.7",
     "react-bootstrap-typeahead": "4.0.0-alpha.6",
     "react-color": "2.18.0",
-    "react-datetime": "2.16.3",
+    "react-datetime": "3.0.4",
     "react-display-name": "0.2.5",
     "react-final-form": "6.3.5",
     "react-is": "16.12.0",

@@ -14,26 +14,29 @@ exports[`Component: DateTimeModal ui with value: Component: DateTimeModal => ui 
     }
   }
 >
-  <DateTime
+  <n
     className=""
+    closeOnClickOutside={true}
     closeOnSelect={false}
     closeOnTab={true}
     dateFormat="YYYY-MM-DD"
-    defaultValue=""
     input={false}
     inputProps={Object {}}
     isValidDate={[Function]}
-    onBlur={[Function]}
+    onBeforeNavigate={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
     onChange={[Function]}
-    onFocus={[Function]}
+    onClose={[Function]}
+    onNavigate={[Function]}
     onNavigateBack={[Function]}
     onNavigateForward={[Function]}
-    onViewModeChange={[Function]}
+    onOpen={[Function]}
     open={true}
     strictParsing={true}
     timeConstraints={Object {}}
     timeFormat="HH:II:SS"
-    utc={false}
+    utc={true}
     value={"2020-01-31T23:00:00.000Z"}
   />
 </OpenCloseModal>
@@ -53,26 +56,29 @@ exports[`Component: DateTimeModal ui without value: Component: DateTimeModal => 
     }
   }
 >
-  <DateTime
+  <n
     className=""
+    closeOnClickOutside={true}
     closeOnSelect={false}
     closeOnTab={true}
     dateFormat="YYYY-MM-DD"
-    defaultValue=""
     input={false}
     inputProps={Object {}}
     isValidDate={[Function]}
-    onBlur={[Function]}
+    onBeforeNavigate={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
     onChange={[Function]}
-    onFocus={[Function]}
+    onClose={[Function]}
+    onNavigate={[Function]}
     onNavigateBack={[Function]}
     onNavigateForward={[Function]}
-    onViewModeChange={[Function]}
+    onOpen={[Function]}
     open={true}
     strictParsing={true}
     timeConstraints={Object {}}
     timeFormat="HH:II:SS"
-    utc={false}
+    utc={true}
     value=""
   />
 </OpenCloseModal>

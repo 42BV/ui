@@ -73,6 +73,15 @@ type Props = {
   isDateAllowed?: IsDateAllowed;
 
   /**
+   * When true, input time values will be interpreted as UTC (Zulu time)
+   * by Moment.js. Otherwise they will default to the user's local
+   * timezone.
+   *
+   * Defaults to true.
+   */
+  utc?: boolean;
+
+  /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
@@ -88,6 +97,7 @@ export function DateTimeModal(props: Props) {
     dateFormat,
     timeFormat,
     locale,
+    utc = true,
     text = {
       save: t({
         key: 'DateTimeModal.SELECT',
@@ -121,6 +131,7 @@ export function DateTimeModal(props: Props) {
         dateFormat={dateFormat}
         timeFormat={timeFormat}
         locale={locale}
+        utc={utc}
         isValidDate={(date: Moment, current?: Moment) =>
           isDateAllowed(date, current)
         }

@@ -55,12 +55,12 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
       )
     </span>
   </Label>
-  <DateTime
+  <n
     className=""
+    closeOnClickOutside={true}
     closeOnSelect={true}
     closeOnTab={true}
     dateFormat="YYYY-MM-DD"
-    defaultValue=""
     input={true}
     inputProps={
       Object {
@@ -91,18 +91,21 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
       }
     }
     isValidDate={[Function]}
-    onBlur={[Function]}
+    onBeforeNavigate={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
     onChange={[Function]}
-    onFocus={[MockFunction]}
+    onClose={[Function]}
+    onNavigate={[Function]}
     onNavigateBack={[Function]}
     onNavigateForward={[Function]}
-    onViewModeChange={[Function]}
+    onOpen={[MockFunction]}
     open={false}
     renderInput={[Function]}
     strictParsing={true}
     timeConstraints={Object {}}
     timeFormat="HH:mm:ss"
-    utc={false}
+    utc={true}
     value=""
   />
   Some error
@@ -114,6 +117,7 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
     onClose={[Function]}
     onSave={[Function]}
     timeFormat="HH:mm:ss"
+    utc={true}
   />
 </FormGroup>
 `;
@@ -147,12 +151,12 @@ exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput
       )
     </span>
   </Label>
-  <DateTime
+  <n
     className=""
+    closeOnClickOutside={true}
     closeOnSelect={true}
     closeOnTab={true}
     dateFormat="YYYY-MM-DD"
-    defaultValue=""
     input={true}
     inputProps={
       Object {
@@ -183,17 +187,20 @@ exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput
       }
     }
     isValidDate={[Function]}
-    onBlur={[Function]}
+    onBeforeNavigate={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
     onChange={[Function]}
-    onFocus={[MockFunction]}
+    onClose={[Function]}
+    onNavigate={[Function]}
     onNavigateBack={[Function]}
     onNavigateForward={[Function]}
-    onViewModeChange={[Function]}
+    onOpen={[MockFunction]}
     renderInput={[Function]}
     strictParsing={true}
     timeConstraints={Object {}}
     timeFormat="HH:mm:ss"
-    utc={false}
+    utc={true}
     value={2000-01-01T11:30:40.000Z}
   />
   Some error
@@ -229,12 +236,12 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
       )
     </span>
   </Label>
-  <DateTime
+  <n
     className=""
+    closeOnClickOutside={true}
     closeOnSelect={true}
     closeOnTab={true}
     dateFormat="YYYY-MM-DD"
-    defaultValue=""
     input={true}
     inputProps={
       Object {
@@ -265,17 +272,20 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
       }
     }
     isValidDate={[Function]}
-    onBlur={[Function]}
+    onBeforeNavigate={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
     onChange={[Function]}
-    onFocus={[MockFunction]}
+    onClose={[Function]}
+    onNavigate={[Function]}
     onNavigateBack={[Function]}
     onNavigateForward={[Function]}
-    onViewModeChange={[Function]}
+    onOpen={[MockFunction]}
     renderInput={[Function]}
     strictParsing={true}
     timeConstraints={Object {}}
     timeFormat="HH:mm:ss"
-    utc={false}
+    utc={true}
     value={2000-01-01T11:30:40.000Z}
   />
   Some error
@@ -288,12 +298,12 @@ exports[`Component: DateTimeInput ui without label: Component: DateTimeInput => 
   color="success"
   tag="div"
 >
-  <DateTime
+  <n
     className=""
+    closeOnClickOutside={true}
     closeOnSelect={true}
     closeOnTab={true}
     dateFormat="YYYY-MM-DD"
-    defaultValue=""
     input={true}
     inputProps={
       Object {
@@ -324,17 +334,20 @@ exports[`Component: DateTimeInput ui without label: Component: DateTimeInput => 
       }
     }
     isValidDate={[Function]}
-    onBlur={[Function]}
+    onBeforeNavigate={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
     onChange={[Function]}
-    onFocus={[MockFunction]}
+    onClose={[Function]}
+    onNavigate={[Function]}
     onNavigateBack={[Function]}
     onNavigateForward={[Function]}
-    onViewModeChange={[Function]}
+    onOpen={[MockFunction]}
     renderInput={[Function]}
     strictParsing={true}
     timeConstraints={Object {}}
     timeFormat="HH:mm:ss"
-    utc={false}
+    utc={true}
     value={2000-01-01T11:30:40.000Z}
   />
   Some error
