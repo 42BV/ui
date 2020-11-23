@@ -1,4 +1,5 @@
 #!/bin/sh
+
 read -p "Have you updated the package version (y/n)? " answer
 case ${answer:0:1} in
 y | Y) ;;
@@ -46,7 +47,23 @@ EOD
 
 printf -- '\033[32m SUCCESS: verdaccio user created \033[0m\n'
 
+
+# Build version
+printf -- '\033[37m Attempting to build \033[0m\n'
+npm run build
+printf -- '\033[32m SUCCESS: Succesfully build \033[0m\n'
+
+# Cleanup
+printf -- '\033[37m Cleaning up build artifacts... \033[0m\n'
+git checkout stats.html
+git checkout .size-snapshot.json
+printf -- '\033[32m SUCCESS: Succesfully cleaned up build artifacts \033[0m\n'
+
 # Publish packages
 printf -- '\033[37m Attempting to publish to verdaccio... \033[0m\n'
 npm publish --registry http://localhost:4873
 printf -- '\033[32m SUCCESS: Succesfully published packages \033[0m\n'
+
+# Provide instructions
+version=$(awk -F'"' '/"version": ".+"/{ print $4; exit; }' package.json)
+printf -- '\033[32m Now go to your test project set the version of "@42.nl/ui" to "%s" then run "npm install --registry http://localhost:4873" \033[0m\n' $version
