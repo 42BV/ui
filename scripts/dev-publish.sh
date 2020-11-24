@@ -48,10 +48,10 @@ EOD
 printf -- '\033[32m SUCCESS: verdaccio user created \033[0m\n'
 
 
-# Build version
-printf -- '\033[37m Attempting to build \033[0m\n'
-npm run build
-printf -- '\033[32m SUCCESS: Succesfully build \033[0m\n'
+# Compile version
+printf -- '\033[37m Attempting to compile \033[0m\n'
+npm run compile
+printf -- '\033[32m SUCCESS: Succesfully compiled \033[0m\n'
 
 # Cleanup
 printf -- '\033[37m Cleaning up build artifacts... \033[0m\n'
