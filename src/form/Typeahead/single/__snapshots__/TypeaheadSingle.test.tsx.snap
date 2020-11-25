@@ -23,7 +23,7 @@ exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle =>
   <div
     className=""
   >
-    <asyncContainer(TypeaheadComponent)
+    <withAsync(Component)
       delay={200}
       id="bestFriend"
       inputProps={
@@ -73,7 +73,7 @@ exports[`Component: TypeaheadSingle ui without label: Component: TypeaheadSingle
   <div
     className=""
   >
-    <asyncContainer(TypeaheadComponent)
+    <withAsync(Component)
       delay={200}
       inputProps={
         Object {
@@ -137,7 +137,7 @@ exports[`Component: TypeaheadSingle ui without placeholder: Component: Typeahead
   <div
     className=""
   >
-    <asyncContainer(TypeaheadComponent)
+    <withAsync(Component)
       delay={200}
       id="bestFriend"
       inputProps={

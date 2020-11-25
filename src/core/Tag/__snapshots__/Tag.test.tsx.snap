@@ -4,41 +4,14 @@ exports[`Component: Tag ui default: Component: Tag => ui => default 1`] = `
 <span
   className="tag"
 >
-  <span
-    className="token"
-  >
-    Maarten
-  </span>
-</span>
-`;
-
-exports[`Component: Tag ui with close: Component: Tag => ui => with close 1`] = `
-<span
-  className="tag"
->
-  <span
-    className="token token-removeable"
-  >
-    Maarten
-    <span
-      className="close-button"
-      onClick={[Function]}
-      role="button"
-    >
-      ×
-    </span>
-  </span>
+  Maarten
 </span>
 `;
 
 exports[`Component: Tag ui with type: Component: Tag => ui => with type 1`] = `
 <span
-  className="tag"
+  className="tag tag-success"
 >
-  <span
-    className="token token-success"
-  >
-    Maarten
-  </span>
+  Maarten
 </span>
 `;

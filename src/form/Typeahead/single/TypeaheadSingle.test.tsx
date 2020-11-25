@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import TypeaheadSingle from './TypeaheadSingle';
@@ -11,14 +11,9 @@ import {
   userUser
 } from '../../../test/fixtures';
 import { User } from '../../../test/types';
+import { resolvablePromise, waitForUI } from '../../../test/utils';
 
 describe('Component: TypeaheadSingle', () => {
-  let typeaheadSingle: ShallowWrapper;
-
-  let fetchOptionsSpy: jest.Mock;
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-
   function setup({
     value,
     hasPlaceholder = true,
@@ -28,9 +23,9 @@ describe('Component: TypeaheadSingle', () => {
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
   }) {
-    fetchOptionsSpy = jest.fn();
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
+    const fetchOptionsSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
 
     const props = {
       placeholder: hasPlaceholder
@@ -44,18 +39,20 @@ describe('Component: TypeaheadSingle', () => {
       error: 'Some error'
     };
 
-    if (hasLabel) {
-      typeaheadSingle = shallow(
-        <TypeaheadSingle id="bestFriend" label="Best friend" {...props} />
-      );
-    } else {
-      typeaheadSingle = shallow(<TypeaheadSingle {...props} />);
-    }
+    const labelProps = hasLabel
+      ? { id: 'bestFriend', label: 'Best friend' }
+      : {};
+
+    const typeaheadSingle = shallow(
+      <TypeaheadSingle {...props} {...labelProps} />
+    );
+
+    return { typeaheadSingle, fetchOptionsSpy, onBlurSpy, onChangeSpy };
   }
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: adminUser() });
+      const { typeaheadSingle } = setup({ value: adminUser() });
 
       expect(toJson(typeaheadSingle)).toMatchSnapshot(
         'Component: TypeaheadSingle => ui => with value'
@@ -63,7 +60,10 @@ describe('Component: TypeaheadSingle', () => {
     });
 
     test('without placeholder', () => {
-      setup({ value: adminUser(), hasPlaceholder: false });
+      const { typeaheadSingle } = setup({
+        value: adminUser(),
+        hasPlaceholder: false
+      });
 
       expect(toJson(typeaheadSingle)).toMatchSnapshot(
         'Component: TypeaheadSingle => ui => without placeholder'
@@ -71,7 +71,10 @@ describe('Component: TypeaheadSingle', () => {
     });
 
     test('without label', () => {
-      setup({ value: adminUser(), hasLabel: false });
+      const { typeaheadSingle } = setup({
+        value: adminUser(),
+        hasLabel: false
+      });
 
       expect(toJson(typeaheadSingle)).toMatchSnapshot(
         'Component: TypeaheadSingle => ui => without label'
@@ -82,7 +85,7 @@ describe('Component: TypeaheadSingle', () => {
   describe('events', () => {
     describe('onChange', () => {
       test('nothing selected', () => {
-        setup({ value: undefined });
+        const { typeaheadSingle, onChangeSpy } = setup({ value: undefined });
 
         const asyncTypeahead = typeaheadSingle
           .find('div')
@@ -96,7 +99,9 @@ describe('Component: TypeaheadSingle', () => {
       });
 
       test('value selected', () => {
-        setup({ value: undefined });
+        const { typeaheadSingle, onChangeSpy, onBlurSpy } = setup({
+          value: undefined
+        });
 
         const asyncTypeahead = typeaheadSingle
           .find('div')
@@ -121,39 +126,51 @@ describe('Component: TypeaheadSingle', () => {
 
     describe('fetchOptions', () => {
       test('value does not match query', async done => {
-        setup({ value: undefined });
+        const { typeaheadSingle, fetchOptionsSpy, onChangeSpy } = setup({
+          value: undefined
+        });
 
-        const promise = Promise.resolve(pageOfUsers());
+        const { resolve, promise } = resolvablePromise();
 
         fetchOptionsSpy.mockReturnValue(promise);
 
-        const asyncTypeahead = typeaheadSingle
+        let asyncTypeahead = typeaheadSingle
           .find('div')
           .children()
           .first();
 
         asyncTypeahead.props().onSearch('Ma');
 
+        waitForUI(() => {
+          expect(asyncTypeahead.props().isLoading).toBe(true);
+        });
+
         try {
+          resolve(pageOfUsers());
+
           await promise;
 
-          expect(typeaheadSingle.state()).toEqual({
-            isLoading: false,
-            options: [
-              {
-                label: 'admin@42.nl',
-                value: adminUser()
-              },
-              {
-                label: 'coordinator@42.nl',
-                value: coordinatorUser()
-              },
-              {
-                label: 'user@42.nl',
-                value: userUser()
-              }
-            ]
-          });
+          asyncTypeahead = typeaheadSingle
+            .find('div')
+            .children()
+            .first();
+
+          expect(asyncTypeahead.props().options).toEqual([
+            {
+              label: 'admin@42.nl',
+              value: adminUser()
+            },
+            {
+              label: 'coordinator@42.nl',
+              value: coordinatorUser()
+            },
+            {
+              label: 'user@42.nl',
+              value: userUser()
+            }
+          ]);
+
+          expect(asyncTypeahead.props().isLoading).toBe(false);
 
           expect(onChangeSpy).toHaveBeenCalledTimes(1);
           expect(onChangeSpy).toHaveBeenCalledWith(undefined);
@@ -165,13 +182,15 @@ describe('Component: TypeaheadSingle', () => {
       });
 
       test('value matches query', async done => {
-        setup({ value: undefined });
+        const { typeaheadSingle, fetchOptionsSpy, onChangeSpy } = setup({
+          value: undefined
+        });
 
         const promise = Promise.resolve(pageOfUsers());
 
         fetchOptionsSpy.mockReturnValue(promise);
 
-        const asyncTypeahead = typeaheadSingle
+        let asyncTypeahead = typeaheadSingle
           .find('div')
           .children()
           .first();
@@ -181,23 +200,27 @@ describe('Component: TypeaheadSingle', () => {
         try {
           await promise;
 
-          expect(typeaheadSingle.state()).toEqual({
-            isLoading: false,
-            options: [
-              {
-                label: 'admin@42.nl',
-                value: adminUser()
-              },
-              {
-                label: 'coordinator@42.nl',
-                value: coordinatorUser()
-              },
-              {
-                label: 'user@42.nl',
-                value: userUser()
-              }
-            ]
-          });
+          asyncTypeahead = typeaheadSingle
+            .find('div')
+            .children()
+            .first();
+
+          expect(asyncTypeahead.props().options).toEqual([
+            {
+              label: 'admin@42.nl',
+              value: adminUser()
+            },
+            {
+              label: 'coordinator@42.nl',
+              value: coordinatorUser()
+            },
+            {
+              label: 'user@42.nl',
+              value: userUser()
+            }
+          ]);
+
+          expect(asyncTypeahead.props().isLoading).toBe(false);
 
           expect(onChangeSpy).toHaveBeenCalledTimes(1);
           expect(onChangeSpy).toHaveBeenCalledWith(adminUser());
@@ -214,7 +237,7 @@ describe('Component: TypeaheadSingle', () => {
       test('becomes empty', () => {
         const value = adminUser();
 
-        setup({ value: adminUser() });
+        const { typeaheadSingle } = setup({ value: adminUser() });
 
         let asyncTypeahead = typeaheadSingle
           .find('div')
@@ -240,7 +263,7 @@ describe('Component: TypeaheadSingle', () => {
       });
 
       test('becomes filled', () => {
-        setup({ value: undefined });
+        const { typeaheadSingle } = setup({ value: undefined });
 
         let asyncTypeahead = typeaheadSingle
           .find('div')

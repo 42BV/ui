@@ -15,11 +15,6 @@ describe('Component: Tag', () => {
       const tag = shallow(<Tag text="Maarten" color="success" />);
       expect(toJson(tag)).toMatchSnapshot('Component: Tag => ui => with type');
     });
-
-    test('with close', () => {
-      const tag = shallow(<Tag text="Maarten" onRemove={() => undefined} />);
-      expect(toJson(tag)).toMatchSnapshot('Component: Tag => ui => with close');
-    });
   });
 
   test('onClose', () => {

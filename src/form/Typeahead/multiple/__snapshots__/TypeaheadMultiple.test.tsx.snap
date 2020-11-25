@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: TypeaheadMultiple renderToken ui: Component: TypeaheadMultiple => renderToken => ui 1`] = `
+<Tag
+  className="align-self-center"
+  key="1337"
+  onRemove={[Function]}
+  text="42"
+/>
+`;
+
 exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultiple => ui => with value 1`] = `
 <FormGroup
   className=""
@@ -23,7 +32,7 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
   <div
     className=""
   >
-    <asyncContainer(TypeaheadComponent)
+    <withAsync(Component)
       delay={200}
       id="bestFriend"
       inputProps={
@@ -51,6 +60,7 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
       options={Array []}
       placeholder="Please provide your best friend"
       promptText="Type to search..."
+      renderToken={[Function]}
       searchText="Searching..."
       selected={
         Array [
@@ -84,7 +94,7 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
   <div
     className=""
   >
-    <asyncContainer(TypeaheadComponent)
+    <withAsync(Component)
       delay={200}
       inputProps={
         Object {
@@ -111,6 +121,7 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
       options={Array []}
       placeholder="Please provide your best friend"
       promptText="Type to search..."
+      renderToken={[Function]}
       searchText="Searching..."
       selected={
         Array [
@@ -159,7 +170,7 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
   <div
     className=""
   >
-    <asyncContainer(TypeaheadComponent)
+    <withAsync(Component)
       delay={200}
       id="bestFriend"
       inputProps={
@@ -186,6 +197,7 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
       onSearch={[Function]}
       options={Array []}
       promptText="Type to search..."
+      renderToken={[Function]}
       searchText="Searching..."
       selected={
         Array [

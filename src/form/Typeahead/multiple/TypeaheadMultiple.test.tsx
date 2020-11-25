@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import TypeaheadMultiple from './TypeaheadMultiple';
@@ -11,14 +11,9 @@ import {
   userUser
 } from '../../../test/fixtures';
 import { User } from '../../../test/types';
+import { resolvablePromise, waitForUI } from '../../../test/utils';
 
 describe('Component: TypeaheadMultiple', () => {
-  let typeaheadMultiple: ShallowWrapper;
-
-  let fetchOptionsSpy: jest.Mock;
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-
   function setup({
     value,
     hasPlaceholder = true,
@@ -28,9 +23,9 @@ describe('Component: TypeaheadMultiple', () => {
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
   }) {
-    fetchOptionsSpy = jest.fn();
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
+    const fetchOptionsSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
 
     const props = {
       placeholder: hasPlaceholder
@@ -44,18 +39,20 @@ describe('Component: TypeaheadMultiple', () => {
       error: 'Some error'
     };
 
-    if (hasLabel) {
-      typeaheadMultiple = shallow(
-        <TypeaheadMultiple id="bestFriend" label="Best friend" {...props} />
-      );
-    } else {
-      typeaheadMultiple = shallow(<TypeaheadMultiple {...props} />);
-    }
+    const labelProps = hasLabel
+      ? { id: 'bestFriend', label: 'Best friend' }
+      : {};
+
+    const typeaheadMultiple = shallow(
+      <TypeaheadMultiple {...props} {...labelProps} />
+    );
+
+    return { typeaheadMultiple, fetchOptionsSpy, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: [adminUser()] });
+      const { typeaheadMultiple } = setup({ value: [adminUser()] });
 
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => with value'
@@ -63,7 +60,10 @@ describe('Component: TypeaheadMultiple', () => {
     });
 
     test('without placeholder', () => {
-      setup({ value: [adminUser()], hasPlaceholder: false });
+      const { typeaheadMultiple } = setup({
+        value: [adminUser()],
+        hasPlaceholder: false
+      });
 
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => without placeholder'
@@ -71,7 +71,10 @@ describe('Component: TypeaheadMultiple', () => {
     });
 
     test('without label', () => {
-      setup({ value: [adminUser()], hasLabel: false });
+      const { typeaheadMultiple } = setup({
+        value: [adminUser()],
+        hasLabel: false
+      });
 
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => without label'
@@ -79,10 +82,54 @@ describe('Component: TypeaheadMultiple', () => {
     });
   });
 
+  describe('renderToken', () => {
+    function setupRenderToken() {
+      const { typeaheadMultiple } = setup({
+        value: [adminUser()],
+        hasLabel: false
+      });
+
+      const renderToken = typeaheadMultiple
+        .find('div')
+        .children()
+        .first()
+        .renderProp('renderToken');
+
+      const onRemoveSpy = jest.fn();
+      const token = renderToken(
+        { label: '42', value: 42 },
+        { onRemove: onRemoveSpy },
+        1337 // Give it a random index
+      );
+
+      return { token, onRemoveSpy };
+    }
+
+    test('ui', () => {
+      const { token } = setupRenderToken();
+
+      expect(toJson(token)).toMatchSnapshot(
+        'Component: TypeaheadMultiple => renderToken => ui'
+      );
+    });
+
+    it('should when the Tag is closed call onRemove', () => {
+      const { token, onRemoveSpy } = setupRenderToken();
+
+      // @ts-ignore
+      token.props().onRemove();
+
+      expect(onRemoveSpy).toBeCalledTimes(1);
+      expect(onRemoveSpy).toBeCalledWith({ label: '42', value: 42 });
+    });
+  });
+
   describe('events', () => {
     describe('onChange', () => {
       test('nothing selected', () => {
-        setup({ value: [] });
+        const { typeaheadMultiple, onBlurSpy, onChangeSpy } = setup({
+          value: []
+        });
 
         const asyncTypeahead = typeaheadMultiple
           .find('div')
@@ -97,7 +144,9 @@ describe('Component: TypeaheadMultiple', () => {
       });
 
       test('value selected', () => {
-        setup({ value: [] });
+        const { typeaheadMultiple, onBlurSpy, onChangeSpy } = setup({
+          value: []
+        });
 
         const asyncTypeahead = typeaheadMultiple
           .find('div')
@@ -121,39 +170,52 @@ describe('Component: TypeaheadMultiple', () => {
       });
     });
 
-    test('fetchOptions', async done => {
-      setup({ value: undefined });
+    it('should fetchOptions when the user starts typing in the input field', async done => {
+      const { typeaheadMultiple, fetchOptionsSpy } = setup({
+        value: undefined
+      });
 
-      const promise = Promise.resolve(pageOfUsers());
+      const { resolve, promise } = resolvablePromise();
 
       fetchOptionsSpy.mockReturnValue(promise);
 
-      const asyncTypeahead = typeaheadMultiple
+      let asyncTypeahead = typeaheadMultiple
         .find('div')
         .children()
         .first();
 
       asyncTypeahead.props().onSearch('Ma');
 
+      waitForUI(() => {
+        expect(asyncTypeahead.props().isLoading).toBe(true);
+      });
+
       try {
+        resolve(pageOfUsers());
+
         await promise;
-        expect(typeaheadMultiple.state()).toEqual({
-          isLoading: false,
-          options: [
-            {
-              label: 'admin@42.nl',
-              value: adminUser()
-            },
-            {
-              label: 'coordinator@42.nl',
-              value: coordinatorUser()
-            },
-            {
-              label: 'user@42.nl',
-              value: userUser()
-            }
-          ]
-        });
+
+        asyncTypeahead = typeaheadMultiple
+          .find('div')
+          .children()
+          .first();
+
+        expect(asyncTypeahead.props().options).toEqual([
+          {
+            label: 'admin@42.nl',
+            value: adminUser()
+          },
+          {
+            label: 'coordinator@42.nl',
+            value: coordinatorUser()
+          },
+          {
+            label: 'user@42.nl',
+            value: userUser()
+          }
+        ]);
+
+        expect(asyncTypeahead.props().isLoading).toBe(false);
 
         done();
       } catch (error) {
@@ -164,7 +226,7 @@ describe('Component: TypeaheadMultiple', () => {
 
     describe('value changes', () => {
       test('becomes empty', () => {
-        setup({ value: [adminUser()] });
+        const { typeaheadMultiple } = setup({ value: [adminUser()] });
 
         let asyncTypeahead = typeaheadMultiple
           .find('div')
@@ -189,7 +251,7 @@ describe('Component: TypeaheadMultiple', () => {
       });
 
       test('becomes filled', () => {
-        setup({ value: undefined });
+        const { typeaheadMultiple } = setup({ value: undefined });
 
         let asyncTypeahead = typeaheadMultiple
           .find('div')

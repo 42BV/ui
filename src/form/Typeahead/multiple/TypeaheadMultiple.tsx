@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { FetchOptionsCallback, TypeaheadOption } from '../types';
@@ -8,8 +8,9 @@ import { valueToTypeaheadOption } from '../utils';
 import { Color } from '../../types';
 import { OptionForValue } from '../../option';
 import classNames from 'classnames';
+import Tag from '../../../core/Tag/Tag';
 
-interface BaseProps<T> {
+type BaseProps<T> = {
   /**
    * The placeholder of the form element.
    */
@@ -66,14 +67,14 @@ interface BaseProps<T> {
    * Useful for styling the component.
    */
   className?: string;
-}
+};
 
-interface WithoutLabel<T> extends BaseProps<T> {
+type WithoutLabel<T> = BaseProps<T> & {
   id?: string;
   label?: never;
-}
+};
 
-interface WithLabel<T> extends BaseProps<T> {
+type WithLabel<T> = BaseProps<T> & {
   /**
    * The id of the form element.
    */
@@ -83,14 +84,9 @@ interface WithLabel<T> extends BaseProps<T> {
    * The label of the form element.
    */
   label: React.ReactNode;
-}
+};
 
 export type Props<T> = WithoutLabel<T> | WithLabel<T>;
-
-interface State<T> {
-  options: TypeaheadOption<T>[];
-  isLoading: boolean;
-}
 
 /**
  * The TypeaheadMultiple is a form element which allows the user
@@ -108,20 +104,30 @@ interface State<T> {
  * because the user can type in faster than the can select from a
  * ModalPickerMultiple.
  */
-export default class TypeaheadMultiple<T> extends Component<
-  Props<T>,
-  State<T>
-> {
-  state = {
-    options: [],
-    isLoading: false
-  };
+export default function TypeaheadMultiple<T>(props: Props<T>) {
+  const {
+    id,
+    placeholder,
+    value,
+    color,
+    error,
+    optionForValue,
+    onFocus,
+    valid,
+    className = '',
+    onChange,
+    onBlur,
+    fetchOptions
+  } = props;
 
-  onChange(values: TypeaheadOption<T>[]) {
+  const [options, setOptions] = useState<TypeaheadOption<T>[]>([]);
+  const [isLoading, setLoading] = useState(false);
+
+  function doOnChange(values: TypeaheadOption<T>[]): void {
     if (values.length === 0) {
-      this.props.onChange(undefined);
+      onChange(undefined);
     } else {
-      this.props.onChange(values.map(option => option.value));
+      onChange(values.map(option => option.value));
     }
 
     // Due this: https://github.com/ericgio/react-bootstrap-typeahead/issues/224
@@ -129,75 +135,68 @@ export default class TypeaheadMultiple<T> extends Component<
     // onBlur -> onChange, but it should be the other way around.
     // onBlur Should be called when the user navigates away from the input.
     // In this case when the user selects an item (onChange).
-    doBlur(this.props.onBlur);
+    doBlur(onBlur);
   }
 
-  async fetchOptions(query: string) {
-    const { optionForValue } = this.props;
+  async function doFetchOptions(query: string): Promise<void> {
+    setLoading(true);
 
-    this.setState({ isLoading: true });
-
-    const page = await this.props.fetchOptions(query);
+    const page = await fetchOptions(query);
     const options = page.content.map(value =>
       valueToTypeaheadOption(value, optionForValue)
     );
 
-    this.setState({ options, isLoading: false });
+    setLoading(false);
+    setOptions(options);
   }
 
-  render() {
-    const {
-      id,
-      placeholder,
-      value,
-      color,
-      error,
-      optionForValue,
-      onFocus,
-      valid,
-      className = '',
-      ...props
-    } = this.props;
+  let selected: TypeaheadOption<T>[] = [];
+  if (value && value.length) {
+    selected = value.map(v => valueToTypeaheadOption(v, optionForValue));
+  }
 
-    let selected: TypeaheadOption<T>[] = [];
-    if (value && value.length) {
-      selected = value.map(v => valueToTypeaheadOption(v, optionForValue));
-    }
+  const classes = classNames(className, {
+    'is-invalid': valid === false
+  });
 
-    const classes = classNames(className, {
-      'is-invalid': valid === false
-    });
-
-    return (
-      <FormGroup className={classes} color={color}>
-        {'label' in props && props.label ? (
-          <Label for={id}>{props.label}</Label>
-        ) : null}
-        <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
-          <AsyncTypeahead
-            id={id}
-            isLoading={this.state.isLoading}
-            multiple={true}
-            placeholder={placeholder}
-            selected={selected}
-            options={this.state.options}
+  return (
+    <FormGroup className={classes} color={color}>
+      {'label' in props && props.label ? (
+        <Label for={id}>{props.label}</Label>
+      ) : null}
+      <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
+        <AsyncTypeahead
+          id={id}
+          isLoading={isLoading}
+          multiple={true}
+          placeholder={placeholder}
+          selected={selected}
+          options={options}
+          // @ts-ignore
+          inputProps={{
             // @ts-ignore
-            inputProps={{
-              // @ts-ignore
-              value: value,
-              className: classNames('form-control', {
-                'is-invalid': valid === false
-              })
-            }}
-            onChange={value => this.onChange(value)}
-            onSearch={query => this.fetchOptions(query)}
-            onFocus={onFocus}
-          />
-        </div>
-        {error}
-      </FormGroup>
-    );
-  }
+            value: value,
+            className: classNames('form-control', {
+              'is-invalid': valid === false
+            })
+          }}
+          onChange={doOnChange}
+          onSearch={doFetchOptions}
+          onFocus={onFocus}
+          renderToken={(option, props, index) => (
+            <Tag
+              key={index}
+              text={option.label}
+              // @ts-ignore The prop onRemove actually exists, the typings are wrong
+              onRemove={() => props.onRemove(option)}
+              className="align-self-center"
+            />
+          )}
+        />
+      </div>
+      {error}
+    </FormGroup>
+  );
 }
 
 /**

@@ -1,10 +1,7 @@
 // http://ericgio.github.io/react-bootstrap-typeahead/
-.bootstrap-typeahead-menu {
-  > li > a {
-    @extend .dropdown-item;
-  }
-}
 
+// Make the placeholder text inside the typeahead the same color
+// as the normal input we have.
 .showing-placeholder {
   .rbt-input-main {
     &::placeholder {
@@ -15,9 +12,24 @@
   }
 }
 
+.rbt-input-multi {
+  // By default the text is to close to the left so give it some space
+  // and it adds to much padding on the top, right and bottom so we
+  // remove it.
+  padding: 0 0 0 12px;
+
+  // Remove border shadow on focus like we do for all inputs
+  &.focus {
+    box-shadow: none !important;
+    border-color: $gray-400 !important;
+  }
+}
+
+// the typeahead does not become have a red border by default
+// when invalid so we fix it here for both the multiple and
+// single variant
 .is-invalid {
   .rbt-input-multi {
-    padding: 0.375rem 0 0 0.75rem;
     border-color: $danger;
   }
 }

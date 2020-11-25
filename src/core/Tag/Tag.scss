@@ -1,57 +1,29 @@
-.tag,
-.rbt {
-  .token,
-  .rbt-token {
-    @extend .badge, .badge-pill, .badge-primary;
-    display: inline-block;
-    margin-right: 0.1875rem;
-    height: 18px;
-    cursor: default;
-  }
+.tag {
+  @extend .badge, .badge-pill, .badge-primary;
 
-  .rbt-token {
-    margin-top: 4px;
-    padding-right: 17px;
-  }
+  display: inline-block;
+  margin-right: 0.1875rem;
+  height: 18px;
+  cursor: default;
 
-  .rbt-token-remove-button {
-    top: 0 !important;
-    font-weight: 500 !important;
-    cursor: pointer;
-  }
-
-  .bootstrap-tokenizer {
-    @include box-shadow(inset 0 -2px 0 map-get($theme-colors, 'success'));
-    border: none;
-  }
-
-  .bootstrap-tokenizer-input {
-    display: inline-block;
-  }
-
-  .close-button {
-    margin-left: 0.1875rem;
-  }
-}
-
-.token {
-  &.token-info {
+  &-info {
     background-color: $teal !important;
   }
 
-  &.token-success {
+  &-success {
     background-color: $green !important;
   }
 
-  &.token-warning {
+  &-warning {
     background-color: $orange !important;
   }
 
-  &.token-danger {
+  &-danger {
     background-color: $red !important;
   }
 
   .close-button {
     cursor: pointer;
+    margin-left: 0.1875rem;
   }
 }
