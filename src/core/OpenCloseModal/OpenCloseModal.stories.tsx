@@ -225,26 +225,35 @@ export function ModalForm() {
     <Card body>
       <Button onClick={() => setIsOpen(true)}>Open form</Button>
 
-      <Form onSubmit={onSave}>
-        {({ submitting, handleSubmit }) => (
-          <OpenCloseModal
-            isOpen={isOpen}
-            inProgress={submitting}
-            onClose={onClose}
-            onSave={handleSubmit}
-            label="Form example"
-            size="lg"
-          >
-            <TotalForm />
-          </OpenCloseModal>
-        )}
-      </Form>
+      {isOpen ? (
+        <Form onSubmit={onSave}>
+          {({ submitting, handleSubmit }) => (
+            <OpenCloseModal
+              isOpen={true}
+              inProgress={submitting}
+              onClose={onClose}
+              onSave={handleSubmit}
+              label="Form example"
+              size="lg"
+            >
+              <TotalForm />
+            </OpenCloseModal>
+          )}
+        </Form>
+      ) : null}
 
       <p className="mt-2">
         Note: the <pre className="d-inline text-info">Form</pre> element should
         wrap the <pre className="d-inline text-info">OpenCloseModal</pre>
         not the other way around. Otherwise you cannot use the inProgress prop,
         and you cannot use submit in onSave.
+      </p>
+
+      <p className="mt-2">
+        Also make sure that you do not render the{' '}
+        <pre className="d-inline text-info">Form</pre> this way when you close
+        the modal the form will be reset. Otherwise information will linger in
+        the <pre className="d-inline text-info">Form</pre> element.
       </p>
 
       <p className="mt-2">
