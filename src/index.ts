@@ -110,6 +110,7 @@ export {
   JarbNewPasswordInput,
   isStrongPassword
 } from './form/NewPasswordInput/NewPasswordInput';
+export { FormButton } from './form/FormButton/FormButton';
 
 // Table
 export { EpicTable } from './table/EpicTable/EpicTable';
@@ -117,6 +118,8 @@ export { EpicTable } from './table/EpicTable/EpicTable';
 export { EpicCell } from './table/EpicTable/cells/EpicCell/EpicCell';
 export { EpicHeader } from './table/EpicTable/cells/EpicHeader/EpicHeader';
 export { EpicCellLayout } from './table/EpicTable/cells/EpicCellLayout/EpicCellLayout';
+export { EpicForm } from './table/EpicTable/cells/EpicForm/EpicForm';
+export { EpicFormCell } from './table/EpicTable/cells/EpicFormCell/EpicFormCell';
 
 export { EpicRow } from './table/EpicTable/rows/EpicRow/EpicRow';
 export { EpicDetailRow } from './table/EpicTable/rows/EpicDetailRow/EpicDetailRow';

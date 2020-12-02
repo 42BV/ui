@@ -38,7 +38,8 @@ interface InjectedProps {
 }
 
 /**
- * The EpicForm is used inside of a EpicRow to render content in.
+ * The EpicForm is a wrapper around react-final-form's `Form` to
+ * allow forms to be used inside of an EpicRow.
  */
 export function EpicForm<FormValues>(props: Props<FormValues>) {
   const { id, children, width, height, submitOnChange, ...rest } = props;
