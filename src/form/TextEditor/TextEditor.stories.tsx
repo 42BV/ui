@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -27,7 +27,7 @@ const disclaimer = (
   </>
 );
 
-storiesOf('Form|TextEditor', module)
+storiesOf('Form/TextEditor', module)
   .add('basic', () => {
     return (
       <Form>
@@ -35,7 +35,7 @@ storiesOf('Form|TextEditor', module)
           id="description"
           label="Description"
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
         {disclaimer}
       </Form>
@@ -47,7 +47,7 @@ storiesOf('Form|TextEditor', module)
         <TextEditor
           id="description"
           label="Description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
         {disclaimer}
       </Form>
@@ -59,7 +59,7 @@ storiesOf('Form|TextEditor', module)
         <TextEditor
           id="description"
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
         {disclaimer}
       </Form>
@@ -82,7 +82,7 @@ storiesOf('Form|TextEditor', module)
             </div>
           }
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
         {disclaimer}
       </Form>
@@ -95,7 +95,7 @@ storiesOf('Form|TextEditor', module)
           id="description"
           label="Description"
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
           modules={{
             toolbar: [
               ['bold', 'italic', 'underline', 'strike'], // toggled buttons
@@ -126,7 +126,10 @@ storiesOf('Form|TextEditor', module)
     );
   })
   .add('custom toolbar option', () => {
-    const placeholders = [{ label: 'First name', value: 'firstName' }];
+    const placeholders = useMemo(
+      () => [{ label: 'First name', value: 'firstName' }],
+      []
+    );
 
     useEffect(() => {
       /**
@@ -149,7 +152,7 @@ storiesOf('Form|TextEditor', module)
         .querySelectorAll('.ql-placeholder .ql-picker-item')
         .forEach((item: HTMLElement) => {
           item.textContent =
-            placeholders.find(ph => ph.value === item.dataset.value)?.label ||
+            placeholders.find((ph) => ph.value === item.dataset.value)?.label ||
             item.dataset.value ||
             null;
         });
@@ -171,13 +174,13 @@ storiesOf('Form|TextEditor', module)
           id="description"
           label="Description"
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
           modules={{
             toolbar: {
               container: [
                 [
                   {
-                    placeholder: placeholders.map(ph => ph.value)
+                    placeholder: placeholders.map((ph) => ph.value)
                   }
                 ],
                 [
@@ -216,7 +219,7 @@ storiesOf('Form|TextEditor', module)
           id="description"
           label="Description"
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
           modules={{
             // This determines what is in the toolbar. But not
             // which formats are supported. Quill does this to

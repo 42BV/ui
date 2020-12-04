@@ -65,7 +65,7 @@ describe('HoC: useComponentOverflow', () => {
     handleResizeSpy.mockReset();
     addEventListenerSpy.mockReset();
 
-    // @ts-ignore
+    // @ts-expect-error Test mock
     eventListenerResult();
 
     expect(removeEventListenerSpy).toBeCalledTimes(1);
@@ -85,7 +85,7 @@ describe('HoC: useComponentOverflow', () => {
     expect(observeSpy).toBeCalledWith(ref.current);
     expect(addEventListenerSpy).toBeCalledTimes(0);
 
-    // @ts-ignore
+    // @ts-expect-error Test mock
     resizeObserverResult();
 
     expect(unobserveSpy).toBeCalledTimes(1);

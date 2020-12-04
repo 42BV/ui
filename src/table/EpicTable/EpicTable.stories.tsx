@@ -30,7 +30,7 @@ import {
 import moment from 'moment';
 import MoreOrLess from '../../core/MoreOrLess/MoreOrLess';
 
-storiesOf('table|EpicTable', module)
+storiesOf('table/EpicTable', module)
   .addParameters({ component: EpicTable })
   .add('full example', () => {
     const [widths, setWidths] = useState(() => ({
@@ -49,7 +49,7 @@ storiesOf('table|EpicTable', module)
     }));
 
     function changeSize(name: keyof Person, width: number) {
-      setWidths(widths => ({ ...widths, [name]: width }));
+      setWidths((widths) => ({ ...widths, [name]: width }));
     }
 
     const [filters, setFilters] = useState(() => ({
@@ -70,7 +70,7 @@ storiesOf('table|EpicTable', module)
       setFilters({ ...filters, [name]: value });
     }
 
-    const filteredPersons = persons.filter(person => {
+    const filteredPersons = persons.filter((person) => {
       return every(filters, (value, key) => {
         const text = person[key];
 
@@ -110,7 +110,7 @@ storiesOf('table|EpicTable', module)
         selected.push(person);
         setSelected([...selected]);
       } else {
-        const nextSelected = selected.filter(p => p.id !== person.id);
+        const nextSelected = selected.filter((p) => p.id !== person.id);
 
         setSelected(nextSelected);
       }
@@ -118,12 +118,12 @@ storiesOf('table|EpicTable', module)
 
     const allPersonsSelected =
       selected.length > 0 &&
-      pageOfPersons.content.every(p => selected.some(ps => ps.id === p.id));
+      pageOfPersons.content.every((p) => selected.some((ps) => ps.id === p.id));
 
     function selectAllClicked(checked: boolean) {
       if (checked) {
-        pageOfPersons.content.forEach(p => {
-          if (selected.every(ps => p.id !== ps.id)) {
+        pageOfPersons.content.forEach((p) => {
+          if (selected.every((ps) => p.id !== ps.id)) {
             selected.push(p);
           }
 
@@ -152,7 +152,7 @@ storiesOf('table|EpicTable', module)
           <>
             <h2>Selected</h2>
             <div className="mb-3">
-              {selected.map(person => (
+              {selected.map((person) => (
                 <Tag
                   key={person.id}
                   text={`${person.firstName} ${person.lastName}`}
@@ -180,13 +180,13 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.firstName}
               height={88}
-              onResize={width => changeSize('firstName', width)}
+              onResize={(width) => changeSize('firstName', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
                   <EpicSelection
                     checked={allPersonsSelected}
-                    onChange={checked => selectAllClicked(checked)}
+                    onChange={(checked) => selectAllClicked(checked)}
                   >
                     First name
                   </EpicSelection>
@@ -195,11 +195,11 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'firstName' ? sort.direction : 'NONE'
                     }
-                    onChange={direction => changeSort('firstName', direction)}
+                    onChange={(direction) => changeSort('firstName', direction)}
                   />
                 </EpicCellLayout>
                 <Input
-                  onChange={event => {
+                  onChange={(event) => {
                     event.preventDefault();
                     filterChanged('firstName', event.target.value);
                   }}
@@ -209,7 +209,7 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.lastName}
               height={88}
-              onResize={width => changeSize('lastName', width)}
+              onResize={(width) => changeSize('lastName', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
@@ -218,11 +218,11 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'lastName' ? sort.direction : 'NONE'
                     }
-                    onChange={direction => changeSort('lastName', direction)}
+                    onChange={(direction) => changeSort('lastName', direction)}
                   />
                 </EpicCellLayout>
                 <Input
-                  onChange={event =>
+                  onChange={(event) =>
                     filterChanged('lastName', event.target.value)
                   }
                 />
@@ -231,25 +231,25 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.age}
               height={88}
-              onResize={width => changeSize('age', width)}
+              onResize={(width) => changeSize('age', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
                   Age
                   <EpicSort
                     direction={sort.column === 'age' ? sort.direction : 'NONE'}
-                    onChange={direction => changeSort('age', direction)}
+                    onChange={(direction) => changeSort('age', direction)}
                   />
                 </EpicCellLayout>
                 <Input
-                  onChange={event => filterChanged('age', event.target.value)}
+                  onChange={(event) => filterChanged('age', event.target.value)}
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.eyeColor}
               height={88}
-              onResize={width => changeSize('eyeColor', width)}
+              onResize={(width) => changeSize('eyeColor', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
@@ -258,12 +258,12 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'eyeColor' ? sort.direction : 'NONE'
                     }
-                    onChange={direction => changeSort('eyeColor', direction)}
+                    onChange={(direction) => changeSort('eyeColor', direction)}
                   />
                 </EpicCellLayout>
                 <Input
                   type="select"
-                  onChange={event =>
+                  onChange={(event) =>
                     filterChanged('eyeColor', event.target.value)
                   }
                 >
@@ -277,7 +277,7 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.height}
               height={88}
-              onResize={width => changeSize('height', width)}
+              onResize={(width) => changeSize('height', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
@@ -286,11 +286,11 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'height' ? sort.direction : 'NONE'
                     }
-                    onChange={direction => changeSort('height', direction)}
+                    onChange={(direction) => changeSort('height', direction)}
                   />
                 </EpicCellLayout>
                 <Input
-                  onChange={event =>
+                  onChange={(event) =>
                     filterChanged('height', event.target.value)
                   }
                 />
@@ -299,7 +299,7 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.weight}
               height={88}
-              onResize={width => changeSize('weight', width)}
+              onResize={(width) => changeSize('weight', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
@@ -308,11 +308,11 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'weight' ? sort.direction : 'NONE'
                     }
-                    onChange={direction => changeSort('weight', direction)}
+                    onChange={(direction) => changeSort('weight', direction)}
                   />
                 </EpicCellLayout>
                 <Input
-                  onChange={event =>
+                  onChange={(event) =>
                     filterChanged('weight', event.target.value)
                   }
                 />
@@ -321,7 +321,7 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.jobTitle}
               height={88}
-              onResize={width => changeSize('jobTitle', width)}
+              onResize={(width) => changeSize('jobTitle', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
@@ -330,11 +330,11 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'jobTitle' ? sort.direction : 'NONE'
                     }
-                    onChange={direction => changeSort('jobTitle', direction)}
+                    onChange={(direction) => changeSort('jobTitle', direction)}
                   />
                 </EpicCellLayout>
                 <Input
-                  onChange={event =>
+                  onChange={(event) =>
                     filterChanged('jobTitle', event.target.value)
                   }
                 />
@@ -343,7 +343,7 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.favoriteMovie}
               height={88}
-              onResize={width => changeSize('favoriteMovie', width)}
+              onResize={(width) => changeSize('favoriteMovie', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
@@ -352,7 +352,7 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'favoriteMovie' ? sort.direction : 'NONE'
                     }
-                    onChange={direction =>
+                    onChange={(direction) =>
                       changeSort('favoriteMovie', direction)
                     }
                   />
@@ -363,7 +363,7 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.favoriteFood}
               height={88}
-              onResize={width => changeSize('favoriteFood', width)}
+              onResize={(width) => changeSize('favoriteFood', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
@@ -372,13 +372,13 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'favoriteFood' ? sort.direction : 'NONE'
                     }
-                    onChange={direction =>
+                    onChange={(direction) =>
                       changeSort('favoriteFood', direction)
                     }
                   />
                 </EpicCellLayout>
                 <Input
-                  onChange={event =>
+                  onChange={(event) =>
                     filterChanged('favoriteFood', event.target.value)
                   }
                 />
@@ -387,7 +387,7 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.dateOfBirth}
               height={88}
-              onResize={width => changeSize('dateOfBirth', width)}
+              onResize={(width) => changeSize('dateOfBirth', width)}
             >
               <EpicCellLayout mode="vertical">
                 <EpicCellLayout mode="horizontal">
@@ -396,7 +396,9 @@ storiesOf('table|EpicTable', module)
                     direction={
                       sort.column === 'dateOfBirth' ? sort.direction : 'NONE'
                     }
-                    onChange={direction => changeSort('dateOfBirth', direction)}
+                    onChange={(direction) =>
+                      changeSort('dateOfBirth', direction)
+                    }
                   />
                 </EpicCellLayout>
 
@@ -405,7 +407,7 @@ storiesOf('table|EpicTable', module)
                   dateFormat="YYYY-MM-DD"
                   placeholder="YYYY-MM-DD"
                   timeFormat={false}
-                  onChange={date =>
+                  onChange={(date) =>
                     filterChanged(
                       'dateOfBirth',
                       date ? moment(date).format('YYYY-MM-DD') : ''
@@ -417,19 +419,19 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.sex}
               height={88}
-              onResize={width => changeSize('sex', width)}
+              onResize={(width) => changeSize('sex', width)}
             >
               <EpicCellLayout mode="vertical">
                 <div className="d-flex w-100 justify-content-between">
                   Sex
                   <EpicSort
                     direction={sort.column === 'sex' ? sort.direction : 'NONE'}
-                    onChange={direction => changeSort('sex', direction)}
+                    onChange={(direction) => changeSort('sex', direction)}
                   />
                 </div>
                 <Input
                   type="select"
-                  onChange={event => filterChanged('sex', event.target.value)}
+                  onChange={(event) => filterChanged('sex', event.target.value)}
                 >
                   <option>all</option>
                   <option>male</option>
@@ -447,8 +449,8 @@ storiesOf('table|EpicTable', module)
               <EpicRow onClick={() => setDetail(index)}>
                 <EpicCell width={widths.firstName} height={44}>
                   <EpicSelection
-                    checked={selected.some(p => p.id === person.id)}
-                    onChange={checked => onSelect(person, checked)}
+                    checked={selected.some((p) => p.id === person.id)}
+                    onChange={(checked) => onSelect(person, checked)}
                   />
 
                   <span
@@ -631,7 +633,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {persons.map(person => (
+          {persons.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={44}>
                 {person.firstName}
@@ -723,7 +725,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {persons.map(person => (
+          {persons.map((person) => (
             <EpicRow key={person.id} onClick={() => onRowClick(person)}>
               <EpicCell width={300} height={44}>
                 {person.firstName}
@@ -811,7 +813,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {persons.map(person => (
+          {persons.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={44}>
                 {person.firstName}
@@ -875,7 +877,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {persons.map(person => (
+          {persons.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={44}>
                 {person.firstName}
@@ -900,7 +902,7 @@ storiesOf('table|EpicTable', module)
     return (
       <Card body>
         <EpicTable>
-          {persons.map(person => (
+          {persons.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={44}>
                 {person.firstName}
@@ -961,7 +963,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {persons.map(person => (
+          {persons.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={44}>
                 {person.firstName}
@@ -1149,7 +1151,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {sortedPersons.map(person => (
+          {sortedPersons.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={44}>
                 {person.firstName}
@@ -1203,7 +1205,7 @@ storiesOf('table|EpicTable', module)
     }));
 
     function changeSize(name: keyof Person, width: number) {
-      setWidths(widths => ({ ...widths, [name]: width }));
+      setWidths((widths) => ({ ...widths, [name]: width }));
     }
 
     return (
@@ -1213,28 +1215,28 @@ storiesOf('table|EpicTable', module)
             <EpicHeader
               width={widths.firstName}
               height={44}
-              onResize={width => changeSize('firstName', width)}
+              onResize={(width) => changeSize('firstName', width)}
             >
               First name
             </EpicHeader>
             <EpicHeader
               width={widths.lastName}
               height={44}
-              onResize={width => changeSize('lastName', width)}
+              onResize={(width) => changeSize('lastName', width)}
             >
               Last name
             </EpicHeader>
             <EpicHeader
               width={widths.age}
               height={44}
-              onResize={width => changeSize('age', width)}
+              onResize={(width) => changeSize('age', width)}
             >
               Age
             </EpicHeader>
             <EpicHeader
               width={widths.eyeColor}
               height={44}
-              onResize={width => changeSize('eyeColor', width)}
+              onResize={(width) => changeSize('eyeColor', width)}
             >
               Eye color
             </EpicHeader>
@@ -1243,7 +1245,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {persons.map(person => (
+          {persons.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={widths.firstName} height={44}>
                 {person.firstName}
@@ -1268,14 +1270,14 @@ storiesOf('table|EpicTable', module)
     );
   })
   .add('multiple headers', () => {
-    const contactsByLetter = groupBy(persons, p => p.lastName[0]);
+    const contactsByLetter = groupBy(persons, (p) => p.lastName[0]);
 
     const letters = Object.keys(contactsByLetter).sort();
 
     return (
       <Card body>
         <EpicTable>
-          {letters.map(letter => (
+          {letters.map((letter) => (
             <Fragment key={letter}>
               <EpicRow header>
                 <EpicHeader width={300} height={44}>
@@ -1315,7 +1317,7 @@ storiesOf('table|EpicTable', module)
                   Actions
                 </EpicHeader>
               </EpicRow>
-              {contactsByLetter[letter].map(person => (
+              {contactsByLetter[letter].map((person) => (
                 <EpicRow key={person.id}>
                   <EpicCell width={300} height={44}>
                     {person.lastName}
@@ -1363,21 +1365,21 @@ storiesOf('table|EpicTable', module)
     );
   })
   .add('single column', () => {
-    const contactsByLetter = groupBy(persons, p => p.lastName[0]);
+    const contactsByLetter = groupBy(persons, (p) => p.lastName[0]);
 
     const letters = Object.keys(contactsByLetter).sort();
 
     return (
       <Card body>
         <EpicTable striped={false}>
-          {letters.map(letter => (
+          {letters.map((letter) => (
             <Fragment key={letter}>
               <EpicRow header>
                 <EpicHeader width={300} height={44}>
                   {letter}
                 </EpicHeader>
               </EpicRow>
-              {contactsByLetter[letter].map(person => (
+              {contactsByLetter[letter].map((person) => (
                 <EpicRow key={person.id}>
                   <EpicCell width={300} height={44}>
                     <EpicCellLayout mode="horizontal">
@@ -1443,7 +1445,7 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {pageOfPersons.content.map(person => (
+          {pageOfPersons.content.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={44}>
                 {person.firstName}
@@ -1550,7 +1552,7 @@ storiesOf('table|EpicTable', module)
 
                     <EpicExpander
                       open={expanded === index}
-                      onChange={open => setExpanded(open ? index : -1)}
+                      onChange={(open) => setExpanded(open ? index : -1)}
                     />
                   </EpicCellLayout>
                 </EpicCell>
@@ -1651,7 +1653,7 @@ storiesOf('table|EpicTable', module)
           </EpicRow>
 
           {persons
-            .filter(p => p.firstName === 'Zechs')
+            .filter((p) => p.firstName === 'Zechs')
             .map((person, index) => (
               <Fragment key={person.id}>
                 <EpicRow>
@@ -1828,7 +1830,7 @@ storiesOf('table|EpicTable', module)
           </EpicRow>
 
           {persons
-            .filter(p => p.firstName === 'Zechs')
+            .filter((p) => p.firstName === 'Zechs')
             .map((person, index) => (
               <Fragment key={person.id}>
                 <EpicRow>
@@ -1864,7 +1866,7 @@ storiesOf('table|EpicTable', module)
                   {() => (
                     <EpicDetail onClose={() => setDetail(-1)}>
                       <MoreOrLess
-                        content={persons.map(p => (
+                        content={persons.map((p) => (
                           <p key={p.id}>{p.firstName}</p>
                         ))}
                         limit={3}
@@ -1890,7 +1892,7 @@ storiesOf('table|EpicTable', module)
         selected.push(person);
         setSelected([...selected]);
       } else {
-        const nextSelected = selected.filter(p => p.id !== person.id);
+        const nextSelected = selected.filter((p) => p.id !== person.id);
 
         setSelected(nextSelected);
       }
@@ -1898,12 +1900,12 @@ storiesOf('table|EpicTable', module)
 
     const allPersonsSelected =
       selected.length > 0 &&
-      pageOfPersons.content.every(p => selected.some(ps => ps.id === p.id));
+      pageOfPersons.content.every((p) => selected.some((ps) => ps.id === p.id));
 
     function selectAllClicked(checked: boolean) {
       if (checked) {
-        pageOfPersons.content.forEach(p => {
-          if (selected.every(ps => p.id !== ps.id)) {
+        pageOfPersons.content.forEach((p) => {
+          if (selected.every((ps) => p.id !== ps.id)) {
             selected.push(p);
           }
 
@@ -1920,7 +1922,7 @@ storiesOf('table|EpicTable', module)
           <>
             <h2>Selected</h2>
             <div className="mb-3">
-              {selected.map(person => (
+              {selected.map((person) => (
                 <Tag
                   key={person.id}
                   text={`${person.firstName} ${person.lastName}`}
@@ -1936,7 +1938,7 @@ storiesOf('table|EpicTable', module)
             <EpicHeader width={300} height={44}>
               <EpicSelection
                 checked={allPersonsSelected}
-                onChange={checked => selectAllClicked(checked)}
+                onChange={(checked) => selectAllClicked(checked)}
               >
                 First name
               </EpicSelection>
@@ -1976,12 +1978,12 @@ storiesOf('table|EpicTable', module)
             </EpicHeader>
           </EpicRow>
 
-          {pageOfPersons.content.map(person => (
+          {pageOfPersons.content.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={44}>
                 <EpicSelection
-                  checked={selected.some(p => p.id === person.id)}
-                  onChange={checked => onSelect(person, checked)}
+                  checked={selected.some((p) => p.id === person.id)}
+                  onChange={(checked) => onSelect(person, checked)}
                 >
                   {person.firstName}
                 </EpicSelection>

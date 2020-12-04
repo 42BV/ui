@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { Icon, IconType } from '../Icon';
 
-interface Props {
+type Props = {
   /**
    * String that corresponds to a route.
    */
@@ -34,23 +34,23 @@ interface Props {
 
   /**
    * Optionally whether the route is an exact route.
-   * 
+   *
    * Defaults to true.
    */
   exact?: boolean;
-}
+};
 
 /**
- * The NavigationItem is a wrapper around the `react-router`'s 
+ * The NavigationItem is a wrapper around the `react-router`'s
  * `NavLink`. See https://reacttraining.com/react-router/web/api/NavLink.
  * It adds texts and icons around the `NavLink`.
- * 
- * The NavigationItem enables you to guard specific links by a predicate, 
+ *
+ * The NavigationItem enables you to guard specific links by a predicate,
  * for example by user role.
  *
- * Use it when you want to keep certain navigation items hidden 
+ * Use it when you want to keep certain navigation items hidden
  * for specific user roles.
- * 
+ *
  * By default the `NavigationItem` will render an `exact` link. See:
  * https://reacttraining.com/react-router/web/api/Route/exact-bool.
  * But you can set it to `false` via the props.

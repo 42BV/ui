@@ -12,7 +12,7 @@ import { ContentState } from '../..';
 import { action } from '@storybook/addon-actions';
 
 function loadData(): Promise<Page<User>> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(pageOfUsers());
     }, 1000);
@@ -20,7 +20,7 @@ function loadData(): Promise<Page<User>> {
 }
 
 function emptyData(): Promise<Page<User>> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(emptyPage<User>());
     }, 1000);
@@ -39,7 +39,7 @@ function loadingData(): Promise<Page<User>> {
   return new Promise(() => undefined);
 }
 
-storiesOf('core|async/AsyncPage', module)
+storiesOf('core/async/AsyncPage', module)
   .addParameters({ component: AsyncPage })
   .add('when loaded', () => {
     const state = useAsync(loadData);
@@ -47,9 +47,9 @@ storiesOf('core|async/AsyncPage', module)
     return (
       <Card body>
         <AsyncPage state={state}>
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -65,9 +65,9 @@ storiesOf('core|async/AsyncPage', module)
     return (
       <Card body>
         <AsyncPage state={state}>
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -86,9 +86,9 @@ storiesOf('core|async/AsyncPage', module)
           state={state}
           text={{ error: 'I’m sorry Dave, I’m afraid I can’t do that' }}
         >
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -104,9 +104,9 @@ storiesOf('core|async/AsyncPage', module)
     return (
       <Card body>
         <AsyncPage state={state} showRetryButton={false}>
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -122,9 +122,9 @@ storiesOf('core|async/AsyncPage', module)
     return (
       <Card body>
         <AsyncPage state={state}>
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -140,9 +140,9 @@ storiesOf('core|async/AsyncPage', module)
     return (
       <Card body>
         <AsyncPage state={state} text={{ loading: 'Loading Jeffrey' }}>
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -158,9 +158,9 @@ storiesOf('core|async/AsyncPage', module)
     return (
       <Card body>
         <AsyncPage state={state}>
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -179,9 +179,9 @@ storiesOf('core|async/AsyncPage', module)
           state={state}
           text={{ empty: "No Jeffrey's match your parameters try again" }}
         >
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -206,9 +206,9 @@ storiesOf('core|async/AsyncPage', module)
             </ContentState>
           )}
         >
-          {userPage => (
+          {(userPage) => (
             <ListGroup>
-              {userPage.content.map(user => (
+              {userPage.content.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>

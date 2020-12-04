@@ -1,7 +1,7 @@
-export interface State {
+export type State = {
   color: string;
   valid?: boolean;
-}
+};
 
 export function getState(info: {
   hasErrors: boolean;

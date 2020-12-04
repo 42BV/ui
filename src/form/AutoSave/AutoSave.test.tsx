@@ -16,13 +16,14 @@ describe('Component: AutoSave', () => {
     initialValues?: { [id: string]: string };
   }) {
     const resolvable = resolvablePromise();
-    const onSaveSpy = jest.fn(() => resolvable.promise);
+
+    const onSaveSpy = jest.fn((_values) => resolvable.promise);
+
     const setActiveSpy = jest.fn();
     jest
       .spyOn(Active, 'useActive')
       .mockImplementation(() => [activeField, setActiveSpy]);
 
-    // @ts-ignore
     const autoSave = shallow(
       <AutoSave onSave={onSaveSpy} initialValues={initialValues} />
     );
@@ -39,11 +40,11 @@ describe('Component: AutoSave', () => {
     it('should not save on first time field active', () => {
       const { autoSave, onSaveSpy, setActiveSpy } = setup({});
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       autoSave
         .find('FormSpy')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ active: 'test' });
 
       expect(setActiveSpy).toBeCalledTimes(1);
@@ -57,11 +58,11 @@ describe('Component: AutoSave', () => {
         activeField: 'test'
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       autoSave
         .find('FormSpy')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ active: 'test' });
 
       expect(setActiveSpy).toBeCalledTimes(0);
@@ -74,11 +75,11 @@ describe('Component: AutoSave', () => {
         initialValues: { test: 'test' }
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       autoSave
         .find('FormSpy')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ active: 'friends', values: { test: 'test' } });
 
       expect(setActiveSpy).toBeCalledTimes(1);
@@ -87,9 +88,11 @@ describe('Component: AutoSave', () => {
       expect(onSaveSpy).toBeCalledTimes(0);
     });
 
-    it('should wait until saving again until the previous save has finished', async done => {
+    it('should wait until saving again until the previous save has finished', async (done) => {
+      expect.assertions(5);
+
       const { promise, resolve } = resolvablePromise();
-      // @ts-ignore
+
       jest
         .spyOn(PendingPromise, 'usePromise')
         .mockReturnValue({ current: promise });
@@ -99,11 +102,11 @@ describe('Component: AutoSave', () => {
         initialValues: { test: 'test' }
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       autoSave
         .find('FormSpy')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ active: 'friends', values: { test: 'testing' } });
 
       expect(setActiveSpy).toBeCalledTimes(1);
@@ -129,11 +132,11 @@ describe('Component: AutoSave', () => {
         activeField: 'test'
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       autoSave
         .find('FormSpy')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ active: 'friends', values: { test: 'test' } });
 
       expect(setActiveSpy).toBeCalledTimes(1);

@@ -6,7 +6,7 @@ import { isEqual } from 'lodash';
 import { useActive } from './useActive';
 import { usePromise } from './usePromise';
 
-interface Props<FormValues, T> {
+type Props<FormValues, T> = {
   /**
    * Callback fired on blur when value of the form element changed.
    *
@@ -18,7 +18,7 @@ interface Props<FormValues, T> {
    * The initial values to compare to.
    */
   initialValues?: FormValues;
-}
+};
 
 export function AutoSave<FormValues, T>(props: Props<FormValues, T>) {
   const { onSave, initialValues } = props;
@@ -30,7 +30,8 @@ export function AutoSave<FormValues, T>(props: Props<FormValues, T>) {
       return;
     }
 
-    setActive(formState.active);
+    const activeAsString = formState.active as string;
+    setActive(activeAsString);
 
     if (!active) {
       return;

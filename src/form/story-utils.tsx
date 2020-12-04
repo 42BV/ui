@@ -4,9 +4,9 @@ import { Row, Col, Card, CardBody } from 'reactstrap';
 import SubmitButton from '../core/SubmitButton/SubmitButton';
 import { action } from '@storybook/addon-actions';
 
-interface Props {
+type Props = {
   children: React.ReactNode;
-}
+};
 
 export function Form({ children }: Props) {
   return (
@@ -49,7 +49,7 @@ export function FinalForm({ children }: Props) {
 }
 
 export function resolveAfter<T>(value: T, after = 1000): Promise<T> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     return setTimeout(() => {
       resolve(value);
     }, after);

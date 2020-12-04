@@ -1,6 +1,6 @@
 import { Page } from '@42.nl/spring-connect';
 import { Meta } from '../form/types';
-import { UserRole, User } from './types';
+import { User } from './types';
 import { random } from 'lodash';
 
 export const validMeta: Meta = Object.freeze({
@@ -22,44 +22,44 @@ export function randomUser(): User {
     firstName: `user-${id}`,
     lastName: 'random',
     active: true,
-    roles: [UserRole.ADMIN]
+    roles: ['ADMIN']
   };
 }
 
-export function adminUser() {
+export function adminUser(): User {
   return {
     id: 42,
     email: 'admin@42.nl',
     firstName: 'admin',
     lastName: 'user',
     active: true,
-    roles: [UserRole.ADMIN]
+    roles: ['ADMIN']
   };
 }
 
-export function userUser() {
+export function userUser(): User {
   return {
     id: 1337,
     email: 'user@42.nl',
     firstName: 'test',
     lastName: 'user',
     active: false,
-    roles: [UserRole.USER]
+    roles: ['USER']
   };
 }
 
-export function coordinatorUser() {
+export function coordinatorUser(): User {
   return {
     id: 777,
     email: 'coordinator@42.nl',
     firstName: 'coordinator',
     lastName: 'user',
     active: false,
-    roles: [UserRole.ADMIN, UserRole.USER]
+    roles: ['ADMIN', 'USER']
   };
 }
 
-export function nobodyUser() {
+export function nobodyUser(): User {
   return {
     id: 999,
     email: 'nobody@42.nl',

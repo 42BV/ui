@@ -106,7 +106,7 @@ describe('Component: TextEditor', () => {
 
       const quill = textEditor.find('Quill');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       quill.props().onChange('Maarten');
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -118,7 +118,7 @@ describe('Component: TextEditor', () => {
 
       const quill = textEditor.find('Quill');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       quill.props().onBlur();
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
@@ -129,7 +129,7 @@ describe('Component: TextEditor', () => {
 
       const quill = textEditor.find('Quill');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       quill.props().onFocus();
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);

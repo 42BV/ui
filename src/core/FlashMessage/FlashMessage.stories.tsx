@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import FlashMessage from './FlashMessage';
 
-storiesOf('core|FlashMessage', module)
+storiesOf('core/FlashMessage', module)
   .addParameters({ component: FlashMessage })
   .add('default', () => {
     return (

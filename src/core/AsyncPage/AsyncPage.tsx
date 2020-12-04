@@ -7,7 +7,7 @@ import { Page } from '@42.nl/spring-connect';
 
 type Props<T> = Omit<AsyncContentProps<T>, 'isEmpty'>;
 
-export function isEmpty<T>(page: Page<T>) {
+export function isEmpty<T>(page: Page<T>): boolean {
   return page.totalElements === 0;
 }
 

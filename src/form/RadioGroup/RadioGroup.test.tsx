@@ -133,7 +133,7 @@ describe('Component: RadioGroup', () => {
 
       const radio = radioGroup.find('Input').at(0);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       radio.props().onChange({ target: { value: 0 } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -146,11 +146,11 @@ describe('Component: RadioGroup', () => {
         canClear: true
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       radioGroup
         .find('TextButton')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);

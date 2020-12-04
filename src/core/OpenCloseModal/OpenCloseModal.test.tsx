@@ -40,7 +40,7 @@ describe('Component: OpenCloseModal', () => {
     };
 
     if (hasButtons) {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       props.onSave = onSaveSpy;
     }
 
@@ -48,7 +48,7 @@ describe('Component: OpenCloseModal', () => {
       <RadioGroup
         onChange={jest.fn()}
         options={['local', 'development', 'test', 'acceptation', 'production']}
-        optionForValue={v => v}
+        optionForValue={(v) => v}
       />
     );
 
@@ -119,12 +119,11 @@ describe('Component: OpenCloseModal', () => {
     it('should call onClose when clicked outside modal', () => {
       setup({});
 
-      // @ts-ignore
       openCloseModal
         .find('Modal')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .toggle();
 
       expect(onCloseSpy).toBeCalledTimes(1);
@@ -133,12 +132,11 @@ describe('Component: OpenCloseModal', () => {
     it('should call onClose when close button clicked', () => {
       setup({});
 
-      // @ts-ignore
       openCloseModal
         .find('ModalHeader')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .toggle();
 
       expect(onCloseSpy).toBeCalledTimes(1);
@@ -147,12 +145,12 @@ describe('Component: OpenCloseModal', () => {
     it('should call onClose when cancel button clicked', () => {
       setup({});
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       openCloseModal
         .find('Button')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(onCloseSpy).toBeCalledTimes(1);
@@ -161,12 +159,12 @@ describe('Component: OpenCloseModal', () => {
     it('should call onSave when save button clicked', () => {
       setup({});
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       openCloseModal
         .find('Button')
         .at(1)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(onSaveSpy).toBeCalledTimes(1);

@@ -39,11 +39,11 @@ describe('component: TextButton', () => {
 
       const event = new Event('click');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       textButton
         .find('u')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick(event);
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);

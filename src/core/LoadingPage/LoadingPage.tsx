@@ -3,7 +3,7 @@ import React, { CSSProperties } from 'react';
 import Spinner from '../Spinner/Spinner';
 import { useShowAfter } from '../useShowAfter/useShowAfter';
 
-interface Props {
+type Props = {
   /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
@@ -21,7 +21,7 @@ interface Props {
    * of the view port.
    */
   height?: number;
-}
+};
 
 /**
  * The LoadingPage component embeds the Spinner component in a page-friendly matter.

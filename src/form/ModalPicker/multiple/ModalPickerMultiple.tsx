@@ -351,7 +351,6 @@ export default class ModalPickerMultiple<T> extends React.Component<
     const {
       optionForValue,
       isOptionEqual,
-      // @ts-ignore
       uniqueKeyForValue,
       ...props
     } = this.props;
@@ -362,7 +361,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
       );
     }
 
-    return page.content.map(option => {
+    return page.content.map((option) => {
       const label = optionForValue(option);
       const key = keyForOption({ option, uniqueKeyForValue, optionForValue });
 
@@ -399,7 +398,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
     optionForValue: OptionForValue<T>;
     isOptionEqual?: OptionEqual<T>;
   }): RenderOptionsOption<T>[] {
-    return page.content.map(option => {
+    return page.content.map((option) => {
       const isSelected = isOptionSelected({
         option,
         optionForValue,
@@ -429,7 +428,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
           backgroundColor: '#edecf1'
         }}
       >
-        <Col>{this.renderTags(v => this.itemClicked(v, true), selected)}</Col>
+        <Col>{this.renderTags((v) => this.itemClicked(v, true), selected)}</Col>
       </Row>
     );
   }
@@ -437,7 +436,7 @@ export default class ModalPickerMultiple<T> extends React.Component<
   renderTags(onClick: (value: T) => void, values: T[]): JSX.Element[] | null {
     const { optionForValue } = this.props;
 
-    return values.map(value => {
+    return values.map((value) => {
       const label = optionForValue(value);
       return <Tag key={label} onRemove={() => onClick(value)} text={label} />;
     });

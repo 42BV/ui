@@ -1,5 +1,5 @@
 import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
 
@@ -16,42 +16,30 @@ beforeEach(() => {
 function setupStorages() {
   let localStorageMockStore = {};
 
-  // @ts-ignore
+  // @ts-expect-error override for custom store in test
   global.localStorage = {
-    // @ts-ignore
-    getItem: jest.fn(key => {
-      // @ts-ignore
+    getItem: jest.fn((key) => {
       return localStorageMockStore[key] || null;
     }),
-    // @ts-ignore
     setItem: jest.fn((key, value) => {
-      // @ts-ignore
       localStorageMockStore[key] = `${value}`;
     }),
-    // @ts-ignore
     clear: jest.fn(() => {
-      // @ts-ignore
       localStorageMockStore = {};
     })
   };
 
   let sessionStorageMockStore = {};
 
-  // @ts-ignore
+  // @ts-expect-error override for custom store in test
   global.sessionStorage = {
-    // @ts-ignore
-    getItem: jest.fn(key => {
-      // @ts-ignore
+    getItem: jest.fn((key) => {
       return sessionStorageMockStore[key] || null;
     }),
-    // @ts-ignore
     setItem: jest.fn((key, value) => {
-      // @ts-ignore
       sessionStorageMockStore[key] = `${value}`;
     }),
-    // @ts-ignore
     clear: jest.fn(() => {
-      // @ts-ignore
       sessionStorageMockStore = {};
     })
   };

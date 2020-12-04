@@ -7,11 +7,11 @@ import TextButton from '../../../core/TextButton/TextButton';
 import { DisplayValue } from '../single/ModalPickerSingle';
 import { DisplayValues } from '../multiple/ModalPickerMultiple';
 
-interface Text {
+type Text = {
   clear?: string;
-}
+};
 
-interface BaseProps<T> {
+interface BaseProps {
   /**
    * Function to open the modal, called when the button is clicked.
    */
@@ -40,12 +40,12 @@ interface BaseProps<T> {
   text?: Text;
 }
 
-interface ModalPickerSingleOpenerProps<T> extends BaseProps<T> {
+interface ModalPickerSingleOpenerProps<T> extends BaseProps {
   values?: T;
   displayValues: DisplayValue<T>;
 }
 
-interface ModalPickerMultipleOpenerProps<T> extends BaseProps<T> {
+interface ModalPickerMultipleOpenerProps<T> extends BaseProps {
   values?: T[];
   displayValues: DisplayValues<T>;
 }
@@ -77,7 +77,7 @@ export function ModalPickerOpener<T>(props: Props<T>) {
     'ml-1': values && alignButton !== 'left'
   });
 
-  // @ts-ignore
+  // @ts-expect-error Accept that DisplayValues is sometimes an array and sometimes not
   const displayValue = displayValues(values);
 
   return (

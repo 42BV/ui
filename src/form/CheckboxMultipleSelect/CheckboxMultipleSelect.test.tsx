@@ -81,7 +81,6 @@ describe('Component: CheckboxMultipleSelect', () => {
           text: { loadingMessage: 'Custom loading' }
         });
 
-        // @ts-ignore
         checkboxMultipleSelect.setState({ loading: true });
 
         expect(checkboxMultipleSelect.find('Spinner').exists()).toBe(true);
@@ -93,7 +92,6 @@ describe('Component: CheckboxMultipleSelect', () => {
       test('with default text', () => {
         setup({ value: [adminUser()] });
 
-        // @ts-ignore
         checkboxMultipleSelect.setState({ loading: true });
 
         expect(checkboxMultipleSelect.find('Spinner').exists()).toBe(true);
@@ -128,7 +126,7 @@ describe('Component: CheckboxMultipleSelect', () => {
 
   describe('constructor', () => {
     test('when options is an array use that options and set loading to false', () => {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const checkboxMultipleSelect = new CheckboxMultipleSelect({
         options: [adminUser()]
       });
@@ -140,7 +138,7 @@ describe('Component: CheckboxMultipleSelect', () => {
     });
 
     test('when options is a function set options to empty and loading to true', () => {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const checkboxMultipleSelect = new CheckboxMultipleSelect({
         options: jest.fn()
       });
@@ -153,10 +151,12 @@ describe('Component: CheckboxMultipleSelect', () => {
   });
 
   describe('componentDidMount', () => {
-    test('when options is an array do nothing', async done => {
+    test('when options is an array do nothing', async (done) => {
+      expect.assertions(2);
+
       const onChange = jest.fn();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const checkboxMultipleSelect = new CheckboxMultipleSelect({
         options: [adminUser(), coordinatorUser(), userUser()],
         onChange
@@ -180,11 +180,13 @@ describe('Component: CheckboxMultipleSelect', () => {
       }
     });
 
-    test('when options is a function set options to empty and loading to true', async done => {
+    test('when options is a function set options to empty and loading to true', async (done) => {
+      expect.assertions(2);
+
       const onChange = jest.fn();
       const options = () => Promise.resolve(pageOfUsers());
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const checkboxMultipleSelect = new CheckboxMultipleSelect({
         options,
         onChange
@@ -229,7 +231,7 @@ describe('Component: CheckboxMultipleSelect', () => {
 
         // First lets click on the admin it should be added
         let checkbox = checkboxMultipleSelect.find('Input').at(0);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         checkbox.props().onChange();
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -247,7 +249,7 @@ describe('Component: CheckboxMultipleSelect', () => {
         // Now lets click on the coordinator it should be added
         checkbox = checkboxMultipleSelect.find('Input').at(1);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         checkbox.props().onChange();
 
         expect(onChangeSpy).toHaveBeenCalledTimes(2);
@@ -265,7 +267,7 @@ describe('Component: CheckboxMultipleSelect', () => {
         // Now lets click on the admin again it should be removed
         checkbox = checkboxMultipleSelect.find('Input').at(0);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         checkbox.props().onChange();
 
         expect(onChangeSpy).toHaveBeenCalledTimes(3);
@@ -284,7 +286,7 @@ describe('Component: CheckboxMultipleSelect', () => {
 
         // First lets click on the admin it should be added
         let checkbox = checkboxMultipleSelect.find('Input').at(0);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         checkbox.props().onChange();
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -302,7 +304,7 @@ describe('Component: CheckboxMultipleSelect', () => {
         // Now lets click on the coordinator it should be added
         checkbox = checkboxMultipleSelect.find('Input').at(1);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         checkbox.props().onChange();
 
         expect(onChangeSpy).toHaveBeenCalledTimes(2);
@@ -323,7 +325,7 @@ describe('Component: CheckboxMultipleSelect', () => {
         // Now lets click on the admin again it should be removed
         checkbox = checkboxMultipleSelect.find('Input').at(0);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         checkbox.props().onChange();
 
         expect(onChangeSpy).toHaveBeenCalledTimes(3);

@@ -5,7 +5,7 @@ import Icon from '../Icon/Icon';
 
 import InfoBadge from './InfoBadge';
 
-storiesOf('core|InfoBadge', module)
+storiesOf('core/InfoBadge', module)
   .addParameters({ component: InfoBadge })
   .add('default', () => {
     return (

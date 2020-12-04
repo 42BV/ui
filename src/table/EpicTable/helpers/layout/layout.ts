@@ -305,16 +305,16 @@ export function epicTableLayout(
     const header = section.header[0];
 
     if (header) {
-      // @ts-ignore
+      // @ts-expect-error Accept that header has props
       totalHeight += header.props.height;
     }
 
     const cellHeight = section.contents.reduce((cellsHeight, cells) => {
       const cell = cells[0];
 
-      // @ts-ignore
+      // @ts-expect-error Accept that the cell has a type
       if (cell && cell.type === EpicCell) {
-        // @ts-ignore
+        // @ts-expect-error Accept that the cell has props
         return cellsHeight + cell.props.height;
       } else {
         // In this case the cell is an EpicDetailRow or
@@ -385,7 +385,7 @@ export function epicTableLayout(
         odd: isRowOdd,
         hover: hoveredRow === index,
         onRowClick: onClick,
-        onHoverChanged: value => hoverChanged(index, value)
+        onHoverChanged: (value) => hoverChanged(index, value)
       });
 
       // The first cell should be bucketed on the left
@@ -449,7 +449,6 @@ export function epicTableLayout(
       top: 0,
       left: row.props.left,
       key: 42,
-      // @ts-ignore
       ref: activeDetailRowChanged
     });
 
@@ -459,13 +458,6 @@ export function epicTableLayout(
     // sans the `left` property of the `EpicDetailRow`
     // It needs to be added somewhere :P so why not on the left
     leftSection.contents.push([clone]);
-
-    // When the EpicDetailRow is active, report it back to the
-    // EpicTable so it can set the shadows correctly.
-    if (row.props.active === true) {
-      // @ts-ignore
-      // activeDetailRow = epicDetailRowRef;
-    }
   }
 
   // Impure helper function for handling ExpanderRow's

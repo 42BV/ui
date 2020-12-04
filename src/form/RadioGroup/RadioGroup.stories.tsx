@@ -13,7 +13,7 @@ interface SubjectOption {
   label: string;
 }
 
-storiesOf('Form|RadioGroup', module)
+storiesOf('Form/RadioGroup', module)
   .add('defined options', () => {
     const [subject, setSubject] = useState<SubjectOption | undefined>(
       undefined
@@ -26,7 +26,7 @@ storiesOf('Form|RadioGroup', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
@@ -53,7 +53,7 @@ storiesOf('Form|RadioGroup', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
@@ -86,7 +86,7 @@ storiesOf('Form|RadioGroup', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
@@ -120,7 +120,7 @@ storiesOf('Form|RadioGroup', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
@@ -186,7 +186,7 @@ storiesOf('Form|RadioGroup', module)
           id="subject"
           label="Subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
@@ -212,7 +212,7 @@ storiesOf('Form|RadioGroup', module)
           id="subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
@@ -250,7 +250,7 @@ storiesOf('Form|RadioGroup', module)
           }
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
@@ -279,7 +279,7 @@ storiesOf('Form|RadioGroup', module)
     ];
 
     const filteredOptions = allOptions.filter(
-      option => option.value !== 'awesome'
+      (option) => option.value !== 'awesome'
     );
 
     return (
@@ -298,7 +298,7 @@ storiesOf('Form|RadioGroup', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={filtered ? filteredOptions : allOptions}
           value={subject}
           onChange={setSubject}
@@ -324,10 +324,10 @@ storiesOf('Form|RadioGroup', module)
           id="brand"
           label="Brand"
           placeholder="Please select your brand"
-          optionForValue={option => option}
+          optionForValue={(option) => option}
           options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
           value={brand}
-          onChange={value => {
+          onChange={(value) => {
             setBrand(value);
             setModel(undefined);
           }}
@@ -358,7 +358,7 @@ storiesOf('Form|RadioGroup', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },

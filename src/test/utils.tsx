@@ -1,17 +1,27 @@
 import { Page } from '@42.nl/spring-connect';
 
-export function resolvablePromise<R>() {
-  let resolve: (result?: Promise<R> | R) => void = () => undefined;
+type PromiseResolve<T> = (value?: T | PromiseLike<T>) => void;
 
-  const promise = new Promise<R>(r => {
+export function resolvablePromise<R>(): {
+  promise: Promise<R>;
+  resolve: PromiseResolve<R>;
+} {
+  let resolve: PromiseResolve<R> = () => undefined;
+
+  const promise = new Promise<R>((r) => {
     resolve = r;
   });
 
   return { promise, resolve };
 }
 
-export function rejectablePromise() {
-  let reject: (error?: any) => void = () => undefined;
+type PromiseReject = (reason?: any) => void;
+
+export function rejectablePromise(): {
+  promise: Promise<unknown>;
+  reject: PromiseReject;
+} {
+  let reject: PromiseReject = () => undefined;
 
   const promise = new Promise((resolve, r) => {
     reject = r;
@@ -48,13 +58,19 @@ export function pageWithContentAndExactSize<T>(content: Array<T>): Page<T> {
 
 // Get a reference to setTimeout since jest can alter it when mocking timers.
 const setTimeoutRef = window.setTimeout;
-export function waitForUI(assertions: () => void, timeout?: number) {
-  // Waiting one tick should be enough so the UI is updated.
-  setTimeoutRef(() => {
-    try {
-      assertions();
-    } catch (error) {
-      console.error(error);
-    }
-  }, timeout || 1);
+export function waitForUI(
+  assertions: () => void,
+  timeout?: number
+): Promise<void> {
+  return new Promise((resolve) => {
+    // Waiting one tick should be enough so the UI is updated.
+    setTimeoutRef(() => {
+      try {
+        assertions();
+        resolve();
+      } catch (error) {
+        console.error(error);
+      }
+    }, timeout || 1);
+  });
 }

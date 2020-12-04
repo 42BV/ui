@@ -1,6 +1,6 @@
 import React, { forwardRef, Ref, RefObject } from 'react';
 
-export interface Props {
+export type Props = {
   /**
    * A render function which gets called when `active` is true.
    */
@@ -17,15 +17,15 @@ export interface Props {
    * just next to the first column.
    */
   left: number;
-}
+};
 
 // Props that will be injected by the EpicTable.
-interface InjectedProps {
+type InjectedProps = {
   width: number;
   top: number;
   height: number;
   ref: Ref<HTMLDivElement>;
-}
+};
 
 function epicDetailRow(
   { children, active, left, ...rest }: Props,

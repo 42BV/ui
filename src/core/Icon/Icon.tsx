@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Color } from '../types';
 import IconType from './types';
 
-interface Props {
+type Props = {
   /**
    * The material icon you want to render.
    */
@@ -44,7 +44,7 @@ interface Props {
    * Defaults to `24px`
    */
   size?: number;
-}
+};
 
 /**
  * The Icon is a small wrapper around a material design icon.
@@ -79,7 +79,7 @@ export default function Icon({
     <i
       id={id}
       style={style}
-      onClick={event => {
+      onClick={(event) => {
         if (!disabled && onClick) {
           onClick(event);
         }

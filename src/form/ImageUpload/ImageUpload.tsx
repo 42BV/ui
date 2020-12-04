@@ -18,12 +18,12 @@ import {
   replaceFileExtension
 } from './utils';
 
-export interface Text {
+export type Text = {
   cancel?: string;
   change?: string;
   remove?: string;
   done?: string;
-}
+};
 
 interface CropRect {
   /**
@@ -338,7 +338,7 @@ export default class ImageUpload extends Component<Props, State> {
       <Fragment>
         <input
           id={id}
-          onChange={event => this.imgSelected(event)}
+          onChange={(event) => this.imgSelected(event)}
           type="file"
           accept="image/*"
           ref={this.inputRef}
@@ -359,7 +359,7 @@ export default class ImageUpload extends Component<Props, State> {
 
     return (
       <div className="d-flex justify-content-center">
-        <div onWheel={event => this.changeScale(event)}>
+        <div onWheel={(event) => this.changeScale(event)}>
           <AvatarEditor
             ref={this.editorRef}
             image={imageSrc}
@@ -495,7 +495,7 @@ export const JarbImageUpload = withJarb<Value, ChangeValue, Props>(ImageUpload);
  * An ImageValidator is a FieldValidator which checks if the image
  * is valid.
  */
-export type ImageValidator = FieldValidator<Value | null | undefined>;
+export type ImageValidator = FieldValidator<Value>;
 
 /**
  * Takes a `label` and returns a validator which can check if the

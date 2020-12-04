@@ -17,7 +17,7 @@ exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => jar
   content={
     <React.Fragment>
        
-      <Field
+      <ForwardRef(Field)
         name="firstName"
         render={[Function]}
         subscription={
@@ -90,7 +90,7 @@ exports[`HoC: withJarb ui: withJarb => ui => jarbField 1`] = `
 <input
   color=""
   error={
-    <Field
+    <ForwardRef(Field)
       name="firstName"
       render={[Function]}
       subscription={

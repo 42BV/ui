@@ -30,11 +30,11 @@ describe('Component: EpicResize', () => {
         <EpicResize width={300} onResize={onResizeSpy} />
       );
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       epicResize
         .find('div')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onMouseDown({ clientX: 300 });
 
       expect(document.body.style.cursor).toBe('col-resize');
@@ -73,11 +73,11 @@ describe('Component: EpicResize', () => {
         <EpicResize width={300} onResize={oldResizeSpy} />
       );
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       epicResize
         .find('div')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onMouseDown({ clientX: 300 });
 
       mouseMove({ clientX: 342, preventDefault: jest.fn() });
@@ -110,11 +110,11 @@ describe('Component: EpicResize', () => {
         <EpicResize width={300} onResize={onResizeSpy} />
       );
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       epicResize
         .find('div')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onMouseDown({ clientX: 300 });
 
       expect(document.body.style.cursor).toBe('col-resize');

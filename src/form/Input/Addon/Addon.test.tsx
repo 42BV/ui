@@ -32,7 +32,7 @@ describe('Component: Addon', () => {
         <Addon icon="face" color="success" position="right" />
       );
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(addon.find('InputGroupAddon').props().addonType).toBe('append');
     });
 
@@ -41,7 +41,7 @@ describe('Component: Addon', () => {
         <Addon icon="face" color="danger" position="left" />
       );
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(addon.find('InputGroupAddon').props().addonType).toBe('prepend');
     });
   });

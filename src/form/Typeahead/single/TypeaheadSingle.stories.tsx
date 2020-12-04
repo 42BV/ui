@@ -9,7 +9,7 @@ import { User } from '../../../test/types';
 import TypeaheadSingle, { JarbTypeaheadSingle } from './TypeaheadSingle';
 import { Tooltip, Icon } from '../../..';
 
-storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
+storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
   .add('basic', () => {
     return (
       <Form>
@@ -23,7 +23,7 @@ storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
           }
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
       </Form>
     );
@@ -40,7 +40,7 @@ storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
           }
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
       </Form>
     );
@@ -57,7 +57,7 @@ storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
           }
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
       </Form>
     );
@@ -85,7 +85,7 @@ storiesOf('Form|Typeahead/JarbTypeaheadSingle', module)
               pageWithContentAndExactSize([userUser(), adminUser()])
             )
           }
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
       </Form>
     );

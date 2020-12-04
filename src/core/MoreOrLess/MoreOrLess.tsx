@@ -3,7 +3,7 @@ import { take } from 'lodash';
 import classNames from 'classnames';
 import { t } from '../../utilities/translation/translation';
 
-interface Text {
+type Text = {
   /**
    * Text to show when status is open.
    */
@@ -14,9 +14,9 @@ interface Text {
    * Allows you to pass an arbitrary number to show (e.g. `show 4 more`).
    */
   more?: (amount: number) => string;
-}
+};
 
-interface Props {
+type Props = {
   /**
    * Amount of elements shown when closed (shown less).
    */
@@ -38,7 +38,7 @@ interface Props {
    * This text should already be translated.
    */
   text?: Text;
-}
+};
 
 /**
  * MoreOrLess is a component which truncates a collection of elements and shows a button to toggle this behavior.

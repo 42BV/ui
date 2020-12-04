@@ -13,7 +13,7 @@ interface SubjectOption {
   label: string;
 }
 
-storiesOf('Form|Select', module)
+storiesOf('Form/Select', module)
   .add('defined options', () => {
     return (
       <Form>
@@ -22,14 +22,14 @@ storiesOf('Form|Select', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
             { value: 'great', label: 'Great shit' },
             { value: 'good', label: 'good shit' }
           ]}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -62,7 +62,7 @@ storiesOf('Form|Select', module)
           optionForValue={(user: User) => user.email}
           options={() => Promise.resolve(pageOfUsers())}
           isOptionEqual={(a: User, b: User) => a.id === b.id}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -74,14 +74,14 @@ storiesOf('Form|Select', module)
           id="subject"
           label="Subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
             { value: 'great', label: 'Great shit' },
             { value: 'good', label: 'good shit' }
           ]}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -93,14 +93,14 @@ storiesOf('Form|Select', module)
           id="subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
             { value: 'great', label: 'Great shit' },
             { value: 'good', label: 'good shit' }
           ]}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -120,14 +120,14 @@ storiesOf('Form|Select', module)
           }
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },
             { value: 'great', label: 'Great shit' },
             { value: 'good', label: 'good shit' }
           ]}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -148,9 +148,9 @@ storiesOf('Form|Select', module)
           id="brand"
           label="Brand"
           placeholder="Please select your brand"
-          optionForValue={option => option}
+          optionForValue={(option) => option}
           options={Object.keys(allOptions)}
-          onChange={value => {
+          onChange={(value) => {
             setBrand(value);
             setModel(undefined);
           }}
@@ -164,7 +164,7 @@ storiesOf('Form|Select', module)
           }
           optionForValue={(option: string) => option}
           options={brand ? allOptions[brand] : []}
-          onChange={value => setModel(value)}
+          onChange={(value) => setModel(value)}
           value={model}
         />
       </Form>
@@ -186,9 +186,9 @@ storiesOf('Form|Select', module)
           id="brand"
           label="Brand"
           placeholder="Please select your brand"
-          optionForValue={option => option}
+          optionForValue={(option) => option}
           options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
-          onChange={value => {
+          onChange={(value) => {
             setBrand(value);
             setModel(undefined);
           }}
@@ -220,7 +220,7 @@ storiesOf('Form|Select', module)
           label="Subject"
           placeholder="Please enter your subject"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },

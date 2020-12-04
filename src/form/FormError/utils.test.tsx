@@ -9,7 +9,7 @@ describe('errorMessage', () => {
   let t: Translator;
 
   beforeEach(() => {
-    t = jest.fn(translation => translation.fallback);
+    t = jest.fn((translation) => translation.fallback);
 
     setTranslator(t);
   });
@@ -55,7 +55,7 @@ describe('errorMessage', () => {
         value: '',
         reasons: {}
       };
-      // @ts-ignore
+
       errorMessage(error);
 
       expect(t).toHaveBeenCalledTimes(1);
@@ -75,7 +75,7 @@ describe('errorMessage', () => {
           minimumLength: 10
         }
       };
-      // @ts-ignore
+
       errorMessage(error);
 
       expect(t).toHaveBeenCalledTimes(1);
@@ -100,7 +100,7 @@ describe('errorMessage', () => {
           maximumLength: 13
         }
       };
-      // @ts-ignore
+
       errorMessage(error);
 
       expect(t).toHaveBeenCalledTimes(1);
@@ -125,7 +125,7 @@ describe('errorMessage', () => {
           minValue: 15
         }
       };
-      // @ts-ignore
+      // @ts-expect-error Test mock
       errorMessage(error, t);
 
       expect(t).toHaveBeenCalledTimes(1);
@@ -150,7 +150,7 @@ describe('errorMessage', () => {
           maxValue: 51
         }
       };
-      // @ts-ignore
+      // @ts-expect-error Test mock
       errorMessage(error, t);
 
       expect(t).toHaveBeenCalledTimes(1);
@@ -175,7 +175,7 @@ describe('errorMessage', () => {
           regex: 'regex'
         }
       };
-      // @ts-ignore
+
       errorMessage(error);
 
       expect(t).toHaveBeenCalledTimes(1);
@@ -201,7 +201,7 @@ describe('errorMessage', () => {
           fraction: 2
         }
       };
-      // @ts-ignore
+
       errorMessage(error);
 
       expect(t).toHaveBeenCalledTimes(1);
@@ -223,7 +223,7 @@ describe('errorMessage', () => {
     const error = {
       type: 'UNKNOWN_ERROR'
     };
-    // @ts-ignore
+
     errorMessage(error);
 
     expect(t).toHaveBeenCalledTimes(1);

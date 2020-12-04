@@ -5,7 +5,7 @@ import Tooltip from './Tooltip';
 import Tag from '../Tag/Tag';
 import { Button, Col, Row } from 'reactstrap';
 
-storiesOf('core|Tooltip', module)
+storiesOf('core/Tooltip', module)
   .addParameters({ component: Tooltip })
   .add('default', () => (
     <div className="d-flex flex-column">

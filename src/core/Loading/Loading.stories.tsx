@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import Loading from './Loading';
 
-storiesOf('core|Loading', module)
+storiesOf('core/Loading', module)
   .addParameters({ component: Loading })
   .add('default', () => {
     return <Loading />;

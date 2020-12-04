@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { t } from '../../utilities/translation/translation';
 import Button from '../Button/Button';
 
-interface Text {
+type Text = {
   /**
    * The text to show as the next button's text, defaults to "Next"
    *
@@ -19,9 +19,9 @@ interface Text {
    * @default OK
    */
   previous?: string;
-}
+};
 
-interface Props<T> {
+type Props<T> = {
   /**
    * Represents Spring's page abstraction.
    */
@@ -42,7 +42,7 @@ interface Props<T> {
    * Optionally customized text to use within the component.
    */
   text?: Text;
-}
+};
 
 /**
  * The Pager component shows a small variant of bootstraps pagination,

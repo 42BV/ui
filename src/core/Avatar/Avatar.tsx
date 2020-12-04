@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { BootstrapSize } from '../types';
 import Tooltip from '../Tooltip/Tooltip';
 
-interface Props {
+type Props = {
   /**
    * Image URL to show as avatar.
    */
@@ -31,7 +31,7 @@ interface Props {
    * Useful for styling the component.
    */
   className?: string;
-}
+};
 
 /**
  * Avatar is a component which shows a circular image with any element underneath.
@@ -57,7 +57,7 @@ export default function Avatar({ size, className, alt, src, children }: Props) {
   );
 }
 
-function tooltipDistanceFromSize(size?: BootstrapSize) {
+function tooltipDistanceFromSize(size?: BootstrapSize): number {
   switch (size) {
     case 'lg':
       return 42;

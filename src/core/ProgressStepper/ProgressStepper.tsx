@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { Color } from '../types';
 
-interface Props<T> {
+type Props<T> = {
   /**
    * The steps that the progress stepper needs to render. Can be
    * anything from an array of strings to an array of complex
@@ -59,7 +59,7 @@ interface Props<T> {
    * Useful for styling the component.
    */
   className?: string;
-}
+};
 
 const alwaysFalse = () => false;
 

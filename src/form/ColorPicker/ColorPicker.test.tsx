@@ -24,7 +24,7 @@ describe('Component: ColorPicker', () => {
       color: 'success'
     };
 
-    // @ts-ignore
+    // @ts-expect-error Test mock
     const colorPicker = shallow(<ColorPicker {...props} />);
 
     return {
@@ -58,12 +58,13 @@ describe('Component: ColorPicker', () => {
 
       expect(popover.props().isOpen).toBe(false);
 
+      // @ts-expect-error Test mock
       popover
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .shallow('target')
         .find(Button)
         .props()
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(colorPicker.find(Popover).props().isOpen).toBe(true);
@@ -74,20 +75,20 @@ describe('Component: ColorPicker', () => {
         value: undefined
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       colorPicker
         .find(SketchPicker)
         .at(0)
         .props()
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ hex: '#424242' });
 
-      //@ts-ignore
+      // @ts-expect-error Test mock
       colorPicker
         .find(Button)
         .at(1)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(colorPicker.find(Popover).props().isOpen).toBe(false);
@@ -97,11 +98,7 @@ describe('Component: ColorPicker', () => {
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
 
-      //@ts-ignore
-      const color = colorPicker
-        .find(SketchPicker)
-        .at(0)
-        .props().color;
+      const color = colorPicker.find(SketchPicker).at(0).props().color;
 
       expect(color).toBe('#424242');
     });
@@ -112,20 +109,20 @@ describe('Component: ColorPicker', () => {
           value: '#cdcdcd'
         });
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         colorPicker
           .find(SketchPicker)
           .at(0)
           .props()
-          //@ts-ignore
+          // @ts-expect-error Test mock
           .onChange({ hex: '#424242' });
 
-        //@ts-ignore
+        // @ts-expect-error Test mock
         colorPicker
           .find(Button)
           .at(0)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onClick();
 
         expect(colorPicker.find(Popover).props().isOpen).toBe(false);
@@ -133,11 +130,7 @@ describe('Component: ColorPicker', () => {
         expect(onChangeSpy).toHaveBeenCalledTimes(0);
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
 
-        //@ts-ignore
-        const color = colorPicker
-          .find(SketchPicker)
-          .at(0)
-          .props().color;
+        const color = colorPicker.find(SketchPicker).at(0).props().color;
 
         expect(color).toBe('#cdcdcd');
       });
@@ -147,20 +140,20 @@ describe('Component: ColorPicker', () => {
           value: undefined
         });
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         colorPicker
           .find(SketchPicker)
           .at(0)
           .props()
-          //@ts-ignore
+          // @ts-expect-error Test mock
           .onChange({ hex: '#424242' });
 
-        //@ts-ignore
+        // @ts-expect-error Test mock
         colorPicker
           .find(Button)
           .at(0)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onClick();
 
         expect(colorPicker.find(Popover).props().isOpen).toBe(false);
@@ -168,11 +161,7 @@ describe('Component: ColorPicker', () => {
         expect(onChangeSpy).toHaveBeenCalledTimes(0);
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
 
-        //@ts-ignore
-        const color = colorPicker
-          .find(SketchPicker)
-          .at(0)
-          .props().color;
+        const color = colorPicker.find(SketchPicker).at(0).props().color;
 
         expect(color).toBe('#ffffff');
       });
@@ -183,11 +172,11 @@ describe('Component: ColorPicker', () => {
         value: '#cdcdcd'
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       colorPicker
         .find('TextButton')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -203,10 +192,8 @@ describe('Component: ColorPicker', () => {
         value: '#cdcdcd'
       });
 
-      const value = colorPicker
-        .find('#color-picker-value')
-        // @ts-ignore
-        .props().style?.backgroundColor;
+      const value = colorPicker.find('#color-picker-value').props().style
+        ?.backgroundColor;
       expect(value).toBe('#cdcdcd');
 
       colorPicker.setProps({ value: undefined });
@@ -225,10 +212,8 @@ describe('Component: ColorPicker', () => {
         value: '#cdcdcd'
       });
 
-      const value = colorPicker
-        .find('#color-picker-value')
-        // @ts-ignore
-        .props().style?.backgroundColor;
+      const value = colorPicker.find('#color-picker-value').props().style
+        ?.backgroundColor;
       expect(value).toBe('#cdcdcd');
     });
   });

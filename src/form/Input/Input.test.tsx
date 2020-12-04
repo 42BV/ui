@@ -154,7 +154,7 @@ describe('Component: Input', () => {
 
       const rsInput = input.find('Input');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       rsInput.props().onChange({ target: { value: 'Maarten' } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -166,7 +166,7 @@ describe('Component: Input', () => {
 
       const rsInput = input.find('Input');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       rsInput.props().onBlur();
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
@@ -177,7 +177,7 @@ describe('Component: Input', () => {
 
       const rsInput = input.find('Input');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       rsInput.props().onFocus();
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);

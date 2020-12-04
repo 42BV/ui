@@ -4,7 +4,7 @@ import { Icon, IconType } from '../../../../core/Icon';
 import { Direction } from '../../types';
 import { nextDirection } from './utils';
 
-export interface Props {
+export type Props = {
   /**
    * The current direction of the sort.
    */
@@ -14,7 +14,7 @@ export interface Props {
    * The callback which is called when the direction changes.
    */
   onChange: (direction: Direction) => void;
-}
+};
 
 /**
  * The EpicSort is a button which shows the user a sort direction. When

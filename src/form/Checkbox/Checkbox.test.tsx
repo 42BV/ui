@@ -22,7 +22,7 @@ describe('Component: Checkbox', () => {
         id="agree"
         label="Agree"
         placeholder={placeholder ? 'Do you agree' : ''}
-        // @ts-ignore
+        // @ts-expect-error Test mock
         value={value}
         valid={value === true}
         allowIndeterminate={allowIndeterminate}
@@ -69,7 +69,7 @@ describe('Component: Checkbox', () => {
       checkbox
         .find('Input')
         .props()
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .innerRef(fakeElement);
 
       return fakeElement.indeterminate;
@@ -110,7 +110,7 @@ describe('Component: Checkbox', () => {
     checkbox
       .find('Input')
       .props()
-      //@ts-ignore
+      // @ts-expect-error Test mock
       .innerRef(null);
   });
 
@@ -118,11 +118,11 @@ describe('Component: Checkbox', () => {
     test('onChange', () => {
       const { checkbox, onBlurSpy, onChangeSpy } = setup({ value: true });
 
-      //@ts-ignore
+      // @ts-expect-error Test mock
       checkbox
         .find('Input')
         .props()
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .onChange();
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);

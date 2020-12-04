@@ -4,11 +4,12 @@ import { useResizeObserver } from '../useResizeObserver/useResizeObserver';
 export function useComponentOverflow(
   ref: RefObject<HTMLElement>,
   values: React.ReactNode
-) {
+): boolean {
   const [componentOverflow, setComponentOverflow] = useState(
     isOverflowing(ref.current)
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = useCallback(
     handleResizeCallback(ref, setComponentOverflow),
     [ref]
@@ -16,6 +17,7 @@ export function useComponentOverflow(
 
   const resizeObserver = useResizeObserver(handleResize);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(layoutEffect(ref, handleResize, resizeObserver), [
     ref,
     handleResize,
@@ -26,14 +28,14 @@ export function useComponentOverflow(
   return componentOverflow;
 }
 
-export function isOverflowing(el: HTMLElement | null) {
+export function isOverflowing(el: HTMLElement | null): boolean {
   return el ? el.clientWidth < el.scrollWidth : false;
 }
 
 export function handleResizeCallback(
   ref: RefObject<HTMLElement>,
   setComponentOverflow: (value: boolean) => void
-) {
+): () => void {
   return () => {
     if (ref.current) {
       setComponentOverflow(isOverflowing(ref.current));
@@ -45,7 +47,7 @@ export function layoutEffect(
   ref: RefObject<HTMLElement>,
   handleResize: () => void,
   resizeObserver?: any
-) {
+): () => void {
   return () => {
     if (!ref.current) {
       return;

@@ -19,13 +19,13 @@ import {
 import { t } from '../../utilities/translation/translation';
 import { doBlur } from '../utils';
 
-export interface Text {
+export type Text = {
   /**
    * The message to show when the CheckboxMultipleSelect is loading. Defaults
    * to `loading...`
    */
   loadingMessage?: string;
-}
+};
 
 interface BaseProps<T> {
   /**

@@ -50,12 +50,12 @@ describe('HoC: withJarb', () => {
     const input = { onBlur: onBlurSpy, onChange: onChangeSpy, value: 'value' };
 
     jarbField = shallow(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       jarbFieldParent.props().render({ input, meta: validMeta })
     );
 
     formError = shallow(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       jarbField.props().error.props.render({ input, meta: validMeta })
     );
   }
@@ -86,14 +86,13 @@ describe('HoC: withJarb', () => {
     const input = { onBlur: onBlurSpy, onChange: onChangeSpy, value: 'value' };
 
     const tooltip = shallow(
-      // @ts-ignore
       jarbInput.props().render({ input, meta: validMeta })
     );
 
     const tooltipFormError = shallow(
       tooltip
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .content.props.children[1].props.render({ input, meta: validMeta })
     );
 
@@ -107,7 +106,7 @@ describe('HoC: withJarb', () => {
 
   it('should throw an error when detecting illegal props', () => {
     expect(() =>
-      // @ts-ignore
+      // @ts-expect-error Test mock
       shallow(<JarbInput value="test" onChange={() => undefined} />)
     ).toThrowErrorMatchingSnapshot();
   });
@@ -118,7 +117,7 @@ describe('HoC: withJarb', () => {
 
       jest.spyOn(reactErrorStore, 'clearErrorsForValidator');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       jarbField.props().onChange({ target: { value: 42 } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -133,7 +132,7 @@ describe('HoC: withJarb', () => {
     test('onBlur should call onBlurSpy', () => {
       setup();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       jarbField.props().onBlur();
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
@@ -141,14 +140,14 @@ describe('HoC: withJarb', () => {
   });
 });
 
-interface Props {
+type Props = {
   value?: string;
   onChange: (value: string) => void;
   onBlur?: () => void;
   error?: React.ReactNode;
   color?: string;
   valid?: boolean;
-}
+};
 
 export default function Input(props: Props) {
   return (

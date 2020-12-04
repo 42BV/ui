@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { Color } from '../types';
 
-interface Props {
+type Props = {
   /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
@@ -21,25 +21,26 @@ interface Props {
    */
   color?: Color;
 
-   /**
+  /**
    * The text of the flash message.
    */
   children: React.ReactNode;
-}
+};
 
 /**
  * A FlashMessage is a message you want to show to the user briefly.
  *
  * Use it when you want to globally show a notification / message.
  */
-export default function FlashMessage({ className, onClose, color, children }: Props) {
+export default function FlashMessage({
+  className,
+  onClose,
+  color,
+  children
+}: Props) {
   return (
     <div className={classNames('flash-message', className)}>
-      <Alert
-        color={color}
-        open={true}
-        toggle={onClose}
-      >
+      <Alert color={color} open={true} toggle={onClose}>
         {children}
       </Alert>
     </div>

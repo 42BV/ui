@@ -7,7 +7,7 @@ import NewPasswordInput, {
 } from './NewPasswordInput';
 import { Icon, Tooltip } from '../../index';
 
-storiesOf('Form|NewPasswordInput', module)
+storiesOf('Form/NewPasswordInput', module)
   .add('basic', () => {
     const [password, setPassword] = useState('');
 

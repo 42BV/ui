@@ -11,6 +11,7 @@ exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseM
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -89,6 +90,7 @@ exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => 
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -168,6 +170,7 @@ exports[`Component: OpenCloseModal ui sans sticky footer: Component: OpenCloseMo
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -246,6 +249,7 @@ exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => u
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -324,6 +328,7 @@ exports[`Component: OpenCloseModal ui without buttons: Component: OpenCloseModal
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}
@@ -382,6 +387,7 @@ exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal =
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={false}
   keyboard={true}

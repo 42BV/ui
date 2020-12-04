@@ -8,7 +8,7 @@ import { useSettledErrors } from './useSettledErrors';
 import { useOnChange } from './useOnChange';
 import { OnChange } from './types';
 
-interface Props {
+type Props = {
   /**
    * The value for this form error.
    */
@@ -34,7 +34,7 @@ interface Props {
    * Optionally: classes to put on the div around the errors.
    */
   className?: string;
-}
+};
 
 /**
  * The FormError component renders errors coming from the front-end

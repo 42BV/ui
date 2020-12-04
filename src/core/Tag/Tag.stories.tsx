@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Tag from './Tag';
 
-storiesOf('core|Tag', module)
+storiesOf('core/Tag', module)
   .addParameters({ component: Tag })
   .add('default', () => (
     <div className="text-center">

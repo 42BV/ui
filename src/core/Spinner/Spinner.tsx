@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface Props {
+type Props = {
   /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
@@ -19,7 +19,7 @@ interface Props {
    *
    */
   size: number;
-}
+};
 
 /**
  * Spinner is a component which is used as a loading indicator.

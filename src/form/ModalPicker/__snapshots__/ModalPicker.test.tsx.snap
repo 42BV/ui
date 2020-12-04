@@ -11,6 +11,7 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}
@@ -120,6 +121,7 @@ exports[`Component: ModalPicker ui without addButton and search: Component: Moda
     }
   }
   centered={false}
+  container="body"
   fade={true}
   isOpen={true}
   keyboard={true}

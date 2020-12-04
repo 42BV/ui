@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { ContentState, Button } from '../..';
 
 function loadData() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve({ user: 'Jeffrey' });
     }, 1000);
@@ -26,7 +26,7 @@ function loadingData() {
   return new Promise(() => undefined);
 }
 
-storiesOf('core|async/AsyncContent', module)
+storiesOf('core/async/AsyncContent', module)
   .addParameters({ component: AsyncContent })
   .add('when loaded', () => {
     const state = useAsync(loadData);

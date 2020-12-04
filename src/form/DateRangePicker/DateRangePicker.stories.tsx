@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { FinalForm, Form } from '../story-utils';
 import DateRangePicker, { JarbDateRangePicker } from './DateRangePicker';
 
-storiesOf('Form|DateTime/DateRangePicker', module)
+storiesOf('Form/DateTime/DateRangePicker', module)
   .add('basic', () => {
     return (
       <Form>
@@ -17,7 +17,8 @@ storiesOf('Form|DateTime/DateRangePicker', module)
             placeholder: 'Please enter a From date',
             dateFormat: 'YYYY-MM-DD',
             timeFormat: 'HH:mm:ss',
-            isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+            isDateAllowed: (current) =>
+              current.day() !== 0 && current.day() !== 6
           }}
           to={{
             id: 'toId',
@@ -25,7 +26,8 @@ storiesOf('Form|DateTime/DateRangePicker', module)
             placeholder: 'Please enter a To date',
             dateFormat: 'YYYY-MM-DD',
             timeFormat: 'HH:mm:ss',
-            isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+            isDateAllowed: (current) =>
+              current.day() !== 0 && current.day() !== 6
           }}
         />
       </Form>
@@ -43,7 +45,8 @@ storiesOf('Form|DateTime/DateRangePicker', module)
             placeholder: 'Please enter a From date',
             dateFormat: 'YYYY-MM-DD',
             timeFormat: 'HH:mm:ss',
-            isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+            isDateAllowed: (current) =>
+              current.day() !== 0 && current.day() !== 6
           }}
           to={{
             id: 'toId',
@@ -51,7 +54,8 @@ storiesOf('Form|DateTime/DateRangePicker', module)
             placeholder: 'Please enter a To date',
             dateFormat: 'YYYY-MM-DD',
             timeFormat: 'HH:mm:ss',
-            isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+            isDateAllowed: (current) =>
+              current.day() !== 0 && current.day() !== 6
           }}
         />
       </Form>
@@ -68,7 +72,8 @@ storiesOf('Form|DateTime/DateRangePicker', module)
             placeholder: 'Please enter a From date',
             dateFormat: 'YYYY-MM-DD',
             timeFormat: 'HH:mm:ss',
-            isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+            isDateAllowed: (current) =>
+              current.day() !== 0 && current.day() !== 6
           }}
           to={{
             id: 'toId',
@@ -76,7 +81,8 @@ storiesOf('Form|DateTime/DateRangePicker', module)
             placeholder: 'Please enter a To date',
             dateFormat: 'YYYY-MM-DD',
             timeFormat: 'HH:mm:ss',
-            isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+            isDateAllowed: (current) =>
+              current.day() !== 0 && current.day() !== 6
           }}
           mode={'modal'}
         />
@@ -98,7 +104,8 @@ storiesOf('Form|DateTime/DateRangePicker', module)
             placeholder: 'Please enter a From date',
             dateFormat: 'YYYY-MM-DD',
             timeFormat: 'HH:mm:ss',
-            isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+            isDateAllowed: (current) =>
+              current.day() !== 0 && current.day() !== 6
           }}
           to={{
             id: 'toId',
@@ -106,7 +113,8 @@ storiesOf('Form|DateTime/DateRangePicker', module)
             placeholder: 'Please enter a To date',
             dateFormat: 'YYYY-MM-DD',
             timeFormat: 'HH:mm:ss',
-            isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+            isDateAllowed: (current) =>
+              current.day() !== 0 && current.day() !== 6
           }}
         />
       </FinalForm>

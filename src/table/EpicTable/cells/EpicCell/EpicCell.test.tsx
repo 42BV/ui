@@ -13,9 +13,8 @@ describe('Component: EpicCell', () => {
       <EpicCell
         width={300}
         height={44}
-        // @ts-ignore
+        // @ts-expect-error Test mock
         onRowClick={hasOnRowClick ? onRowClickSpy : undefined}
-        // @ts-ignore
         onHoverChanged={hasOnRowClick ? onHoverChangedSpy : undefined}
       >
         epic cell
@@ -39,11 +38,11 @@ describe('Component: EpicCell', () => {
         // Will match the useRef initial value of null
         const fakeEvent = { target: null };
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         epicCell
           .find('div')
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onClick(fakeEvent);
 
         expect(onRowClickSpy).toBeCalledTimes(1);
@@ -56,11 +55,11 @@ describe('Component: EpicCell', () => {
         // Will not match the useRef initial value of null
         const fakeEvent = { target: 42 };
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         epicCell
           .find('div')
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onClick(fakeEvent);
 
         expect(onRowClickSpy).toBeCalledTimes(0);
@@ -69,10 +68,7 @@ describe('Component: EpicCell', () => {
       test(`when onRowClick does not exist and when clicking the EpicCell's div it should not call onRowClick`, () => {
         const { epicCell } = setup({ hasOnRowClick: false });
 
-        // @ts-ignore
-        const onClick =
-          // @ts-ignore
-          epicCell.find('div').props().onClick;
+        const onClick = epicCell.find('div').props().onClick;
 
         expect(onClick).toBe(undefined);
       });
@@ -82,21 +78,21 @@ describe('Component: EpicCell', () => {
       it('should when onRowClick exists call onHoverChanged when hovering over the div', () => {
         const { epicCell, onHoverChangedSpy } = setup({});
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         epicCell
           .find('div')
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onMouseEnter();
 
         expect(onHoverChangedSpy).toBeCalledTimes(1);
         expect(onHoverChangedSpy).toBeCalledWith(true);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         epicCell
           .find('div')
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onMouseLeave();
 
         expect(onHoverChangedSpy).toBeCalledTimes(2);

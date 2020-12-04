@@ -77,9 +77,9 @@ describe('Component: Textarea', () => {
     test('onChange', () => {
       setup({ value: undefined });
 
-      const textareaAutosize = textarea.find('TextareaAutosize');
+      const textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
 
-      //@ts-ignore
+      // @ts-expect-error Test mock
       textareaAutosize.props().onChange({ target: { value: 'Maarten' } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -89,9 +89,9 @@ describe('Component: Textarea', () => {
     test('onBlur', () => {
       setup({ value: undefined });
 
-      const textareaAutosize = textarea.find('TextareaAutosize');
+      const textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
 
-      //@ts-ignore
+      // @ts-expect-error Test mock
       textareaAutosize.props().onBlur();
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
@@ -100,9 +100,9 @@ describe('Component: Textarea', () => {
     test('onFocus', () => {
       setup({ value: undefined });
 
-      const textareaAutosize = textarea.find('TextareaAutosize');
+      const textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
 
-      //@ts-ignore
+      // @ts-expect-error Test mock
       textareaAutosize.props().onFocus();
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
@@ -113,24 +113,24 @@ describe('Component: Textarea', () => {
     test('becomes empty', () => {
       setup({ value: 'Maarten' });
 
-      let textareaAutosize = textarea.find('TextareaAutosize');
+      let textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
       expect(textareaAutosize.props().value).toBe('Maarten');
 
       textarea.setProps({ value: undefined });
 
-      textareaAutosize = textarea.find('TextareaAutosize');
+      textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
       expect(textareaAutosize.props().value).toBe(undefined);
     });
 
     test('becomes filled', () => {
       setup({ value: undefined });
 
-      let textareaAutosize = textarea.find('TextareaAutosize');
+      let textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
       expect(textareaAutosize.props().value).toBe(undefined);
 
       textarea.setProps({ value: 'Maarten' });
 
-      textareaAutosize = textarea.find('TextareaAutosize');
+      textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
       expect(textareaAutosize.props().value).toBe('Maarten');
     });
   });

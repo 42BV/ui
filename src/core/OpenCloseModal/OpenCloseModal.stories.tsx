@@ -10,11 +10,11 @@ import RadioGroup from '../../form/RadioGroup/RadioGroup';
 import { TotalForm } from '../../form/FormExample.stories';
 import { range } from 'lodash';
 
-storiesOf('core|OpenCloseModal', module)
+storiesOf('core/OpenCloseModal', module)
   .add('basic', () => {
     const [isOpen, setIsOpen] = useState(false);
     const [inProgress, setInProgress] = useState(false);
-    const [choice, setChoice] = useState();
+    const [choice, setChoice] = useState<string | undefined>(undefined);
 
     function onSave() {
       action('save button was clicked');
@@ -43,13 +43,13 @@ storiesOf('core|OpenCloseModal', module)
         >
           <RadioGroup
             value={choice}
-            onChange={setChoice}
+            onChange={(value) => setChoice(value)}
             options={[
               'Watching a movie',
               'I work at 42, the most awesome company in the world!',
               'Nothing'
             ]}
-            optionForValue={option => option}
+            optionForValue={(option) => option}
           />
         </OpenCloseModal>
       </Card>
@@ -78,7 +78,7 @@ storiesOf('core|OpenCloseModal', module)
           label="Sticky footer"
           size="sm"
         >
-          {range(0, 10).map(number => (
+          {range(0, 10).map((number) => (
             <p key={number}>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
               modi, facilis officia provident maiores voluptate minus officiis
@@ -96,7 +96,7 @@ storiesOf('core|OpenCloseModal', module)
           label="No sticky footer"
           size="sm"
         >
-          {range(0, 10).map(number => (
+          {range(0, 10).map((number) => (
             <p key={number}>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
               modi, facilis officia provident maiores voluptate minus officiis
@@ -153,10 +153,12 @@ storiesOf('core|OpenCloseModal', module)
   })
   .add('custom button text and icons', () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [choice, setChoice] = useState();
+    const [choice, setChoice] = useState<
+      { label: string; value: string } | undefined
+    >(undefined);
 
     function onSave() {
-      alert(`You chose to ${choice.value} the diamond`);
+      alert(`You chose to ${choice?.value} the diamond`);
       setIsOpen(false);
     }
 
@@ -189,12 +191,12 @@ storiesOf('core|OpenCloseModal', module)
           <p>Inside the box you find a diamond. What do you want to do?</p>
           <RadioGroup
             value={choice}
-            onChange={setChoice}
+            onChange={(value) => setChoice(value)}
             options={[
               { label: 'Sell it!', value: 'sell' },
               { label: 'Put it in my pocket', value: 'store' }
             ]}
-            optionForValue={option => option.label}
+            optionForValue={(option) => option.label}
           />
         </OpenCloseModal>
       </Card>
@@ -207,9 +209,9 @@ export function ModalForm() {
   async function onSave() {
     action('save button was clicked');
 
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       setTimeout(() => {
-        resolve();
+        resolve(undefined);
       }, 2000);
     });
 

@@ -21,16 +21,13 @@ exports[`Component: Textarea ui with value: Component: textarea => ui => with va
   >
     First name
   </Label>
-  <TextareaAutosize
+  <ForwardRef(TextareaAutosize)
     className="form-control"
     id="firstName"
-    inputRef={[Function]}
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
-    onHeightChange={[Function]}
     placeholder="Please enter your first name"
-    useCacheForDOMMeasurements={false}
     value="Maarten"
   />
   Some error
@@ -43,15 +40,12 @@ exports[`Component: Textarea ui without label: Component: textarea => ui => with
   color="success"
   tag="div"
 >
-  <TextareaAutosize
+  <ForwardRef(TextareaAutosize)
     className="form-control"
-    inputRef={[Function]}
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
-    onHeightChange={[Function]}
     placeholder="Please enter your first name"
-    useCacheForDOMMeasurements={false}
     value="Maarten"
   />
   Some error
@@ -79,15 +73,12 @@ exports[`Component: Textarea ui without placeholder: Component: textarea => ui =
   >
     First name
   </Label>
-  <TextareaAutosize
+  <ForwardRef(TextareaAutosize)
     className="form-control"
     id="firstName"
-    inputRef={[Function]}
     onBlur={[MockFunction]}
     onChange={[Function]}
     onFocus={[MockFunction]}
-    onHeightChange={[Function]}
-    useCacheForDOMMeasurements={false}
     value="Maarten"
   />
   Some error

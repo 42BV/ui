@@ -14,7 +14,7 @@ module.exports = {
           jsx: true
         }
       },
-      plugins: ['react-hooks'],
+      plugins: ['react-hooks', 'jest', 'react'],
       rules: {
         indent: 'off',
         'no-unused-vars': 'off',
@@ -23,7 +23,8 @@ module.exports = {
           {
             vars: 'all',
             args: 'after-used',
-            ignoreRestSiblings: true
+            ignoreRestSiblings: true,
+            "argsIgnorePattern": "^_"
           }
         ],
         '@typescript-eslint/indent': ['off'],
@@ -33,10 +34,15 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': ['off'],
         '@typescript-eslint/explicit-member-accessibility': ['off'],
         '@typescript-eslint/no-empty-interface': ['off'],
+        '@typescript-eslint/explicit-module-boundary-types': ['off'],
         'react-hooks/rules-of-hooks': 'warn',
         'react-hooks/exhaustive-deps': 'warn',
-        '@typescript-eslint/ban-ts-ignore': ['off'],
+        'jest/prefer-expect-assertions': [
+          'error',
+          { onlyFunctionsWithAsyncKeyword: true }
+        ],
         'import/named': ['off'] // https://github.com/typescript-eslint/typescript-eslint/issues/154
+        
       }
     },
     {

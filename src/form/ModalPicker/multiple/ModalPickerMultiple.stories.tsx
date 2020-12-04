@@ -14,7 +14,7 @@ import { Icon, Tooltip } from '../../..';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import Avatar from '../../../core/Avatar/Avatar';
 
-storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
+storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
   .add('default', () => {
     const [value, setValue] = useState<User[] | undefined>([]);
 
@@ -57,7 +57,7 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
               // Just a fake implementation of how this could work.
               // In real life you probably want to pop a modal window
               // to create the friend.
-              return new Promise(resolve => {
+              return new Promise((resolve) => {
                 setTimeout(() => {
                   resolve(adminUser());
                 }, 1000);
@@ -90,7 +90,7 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
               // Just a fake implementation of how this could work.
               // In real life you probably want to pop a modal window
               // to create the friend.
-              return new Promise(resolve => {
+              return new Promise((resolve) => {
                 setTimeout(() => {
                   resolve(adminUser());
                 }, 1000);
@@ -143,7 +143,7 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
           }
           isOptionEqual={(a, b) => a.id === b.id}
           optionForValue={(user: User) => user.email}
-          renderOptions={options => (
+          renderOptions={(options) => (
             <ListGroup>
               {options.map(({ option, isSelected, toggle }) => (
                 <ListGroupItem
@@ -292,13 +292,13 @@ storiesOf('Form|ModalPicker/ModalPickerMultiple', module)
           optionForValue={(user: User) => user.email}
           value={value}
           onChange={setValue}
-          displayValues={users => {
+          displayValues={(users) => {
             return users ? (
               <>
                 {users.map((user, index) => (
                   <>
                     {index > 0 ? ', ' : ''}
-                    {user.roles.some(role => role === 'ADMIN') ? (
+                    {user.roles.some((role) => role === 'ADMIN') ? (
                       <Icon icon="supervised_user_circle" />
                     ) : (
                       <Icon icon="supervisor_account" />

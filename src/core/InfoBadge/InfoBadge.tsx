@@ -3,7 +3,7 @@ import { Badge } from 'reactstrap';
 import classNames from 'classnames';
 import { Color } from '../types';
 
-interface Props {
+type Props = {
   /**
    * The element you want to add the InfoBadge to.
    */
@@ -24,7 +24,7 @@ interface Props {
    * Useful for styling the component.
    */
   className?: string;
-}
+};
 
 /**
  * InfoBadge is a badge which shows up on the top right of an element.

@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import TextButton from './TextButton';
 
-storiesOf('core|buttons/TextButton', module)
+storiesOf('core/buttons/TextButton', module)
   .addParameters({ component: TextButton })
   .add('default', () => {
     return (

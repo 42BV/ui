@@ -34,7 +34,6 @@ describe('Component: ValuePicker', () => {
     onBlurSpy = jest.fn();
 
     valuePicker = mount(
-      // @ts-ignore
       <ValuePicker<User>
         multiple={multiple}
         id="bestFriend"
@@ -52,8 +51,7 @@ describe('Component: ValuePicker', () => {
 
   it('should when booting render a loading spinner and request an initial page', () => {
     const { promise } = testUtils.resolvablePromise<Page<User>>();
-
-    const fetchOptionsSpy = jest.fn(() => promise);
+    const fetchOptionsSpy = jest.fn((_query, _page, _size) => promise);
 
     setup({ fetchOptions: fetchOptionsSpy, multiple: false });
 
@@ -65,7 +63,9 @@ describe('Component: ValuePicker', () => {
   });
 
   describe('single', () => {
-    it('should render a `RadioGroup` component when `totalElements` is less than 4', async done => {
+    it('should render a `RadioGroup` component when `totalElements` is less than 4', async (done) => {
+      expect.assertions(5);
+
       const promise = Promise.resolve(
         testUtils.pageWithContentAndExactSize([
           adminUser(),
@@ -74,7 +74,7 @@ describe('Component: ValuePicker', () => {
         ])
       );
 
-      const fetchOptionsSpy = jest.fn(() => promise);
+      const fetchOptionsSpy = jest.fn((_query, _page, _size) => promise);
 
       setup({
         fetchOptions: fetchOptionsSpy,
@@ -102,7 +102,9 @@ describe('Component: ValuePicker', () => {
       }
     });
 
-    it('should render a `Select` component when `totalElements` is less than 11 but more than 3', async done => {
+    it('should render a `Select` component when `totalElements` is less than 11 but more than 3', async (done) => {
+      expect.assertions(5);
+
       const promise = Promise.resolve(
         testUtils.pageWithContentAndExactSize([
           adminUser(),
@@ -112,7 +114,7 @@ describe('Component: ValuePicker', () => {
         ])
       );
 
-      const fetchOptionsSpy = jest.fn(() => promise);
+      const fetchOptionsSpy = jest.fn((_query, _page, _size) => promise);
 
       setup({
         fetchOptions: fetchOptionsSpy,
@@ -140,12 +142,14 @@ describe('Component: ValuePicker', () => {
       }
     });
 
-    it('should render a `ModalPickerSingle` when `totalElements` is more than than 10', async done => {
+    it('should render a `ModalPickerSingle` when `totalElements` is more than than 10', async (done) => {
+      expect.assertions(5);
+
       const promise = Promise.resolve(
         testUtils.pageWithContent([adminUser(), coordinatorUser(), userUser()])
       );
 
-      const fetchOptionsSpy = jest.fn(() => promise);
+      const fetchOptionsSpy = jest.fn((_query, _page, _size) => promise);
 
       setup({
         fetchOptions: fetchOptionsSpy,
@@ -175,7 +179,9 @@ describe('Component: ValuePicker', () => {
   });
 
   describe('multiple', () => {
-    it('should render a `CheckboxMultipleSelect` component when `totalElements` is less than 11', async done => {
+    it('should render a `CheckboxMultipleSelect` component when `totalElements` is less than 11', async (done) => {
+      expect.assertions(5);
+
       const promise = Promise.resolve(
         testUtils.pageWithContentAndExactSize([
           adminUser(),
@@ -184,7 +190,7 @@ describe('Component: ValuePicker', () => {
         ])
       );
 
-      const fetchOptionsSpy = jest.fn(() => promise);
+      const fetchOptionsSpy = jest.fn((_query, _page, _size) => promise);
 
       setup({
         fetchOptions: fetchOptionsSpy,
@@ -212,12 +218,14 @@ describe('Component: ValuePicker', () => {
       }
     });
 
-    it('should render a `ModalPickerMultiple` when `totalElements` is more than 10', async done => {
+    it('should render a `ModalPickerMultiple` when `totalElements` is more than 10', async (done) => {
+      expect.assertions(5);
+
       const promise = Promise.resolve(
         testUtils.pageWithContent([adminUser(), coordinatorUser(), userUser()])
       );
 
-      const fetchOptionsSpy = jest.fn(() => promise);
+      const fetchOptionsSpy = jest.fn((_query, _page, _size) => promise);
 
       setup({
         fetchOptions: fetchOptionsSpy,

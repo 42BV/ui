@@ -5,7 +5,7 @@ import React from 'react';
  */
 type EpicCellLayoutMode = 'vertical' | 'horizontal';
 
-interface Props {
+type Props = {
   /**
    *  Determines which layout the cell has.
    */
@@ -15,23 +15,23 @@ interface Props {
    * The content of the cell.
    */
   children: React.ReactNode;
-}
+};
 
 /**
  * The EpicCellLayout is used inside of a EpicHeader or EpicCell to
- * define the layout of that cell. 
- * 
+ * define the layout of that cell.
+ *
  * It currently supports two modes: `vertical` and `horizontal`.
- * 
+ *
  * The `vertical` mode will take the full height and width and
  * positions the children vertically whilst padding them in the top
  * and bottom.
- * 
+ *
  * The `horizontal` mode will take the full width and positions the
  * the children horizontally and places the maximum space in between
  * the children. This means that when two children are present one
  * will be on the atmost left and the other on the atmost right.
- * 
+ *
  * Basically a small wrapper around the `d-flex` utilities of bootstrap.
  */
 export function EpicCellLayout({ children, mode }: Props) {

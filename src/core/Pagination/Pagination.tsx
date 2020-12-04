@@ -9,7 +9,7 @@ import {
 
 import { Icon } from '../Icon';
 
-interface Props<T> {
+type Props<T> = {
   /**
    * Represents Spring's page abstraction.
    */
@@ -37,7 +37,7 @@ interface Props<T> {
    * Optionally customized text to use within the component.
    */
   text?: Text;
-}
+};
 
 /**
  * The Pagination component is an enhanced Bootstrap pagination component. It supports working with `Page`s and shows a fixed

@@ -8,7 +8,7 @@ import { throttle } from 'lodash';
 
 import { useEpicResizeListenerCleanup } from './useEpicResizeListenerCleanup';
 
-interface Props {
+type Props = {
   /**
    * The width of the EpicHeader which is resized.
    */
@@ -18,7 +18,7 @@ interface Props {
    * Callback which gives the EpicHeader the new width
    */
   onResize: (width: number) => void;
-}
+};
 
 export const listenerConfig = {
   capture: true,
@@ -108,7 +108,7 @@ export function EpicResize({ width, onResize }: Props) {
   return (
     <div
       className="epic-table-header-resizeable"
-      onMouseDown={e => resizeStart(e, width)}
+      onMouseDown={(e) => resizeStart(e, width)}
     />
   );
 }

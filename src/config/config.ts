@@ -6,10 +6,10 @@ let config: Config = {
   showRequiredMarkInLabel: true
 };
 
-export function getConfig() {
+export function getConfig(): Config {
   return config;
 }
 
-export function configure(_config: Config) {
+export function configure(_config: Config): void {
   config = _config;
 }

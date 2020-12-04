@@ -10,7 +10,7 @@ import { t } from '../../utilities/translation/translation';
 import Popover from '../../core/Popover/Popover';
 import TextButton from '../../core/TextButton/TextButton';
 
-interface Text {
+type Text = {
   /**
    * The text of the clear button
    */
@@ -25,9 +25,9 @@ interface Text {
    * The text of the select button
    */
   select?: string;
-}
+};
 
-interface Props {
+type Props = {
   /**
    * The id of the form element.
    */
@@ -84,7 +84,7 @@ interface Props {
    * This text should already be translated.
    */
   text?: Text;
-}
+};
 
 /**
  * ColorPicker is a form element which allows the user to select a
@@ -160,7 +160,7 @@ export default function ColorPicker(props: Props) {
           <Card body className="p-0">
             <SketchPicker
               color={colorValue}
-              onChange={color => setColorValue(color.hex)}
+              onChange={(color) => setColorValue(color.hex)}
             />
 
             <div className="d-flex justify-content-between my-1 p-1">

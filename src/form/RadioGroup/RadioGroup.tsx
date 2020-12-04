@@ -19,7 +19,7 @@ import Loading from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
 import TextButton from '../../core/TextButton/TextButton';
 
-export interface Text {
+export type Text = {
   /**
    * The message to show when the select is loading. Defaults
    * to `loading...`
@@ -30,7 +30,7 @@ export interface Text {
    * The text of the clear button
    */
   clear?: string;
-}
+};
 
 interface BaseProps<T> {
   /**
@@ -226,7 +226,7 @@ export default function RadioGroup<T>(props: Props<T>) {
             </div>
           ) : null}
 
-          {options.map(option => {
+          {options.map((option) => {
             const label = optionForValue(option);
             const key = keyForOption({
               option,

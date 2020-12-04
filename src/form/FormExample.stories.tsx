@@ -34,7 +34,7 @@ import { User } from '../test/types';
 import { ModalForm } from '../core/OpenCloseModal/OpenCloseModal.stories';
 
 function sleep(ms: number) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
@@ -60,9 +60,7 @@ async function firstNameAvailable(value?: string) {
 
   await sleep(random(2000, 5000));
 
-  return ['Maarten', 'Jeffrey'].includes(value) ? (
-    undefined
-  ) : (
+  return ['Maarten', 'Jeffrey'].includes(value) ? undefined : (
     <ul>
       <li>First name not available</li>
       <li>You can use Jeffrey</li>
@@ -78,9 +76,7 @@ async function lastNameAvailable(value?: string) {
 
   await sleep(random(100, 500));
 
-  return ['Hus', 'van Hoven'].includes(value) ? (
-    undefined
-  ) : (
+  return ['Hus', 'van Hoven'].includes(value) ? undefined : (
     <ul>
       <li>Last name not available</li>
       <li>You can use Hus</li>
@@ -124,7 +120,7 @@ export function userAsOption(user: User): string {
   return user.email;
 }
 
-storiesOf('Form|Example', module)
+storiesOf('Form/Example', module)
   .add('jarb form', () => {
     return (
       <FinalForm>
@@ -252,7 +248,7 @@ export function TotalForm() {
           placeholder: 'Please enter a From date',
           dateFormat: 'YYYY-MM-DD',
           timeFormat: 'HH:mm:ss',
-          isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+          isDateAllowed: (current) => current.day() !== 0 && current.day() !== 6
         }}
         to={{
           id: 'toId',
@@ -260,7 +256,7 @@ export function TotalForm() {
           placeholder: 'Please enter a To date',
           dateFormat: 'YYYY-MM-DD',
           timeFormat: 'HH:mm:ss',
-          isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+          isDateAllowed: (current) => current.day() !== 0 && current.day() !== 6
         }}
         validators={requiredValidator}
       />
@@ -271,8 +267,8 @@ export function TotalForm() {
         id="subject"
         label="Subject"
         placeholder="Please enter your subject"
-        optionForValue={value => value.label}
-        isOptionEnabled={option => option.value !== 'awesome'}
+        optionForValue={(value) => value.label}
+        isOptionEnabled={(option) => option.value !== 'awesome'}
         options={[
           { value: 'awesome', label: 'Awesome shit' },
           { value: 'super', label: 'Super shit' },

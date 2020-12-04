@@ -16,7 +16,7 @@ function isSClass(value?: boolean) {
   return 'Hero must be S class to proceed';
 }
 
-storiesOf('Form|Checkbox', module)
+storiesOf('Form/Checkbox', module)
   .add('basic', () => {
     const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 

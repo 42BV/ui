@@ -3,7 +3,7 @@ import * as Popper from 'popper.js';
 import Tippy from '@tippyjs/react';
 
 /*** Popover component based on the Tippy Library ***/
-interface Props {
+type Props = {
   /**
    * Optionally whether or not the popover is currently open,
    * when undefined, which is the default, the popover will show
@@ -65,7 +65,7 @@ interface Props {
    * by the wrapping of the children inside of the CustomTag.
    */
   style?: CSSProperties;
-}
+};
 
 /**
  * Bootstrap-like Popover component based on the Tippy.js library.

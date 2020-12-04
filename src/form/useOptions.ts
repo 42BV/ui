@@ -10,19 +10,19 @@ import {
 } from './option';
 import { isEqual } from 'lodash';
 
-interface UseOptionConfig<T> {
+type UseOptionConfig<T> = {
   optionsOrFetcher: OptionsFetcher<T> | T[];
   value?: T;
   uniqueKeyForValue?: UniqueKeyForValue<T>;
   optionForValue: OptionForValue<T>;
   isOptionEqual?: OptionEqual<T>;
   watch?: any;
-}
+};
 
-interface UseOptionResult<T> {
+type UseOptionResult<T> = {
   options: T[];
   loading: boolean;
-}
+};
 
 export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
   const {
@@ -98,7 +98,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
   useEffect(() => {
     if (value) {
       if (
-        !options.some(option =>
+        !options.some((option) =>
           isOptionSelected({
             option,
             uniqueKeyForValue,

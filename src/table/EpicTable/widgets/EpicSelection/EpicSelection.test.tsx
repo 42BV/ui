@@ -34,11 +34,11 @@ describe('Component: EpicSelection', () => {
     it('should call onChange with true when checkbox is clicked while not checked', () => {
       const { epicSelection, onChangeSpy } = setup({ checked: false });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       epicSelection
         .find(Input)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange(new Event('click'));
 
       expect(onChangeSpy).toBeCalledTimes(1);
@@ -48,11 +48,11 @@ describe('Component: EpicSelection', () => {
     it('should call onChange with false when checkbox is clicked while checked', () => {
       const { epicSelection, onChangeSpy } = setup({ checked: true });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       epicSelection
         .find(Input)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange(new Event('click'));
 
       expect(onChangeSpy).toBeCalledTimes(1);

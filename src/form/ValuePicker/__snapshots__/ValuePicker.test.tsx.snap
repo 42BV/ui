@@ -467,6 +467,7 @@ exports[`Component: ValuePicker multiple should render a \`ModalPickerMultiple\`
               }
             }
             centered={false}
+            container="body"
             fade={true}
             isOpen={false}
             keyboard={true}
@@ -743,6 +744,7 @@ exports[`Component: ValuePicker single should render a \`ModalPickerSingle\` whe
               }
             }
             centered={false}
+            container="body"
             fade={true}
             isOpen={false}
             keyboard={true}

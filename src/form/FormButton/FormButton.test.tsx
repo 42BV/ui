@@ -22,11 +22,11 @@ describe('Component: FormButton', () => {
 
       const formButton = setup();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       formButton
         .find('Button')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(getElementByIdSpy).toBeCalledTimes(1);
@@ -45,11 +45,11 @@ describe('Component: FormButton', () => {
 
       const formButton = setup();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       formButton
         .find('Button')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(getElementByIdSpy).toBeCalledTimes(1);

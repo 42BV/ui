@@ -5,7 +5,7 @@ import withJarb from '../withJarb/withJarb';
 import { Color } from '../types';
 import { doBlur } from '../utils';
 
-interface Props {
+type Props = {
   /**
    * The id of the form element.
    */
@@ -68,7 +68,7 @@ interface Props {
    * Optionally whether to support the indeterminate state.
    */
   allowIndeterminate?: boolean;
-}
+};
 
 /**
  * Checkbox is a form element for when the value is a boolean.
@@ -107,13 +107,13 @@ export default function Checkbox(props: Props) {
           onChange={onClick}
           valid={valid}
           invalid={invalid}
-          innerRef={e => {
+          innerRef={(e) => {
             if (e && allowIndeterminate) {
               // Value will be an empty string when coming from
-              // final-form. So we do a ts-ignore to go around
+              // final-form. So we do a ts-expect-error to go around
               // the fact that we say value is boolean | undefined.
 
-              // @ts-ignore
+              // @ts-expect-error Accept that a checkbox event has an indeterminate
               e.indeterminate = value === undefined || value === '';
             }
           }}

@@ -7,7 +7,7 @@ import { Form, FinalForm } from '../story-utils';
 import { Tooltip, Icon } from '../..';
 import FileInput from '../FileInput/FileInput';
 
-storiesOf('Form|ImageUpload', module)
+storiesOf('Form/ImageUpload', module)
   .add('rect', () => {
     return (
       <Form>
@@ -19,7 +19,7 @@ storiesOf('Form|ImageUpload', module)
             width: 500,
             height: 400
           }}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -34,7 +34,7 @@ storiesOf('Form|ImageUpload', module)
             type: 'circle',
             size: 250
           }}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -49,7 +49,7 @@ storiesOf('Form|ImageUpload', module)
             width: 500,
             height: 400
           }}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -76,7 +76,7 @@ storiesOf('Form|ImageUpload', module)
             width: 500,
             height: 400
           }}
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );

@@ -93,7 +93,7 @@ describe('Component: ModalPicker', () => {
       modalPicker
         .find('Modal')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .toggle();
 
       expect(closeModalSpy).toHaveBeenCalledTimes(1);
@@ -105,7 +105,7 @@ describe('Component: ModalPicker', () => {
       modalPicker
         .find('ModalHeader')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .toggle();
 
       expect(closeModalSpy).toHaveBeenCalledTimes(1);
@@ -114,12 +114,12 @@ describe('Component: ModalPicker', () => {
     it('should close the modal when the user clicks the "cancel" button', () => {
       setup({ showAddButton: false, canSearch: true });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPicker
         .find('Button')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(closeModalSpy).toHaveBeenCalledTimes(1);
@@ -128,12 +128,12 @@ describe('Component: ModalPicker', () => {
     it('should save the modal when the user clicks the "save" button', () => {
       setup({ showAddButton: false, canSearch: true });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPicker
         .find('Button')
         .at(1)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(modalSavedSpy).toHaveBeenCalledTimes(1);
@@ -142,11 +142,11 @@ describe('Component: ModalPicker', () => {
     it('should call search stops typing', () => {
       setup({ showAddButton: false, canSearch: true });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPicker
         .find('SearchInput')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange('Maarten');
 
       expect(fetchDataSpy).toHaveBeenCalledTimes(1);
@@ -160,11 +160,11 @@ describe('Component: ModalPicker', () => {
         pageConfig: { first: true, last: false }
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPicker
         .find('Pagination')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange(42);
 
       expect(loadPageSpy).toHaveBeenCalledTimes(1);
@@ -174,12 +174,12 @@ describe('Component: ModalPicker', () => {
     it('should trigger the addButtons callback when the add button is clicked', () => {
       setup({ showAddButton: true, canSearch: false });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPicker
         .find('Button')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(addButtonSpy).toHaveBeenCalledTimes(1);

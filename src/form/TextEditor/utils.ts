@@ -59,6 +59,6 @@ function formatsForToolbar(toolbarItem: any): string | string[] {
   
   Is a function to prevent accidental mutations.
 */
-function defaultFormats() {
+function defaultFormats(): string[] {
   return ['header', 'list', 'bold', 'italic', 'underline', 'link'];
 }

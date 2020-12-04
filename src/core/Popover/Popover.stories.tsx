@@ -19,7 +19,7 @@ import ConfirmButton from '../ConfirmButton/ConfirmButton';
 import Button from '../Button/Button';
 import { OpenCloseModal } from '../OpenCloseModal/OpenCloseModal';
 
-storiesOf('core|Popover', module)
+storiesOf('core/Popover', module)
   .addParameters({ component: Popover })
   .add('default', () => (
     <div className="d-flex flex-column">
@@ -240,7 +240,7 @@ function TinyCrud() {
 
   return (
     <ListGroup style={{ width: 300 }}>
-      {persons.map(person => (
+      {persons.map((person) => (
         <ListGroupItem key={person}>
           <div className="d-flex justify-content-between">
             {person}

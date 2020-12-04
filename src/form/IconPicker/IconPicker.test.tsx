@@ -31,17 +31,16 @@ describe('Component: IconPicker', () => {
       color: 'success'
     };
 
-    // @ts-ignore
+    // @ts-expect-error Test mock
     const iconPickerParent = shallow(<IconPicker {...props} />);
 
     function updateIconPicker() {
       const searchInput = iconPickerParent.find(SearchInput);
 
       return shallow(
-        // @ts-ignore
+        // @ts-expect-error Test mock
         searchInput
           .props()
-          // @ts-ignore
           .children(searchInput.debug(), { setValue: searchInputSetValueSpy })
       );
     }
@@ -99,19 +98,16 @@ describe('Component: IconPicker', () => {
 
       expect(popover.props().isOpen).toBe(false);
 
+      // @ts-expect-error Test mock
       popover
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .shallow('target')
         .find(Button)
         .props()
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
-      expect(
-        updateIconPicker()
-          .find(Popover)
-          .props().isOpen
-      ).toBe(true);
+      expect(updateIconPicker().find(Popover).props().isOpen).toBe(true);
     });
 
     it('should filter the icons when the user searches and go back to the first page', () => {
@@ -120,17 +116,11 @@ describe('Component: IconPicker', () => {
       });
 
       // First we go to the second page
-      iconPicker
-        .find(Pager)
-        .props()
-        // @ts-ignore
-        .onChange(2);
+      // @ts-expect-error Test mock
+      iconPicker.find(Pager).props().onChange(2);
 
       // Now search for home which should make it go back to the first page
-      iconPickerParent
-        .find(SearchInput)
-        .props()
-        .onChange('home');
+      iconPickerParent.find(SearchInput).props().onChange('home');
 
       expect(updateIconPicker().find(Icon).length).toBe(1);
     });
@@ -141,26 +131,15 @@ describe('Component: IconPicker', () => {
       });
 
       // The first icon on the first page is the 3d_rotation
-      expect(
-        iconPicker
-          .find(Icon)
-          .first()
-          .props().icon
-      ).toBe('3d_rotation');
+      expect(iconPicker.find(Icon).first().props().icon).toBe('3d_rotation');
 
-      updateIconPicker()
-        .find(Pager)
-        .props()
-        // @ts-ignore
-        .onChange(2);
+      // @ts-expect-error Test mock
+      updateIconPicker().find(Pager).props().onChange(2);
 
       // The first icon on the second page is the calendar_today
-      expect(
-        updateIconPicker()
-          .find(Icon)
-          .first()
-          .props().icon
-      ).toBe('calendar_today');
+      expect(updateIconPicker().find(Icon).first().props().icon).toBe(
+        'calendar_today'
+      );
     });
 
     it('should when the user selects an icon close the popover and call onChange', () => {
@@ -168,11 +147,12 @@ describe('Component: IconPicker', () => {
         value: undefined
       });
 
+      // @ts-expect-error Test mock
       iconPicker
         .find(Icon)
         .at(0)
         .props()
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(iconPicker.find(Popover).props().isOpen).toBe(false);
@@ -186,10 +166,11 @@ describe('Component: IconPicker', () => {
     it('should when the user clicks "clear" reset the icon', () => {
       const { iconPicker, onBlurSpy, onChangeSpy } = setup({ value: 'home' });
 
+      // @ts-expect-error Test mock
       iconPicker
         .find('TextButton')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -207,12 +188,13 @@ describe('Component: IconPicker', () => {
 
       expect(popover.props().isOpen).toBe(false);
 
+      // @ts-expect-error Test mock
       popover
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .shallow('target')
         .find(Button)
         .props()
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       const updatedIconPicker = updateIconPicker();
@@ -221,12 +203,13 @@ describe('Component: IconPicker', () => {
 
       popover = updatedIconPicker.find(Popover);
 
+      // @ts-expect-error Test mock
       popover
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .shallow('target')
         .find(Button)
         .props()
-        //@ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(searchInputSetValueSpy).toBeCalledTimes(1);
@@ -242,17 +225,15 @@ describe('Component: IconPicker', () => {
 
       const value = iconPicker
         .find('#icon-picker-value')
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .props().icon;
       expect(value).toBe('home');
 
       iconPickerParent.setProps({ value: undefined });
 
-      expect(
-        updateIconPicker()
-          .find('#icon-picker-value')
-          .exists()
-      ).toBe(false);
+      expect(updateIconPicker().find('#icon-picker-value').exists()).toBe(
+        false
+      );
     });
 
     test('becomes filled', () => {
@@ -268,7 +249,7 @@ describe('Component: IconPicker', () => {
 
       const value = updateIconPicker()
         .find('#icon-picker-value')
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .props().icon;
       expect(value).toBe('home');
     });

@@ -5,14 +5,14 @@ import Spinner from '../Spinner/Spinner';
 
 import { t } from '../../utilities/translation/translation';
 
-interface Text {
+type Text = {
   /**
    * Loading text which is shown by default
    */
   loading?: string;
-}
+};
 
-interface Props {
+type Props = {
   /**
    * Optionally customized text within the component.
    * This text should already be translated.
@@ -29,7 +29,7 @@ interface Props {
    * Optional text to show next to the loading indicator.
    */
   children?: React.ReactNode;
-}
+};
 
 export default function Loading({ children, className, text = {} }: Props) {
   const classes = classNames('d-flex', className);

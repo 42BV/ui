@@ -11,7 +11,7 @@ import { ContentState } from '../..';
 import { action } from '@storybook/addon-actions';
 
 function loadData(): Promise<User[]> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(pageOfUsers().content);
     }, 1000);
@@ -19,7 +19,7 @@ function loadData(): Promise<User[]> {
 }
 
 function emptyData(): Promise<User[]> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve([]);
     }, 1000);
@@ -38,7 +38,7 @@ function loadingData(): Promise<User[]> {
   return new Promise(() => undefined);
 }
 
-storiesOf('core|Async/AsyncList', module)
+storiesOf('core/Async/AsyncList', module)
   .addParameters({ component: AsyncList })
   .add('when loaded', () => {
     const state = useAsync(loadData);
@@ -46,9 +46,9 @@ storiesOf('core|Async/AsyncList', module)
     return (
       <Card body>
         <AsyncList state={state}>
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -64,9 +64,9 @@ storiesOf('core|Async/AsyncList', module)
     return (
       <Card body>
         <AsyncList state={state}>
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -85,9 +85,9 @@ storiesOf('core|Async/AsyncList', module)
           state={state}
           text={{ error: 'I’m sorry Dave, I’m afraid I can’t do that' }}
         >
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -103,9 +103,9 @@ storiesOf('core|Async/AsyncList', module)
     return (
       <Card body>
         <AsyncList state={state} showRetryButton={false}>
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -121,9 +121,9 @@ storiesOf('core|Async/AsyncList', module)
     return (
       <Card body>
         <AsyncList state={state}>
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -139,9 +139,9 @@ storiesOf('core|Async/AsyncList', module)
     return (
       <Card body>
         <AsyncList state={state} text={{ loading: 'Loading Jeffrey' }}>
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -157,9 +157,9 @@ storiesOf('core|Async/AsyncList', module)
     return (
       <Card body>
         <AsyncList state={state}>
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -178,9 +178,9 @@ storiesOf('core|Async/AsyncList', module)
           state={state}
           text={{ empty: "No Jeffrey's match your parameters try again" }}
         >
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>
@@ -205,9 +205,9 @@ storiesOf('core|Async/AsyncList', module)
             </ContentState>
           )}
         >
-          {users => (
+          {(users) => (
             <ListGroup>
-              {users.map(user => (
+              {users.map((user) => (
                 <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
               ))}
             </ListGroup>

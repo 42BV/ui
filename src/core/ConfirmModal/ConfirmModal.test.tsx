@@ -74,7 +74,7 @@ describe('Component: ConfirmModal', () => {
     function openModal() {
       confirmModal = confirmModal.setProps({ isOpen: true });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(confirmModal.find('OpenCloseModal').props().isOpen).toBe(true);
     }
 
@@ -85,7 +85,7 @@ describe('Component: ConfirmModal', () => {
 
       confirmModal = confirmModal.setProps({ isOpen: true });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(confirmModal.find('OpenCloseModal').props().isOpen).toBe(true);
     });
 
@@ -96,7 +96,7 @@ describe('Component: ConfirmModal', () => {
 
       openModal();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       confirmModal.find('OpenCloseModal').prop('onClose')();
 
       expect(onCloseSpy).toHaveBeenCalledTimes(1);
@@ -109,11 +109,8 @@ describe('Component: ConfirmModal', () => {
 
       openModal();
 
-      // @ts-ignore
-      confirmModal
-        .find('OpenCloseModal')
-        // @ts-ignore
-        .prop('onSave')();
+      // @ts-expect-error Test mock
+      confirmModal.find('OpenCloseModal').prop('onSave')();
 
       expect(onSaveSpy).toHaveBeenCalledTimes(1);
     });

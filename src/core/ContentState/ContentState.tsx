@@ -6,7 +6,7 @@ import Spinner from '../Spinner/Spinner';
 
 export type ContentStateMode = 'empty' | 'no-results' | 'error' | 'loading';
 
-interface Props {
+type Props = {
   /**
    * The mode of the ContentState:
    *
@@ -44,7 +44,7 @@ interface Props {
    * The subTitle of the ContentState component.
    */
   subTitle?: string;
-}
+};
 
 /**
  * ContentState is a component which handles various non happy flow

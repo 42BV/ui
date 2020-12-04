@@ -18,13 +18,13 @@ import ModalPickerSingle from '../ModalPicker/single/ModalPickerSingle';
 import Spinner from '../../core/Spinner/Spinner';
 import { t } from '../../utilities/translation/translation';
 
-export interface Text {
+export type Text = {
   /**
    * The message to show when the ValuePicker is loading. Defaults
    * to `loading...`
    */
   loadingMessage?: string;
-}
+};
 
 interface BaseValuePickerProps<T> {
   /**

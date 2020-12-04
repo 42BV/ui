@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Icon from './Icon';
 
-storiesOf('core|Icons', module)
+storiesOf('core/Icons', module)
   .addParameters({ component: Icon })
   .add('available icons', () => {
     return (

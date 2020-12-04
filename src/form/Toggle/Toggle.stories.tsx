@@ -6,7 +6,7 @@ import Toggle, { FormToggle, JarbFormToggle } from './Toggle';
 import { Form, FinalForm } from '../story-utils';
 import { Icon, Tooltip } from '../..';
 
-storiesOf('Form|Toggle', module)
+storiesOf('Form/Toggle', module)
   .add('basic', () => {
     const [primary, setPrimary] = useState(true);
     const [secondary, setSecondary] = useState(true);
@@ -22,56 +22,56 @@ storiesOf('Form|Toggle', module)
         <Toggle
           color="primary"
           value={primary}
-          onChange={value => setPrimary(value)}
+          onChange={(value) => setPrimary(value)}
           onBlur={action('onBlur')}
         />
         primary <br />
         <Toggle
           color="secondary"
           value={secondary}
-          onChange={value => setSecondary(value)}
+          onChange={(value) => setSecondary(value)}
           onBlur={action('onBlur')}
         />
         secondary <br />
         <Toggle
           color="info"
           value={info}
-          onChange={value => setInfo(value)}
+          onChange={(value) => setInfo(value)}
           onBlur={action('onBlur')}
         />
         info <br />
         <Toggle
           color="success"
           value={success}
-          onChange={value => setSuccess(value)}
+          onChange={(value) => setSuccess(value)}
           onBlur={action('onBlur')}
         />
         success <br />
         <Toggle
           color="warning"
           value={warning}
-          onChange={value => setWarning(value)}
+          onChange={(value) => setWarning(value)}
           onBlur={action('onBlur')}
         />
         warning <br />
         <Toggle
           color="danger"
           value={danger}
-          onChange={value => setDanger(value)}
+          onChange={(value) => setDanger(value)}
           onBlur={action('onBlur')}
         />
         danger <br />
         <Toggle
           color="light"
           value={light}
-          onChange={value => setLight(value)}
+          onChange={(value) => setLight(value)}
           onBlur={action('onBlur')}
         />
         light <br />
         <Toggle
           color="dark"
           value={dark}
-          onChange={value => setDark(value)}
+          onChange={(value) => setDark(value)}
           onBlur={action('onBlur')}
         />
         dark
@@ -88,7 +88,7 @@ storiesOf('Form|Toggle', module)
           label="Agree"
           toggleColor="primary"
           value={agree}
-          onChange={value => setAgree(value)}
+          onChange={(value) => setAgree(value)}
         />
       </Form>
     );
@@ -102,7 +102,7 @@ storiesOf('Form|Toggle', module)
           id="agree"
           toggleColor="primary"
           value={agree}
-          onChange={value => setAgree(value)}
+          onChange={(value) => setAgree(value)}
         />
       </Form>
     );
@@ -128,7 +128,7 @@ storiesOf('Form|Toggle', module)
           }
           toggleColor="primary"
           value={agree}
-          onChange={value => setAgree(value)}
+          onChange={(value) => setAgree(value)}
         />
       </Form>
     );

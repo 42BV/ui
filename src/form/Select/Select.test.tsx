@@ -117,12 +117,12 @@ describe('Component: Select', () => {
       expect(defaultOption.text()).toBe('Please enter your subject');
 
       const option = { selected: false };
-      // @ts-ignore
+      // @ts-expect-error Test mock
       defaultOption.getElement().ref(option);
 
       expect(option.selected).toBe(true);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(option.value).toBe(undefined);
     });
 
@@ -133,7 +133,7 @@ describe('Component: Select', () => {
       expect(defaultOption.text()).toBe('Please enter your subject');
 
       const option = { selected: false };
-      // @ts-ignore
+      // @ts-expect-error Test mock
       defaultOption.getElement().ref(option);
 
       expect(option.selected).toBe(false);
@@ -146,7 +146,7 @@ describe('Component: Select', () => {
       expect(defaultOption.text()).toBe('Please enter your subject');
 
       const option = undefined;
-      // @ts-ignore
+      // @ts-expect-error Test mock
       defaultOption.getElement().ref(option);
     });
   });
@@ -157,7 +157,7 @@ describe('Component: Select', () => {
 
       const rsInput = select.find('Input');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       rsInput.props().onChange({ target: { value: 0 } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -168,7 +168,7 @@ describe('Component: Select', () => {
       setup({ value: undefined, isOptionEnabled: undefined });
 
       const rsInput = select.find('Input');
-      // @ts-ignore
+      // @ts-expect-error Test mock
       rsInput.props().onBlur();
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);

@@ -87,10 +87,7 @@ describe('Component: TypeaheadSingle', () => {
       test('nothing selected', () => {
         const { typeaheadSingle, onChangeSpy } = setup({ value: undefined });
 
-        const asyncTypeahead = typeaheadSingle
-          .find('div')
-          .children()
-          .first();
+        const asyncTypeahead = typeaheadSingle.find('div').children().first();
 
         asyncTypeahead.props().onChange([]);
 
@@ -103,10 +100,7 @@ describe('Component: TypeaheadSingle', () => {
           value: undefined
         });
 
-        const asyncTypeahead = typeaheadSingle
-          .find('div')
-          .children()
-          .first();
+        const asyncTypeahead = typeaheadSingle.find('div').children().first();
 
         const value = adminUser();
 
@@ -125,7 +119,9 @@ describe('Component: TypeaheadSingle', () => {
     });
 
     describe('fetchOptions', () => {
-      test('value does not match query', async done => {
+      test('value does not match query', async (done) => {
+        expect.assertions(5);
+
         const { typeaheadSingle, fetchOptionsSpy, onChangeSpy } = setup({
           value: undefined
         });
@@ -134,14 +130,13 @@ describe('Component: TypeaheadSingle', () => {
 
         fetchOptionsSpy.mockReturnValue(promise);
 
-        let asyncTypeahead = typeaheadSingle
-          .find('div')
-          .children()
-          .first();
+        let asyncTypeahead = typeaheadSingle.find('div').children().first();
 
         asyncTypeahead.props().onSearch('Ma');
 
-        waitForUI(() => {
+        await waitForUI(() => {
+          asyncTypeahead = typeaheadSingle.find('div').children().first();
+
           expect(asyncTypeahead.props().isLoading).toBe(true);
         });
 
@@ -150,10 +145,7 @@ describe('Component: TypeaheadSingle', () => {
 
           await promise;
 
-          asyncTypeahead = typeaheadSingle
-            .find('div')
-            .children()
-            .first();
+          asyncTypeahead = typeaheadSingle.find('div').children().first();
 
           expect(asyncTypeahead.props().options).toEqual([
             {
@@ -181,7 +173,9 @@ describe('Component: TypeaheadSingle', () => {
         }
       });
 
-      test('value matches query', async done => {
+      test('value matches query', async (done) => {
+        expect.assertions(4);
+
         const { typeaheadSingle, fetchOptionsSpy, onChangeSpy } = setup({
           value: undefined
         });
@@ -190,20 +184,14 @@ describe('Component: TypeaheadSingle', () => {
 
         fetchOptionsSpy.mockReturnValue(promise);
 
-        let asyncTypeahead = typeaheadSingle
-          .find('div')
-          .children()
-          .first();
+        let asyncTypeahead = typeaheadSingle.find('div').children().first();
 
         asyncTypeahead.props().onSearch('admin@42.nl');
 
         try {
           await promise;
 
-          asyncTypeahead = typeaheadSingle
-            .find('div')
-            .children()
-            .first();
+          asyncTypeahead = typeaheadSingle.find('div').children().first();
 
           expect(asyncTypeahead.props().options).toEqual([
             {
@@ -239,10 +227,7 @@ describe('Component: TypeaheadSingle', () => {
 
         const { typeaheadSingle } = setup({ value: adminUser() });
 
-        let asyncTypeahead = typeaheadSingle
-          .find('div')
-          .children()
-          .first();
+        let asyncTypeahead = typeaheadSingle.find('div').children().first();
 
         expect(asyncTypeahead.props().selected).toEqual([
           {
@@ -253,10 +238,7 @@ describe('Component: TypeaheadSingle', () => {
 
         typeaheadSingle.setProps({ value: undefined });
 
-        asyncTypeahead = typeaheadSingle
-          .find('div')
-          .children()
-          .first();
+        asyncTypeahead = typeaheadSingle.find('div').children().first();
         expect(asyncTypeahead.props().selected).toEqual([]);
 
         expect(typeaheadSingle.find('.showing-placeholder').length).toBe(1);
@@ -265,10 +247,7 @@ describe('Component: TypeaheadSingle', () => {
       test('becomes filled', () => {
         const { typeaheadSingle } = setup({ value: undefined });
 
-        let asyncTypeahead = typeaheadSingle
-          .find('div')
-          .children()
-          .first();
+        let asyncTypeahead = typeaheadSingle.find('div').children().first();
         expect(asyncTypeahead.props().selected).toEqual([]);
 
         const value = adminUser();
@@ -277,10 +256,7 @@ describe('Component: TypeaheadSingle', () => {
           value
         });
 
-        asyncTypeahead = typeaheadSingle
-          .find('div')
-          .children()
-          .first();
+        asyncTypeahead = typeaheadSingle.find('div').children().first();
         expect(asyncTypeahead.props().selected).toEqual([
           {
             label: 'admin@42.nl',

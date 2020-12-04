@@ -102,11 +102,11 @@ describe('Component: ModalPickerSingle', () => {
 
   describe('lifecycle events', () => {
     it('should load the first page on componentDidMount', () => {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const modalPickerSingle = new ModalPickerSingle();
       jest
         .spyOn(modalPickerSingle, 'loadPage')
-        .mockImplementation(() => undefined);
+        .mockImplementation(() => Promise.resolve(undefined));
       modalPickerSingle.componentDidMount();
 
       expect(modalPickerSingle.loadPage).toHaveBeenCalledTimes(1);
@@ -129,7 +129,7 @@ describe('Component: ModalPickerSingle', () => {
         canSearch: false
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(modalPickerSingle.find('ModalPicker').props().canSearch).toBe(
         false
       );
@@ -146,7 +146,7 @@ describe('Component: ModalPickerSingle', () => {
     it('should not render a label when the value is empty', () => {
       setup({ value: undefined, showAddButton: false });
       expect(
-        // @ts-ignore
+        // @ts-expect-error Test mock
         modalPickerSingle.find('ModalPickerOpener').props.values
       ).toBeUndefined();
     });
@@ -156,7 +156,7 @@ describe('Component: ModalPickerSingle', () => {
       modalPickerSingle.setState({ page: emptyPage(), userHasSearched: true });
 
       const emptyModal = modalPickerSingle.find('EmptyModal').at(0);
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(emptyModal.props().userHasSearched).toBe(true);
     });
 
@@ -218,7 +218,9 @@ describe('Component: ModalPickerSingle', () => {
   });
 
   describe('events', () => {
-    it('should open the modal when the select button is clicked', async done => {
+    it('should open the modal when the select button is clicked', async (done) => {
+      expect.assertions(7);
+
       const value = adminUser();
 
       setup({
@@ -232,7 +234,7 @@ describe('Component: ModalPickerSingle', () => {
       modalPickerSingle
         .find('ModalPickerOpener')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .openModal();
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
@@ -267,14 +269,16 @@ describe('Component: ModalPickerSingle', () => {
       fetchOptionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerSingle.find('ModalPicker').at(0);
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPicker.props().fetchOptions('tes');
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
       expect(fetchOptionsSpy).toHaveBeenCalledWith('tes', 1, 10);
     });
 
-    it('should when the user moves to another page load the new page', async done => {
+    it('should when the user moves to another page load the new page', async (done) => {
+      expect.assertions(5);
+
       setup({ value: undefined, showAddButton: false });
       modalPickerSingle.setState({ query: 'search' });
 
@@ -282,7 +286,7 @@ describe('Component: ModalPickerSingle', () => {
       fetchOptionsSpy.mockReturnValue(promise);
 
       const modalPicker = modalPickerSingle.find('ModalPicker').at(0);
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPicker.props().pageChanged(42);
 
       expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
@@ -312,10 +316,10 @@ describe('Component: ModalPickerSingle', () => {
         .find('ModalPicker')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .closeModal();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(modalPickerSingle.state().isOpen).toBe(false);
     });
 
@@ -329,10 +333,10 @@ describe('Component: ModalPickerSingle', () => {
         .find('ModalPicker')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .modalSaved();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(modalPickerSingle.state().isOpen).toBe(false);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -346,11 +350,10 @@ describe('Component: ModalPickerSingle', () => {
       modalPickerSingle.setState({ isOpen: true });
       modalPickerSingle.setState({ selected: value });
 
-      // @ts-ignore
       modalPickerSingle
         .find('ModalPickerOpener')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClear();
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -364,42 +367,44 @@ describe('Component: ModalPickerSingle', () => {
         selected: adminUser()
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPickerSingle
         .find('Input')
         .at(1)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(modalPickerSingle.state().selected).toEqual(coordinatorUser());
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPickerSingle
         .find('Input')
         .at(2)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(modalPickerSingle.state().selected).toEqual(userUser());
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPickerSingle
         .find('Input')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(modalPickerSingle.state().selected).toEqual(adminUser());
     });
 
     describe('addButton', () => {
-      it('should add an item on the first position, when the promise resolves', async done => {
+      it('should add an item on the first position, when the promise resolves', async (done) => {
+        expect.assertions(6);
+
         setup({
           value: adminUser(),
           showAddButton: true
@@ -412,17 +417,17 @@ describe('Component: ModalPickerSingle', () => {
         const { promise, resolve } = testUtils.resolvablePromise();
         addButtonCallbackSpy.mockReturnValueOnce(promise);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         jest.spyOn(modalPickerSingle.instance(), 'itemClicked');
 
         modalPickerSingle
           .find('ModalPicker')
           .at(0)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .addButton.onClick();
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(modalPickerSingle.state().isOpen).toBe(false);
         expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
 
@@ -435,11 +440,11 @@ describe('Component: ModalPickerSingle', () => {
             const state = modalPickerSingle.state() as State<User>;
 
             expect(
-              // @ts-ignore
+              // @ts-expect-error Test mock
               modalPickerSingle.instance().itemClicked
             ).toHaveBeenCalledTimes(1);
             expect(
-              // @ts-ignore
+              // @ts-expect-error Test mock
               modalPickerSingle.instance().itemClicked
             ).toHaveBeenCalledWith(userUser());
 
@@ -455,7 +460,9 @@ describe('Component: ModalPickerSingle', () => {
         }
       });
 
-      it('should hide when the promise is rejected', async done => {
+      it('should hide when the promise is rejected', async (done) => {
+        expect.assertions(3);
+
         setup({
           value: undefined,
           showAddButton: true
@@ -469,10 +476,10 @@ describe('Component: ModalPickerSingle', () => {
           .find('ModalPicker')
           .at(0)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .addButton.onClick();
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(modalPickerSingle.state().isOpen).toBe(false);
         expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
 
@@ -483,7 +490,7 @@ describe('Component: ModalPickerSingle', () => {
           done.fail();
         } catch (error) {
           testUtils.waitForUI(() => {
-            // @ts-ignore
+            // @ts-expect-error Test mock
             expect(modalPickerSingle.state().isOpen).toBe(true);
 
             done();
@@ -519,16 +526,16 @@ describe('Component: ModalPickerSingle', () => {
           page: pageOfUsers()
         });
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         modalPickerSingle
           .find('ListGroupItem')
           .at(0)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onClick();
         modalPickerSingle.update();
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(modalPickerSingle.state().selected).toEqual(
           pageOfUsers().content[0]
         );

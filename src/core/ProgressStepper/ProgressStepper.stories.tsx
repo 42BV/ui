@@ -24,7 +24,7 @@ const steps: Step[] = [
   Step.LINK
 ];
 
-storiesOf('core|ProgressStepper', module)
+storiesOf('core/ProgressStepper', module)
   .addParameters({ component: ProgressStepper })
   .add('colors', () => {
     return (
@@ -33,8 +33,8 @@ storiesOf('core|ProgressStepper', module)
           steps={steps}
           onClick={action(`Clicked`)}
           isStepClickable={() => true}
-          titleForStep={step => step}
-          colorForStep={step => step}
+          titleForStep={(step) => step}
+          colorForStep={(step) => step}
         />
       </div>
     );

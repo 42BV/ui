@@ -106,11 +106,11 @@ describe('Component: ModalPickerOpener', () => {
     it('should open the modal when the select button is clicked', () => {
       const { modalPickerOpener, openModalSpy } = setup({});
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPickerOpener
         .find('Button')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(openModalSpy).toHaveBeenCalledTimes(1);
@@ -119,11 +119,11 @@ describe('Component: ModalPickerOpener', () => {
     it('should call onClear when the clear button is clicked', () => {
       const { modalPickerOpener, onClearSpy } = setup({ hasValues: true });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       modalPickerOpener
         .find('TextButton')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick();
 
       expect(onClearSpy).toHaveBeenCalledTimes(1);

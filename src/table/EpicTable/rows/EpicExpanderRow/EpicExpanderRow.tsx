@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface Props {
+export type Props = {
   /**
    * A render function which gets called when `active` is true.
    */
@@ -15,12 +15,12 @@ export interface Props {
    * The height the EpicExpanderRow should take up when expanded.
    */
   height: number;
-}
+};
 
 // Props that will be injected by the EpicTable.
-interface InjectedProps {
+type InjectedProps = {
   width: number;
-}
+};
 
 /**
  * The EpicExpanderRow is a row inside of an EpicTable which can be used

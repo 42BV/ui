@@ -37,7 +37,7 @@ describe('Component: DateRangePicker', () => {
           placeholder: 'Please enter a From date',
           dateFormat: 'YYYY-MM-DD',
           timeFormat: 'HH:mm:ss',
-          isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+          isDateAllowed: (current) => current.day() !== 0 && current.day() !== 6
         }}
         to={{
           id: 'toId',
@@ -45,7 +45,7 @@ describe('Component: DateRangePicker', () => {
           placeholder: 'Please enter a To date',
           dateFormat: 'YYYY-MM-DD',
           timeFormat: 'HH:mm:ss',
-          isDateAllowed: current => current.day() !== 0 && current.day() !== 6
+          isDateAllowed: (current) => current.day() !== 0 && current.day() !== 6
         }}
         color="danger"
         valid={false}
@@ -131,10 +131,10 @@ describe('Component: DateRangePicker', () => {
         const fromDate = new Date(2000, 0, 1, 12, 30, 40);
         const toDate = new Date(2010, 0, 1, 12, 30, 40);
 
-        //@ts-ignore
+        // @ts-expect-error Test mock
         from.props().onChange(fromDate);
 
-        //@ts-ignore
+        // @ts-expect-error Test mock
         to.props().onChange(toDate);
 
         expect(onChangeSpy).toBeCalledTimes(2);
@@ -155,7 +155,7 @@ describe('Component: DateRangePicker', () => {
 
         const from = dateRangePicker.find('DateTimeInput').at(0);
 
-        //@ts-ignore
+        // @ts-expect-error Test mock
         from.props().onChange(new Date(2200, 0, 1, 12, 30, 40));
 
         expect(onChangeSpy).toBeCalledTimes(1);
@@ -173,7 +173,7 @@ describe('Component: DateRangePicker', () => {
 
         const from = dateRangePicker.find('DateTimeInput').at(0);
 
-        //@ts-ignore
+        // @ts-expect-error Test mock
         from.props().onChange(null);
 
         expect(onChangeSpy).toBeCalledTimes(1);
@@ -191,7 +191,7 @@ describe('Component: DateRangePicker', () => {
 
         const from = dateRangePicker.find('DateTimeInput').at(1);
 
-        //@ts-ignore
+        // @ts-expect-error Test mock
         from.props().onChange(new Date(2010, 0, 1, 12, 30, 40));
 
         expect(onChangeSpy).toBeCalledTimes(1);
@@ -209,7 +209,7 @@ describe('Component: DateRangePicker', () => {
 
         const from = dateRangePicker.find('DateTimeInput').at(1);
 
-        //@ts-ignore
+        // @ts-expect-error Test mock
         from.props().onChange(null);
 
         expect(onChangeSpy).toBeCalledTimes(1);
@@ -229,12 +229,12 @@ describe('Component: DateRangePicker', () => {
 
         const inputs = dateRangePicker.find('DateTimeInput');
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         inputs.at(0).prop('onFocus')();
 
         expect(onFocusSpy).toBeCalledTimes(1);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         inputs.at(1).prop('onFocus')();
 
         expect(onFocusSpy).toBeCalledTimes(2);
@@ -251,12 +251,12 @@ describe('Component: DateRangePicker', () => {
 
         const inputs = dateRangePicker.find('DateTimeInput');
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         inputs.at(0).prop('onFocus')();
 
         expect(onFocusSpy).toBeCalledTimes(0);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         inputs.at(1).prop('onFocus')();
 
         expect(onFocusSpy).toBeCalledTimes(0);

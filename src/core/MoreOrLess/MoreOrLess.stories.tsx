@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import MoreOrLess from './MoreOrLess';
 
-storiesOf('core|MoreOrLess', module)
+storiesOf('core/MoreOrLess', module)
   .addParameters({ component: MoreOrLess })
   .add('default', () => {
     return (
@@ -11,7 +11,7 @@ storiesOf('core|MoreOrLess', module)
         <MoreOrLess
           limit={3}
           content={['aap', 'noot', 'mies', 'huis', 'boom', 'schip'].map(
-            label => (
+            (label) => (
               <span key={label}>{label} </span>
             )
           )}

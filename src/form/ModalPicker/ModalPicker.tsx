@@ -15,13 +15,13 @@ import { t } from '../../utilities/translation/translation';
 import SearchInput from '../../core/SearchInput/SearchInput';
 import { useBodyFixOnModalClose } from '../../core/useBodyFixOnModalClose/useBodyFixOnModalClose';
 
-interface Text {
+type Text = {
   placeholder?: string;
   cancel?: string;
   select?: string;
-}
+};
 
-interface Props {
+type Props = {
   /**
    * The placeholder of the form element.
    */
@@ -93,7 +93,7 @@ interface Props {
    * This text should already be translated.
    */
   text?: Text;
-}
+};
 
 /**
  * The ModalPicker component is an abstraction used by the ModalPickerMultiple
@@ -135,7 +135,7 @@ export default function ModalPicker(props: Props) {
                   key: 'ModalPicker.SEARCH',
                   fallback: 'Search...'
                 })}
-                onChange={value => fetchOptions(value)}
+                onChange={(value) => fetchOptions(value)}
               />
             </Col>
           </Row>
@@ -145,7 +145,7 @@ export default function ModalPicker(props: Props) {
 
       {shouldRenderPagination ? (
         <ModalFooter className="d-flex justify-content-center">
-          <Pagination page={page} onChange={page => pageChanged(page)} />
+          <Pagination page={page} onChange={(page) => pageChanged(page)} />
         </ModalFooter>
       ) : null}
 

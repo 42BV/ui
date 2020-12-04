@@ -11,7 +11,7 @@ import { EpicTableLayout } from '../layout/layout';
 import { useClosestHeaderIndex } from './useClosestHeaderIndex';
 import { HeaderRef } from '../../types';
 
-interface Props {
+type Props = {
   /**
    * The width of the actual center so the FixedHeader can match
    * the centers width.
@@ -35,7 +35,7 @@ interface Props {
    * sot that the FixedHeader can take that header as its appearance.
    */
   headers: HeaderRef[];
-}
+};
 
 /**
  * The FixedHeader is a header which follows the user as he scrolls.

@@ -16,7 +16,7 @@ describe('useOptions', () => {
       const config = {
         optionsOrFetcher: [userUser(), coordinatorUser(), adminUser()],
         value: userUser(),
-        optionForValue: user => user.email,
+        optionForValue: (user) => user.email,
         isOptionEqual: (a, b) => a.id === b.id
       };
 
@@ -32,7 +32,7 @@ describe('useOptions', () => {
       const config = {
         optionsOrFetcher: [userUser(), coordinatorUser(), adminUser()],
         value: nobodyUser(),
-        optionForValue: user => user.email,
+        optionForValue: (user) => user.email,
         isOptionEqual: (a, b) => a.id === b.id
       };
 
@@ -47,11 +47,13 @@ describe('useOptions', () => {
 
   describe('when optionsOrFetcher is a function', () => {
     test('that the options are fetched', async () => {
+      expect.assertions(2);
+
       const config = {
         optionsOrFetcher: () =>
           Promise.resolve(pageOf([adminUser(), userUser()], 1)),
         value: undefined,
-        optionForValue: user => user.email,
+        optionForValue: (user) => user.email,
         isOptionEqual: (a, b) => a.id === b.id
       };
 
@@ -73,10 +75,11 @@ describe('useOptions', () => {
     });
 
     test('that when the watch value changes the options are fetched again', async () => {
+      expect.assertions(3);
+
       const { result, waitForNextUpdate, rerender } = renderHook(
         ({ watch }) =>
           useOptions({
-            // @ts-ignore
             optionsOrFetcher: () =>
               Promise.resolve(
                 pageOf(
@@ -117,11 +120,13 @@ describe('useOptions', () => {
     });
 
     test('that when the value is set but not in options that it is added to the options on the first place', async () => {
+      expect.assertions(2);
+
       const config = {
         optionsOrFetcher: () =>
           Promise.resolve(pageOf([adminUser(), userUser()], 1)),
         value: nobodyUser(),
-        optionForValue: user => user.email,
+        optionForValue: (user) => user.email,
         isOptionEqual: (a, b) => a.id === b.id
       };
 

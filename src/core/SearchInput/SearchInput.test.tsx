@@ -21,8 +21,8 @@ describe('Component: SearchInput', () => {
     showLabel?: boolean;
     withChildren?: boolean;
   }) {
-    // @ts-ignore
-    jest.spyOn(lodash, 'debounce').mockImplementation(fn => {
+    // @ts-expect-error Test mock
+    jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
       return fn;
     });
 
@@ -37,9 +37,9 @@ describe('Component: SearchInput', () => {
     };
 
     if (showLabel) {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       props.id = 'search';
-      //@ts-ignore
+      // @ts-expect-error Test mock
       props.label = 'Search';
     }
 
@@ -51,7 +51,7 @@ describe('Component: SearchInput', () => {
     switch (showIcon) {
       case true:
         // Ignore the typescript error because it doesn't know about label here
-        // @ts-ignore
+        // @ts-expect-error Test mock
         props.showIcon = true;
         break;
       case false:
@@ -106,20 +106,20 @@ describe('Component: SearchInput', () => {
     it('should debounce by 500 by default', () => {
       const { searchInput, onChangeSpy } = setup({ showIcon: true });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       searchInput
         .find(Input)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ target: { value: 'Maarten' } });
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith('Maarten');
 
       expect(lodash.debounce).toBeCalledTimes(1);
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(lodash.debounce.mock.calls[0][1]).toBe(500);
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(lodash.debounce.mock.calls[0][2]).toBe(undefined);
     });
 
@@ -129,18 +129,18 @@ describe('Component: SearchInput', () => {
         debounce: 10
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       searchInput
         .find(Input)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ target: { value: 'Maarten' } });
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith('Maarten');
 
       expect(lodash.debounce).toBeCalledTimes(1);
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(lodash.debounce.mock.calls[0][1]).toBe(10);
     });
 
@@ -152,11 +152,11 @@ describe('Component: SearchInput', () => {
         debounceSettings
       });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       searchInput
         .find(Input)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ target: { value: 'M' } });
 
       // Trailing will cause the first character to go through immediately
@@ -164,17 +164,17 @@ describe('Component: SearchInput', () => {
       expect(onChangeSpy).toBeCalledWith('M');
 
       expect(lodash.debounce).toBeCalledTimes(1);
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(lodash.debounce.mock.calls[0][2]).toBe(debounceSettings);
     });
 
-    it('should allow the user to take full control of the value through the children render prop', done => {
+    it('should allow the user to take full control of the value through the children render prop', (done) => {
       const onChangeSpy = jest.fn();
       const cancel = jest.fn();
 
-      // @ts-ignore
-      jest.spyOn(lodash, 'debounce').mockImplementation(fn => {
-        // @ts-ignore
+      // @ts-expect-error Test mock
+      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+        // @ts-expect-error Test mock
         fn.cancel = cancel;
         return fn;
       });
@@ -205,7 +205,7 @@ describe('Component: SearchInput', () => {
 
         expect(cancel).toBeCalledTimes(1);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(searchInput.find('Input').props().innerRef.current.value).toBe(
           'external change'
         );
@@ -218,11 +218,11 @@ describe('Component: SearchInput', () => {
       it('should on "ENTER" press set the value immediately', () => {
         const { searchInput, onChangeSpy } = setup({ showIcon: true });
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         searchInput
           .find(Input)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onKeyUp({ key: 'Enter', currentTarget: { value: 'Maarten' } });
 
         expect(onChangeSpy).toBeCalledTimes(1);
@@ -232,11 +232,11 @@ describe('Component: SearchInput', () => {
       it('should on letters other "ENTER" wait for the debounce', () => {
         const { searchInput, onChangeSpy } = setup({ showIcon: true });
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         searchInput
           .find(Input)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onKeyUp({ key: 'a', currentTarget: { value: 'Maarten' } });
 
         expect(onChangeSpy).toBeCalledTimes(0);

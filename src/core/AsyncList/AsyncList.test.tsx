@@ -17,14 +17,14 @@ describe('Component: Async|AsyncList', () => {
   function setup({ state }: { state: State }) {
     const asyncList = shallow(
       <AsyncList
-        // @ts-ignore
+        // @ts-expect-error Test mock
         state={state}
         showRetryButton={true}
         text={{ loading: 'Custom loading' }}
       >
-        {users => (
+        {(users) => (
           <ul>
-            {users.map(user => (
+            {users.map((user) => (
               <li key={user.id}>{user.email}</li>
             ))}
           </ul>

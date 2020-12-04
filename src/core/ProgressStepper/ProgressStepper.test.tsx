@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
@@ -7,13 +6,13 @@ import ProgressStepper from './ProgressStepper';
 
 describe('Component: ProgressStepper', () => {
   test('ui', () => {
-    const colorForStepSpy = jest.fn(() => 'primary');
-    const titleForStepSpy = jest.fn(step => step);
+    const colorForStepSpy = jest.fn((_step, _index) => 'primary');
+    const titleForStepSpy = jest.fn((step, _index) => step);
 
     const progressStepper = shallow(
       <ProgressStepper
         steps={['start']}
-        // @ts-ignore
+        // @ts-expect-error Test mock
         colorForStep={colorForStepSpy}
         titleForStep={titleForStepSpy}
         className="extra-css-class"
@@ -45,19 +44,13 @@ describe('Component: ProgressStepper', () => {
       );
 
       // Test if 'start' is indeed enabled.
-      progressStepper
-        .find('.step-item')
-        .at(0)
-        .simulate('click');
+      progressStepper.find('.step-item').at(0).simulate('click');
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
       expect(onClickSpy).toHaveBeenCalledWith('start', 0);
 
       // Test if 'end' is indeed disabled.
-      progressStepper
-        .find('.step-item')
-        .at(1)
-        .simulate('click');
+      progressStepper.find('.step-item').at(1).simulate('click');
       expect(onClickSpy).toHaveBeenCalledTimes(1);
     });
   });

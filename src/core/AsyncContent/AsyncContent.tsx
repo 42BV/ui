@@ -5,7 +5,7 @@ import ContentState from '../ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
 import Button from '../Button/Button';
 
-interface Text {
+type Text = {
   /**
    * Error text to show when an error occurred.
    */
@@ -26,7 +26,7 @@ interface Text {
    * Text to show within the `retry` button.
    */
   retry?: string;
-}
+};
 
 export type Props<T> = {
   /**

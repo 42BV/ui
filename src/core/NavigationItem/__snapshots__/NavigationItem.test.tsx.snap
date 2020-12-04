@@ -11,7 +11,6 @@ exports[`Component: NavigationItem ui 1`] = `
     tag={
       Object {
         "$$typeof": Symbol(react.forward_ref),
-        "displayName": "NavLink",
         "propTypes": Object {
           "activeClassName": [Function],
           "activeStyle": [Function],
@@ -23,6 +22,7 @@ exports[`Component: NavigationItem ui 1`] = `
           "location": [Function],
           "onClick": [Function],
           "replace": [Function],
+          "sensitive": [Function],
           "strict": [Function],
           "style": [Function],
           "target": [Function],

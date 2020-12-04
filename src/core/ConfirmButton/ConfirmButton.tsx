@@ -12,7 +12,7 @@ import { Color } from '../types';
 import IconType from '../Icon/types';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
-interface Text {
+type Text = {
   /**
    * The text to show in the header, defaults to "Confirmation"
    *
@@ -33,7 +33,7 @@ interface Text {
    * @default OK
    */
   confirm?: string;
-}
+};
 
 interface BaseProps {
   /**

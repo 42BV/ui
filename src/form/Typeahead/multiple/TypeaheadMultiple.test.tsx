@@ -116,7 +116,6 @@ describe('Component: TypeaheadMultiple', () => {
     it('should when the Tag is closed call onRemove', () => {
       const { token, onRemoveSpy } = setupRenderToken();
 
-      // @ts-ignore
       token.props().onRemove();
 
       expect(onRemoveSpy).toBeCalledTimes(1);
@@ -131,10 +130,7 @@ describe('Component: TypeaheadMultiple', () => {
           value: []
         });
 
-        const asyncTypeahead = typeaheadMultiple
-          .find('div')
-          .children()
-          .first();
+        const asyncTypeahead = typeaheadMultiple.find('div').children().first();
 
         asyncTypeahead.props().onChange([]);
 
@@ -148,10 +144,7 @@ describe('Component: TypeaheadMultiple', () => {
           value: []
         });
 
-        const asyncTypeahead = typeaheadMultiple
-          .find('div')
-          .children()
-          .first();
+        const asyncTypeahead = typeaheadMultiple.find('div').children().first();
 
         asyncTypeahead.props().onChange([
           {
@@ -170,7 +163,9 @@ describe('Component: TypeaheadMultiple', () => {
       });
     });
 
-    it('should fetchOptions when the user starts typing in the input field', async done => {
+    it('should fetchOptions when the user starts typing in the input field', async (done) => {
+      expect.assertions(3);
+
       const { typeaheadMultiple, fetchOptionsSpy } = setup({
         value: undefined
       });
@@ -179,14 +174,13 @@ describe('Component: TypeaheadMultiple', () => {
 
       fetchOptionsSpy.mockReturnValue(promise);
 
-      let asyncTypeahead = typeaheadMultiple
-        .find('div')
-        .children()
-        .first();
+      let asyncTypeahead = typeaheadMultiple.find('div').children().first();
 
       asyncTypeahead.props().onSearch('Ma');
 
-      waitForUI(() => {
+      await waitForUI(() => {
+        asyncTypeahead = typeaheadMultiple.find('div').children().first();
+
         expect(asyncTypeahead.props().isLoading).toBe(true);
       });
 
@@ -195,10 +189,7 @@ describe('Component: TypeaheadMultiple', () => {
 
         await promise;
 
-        asyncTypeahead = typeaheadMultiple
-          .find('div')
-          .children()
-          .first();
+        asyncTypeahead = typeaheadMultiple.find('div').children().first();
 
         expect(asyncTypeahead.props().options).toEqual([
           {
@@ -228,10 +219,7 @@ describe('Component: TypeaheadMultiple', () => {
       test('becomes empty', () => {
         const { typeaheadMultiple } = setup({ value: [adminUser()] });
 
-        let asyncTypeahead = typeaheadMultiple
-          .find('div')
-          .children()
-          .first();
+        let asyncTypeahead = typeaheadMultiple.find('div').children().first();
         expect(asyncTypeahead.props().selected).toEqual([
           {
             label: 'admin@42.nl',
@@ -241,10 +229,7 @@ describe('Component: TypeaheadMultiple', () => {
 
         typeaheadMultiple.setProps({ value: undefined });
 
-        asyncTypeahead = typeaheadMultiple
-          .find('div')
-          .children()
-          .first();
+        asyncTypeahead = typeaheadMultiple.find('div').children().first();
         expect(asyncTypeahead.props().selected).toEqual([]);
 
         expect(typeaheadMultiple.find('.showing-placeholder').length).toBe(1);
@@ -253,10 +238,7 @@ describe('Component: TypeaheadMultiple', () => {
       test('becomes filled', () => {
         const { typeaheadMultiple } = setup({ value: undefined });
 
-        let asyncTypeahead = typeaheadMultiple
-          .find('div')
-          .children()
-          .first();
+        let asyncTypeahead = typeaheadMultiple.find('div').children().first();
         expect(asyncTypeahead.props().selected).toEqual([]);
 
         const value = adminUser();
@@ -265,10 +247,7 @@ describe('Component: TypeaheadMultiple', () => {
           value: [value]
         });
 
-        asyncTypeahead = typeaheadMultiple
-          .find('div')
-          .children()
-          .first();
+        asyncTypeahead = typeaheadMultiple.find('div').children().first();
         expect(asyncTypeahead.props().selected).toEqual([
           {
             label: 'admin@42.nl',

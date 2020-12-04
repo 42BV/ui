@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import Pager from './Pager';
 import { pageOf } from '../../utilities/page/page';
 
-storiesOf('core|Pager', module)
+storiesOf('core/Pager', module)
   .addParameters({ component: Pager })
   .add('default', () => {
     const [pageNumber, setPageNumber] = useState(1);

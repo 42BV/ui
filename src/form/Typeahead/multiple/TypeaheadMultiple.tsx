@@ -127,7 +127,7 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
     if (values.length === 0) {
       onChange(undefined);
     } else {
-      onChange(values.map(option => option.value));
+      onChange(values.map((option) => option.value));
     }
 
     // Due this: https://github.com/ericgio/react-bootstrap-typeahead/issues/224
@@ -142,7 +142,7 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
     setLoading(true);
 
     const page = await fetchOptions(query);
-    const options = page.content.map(value =>
+    const options = page.content.map((value) =>
       valueToTypeaheadOption(value, optionForValue)
     );
 
@@ -152,7 +152,7 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
 
   let selected: TypeaheadOption<T>[] = [];
   if (value && value.length) {
-    selected = value.map(v => valueToTypeaheadOption(v, optionForValue));
+    selected = value.map((v) => valueToTypeaheadOption(v, optionForValue));
   }
 
   const classes = classNames(className, {
@@ -172,10 +172,9 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
           placeholder={placeholder}
           selected={selected}
           options={options}
-          // @ts-ignore
           inputProps={{
-            // @ts-ignore
-            value: value,
+            // @ts-expect-error The input props value works
+            value,
             className: classNames('form-control', {
               'is-invalid': valid === false
             })
@@ -187,7 +186,7 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
             <Tag
               key={index}
               text={option.label}
-              // @ts-ignore The prop onRemove actually exists, the typings are wrong
+              // @ts-expect-error The prop onRemove actually exists, the typings are wrong
               onRemove={() => props.onRemove(option)}
               className="align-self-center"
             />

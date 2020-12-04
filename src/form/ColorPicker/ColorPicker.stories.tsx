@@ -25,7 +25,7 @@ function isToDark(value?: string) {
   return undefined;
 }
 
-storiesOf('Form|ColorPicker', module)
+storiesOf('Form/ColorPicker', module)
   .add('basic', () => {
     const [value, setValue] = useState<string | undefined>();
 

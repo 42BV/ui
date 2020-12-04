@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '../../../../core/Button/Button';
 
-export interface Props {
+export type Props = {
   /**
    * Whether or not the expander is currently open.
    */
@@ -12,7 +12,7 @@ export interface Props {
    * The callback for when the open state changes.
    */
   onChange: (open: boolean) => void;
-}
+};
 
 /**
  * The EpicExpander is a button which can be used to open up an

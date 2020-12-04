@@ -4,7 +4,6 @@ import toJson from 'enzyme-to-json';
 
 import ContentState from './ContentState';
 
-// TODO: Correctly type
 describe('Component: ContentStateIcon', () => {
   describe('ui', () => {
     test('empty', () => {

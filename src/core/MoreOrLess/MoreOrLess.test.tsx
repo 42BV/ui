@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
@@ -77,7 +76,7 @@ describe('Component: MoreOrLess', () => {
       setup({
         exceedsLimit: true,
         text: {
-          more: amount => `Load ${amount} more...`
+          more: (amount) => `Load ${amount} more...`
         }
       });
 

@@ -11,9 +11,9 @@ import DateTimeInput, {
 import withJarb from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
 
-interface Text {
+type Text = {
   rangeError?: string;
-}
+};
 
 /**
  * Represents the value of the DateRangePicker form element.
@@ -31,7 +31,7 @@ export interface ChangeValue {
   to: Date;
 }
 
-interface Props {
+type Props = {
   /**
    * The value that the form element currently has.
    */
@@ -102,7 +102,7 @@ interface Props {
    * Defaults to `true`.
    */
   horizontal?: boolean;
-}
+};
 
 interface State {
   fromDate?: Date;
@@ -176,7 +176,7 @@ export default class DateRangePicker extends Component<Props, State> {
           <DateTimeInput
             {...this.props.from}
             value={this.state.fromDate}
-            onChange={date => this.fromDateChanged(date)}
+            onChange={(date) => this.fromDateChanged(date)}
             onFocus={() => this.onFocus()}
             valid={valid}
             color={color}
@@ -191,7 +191,7 @@ export default class DateRangePicker extends Component<Props, State> {
           <DateTimeInput
             {...this.props.to}
             value={this.state.toDate}
-            onChange={date => this.toDateChanged(date)}
+            onChange={(date) => this.toDateChanged(date)}
             onFocus={() => this.onFocus()}
             valid={valid}
             color={color}

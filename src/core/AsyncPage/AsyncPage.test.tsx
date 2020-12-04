@@ -18,14 +18,14 @@ describe('Component: AsyncPage', () => {
   function setup({ state }: { state: State }) {
     const asyncPage = shallow(
       <AsyncPage
-        // @ts-ignore
+        // @ts-expect-error Test mock
         state={state}
         showRetryButton={true}
         text={{ loading: 'Custom loading' }}
       >
-        {data => (
+        {(data) => (
           <ul>
-            {data.content.map(user => (
+            {data.content.map((user) => (
               <li key={user.id}>{user.email}</li>
             ))}
           </ul>

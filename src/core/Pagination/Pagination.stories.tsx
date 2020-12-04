@@ -6,7 +6,7 @@ import { pageOf } from '../../utilities/page/page';
 
 import Pagination from './Pagination';
 
-storiesOf('core|Pagination', module)
+storiesOf('core/Pagination', module)
   .addParameters({ component: Pagination })
   .add('default', () => {
     const [pageNumber, setPageNumber] = useState(5);

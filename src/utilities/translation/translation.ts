@@ -5,8 +5,6 @@ import { getTranslator, Translation } from './translator';
  * a small utility function that enables the user to make use of
  * the defined translation interface in @see Translation.
  *
- *
- *
  * @example basic example
  * ```ts
  * const someFunction(name: string): string {
@@ -22,12 +20,12 @@ import { getTranslator, Translation } from './translator';
  * @export
  * @param {string} overrideText text that overrides translation functionality
  * @param {Translation} translation object used for the translation process
- * @returns
+ * @returns The translation
  */
 export function t({
   overrideText,
   ...translation
-}: Translation & { overrideText?: string }) {
+}: Translation & { overrideText?: string }): string {
   if (overrideText) {
     return overrideText;
   }

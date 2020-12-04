@@ -78,11 +78,11 @@ export function isOptionSelected<T>({
 
   if (Array.isArray(value)) {
     if (isOptionEqual) {
-      return value.some(v => isOptionEqual(v, option));
+      return value.some((v) => isOptionEqual(v, option));
     } else {
       const key = keyForOption({ option, uniqueKeyForValue, optionForValue });
       return value.some(
-        v =>
+        (v) =>
           key === keyForOption({ option: v, uniqueKeyForValue, optionForValue })
       );
     }
@@ -114,9 +114,9 @@ export function keyForOption<T>({
     return uniqueKeyForValue(option);
   }
 
-  // @ts-ignore
+  // @ts-expect-error Accept that the option could have an id
   if (option.id) {
-    // @ts-ignore
+    // @ts-expect-error Accept that the option could have an id
     return `${option.id}`;
   }
 

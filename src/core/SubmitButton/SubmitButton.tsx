@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button, { ButtonSize } from '../Button/Button';
 
-export interface Props {
+export type Props = {
   /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
@@ -36,7 +36,7 @@ export interface Props {
    * Optionally the size of the icon in pixels.
    */
   iconSize?: number;
-}
+};
 
 /**
  * A SubmitButton is a Button with a 'save' icon and and

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames';
 
-interface Props {
+type Props = {
   /**
    * The content of the cell.
    */
@@ -16,10 +16,10 @@ interface Props {
    * The height of the cell.
    */
   height: number;
-}
+};
 
 // Props that will be injected by the EpicTable.
-interface InjectedProps {
+type InjectedProps = {
   /**
    *  Whether or not the cell is an odd cell. For the zebra stripes
    */
@@ -47,7 +47,7 @@ interface InjectedProps {
    * Is only called when onRowClick is defined.
    */
   onHoverChanged: (hover: boolean) => void;
-}
+};
 
 /**
  * The EpicCell is used inside of a EpicRow to render content in.

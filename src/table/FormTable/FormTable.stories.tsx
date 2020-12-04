@@ -26,7 +26,7 @@ import { OpenCloseModal, Pagination } from '../../index';
 import { emptyPage, Page } from '@42.nl/spring-connect/lib';
 import { FormSpy } from 'react-final-form';
 
-storiesOf('table|FormTable', module)
+storiesOf('table/FormTable', module)
   .add('basic example', () => {
     const [newPerson] = useState<Person>({
       id: Math.random(),
@@ -78,7 +78,7 @@ storiesOf('table|FormTable', module)
         setPersonsList([...personsList, person]);
       } else {
         setPersonsList(
-          personsList.map(p => {
+          personsList.map((p) => {
             return p.id === person.id ? person : p;
           })
         );
@@ -94,7 +94,7 @@ storiesOf('table|FormTable', module)
     async function deletePerson(person: Person) {
       setLoading(person);
       await sleep(random(200, 1000));
-      setPersonsList(personsList.filter(p => p.id !== person.id));
+      setPersonsList(personsList.filter((p) => p.id !== person.id));
       setLoading(undefined);
       setFlashMessage('Person deleted successfully!');
     }
@@ -110,7 +110,7 @@ storiesOf('table|FormTable', module)
     }
 
     function confirmPage(pageNumber: number) {
-      if (Object.values(dirtyPersons).some(d => d)) {
+      if (Object.values(dirtyPersons).some((d) => d)) {
         setNewPage(pageNumber);
       } else {
         setPage(pageNumber);
@@ -166,7 +166,7 @@ storiesOf('table|FormTable', module)
               Sex
             </EpicHeader>
           </EpicRow>
-          {pageOfPersons.content.map(person => (
+          {pageOfPersons.content.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={52}>
                 {loading && loading.id === person.id ? (
@@ -215,7 +215,7 @@ storiesOf('table|FormTable', module)
               >
                 <FormSpy
                   subscription={{ pristine: true }}
-                  onChange={formState =>
+                  onChange={(formState) =>
                     setPersonDirty(formState.pristine, person)
                   }
                 />
@@ -265,7 +265,7 @@ storiesOf('table|FormTable', module)
                     name="eyeColor"
                     placeholder="Enter eye color"
                     options={['green', 'blue', 'brown']}
-                    optionForValue={option => option}
+                    optionForValue={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
                       label: 'Eye color'
@@ -325,13 +325,13 @@ storiesOf('table|FormTable', module)
                       label: 'Favorite movie'
                     }}
                     multiple={false}
-                    optionForValue={option => option.name}
+                    optionForValue={(option) => option.name}
                     fetchOptions={(query, page, size) =>
                       Promise.resolve(
                         pageOf(
                           movies
                             .filter(
-                              movie =>
+                              (movie) =>
                                 query.length === 0 ||
                                 movie.name.indexOf(query) > 0
                             )
@@ -382,7 +382,7 @@ storiesOf('table|FormTable', module)
                     name="sex"
                     className="ml-1"
                     options={['male', 'female']}
-                    optionForValue={option => option}
+                    optionForValue={(option) => option}
                     horizontal={true}
                     jarb={{
                       validator: 'Person.sex',
@@ -471,7 +471,7 @@ storiesOf('table|FormTable', module)
         setPersonsList([...personsList, person]);
       } else {
         setPersonsList(
-          personsList.map(p => {
+          personsList.map((p) => {
             return p.id === person.id ? person : p;
           })
         );
@@ -487,7 +487,7 @@ storiesOf('table|FormTable', module)
     async function deletePerson(person: Person) {
       setLoading(person);
       await sleep(random(200, 1000));
-      setPersonsList(personsList.filter(p => p.id !== person.id));
+      setPersonsList(personsList.filter((p) => p.id !== person.id));
       setLoading(undefined);
       setFlashMessage('Person deleted successfully!');
     }
@@ -549,7 +549,7 @@ storiesOf('table|FormTable', module)
               Sex
             </EpicHeader>
           </EpicRow>
-          {pageOfPersons.content.map(person =>
+          {pageOfPersons.content.map((person) =>
             (editingPerson && editingPerson.id === person.id) ||
             person.id === newPerson.id ? (
               <EpicRow key={person.id}>
@@ -600,7 +600,7 @@ storiesOf('table|FormTable', module)
                 >
                   <FormSpy
                     subscription={{ pristine: true }}
-                    onChange={formState => setDirty(formState.pristine)}
+                    onChange={(formState) => setDirty(formState.pristine)}
                   />
                   <EpicFormCell width={300} height={52}>
                     <JarbInput
@@ -648,7 +648,7 @@ storiesOf('table|FormTable', module)
                       name="eyeColor"
                       placeholder="Enter eye color"
                       options={['green', 'blue', 'brown']}
-                      optionForValue={option => option}
+                      optionForValue={(option) => option}
                       jarb={{
                         validator: 'Person.eyeColor',
                         label: 'Eye color'
@@ -708,13 +708,13 @@ storiesOf('table|FormTable', module)
                         label: 'Favorite movie'
                       }}
                       multiple={false}
-                      optionForValue={option => option.name}
+                      optionForValue={(option) => option.name}
                       fetchOptions={(query, page, size) =>
                         Promise.resolve(
                           pageOf(
                             movies
                               .filter(
-                                movie =>
+                                (movie) =>
                                   query.length === 0 ||
                                   movie.name.indexOf(query) > 0
                               )
@@ -764,7 +764,7 @@ storiesOf('table|FormTable', module)
                       name="sex"
                       className="ml-1"
                       options={['male', 'female']}
-                      optionForValue={option => option}
+                      optionForValue={(option) => option}
                       horizontal={true}
                       jarb={{
                         validator: 'Person.sex',
@@ -937,7 +937,7 @@ storiesOf('table|FormTable', module)
         setPersonsList([...personsList, person]);
       } else {
         setPersonsList(
-          personsList.map(p => {
+          personsList.map((p) => {
             return p.id === person.id ? person : p;
           })
         );
@@ -949,7 +949,7 @@ storiesOf('table|FormTable', module)
     async function deletePerson(person: Person) {
       setLoading(person);
       await sleep(random(200, 1000));
-      setPersonsList(personsList.filter(p => p.id !== person.id));
+      setPersonsList(personsList.filter((p) => p.id !== person.id));
       setLoading(undefined);
       setFlashMessage('Person deleted successfully!');
     }
@@ -1013,7 +1013,7 @@ storiesOf('table|FormTable', module)
               Sex
             </EpicHeader>
           </EpicRow>
-          {pageOfPersons.content.map(person => (
+          {pageOfPersons.content.map((person) => (
             <EpicRow key={person.id}>
               <EpicCell width={300} height={52}>
                 {loading && loading.id === person.id ? (
@@ -1043,7 +1043,7 @@ storiesOf('table|FormTable', module)
               >
                 <FormSpy
                   subscription={{ pristine: true }}
-                  onChange={formState =>
+                  onChange={(formState) =>
                     setPersonDirty(formState.pristine, person)
                   }
                 />
@@ -1093,7 +1093,7 @@ storiesOf('table|FormTable', module)
                     name="eyeColor"
                     placeholder="Enter eye color"
                     options={['green', 'blue', 'brown']}
-                    optionForValue={option => option}
+                    optionForValue={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
                       label: 'Eye color'
@@ -1153,13 +1153,13 @@ storiesOf('table|FormTable', module)
                       label: 'Favorite movie'
                     }}
                     multiple={false}
-                    optionForValue={option => option.name}
+                    optionForValue={(option) => option.name}
                     fetchOptions={(query, page, size) =>
                       Promise.resolve(
                         pageOf(
                           movies
                             .filter(
-                              movie =>
+                              (movie) =>
                                 query.length === 0 ||
                                 movie.name.indexOf(query) > 0
                             )
@@ -1210,7 +1210,7 @@ storiesOf('table|FormTable', module)
                     name="sex"
                     className="ml-1"
                     options={['male', 'female']}
-                    optionForValue={option => option}
+                    optionForValue={(option) => option}
                     horizontal={true}
                     jarb={{
                       validator: 'Person.sex',
@@ -1610,12 +1610,12 @@ type Movie = {
 
 const movies: Movie[] = uniq(
   persons
-    .filter(person => person.favoriteMovie)
-    .map(person => person.favoriteMovie?.name)
-).map(movie => ({ name: movie } as Movie));
+    .filter((person) => person.favoriteMovie)
+    .map((person) => person.favoriteMovie?.name)
+).map((movie) => ({ name: movie } as Movie));
 
 function sleep(ms: number) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }

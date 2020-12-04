@@ -15,12 +15,12 @@ interface SubjectOption {
   label: string;
 }
 
-const options: SubjectOption[] = range(0, 100).map(i => ({
+const options: SubjectOption[] = range(0, 100).map((i) => ({
   value: `${i}`,
   label: `Selection #${i}`
 }));
 
-storiesOf('Form|CheckboxMultipleSelect', module)
+storiesOf('Form/CheckboxMultipleSelect', module)
   .add('defined options', () => {
     const [value, setValue] = useState<SubjectOption[] | undefined>([]);
 
@@ -32,7 +32,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
             label="Subject"
             placeholder="Please select your subjects"
             optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={option => option.value !== 'awesome'}
+            isOptionEnabled={(option) => option.value !== 'awesome'}
             options={options}
             value={value}
             onChange={setValue}
@@ -52,7 +52,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
             label="Subject"
             placeholder="Please select your subjects"
             optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={option => option.value !== 'awesome'}
+            isOptionEnabled={(option) => option.value !== 'awesome'}
             options={options.filter((_, index) => index < 5)}
             value={value}
             onChange={setValue}
@@ -112,7 +112,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
             id="subject"
             label="Subject"
             optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={option => option.value !== 'awesome'}
+            isOptionEnabled={(option) => option.value !== 'awesome'}
             options={options}
             value={value}
             onChange={setValue}
@@ -131,7 +131,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
             id="subject"
             placeholder="Please select your subjects"
             optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={option => option.value !== 'awesome'}
+            isOptionEnabled={(option) => option.value !== 'awesome'}
             options={options}
             value={value}
             onChange={setValue}
@@ -161,7 +161,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
             }
             placeholder="Please select your subjects"
             optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={option => option.value !== 'awesome'}
+            isOptionEnabled={(option) => option.value !== 'awesome'}
             options={options}
             value={value}
             onChange={setValue}
@@ -179,7 +179,7 @@ storiesOf('Form|CheckboxMultipleSelect', module)
           label="Subject"
           placeholder="Please select your subjects"
           optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={option => option.value !== 'awesome'}
+          isOptionEnabled={(option) => option.value !== 'awesome'}
           options={[
             { value: 'awesome', label: 'Awesome shit' },
             { value: 'super', label: 'Super shit' },

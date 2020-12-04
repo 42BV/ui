@@ -9,7 +9,7 @@ function is3DRotation(value: IconType) {
   return value === '3d_rotation' ? undefined : 'Not "3d_rotation"';
 }
 
-storiesOf('Form|IconPicker', module)
+storiesOf('Form/IconPicker', module)
   .add('basic', () => {
     const [value, setValue] = useState<IconType | undefined>(undefined);
 

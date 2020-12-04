@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface Props {
+type Props = {
   /**
    * The content of the cell.
    */
@@ -15,7 +15,7 @@ interface Props {
    * The height of the cell.
    */
   height: number;
-}
+};
 
 /**
  * The EpicFormCell is used inside of a EpicForm to render form inputs in.

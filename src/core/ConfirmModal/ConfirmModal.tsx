@@ -49,8 +49,10 @@ type Props = {
  * ConfirmModal offers the user a confirmation dialog before performing an operation.
  * The main use case is a delete action, which we want the user to confirm before proceeding.
  *
- * Note: In most cases, you'll want to use {@link ConfirmButton} instead. That component offers an easy-to-use button that triggers this dialog.
- * However, if it is not possible to trigger the action through a button, such as when using a ButtonDropdown, you can use this component directly instead.
+ * Note: In most cases, you'll want to use {@link ConfirmButton} instead.
+ * That component offers an easy-to-use button that triggers this dialog.
+ * However, if it is not possible to trigger the action through a button,
+ * such as when using a ButtonDropdown, you can use this component directly instead.
  */
 export default function ConfirmModal({
   isOpen,

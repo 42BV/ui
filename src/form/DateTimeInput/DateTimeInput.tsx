@@ -26,7 +26,7 @@ export type IsDateAllowed = (date: Moment, selectedDate?: Moment) => boolean;
 
 export type Mode = 'modal' | 'default';
 
-export interface Props {
+export type Props = {
   /**
    * The id of the form element.
    */
@@ -135,7 +135,7 @@ export interface Props {
    * This text should already be translated.
    */
   text?: Text;
-}
+};
 
 /**
  * DateTimeInput is a form element which allows the user to select:
@@ -240,16 +240,14 @@ export default function DateTimeInput(props: Props) {
       ) : null}
       <Datetime
         inputProps={{
-          // TODO: Figure out if we should do this the hacky way
-          // @see documentation react-datetime
-          // @ts-ignore
+          // @ts-expect-error Our input prop will have a mask because it is a `MaskedInput`.
           mask: formatToMask(dateFormat, timeFormat),
           placeholder,
           invalid: valid === false || hasFormatError,
           id
         }}
         open={mode === 'modal' ? false : undefined}
-        renderInput={props =>
+        renderInput={(props) =>
           mode === 'modal'
             ? maskedInputGroup(props, () => setIsModalOpen(true))
             : maskedInput(props)
@@ -293,11 +291,11 @@ export const JarbDateTimeInput = withJarb<Date, Date | null, Props>(
   DateTimeInput
 );
 
-export function maskedInput(props: {}) {
+export function maskedInput(props: unknown) {
   return <MaskedInput {...props} render={reactStrapInput} />;
 }
 
-export function maskedInputGroup(props: {}, onClick: () => void) {
+export function maskedInputGroup(props: unknown, onClick: () => void) {
   return (
     <InputGroup>
       <MaskedInput {...props} render={reactStrapInput} />

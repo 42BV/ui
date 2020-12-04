@@ -6,7 +6,7 @@ import SearchInput from './SearchInput';
 import { Card } from 'reactstrap';
 import { Select, Button, Tooltip, Icon } from '../..';
 
-storiesOf('core|SearchInput', module)
+storiesOf('core/SearchInput', module)
   .addParameters({ component: SearchInput })
   .add('default', () => {
     const [query, setQuery] = useState('');
@@ -126,9 +126,9 @@ storiesOf('core|SearchInput', module)
                 label="Predefined queries"
                 value={query}
                 placeholder="Please select a predefined query"
-                optionForValue={option => option}
+                optionForValue={(option) => option}
                 options={['Maarten', 'Jeffrey']}
-                onChange={value => {
+                onChange={(value) => {
                   if (value) {
                     setValue(value);
                   }

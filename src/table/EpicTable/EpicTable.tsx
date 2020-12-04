@@ -16,7 +16,7 @@ import { useEpicTableRect } from './helpers/useEpicTableRect';
 import { useCalculateActualHeight } from './helpers/useCalculateActualHeight';
 import { useAdjustHeightOfActiveDetailRow } from './helpers/useAdjustHeightOfActiveDetailRow';
 
-interface Props {
+type Props = {
   // What I really want to express here is is that children only
   // accepts rows or `Fragments` containing rows But I cannot express
   // this properly so it is unfortunately of type 'any'.
@@ -55,7 +55,7 @@ interface Props {
    * Defaults to true.
    */
   striped?: boolean;
-}
+};
 
 /**
  * The EpicTable is a table based on Andrew Colyle's article
@@ -212,7 +212,7 @@ export function EpicTable({
             >
               {left.map((section, index) => (
                 <Fragment key={index}>
-                  <div ref={ref => registerHeader(ref, index)}>
+                  <div ref={(ref) => registerHeader(ref, index)}>
                     {section.header}
                   </div>
 

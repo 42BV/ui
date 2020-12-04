@@ -9,7 +9,7 @@ export type FetchOptionsCallback<T> = (query: string) => Promise<Page<T>>;
 /**
  * Represents the value of a Typeahead.
  */
-export interface TypeaheadOption<T> {
+export type TypeaheadOption<T> = {
   label: string;
   value: T;
-}
+};

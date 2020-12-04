@@ -28,7 +28,7 @@ describe('Component: AsyncContent', () => {
 
     const asyncContent = shallow(
       <AsyncContent
-        // @ts-ignore
+        // @ts-expect-error Test mock
         state={state}
         showRetryButton={showRetryButton}
         isEmpty={isEmpty}
@@ -93,7 +93,7 @@ describe('Component: AsyncContent', () => {
         state,
         isEmpty: () => true,
         // eslint-disable-next-line react/display-name
-        emptyContent: data => {
+        emptyContent: (data) => {
           expect(data).toBe('importantos data');
 
           return <h1>Custom renderer</h1>;

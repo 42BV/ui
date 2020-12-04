@@ -9,6 +9,7 @@ import { JarbInput } from '../../../../form/Input/Input';
 describe('Component: EpicForm', () => {
   function setup({ submitOnChange }: { submitOnChange?: boolean }) {
     const cancelSpy = jest.fn();
+    const resetSpy = jest.fn();
 
     const epicForm = shallow(
       <EpicForm
@@ -32,10 +33,13 @@ describe('Component: EpicForm', () => {
     const formContent = shallow(
       epicForm
         .props()
-        .children({ handleSubmit: handleSubmitSpy, form: {} as FormApi })
+        .children({
+          handleSubmit: handleSubmitSpy,
+          form: ({ reset: resetSpy } as unknown) as FormApi
+        })
     );
 
-    return { epicForm, formContent, handleSubmitSpy, cancelSpy };
+    return { epicForm, formContent, handleSubmitSpy, cancelSpy, resetSpy };
   }
 
   describe('ui', () => {
@@ -56,6 +60,17 @@ describe('Component: EpicForm', () => {
       expect(toJson(formContent)).toMatchSnapshot(
         'Component: EpicForm => ui => submitOnChange'
       );
+    });
+  });
+
+  describe('events', () => {
+    it('should when resetting the form call reset on the the react-final-form Form', () => {
+      const { formContent, resetSpy } = setup({});
+
+      // @ts-expect-error Test mock
+      formContent.find('form').props().onReset();
+
+      expect(resetSpy).toBeCalledTimes(1);
     });
   });
 });

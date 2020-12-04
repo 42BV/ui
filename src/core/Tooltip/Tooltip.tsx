@@ -3,7 +3,7 @@ import * as Popper from 'popper.js';
 import Tippy from '@tippyjs/react';
 
 /*** Tooltip component based on the Tippy Library ***/
-interface Props {
+type Props = {
   /**
    * Target component that, when hovered, will trigger the tooltip to show up.
    * The target(children) of the tooltip are wrapped into a div.
@@ -63,7 +63,7 @@ interface Props {
    * by the wrapping of the children inside of the CustomTag.
    */
   style?: CSSProperties;
-}
+};
 
 /**
  * Bootstrap-like Tooltip component based on the Tippy.js library.

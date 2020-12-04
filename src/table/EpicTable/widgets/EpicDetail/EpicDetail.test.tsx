@@ -14,9 +14,7 @@ describe('Component: EpicDetail', () => {
     }
 
     const epicDetail = shallow(
-      <EpicDetail onClose={onCloseSpy}>
-        {children}
-      </EpicDetail>
+      <EpicDetail onClose={onCloseSpy}>{children}</EpicDetail>
     );
 
     return { epicDetail, onCloseSpy };
@@ -34,11 +32,11 @@ describe('Component: EpicDetail', () => {
 
       const event = new MouseEvent('click');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       epicDetail
         .find(Icon)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick(event);
 
       expect(onCloseSpy).toBeCalledTimes(1);

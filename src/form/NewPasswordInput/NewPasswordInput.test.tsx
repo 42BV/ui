@@ -30,7 +30,7 @@ describe('Component: NewPasswordInput', () => {
   test('default all rules enabled', () => {
     const { newPasswordInput } = setup({});
     expect(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       newPasswordInput.find('PasswordStrength').props().rules
     ).toEqual([
       'lowercase',
@@ -45,7 +45,7 @@ describe('Component: NewPasswordInput', () => {
   test('disable lowercase check', () => {
     const { newPasswordInput } = setup({ lowercase: false });
     expect(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       newPasswordInput.find('PasswordStrength').props().rules
     ).toEqual([
       'uppercase',
@@ -59,7 +59,7 @@ describe('Component: NewPasswordInput', () => {
   test('disable uppercase check', () => {
     const { newPasswordInput } = setup({ uppercase: false });
     expect(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       newPasswordInput.find('PasswordStrength').props().rules
     ).toEqual([
       'lowercase',
@@ -73,7 +73,7 @@ describe('Component: NewPasswordInput', () => {
   test('disable number check', () => {
     const { newPasswordInput } = setup({ number: false });
     expect(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       newPasswordInput.find('PasswordStrength').props().rules
     ).toEqual([
       'lowercase',
@@ -87,7 +87,7 @@ describe('Component: NewPasswordInput', () => {
   test('disable special character check', () => {
     const { newPasswordInput } = setup({ specialCharacter: false });
     expect(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       newPasswordInput.find('PasswordStrength').props().rules
     ).toEqual(['lowercase', 'uppercase', 'number', 'minimumLength', 'noSpace']);
   });
@@ -95,7 +95,7 @@ describe('Component: NewPasswordInput', () => {
   test('disable minimum length check', () => {
     const { newPasswordInput } = setup({ minimumLength: 0 });
     expect(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       newPasswordInput.find('PasswordStrength').props().rules
     ).toEqual(['lowercase', 'uppercase', 'number', 'specialChar', 'noSpace']);
   });
@@ -103,7 +103,7 @@ describe('Component: NewPasswordInput', () => {
   test('disable no space check', () => {
     const { newPasswordInput } = setup({ noSpace: false });
     expect(
-      // @ts-ignore
+      // @ts-expect-error Test mock
       newPasswordInput.find('PasswordStrength').props().rules
     ).toEqual([
       'lowercase',

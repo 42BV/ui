@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { isArray } from 'lodash';
 
 import { Meta, MetaError } from '../types';
@@ -34,8 +34,9 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
 
   const [errorCache] = useState({});
 
-  const errors: MetaError[] =
-    error === undefined ? [] : isArray(error) ? error : [error];
+  const errors: MetaError[] = useMemo(() => {
+    return error === undefined ? [] : isArray(error) ? error : [error];
+  }, [error]);
 
   const [settledErrors, setSettledErrors] = useState(errors);
 
@@ -64,7 +65,7 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
       } else {
         /*
           If after 2 seconds no new validity is reported then clear
-          the caches and hide the errors. This is neccessary for when 
+          the caches and hide the errors. This is necessary for when 
           the same value produces no errors at a later time.
           
           This can happen in the following scenario:

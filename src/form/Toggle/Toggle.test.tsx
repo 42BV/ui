@@ -74,13 +74,13 @@ describe('Component: FormToggle', () => {
     test('onChange', () => {
       setup({});
       const toggle = formToggle.find('Toggle');
-      // @ts-ignore
+      // @ts-expect-error Test mock
       toggle.props().onChange(true);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(true);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       toggle.props().onChange(false);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(2);
@@ -91,7 +91,7 @@ describe('Component: FormToggle', () => {
       setup({});
       const toggle = formToggle.find('Toggle');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       toggle.props().onBlur();
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
@@ -127,13 +127,13 @@ describe('Component: Toggle', () => {
     test('onChange', () => {
       setup({ value: false });
       const input = toggle.find('input');
-      // @ts-ignore
+      // @ts-expect-error Test mock
       input.props().onChange({ target: { checked: true } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(true);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       input.props().onChange({ target: { checked: false } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(2);
@@ -144,7 +144,7 @@ describe('Component: Toggle', () => {
       setup({ value: true });
       const input = toggle.find('input');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       input.props().onBlur();
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });

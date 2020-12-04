@@ -2,14 +2,14 @@ import React from 'react';
 import ContentState from '../../core/ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
 
-interface Props {
+type Props = {
   /**
    * Whether or not the user performed a search.
    */
   userHasSearched: boolean;
   title?: string;
   subTitle?: string;
-}
+};
 
 /**
  * The EmptyModal is a component which is rendered when a

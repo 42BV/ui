@@ -10,7 +10,7 @@ function isSuperman(value: string) {
   return value === 'superman' ? undefined : 'Not "superman"';
 }
 
-storiesOf('Form|Input', module)
+storiesOf('Form/Input', module)
   .add('basic', () => {
     return (
       <Form>
@@ -18,7 +18,7 @@ storiesOf('Form|Input', module)
           id="firstName"
           label="First name"
           placeholder="Please enter your first name"
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -30,7 +30,7 @@ storiesOf('Form|Input', module)
           id="firstName"
           label="First name"
           placeholder="Please enter your first name"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
           addon={{
             icon: 'face',
             position: 'left'
@@ -45,7 +45,7 @@ storiesOf('Form|Input', module)
         <Input
           id="firstName"
           label="First name"
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -57,7 +57,7 @@ storiesOf('Form|Input', module)
           id="zipcode"
           label="Zipcode"
           placeholder="Please enter your zipcode"
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
           mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, ' ', /[A-z]/, /[A-z]/]}
         />
         <p>
@@ -75,7 +75,7 @@ storiesOf('Form|Input', module)
       <Form>
         <Input
           placeholder="Please enter your first name"
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );
@@ -97,7 +97,7 @@ storiesOf('Form|Input', module)
             </div>
           }
           placeholder="Please enter your first name"
-          onChange={value => action(`You entered ${value}`)}
+          onChange={(value) => action(`You entered ${value}`)}
         />
       </Form>
     );

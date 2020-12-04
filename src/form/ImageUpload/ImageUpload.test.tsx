@@ -68,9 +68,10 @@ describe('Component: ImageUpload', () => {
 
   describe('componentDidMount', () => {
     it('should not show the image when the value is null', () => {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const imgUpload = new ImageUpload();
 
+      // @ts-expect-error Test mock
       imgUpload.props = { value: null };
       jest.spyOn(imgUpload, 'setState');
 
@@ -80,9 +81,10 @@ describe('Component: ImageUpload', () => {
     });
 
     it('should not show the image when the value is empty string', () => {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const imgUpload = new ImageUpload();
 
+      // @ts-expect-error Test mock
       imgUpload.props = { value: '' };
       jest.spyOn(imgUpload, 'setState');
 
@@ -92,9 +94,10 @@ describe('Component: ImageUpload', () => {
     });
 
     test('it should show the image when the value is a non empty string', () => {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const imgUpload = new ImageUpload();
 
+      // @ts-expect-error Test mock
       imgUpload.props = { value: 'maarten.png' };
       jest.spyOn(imgUpload, 'setState').mockImplementation(() => undefined);
 
@@ -108,9 +111,10 @@ describe('Component: ImageUpload', () => {
     });
 
     test('it should show the image when the value is a File', () => {
-      // @ts-ignore
+      // @ts-expect-error Test mock
       const imgUpload = new ImageUpload();
 
+      // @ts-expect-error Test mock
       imgUpload.props = { value: new File([''], 'maarten.png') };
       jest.spyOn(imgUpload, 'setState').mockImplementation(() => undefined);
       jest
@@ -236,7 +240,7 @@ describe('Component: ImageUpload', () => {
   });
 
   describe('mode: no-file events', () => {
-    it('should when file is selected transition to edit mode', done => {
+    it('should when file is selected transition to edit mode', (done) => {
       setup({ value: undefined, cropType: 'circle' });
 
       const instance = imgUpload.instance();
@@ -244,18 +248,18 @@ describe('Component: ImageUpload', () => {
 
       const file = new File([''], 'maarten.png');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       imgUpload
         .find('input')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange({ target: { files: [file] } });
 
       // Wait for reader to have finished reading the file
       testUtils.waitForUI(() => {
         expect(instance.setState).toHaveBeenCalledTimes(1);
         expect(instance.setState).toHaveBeenCalledWith({
-          imageSrc: 'data:;base64,',
+          imageSrc: 'data:application/octet-stream;base64,',
           mode: 'edit',
           fileName: 'maarten.png',
           rotate: 0,
@@ -274,10 +278,7 @@ describe('Component: ImageUpload', () => {
       const instance = imgUpload.instance();
       jest.spyOn(instance, 'setState');
 
-      imgUpload
-        .find('Button')
-        .at(0)
-        .simulate('click');
+      imgUpload.find('Button').at(0).simulate('click');
 
       expect(instance.setState).toHaveBeenCalledTimes(1);
       expect(instance.setState).toHaveBeenCalledWith({
@@ -292,10 +293,7 @@ describe('Component: ImageUpload', () => {
       const instance = imgUpload.instance();
       jest.spyOn(instance, 'setState');
 
-      imgUpload
-        .find('Button')
-        .at(1)
-        .simulate('click');
+      imgUpload.find('Button').at(1).simulate('click');
 
       expect(instance.setState).toHaveBeenCalledTimes(1);
       expect(instance.setState).toHaveBeenCalledWith({
@@ -314,12 +312,12 @@ describe('Component: ImageUpload', () => {
 
       const preventDefault = jest.fn();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       imgUpload
         .find('div')
         .at(2)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onWheel({ deltaY: 10, preventDefault });
 
       expect(preventDefault).toHaveBeenCalledTimes(1);
@@ -338,13 +336,10 @@ describe('Component: ImageUpload', () => {
       imgUpload.setState({ imageSrc: 'maarten.png', mode: 'edit' });
 
       const instance = imgUpload.instance();
-      // @ts-ignore
+      // @ts-expect-error Test mock
       instance.inputRef = { current: null };
 
-      imgUpload
-        .find('Button')
-        .at(2)
-        .simulate('click');
+      imgUpload.find('Button').at(2).simulate('click');
 
       expect(imgUpload.state()).toEqual({
         fileName: '',
@@ -360,7 +355,9 @@ describe('Component: ImageUpload', () => {
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should set the final image when done button is clicked and move to state file-selected', async done => {
+    it('should set the final image when done button is clicked and move to state file-selected', async (done) => {
+      expect.assertions(10);
+
       setup({ value: undefined, cropType: 'circle' });
 
       const { promise, resolve } = testUtils.resolvablePromise();
@@ -388,17 +385,14 @@ describe('Component: ImageUpload', () => {
       });
 
       const instance = imgUpload.instance();
-      // @ts-ignore
+      // @ts-expect-error Test mock
       instance.editorRef = {
         current: { getImage: jest.fn(() => 'fakeCanvas') }
       };
       jest.spyOn(instance, 'setState');
 
       try {
-        await imgUpload
-          .find('Button')
-          .at(3)
-          .simulate('click');
+        await imgUpload.find('Button').at(3).simulate('click');
 
         resolve({
           toDataURL: jest.fn(() => 'Some base 64 string')
@@ -407,16 +401,16 @@ describe('Component: ImageUpload', () => {
         await promise;
 
         expect(resizeSpy).toHaveBeenCalledTimes(1);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(resizeSpy.mock.calls[0][0]).toBe('fakeCanvas');
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(resizeSpy.mock.calls[0][2]).toEqual({ alpha: true });
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         const offScreenCanvas = resizeSpy.mock.calls[0][1];
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(offScreenCanvas.width).toBe(250);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(offScreenCanvas.height).toBe(250);
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -438,7 +432,9 @@ describe('Component: ImageUpload', () => {
       }
     });
 
-    it('should replace the file extension when keepOriginalFileExtension is undefined', async done => {
+    it('should replace the file extension when keepOriginalFileExtension is undefined', async (done) => {
+      expect.assertions(2);
+
       setup({ value: undefined, cropType: 'circle' });
 
       const { promise, resolve } = testUtils.resolvablePromise();
@@ -466,17 +462,14 @@ describe('Component: ImageUpload', () => {
       });
 
       const instance = imgUpload.instance();
-      // @ts-ignore
+      // @ts-expect-error Test mock
       instance.editorRef = {
         current: { getImage: jest.fn(() => 'fakeCanvas') }
       };
       jest.spyOn(instance, 'setState');
 
       try {
-        await imgUpload
-          .find('Button')
-          .at(3)
-          .simulate('click');
+        await imgUpload.find('Button').at(3).simulate('click');
 
         resolve({
           toDataURL: jest.fn(() => 'Some base 64 string')
@@ -498,7 +491,9 @@ describe('Component: ImageUpload', () => {
       }
     });
 
-    it('should not replace the file extension when keepOriginalFileExtension is true', async done => {
+    it('should not replace the file extension when keepOriginalFileExtension is true', async (done) => {
+      expect.assertions(2);
+
       setup({
         value: undefined,
         cropType: 'circle',
@@ -530,17 +525,14 @@ describe('Component: ImageUpload', () => {
       });
 
       const instance = imgUpload.instance();
-      // @ts-ignore
+      // @ts-expect-error Test mock
       instance.editorRef = {
         current: { getImage: jest.fn(() => 'fakeCanvas') }
       };
       jest.spyOn(instance, 'setState');
 
       try {
-        await imgUpload
-          .find('Button')
-          .at(3)
-          .simulate('click');
+        await imgUpload.find('Button').at(3).simulate('click');
 
         resolve({
           toDataURL: jest.fn(() => 'Some base 64 string')
@@ -568,14 +560,11 @@ describe('Component: ImageUpload', () => {
       setup({ value: new File([''], 'maarten.png'), cropType: 'rect' });
       imgUpload.setState({ imageSrc: 'maarten.png', mode: 'file-selected' });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       imgUpload.instance().inputRef = { current: { value: 'maarten.png' } };
 
-      // @ts-ignore
-      imgUpload
-        .find('Button')
-        .at(1)
-        .prop('onClick')();
+      // @ts-expect-error Test mock
+      imgUpload.find('Button').at(1).prop('onClick')();
 
       expect(imgUpload.state()).toEqual({
         fileName: '',
@@ -590,7 +579,7 @@ describe('Component: ImageUpload', () => {
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(imgUpload.instance().inputRef.current.value).toBe('');
     });
 
@@ -601,29 +590,26 @@ describe('Component: ImageUpload', () => {
       imgUpload.setState({ imageSrc: 'maarten.png', mode: 'file-selected' });
 
       const instance = imgUpload.instance();
-      // @ts-ignore
+      // @ts-expect-error Test mock
       instance.inputRef = { current: { click: jest.fn() } };
 
       jest
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .spyOn(instance, 'resetFileInput')
         .mockImplementation(() => undefined);
 
-      // @ts-ignore
-      imgUpload
-        .find('Button')
-        .at(0)
-        .prop('onClick')();
+      // @ts-expect-error Test mock
+      imgUpload.find('Button').at(0).prop('onClick')();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(instance.resetFileInput).toHaveBeenCalledTimes(1);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(instance.inputRef.current.click).toHaveBeenCalledTimes(0);
 
       jest.runAllTimers();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(instance.inputRef.current.click).toHaveBeenCalledTimes(1);
     });
   });
@@ -632,11 +618,13 @@ describe('Component: ImageUpload', () => {
 test('requireImage', () => {
   const validator = requireImage('profile picture');
 
+  // @ts-expect-error Even though it accepts Value it will be given undefined and null
   expect(validator(undefined, {})).toEqual({
     data: { label: 'profile picture' },
     key: 'ImageUpload.REQUIRED',
     fallback: 'profile picture is required'
   });
+  // @ts-expect-error Even though it accepts Value it will be given undefined and null
   expect(validator(null, {})).toEqual({
     data: { label: 'profile picture' },
     key: 'ImageUpload.REQUIRED',
@@ -649,7 +637,9 @@ test('requireImage', () => {
 test('limitImageSize', () => {
   const validator = limitImageSize(1, 'profile picture');
 
+  // @ts-expect-error Even though it accepts Value it will be given undefined and null
   expect(validator(undefined, {})).toBe(undefined);
+  // @ts-expect-error Even though it accepts Value it will be given undefined and null
   expect(validator(null, {})).toBe(undefined);
 
   const smallFile = new File([''], 'small.png');

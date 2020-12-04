@@ -3,14 +3,14 @@ import React from 'react';
 import { Icon } from '../../../../core/Icon';
 import { t } from '../../../../utilities/translation/translation';
 
-interface Text {
+type Text = {
   /**
    * The text to show next to the close button.
    */
   close?: string;
-}
+};
 
-interface Props {
+type Props = {
   /**
    * The details you want to render.
    */
@@ -27,7 +27,7 @@ interface Props {
    * This text should already be translated.
    */
   text?: Text;
-}
+};
 
 /**
  * EpicDetail is a white pane with a close button which can be used

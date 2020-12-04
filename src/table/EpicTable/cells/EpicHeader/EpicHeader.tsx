@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EpicResize } from './EpicResize/EpicResize';
 
-interface Props {
+type Props = {
   /**
    * The content of the cell.
    */
@@ -29,7 +29,7 @@ interface Props {
    * pass it back into the EpicHeader as the `width` property.
    */
   onResize?: (width: number) => void;
-}
+};
 
 /**
  * The EpicHeader is used inside of a EpicRow to render headers with

@@ -2,7 +2,7 @@
  * Translation is an object which contains the data needed to make a
  * translation.
  */
-export interface Translation {
+export type Translation = {
   /**
    * The unique key of the translation.
    */
@@ -15,14 +15,14 @@ export interface Translation {
    *
    * You can then use it in your translation: `The ${label} is invalid`
    */
-  data?: object;
+  data?: Record<string, unknown>;
 
   /**
    * The fallback string for the translation. Is English but provides
    * a default for when you cannot come up with a translation.
    */
   fallback: string;
-}
+};
 
 /**
  * A translator is a function which takes a `Translation` object and
@@ -35,7 +35,7 @@ export type Translator = (translation: Translation) => string;
  *
  * Defaults to a translator which returns the `fallback`.
  */
-let translator: Translator = translation => translation.fallback;
+let translator: Translator = (translation) => translation.fallback;
 
 export function getTranslator(): Translator {
   return translator;
@@ -46,6 +46,6 @@ export function getTranslator(): Translator {
  *
  * @param {Translator} _translator The new translator
  */
-export function setTranslator(_translator: Translator) {
+export function setTranslator(_translator: Translator): void {
   translator = _translator;
 }

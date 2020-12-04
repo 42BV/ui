@@ -33,9 +33,9 @@ interface Props<FormValues> extends FormProps<FormValues> {
 }
 
 // Props that will be injected by the EpicTable.
-interface InjectedProps {
+type InjectedProps = {
   odd: boolean;
-}
+};
 
 /**
  * The EpicForm is a wrapper around react-final-form's `Form` to
@@ -66,7 +66,7 @@ export function EpicForm<FormValues>(props: Props<FormValues>) {
         <form
           id={id}
           onSubmit={handleSubmit}
-          onReset={form.reset}
+          onReset={() => form.reset()}
           className={classes}
           style={{
             minWidth: width,

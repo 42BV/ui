@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface Props {
+type Props = {
   /**
    * Element underneath the image.
    */
@@ -12,7 +12,7 @@ interface Props {
    * Useful for styling the component.
    */
   className?: string;
-}
+};
 
 /**
  * AvatarStack is a component which shows a row of overlapped avatars.

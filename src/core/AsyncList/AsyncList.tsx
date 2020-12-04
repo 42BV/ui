@@ -6,7 +6,7 @@ import AsyncContent, {
 
 type Props<T> = Omit<AsyncContentProps<T>, 'isEmpty'>;
 
-export function isEmpty<T>(list: T[]) {
+export function isEmpty<T>(list: T[]): boolean {
   return list.length === 0;
 }
 

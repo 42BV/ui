@@ -23,7 +23,7 @@ const disclaimer = (
   </>
 );
 
-storiesOf('core|ConfirmModal', module)
+storiesOf('core/ConfirmModal', module)
   .addParameters({ component: ConfirmModal })
   .add('in dropdown', () => {
     const [isDropdownMenuOpen, setDropdownMenuOpen] = useState(false);

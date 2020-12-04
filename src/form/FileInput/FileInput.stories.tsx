@@ -7,7 +7,7 @@ import FileInput, { JarbFileInput, requireFile } from './FileInput';
 import { Form, FinalForm } from '../story-utils';
 import { Tooltip, Icon } from '../..';
 
-storiesOf('Form|FileInput', module)
+storiesOf('Form/FileInput', module)
   .add('basic', () => {
     return (
       <Form>

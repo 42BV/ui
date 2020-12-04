@@ -22,7 +22,7 @@ import Tooltip from '../../core/Tooltip/Tooltip';
 import Popover from '../../core/Popover/Popover';
 import TextButton from '../../core/TextButton/TextButton';
 
-interface Text {
+type Text = {
   /**
    * No results title to show when no icon could be found for that
    * query.
@@ -39,7 +39,7 @@ interface Text {
    * The text of the clear button
    */
   clear?: string;
-}
+};
 
 interface BaseProps {
   /**
@@ -130,7 +130,7 @@ export default function IconPicker(props: Props) {
   const [pageNumber, setPageNumber] = useState(1);
   const [query, setQuery] = useState('');
 
-  const filteredIcons = icons.filter(icon =>
+  const filteredIcons = icons.filter((icon) =>
     icon.toLowerCase().startsWith(query.toLowerCase())
   );
 
@@ -199,7 +199,7 @@ export default function IconPicker(props: Props) {
                 <CardBody>
                   <div style={{ width: 250, height: 250 }}>
                     {!isEmpty ? (
-                      iconsPage.content.map(icon => (
+                      iconsPage.content.map((icon) => (
                         <span key={icon} className="d-inline-block">
                           <Tooltip placement="top" distance={18} content={icon}>
                             <Icon

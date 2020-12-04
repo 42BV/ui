@@ -17,10 +17,7 @@ export function dataUrlToFile(dataUrl: string, fileName: string): File {
   const byteString = atob(dataUrl.split(',')[1]);
 
   // separate out the mime component
-  const mimeString = dataUrl
-    .split(',')[0]
-    .split(':')[1]
-    .split(';')[0];
+  const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
 
   // write the bytes of the string to a typed array
   const bytes = new Uint8Array(byteString.length);
@@ -31,11 +28,11 @@ export function dataUrlToFile(dataUrl: string, fileName: string): File {
   return new File([bytes], fileName, { type: mimeString });
 }
 
-interface AvatarEditorConfig {
+type AvatarEditorConfig = {
   borderRadius: number;
   width: number;
   height: number;
-}
+};
 
 export function cropToAvatarEditorConfig(crop: Crop): AvatarEditorConfig {
   if (crop.type === 'rect') {
@@ -66,6 +63,6 @@ export function calculateScale(scale: number, delta: number): number {
 }
 
 // Replace any part after the last dot in the filename with .png
-export function replaceFileExtension(fileName: string) {
+export function replaceFileExtension(fileName: string): string {
   return fileName.replace(/\.[\w]+$/, '.png');
 }

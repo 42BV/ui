@@ -6,7 +6,7 @@ import Textarea, { JarbTextarea } from './Textarea';
 import { FinalForm, Form } from '../story-utils';
 import { Tooltip, Icon } from '../..';
 
-storiesOf('Form|Textarea', module)
+storiesOf('Form/Textarea', module)
   .add('basic', () => {
     return (
       <Form>
@@ -14,7 +14,7 @@ storiesOf('Form|Textarea', module)
           id="description"
           label="Description"
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
       </Form>
     );
@@ -25,7 +25,7 @@ storiesOf('Form|Textarea', module)
         <Textarea
           id="description"
           label="Description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
       </Form>
     );
@@ -36,7 +36,7 @@ storiesOf('Form|Textarea', module)
         <Textarea
           id="description"
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
       </Form>
     );
@@ -58,7 +58,7 @@ storiesOf('Form|Textarea', module)
             </div>
           }
           placeholder="Please add a description"
-          onChange={value => action(`onChange: ${value}`)}
+          onChange={(value) => action(`onChange: ${value}`)}
         />
       </Form>
     );

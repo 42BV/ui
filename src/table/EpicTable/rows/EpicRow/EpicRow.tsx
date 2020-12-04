@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface Props {
+export type Props = {
   /**
    * The cells of the EpicRow
    */
@@ -17,7 +17,7 @@ export interface Props {
    * effect.
    */
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => any;
-}
+};
 
 /**
  * The EpicRow is the EpicTable's version of a <tr>. It has no inherent

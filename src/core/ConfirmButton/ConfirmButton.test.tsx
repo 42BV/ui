@@ -145,15 +145,15 @@ describe('Component: ConfirmButton', () => {
     function openModal() {
       const event = { stopPropagation: jest.fn() };
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       confirmButton
         .find('Button')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick(event);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(true);
     }
 
@@ -165,15 +165,15 @@ describe('Component: ConfirmButton', () => {
 
       const event = { stopPropagation: jest.fn() };
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       confirmButton
         .find('Button')
         .at(0)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick(event);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(true);
 
       expect(event.stopPropagation).toHaveBeenCalledTimes(1);
@@ -187,10 +187,10 @@ describe('Component: ConfirmButton', () => {
 
       openModal();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       confirmButton.find('ConfirmModal').prop('onClose')();
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(false);
     });
 
@@ -202,15 +202,12 @@ describe('Component: ConfirmButton', () => {
 
       openModal();
 
-      // @ts-ignore
-      confirmButton
-        .find('ConfirmModal')
-        // @ts-ignore
-        .prop('onSave')();
+      // @ts-expect-error Test mock
+      confirmButton.find('ConfirmModal').prop('onSave')();
 
       expect(onConfirmSpy).toHaveBeenCalledTimes(1);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(false);
     });
   });

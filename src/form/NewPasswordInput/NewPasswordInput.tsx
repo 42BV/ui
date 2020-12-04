@@ -16,7 +16,7 @@ import {
   Rule
 } from './PasswordStrength/rules';
 
-interface PasswordProps {
+type PasswordProps = {
   /**
    * Whether or not the password should contain at least one lowercase letter.
    * Defaults to true.
@@ -72,7 +72,7 @@ interface PasswordProps {
    * @default true
    */
   showMeter?: boolean;
-}
+};
 
 export type Props = Omit<InputProps, 'type'> & PasswordProps;
 
@@ -102,7 +102,14 @@ export default function NewPasswordInput(props: Props) {
   );
 }
 
-function getRulesFromProps(props: PasswordProps) {
+/**
+ * Variant of the FileInput which can be used in a Jarb context.
+ */
+export const JarbNewPasswordInput = withJarb<string, string, Props>(
+  NewPasswordInput
+);
+
+function getRulesFromProps(props: PasswordProps): Rule[] {
   const {
     lowercase = true,
     uppercase = true,
@@ -136,17 +143,10 @@ function getRulesFromProps(props: PasswordProps) {
 }
 
 /**
- * Variant of the FileInput which can be used in a Jarb context.
- */
-export const JarbNewPasswordInput = withJarb<string, string, Props>(
-  NewPasswordInput
-);
-
-/**
  * A PasswordValidator is a FieldValidator which checks if the password
  * is valid.
  */
-type PasswordValidator = FieldValidator<string | undefined>;
+type PasswordValidator = FieldValidator<string>;
 
 /**
  * Takes `rules` and a minimum length and returns a validator which can check if the
@@ -155,14 +155,14 @@ type PasswordValidator = FieldValidator<string | undefined>;
  * @export
  * @param {Rule[]} rules The rules the password should comply to.
  * @param {number} minimumLength The minimum length of the password.
- * @returns {(FieldValidator<string | undefined>)}
+ * @returns {(FieldValidator<string>)}
  */
 export function isStrongPassword(
   rules: Rule[],
   minimumLength: number
 ): PasswordValidator {
   return (value?: string): Translation | undefined => {
-    const compliant = rules.map(rule => {
+    const compliant = rules.map((rule) => {
       switch (rule) {
         case 'lowercase':
           return hasLowercase(value);
@@ -179,7 +179,7 @@ export function isStrongPassword(
       }
     });
 
-    if (compliant.every(value => value)) {
+    if (compliant.every((value) => value)) {
       return undefined;
     }
 

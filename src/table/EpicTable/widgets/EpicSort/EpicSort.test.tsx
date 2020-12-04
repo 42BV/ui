@@ -45,11 +45,11 @@ describe('Component: EpicSort', () => {
     it('should call onChange with true when checkbox is clicked while not checked', () => {
       const { epicSelection, onChangeSpy } = setup({ direction: 'DESC' });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       epicSelection
         .find(Icon)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClick(new Event('click'));
 
       expect(onChangeSpy).toBeCalledTimes(1);

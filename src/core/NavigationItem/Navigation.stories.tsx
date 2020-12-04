@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import NavigationItem from './NavigationItem';
 
-storiesOf('core|NavigationItem', module)
+storiesOf('core/NavigationItem', module)
   .addParameters({ component: NavigationItem })
   .add('default', () => {
     return (

@@ -28,7 +28,7 @@ exports[`Component: ImageUpload ui edit as circle: Component: ImageUpload => ui 
       <div
         onWheel={[Function]}
       >
-        <l
+        <i
           border={25}
           borderRadius={9000000}
           color={
@@ -40,6 +40,7 @@ exports[`Component: ImageUpload ui edit as circle: Component: ImageUpload => ui 
             ]
           }
           disableBoundaryChecks={false}
+          disableCanvasRotation={true}
           disableHiDPIScaling={false}
           height={250}
           image="maarten.png"
@@ -122,7 +123,7 @@ exports[`Component: ImageUpload ui edit as rect: Component: ImageUpload => ui =>
       <div
         onWheel={[Function]}
       >
-        <l
+        <i
           border={25}
           borderRadius={0}
           color={
@@ -134,6 +135,7 @@ exports[`Component: ImageUpload ui edit as rect: Component: ImageUpload => ui =>
             ]
           }
           disableBoundaryChecks={false}
+          disableCanvasRotation={true}
           disableHiDPIScaling={false}
           height={500}
           image="maarten.png"

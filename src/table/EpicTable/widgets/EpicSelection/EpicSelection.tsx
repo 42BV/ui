@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Label } from 'reactstrap';
 
-export interface Props {
+export type Props = {
   /**
    * Optionally the label for the button, when the label is clicked
    * the checkbox is checked.
@@ -17,7 +17,7 @@ export interface Props {
    * The callback which occurs when the checkbox is clicked.
    */
   onChange: (checked: boolean) => void;
-}
+};
 
 /**
  * The EpicSelection is basically a checkbox for the EpicTable.

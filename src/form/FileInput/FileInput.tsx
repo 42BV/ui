@@ -141,8 +141,8 @@ export default class FileInput extends Component<Props> {
           accept={accept}
           ref={this.inputRef}
           type="file"
-          onClick={event => this.onClick(event)}
-          onChange={event => this.onChange(event)}
+          onClick={(event) => this.onClick(event)}
+          onChange={(event) => this.onChange(event)}
         />
 
         <InputGroup>
@@ -169,7 +169,7 @@ export const JarbFileInput = withJarb<File, File | null, Props>(FileInput);
  * A FileValidator is a FieldValidator which checks if the `File`
  * is valid.
  */
-type FileValidator = FieldValidator<File | null | undefined>;
+type FileValidator = FieldValidator<File>;
 
 /**
  * Takes a `label` and returns a validator which can check if the
@@ -177,7 +177,7 @@ type FileValidator = FieldValidator<File | null | undefined>;
  *
  * @export
  * @param {string} label The label to display in the error message
- * @returns {(FieldValidator<File | null | undefined>)}
+ * @returns {(FieldValidator<File>)}
  */
 export function requireFile(label: string): FileValidator {
   return (value: File | null | undefined): Translation | undefined => {

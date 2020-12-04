@@ -25,7 +25,7 @@ const initialState: ShoppingWizardState = {
   [Step.FINISHED]: Status.INCOMPLETE
 };
 
-storiesOf('core|ProgressStepper', module)
+storiesOf('core/ProgressStepper', module)
   .addParameters({ component: ProgressStepper })
   .add('example', () => {
     const [status, setStatus] = useState<ShoppingWizardState>(initialState);
@@ -56,8 +56,8 @@ storiesOf('core|ProgressStepper', module)
           <ProgressStepper<Step>
             className="ml-auto"
             steps={steps}
-            onClick={step => setCurrent(step)}
-            isStepClickable={step => {
+            onClick={(step) => setCurrent(step)}
+            isStepClickable={(step) => {
               // The current step is never clickable
               if (step === current) {
                 return false;
@@ -65,8 +65,8 @@ storiesOf('core|ProgressStepper', module)
 
               return status[step] === Status.COMPLETE;
             }}
-            titleForStep={step => step}
-            colorForStep={step => {
+            titleForStep={(step) => step}
+            colorForStep={(step) => {
               const stepStatus = status[step];
 
               // Error status always wins from the current status.

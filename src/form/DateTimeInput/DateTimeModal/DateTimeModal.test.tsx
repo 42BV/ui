@@ -53,11 +53,11 @@ describe('Component: DateTimeModal', () => {
 
       const value = new Date(2020, 2, 1, 0, 0, 0);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       dateTimeModal
         .find(Datetime)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange(value);
 
       expect(setValueSpy).toBeCalledTimes(1);
@@ -69,11 +69,11 @@ describe('Component: DateTimeModal', () => {
 
       const value = new Date(2020, 2, 1, 0, 0, 0);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       dateTimeModal
         .find(Datetime)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange(value);
 
       expect(onCloseSpy).toBeCalledTimes(0);
@@ -85,18 +85,17 @@ describe('Component: DateTimeModal', () => {
 
       const value = new Date(2020, 2, 1, 0, 0, 0);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       dateTimeModal
         .find(Datetime)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange(value);
 
-      // @ts-ignore
       dateTimeModal
         .find('OpenCloseModal')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onClose();
 
       expect(onCloseSpy).toBeCalledTimes(1);
@@ -108,18 +107,17 @@ describe('Component: DateTimeModal', () => {
 
       const value = new Date(2020, 2, 1, 0, 0, 0);
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       dateTimeModal
         .find(Datetime)
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange(value);
 
-      // @ts-ignore
       dateTimeModal
         .find('OpenCloseModal')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onSave();
 
       expect(onSaveSpy).toBeCalledTimes(1);
@@ -134,12 +132,8 @@ describe('Component: DateTimeModal', () => {
       const value = new Date(2020, 2, 1, 0, 0, 0);
       const current = new Date();
 
-      // @ts-ignore
-      dateTimeModal
-        .find(Datetime)
-        .props()
-        // @ts-ignore
-        .isValidDate(value, current);
+      // @ts-expect-error Test mock
+      dateTimeModal.find(Datetime).props().isValidDate(value, current);
 
       expect(isDateAllowedSpy).toBeCalledTimes(1);
       expect(isDateAllowedSpy).toBeCalledWith(value, current);

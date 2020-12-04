@@ -106,11 +106,11 @@ describe('Component: DateTimeInput', () => {
       setup({});
 
       const input = shallow(
-        // @ts-ignore
+        // @ts-expect-error Test mock
         dateTimeInput
           .find(Datetime)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .renderInput({ id: 10 })
       );
 
@@ -123,11 +123,11 @@ describe('Component: DateTimeInput', () => {
       setup({ mode: 'modal' });
 
       const inputGroup = shallow(
-        // @ts-ignore
+        // @ts-expect-error Test mock
         dateTimeInput
           .find(Datetime)
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .renderInput({ id: 10 })
       );
 
@@ -190,7 +190,7 @@ describe('Component: DateTimeInput', () => {
         setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         dateTime.props().onChange('2000-01-01 12:00:00');
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -211,7 +211,7 @@ describe('Component: DateTimeInput', () => {
         setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         dateTime.props().onChange('2000-__-__ __:__:__');
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -230,11 +230,11 @@ describe('Component: DateTimeInput', () => {
         setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         dateTime.props().onChange('2000-__-__ __:__:__');
 
         const updatedDateTime = dateTimeInput.find(Datetime);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(updatedDateTime.props().inputProps.invalid).toBe(true);
       });
 
@@ -242,11 +242,11 @@ describe('Component: DateTimeInput', () => {
         setup({ value: new Date('2020-01-01T11:00:00.000Z') });
 
         const dateTime = dateTimeInput.find(Datetime);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         dateTime.props().onChange('2000-__-__ __:__:__');
 
         const updatedDateTime = dateTimeInput.find(Datetime);
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(updatedDateTime.props().inputProps.invalid).toBe(true);
       });
 
@@ -257,7 +257,7 @@ describe('Component: DateTimeInput', () => {
 
         const date = new Date(1989, 2, 21);
         const value = { toDate: () => date };
-        // @ts-ignore
+        // @ts-expect-error Test mock
         dateTime.props().onChange(value);
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -277,7 +277,7 @@ describe('Component: DateTimeInput', () => {
       setup({});
 
       const dateTime = dateTimeInput.find(Datetime);
-      // @ts-ignore
+      // @ts-expect-error Test mock
       dateTime.props().onOpen();
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
@@ -289,7 +289,7 @@ describe('Component: DateTimeInput', () => {
 
         const dateTime = dateTimeInput.find(Datetime);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(dateTime.props().isValidDate()).toBe(true);
       });
 
@@ -301,7 +301,7 @@ describe('Component: DateTimeInput', () => {
 
         const date = moment();
         const current = moment();
-        // @ts-ignore
+        // @ts-expect-error Test mock
         dateTime.props().isValidDate(date, current);
 
         expect(isDateAllowedSpy).toHaveBeenCalledTimes(1);
@@ -319,19 +319,19 @@ describe('Component: DateTimeInput', () => {
         setup({ mode: 'modal' });
 
         const inputGroup = shallow(
-          // @ts-ignore
+          // @ts-expect-error Test mock
           dateTimeInput
             .find(Datetime)
             .props()
-            // @ts-ignore
+            // @ts-expect-error Test mock
             .renderInput({ id: 10 })
         );
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         inputGroup
           .find('Addon')
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onClick();
 
         expect(setIsModalOpenSpy).toBeCalledTimes(1);
@@ -346,11 +346,10 @@ describe('Component: DateTimeInput', () => {
 
         setup({ mode: 'modal' });
 
-        // @ts-ignore
         dateTimeInput
           .find('DateTimeModal')
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onClose();
 
         expect(setIsModalOpenSpy).toBeCalledTimes(1);
@@ -365,11 +364,10 @@ describe('Component: DateTimeInput', () => {
 
         setup({ mode: 'modal' });
 
-        // @ts-ignore
         dateTimeInput
           .find('DateTimeModal')
           .props()
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .onSave(moment());
 
         expect(setIsModalOpenSpy).toBeCalledTimes(1);

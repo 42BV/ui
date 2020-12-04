@@ -66,15 +66,10 @@ describe('Component: PasswordStrength', () => {
         passwordStrength
           .find('Icon')
           .at(0)
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .props().icon
       ).toBe('cancel');
-      expect(
-        passwordStrength
-          .find('Icon')
-          .at(0)
-          .props().color
-      ).toBe('danger');
+      expect(passwordStrength.find('Icon').at(0).props().color).toBe('danger');
     });
 
     it('should display the rule with a green checkmark', () => {
@@ -86,15 +81,10 @@ describe('Component: PasswordStrength', () => {
         passwordStrength
           .find('Icon')
           .at(0)
-          // @ts-ignore
+          // @ts-expect-error Test mock
           .props().icon
       ).toBe('check_circle');
-      expect(
-        passwordStrength
-          .find('Icon')
-          .at(0)
-          .props().color
-      ).toBe('success');
+      expect(passwordStrength.find('Icon').at(0).props().color).toBe('success');
     });
   });
 });

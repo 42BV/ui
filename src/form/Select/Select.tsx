@@ -18,13 +18,13 @@ import {
 import { useOptions } from '../useOptions';
 import Loading from '../../core/Loading/Loading';
 
-export interface Text {
+export type Text = {
   /**
    * The message to show when the select is loading. Defaults
    * to `loading...`
    */
   loadingMessage?: string;
-}
+};
 
 interface BaseProps<T> {
   /**
@@ -189,7 +189,7 @@ export default function Select<T>(props: Props<T>) {
 
   const indexOfValue =
     value !== undefined
-      ? options.findIndex(option =>
+      ? options.findIndex((option) =>
           isOptionSelected({
             option,
             uniqueKeyForValue,
@@ -218,7 +218,7 @@ export default function Select<T>(props: Props<T>) {
           value={indexOfValue === -1 ? undefined : indexOfValue}
           {...inputProps}
         >
-          <option ref={option => selectDefaultOption(option)}>
+          <option ref={(option) => selectDefaultOption(option)}>
             {placeholder}
           </option>
 
@@ -233,7 +233,6 @@ export default function Select<T>(props: Props<T>) {
             return (
               <option
                 key={key}
-                // @ts-ignore
                 value={index}
                 disabled={!isOptionEnabled(option)}
               >

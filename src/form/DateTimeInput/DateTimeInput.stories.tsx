@@ -6,7 +6,7 @@ import DateTimeInput, { JarbDateTimeInput } from './DateTimeInput';
 import { FinalForm, Form } from '../story-utils';
 import { Icon, Tooltip } from '../..';
 
-storiesOf('Form|DateTime/DateTimeInput', module)
+storiesOf('Form/DateTime/DateTimeInput', module)
   .add('date and time', () => {
     return (
       <Form>
@@ -16,7 +16,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           placeholder="Please enter your date and time of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
-          isDateAllowed={date => {
+          isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
           onChange={() => action('value changed')}
@@ -33,7 +33,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           placeholder="Please enter your date of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat={false}
-          isDateAllowed={date => {
+          isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
           onChange={() => action('value changed')}
@@ -50,7 +50,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           placeholder="Please enter your start time"
           dateFormat={false}
           timeFormat="HH:mm:ss"
-          isDateAllowed={date => {
+          isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
           onChange={() => action('value changed')}
@@ -78,7 +78,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           placeholder="Please enter your date and time of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
-          isDateAllowed={date => {
+          isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
           onChange={() => action('value changed')}
@@ -87,7 +87,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
     );
   })
   .add('open in modal', () => {
-    const [value, setValue] = useState();
+    const [value, setValue] = useState<Date | undefined | null>();
 
     return (
       <Form>
@@ -97,11 +97,11 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           placeholder="Please enter your date and time of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
-          isDateAllowed={date => {
+          isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
-          value={value}
-          onChange={setValue}
+          value={value === null ? new Date() : value}
+          onChange={(value) => setValue(value)}
           mode="modal"
         />
       </Form>
@@ -117,7 +117,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           placeholder="Please enter your date of birth"
           dateFormat="DD-MM-YYYY"
           timeFormat={false}
-          isDateAllowed={date => {
+          isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
           jarb={{
@@ -133,7 +133,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           placeholder="Please enter your wedding day"
           dateFormat="DD-MM-YYYY"
           timeFormat={false}
-          isDateAllowed={date => {
+          isDateAllowed={(date) => {
             return date.isAfter(new Date());
           }}
           mode="modal"
@@ -150,7 +150,7 @@ storiesOf('Form|DateTime/DateTimeInput', module)
           placeholder="Please enter the time the sun sets"
           dateFormat={false}
           timeFormat="HH:mm:ss"
-          isDateAllowed={date => {
+          isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
           jarb={{

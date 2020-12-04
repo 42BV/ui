@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
@@ -244,11 +243,11 @@ describe('Component: Button', () => {
 
           const event = new Event('click');
 
-          // @ts-ignore
+          // @ts-expect-error Test mock
           button
             .find('Button')
             .props()
-            // @ts-ignore
+            // @ts-expect-error Test mock
             .onClick(event);
 
           expect(onClickSpy).toHaveBeenCalledTimes(1);
@@ -263,11 +262,11 @@ describe('Component: Button', () => {
 
           const event = new Event('click');
 
-          // @ts-ignore
+          // @ts-expect-error Test mock
           button
             .find('Button')
             .props()
-            // @ts-ignore
+            // @ts-expect-error Test mock
             .onClick(event);
 
           expect(onClickSpy).toHaveBeenCalledTimes(0);
@@ -281,11 +280,11 @@ describe('Component: Button', () => {
 
           const event = new Event('click');
 
-          // @ts-ignore
+          // @ts-expect-error Test mock
           button
             .find('Button')
             .props()
-            // @ts-ignore
+            // @ts-expect-error Test mock
             .onClick(event);
 
           expect(onClickSpy).toHaveBeenCalledTimes(0);
@@ -312,11 +311,11 @@ describe('Component: Button', () => {
 
           const event = new Event('click');
 
-          // @ts-ignore
+          // @ts-expect-error Test mock
           button
             .find('Icon')
             .props()
-            // @ts-ignore
+            // @ts-expect-error Test mock
             .onClick(event);
 
           expect(onClickSpy).toHaveBeenCalledTimes(1);

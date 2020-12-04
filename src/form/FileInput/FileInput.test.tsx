@@ -95,7 +95,7 @@ describe('Component: FileInput', () => {
 
       const file = new File([''], 'maarten.png');
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       input.props().onChange({ target: { files: { item: () => file } } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -107,11 +107,11 @@ describe('Component: FileInput', () => {
     test('onChange of Input should do nothing', () => {
       setup({ value: undefined });
 
-      // @ts-ignore
+      // @ts-expect-error Test mock
       fileInput
         .find('Input')
         .props()
-        // @ts-ignore
+        // @ts-expect-error Test mock
         .onChange();
 
       // It should not call the onChangesSpy at all.
@@ -124,11 +124,11 @@ describe('Component: FileInput', () => {
 
         const input = fileInput.find('input');
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         fileInput.instance().inputRef = { current: { value: 'maarten.png' } };
 
         const eventDefaultSpy = jest.fn();
-        // @ts-ignore
+        // @ts-expect-error Test mock
         input.props().onClick({ preventDefault: eventDefaultSpy });
 
         expect(eventDefaultSpy).toHaveBeenCalledTimes(1);
@@ -138,7 +138,7 @@ describe('Component: FileInput', () => {
 
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
 
-        // @ts-ignore
+        // @ts-expect-error Test mock
         expect(fileInput.instance().inputRef.current.value).toBe('');
       });
 
@@ -148,7 +148,7 @@ describe('Component: FileInput', () => {
         const input = fileInput.find('input');
 
         const eventDefaultSpy = jest.fn();
-        // @ts-ignore
+        // @ts-expect-error Test mock
         input.props().onClick({ preventDefault: eventDefaultSpy });
 
         expect(eventDefaultSpy).toHaveBeenCalledTimes(0);
@@ -162,11 +162,13 @@ describe('Component: FileInput', () => {
 test('requireFile', () => {
   const validator = requireFile('cv');
 
+  // @ts-expect-error Even though it accepts File it will be given undefined and null
   expect(validator(undefined, {})).toEqual({
     data: { label: 'cv' },
     key: 'FileInput.REQUIRED',
     fallback: 'cv is required'
   });
+  // @ts-expect-error Even though it accepts File it will be given undefined and null
   expect(validator(null, {})).toEqual({
     data: { label: 'cv' },
     key: 'FileInput.REQUIRED',
@@ -179,7 +181,10 @@ test('requireFile', () => {
 test('limitFileSize', () => {
   const validator = limitFileSize(1, 'cv');
 
+  // @ts-expect-error Even though it accepts File it will be given undefined and null
   expect(validator(undefined, {})).toBe(undefined);
+
+  // @ts-expect-error Even though it accepts File it will be given undefined and null
   expect(validator(null, {})).toBe(undefined);
 
   const smallFile = new File([''], 'small.docx');
