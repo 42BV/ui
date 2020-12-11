@@ -3,38 +3,30 @@ import { storiesOf } from '@storybook/react';
 
 import ProgressStepper from './ProgressStepper';
 
-enum Step {
-  BILLING = 'Billing',
-  COUPON = 'Coupon',
-  FINISHED = 'Finished'
-}
+type Step = 'Billing' | 'Coupon' | 'Finished';
 
-export enum Status {
-  COMPLETE = 'complete',
-  INCOMPLETE = 'incomplete',
-  ERROR = 'error'
-}
+type Status = 'complete' | 'incomplete' | 'error';
 
-const steps = [Step.BILLING, Step.COUPON, Step.FINISHED];
+const steps: Step[] = ['Billing', 'Coupon', 'Finished'];
 
 type ShoppingWizardState = { [x in Step]: Status };
 
 const initialState: ShoppingWizardState = {
-  [Step.BILLING]: Status.INCOMPLETE,
-  [Step.COUPON]: Status.INCOMPLETE,
-  [Step.FINISHED]: Status.INCOMPLETE
+  ['Billing']: 'incomplete',
+  ['Coupon']: 'incomplete',
+  ['Finished']: 'incomplete'
 };
 
 storiesOf('core/ProgressStepper', module)
   .addParameters({ component: ProgressStepper })
   .add('example', () => {
     const [status, setStatus] = useState<ShoppingWizardState>(initialState);
-    const [current, setCurrent] = useState(Step.BILLING);
+    const [current, setCurrent] = useState<Step>('Billing');
 
     function onSubmit() {
       // Add a random error chance
       if (Math.random() > 0.5) {
-        setStatus({ ...status, [current]: Status.ERROR });
+        setStatus({ ...status, [current]: 'Error' });
         return;
       }
 
@@ -45,7 +37,7 @@ storiesOf('core/ProgressStepper', module)
 
       setStatus({
         ...status,
-        [current]: Status.COMPLETE
+        [current]: 'complete'
       });
       setCurrent(nextStep);
     }
@@ -63,14 +55,14 @@ storiesOf('core/ProgressStepper', module)
                 return false;
               }
 
-              return status[step] === Status.COMPLETE;
+              return status[step] === 'complete';
             }}
             titleForStep={(step) => step}
             colorForStep={(step) => {
               const stepStatus = status[step];
 
               // Error status always wins from the current status.
-              if (stepStatus === Status.ERROR) {
+              if (stepStatus === 'error') {
                 return 'danger';
               }
 
@@ -79,7 +71,7 @@ storiesOf('core/ProgressStepper', module)
                 return 'primary';
               }
 
-              return stepStatus === Status.COMPLETE ? 'success' : 'secondary';
+              return stepStatus === 'complete' ? 'success' : 'secondary';
             }}
           />
         </div>

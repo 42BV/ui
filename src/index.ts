@@ -107,6 +107,9 @@ export {
   isStrongPassword
 } from './form/NewPasswordInput/NewPasswordInput';
 export { FormButton } from './form/FormButton/FormButton';
+export { Addon } from './form/addons/Addon/Addon';
+export { AddonButton } from './form/addons/AddonButton/AddonButton';
+export { AddonIcon } from './form/addons/AddonIcon/AddonIcon';
 
 // Table
 export { EpicTable } from './table/EpicTable/EpicTable';

@@ -102,56 +102,6 @@ storiesOf('core/buttons/ConfirmButton', module)
       </div>
     );
   })
-  .add('icon size', () => {
-    return (
-      <div className="text-center">
-        <p>Small icon:</p>
-        <ConfirmButton
-          onConfirm={action('Confirm clicked')}
-          icon="delete"
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-          iconSize={10}
-        >
-          Delete user
-        </ConfirmButton>
-
-        <hr />
-
-        <p>Default icon:</p>
-        <ConfirmButton
-          onConfirm={action('Confirm clicked')}
-          icon="delete"
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        >
-          Delete user
-        </ConfirmButton>
-
-        <hr />
-
-        <p>Large icon:</p>
-        <ConfirmButton
-          onConfirm={action('Confirm clicked')}
-          icon="delete"
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-          iconSize={30}
-        >
-          Delete user
-        </ConfirmButton>
-      </div>
-    );
-  })
   .add('custom text and color', () => {
     return (
       <div className="text-center">

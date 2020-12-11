@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '../types';
+import { Color } from '../..';
 
 type Props = {
   /**

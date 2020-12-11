@@ -67,6 +67,7 @@ exports[`Component: Select ui without label: Component: Select => ui => without 
 >
   <Input
     className=""
+    id="1"
     invalid={true}
     onBlur={[MockFunction]}
     onChange={[Function]}

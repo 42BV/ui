@@ -10,10 +10,10 @@ import { pageOfUsers, userUser } from '../../test/fixtures';
 import { User } from '../../test/types';
 import { Icon, Tooltip } from '../..';
 
-interface SubjectOption {
+type SubjectOption = {
   value: string;
   label: string;
-}
+};
 
 const options: SubjectOption[] = range(0, 100).map((i) => ({
   value: `${i}`,

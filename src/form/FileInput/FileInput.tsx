@@ -1,85 +1,29 @@
 import React, { Component } from 'react';
-import { get } from 'lodash';
+import { get, noop, uniqueId } from 'lodash';
 import { FieldValidator } from 'final-form';
 
 import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
-import { Color } from '../types';
 import { Translation } from '../../utilities/translation/translator';
-import Addon from '../Input/Addon/Addon';
+import { AddonButton } from '../addons/AddonButton/AddonButton';
+import { FieldCompatible } from '../types';
+import { Icon } from '../..';
 
-interface BaseProps {
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder?: string;
-
+type Props = FieldCompatible<File, File | null> & {
   /**
    * Which types of files the form element accepts.
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers
    */
   accept: string;
-
-  /**
-   * The value that the form element currently has.
-   */
-  value?: File;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (file: File | null) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-}
-
-interface WithoutLabel extends BaseProps {
-  id?: string;
-  label?: never;
-}
-
-interface WithLabel extends BaseProps {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-export type Props = WithoutLabel | WithLabel;
+};
 
 export default class FileInput extends Component<Props> {
+  /* istanbul ignore next */
+  innerId = this?.props?.id ?? uniqueId();
+
   inputRef = React.createRef<HTMLInputElement>();
 
   onChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -114,14 +58,14 @@ export default class FileInput extends Component<Props> {
 
   render() {
     const {
+      label,
       accept,
       placeholder,
       error,
       color,
       value,
       valid,
-      className = '',
-      ...props
+      className = ''
     } = this.props;
 
     const name = get(value, 'name', '');
@@ -133,11 +77,9 @@ export default class FileInput extends Component<Props> {
 
     return (
       <FormGroup className={`file-upload ${className}`} color={color}>
-        {'label' in props && props.label ? (
-          <Label for={props.id}>{props.label}</Label>
-        ) : null}
+        {label ? <Label for={this.innerId}>{label}</Label> : null}
         <input
-          id={'id' in props ? props.id : undefined}
+          id={this.innerId}
           accept={accept}
           ref={this.inputRef}
           type="file"
@@ -147,11 +89,13 @@ export default class FileInput extends Component<Props> {
 
         <InputGroup>
           <Input {...inputProps} onChange={() => undefined} />
-          <Addon
-            icon={value ? 'delete' : 'cloud_upload'}
+          <AddonButton
             position="right"
             color={value || valid === false ? 'danger' : 'primary'}
-          />
+            onClick={noop}
+          >
+            <Icon icon={value ? 'delete' : 'cloud_upload'} />
+          </AddonButton>
         </InputGroup>
 
         {error}

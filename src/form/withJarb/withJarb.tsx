@@ -10,6 +10,7 @@ import { getState } from '../utils';
 import Tooltip from '../../core/Tooltip/Tooltip';
 import { useHasErrors } from './useHasErrors/useHasErrors';
 import { useMarkedAsRequiredLabel } from './useMarkedAsRequiredLabel/useMarkedAsRequiredLabel';
+import { FieldCompatible } from '../types';
 
 // This is a list of props that `withJarb` will pass to the `final-form`
 // Field, but not the wrapper.
@@ -27,37 +28,32 @@ const managedProps = [
   'error'
 ];
 
-interface FieldCompatible<Value, ChangeValue> {
-  onChange: (value: ChangeValue) => void;
-  onBlur?: () => void;
-  onFocus?: () => void;
-  value?: Value;
-  color?: string;
-  valid?: boolean;
-  error?: React.ReactNode;
+type JarbFieldCompatible<Value, ChangeValue> = FieldCompatible<
+  Value,
+  ChangeValue
+> & {
   errorMode?: 'tooltip' | 'below';
-  label?: React.ReactNode;
-}
+};
 
 /**
  * withJarb is a Higher Order Component which takes an input element
- * which is `FieldCompatible` as defined by the interface, and turns
+ * which is `JarbFieldCompatible` as defined by the interface, and turns
  * it into a Component which uses `JarbField` so it can be used in
  * a final-form form.
  *
- * Basically all props needed in `FieldCompatible` are plugged into the
+ * Basically all props needed in `JarbFieldCompatible` are plugged into the
  * Wrapper, by taking the `input` and `meta` from `final-form` and assigning
  * them into the correct slots.
  *
  * Also automatically adds the `FormError` component as the error
  * slot so errors are rendered.
  *
- * @param Wrapper The Component which is `FieldCompatible`.
+ * @param Wrapper The Component which is `JarbFieldCompatible`.
  */
 export default function withJarb<
   Value,
   ChangeValue,
-  P extends FieldCompatible<Value, ChangeValue>
+  P extends JarbFieldCompatible<Value, ChangeValue>
 >(Wrapper: React.ComponentType<P>) {
   const displayName = `Jarb${getDisplayName(Wrapper)}`;
 
@@ -77,7 +73,7 @@ export default function withJarb<
         | 'label'
       >
   ) {
-    const illegalProps = managedProps.filter(p => props[p] !== undefined);
+    const illegalProps = managedProps.filter((p) => props[p] !== undefined);
 
     if (illegalProps.length > 0) {
       const illegalPropsAsString = prettyPropsSummation(illegalProps, 'and');
@@ -140,7 +136,7 @@ export default function withJarb<
       <Field
         name={name}
         subscription={errorSubscription}
-        render={field => (
+        render={(field) => (
           <FormError
             value={field.input.value}
             meta={field.meta}
@@ -168,7 +164,7 @@ export default function withJarb<
         asyncValidators={asyncValidators}
         asyncValidatorsDebounce={asyncValidatorsDebounce}
         subscription={fieldSubscription}
-        render={field => {
+        render={(field) => {
           return hasErrors && errorMode === 'tooltip' ? (
             <Tooltip
               content={error}

@@ -8,10 +8,10 @@ import { User } from '../../test/types';
 import { Icon, pageOf, Tooltip } from '../..';
 import Toggle from '../../core/Toggle/Toggle';
 
-interface SubjectOption {
+type SubjectOption = {
   value: string;
   label: string;
-}
+};
 
 storiesOf('Form/RadioGroup', module)
   .add('defined options', () => {

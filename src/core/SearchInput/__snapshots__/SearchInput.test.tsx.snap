@@ -15,6 +15,7 @@ exports[`Component: SearchInput ui with icon 1`] = `
   </InputGroupAddon>
   <Input
     defaultValue=""
+    id="1"
     innerRef={
       Object {
         "current": null,
@@ -43,6 +44,7 @@ exports[`Component: SearchInput ui with icon when undefined 1`] = `
   </InputGroupAddon>
   <Input
     defaultValue=""
+    id="2"
     innerRef={
       Object {
         "current": null,
@@ -121,6 +123,7 @@ exports[`Component: SearchInput ui without icon 1`] = `
 <Input
   className=""
   defaultValue=""
+  id="3"
   innerRef={
     Object {
       "current": null,

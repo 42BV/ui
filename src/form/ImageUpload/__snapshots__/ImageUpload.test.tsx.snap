@@ -432,6 +432,7 @@ exports[`Component: ImageUpload ui without label: Component: ImageUpload => ui =
   >
     <input
       accept="image/*"
+      id="5"
       onChange={[Function]}
       type="file"
     />

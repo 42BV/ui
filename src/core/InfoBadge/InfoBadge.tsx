@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
 import classNames from 'classnames';
-import { Color } from '../types';
+import { Color } from '../..';
 
 type Props = {
   /**

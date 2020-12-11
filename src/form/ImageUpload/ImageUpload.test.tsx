@@ -72,7 +72,7 @@ describe('Component: ImageUpload', () => {
       const imgUpload = new ImageUpload();
 
       // @ts-expect-error Test mock
-      imgUpload.props = { value: null };
+      imgUpload.props = { value: null, id: 1 };
       jest.spyOn(imgUpload, 'setState');
 
       imgUpload.componentDidMount();

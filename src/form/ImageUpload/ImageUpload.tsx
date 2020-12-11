@@ -5,7 +5,6 @@ import AvatarEditor from 'react-avatar-editor';
 
 import Icon from '../../core/Icon/Icon';
 import Button from '../../core/Button/Button';
-import { Color } from '../../core/types';
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
@@ -17,6 +16,8 @@ import {
   getPicaInstance,
   replaceFileExtension
 } from './utils';
+import { FieldCompatible } from '../types';
+import { uniqueId } from 'lodash';
 
 export type Text = {
   cancel?: string;
@@ -25,7 +26,7 @@ export type Text = {
   done?: string;
 };
 
-interface CropRect {
+type CropRect = {
   /**
    * Crop is a rectangle
    */
@@ -40,9 +41,9 @@ interface CropRect {
    * The height of the crop
    */
   height: number;
-}
+};
 
-interface CropCircle {
+type CropCircle = {
   /**
    * Crop is a circle
    */
@@ -52,7 +53,7 @@ interface CropCircle {
    * The size of the radius of the circle.
    */
   size: number;
-}
+};
 
 /**
  * Crop is either a rectangle or a circle.
@@ -62,42 +63,14 @@ export type Crop = CropRect | CropCircle;
 type Value = File | string;
 type ChangeValue = File | null;
 
-interface BaseProps {
+export type Props = Omit<
+  FieldCompatible<Value, ChangeValue>,
+  'placeholder' | 'valid'
+> & {
   /**
    * Whether to crop as a circle or as a rectangle.
    */
   crop: Crop;
-
-  /**
-   * The value that the form element currently has.
-   */
-  value?: Value;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (file: ChangeValue) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
 
   /**
    * Optionally customized text you want to use in this component.
@@ -110,26 +83,7 @@ interface BaseProps {
    * Defaults to false.
    */
   keepOriginalFileExtension?: boolean;
-}
-
-interface WithoutLabel extends BaseProps {
-  id?: string;
-  label?: never;
-}
-
-interface WithLabel extends BaseProps {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-export type Props = WithoutLabel | WithLabel;
+};
 
 /*
   There are three modes in which this component can be.
@@ -150,25 +104,24 @@ export type Props = WithoutLabel | WithLabel;
   using this component in an update form, the mode will become 
   'file-selected'.
 */
-enum Mode {
-  NO_FILE = 'no-file',
-  EDIT = 'edit',
-  FILE_SELECTED = 'file-selected'
-}
+type Mode = 'no-file' | 'edit' | 'file-selected';
 
-interface State {
+type State = {
   mode: Mode;
   imageSrc: string;
   fileName: string;
   rotate: number;
   scale: number;
-}
+};
 
 const reader = new FileReader();
 
 export default class ImageUpload extends Component<Props, State> {
-  state = {
-    mode: Mode.NO_FILE,
+  /* istanbul ignore next */
+  innerId = this?.props?.id ?? uniqueId();
+
+  state: State = {
+    mode: 'no-file',
     imageSrc: '',
     fileName: '',
     rotate: 0,
@@ -183,13 +136,13 @@ export default class ImageUpload extends Component<Props, State> {
 
     if (typeof imageSrc === 'string' && imageSrc !== '') {
       this.setState({
-        mode: Mode.FILE_SELECTED,
+        mode: 'file-selected',
         imageSrc
       });
     } else if (imageSrc) {
       this.readFile(imageSrc, (result: string) =>
         this.setState({
-          mode: Mode.FILE_SELECTED,
+          mode: 'file-selected',
           imageSrc: result,
           fileName: imageSrc.name
         })
@@ -215,7 +168,7 @@ export default class ImageUpload extends Component<Props, State> {
       this.readFile(file, (result: string) =>
         this.setState({
           imageSrc: result,
-          mode: Mode.EDIT,
+          mode: 'edit',
           fileName: file.name,
           rotate: 0,
           scale: 1
@@ -255,7 +208,7 @@ export default class ImageUpload extends Component<Props, State> {
       this.props.onChange(file);
       doBlur(this.props.onBlur);
 
-      this.setState({ mode: Mode.FILE_SELECTED, imageSrc: dataUrl, fileName });
+      this.setState({ mode: 'file-selected', imageSrc: dataUrl, fileName });
     }
   }
 
@@ -276,7 +229,7 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   resetFileInput() {
-    this.setState({ imageSrc: '', mode: Mode.NO_FILE, rotate: 0, scale: 1 });
+    this.setState({ imageSrc: '', mode: 'no-file', rotate: 0, scale: 1 });
 
     this.props.onChange(null);
     doBlur(this.props.onBlur);
@@ -299,17 +252,12 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   render() {
-    const { className, error, color, ...props } = this.props;
-
-    let label: React.ReactNode = null;
-    if ('label' in props && props.label) {
-      label = <Label for={props.id}>{props.label}</Label>;
-    }
+    const { className, error, color, label } = this.props;
 
     return (
       <div className={className}>
         <FormGroup color={color} className="img-upload">
-          {label}
+          {label ? <Label for={this.innerId}>{label}</Label> : null}
           {this.renderMode()}
           {this.renderButtons()}
           {error}
@@ -320,10 +268,10 @@ export default class ImageUpload extends Component<Props, State> {
 
   renderMode() {
     switch (this.state.mode) {
-      case Mode.FILE_SELECTED:
+      case 'file-selected':
         return this.renderFileSelected();
 
-      case Mode.EDIT:
+      case 'edit':
         return this.renderEdit();
 
       default:
@@ -332,12 +280,10 @@ export default class ImageUpload extends Component<Props, State> {
   }
 
   renderNoFile() {
-    const id = 'id' in this.props ? this.props.id : undefined;
-
     return (
       <Fragment>
         <input
-          id={id}
+          id={this.innerId}
           onChange={(event) => this.imgSelected(event)}
           type="file"
           accept="image/*"
@@ -379,7 +325,7 @@ export default class ImageUpload extends Component<Props, State> {
     const { crop, ...props } = this.props;
 
     let alt = '';
-    if ('label' in props && props.label && typeof props.label === 'string') {
+    if (props.label && typeof props.label === 'string') {
       alt = props.label;
     }
 
@@ -397,10 +343,10 @@ export default class ImageUpload extends Component<Props, State> {
 
   renderButtons() {
     switch (this.state.mode) {
-      case Mode.FILE_SELECTED:
+      case 'file-selected':
         return this.renderFileSelectedButtons();
 
-      case Mode.EDIT:
+      case 'edit':
         return this.renderEditButtons();
 
       default:

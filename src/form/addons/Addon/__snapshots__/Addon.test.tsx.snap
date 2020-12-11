@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Addon ui: Component: Addon 1`] = `
+<InputGroupAddon
+  addonType="prepend"
+  tag="div"
+>
+  42
+</InputGroupAddon>
+`;

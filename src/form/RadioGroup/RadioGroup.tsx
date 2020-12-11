@@ -3,7 +3,6 @@ import { FormGroup, Input, Label } from 'reactstrap';
 import { constant, get } from 'lodash';
 
 import withJarb from '../withJarb/withJarb';
-import { Color } from '../types';
 import { t } from '../../utilities/translation/translation';
 import {
   isOptionSelected,
@@ -18,6 +17,7 @@ import { doBlur } from '../utils';
 import Loading from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
 import TextButton from '../../core/TextButton/TextButton';
+import { FieldCompatible } from '../types';
 
 export type Text = {
   /**
@@ -32,27 +32,7 @@ export type Text = {
   clear?: string;
 };
 
-interface BaseProps<T> {
-  /**
-   * The id of the form element.
-   */
-  id?: string;
-
-  /**
-   * The value that the form element currently has.
-   */
-  value?: T;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value?: T) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
+export type Props<T> = FieldCompatible<T, T | undefined> & {
   /**
    * Is either an array of options or a callback which fetches
    * the options asynchronously.
@@ -80,33 +60,6 @@ interface BaseProps<T> {
    * selected.
    */
   isOptionEnabled?: OptionEnabledCallback<T>;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder?: string;
-
   /**
    * Optionally customized text within the component.
    * This text should already be translated.
@@ -139,20 +92,7 @@ interface BaseProps<T> {
    * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
    */
   uniqueKeyForValue?: UniqueKeyForValue<T>;
-}
-
-interface WithoutLabel<T> extends BaseProps<T> {
-  label?: never;
-}
-
-interface WithLabel<T> extends BaseProps<T> {
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-export type Props<T> = WithoutLabel<T> | WithLabel<T>;
+};
 
 /**
  * RadioGroup is a form element for which the value can be selected
@@ -160,6 +100,7 @@ export type Props<T> = WithoutLabel<T> | WithLabel<T>;
  */
 export default function RadioGroup<T>(props: Props<T>) {
   const {
+    label,
     value,
     error,
     color,
@@ -197,7 +138,7 @@ export default function RadioGroup<T>(props: Props<T>) {
       className={'radio-group ' + className}
       color={color}
     >
-      {'label' in props && props.label ? <legend>{props.label}</legend> : null}
+      {label ? <legend>{label}</legend> : null}
       {placeholder ? (
         <p className="text-muted">
           <em>{placeholder}</em>

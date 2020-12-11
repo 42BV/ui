@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, FormFeedback, Row } from 'reactstrap';
 import { get } from 'lodash';
-import { Color, DistributiveOmit } from '../types';
+import { DistributiveOmit, FieldCompatible } from '../types';
 
 import DateTimeInput, {
   Props as DateTimeInputProps,
@@ -18,35 +18,20 @@ type Text = {
 /**
  * Represents the value of the DateRangePicker form element.
  */
-export interface Value {
+export type Value = {
   from?: Date;
   to?: Date;
-}
+};
 
 /**
  * The value of the `onChange` event of the DateRangePicker.
  */
-export interface ChangeValue {
+export type ChangeValue = {
   from: Date;
   to: Date;
-}
+};
 
-type Props = {
-  /**
-   * The value that the form element currently has.
-   */
-  value?: Value;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value: ChangeValue | null) => void;
-
-  /**
-   * Callback for when the form element gets the focus.
-   */
-  onFocus?: () => void;
-
+type Props = FieldCompatible<Value, ChangeValue | null> & {
   /**
    * The properties for the `from` DateTimeInput element.
    */
@@ -64,31 +49,10 @@ type Props = {
   >;
 
   /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
   text?: Text;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
 
   /**
    * Whether or not the date picker should be displayed in a modal.
@@ -104,10 +68,10 @@ type Props = {
   horizontal?: boolean;
 };
 
-interface State {
+type State = {
   fromDate?: Date;
   toDate?: Date;
-}
+};
 
 /**
  * The DateRangePicker component is a form element which allows the

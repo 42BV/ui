@@ -11,15 +11,16 @@ import {
 
 import { Icon } from '../Icon';
 import { BootstrapSize } from '../types';
+import { useId } from '../../hooks/useId/useId';
 
-interface SearchInputApi {
+type SearchInputApi = {
   /**
    * Sets the value of the SearchInput's inner <input> element
    * cancels any active debounce, and calls props.onChange with
    * the value.
    */
   setValue: (value: string) => void;
-}
+};
 
 type ModifiedInputProps = Omit<
   InputProps,
@@ -41,7 +42,18 @@ type ModifiedInputProps = Omit<
   | 'className'
 >;
 
-interface BaseProps extends ModifiedInputProps {
+export type Props = ModifiedInputProps & {
+  /**
+   * Optionally the id of the SearchInput. Will be automatically
+   * filled in when not provided manually.
+   */
+  id?: string;
+
+  /**
+   * Optionally the label of the SearchInput.
+   */
+  label?: React.ReactNode;
+
   /**
    * Optionally the number of milliseconds to debounce the onChange.
    *
@@ -94,68 +106,19 @@ interface BaseProps extends ModifiedInputProps {
     searchInput: React.ReactNode,
     api: SearchInputApi
   ) => React.ReactNode;
-}
 
-interface WithoutLabel extends BaseProps {
-  id?: never;
-  label?: never;
-}
-
-interface WithLabel extends BaseProps {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-interface WithLabelButWithoutIcon extends WithLabel {
-  showIcon?: false;
-  size?: never;
-}
-
-interface WithoutLabelAndIcon extends WithoutLabel {
-  showIcon?: false;
-  size?: never;
-}
-
-interface WithLabelAndIcon extends BaseProps {
   /**
    * Whether or not to show a magnifying glass icon.
    *
    * Defaults to true.
    */
-  showIcon: true;
+  showIcon?: boolean;
 
   /**
    * Optional size you want to give the icon.
    */
   size?: BootstrapSize;
-}
-
-interface WithoutLabelButWithIcon extends WithoutLabel {
-  /**
-   * Whether or not to show a magnifying glass icon.
-   *
-   * Defaults to true.
-   */
-  showIcon: true;
-
-  /**
-   * Optional size you want to give the icon.
-   */
-  size?: BootstrapSize;
-}
-
-export type Props =
-  | WithLabelButWithoutIcon
-  | WithoutLabelAndIcon
-  | WithLabelAndIcon
-  | WithoutLabelButWithIcon;
+};
 
 /**
  * SearchInput is a component which shows an input field which has
@@ -167,6 +130,8 @@ export type Props =
  */
 export default function SearchInput(props: Props) {
   const {
+    id,
+    label,
     debounce = 500,
     debounceSettings,
     placeholder,
@@ -203,21 +168,22 @@ export default function SearchInput(props: Props) {
     }
   }
 
+  const innerId = useId({ id });
+
+  // We use the defaultValue so this component is completely
+  // controlled by us. Otherwise the value of the <Input> will only
+  // update after the onChange. Which would never work because it is
+  // debounced.
+  const inputProps = {
+    id: innerId,
+    innerRef: inputRef,
+    defaultValue,
+    onChange: (event) => handleChange.current(event.target.value),
+    onKeyUp: handleKeyUp,
+    placeholder: placeholder
+  };
+
   function getInput() {
-    // We map value to defaultValue so this component is completely
-    // controlled by us. Otherwise the value of the <Input> will only
-    // update after the onChange. Which would never work because it is
-    // debounced.
-
-    const inputProps = {
-      id: 'id' in props ? props.id : undefined,
-      innerRef: inputRef,
-      defaultValue,
-      onChange: event => handleChange.current(event.target.value),
-      onKeyUp: handleKeyUp,
-      placeholder: placeholder
-    };
-
     if (showIcon) {
       return (
         <InputGroup className={className} size={size}>
@@ -238,9 +204,9 @@ export default function SearchInput(props: Props) {
     getInput()
   );
 
-  return 'label' in props ? (
+  return label ? (
     <FormGroup>
-      <Label for={props.id}>{props.label}</Label>
+      <Label for={innerId}>{label}</Label>
       {searchInputWrapper}
     </FormGroup>
   ) : (

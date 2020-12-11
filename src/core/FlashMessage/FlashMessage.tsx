@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'reactstrap';
 import classNames from 'classnames';
 
-import { Color } from '../types';
+import { Color } from '../..';
 
 type Props = {
   /**

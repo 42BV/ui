@@ -4,7 +4,7 @@ import Datetime from 'react-datetime';
 import { constant, get, isEmpty } from 'lodash';
 import moment, { Moment } from 'moment';
 import MaskedInput from 'react-text-mask';
-import { Color } from '../types';
+import { Icon } from '../..';
 
 import { DateFormat, TimeFormat } from './types';
 
@@ -16,8 +16,9 @@ import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
 import classNames from 'classnames';
 import { useHasFormatError } from './hooks/useHasFormatError';
 import { useIsModalOpen } from './hooks/useIsModalOpen';
-import Addon from '../Input/Addon/Addon';
+import { AddonButton } from '../addons/AddonButton/AddonButton';
 import { useSetLastStringValue } from './hooks/useSetLastStringValue';
+import { FieldCompatible } from '../types';
 
 /**
  * Callback which returns whether a date is selectable.
@@ -26,27 +27,7 @@ export type IsDateAllowed = (date: Moment, selectedDate?: Moment) => boolean;
 
 export type Mode = 'modal' | 'default';
 
-export type Props = {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label?: React.ReactNode;
-
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder?: string;
-
-  /**
-   * The value that the form element currently has.
-   */
-  value?: Date;
-
+export type Props = FieldCompatible<Date, Date | null> & {
   /**
    * The format for the date, follows Moment.js format.
    *
@@ -75,36 +56,6 @@ export type Props = {
   isDateAllowed?: IsDateAllowed;
 
   /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value: Date | null) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optional callback for when the form element is focused.
-   */
-  onFocus?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
    * Optionally the locale moment js should use.
    */
   locale?: string;
@@ -117,12 +68,6 @@ export type Props = {
    * Defaults to true.
    */
   utc?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
 
   /**
    * Whether or not the date picker should be displayed in a modal.
@@ -299,7 +244,9 @@ export function maskedInputGroup(props: unknown, onClick: () => void) {
   return (
     <InputGroup>
       <MaskedInput {...props} render={reactStrapInput} />
-      <Addon position="right" onClick={onClick} icon="calendar_today" />
+      <AddonButton onClick={onClick}>
+        <Icon icon="calendar_today" />
+      </AddonButton>
     </InputGroup>
   );
 }

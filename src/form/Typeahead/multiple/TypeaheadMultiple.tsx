@@ -5,17 +5,13 @@ import { FetchOptionsCallback, TypeaheadOption } from '../types';
 import withJarb from '../../withJarb/withJarb';
 import { doBlur } from '../../utils';
 import { valueToTypeaheadOption } from '../utils';
-import { Color } from '../../types';
 import { OptionForValue } from '../../option';
 import classNames from 'classnames';
 import Tag from '../../../core/Tag/Tag';
+import { FieldCompatible } from '../../types';
+import { useId } from '../../../hooks/useId/useId';
 
-type BaseProps<T> = {
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder?: string;
-
+type Props<T> = FieldCompatible<T[], T[] | undefined> & {
   /**
    * Callback to fetch the options to display to the user.
    */
@@ -26,67 +22,7 @@ type BaseProps<T> = {
    * to the user.
    */
   optionForValue: OptionForValue<T>;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value: T[] | undefined) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Callback for when the form element gets the focus.
-   */
-  onFocus?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * The value that the form element currently has.
-   */
-  value?: T[];
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
 };
-
-type WithoutLabel<T> = BaseProps<T> & {
-  id?: string;
-  label?: never;
-};
-
-type WithLabel<T> = BaseProps<T> & {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-};
-
-export type Props<T> = WithoutLabel<T> | WithLabel<T>;
 
 /**
  * The TypeaheadMultiple is a form element which allows the user
@@ -107,6 +43,7 @@ export type Props<T> = WithoutLabel<T> | WithLabel<T>;
 export default function TypeaheadMultiple<T>(props: Props<T>) {
   const {
     id,
+    label,
     placeholder,
     value,
     color,
@@ -159,11 +96,11 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
     'is-invalid': valid === false
   });
 
+  const innerId = useId({ id });
+
   return (
     <FormGroup className={classes} color={color}>
-      {'label' in props && props.label ? (
-        <Label for={id}>{props.label}</Label>
-      ) : null}
+      {label ? <Label for={innerId}>{label}</Label> : null}
       <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
         <AsyncTypeahead
           id={id}

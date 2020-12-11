@@ -4,6 +4,9 @@ describe('index', () => {
   test('exports', () => {
     expect(index).toMatchInlineSnapshot(`
       Object {
+        "Addon": [Function],
+        "AddonButton": [Function],
+        "AddonIcon": [Function],
         "AsyncContent": [Function],
         "AsyncList": [Function],
         "AsyncPage": [Function],

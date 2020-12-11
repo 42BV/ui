@@ -21,6 +21,8 @@ export function FinalForm({ children }: Props) {
     <ReactFinalForm
       onSubmit={() => action('form submitted')}
       render={({ handleSubmit, submitting, values, errors }) => (
+        // Do not render a <form> here as it will submit the form when
+        // the submit button is pressed.
         <Fragment>
           <Row>
             <Col lg={6}>

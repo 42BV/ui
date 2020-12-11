@@ -1,9 +1,9 @@
 import { valueToTypeaheadOption } from './utils';
 
-interface User {
+type User = {
   id: number;
   name: string;
-}
+};
 
 test('valueToTypeAheadOption', () => {
   const user: User = {

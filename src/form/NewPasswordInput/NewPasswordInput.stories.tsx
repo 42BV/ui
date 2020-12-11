@@ -5,7 +5,7 @@ import NewPasswordInput, {
   isStrongPassword,
   JarbNewPasswordInput
 } from './NewPasswordInput';
-import { Icon, Tooltip } from '../../index';
+import { Addon, Icon, Tooltip } from '../../index';
 
 storiesOf('Form/NewPasswordInput', module)
   .add('basic', () => {
@@ -34,10 +34,11 @@ storiesOf('Form/NewPasswordInput', module)
           placeholder="Please enter your password"
           value={password}
           onChange={setPassword}
-          addon={{
-            icon: 'lock',
-            position: 'left'
-          }}
+          addon={
+            <Addon>
+              <Icon icon="lock" />
+            </Addon>
+          }
         />
       </Form>
     );

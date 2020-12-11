@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '../../form/types';
+import { Color } from '../..';
 
-interface ToggleProps {
+type Props = {
   /**
    * Optionally the id of the input element
    */
@@ -34,7 +34,7 @@ interface ToggleProps {
    * Optional callback for when the Toggle is blurred.
    */
   onBlur?: React.FocusEventHandler;
-}
+};
 
 /**
  * Toggle is a component which looks like a switch. Use the Toggle
@@ -48,7 +48,7 @@ export default function Toggle({
   value = false,
   onChange,
   onBlur
-}: ToggleProps) {
+}: Props) {
   const toggleClasses = classNames(
     'toggle-container',
     `toggle-${color}`,
@@ -60,7 +60,7 @@ export default function Toggle({
       <input
         id={id}
         type="checkbox"
-        onChange={event => onChange(event.target.checked)}
+        onChange={(event) => onChange(event.target.checked)}
         checked={value}
         onBlur={onBlur}
       />

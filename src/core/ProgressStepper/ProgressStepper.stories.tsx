@@ -4,24 +4,23 @@ import { action } from '@storybook/addon-actions';
 
 import ProgressStepper from './ProgressStepper';
 
-enum Step {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  SUCCESS = 'success',
-  INFO = 'info',
-  WARNING = 'warning',
-  DANGER = 'danger',
-  LINK = 'link'
-}
+type Step =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'link';
 
 const steps: Step[] = [
-  Step.PRIMARY,
-  Step.SECONDARY,
-  Step.SUCCESS,
-  Step.INFO,
-  Step.WARNING,
-  Step.DANGER,
-  Step.LINK
+  'primary',
+  'secondary',
+  'success',
+  'info',
+  'warning',
+  'danger',
+  'link'
 ];
 
 storiesOf('core/ProgressStepper', module)

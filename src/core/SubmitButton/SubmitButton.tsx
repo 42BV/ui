@@ -31,11 +31,6 @@ export type Props = {
    * progress. If so a spinner is rendered inside of the button.
    */
   inProgress: boolean;
-
-  /**
-   * Optionally the size of the icon in pixels.
-   */
-  iconSize?: number;
 };
 
 /**
@@ -47,8 +42,7 @@ export default function SubmitButton({
   inProgress,
   size,
   className = '',
-  onClick,
-  iconSize
+  onClick
 }: Props) {
   return (
     <Button
@@ -59,7 +53,6 @@ export default function SubmitButton({
       className={`float-right ${className}`}
       onClick={onClick}
       icon="save"
-      iconSize={iconSize}
     >
       {children}
     </Button>

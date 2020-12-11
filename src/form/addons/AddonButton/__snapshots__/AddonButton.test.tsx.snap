@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: AddonButton ui: Component: AddonButton 1`] = `
+<Addon
+  position="right"
+>
+  <Button
+    color="primary"
+    onClick={[MockFunction]}
+    tabIndex={-1}
+    tag="button"
+    type="button"
+  >
+    42
+  </Button>
+</Addon>
+`;

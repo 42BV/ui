@@ -329,7 +329,7 @@ describe('Component: DateTimeInput', () => {
 
         // @ts-expect-error Test mock
         inputGroup
-          .find('Addon')
+          .find('AddonButton')
           .props()
           // @ts-expect-error Test mock
           .onClick();
