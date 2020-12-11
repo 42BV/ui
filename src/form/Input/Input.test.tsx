@@ -2,11 +2,10 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Input, { reactStrapInput } from './Input';
-import { Mask, Position } from './types';
+import Input, { reactStrapInput, Mask } from './Input';
 
 import { InputType } from 'reactstrap/lib/Input';
-import IconType from '../../core/Icon/types';
+import { Addon } from '../addons/Addon/Addon';
 
 const mask: Mask = [
   '(',
@@ -36,7 +35,7 @@ describe('Component: Input', () => {
     value,
     type,
     mask,
-    position,
+    addon,
     valid,
     hasPlaceholder = true,
     hasLabel = true
@@ -44,7 +43,7 @@ describe('Component: Input', () => {
     value?: string;
     type?: InputType;
     mask?: Mask;
-    position?: Position;
+    addon?: React.ReactElement;
     valid?: boolean;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
@@ -52,9 +51,6 @@ describe('Component: Input', () => {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
     onFocusSpy = jest.fn();
-
-    const icon: IconType = '3d_rotation';
-    const addon = position !== undefined ? { icon, position } : undefined;
 
     const props = {
       placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,
@@ -119,19 +115,27 @@ describe('Component: Input', () => {
       );
     });
 
-    test('position left', () => {
-      setup({ position: 'left' });
+    test('addon default', () => {
+      setup({ addon: <Addon>Default on the left</Addon> });
 
       expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => position left'
+        'Component: Input => addon position default'
       );
     });
 
-    test('position right', () => {
-      setup({ position: 'right' });
+    test('addon left', () => {
+      setup({ addon: <Addon position="left">Left</Addon> });
 
       expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => position right'
+        'Component: Input => addon position left'
+      );
+    });
+
+    test('addon right', () => {
+      setup({ addon: <Addon position="right">Right</Addon> });
+
+      expect(toJson(input)).toMatchSnapshot(
+        'Component: Input => addon position right'
       );
     });
 

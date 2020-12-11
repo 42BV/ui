@@ -13,25 +13,25 @@
       }
     }
 
-    .material-icons {
-      vertical-align: middle;
-      font-size: 1rem;
-      margin-bottom: 2px;
-      margin-right: 5px;
-
-      &-right {
-        float: right;
-        margin-top: 3px;
-        margin-right: 0;
-        margin-left: 5px;
+    // The sizes for the icons were chosen so that when the button
+    // has an icon the buttons do not increase in height. This way
+    // buttons with or without icons have the same size.
+    &-lg {
+      .button-icon {
+        font-size: 1.1rem;
       }
     }
 
-    .spinner {
-      position: relative;
-      top: -2px;
-      left: -5px;
-      margin-left: 5px;
+    &-md {
+      .button-icon {
+        font-size: 1rem;
+      }
+    }
+
+    &-sm {
+      .button-icon {
+        font-size: 0.9rem;
+      }
     }
   }
 

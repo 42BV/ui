@@ -7,7 +7,6 @@ import EmptyModal from '../EmptyModal';
 
 import { AddButtonCallback, AddButtonOptions, ButtonAlignment } from '../types';
 import withJarb from '../../withJarb/withJarb';
-import { Color } from '../../types';
 import {
   FetchOptionsCallback,
   isOptionSelected,
@@ -20,10 +19,15 @@ import {
 } from '../../option';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
+import { FieldCompatible } from '../../types';
+import { uniqueId } from 'lodash';
 
 export type DisplayValue<T> = (values?: T) => React.ReactNode;
 
-interface BaseProps<T> {
+type Props<T> = Omit<
+  FieldCompatible<T, T | undefined>,
+  'placeholder' | 'valid'
+> & {
   /**
    * The placeholder of the form element.
    */
@@ -63,37 +67,6 @@ interface BaseProps<T> {
   optionForValue: OptionForValue<T>;
 
   /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value?: T) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * The value that the form element currently has.
-   */
-  value?: T;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
    * Optionally the position the button should be aligned to
    * within it's container.
    */
@@ -110,52 +83,20 @@ interface BaseProps<T> {
    * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
    */
   uniqueKeyForValue?: UniqueKeyForValue<T>;
-}
 
-interface WithoutLabel<T> extends BaseProps<T> {
-  id?: string;
-  label?: never;
-}
-
-interface WithLabel<T> extends BaseProps<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-interface WithoutLabelButWithRenderOptions<T> extends WithLabel<T> {
   /**
    * Callback to customize display of options.
    */
-  renderOptions: RenderOptions<T>;
-}
+  renderOptions?: RenderOptions<T>;
+};
 
-interface WithLabelAndRenderOptions<T> extends WithLabel<T> {
-  /**
-   * Callback to customize display of options.
-   */
-  renderOptions: RenderOptions<T>;
-}
-
-export type Props<T> =
-  | WithoutLabel<T>
-  | WithLabel<T>
-  | WithoutLabelButWithRenderOptions<T>
-  | WithLabelAndRenderOptions<T>;
-
-export interface State<T> {
+export type State<T> = {
   isOpen: boolean;
   page: Page<T>;
   selected?: T | null;
   query: string;
   userHasSearched: boolean;
-}
+};
 
 /**
  * The ModalPickerSingle is a form element which allows the user
@@ -174,6 +115,9 @@ export default class ModalPickerSingle<T> extends React.Component<
   Props<T>,
   State<T>
 > {
+  /* istanbul ignore next */
+  innerId = this?.props?.id ?? uniqueId();
+
   state = {
     isOpen: false,
     page: emptyPage<T>(),
@@ -251,6 +195,7 @@ export default class ModalPickerSingle<T> extends React.Component<
   render() {
     const selected = this.props.value;
     const {
+      label,
       placeholder,
       error,
       color,
@@ -262,8 +207,7 @@ export default class ModalPickerSingle<T> extends React.Component<
           values={value}
           optionForValue={optionForValue}
         />
-      ),
-      ...props
+      )
     } = this.props;
 
     const modalPickerOpenerProps = {
@@ -277,9 +221,7 @@ export default class ModalPickerSingle<T> extends React.Component<
 
     return (
       <FormGroup className={className} color={color}>
-        {'label' in props && props.label ? (
-          <Label for={props.id}>{props.label}</Label>
-        ) : null}
+        {label ? <Label for={this.innerId}>{label}</Label> : null}
 
         <ModalPickerOpener {...modalPickerOpenerProps} />
 
@@ -383,7 +325,7 @@ export default class ModalPickerSingle<T> extends React.Component<
     optionForValue: OptionForValue<T>;
     isOptionEqual?: OptionEqual<T>;
   }): RenderOptionsOption<T>[] {
-    return page.content.map(option => {
+    return page.content.map((option) => {
       const isSelected = isOptionSelected({
         option,
         optionForValue,

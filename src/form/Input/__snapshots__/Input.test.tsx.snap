@@ -1,5 +1,132 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: Input ui addon default: Component: Input => addon position default 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="firstName"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    First name
+  </Label>
+  <InputGroup
+    tag="div"
+  >
+    <Addon>
+      Default on the left
+    </Addon>
+    <Input
+      id="firstName"
+      key="input"
+      onBlur={[MockFunction]}
+      onChange={[Function]}
+      onFocus={[MockFunction]}
+      placeholder="Please enter your first name"
+      type="text"
+    />
+  </InputGroup>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: Input ui addon left: Component: Input => addon position left 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="firstName"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    First name
+  </Label>
+  <InputGroup
+    tag="div"
+  >
+    <Addon
+      position="left"
+    >
+      Left
+    </Addon>
+    <Input
+      id="firstName"
+      key="input"
+      onBlur={[MockFunction]}
+      onChange={[Function]}
+      onFocus={[MockFunction]}
+      placeholder="Please enter your first name"
+      type="text"
+    />
+  </InputGroup>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: Input ui addon right: Component: Input => addon position right 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="firstName"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    First name
+  </Label>
+  <InputGroup
+    tag="div"
+  >
+    <Input
+      id="firstName"
+      key="input"
+      onBlur={[MockFunction]}
+      onChange={[Function]}
+      onFocus={[MockFunction]}
+      placeholder="Please enter your first name"
+      type="text"
+    />
+    <Addon
+      position="right"
+    >
+      Right
+    </Addon>
+  </InputGroup>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: Input ui defaults to text: Component: Input => ui => defaults to text 1`] = `
 <FormGroup
   className=""
@@ -106,94 +233,6 @@ exports[`Component: Input ui is valid: Component: Input => is valid 1`] = `
 </FormGroup>
 `;
 
-exports[`Component: Input ui position left: Component: Input => position left 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <InputGroup
-    tag="div"
-  >
-    <Addon
-      color="success"
-      icon="3d_rotation"
-      key="button"
-      position="left"
-    />
-    <Input
-      id="firstName"
-      key="input"
-      onBlur={[MockFunction]}
-      onChange={[Function]}
-      onFocus={[MockFunction]}
-      placeholder="Please enter your first name"
-      type="text"
-    />
-  </InputGroup>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Input ui position right: Component: Input => position right 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <InputGroup
-    tag="div"
-  >
-    <Input
-      id="firstName"
-      key="input"
-      onBlur={[MockFunction]}
-      onChange={[Function]}
-      onFocus={[MockFunction]}
-      placeholder="Please enter your first name"
-      type="text"
-    />
-    <Addon
-      color="success"
-      icon="3d_rotation"
-      key="button"
-      position="right"
-    />
-  </InputGroup>
-  Some error
-</FormGroup>
-`;
-
 exports[`Component: Input ui type email: Component: Input => ui => type email 1`] = `
 <FormGroup
   className=""
@@ -290,6 +329,7 @@ exports[`Component: Input ui without label: Component: Input => ui => without la
   tag="div"
 >
   <Input
+    id="1"
     key="input"
     onBlur={[MockFunction]}
     onChange={[Function]}

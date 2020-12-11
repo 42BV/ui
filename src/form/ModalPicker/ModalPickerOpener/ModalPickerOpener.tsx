@@ -11,7 +11,7 @@ type Text = {
   clear?: string;
 };
 
-interface BaseProps {
+type BaseProps = {
   /**
    * Function to open the modal, called when the button is clicked.
    */
@@ -38,17 +38,17 @@ interface BaseProps {
    * This text should already be translated.
    */
   text?: Text;
-}
+};
 
-interface ModalPickerSingleOpenerProps<T> extends BaseProps {
+type ModalPickerSingleOpenerProps<T> = BaseProps & {
   values?: T;
   displayValues: DisplayValue<T>;
-}
+};
 
-interface ModalPickerMultipleOpenerProps<T> extends BaseProps {
+type ModalPickerMultipleOpenerProps<T> = BaseProps & {
   values?: T[];
   displayValues: DisplayValues<T>;
-}
+};
 
 type Props<T> =
   | ModalPickerSingleOpenerProps<T>

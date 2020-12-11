@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Color } from '../types';
 import {
   FetchOptionsCallback,
   OptionEqual,
@@ -17,6 +16,7 @@ import ModalPickerSingle from '../ModalPicker/single/ModalPickerSingle';
 
 import Spinner from '../../core/Spinner/Spinner';
 import { t } from '../../utilities/translation/translation';
+import { FieldCompatible } from '../types';
 
 export type Text = {
   /**
@@ -26,7 +26,7 @@ export type Text = {
   loadingMessage?: string;
 };
 
-interface BaseValuePickerProps<T> {
+type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> & {
   /**
    * The placeholder of the form element.
    */
@@ -59,27 +59,6 @@ interface BaseValuePickerProps<T> {
   isOptionEqual?: OptionEqual<T>;
 
   /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
@@ -91,9 +70,12 @@ interface BaseValuePickerProps<T> {
    * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
    */
   uniqueKeyForValue?: UniqueKeyForValue<T>;
-}
+};
 
-interface SingleValuePicker<T> extends BaseValuePickerProps<T> {
+type SingleValuePicker<T> = Omit<
+  BaseValuePickerProps<T>,
+  'value' | 'onChange'
+> & {
   /**
    * Whether or not multiple values can be selected.
    */
@@ -102,15 +84,18 @@ interface SingleValuePicker<T> extends BaseValuePickerProps<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T) => void;
+  onChange: (value: T | undefined) => void;
 
   /**
    * The value that the form element currently has.
    */
   value?: T;
-}
+};
 
-interface MultipleValuePicker<T> extends BaseValuePickerProps<T> {
+type MultipleValuePicker<T> = Omit<
+  BaseValuePickerProps<T>,
+  'value' | 'onChange'
+> & {
   /**
    * Whether or not multiple values can be selected.
    */
@@ -119,53 +104,15 @@ interface MultipleValuePicker<T> extends BaseValuePickerProps<T> {
   /**
    * Callback for when the form element changes.
    */
-  onChange: (value: T[]) => void;
+  onChange: (value: T[] | undefined) => void;
 
   /**
    * The value that the form element currently has.
    */
   value?: T[];
-}
+};
 
-interface SingleValuePickerWithoutLabel<T> extends SingleValuePicker<T> {
-  id?: string;
-  label?: never;
-}
-
-interface MultipleValuePickerWithoutLabel<T> extends MultipleValuePicker<T> {
-  id?: string;
-  label?: never;
-}
-
-interface SingleValuePickerWithLabel<T> extends SingleValuePicker<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-interface MultipleValuePickerWithLabel<T> extends MultipleValuePicker<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-type Props<T> =
-  | SingleValuePickerWithoutLabel<T>
-  | MultipleValuePickerWithoutLabel<T>
-  | SingleValuePickerWithLabel<T>
-  | MultipleValuePickerWithLabel<T>;
+type Props<T> = SingleValuePicker<T> | MultipleValuePicker<T>;
 
 /**
  *

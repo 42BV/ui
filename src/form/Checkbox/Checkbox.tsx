@@ -2,7 +2,7 @@ import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 
 import withJarb from '../withJarb/withJarb';
-import { Color } from '../types';
+import { Color } from '../..';
 import { doBlur } from '../utils';
 
 type Props = {

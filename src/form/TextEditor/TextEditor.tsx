@@ -6,56 +6,11 @@ import { StringMap } from 'quill';
 
 import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
-import { Color } from '../types';
 import { formatsFromToolbarModule } from './utils';
+import { FieldCompatible } from '../types';
+import { useId } from '../../hooks/useId/useId';
 
-interface BaseProps {
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder?: string;
-
-  /**
-   * The value that the form element currently has.
-   */
-  value?: string;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value: string) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optional callback for when the form element is focused.
-   */
-  onFocus?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
+export type Props = FieldCompatible<string, string> & {
   /**
    * Optional configuration option to i.e. customize the toolbar.
    *
@@ -82,26 +37,7 @@ interface BaseProps {
    * @see https://quilljs.com/docs/formats/
    */
   formats?: string[];
-}
-
-interface WithoutLabel extends BaseProps {
-  id?: string;
-  label?: never;
-}
-
-interface WithLabel extends BaseProps {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-export type Props = WithoutLabel | WithLabel;
+};
 
 /**
  * Textarea is a form element which allows the user to enter large
@@ -112,7 +48,7 @@ export type Props = WithoutLabel | WithLabel;
  * risk an XSS attack.
  *
  * The 42 way of dealing with this problem is by using jsoup and to use the
- * sanitiser, https://jsoup.org/cookbook/cleaning-html/whitelist-sanitizer,
+ * sanitizer, https://jsoup.org/cookbook/cleaning-html/whitelist-sanitizer,
  * with a whitelist. The whitelist should only contain elements which the
  * TextEditor generates. The sanitizer should be applied before sending
  * the content to the browser.
@@ -120,6 +56,7 @@ export type Props = WithoutLabel | WithLabel;
 export default function TextEditor(props: Props) {
   const {
     id,
+    label,
     placeholder,
     onChange,
     onBlur,
@@ -144,13 +81,13 @@ export default function TextEditor(props: Props) {
     formats: formats ? formats : formatsFromToolbarModule(modules)
   };
 
+  const innerId = useId({ id });
+
   const classes = classNames({ 'is-invalid': valid === false });
 
   return (
     <FormGroup className={className} color={color}>
-      {'label' in props && props.label ? (
-        <Label for={props.id}>{props.label}</Label>
-      ) : null}
+      {label ? <Label for={innerId}>{label}</Label> : null}
       <ReactQuill className={classes} {...inputProps} />
       {error}
     </FormGroup>

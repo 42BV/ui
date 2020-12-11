@@ -4,7 +4,6 @@ import { constant, get } from 'lodash';
 import { InputType } from 'reactstrap/lib/Input';
 
 import withJarb from '../withJarb/withJarb';
-import { Color } from '../types';
 import { t } from '../../utilities/translation/translation';
 import {
   isOptionSelected,
@@ -17,6 +16,8 @@ import {
 } from '../option';
 import { useOptions } from '../useOptions';
 import Loading from '../../core/Loading/Loading';
+import { useId } from '../../hooks/useId/useId';
+import { FieldCompatible } from '../types';
 
 export type Text = {
   /**
@@ -26,22 +27,7 @@ export type Text = {
   loadingMessage?: string;
 };
 
-interface BaseProps<T> {
-  /**
-   * The value that the form element currently has.
-   */
-  value?: T;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value: T) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
+export type Props<T> = FieldCompatible<T, T> & {
   /**
    * Is either an array of options or a callback which fetches
    * the options asynchronously.
@@ -71,32 +57,6 @@ interface BaseProps<T> {
   isOptionEnabled?: OptionEnabledCallback<T>;
 
   /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder?: string;
-
-  /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
@@ -114,26 +74,7 @@ interface BaseProps<T> {
    * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
    */
   uniqueKeyForValue?: UniqueKeyForValue<T>;
-}
-
-interface WithoutLabel<T> extends BaseProps<T> {
-  id?: string;
-  label?: never;
-}
-
-interface WithLabel<T> extends BaseProps<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-export type Props<T> = WithoutLabel<T> | WithLabel<T>;
+};
 
 /**
  * Select is a form element for which the value can be selected
@@ -141,6 +82,8 @@ export type Props<T> = WithoutLabel<T> | WithLabel<T>;
  */
 export default function Select<T>(props: Props<T>) {
   const {
+    id,
+    label,
     value,
     error,
     color,
@@ -172,9 +115,11 @@ export default function Select<T>(props: Props<T>) {
     }
   }
 
+  const innerId = useId({ id });
+
   const isOptionEnabled = get(props, 'isOptionEnabled', constant(true));
   const inputProps = {
-    id: 'id' in props ? props.id : undefined,
+    id: innerId,
     valid,
     invalid: valid === false ? true : undefined,
     type: 'select' as InputType,
@@ -202,9 +147,7 @@ export default function Select<T>(props: Props<T>) {
 
   return (
     <FormGroup className={className} color={color}>
-      {'label' in props && props.label ? (
-        <Label for={props.id}>{props.label}</Label>
-      ) : null}
+      {label ? <Label for={innerId}>{label}</Label> : null}
       {loading ? (
         <Loading className="mt-2">
           {t({

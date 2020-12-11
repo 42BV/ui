@@ -4,7 +4,7 @@ import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 
 import withJarb from '../withJarb/withJarb';
-import { Color } from '../types';
+import { Color } from '../..';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import Popover from '../../core/Popover/Popover';

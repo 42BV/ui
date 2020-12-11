@@ -2037,7 +2037,7 @@ storiesOf('table/EpicTable', module)
     );
   });
 
-interface Person {
+type Person = {
   id: number;
   firstName: string;
   lastName: string;
@@ -2050,7 +2050,7 @@ interface Person {
   favoriteFood: string;
   dateOfBirth: string;
   sex: string;
-}
+};
 
 const persons: Person[] = [
   {

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { Mask } from '../Input/types';
+import { Mask } from '../Input/Input';
 import { DateFormat, TimeFormat } from './types';
 
 export function combineFormat(
@@ -43,7 +43,7 @@ function timeFormatToMask(timeFormat: TimeFormat): Mask {
     return [];
   }
 
-  return timeFormat.split('').map(char => (char === ':' ? ':' : /\d/));
+  return timeFormat.split('').map((char) => (char === ':' ? ':' : /\d/));
 }
 
 function dateFormatToMask(dateFormat: DateFormat): Mask {
@@ -54,7 +54,7 @@ function dateFormatToMask(dateFormat: DateFormat): Mask {
   const separator = extractSeparator(dateFormat);
   return dateFormat
     .split('')
-    .map(char => (char === separator ? separator : /\d/));
+    .map((char) => (char === separator ? separator : /\d/));
 }
 
 function extractSeparator(dateFormat: string): string {

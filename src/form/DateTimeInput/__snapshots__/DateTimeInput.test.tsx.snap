@@ -8,11 +8,13 @@ exports[`Component: DateTimeInput ui InputGroup: Component: DateTimeInput => ui 
     id={10}
     render={[Function]}
   />
-  <Addon
-    icon="calendar_today"
+  <AddonButton
     onClick={[Function]}
-    position="right"
-  />
+  >
+    <Icon
+      icon="calendar_today"
+    />
+  </AddonButton>
 </div>
 `;
 

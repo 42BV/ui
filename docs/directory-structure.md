@@ -16,6 +16,8 @@ The top-level directory structure for `@42.nl/ui` looks like the following diagr
 ├─ storybook ········ Storybook configuration
 └─ src ·············· Public packages
   ├─ core ··········· Core components
+  ├─ config ········· Contains configuration setup function
+  ├─ hooks ···········Hooks
   ├─ form ··········· Form components
   ├─ styling ········ SCSS files
   ├─ test ··········· Test fixtures and utilities
@@ -23,6 +25,5 @@ The top-level directory structure for `@42.nl/ui` looks like the following diagr
   ├─ index.ts ······· Main export file
   └─ main.scss ······ Main styling file
 ├─ package.json ····· Project config
-├─ dangerfile.ts ···· Dangerjs config
 └─ rollup.config.js · Rollup config
 ```

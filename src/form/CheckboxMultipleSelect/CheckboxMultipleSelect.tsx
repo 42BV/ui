@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Col, FormGroup, Input as RSInput, Label, Row } from 'reactstrap';
-import { chunk, constant, get, isArray } from 'lodash';
+import { chunk, constant, get, isArray, uniqueId } from 'lodash';
 
 import { Page } from '@42.nl/spring-connect';
 
 import withJarb from '../withJarb/withJarb';
 import Spinner from '../../core/Spinner/Spinner';
-import { Color } from '../types';
 import {
   isOptionSelected,
   keyForOption,
@@ -18,6 +17,7 @@ import {
 } from '../option';
 import { t } from '../../utilities/translation/translation';
 import { doBlur } from '../utils';
+import { FieldCompatible } from '../types';
 
 export type Text = {
   /**
@@ -27,22 +27,7 @@ export type Text = {
   loadingMessage?: string;
 };
 
-interface BaseProps<T> {
-  /**
-   * The value that the form element currently has.
-   */
-  value?: T[];
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value: T[]) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
+export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> & {
   /**
    * Is either an array of options or a callback which fetches
    * the options asynchronously.
@@ -72,32 +57,6 @@ interface BaseProps<T> {
   isOptionEnabled?: OptionEnabledCallback<T>;
 
   /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder?: string;
-
-  /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
@@ -116,31 +75,12 @@ interface BaseProps<T> {
    * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
    */
   uniqueKeyForValue?: UniqueKeyForValue<T>;
-}
+};
 
-interface WithoutLabel<T> extends BaseProps<T> {
-  id?: string;
-  label?: never;
-}
-
-interface WithLabel<T> extends BaseProps<T> {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-export type Props<T> = WithoutLabel<T> | WithLabel<T>;
-
-interface State<T> {
+type State<T> = {
   options: T[];
   loading: boolean;
-}
+};
 
 /**
  * Select is a form element for which the value can be selected
@@ -150,6 +90,9 @@ export default class CheckboxMultipleSelect<T> extends Component<
   Props<T>,
   State<T>
 > {
+  /* istanbul ignore next */
+  innerId = this?.props?.id ?? uniqueId();
+
   constructor(props: Props<T>) {
     super(props);
 
@@ -215,21 +158,18 @@ export default class CheckboxMultipleSelect<T> extends Component<
 
   render() {
     const {
-      id,
+      label,
       error,
       color,
       text = {},
       className = '',
-      placeholder,
-      ...props
+      placeholder
     } = this.props;
     const { loading } = this.state;
 
     return (
       <FormGroup className={className} color={color}>
-        {'label' in props && props.label ? (
-          <Label for={id}>{props.label}</Label>
-        ) : null}
+        {label ? <Label for={this.innerId}>{label}</Label> : null}
         {placeholder ? (
           <p className="text-muted">
             <em>{placeholder}</em>

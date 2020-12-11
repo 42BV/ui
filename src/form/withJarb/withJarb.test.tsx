@@ -7,6 +7,7 @@ import withJarb from './withJarb';
 import * as useHasErrors from './useHasErrors/useHasErrors';
 
 import { validMeta } from '../../test/fixtures';
+import { Color } from '../../core/types';
 
 const isSuperman = (value: string) =>
   value === 'superman' ? undefined : 'not superman';
@@ -145,7 +146,7 @@ type Props = {
   onChange: (value: string) => void;
   onBlur?: () => void;
   error?: React.ReactNode;
-  color?: string;
+  color?: Color;
   valid?: boolean;
 };
 

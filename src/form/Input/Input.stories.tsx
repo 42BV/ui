@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Input, { JarbInput } from './Input';
 import { Form, FinalForm } from '../story-utils';
-import { Tooltip, Icon } from '../..';
+import { Tooltip, Icon, Addon, AddonIcon, AddonButton } from '../..';
 
 function isSuperman(value: string) {
   return value === 'superman' ? undefined : 'Not "superman"';
@@ -23,7 +23,7 @@ storiesOf('Form/Input', module)
       </Form>
     );
   })
-  .add('icon', () => {
+  .add('with addon', () => {
     return (
       <Form>
         <Input
@@ -31,10 +31,36 @@ storiesOf('Form/Input', module)
           label="First name"
           placeholder="Please enter your first name"
           onChange={(value) => action(`onChange: ${value}`)}
-          addon={{
-            icon: 'face',
-            position: 'left'
-          }}
+          addon={<AddonIcon icon="face" />}
+        />
+
+        <Input
+          id="lastName"
+          label="Last name"
+          placeholder="Please enter your last name"
+          onChange={(value) => action(`onChange: ${value}`)}
+          addon={<AddonIcon position="right" icon="face" />}
+          color="success"
+        />
+
+        <Input
+          id="magicNumber"
+          label="Magic number"
+          placeholder="Please enter the magic number"
+          onChange={(value) => action(`onChange: ${value}`)}
+          addon={<Addon>Try 42</Addon>}
+        />
+
+        <Input
+          id="addonButton"
+          label="Addon as a button"
+          placeholder="Please click on my addon button"
+          onChange={(value) => action(`onChange: ${value}`)}
+          addon={
+            <AddonButton onClick={() => alert('Yippy')} position="right">
+              Click me
+            </AddonButton>
+          }
         />
       </Form>
     );

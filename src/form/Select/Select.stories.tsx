@@ -8,10 +8,10 @@ import { pageOfUsers, userUser, randomUser } from '../../test/fixtures';
 import { User } from '../../test/types';
 import { Icon, pageOf, Tooltip } from '../..';
 
-interface SubjectOption {
+type SubjectOption = {
   value: string;
   label: string;
-}
+};
 
 storiesOf('Form/Select', module)
   .add('defined options', () => {

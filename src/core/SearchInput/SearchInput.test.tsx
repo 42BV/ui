@@ -37,9 +37,7 @@ describe('Component: SearchInput', () => {
     };
 
     if (showLabel) {
-      // @ts-expect-error Test mock
       props.id = 'search';
-      // @ts-expect-error Test mock
       props.label = 'Search';
     }
 
@@ -50,8 +48,6 @@ describe('Component: SearchInput', () => {
 
     switch (showIcon) {
       case true:
-        // Ignore the typescript error because it doesn't know about label here
-        // @ts-expect-error Test mock
         props.showIcon = true;
         break;
       case false:

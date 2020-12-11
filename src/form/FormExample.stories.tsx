@@ -32,6 +32,7 @@ import {
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
 import { ModalForm } from '../core/OpenCloseModal/OpenCloseModal.stories';
+import { AddonIcon } from './addons/AddonIcon/AddonIcon';
 
 function sleep(ms: number) {
   return new Promise((resolve) => {
@@ -149,10 +150,7 @@ export function TotalForm() {
         id="lastName"
         label="Last name"
         placeholder="Please enter your last name"
-        addon={{
-          icon: 'face',
-          position: 'right'
-        }}
+        addon={<AddonIcon icon="face" />}
         validators={lastNameValidators}
         asyncValidators={lastNameAsyncValidators}
       />

@@ -38,11 +38,15 @@ exports[`Component: FileInput ui empty value: Component: FileInput => ui => empt
       type="text"
       value=""
     />
-    <Addon
+    <AddonButton
       color="danger"
-      icon="cloud_upload"
+      onClick={[Function]}
       position="right"
-    />
+    >
+      <Icon
+        icon="cloud_upload"
+      />
+    </AddonButton>
   </InputGroup>
   Some error
 </FormGroup>
@@ -85,11 +89,15 @@ exports[`Component: FileInput ui with value: Component: FileInput => ui => with 
       type="text"
       value="maarten.png"
     />
-    <Addon
+    <AddonButton
       color="danger"
-      icon="delete"
+      onClick={[Function]}
       position="right"
-    />
+    >
+      <Icon
+        icon="delete"
+      />
+    </AddonButton>
   </InputGroup>
   Some error
 </FormGroup>
@@ -103,6 +111,7 @@ exports[`Component: FileInput ui without label: Component: FileInput => ui => wi
 >
   <input
     accept="text/plain"
+    id="1"
     onChange={[Function]}
     onClick={[Function]}
     type="file"
@@ -117,11 +126,15 @@ exports[`Component: FileInput ui without label: Component: FileInput => ui => wi
       type="text"
       value=""
     />
-    <Addon
+    <AddonButton
       color="danger"
-      icon="cloud_upload"
+      onClick={[Function]}
       position="right"
-    />
+    >
+      <Icon
+        icon="cloud_upload"
+      />
+    </AddonButton>
   </InputGroup>
   Some error
 </FormGroup>
@@ -164,11 +177,15 @@ exports[`Component: FileInput ui without placeholder: Component: FileInput => ui
       type="text"
       value=""
     />
-    <Addon
+    <AddonButton
       color="danger"
-      icon="cloud_upload"
+      onClick={[Function]}
       position="right"
-    />
+    >
+      <Icon
+        icon="cloud_upload"
+      />
+    </AddonButton>
   </InputGroup>
   Some error
 </FormGroup>

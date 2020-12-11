@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Button from './Button';
+import Button, { getIconSize, getSpinnerSize } from './Button';
 import useShowSpinner from './useShowSpinner';
 
 describe('Component: Button', () => {
@@ -11,7 +11,7 @@ describe('Component: Button', () => {
       describe('normal', () => {
         test('inProgress is true', () => {
           const button = shallow(
-            <Button onClick={jest.fn()} inProgress={true}>
+            <Button onClick={jest.fn()} inProgress={true} iconPosition="right">
               Save
             </Button>
           );
@@ -169,7 +169,14 @@ describe('Component: Button', () => {
       });
     });
 
-    describe('icon', () => {
+    describe('icon only', () => {
+      test('that when no icon is provided it will fallback to block', () => {
+        const button = shallow(<Button />);
+
+        // @ts-expect-error Test mock
+        expect(button.find('Icon').props().icon).toBe('block');
+      });
+
       describe('inProgress', () => {
         test('inProgress is true', () => {
           const button = shallow(
@@ -200,6 +207,34 @@ describe('Component: Button', () => {
         test('is enabled', () => {
           const button = shallow(
             <Button onClick={jest.fn()} icon="save" disabled={false} />
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+      });
+
+      describe('full-width', () => {
+        test('full width and icon left', () => {
+          const button = shallow(
+            <Button
+              onClick={jest.fn()}
+              icon="save"
+              fullWidth={true}
+              iconPosition="left"
+            />
+          );
+
+          expect(toJson(button)).toMatchSnapshot();
+        });
+
+        test('full width and icon right', () => {
+          const button = shallow(
+            <Button
+              onClick={jest.fn()}
+              icon="save"
+              fullWidth={true}
+              iconPosition="right"
+            />
           );
 
           expect(toJson(button)).toMatchSnapshot();
@@ -324,4 +359,16 @@ describe('Component: Button', () => {
       });
     });
   });
+});
+
+test('Util: getIconSize', () => {
+  expect(getIconSize('lg')).toBe(39);
+  expect(getIconSize('md')).toBe(35);
+  expect(getIconSize('sm')).toBe(31);
+});
+
+test('Util: getSpinnerSize', () => {
+  expect(getSpinnerSize('lg')).toBe(19);
+  expect(getSpinnerSize('md')).toBe(16);
+  expect(getSpinnerSize('sm')).toBe(12);
 });

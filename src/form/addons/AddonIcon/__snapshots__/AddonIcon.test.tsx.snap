@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: AddonIcon ui: Component: AddonIcon 1`] = `
+<Addon
+  className="custom-class"
+  position="right"
+>
+  <Icon
+    icon="360"
+  />
+</Addon>
+`;

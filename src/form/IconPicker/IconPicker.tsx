@@ -10,7 +10,6 @@ import {
 import classNames from 'classnames';
 
 import withJarb from '../withJarb/withJarb';
-import { Color } from '../types';
 import { Icon, icons, IconType } from '../../core/Icon';
 import Pager from '../../core/Pager/Pager';
 import { doBlur } from '../utils';
@@ -21,6 +20,7 @@ import { t } from '../../utilities/translation/translation';
 import Tooltip from '../../core/Tooltip/Tooltip';
 import Popover from '../../core/Popover/Popover';
 import TextButton from '../../core/TextButton/TextButton';
+import { FieldCompatible } from '../types';
 
 type Text = {
   /**
@@ -41,73 +41,13 @@ type Text = {
   clear?: string;
 };
 
-interface BaseProps {
-  /**
-   * The value that the form element currently has.
-   */
-  value?: IconType;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value?: IconType) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder: string;
-
+type Props = FieldCompatible<IconType, IconType | undefined> & {
   /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
   text?: Text;
-}
-
-interface WithoutLabel extends BaseProps {
-  id?: string;
-  label?: never;
-}
-
-interface WithLabel extends BaseProps {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-}
-
-export type Props = WithoutLabel | WithLabel;
+};
 
 /**
  * IconPicker is a form element which allows the user to select one
@@ -116,6 +56,7 @@ export type Props = WithoutLabel | WithLabel;
  */
 export default function IconPicker(props: Props) {
   const {
+    label,
     value,
     color,
     placeholder,
@@ -155,9 +96,7 @@ export default function IconPicker(props: Props) {
     <SearchInput defaultValue={query} onChange={onSearch} debounce={0}>
       {(searchInput, searchInputApi) => (
         <FormGroup className={classes} color={color}>
-          {'label' in props && props.label ? (
-            <Label>{props.label}</Label>
-          ) : null}
+          {label ? <Label>{label}</Label> : null}
 
           <div className="d-flex">
             {value ? (
