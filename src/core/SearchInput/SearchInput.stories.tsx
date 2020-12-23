@@ -130,8 +130,8 @@ storiesOf('core/SearchInput', module)
                 label="Predefined queries"
                 value={query}
                 placeholder="Please select a predefined query"
-                optionForValue={(option) => option}
                 options={['Maarten', 'Jeffrey']}
+                labelForOption={(option) => option}
                 onChange={(value) => {
                   if (value) {
                     setValue(value);

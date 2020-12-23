@@ -33,7 +33,8 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
     className=""
   >
     <withAsync(Component)
-      delay={200}
+      delay={0}
+      filterBy={[Function]}
       id="bestFriend"
       inputProps={
         Object {
@@ -42,9 +43,9 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
             Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],
@@ -57,7 +58,37 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
       multiple={true}
       onChange={[Function]}
       onSearch={[Function]}
-      options={Array []}
+      options={
+        Array [
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
       placeholder="Please provide your best friend"
       promptText="Type to search..."
       renderToken={[Function]}
@@ -69,9 +100,9 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],
@@ -95,7 +126,8 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
     className=""
   >
     <withAsync(Component)
-      delay={200}
+      delay={0}
+      filterBy={[Function]}
       inputProps={
         Object {
           "className": "form-control",
@@ -103,9 +135,9 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
             Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],
@@ -118,7 +150,37 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
       multiple={true}
       onChange={[Function]}
       onSearch={[Function]}
-      options={Array []}
+      options={
+        Array [
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
       placeholder="Please provide your best friend"
       promptText="Type to search..."
       renderToken={[Function]}
@@ -130,9 +192,9 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],
@@ -171,7 +233,8 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
     className=""
   >
     <withAsync(Component)
-      delay={200}
+      delay={0}
+      filterBy={[Function]}
       id="bestFriend"
       inputProps={
         Object {
@@ -180,9 +243,9 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
             Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],
@@ -195,7 +258,37 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
       multiple={true}
       onChange={[Function]}
       onSearch={[Function]}
-      options={Array []}
+      options={
+        Array [
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
       promptText="Type to search..."
       renderToken={[Function]}
       searchText="Searching..."
@@ -206,9 +299,9 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],

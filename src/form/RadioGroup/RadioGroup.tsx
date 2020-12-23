@@ -1,19 +1,14 @@
 import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
-import { constant, get } from 'lodash';
 
 import withJarb from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
 import {
+  FieldCompatibleWithPredeterminedOptions,
   isOptionSelected,
-  keyForOption,
-  OptionEnabledCallback,
-  OptionEqual,
-  OptionForValue,
-  OptionsFetcher,
-  UniqueKeyForValue
+  getKeyForOption
 } from '../option';
-import { doBlur } from '../utils';
+import { alwaysTrue, doBlur } from '../utils';
 import Loading from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
 import TextButton from '../../core/TextButton/TextButton';
@@ -32,67 +27,28 @@ export type Text = {
   clear?: string;
 };
 
-export type Props<T> = FieldCompatible<T, T | undefined> & {
-  /**
-   * Is either an array of options or a callback which fetches
-   * the options asynchronously.
-   */
-  options: OptionsFetcher<T> | T[];
+export type Props<T> = FieldCompatible<T, T | undefined> &
+  FieldCompatibleWithPredeterminedOptions<T> & {
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
 
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
+    /**
+     * Whether or not to show the RadioGroup horizontally.
+     *
+     * Defaults to `false`
+     */
+    horizontal?: boolean;
 
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
-
-  /**
-   * Optional callback which is called for every option to determine
-   * if the option can be selected. By default all options can be
-   * selected.
-   */
-  isOptionEnabled?: OptionEnabledCallback<T>;
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-
-  /**
-   * Whether or not to show the RadioGroup horizontally.
-   *
-   * Defaults to `false`
-   */
-  horizontal?: boolean;
-
-  /**
-   * Whether or not to show a "clear" button.
-   *
-   * Defaults to `false`
-   */
-  canClear?: boolean;
-
-  /**
-   * Optionally a value to detect changes and trigger
-   * the optionsFetcher to reload the options.
-   */
-  watch?: any;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
-};
+    /**
+     * Whether or not to show a "clear" button.
+     *
+     * Defaults to `false`
+     */
+    canClear?: boolean;
+  };
 
 /**
  * RadioGroup is a form element for which the value can be selected
@@ -109,23 +65,27 @@ export default function RadioGroup<T>(props: Props<T>) {
     placeholder,
     onChange,
     onBlur,
-    uniqueKeyForValue,
-    optionForValue,
+    options,
+    keyForOption,
+    labelForOption,
     isOptionEqual,
     horizontal = false,
     canClear = false,
-    watch
+    isOptionEnabled = alwaysTrue,
+    reloadOptions
   } = props;
 
-  const { options, loading } = useOptions({
-    optionsOrFetcher: props.options,
+  const { page, loading } = useOptions({
+    options,
     value,
     isOptionEqual,
-    optionForValue,
-    watch
+    labelForOption,
+    reloadOptions,
+    pageNumber: 1,
+    query: '',
+    size: 10,
+    optionsShouldAlwaysContainValue: true
   });
-
-  const isOptionEnabled = get(props, 'isOptionEnabled', constant(true));
 
   function onRadioClicked(option: T) {
     onChange(option);
@@ -167,12 +127,20 @@ export default function RadioGroup<T>(props: Props<T>) {
             </div>
           ) : null}
 
-          {options.map((option) => {
-            const label = optionForValue(option);
-            const key = keyForOption({
+          {page.content.map((option) => {
+            const label = labelForOption(option);
+            const key = getKeyForOption({
               option,
-              uniqueKeyForValue,
-              optionForValue
+              keyForOption,
+              labelForOption
+            });
+
+            const isSelected = isOptionSelected({
+              option,
+              keyForOption,
+              labelForOption,
+              isOptionEqual,
+              value
             });
 
             return (
@@ -181,13 +149,7 @@ export default function RadioGroup<T>(props: Props<T>) {
                   <Input
                     type="radio"
                     value={label}
-                    checked={isOptionSelected({
-                      option,
-                      uniqueKeyForValue,
-                      optionForValue,
-                      isOptionEqual,
-                      value
-                    })}
+                    checked={isSelected}
                     disabled={!isOptionEnabled(option)}
                     onChange={() => onRadioClicked(option)}
                   />{' '}

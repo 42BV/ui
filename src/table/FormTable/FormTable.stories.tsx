@@ -265,7 +265,7 @@ storiesOf('table/FormTable', module)
                     name="eyeColor"
                     placeholder="Enter eye color"
                     options={['green', 'blue', 'brown']}
-                    optionForValue={(option) => option}
+                    labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
                       label: 'Eye color'
@@ -325,8 +325,7 @@ storiesOf('table/FormTable', module)
                       label: 'Favorite movie'
                     }}
                     multiple={false}
-                    optionForValue={(option) => option.name}
-                    fetchOptions={(query, page, size) =>
+                    options={({ query, page, size }) =>
                       Promise.resolve(
                         pageOf(
                           movies
@@ -341,6 +340,7 @@ storiesOf('table/FormTable', module)
                         )
                       )
                     }
+                    labelForOption={(option) => option.name}
                     errorMode="tooltip"
                     alignButton="right"
                   />
@@ -382,7 +382,7 @@ storiesOf('table/FormTable', module)
                     name="sex"
                     className="ml-1"
                     options={['male', 'female']}
-                    optionForValue={(option) => option}
+                    labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{
                       validator: 'Person.sex',
@@ -648,7 +648,7 @@ storiesOf('table/FormTable', module)
                       name="eyeColor"
                       placeholder="Enter eye color"
                       options={['green', 'blue', 'brown']}
-                      optionForValue={(option) => option}
+                      labelForOption={(option) => option}
                       jarb={{
                         validator: 'Person.eyeColor',
                         label: 'Eye color'
@@ -708,8 +708,8 @@ storiesOf('table/FormTable', module)
                         label: 'Favorite movie'
                       }}
                       multiple={false}
-                      optionForValue={(option) => option.name}
-                      fetchOptions={(query, page, size) =>
+                      labelForOption={(option) => option.name}
+                      options={({ query, page, size }) =>
                         Promise.resolve(
                           pageOf(
                             movies
@@ -764,7 +764,7 @@ storiesOf('table/FormTable', module)
                       name="sex"
                       className="ml-1"
                       options={['male', 'female']}
-                      optionForValue={(option) => option}
+                      labelForOption={(option) => option}
                       horizontal={true}
                       jarb={{
                         validator: 'Person.sex',
@@ -1093,7 +1093,7 @@ storiesOf('table/FormTable', module)
                     name="eyeColor"
                     placeholder="Enter eye color"
                     options={['green', 'blue', 'brown']}
-                    optionForValue={(option) => option}
+                    labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
                       label: 'Eye color'
@@ -1153,8 +1153,7 @@ storiesOf('table/FormTable', module)
                       label: 'Favorite movie'
                     }}
                     multiple={false}
-                    optionForValue={(option) => option.name}
-                    fetchOptions={(query, page, size) =>
+                    options={({ query, page, size }) =>
                       Promise.resolve(
                         pageOf(
                           movies
@@ -1169,6 +1168,7 @@ storiesOf('table/FormTable', module)
                         )
                       )
                     }
+                    labelForOption={(option) => option.name}
                     errorMode="tooltip"
                     alignButton="right"
                   />
@@ -1210,7 +1210,7 @@ storiesOf('table/FormTable', module)
                     name="sex"
                     className="ml-1"
                     options={['male', 'female']}
-                    optionForValue={(option) => option}
+                    labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{
                       validator: 'Person.sex',
@@ -1585,7 +1585,7 @@ storiesOf('table/FormTable', module)
                     name="eyeColor"
                     placeholder="Enter eye color"
                     options={['green', 'blue', 'brown']}
-                    optionForValue={(option) => option}
+                    labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
                       label: 'Eye color'
@@ -1645,8 +1645,7 @@ storiesOf('table/FormTable', module)
                       label: 'Favorite movie'
                     }}
                     multiple={false}
-                    optionForValue={(option) => option.name}
-                    fetchOptions={(query, page, size) =>
+                    options={({ query, page, size }) =>
                       Promise.resolve(
                         pageOf(
                           movies
@@ -1661,6 +1660,7 @@ storiesOf('table/FormTable', module)
                         )
                       )
                     }
+                    labelForOption={(option) => option.name}
                     errorMode="tooltip"
                     alignButton="right"
                   />
@@ -1702,7 +1702,7 @@ storiesOf('table/FormTable', module)
                     name="sex"
                     className="ml-1"
                     options={['male', 'female']}
-                    optionForValue={(option) => option}
+                    labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{
                       validator: 'Person.sex',

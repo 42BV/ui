@@ -4,7 +4,7 @@ import { random } from 'lodash';
 import { Moment } from 'moment';
 
 import { JarbInput } from './Input/Input';
-import { FinalForm } from './story-utils';
+import { FinalForm, provinceFetcher, resolveAfter } from './story-utils';
 import {
   isStrongPassword,
   JarbCheckbox,
@@ -260,19 +260,16 @@ export function TotalForm() {
       />
 
       <JarbSelect
-        name="subject"
-        jarb={{ validator: 'User.subject', label: 'Subject' }}
-        id="subject"
-        label="Subject"
-        placeholder="Please enter your subject"
-        optionForValue={(value) => value.label}
-        isOptionEnabled={(option) => option.value !== 'awesome'}
-        options={[
-          { value: 'awesome', label: 'Awesome shit' },
-          { value: 'super', label: 'Super shit' },
-          { value: 'great', label: 'Great shit' },
-          { value: 'good', label: 'good shit' }
-        ]}
+        id="province"
+        name="province"
+        label="Province"
+        placeholder="Please select your province"
+        options={provinceFetcher}
+        labelForOption={(province) => province.label}
+        jarb={{
+          validator: 'User.province',
+          label: 'Province'
+        }}
         validators={requiredValidator}
       />
 
@@ -282,8 +279,8 @@ export function TotalForm() {
         id="nemesis"
         label="Worst enemy"
         placeholder="Select your nemesis"
-        optionForValue={userAsOption}
-        options={() => Promise.resolve(pageOfUsers())}
+        options={() => resolveAfter(pageOfUsers())}
+        labelForOption={userAsOption}
         validators={requiredValidator}
       />
 
@@ -293,8 +290,8 @@ export function TotalForm() {
         id="bestFriend"
         label="Best friend"
         placeholder="Select your best friend"
-        optionForValue={userAsOption}
-        options={() => Promise.resolve(pageOfUsers())}
+        options={() => resolveAfter(pageOfUsers())}
+        labelForOption={userAsOption}
         validators={requiredValidator}
       />
 
@@ -303,9 +300,9 @@ export function TotalForm() {
         jarb={{ validator: 'User.bestFriend', label: 'Best friend' }}
         id="bestFriend"
         label="Best friend"
-        optionForValue={userAsOption}
         placeholder="Please provide your best friend"
-        fetchOptions={() => Promise.resolve(pageOfUsers())}
+        options={() => resolveAfter(pageOfUsers())}
+        labelForOption={userAsOption}
       />
 
       <JarbModalPickerSingle
@@ -315,8 +312,8 @@ export function TotalForm() {
         label="Best friend"
         placeholder="Select your best friend"
         canSearch={true}
-        optionForValue={userAsOption}
-        fetchOptions={() => Promise.resolve(pageOfUsers())}
+        options={() => resolveAfter(pageOfUsers())}
+        labelForOption={userAsOption}
         validators={requiredValidator}
       />
 
@@ -325,9 +322,9 @@ export function TotalForm() {
         jarb={{ validator: 'User.friends', label: 'Friends' }}
         id="friends"
         label="Friends"
-        optionForValue={userAsOption}
         placeholder="Please provide all your friends"
-        fetchOptions={() => Promise.resolve(pageOfUsers())}
+        options={() => resolveAfter(pageOfUsers())}
+        labelForOption={userAsOption}
         validators={requiredValidator}
       />
 
@@ -337,8 +334,8 @@ export function TotalForm() {
         id="friends"
         label="Friends"
         placeholder="Please provide all your friends"
-        optionForValue={userAsOption}
-        fetchOptions={() => Promise.resolve(pageOfUsers())}
+        options={() => resolveAfter(pageOfUsers())}
+        labelForOption={userAsOption}
         canSearch={true}
         validators={requiredValidator}
       />
@@ -349,8 +346,8 @@ export function TotalForm() {
         id="friends"
         label="Friends"
         placeholder="Please provide all your friends"
-        optionForValue={userAsOption}
-        options={() => Promise.resolve(pageOfUsers())}
+        options={() => resolveAfter(pageOfUsers())}
+        labelForOption={userAsOption}
         canSearch={true}
         validators={requiredValidator}
       />

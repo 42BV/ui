@@ -1,213 +1,228 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import Select, { JarbSelect } from './Select';
-import { FinalForm, Form, resolveAfter } from '../story-utils';
-import { pageOfUsers, userUser, randomUser } from '../../test/fixtures';
-import { User } from '../../test/types';
+import {
+  FinalForm,
+  Form,
+  IsOptionEqualInfo,
+  KeyForOptionInfo,
+  nonExistingProvince,
+  Province,
+  provinceFetcher,
+  provinces,
+  ReloadOptionsInfo,
+  resolveAfter
+} from '../story-utils';
 import { Icon, pageOf, Tooltip } from '../..';
 
-type SubjectOption = {
-  value: string;
-  label: string;
-};
-
 storiesOf('Form/Select', module)
-  .add('defined options', () => {
+  .add('predefined options', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
     return (
       <Form>
-        <Select
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          onChange={(value) => action(`You entered ${value}`)}
+        <Select<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
         />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
-  .add('fetched options', () => {
-    const [subject, setSubject] = useState<User>(randomUser());
+  .add('async options', () => {
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Form>
-        <Select
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(user: User) => user.email}
-          options={() => resolveAfter(pageOfUsers())}
-          value={subject}
-          onChange={setSubject}
+        <Select<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
         />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+      </Form>
+    );
+  })
+  .add('disabled options', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
+    return (
+      <Form>
+        <Select<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEnabled={(option) => !option.label.startsWith('Z')}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
   .add('custom isOptionEqual', () => {
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+
     return (
       <Form>
-        <Select
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          value={userUser()}
-          optionForValue={(user: User) => user.email}
-          options={() => Promise.resolve(pageOfUsers())}
-          isOptionEqual={(a: User, b: User) => a.id === b.id}
-          onChange={(value) => action(`You entered ${value}`)}
+        <Select<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEqual={(a, b) => a.value === b.value}
+          value={value}
+          onChange={setValue}
         />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+
+        <IsOptionEqualInfo />
       </Form>
     );
   })
-  .add('without placeholder', () => {
+  .add('custom keyForOption', () => {
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+
     return (
       <Form>
-        <Select
-          id="subject"
-          label="Subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          onChange={(value) => action(`You entered ${value}`)}
+        <Select<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          keyForOption={(province) => province.value}
+          value={value}
+          onChange={setValue}
         />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+
+        <KeyForOptionInfo />
       </Form>
     );
   })
-  .add('without label', () => {
+  .add('using reloadOptions', () => {
+    const [brand, setBrand] = useState<string>();
+    const [model, setModel] = useState<string>();
+
+    const allOptions = {
+      Audi: ['A1', 'A2', 'A3', 'M5'],
+      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
+      Mercedes: ['Viano', 'Vito', 'Sprinter']
+    };
+
     return (
       <Form>
         <Select
-          id="subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          onChange={(value) => action(`You entered ${value}`)}
+          id="brand"
+          label="Brand"
+          placeholder="Please select your brand"
+          options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
+          labelForOption={(option) => option}
+          onChange={(value) => {
+            setBrand(value);
+            setModel(undefined);
+          }}
+          value={brand}
         />
+        <Select
+          id="model"
+          label="Model"
+          placeholder={
+            brand ? 'Please select your model' : 'Please select a brand first'
+          }
+          options={() =>
+            resolveAfter(pageOf(brand ? allOptions[brand] : [], 1))
+          }
+          labelForOption={(option: string) => option}
+          onChange={setModel}
+          value={model}
+          reloadOptions={brand}
+        />
+
+        {brand ? <p>Your chosen brand is: {brand}</p> : null}
+        {model ? <p>Your chosen model is: {model}</p> : null}
+
+        <ReloadOptionsInfo />
       </Form>
     );
   })
-  .add('with custom label', () => {
+  .add('label & placeholder', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
     return (
       <Form>
-        <Select
-          id="subject"
+        <h3>Without label</h3>
+
+        <Select<Province>
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        <h3>Custom label</h3>
+
+        <Select<Province>
+          id="provinces"
           label={
             <div className="d-flex justify-content-between">
               <span>Subject</span>
-              <Tooltip className="ml-1" content="The subject of your essay">
+              <Tooltip className="ml-1" content="The province you live in">
                 <Icon icon="info" />
               </Tooltip>
             </div>
           }
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          onChange={(value) => action(`You entered ${value}`)}
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
         />
-      </Form>
-    );
-  })
-  .add('value based options', () => {
-    const [brand, setBrand] = useState<string>();
-    const [model, setModel] = useState<string>();
 
-    const allOptions = {
-      Audi: ['A1', 'A2', 'A3', 'M5'],
-      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
-      Mercedes: ['Viano', 'Vito', 'Sprinter']
-    };
+        <hr />
 
-    return (
-      <Form>
-        <Select
-          id="brand"
-          label="Brand"
-          placeholder="Please select your brand"
-          optionForValue={(option) => option}
-          options={Object.keys(allOptions)}
-          onChange={(value) => {
-            setBrand(value);
-            setModel(undefined);
-          }}
-          value={brand}
-        />
-        <Select
-          id="model"
-          label="Model"
-          placeholder={
-            brand ? 'Please select your model' : 'Please select a brand first'
-          }
-          optionForValue={(option: string) => option}
-          options={brand ? allOptions[brand] : []}
-          onChange={(value) => setModel(value)}
-          value={model}
-        />
-      </Form>
-    );
-  })
-  .add('value based async options', () => {
-    const [brand, setBrand] = useState<string>();
-    const [model, setModel] = useState<string>();
+        <h3>Without placeholder</h3>
 
-    const allOptions = {
-      Audi: ['A1', 'A2', 'A3', 'M5'],
-      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
-      Mercedes: ['Viano', 'Vito', 'Sprinter']
-    };
+        <Select<Province>
+          id="province"
+          label="Province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
 
-    return (
-      <Form>
-        <Select
-          id="brand"
-          label="Brand"
-          placeholder="Please select your brand"
-          optionForValue={(option) => option}
-          options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
-          onChange={(value) => {
-            setBrand(value);
-            setModel(undefined);
-          }}
-          value={brand}
-        />
-        <Select
-          id="model"
-          label="Model"
-          placeholder={
-            brand ? 'Please select your model' : 'Please select a brand first'
-          }
-          optionForValue={(option: string) => option}
-          options={() =>
-            resolveAfter(pageOf(brand ? allOptions[brand] : [], 1))
-          }
-          onChange={(value: string) => setModel(value)}
-          value={model}
-          watch={brand}
-        />
+        <hr />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
@@ -215,45 +230,17 @@ storiesOf('Form/Select', module)
     return (
       <FinalForm>
         <JarbSelect
-          id="subject"
-          name="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
+          id="province"
+          name="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
           jarb={{
-            validator: 'Hero.name',
-            label: 'Subject'
+            validator: 'User.province',
+            label: 'Province'
           }}
         />
       </FinalForm>
-    );
-  })
-  .add('default option', () => {
-    const [value, setValue] = useState({ value: 'great', label: 'Great shit' });
-
-    return (
-      <Form>
-        <Select<SubjectOption>
-          id="subject"
-          label="Subject"
-          value={value}
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          onChange={setValue}
-        />
-      </Form>
     );
   });

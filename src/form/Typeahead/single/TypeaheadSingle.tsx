@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
-import { FormGroup, Label } from 'reactstrap';
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import { find } from 'lodash';
-import { FetchOptionsCallback, TypeaheadOption } from '../types';
-import withJarb from '../../withJarb/withJarb';
-import { doBlur } from '../../utils';
-import { valueToTypeaheadOption } from '../utils';
-import { OptionForValue } from '../../option';
 import classNames from 'classnames';
-import { FieldCompatible } from '../../types';
+import React, { useState } from 'react';
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import { FormGroup, Label } from 'reactstrap';
 import { useId } from '../../../hooks/useId/useId';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  isOptionSelected
+} from '../../option';
+import { FieldCompatible } from '../../types';
+import { useOptions } from '../../useOptions';
+import { doBlur, alwaysTrue } from '../../utils';
+import withJarb from '../../withJarb/withJarb';
+import { TypeaheadOption } from '../types';
+import { optionToTypeaheadOption } from '../utils';
+import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
 
-type Props<T> = FieldCompatible<T, T | undefined> & {
-  /**
-   * Callback to fetch the options to display to the user.
-   */
-  fetchOptions: FetchOptionsCallback<T>;
-
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-};
+type Props<T> = FieldCompatible<T, T | undefined> &
+  FieldCompatibleWithPredeterminedOptions<T>;
 
 /**
  * The TypeaheadSingle is a form element which allows the user
@@ -48,17 +42,47 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
     error,
     value,
     color,
-    optionForValue,
+    labelForOption,
     onFocus,
     valid,
     className = '',
     onChange,
     onBlur,
-    fetchOptions
+    options,
+    keyForOption,
+    isOptionEqual,
+    reloadOptions,
+    isOptionEnabled = alwaysTrue
   } = props;
 
-  const [options, setOptions] = useState<TypeaheadOption<T>[]>([]);
-  const [isLoading, setLoading] = useState(false);
+  const [query, setQuery] = useState('');
+
+  const { page, loading } = useOptions<T>({
+    options,
+    value,
+    keyForOption,
+    isOptionEqual,
+    labelForOption,
+    reloadOptions,
+    query,
+    pageNumber: 1,
+    size: 10,
+    optionsShouldAlwaysContainValue: false
+  });
+
+  const typeaheadOptions = page.content
+    .filter((option) => isOptionEnabled(option))
+    .filter(
+      (option) =>
+        !isOptionSelected({
+          option,
+          keyForOption,
+          labelForOption,
+          isOptionEqual,
+          value
+        })
+    )
+    .map((option) => optionToTypeaheadOption(option, labelForOption));
 
   function doOnChange(values: TypeaheadOption<T>[]) {
     if (values.length === 0) {
@@ -77,32 +101,15 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
     doBlur(onBlur);
   }
 
-  async function doFetchOptions(query: string) {
-    setLoading(true);
-
-    const page = await fetchOptions(query);
-    const options = page.content.map((value) =>
-      valueToTypeaheadOption(value, optionForValue)
-    );
-
-    setOptions(options);
-    setLoading(false);
-
-    const selectedValue = find(
-      options,
-      ({ label }) => label.toLowerCase() === query.toLowerCase()
-    );
-
-    if (selectedValue) {
-      onChange(selectedValue.value);
-    } else {
-      onChange(undefined);
-    }
-  }
+  useAutoSelectOptionWhenQueryMatchesExactly({
+    typeaheadOptions,
+    onChange,
+    query
+  });
 
   const selected: TypeaheadOption<T>[] = [];
   if (value) {
-    const option = valueToTypeaheadOption(value, optionForValue);
+    const option = optionToTypeaheadOption(value, labelForOption);
     selected.push(option);
   }
 
@@ -118,13 +125,14 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
       <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
         <AsyncTypeahead
           id={id}
-          labelKey="label"
-          isLoading={isLoading}
+          delay={Array.isArray(options) ? 0 : 200}
+          filterBy={alwaysTrue}
+          isLoading={loading}
           multiple={false}
           placeholder={placeholder}
           selected={selected}
-          options={options}
-          onSearch={doFetchOptions}
+          options={typeaheadOptions}
+          onSearch={setQuery}
           onChange={doOnChange}
           onFocus={onFocus}
           inputProps={{

@@ -1,92 +1,204 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-
-import { pageWithContentAndExactSize } from '../../../test/utils';
-import { Form, FinalForm } from '../../story-utils';
-import { userUser, adminUser } from '../../../test/fixtures';
-import { User } from '../../../test/types';
+import React, { useState } from 'react';
+import { Icon, pageOf, Tooltip } from '../../..';
+import {
+  FinalForm,
+  Form,
+  IsOptionEqualInfo,
+  nonExistingProvince,
+  Province,
+  provinceFetcher,
+  provinces,
+  ReloadOptionsInfo,
+  resolveAfter
+} from '../../story-utils';
 import TypeaheadSingle, { JarbTypeaheadSingle } from './TypeaheadSingle';
-import { Tooltip, Icon } from '../../..';
 
 storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
-  .add('basic', () => {
+  .add('predefined options', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
     return (
       <Form>
-        <TypeaheadSingle
-          id="bestFriend"
-          label="Best friend"
-          placeholder="Please provide your best friend"
-          optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          onChange={(value) => action(`onChange: ${value}`)}
+        <TypeaheadSingle<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
         />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
-  .add('without placeholder', () => {
+  .add('async options', () => {
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+
     return (
       <Form>
-        <TypeaheadSingle
-          id="bestFriend"
-          label="Best friend"
-          optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          onChange={(value) => action(`onChange: ${value}`)}
+        <TypeaheadSingle<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
         />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
-  .add('without label', () => {
+  .add('disabled options', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
     return (
       <Form>
-        <TypeaheadSingle
-          id="bestFriend"
-          placeholder="Please provide your best friend"
-          optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          onChange={(value) => action(`onChange: ${value}`)}
+        <TypeaheadSingle<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEnabled={(option) => !option.label.startsWith('Z')}
+          value={value}
+          onChange={setValue}
         />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
-  .add('with custom label', () => {
+  .add('custom isOptionEqual', () => {
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+
+    return (
+      <Form>
+        <TypeaheadSingle<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEqual={(a, b) => a.value === b.value}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+
+        <IsOptionEqualInfo />
+      </Form>
+    );
+  })
+  .add('using reloadOptions', () => {
+    const [brand, setBrand] = useState<string>();
+    const [model, setModel] = useState<string>();
+
+    const allOptions = {
+      Audi: ['A1', 'A2', 'A3', 'M5'],
+      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
+      Mercedes: ['Viano', 'Vito', 'Sprinter']
+    };
+
     return (
       <Form>
         <TypeaheadSingle
-          id="bestFriend"
+          id="brand"
+          label="Brand"
+          placeholder="Please select your brand"
+          options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
+          labelForOption={(option) => option}
+          onChange={(value) => {
+            setBrand(value);
+            setModel(undefined);
+          }}
+          value={brand}
+        />
+        <TypeaheadSingle
+          id="model"
+          label="Model"
+          placeholder={
+            brand ? 'Please select your model' : 'Please select a brand first'
+          }
+          options={() =>
+            resolveAfter(pageOf(brand ? allOptions[brand] : [], 1))
+          }
+          labelForOption={(option: string) => option}
+          onChange={setModel}
+          value={model}
+          reloadOptions={brand}
+        />
+
+        {brand ? <p>Your chosen brand is: {brand}</p> : null}
+        {model ? <p>Your chosen model is: {model}</p> : null}
+
+        <ReloadOptionsInfo />
+      </Form>
+    );
+  })
+  .add('label & placeholder', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
+    return (
+      <Form>
+        <h3>Without label</h3>
+
+        <TypeaheadSingle<Province>
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        <h3>Custom label</h3>
+
+        <TypeaheadSingle<Province>
+          id="provinces"
           label={
             <div className="d-flex justify-content-between">
-              <span>Best friend</span>
-              <Tooltip
-                className="ml-1"
-                content="Are you your best friend's best friend?"
-              >
+              <span>Subject</span>
+              <Tooltip className="ml-1" content="The province you live in">
                 <Icon icon="info" />
               </Tooltip>
             </div>
           }
-          placeholder="Please provide your best friend"
-          optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          onChange={(value) => action(`onChange: ${value}`)}
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
         />
+
+        <hr />
+
+        <h3>Without placeholder</h3>
+
+        <TypeaheadSingle<Province>
+          id="province"
+          label="Province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
@@ -94,19 +206,15 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
     return (
       <FinalForm>
         <JarbTypeaheadSingle
-          id="bestFriend"
-          name="bestFriend"
-          label="Best friend"
-          placeholder="Please provide your best friend"
-          optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
+          id="province"
+          name="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
           jarb={{
-            validator: 'User.bestFriend',
-            label: 'Best friend'
+            validator: 'User.province',
+            label: 'Province'
           }}
         />
       </FinalForm>

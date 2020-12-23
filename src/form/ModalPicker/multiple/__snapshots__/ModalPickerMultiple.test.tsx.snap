@@ -1,5 +1,208 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: ModalPickerMultiple ui renderValue should be able to use custom function to render values: Component: ModalPickerMultiple => ui => should be able to use custom function to render values 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best Friend
+  </Label>
+  <ModalPickerOpener
+    label="Select your best friend"
+    onClear={[Function]}
+    openModal={[Function]}
+    renderValue={[Function]}
+    value={
+      Array [
+        Object {
+          "active": true,
+          "email": "admin@42.nl",
+          "firstName": "Addie",
+          "id": 42,
+          "lastName": "Admin",
+          "roles": Array [
+            "ADMIN",
+          ],
+        },
+      ]
+    }
+  />
+  Some error
+  <ModalPicker
+    canSearch={true}
+    canSearchSync={true}
+    closeModal={[Function]}
+    isOpen={false}
+    loading={false}
+    modalSaved={[Function]}
+    page={
+      Object {
+        "content": Array [
+          Object {
+            "active": true,
+            "email": "admin@42.nl",
+            "firstName": "Addie",
+            "id": 42,
+            "lastName": "Admin",
+            "roles": Array [
+              "ADMIN",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "coordinator@42.nl",
+            "firstName": "Cordelia",
+            "id": 777,
+            "lastName": "Coordinator",
+            "roles": Array [
+              "ADMIN",
+              "USER",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "user@42.nl",
+            "firstName": "Ulysses",
+            "id": 1337,
+            "lastName": "User",
+            "roles": Array [
+              "USER",
+            ],
+          },
+        ],
+        "first": true,
+        "last": true,
+        "number": 1,
+        "numberOfElements": 3,
+        "size": 3,
+        "totalElements": 3,
+        "totalPages": 1,
+      }
+    }
+    pageChanged={[Function]}
+    placeholder="Select your best friend"
+    query=""
+    queryChanged={[Function]}
+    selected={Array []}
+    userHasSearched={false}
+  >
+    <FormGroup
+      check={true}
+      key="42"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        admin@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="777"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        coordinator@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="1337"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        user@42.nl
+      </Label>
+    </FormGroup>
+  </ModalPicker>
+</FormGroup>
+`;
+
+exports[`Component: ModalPickerMultiple ui renderValue should use the default ModalPickerValueTruncator to render values: Component: ModalPickerMultiple => ui => should use the default ModalPickerValueTruncator to render values 1`] = `
+<ModalPickerValueTruncator
+  labelForOption={[Function]}
+  value={
+    Object {
+      "active": true,
+      "email": "admin@42.nl",
+      "firstName": "Addie",
+      "id": 42,
+      "lastName": "Admin",
+      "roles": Array [
+        "ADMIN",
+      ],
+    }
+  }
+/>
+`;
+
 exports[`Component: ModalPickerMultiple ui should render button left: Component: ModalPickerMultiple => ui => should render button left 1`] = `
 <FormGroup
   className=""
@@ -23,18 +226,18 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
   </Label>
   <ModalPickerOpener
     alignButton="left"
-    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
-    values={
+    renderValue={[Function]}
+    value={
       Array [
         Object {
           "active": true,
           "email": "admin@42.nl",
-          "firstName": "admin",
+          "firstName": "Addie",
           "id": 42,
-          "lastName": "user",
+          "lastName": "Admin",
           "roles": Array [
             "ADMIN",
           ],
@@ -45,42 +248,70 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
   Some error
   <ModalPicker
     canSearch={true}
+    canSearchSync={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
+    loading={false}
     modalSaved={[Function]}
     page={
       Object {
-        "content": Array [],
+        "content": Array [
+          Object {
+            "active": true,
+            "email": "admin@42.nl",
+            "firstName": "Addie",
+            "id": 42,
+            "lastName": "Admin",
+            "roles": Array [
+              "ADMIN",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "coordinator@42.nl",
+            "firstName": "Cordelia",
+            "id": 777,
+            "lastName": "Coordinator",
+            "roles": Array [
+              "ADMIN",
+              "USER",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "user@42.nl",
+            "firstName": "Ulysses",
+            "id": 1337,
+            "lastName": "User",
+            "roles": Array [
+              "USER",
+            ],
+          },
+        ],
         "first": true,
         "last": true,
-        "number": 0,
-        "numberOfElements": 0,
-        "size": 0,
-        "totalElements": 0,
-        "totalPages": 0,
+        "number": 1,
+        "numberOfElements": 3,
+        "size": 3,
+        "totalElements": 3,
+        "totalPages": 1,
       }
     }
     pageChanged={[Function]}
     placeholder="Select your best friend"
     query=""
-    saveButtonEnabled={true}
+    queryChanged={[Function]}
+    selected={Array []}
+    userHasSearched={false}
   >
-    <Row
-      className="mt-3"
+    <FormGroup
+      check={true}
+      key="42"
       tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
-      <Col
-        tag="div"
+      <Label
+        check={true}
+        tag="label"
         widths={
           Array [
             "xs",
@@ -91,11 +322,69 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
           ]
         }
       >
-        <EmptyModal
-          userHasSearched={false}
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
         />
-      </Col>
-    </Row>
+        admin@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="777"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        coordinator@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="1337"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        user@42.nl
+      </Label>
+    </FormGroup>
   </ModalPicker>
 </FormGroup>
 `;
@@ -123,18 +412,18 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
   </Label>
   <ModalPickerOpener
     alignButton="right"
-    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
-    values={
+    renderValue={[Function]}
+    value={
       Array [
         Object {
           "active": true,
           "email": "admin@42.nl",
-          "firstName": "admin",
+          "firstName": "Addie",
           "id": 42,
-          "lastName": "user",
+          "lastName": "Admin",
           "roles": Array [
             "ADMIN",
           ],
@@ -145,42 +434,70 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
   Some error
   <ModalPicker
     canSearch={true}
+    canSearchSync={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
+    loading={false}
     modalSaved={[Function]}
     page={
       Object {
-        "content": Array [],
+        "content": Array [
+          Object {
+            "active": true,
+            "email": "admin@42.nl",
+            "firstName": "Addie",
+            "id": 42,
+            "lastName": "Admin",
+            "roles": Array [
+              "ADMIN",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "coordinator@42.nl",
+            "firstName": "Cordelia",
+            "id": 777,
+            "lastName": "Coordinator",
+            "roles": Array [
+              "ADMIN",
+              "USER",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "user@42.nl",
+            "firstName": "Ulysses",
+            "id": 1337,
+            "lastName": "User",
+            "roles": Array [
+              "USER",
+            ],
+          },
+        ],
         "first": true,
         "last": true,
-        "number": 0,
-        "numberOfElements": 0,
-        "size": 0,
-        "totalElements": 0,
-        "totalPages": 0,
+        "number": 1,
+        "numberOfElements": 3,
+        "size": 3,
+        "totalElements": 3,
+        "totalPages": 1,
       }
     }
     pageChanged={[Function]}
     placeholder="Select your best friend"
     query=""
-    saveButtonEnabled={true}
+    queryChanged={[Function]}
+    selected={Array []}
+    userHasSearched={false}
   >
-    <Row
-      className="mt-3"
+    <FormGroup
+      check={true}
+      key="42"
       tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
-      <Col
-        tag="div"
+      <Label
+        check={true}
+        tag="label"
         widths={
           Array [
             "xs",
@@ -191,11 +508,69 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
           ]
         }
       >
-        <EmptyModal
-          userHasSearched={false}
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
         />
-      </Col>
-    </Row>
+        admin@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="777"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        coordinator@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="1337"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        user@42.nl
+      </Label>
+    </FormGroup>
   </ModalPicker>
 </FormGroup>
 `;
@@ -223,50 +598,78 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
   </Label>
   <ModalPickerOpener
     alignButton="right"
-    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
+    renderValue={[Function]}
   />
   Some error
   <ModalPicker
     canSearch={true}
+    canSearchSync={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
+    loading={false}
     modalSaved={[Function]}
     page={
       Object {
-        "content": Array [],
+        "content": Array [
+          Object {
+            "active": true,
+            "email": "admin@42.nl",
+            "firstName": "Addie",
+            "id": 42,
+            "lastName": "Admin",
+            "roles": Array [
+              "ADMIN",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "coordinator@42.nl",
+            "firstName": "Cordelia",
+            "id": 777,
+            "lastName": "Coordinator",
+            "roles": Array [
+              "ADMIN",
+              "USER",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "user@42.nl",
+            "firstName": "Ulysses",
+            "id": 1337,
+            "lastName": "User",
+            "roles": Array [
+              "USER",
+            ],
+          },
+        ],
         "first": true,
         "last": true,
-        "number": 0,
-        "numberOfElements": 0,
-        "size": 0,
-        "totalElements": 0,
-        "totalPages": 0,
+        "number": 1,
+        "numberOfElements": 3,
+        "size": 3,
+        "totalElements": 3,
+        "totalPages": 1,
       }
     }
     pageChanged={[Function]}
     placeholder="Select your best friend"
     query=""
-    saveButtonEnabled={true}
+    queryChanged={[Function]}
+    selected={Array []}
+    userHasSearched={false}
   >
-    <Row
-      className="mt-3"
+    <FormGroup
+      check={true}
+      key="42"
       tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
-      <Col
-        tag="div"
+      <Label
+        check={true}
+        tag="label"
         widths={
           Array [
             "xs",
@@ -277,11 +680,69 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
           ]
         }
       >
-        <EmptyModal
-          userHasSearched={false}
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
         />
-      </Col>
-    </Row>
+        admin@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="777"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        coordinator@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="1337"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        user@42.nl
+      </Label>
+    </FormGroup>
   </ModalPicker>
 </FormGroup>
 `;
@@ -293,18 +754,18 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
   tag="div"
 >
   <ModalPickerOpener
-    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
-    values={
+    renderValue={[Function]}
+    value={
       Array [
         Object {
           "active": true,
           "email": "admin@42.nl",
-          "firstName": "admin",
+          "firstName": "Addie",
           "id": 42,
-          "lastName": "user",
+          "lastName": "Admin",
           "roles": Array [
             "ADMIN",
           ],
@@ -312,9 +773,9 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
         Object {
           "active": false,
           "email": "user@42.nl",
-          "firstName": "test",
+          "firstName": "Ulysses",
           "id": 1337,
-          "lastName": "user",
+          "lastName": "User",
           "roles": Array [
             "USER",
           ],
@@ -325,29 +786,289 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
   Some error
   <ModalPicker
     canSearch={true}
+    canSearchSync={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
+    loading={false}
     modalSaved={[Function]}
     page={
       Object {
-        "content": Array [],
+        "content": Array [
+          Object {
+            "active": true,
+            "email": "admin@42.nl",
+            "firstName": "Addie",
+            "id": 42,
+            "lastName": "Admin",
+            "roles": Array [
+              "ADMIN",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "coordinator@42.nl",
+            "firstName": "Cordelia",
+            "id": 777,
+            "lastName": "Coordinator",
+            "roles": Array [
+              "ADMIN",
+              "USER",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "user@42.nl",
+            "firstName": "Ulysses",
+            "id": 1337,
+            "lastName": "User",
+            "roles": Array [
+              "USER",
+            ],
+          },
+        ],
         "first": true,
         "last": true,
-        "number": 0,
-        "numberOfElements": 0,
-        "size": 0,
-        "totalElements": 0,
-        "totalPages": 0,
+        "number": 1,
+        "numberOfElements": 3,
+        "size": 3,
+        "totalElements": 3,
+        "totalPages": 1,
       }
     }
     pageChanged={[Function]}
     placeholder="Select your best friend"
     query=""
-    saveButtonEnabled={true}
+    queryChanged={[Function]}
+    selected={Array []}
+    userHasSearched={false}
+  >
+    <FormGroup
+      check={true}
+      key="42"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        admin@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="777"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        coordinator@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="1337"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        user@42.nl
+      </Label>
+    </FormGroup>
+  </ModalPicker>
+</FormGroup>
+`;
+
+exports[`Component: ModalPickerMultiple ui should render the options with the correct checked state: Component: ModalPickerMultiple => ui => should render the options with the correct checked state 1`] = `
+<FormGroup
+  className=""
+  color="success"
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best Friend
+  </Label>
+  <ModalPickerOpener
+    label="Select your best friend"
+    onClear={[Function]}
+    openModal={[Function]}
+    renderValue={[Function]}
+    value={
+      Array [
+        Object {
+          "active": true,
+          "email": "admin@42.nl",
+          "firstName": "Addie",
+          "id": 42,
+          "lastName": "Admin",
+          "roles": Array [
+            "ADMIN",
+          ],
+        },
+        Object {
+          "active": false,
+          "email": "coordinator@42.nl",
+          "firstName": "Cordelia",
+          "id": 777,
+          "lastName": "Coordinator",
+          "roles": Array [
+            "ADMIN",
+            "USER",
+          ],
+        },
+      ]
+    }
+  />
+  Some error
+  <ModalPicker
+    canSearch={true}
+    canSearchSync={true}
+    closeModal={[Function]}
+    isOpen={true}
+    loading={false}
+    modalSaved={[Function]}
+    page={
+      Object {
+        "content": Array [
+          Object {
+            "active": true,
+            "email": "admin@42.nl",
+            "firstName": "Addie",
+            "id": 42,
+            "lastName": "Admin",
+            "roles": Array [
+              "ADMIN",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "coordinator@42.nl",
+            "firstName": "Cordelia",
+            "id": 777,
+            "lastName": "Coordinator",
+            "roles": Array [
+              "ADMIN",
+              "USER",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "user@42.nl",
+            "firstName": "Ulysses",
+            "id": 1337,
+            "lastName": "User",
+            "roles": Array [
+              "USER",
+            ],
+          },
+        ],
+        "first": true,
+        "last": true,
+        "number": 1,
+        "numberOfElements": 3,
+        "size": 3,
+        "totalElements": 3,
+        "totalPages": 1,
+      }
+    }
+    pageChanged={[Function]}
+    placeholder="Select your best friend"
+    query=""
+    queryChanged={[Function]}
+    selected={
+      Array [
+        Object {
+          "active": true,
+          "email": "admin@42.nl",
+          "firstName": "Addie",
+          "id": 42,
+          "lastName": "Admin",
+          "roles": Array [
+            "ADMIN",
+          ],
+        },
+        Object {
+          "active": false,
+          "email": "coordinator@42.nl",
+          "firstName": "Cordelia",
+          "id": 777,
+          "lastName": "Coordinator",
+          "roles": Array [
+            "ADMIN",
+            "USER",
+          ],
+        },
+      ]
+    }
+    userHasSearched={false}
   >
     <Row
-      className="mt-3"
+      className="mb-3 p-2"
+      style={
+        Object {
+          "backgroundColor": "#edecf1",
+        }
+      }
       tag="div"
       widths={
         Array [
@@ -371,11 +1092,99 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
           ]
         }
       >
-        <EmptyModal
-          userHasSearched={false}
+        <Tag
+          key="admin@42.nl"
+          onRemove={[Function]}
+          text="admin@42.nl"
+        />
+        <Tag
+          key="coordinator@42.nl"
+          onRemove={[Function]}
+          text="coordinator@42.nl"
         />
       </Col>
     </Row>
+    <FormGroup
+      check={true}
+      key="42"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={true}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        admin@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="777"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={true}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        coordinator@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="1337"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        user@42.nl
+      </Label>
+    </FormGroup>
   </ModalPicker>
 </FormGroup>
 `;
@@ -402,18 +1211,18 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
     Best Friend
   </Label>
   <ModalPickerOpener
-    displayValues={[Function]}
     label="Select your best friend"
     onClear={[Function]}
     openModal={[Function]}
-    values={
+    renderValue={[Function]}
+    value={
       Array [
         Object {
           "active": true,
           "email": "admin@42.nl",
-          "firstName": "admin",
+          "firstName": "Addie",
           "id": 42,
-          "lastName": "user",
+          "lastName": "Admin",
           "roles": Array [
             "ADMIN",
           ],
@@ -421,9 +1230,9 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
         Object {
           "active": false,
           "email": "user@42.nl",
-          "firstName": "test",
+          "firstName": "Ulysses",
           "id": 1337,
-          "lastName": "user",
+          "lastName": "User",
           "roles": Array [
             "USER",
           ],
@@ -434,42 +1243,70 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
   Some error
   <ModalPicker
     canSearch={true}
+    canSearchSync={true}
     closeModal={[Function]}
-    fetchOptions={[Function]}
     isOpen={false}
+    loading={false}
     modalSaved={[Function]}
     page={
       Object {
-        "content": Array [],
+        "content": Array [
+          Object {
+            "active": true,
+            "email": "admin@42.nl",
+            "firstName": "Addie",
+            "id": 42,
+            "lastName": "Admin",
+            "roles": Array [
+              "ADMIN",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "coordinator@42.nl",
+            "firstName": "Cordelia",
+            "id": 777,
+            "lastName": "Coordinator",
+            "roles": Array [
+              "ADMIN",
+              "USER",
+            ],
+          },
+          Object {
+            "active": false,
+            "email": "user@42.nl",
+            "firstName": "Ulysses",
+            "id": 1337,
+            "lastName": "User",
+            "roles": Array [
+              "USER",
+            ],
+          },
+        ],
         "first": true,
         "last": true,
-        "number": 0,
-        "numberOfElements": 0,
-        "size": 0,
-        "totalElements": 0,
-        "totalPages": 0,
+        "number": 1,
+        "numberOfElements": 3,
+        "size": 3,
+        "totalElements": 3,
+        "totalPages": 1,
       }
     }
     pageChanged={[Function]}
     placeholder="Select your best friend"
     query=""
-    saveButtonEnabled={true}
+    queryChanged={[Function]}
+    selected={Array []}
+    userHasSearched={false}
   >
-    <Row
-      className="mt-3"
+    <FormGroup
+      check={true}
+      key="42"
       tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
-      <Col
-        tag="div"
+      <Label
+        check={true}
+        tag="label"
         widths={
           Array [
             "xs",
@@ -480,95 +1317,23 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
           ]
         }
       >
-        <EmptyModal
-          userHasSearched={false}
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
         />
-      </Col>
-    </Row>
-  </ModalPicker>
-</FormGroup>
-`;
-
-exports[`Component: ModalPickerMultiple ui should use custom display function to render values: Component: ModalPickerMultiple => ui => should use custom display function to render values 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-      ]
-    }
-  >
-    Best Friend
-  </Label>
-  <ModalPickerOpener
-    displayValues={[Function]}
-    label="Select your best friend"
-    onClear={[Function]}
-    openModal={[Function]}
-    values={
-      Array [
-        Object {
-          "active": true,
-          "email": "admin@42.nl",
-          "firstName": "admin",
-          "id": 42,
-          "lastName": "user",
-          "roles": Array [
-            "ADMIN",
-          ],
-        },
-      ]
-    }
-  />
-  Some error
-  <ModalPicker
-    canSearch={true}
-    closeModal={[Function]}
-    fetchOptions={[Function]}
-    isOpen={false}
-    modalSaved={[Function]}
-    page={
-      Object {
-        "content": Array [],
-        "first": true,
-        "last": true,
-        "number": 0,
-        "numberOfElements": 0,
-        "size": 0,
-        "totalElements": 0,
-        "totalPages": 0,
-      }
-    }
-    pageChanged={[Function]}
-    placeholder="Select your best friend"
-    query=""
-    saveButtonEnabled={true}
-  >
-    <Row
-      className="mt-3"
+        admin@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="777"
       tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
     >
-      <Col
-        tag="div"
+      <Label
+        check={true}
+        tag="label"
         widths={
           Array [
             "xs",
@@ -579,11 +1344,42 @@ exports[`Component: ModalPickerMultiple ui should use custom display function to
           ]
         }
       >
-        <EmptyModal
-          userHasSearched={false}
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
         />
-      </Col>
-    </Row>
+        coordinator@42.nl
+      </Label>
+    </FormGroup>
+    <FormGroup
+      check={true}
+      key="1337"
+      tag="div"
+    >
+      <Label
+        check={true}
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <Input
+          checked={false}
+          disabled={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        user@42.nl
+      </Label>
+    </FormGroup>
   </ModalPicker>
 </FormGroup>
 `;

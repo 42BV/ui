@@ -1,91 +1,123 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import Select, { Text } from './Select';
 import { User } from '../../test/types';
-import { adminUser, coordinatorUser, userUser } from '../../test/fixtures';
-import { OptionEnabledCallback } from '../option';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  userUser
+} from '../../test/fixtures';
+import { IsOptionEnabled } from '../option';
+
+import { pageOf } from '../../utilities/page/page';
+import { useOptions } from '../useOptions';
+
+jest.mock('../useOptions', () => {
+  return { useOptions: jest.fn() };
+});
 
 describe('Component: Select', () => {
-  let select: ShallowWrapper;
-
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-
   function setup({
     value,
     isOptionEnabled,
     text,
     hasPlaceholder = true,
-    hasLabel = true
+    hasLabel = true,
+    loading = false,
+    valid
   }: {
     value?: User;
-    isOptionEnabled?: OptionEnabledCallback<User>;
+    isOptionEnabled?: IsOptionEnabled<User>;
     text?: Text;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
+    loading?: boolean;
+    valid?: boolean;
   }) {
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
+
+    // @ts-expect-error This is in fact a mock
+    useOptions.mockImplementation(
+      ({
+        options,
+        pageNumber,
+        query,
+        size,
+        optionsShouldAlwaysContainValue
+      }) => {
+        expect(pageNumber).toBe(1);
+        expect(query).toBe('');
+        expect(size).toBe(10);
+        expect(optionsShouldAlwaysContainValue).toBe(true);
+
+        return {
+          page: pageOf(options, pageNumber, size),
+          loading
+        };
+      }
+    );
 
     const props = {
       placeholder: hasPlaceholder ? 'Please enter your subject' : undefined,
       text,
       isOptionEnabled,
-      optionForValue: (user: User) => user?.email,
-      options: [adminUser(), coordinatorUser(), userUser()],
+      labelForOption: (user: User) => user?.email,
+      options: listOfUsers(),
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      valid: false
+      valid
     };
 
-    if (hasLabel) {
-      select = shallow(<Select id="subject" label="Subject" {...props} />);
-    } else {
-      select = shallow(<Select {...props} />);
-    }
+    const labelProps = hasLabel ? { id: 'subject', label: 'Subject' } : {};
+
+    const select = shallow(<Select {...props} {...labelProps} />);
+
+    return { select, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: adminUser(), isOptionEnabled: undefined });
+      const { select } = setup({
+        value: adminUser(),
+        valid: true,
+        isOptionEnabled: undefined
+      });
 
       expect(toJson(select)).toMatchSnapshot(
         'Component: Select => ui => with value'
       );
     });
 
+    test('loading', () => {
+      const { select } = setup({
+        loading: true
+      });
+
+      expect(toJson(select)).toMatchSnapshot(
+        'Component: Select => ui => loading'
+      );
+    });
+
     test('empty value string, should show placeholder', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { select } = setup({
+        value: undefined,
+        isOptionEnabled: undefined,
+        valid: false
+      });
 
       const rsInput = select.find('Input');
 
       expect(rsInput.props().className).toBe('showing-placeholder');
     });
 
-    test('when value is not in options select nothing', () => {
-      setup({
-        value: {
-          id: -1,
-          email: 'none',
-          firstName: 'none',
-          lastName: 'none',
-          active: false,
-          roles: []
-        },
-        isOptionEnabled: undefined
-      });
-
-      const rsInput = select.find('Input');
-
-      expect(rsInput.props().value).toBe(undefined);
-    });
-
     test('without placeholder', () => {
-      setup({
+      const { select } = setup({
         value: adminUser(),
         isOptionEnabled: undefined,
         hasPlaceholder: false
@@ -97,7 +129,7 @@ describe('Component: Select', () => {
     });
 
     test('without label', () => {
-      setup({
+      const { select } = setup({
         value: adminUser(),
         isOptionEnabled: undefined,
         hasLabel: false
@@ -111,7 +143,10 @@ describe('Component: Select', () => {
 
   describe('selectDefaultOption', () => {
     it('should select the placeholder as the default value when value is empty string', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { select } = setup({
+        value: undefined,
+        isOptionEnabled: undefined
+      });
 
       const defaultOption = select.find('option').first();
       expect(defaultOption.text()).toBe('Please enter your subject');
@@ -127,7 +162,10 @@ describe('Component: Select', () => {
     });
 
     it('should not select the placeholder as the default value when value is not an empty string', () => {
-      setup({ value: adminUser(), isOptionEnabled: undefined });
+      const { select } = setup({
+        value: adminUser(),
+        isOptionEnabled: undefined
+      });
 
       const defaultOption = select.find('option').first();
       expect(defaultOption.text()).toBe('Please enter your subject');
@@ -140,7 +178,10 @@ describe('Component: Select', () => {
     });
 
     it('should not select the placeholder as the default value when the option is not defined', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { select } = setup({
+        value: undefined,
+        isOptionEnabled: undefined
+      });
 
       const defaultOption = select.find('option').first();
       expect(defaultOption.text()).toBe('Please enter your subject');
@@ -153,7 +194,10 @@ describe('Component: Select', () => {
 
   describe('events', () => {
     test('onChange', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { select, onChangeSpy } = setup({
+        value: undefined,
+        isOptionEnabled: undefined
+      });
 
       const rsInput = select.find('Input');
 
@@ -165,7 +209,10 @@ describe('Component: Select', () => {
     });
 
     test('onBlur', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { select, onBlurSpy } = setup({
+        value: undefined,
+        isOptionEnabled: undefined
+      });
 
       const rsInput = select.find('Input');
       // @ts-expect-error Test mock
@@ -176,7 +223,10 @@ describe('Component: Select', () => {
 
     describe('isOptionEnabled', () => {
       it('should when "isOptionEnabled" is not defined always be true', () => {
-        setup({ value: adminUser(), isOptionEnabled: undefined });
+        const { select } = setup({
+          value: adminUser(),
+          isOptionEnabled: undefined
+        });
 
         const options = select.find('option');
         expect(options.length).toBe(4);
@@ -193,7 +243,10 @@ describe('Component: Select', () => {
         // Disabled all option now
         isOptionEnabledSpy.mockReturnValue(false);
 
-        setup({ value: undefined, isOptionEnabled: isOptionEnabledSpy });
+        const { select } = setup({
+          value: undefined,
+          isOptionEnabled: isOptionEnabledSpy
+        });
 
         const options = select.find('option');
         expect(options.length).toBe(4);
@@ -215,7 +268,10 @@ describe('Component: Select', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      setup({ value: userUser(), isOptionEnabled: undefined });
+      const { select } = setup({
+        value: userUser(),
+        isOptionEnabled: undefined
+      });
 
       let rsInput = select.find('Input');
       expect(rsInput.props().value).toBe(2);
@@ -227,7 +283,10 @@ describe('Component: Select', () => {
     });
 
     test('becomes filled', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { select } = setup({
+        value: undefined,
+        isOptionEnabled: undefined
+      });
 
       let rsInput = select.find('Input');
       expect(rsInput.props().value).toBe(undefined);

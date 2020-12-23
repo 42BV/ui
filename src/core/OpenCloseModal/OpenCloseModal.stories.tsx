@@ -49,7 +49,7 @@ storiesOf('core/OpenCloseModal', module)
               'I work at 42, the most awesome company in the world!',
               'Nothing'
             ]}
-            optionForValue={(option) => option}
+            labelForOption={(option) => option}
           />
         </OpenCloseModal>
       </Card>
@@ -196,7 +196,7 @@ storiesOf('core/OpenCloseModal', module)
               { label: 'Sell it!', value: 'sell' },
               { label: 'Put it in my pocket', value: 'store' }
             ]}
-            optionForValue={(option) => option.label}
+            labelForOption={(option) => option.label}
           />
         </OpenCloseModal>
       </Card>

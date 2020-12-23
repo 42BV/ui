@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import { FetchOptionsCallback, TypeaheadOption } from '../types';
+import { TypeaheadOption } from '../types';
 import withJarb from '../../withJarb/withJarb';
-import { doBlur } from '../../utils';
-import { valueToTypeaheadOption } from '../utils';
-import { OptionForValue } from '../../option';
+import { doBlur, alwaysTrue } from '../../utils';
+import { optionToTypeaheadOption } from '../utils';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  isOptionSelected
+} from '../../option';
 import classNames from 'classnames';
 import Tag from '../../../core/Tag/Tag';
 import { FieldCompatible } from '../../types';
 import { useId } from '../../../hooks/useId/useId';
+import { useOptions } from '../../useOptions';
 
-type Props<T> = FieldCompatible<T[], T[] | undefined> & {
-  /**
-   * Callback to fetch the options to display to the user.
-   */
-  fetchOptions: FetchOptionsCallback<T>;
-
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-};
+type Props<T> = FieldCompatible<T[], T[] | undefined> &
+  FieldCompatibleWithPredeterminedOptions<T>;
 
 /**
  * The TypeaheadMultiple is a form element which allows the user
@@ -48,17 +42,47 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
     value,
     color,
     error,
-    optionForValue,
+    labelForOption,
     onFocus,
     valid,
     className = '',
     onChange,
     onBlur,
-    fetchOptions
+    options,
+    keyForOption,
+    isOptionEqual,
+    reloadOptions,
+    isOptionEnabled = alwaysTrue
   } = props;
 
-  const [options, setOptions] = useState<TypeaheadOption<T>[]>([]);
-  const [isLoading, setLoading] = useState(false);
+  const [query, setQuery] = useState('');
+
+  const { page, loading } = useOptions<T>({
+    options,
+    value,
+    keyForOption,
+    isOptionEqual,
+    labelForOption,
+    reloadOptions,
+    query,
+    pageNumber: 1,
+    size: 10,
+    optionsShouldAlwaysContainValue: false
+  });
+
+  const typeaheadOptions = page.content
+    .filter((option) => isOptionEnabled(option))
+    .filter(
+      (option) =>
+        !isOptionSelected({
+          option,
+          keyForOption,
+          labelForOption,
+          isOptionEqual,
+          value
+        })
+    )
+    .map((option) => optionToTypeaheadOption(option, labelForOption));
 
   function doOnChange(values: TypeaheadOption<T>[]): void {
     if (values.length === 0) {
@@ -75,21 +99,9 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
     doBlur(onBlur);
   }
 
-  async function doFetchOptions(query: string): Promise<void> {
-    setLoading(true);
-
-    const page = await fetchOptions(query);
-    const options = page.content.map((value) =>
-      valueToTypeaheadOption(value, optionForValue)
-    );
-
-    setLoading(false);
-    setOptions(options);
-  }
-
   let selected: TypeaheadOption<T>[] = [];
   if (value && value.length) {
-    selected = value.map((v) => valueToTypeaheadOption(v, optionForValue));
+    selected = value.map((v) => optionToTypeaheadOption(v, labelForOption));
   }
 
   const classes = classNames(className, {
@@ -104,11 +116,12 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
       <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
         <AsyncTypeahead
           id={id}
-          isLoading={isLoading}
+          delay={Array.isArray(options) ? 0 : 200}
+          isLoading={loading}
           multiple={true}
           placeholder={placeholder}
           selected={selected}
-          options={options}
+          options={typeaheadOptions}
           inputProps={{
             // @ts-expect-error The input props value works
             value,
@@ -116,8 +129,9 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
               'is-invalid': valid === false
             })
           }}
+          filterBy={alwaysTrue}
           onChange={doOnChange}
-          onSearch={doFetchOptions}
+          onSearch={setQuery}
           onFocus={onFocus}
           renderToken={(option, props, index) => (
             <Tag

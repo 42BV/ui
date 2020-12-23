@@ -1,103 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
-import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import withJarb from '../../withJarb/withJarb';
-import { doBlur } from '../../utils';
+import { alwaysTrue, doBlur } from '../../utils';
 import Tag from '../../../core/Tag/Tag';
 import ModalPicker from '../ModalPicker';
-import EmptyModal from '../EmptyModal';
-import { AddButtonCallback, AddButtonOptions, ButtonAlignment } from '../types';
 import {
-  FetchOptionsCallback,
-  isOptionSelected,
-  keyForOption,
-  OptionEqual,
-  OptionForValue,
-  RenderOptions,
-  RenderOptionsOption,
-  UniqueKeyForValue
+  AddButtonCallback,
+  AddButtonOptions,
+  ButtonAlignment,
+  RenderOptions
+} from '../types';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  getKeyForOption,
+  isOptionSelected
 } from '../../option';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import { FieldCompatible } from '../../types';
-import { uniqueId } from 'lodash';
+import { useId } from '../../../hooks/useId/useId';
+import { useOptions } from '../../useOptions';
 
-export type DisplayValues<T> = (values?: T[]) => React.ReactNode;
+export type RenderValues<T> = (value?: T[]) => React.ReactNode;
 
 export type Props<T> = Omit<
   FieldCompatible<T[], T[] | undefined>,
   'valid' | 'placeholder'
-> & {
-  /**
-   * The placeholder of the form element.	   * The placeholder of the form element.
-   */
-  placeholder: string;
+> &
+  FieldCompatibleWithPredeterminedOptions<T> & {
+    /**
+     * The placeholder of the form element.	   * The placeholder of the form element.
+     */
+    placeholder: string;
 
-  /**
-   * Optionally whether or not the user can search.
-   * Defaults to `true`.
-   */
-  canSearch?: boolean;
+    /**
+     * Optionally whether or not the user can search.
+     * Defaults to `true`.
+     */
+    canSearch?: boolean;
 
-  /**
-   * Callback to fetch the options to display to the user.
-   */
-  fetchOptions: FetchOptionsCallback<T>;
+    /**
+     * Optionally an add button to display in the Modal. Can
+     * be used to dynamically add an option which was not there
+     * before.
+     */
+    addButton?: AddButtonOptions<T>;
 
-  /**
-   * Optionally an add button to display in the Modal. Can
-   * be used to dynamically add an option which was not there
-   * before.
-   */
-  addButton?: AddButtonOptions<T>;
+    /**
+     * Optionally the position the button should be aligned to
+     * within it's container.
+     */
+    alignButton?: ButtonAlignment;
 
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
+    /**
+     * Optionally callback to display the selected items.
+     */
+    renderValue?: RenderValues<T>;
 
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
-
-  /**
-   * Optionally the position the button should be aligned to
-   * within it's container.
-   */
-  alignButton?: ButtonAlignment;
-
-  /**
-   * Optionally callback to display the selected items.
-   */
-  displayValues?: DisplayValues<T>;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
-
-  /**
-   * Callback to customize display of options.
-   */
-  renderOptions?: RenderOptions<T>;
-};
-
-export type State<T> = {
-  isOpen: boolean;
-  page: Page<T>;
-  selected: T[];
-  query: string;
-  userHasSearched: boolean;
-};
+    /**
+     * Callback to customize display of options.
+     */
+    renderOptions?: RenderOptions<T>;
+  };
 
 /**
  * The ModalPickerMultiple is a form element which allows the user
@@ -112,149 +77,155 @@ export type State<T> = {
  * can type in the selections quicker than he can select it from
  * the modal.
  */
-export default class ModalPickerMultiple<T> extends React.Component<
-  Props<T>,
-  State<T>
-> {
-  /* istanbul ignore next */
-  innerId = this?.props?.id ?? uniqueId();
+export default function ModalPickerMultiple<T>(props: Props<T>) {
+  const {
+    id,
+    label,
+    color,
+    placeholder,
+    className = '',
+    value,
+    onChange,
+    addButton,
+    canSearch = true,
+    options,
+    keyForOption,
+    isOptionEqual,
+    isOptionEnabled = alwaysTrue,
+    labelForOption,
+    reloadOptions,
+    renderValue,
+    alignButton,
+    renderOptions,
+    error,
+    onBlur
+  } = props;
 
-  state = {
-    isOpen: false,
-    page: emptyPage<T>(),
-    selected: [],
-    query: '',
-    userHasSearched: false
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [query, setQuery] = useState<string>('');
+  const [userHasSearched, setUserHasSearched] = useState(false);
+  const [selected, setSelected] = useState<T[]>([]);
 
-  componentDidMount() {
-    this.loadPage(1);
+  const { page, loading } = useOptions({
+    options,
+    value,
+    isOptionEqual,
+    labelForOption,
+    reloadOptions,
+    pageNumber,
+    query,
+    size: 10,
+    optionsShouldAlwaysContainValue: false
+  });
+
+  const innerId = useId({ id });
+
+  function modalSaved() {
+    setIsOpen(false);
+    onChange([...selected]);
+
+    doBlur(onBlur);
   }
 
-  modalSaved() {
-    const selected = this.state.selected;
-    this.setState({ isOpen: false });
-    this.props.onChange([...selected]);
-
-    doBlur(this.props.onBlur);
+  function closeModal() {
+    setIsOpen(false);
   }
 
-  closeModal() {
-    this.setState({ isOpen: false });
-  }
-
-  openModal() {
+  function openModal() {
     // Always copy the `value` so the `selected` is a fresh array.
     // Otherwise the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
-    const selected = Array.isArray(this.props.value)
-      ? [...this.props.value]
-      : [];
+    const newSelected = Array.isArray(value) ? [...value] : [];
 
-    this.setState({ selected, isOpen: true, query: '' }, () => {
-      this.loadPage(1);
-    });
+    setSelected(newSelected);
+    setIsOpen(true);
+    setQuery('');
+    setPageNumber(1);
+    setUserHasSearched(false);
   }
 
-  itemClicked(item: T, isChecked: boolean) {
-    let selected = this.state.selected as T[];
+  function optionClicked(option: T, isSelected: boolean) {
+    // Always copy the `value` so the `selected` is a fresh array.
+    // Otherwise the selection will be the same as the value, which
+    // causes values to be committed and the cancel button will not
+    // do anything.
+    let newSelected = [...selected];
 
-    if (isChecked) {
-      const { isOptionEqual } = this.props;
-
-      const filterFn = isOptionEqual
-        ? (v: T) => !isOptionEqual(item, v)
-        : (v: T) => v !== item;
-
-      selected = selected.filter(filterFn);
+    if (isSelected) {
+      newSelected = selected.filter(
+        (value) =>
+          !isOptionSelected({
+            option,
+            keyForOption,
+            labelForOption,
+            isOptionEqual,
+            value
+          })
+      );
     } else {
-      selected.push(item);
+      newSelected.push(option);
     }
 
-    this.setState({ selected });
+    setSelected(newSelected);
   }
 
-  fetchOptions(query: string) {
-    this.setState({ query }, () => {
-      this.loadPage(1);
-    });
-  }
-
-  async loadPage(pageNumber: number) {
-    const query = this.state.query;
-
-    this.setState({ userHasSearched: query !== '' });
-    const page: Page<T> = await this.props.fetchOptions(query, pageNumber, 10);
-
-    this.setState({ page });
-  }
-
-  async addButtonClicked(callback: AddButtonCallback<T>) {
-    this.setState({ isOpen: false });
+  async function addButtonClicked(callback: AddButtonCallback<T>) {
+    setIsOpen(false);
 
     try {
       const item = await callback();
 
-      const { page } = this.state;
-
-      this.itemClicked(item, true);
+      optionClicked(item, false);
       page.content.unshift(item);
 
-      this.setState({ isOpen: true, page });
+      setIsOpen(true);
     } catch (error) {
-      this.setState({ isOpen: true });
+      setIsOpen(true);
     }
   }
 
-  render() {
-    const value = this.props.value;
-    const {
-      label,
-      placeholder,
-      error,
-      color,
-      className = '',
-      optionForValue,
-      alignButton,
-      displayValues = (values: T[]) => (
-        <ModalPickerValueTruncator
-          values={values}
-          optionForValue={optionForValue}
-        />
-      )
-    } = this.props;
+  const modalPickerOpenerProps = {
+    openModal,
+    label: placeholder,
+    alignButton,
+    renderValue: renderValue
+      ? renderValue
+      : (value: T[]) => (
+          <ModalPickerValueTruncator
+            value={value}
+            labelForOption={labelForOption}
+          />
+        ),
+    onClear: () => onChange(undefined),
+    // Only render the clear button when it has a value
+    value: value && value.length > 0 ? value : undefined
+  };
 
-    const modalPickerOpenerProps = {
-      openModal: () => this.openModal(),
-      label: placeholder,
-      alignButton,
-      displayValues,
-      onClear: () => this.props.onChange(undefined),
-      values: value && value.length > 0 ? value : undefined
-    };
+  return (
+    <FormGroup className={className} color={color}>
+      {label ? <Label for={innerId}>{label}</Label> : null}
 
-    return (
-      <FormGroup className={className} color={color}>
-        {label ? <Label for={this.innerId}>{label}</Label> : null}
+      <ModalPickerOpener {...modalPickerOpenerProps} />
 
-        <ModalPickerOpener<T[]> {...modalPickerOpenerProps} />
+      {error}
+      {renderModal()}
+    </FormGroup>
+  );
 
-        {error}
-        {this.renderModal()}
-      </FormGroup>
-    );
+  function queryChanged(query: string) {
+    setQuery(query);
+    setUserHasSearched(true);
+    setPageNumber(1);
   }
 
-  renderModal() {
-    const { placeholder, addButton, canSearch = true } = this.props;
-    const { page, isOpen, selected, query } = this.state;
-
+  function renderModal() {
     const addButtonOptions = addButton
       ? {
           label: addButton.label,
           onClick: () => {
-            this.addButtonClicked(addButton.onClick);
+            addButtonClicked(addButton.onClick);
           }
         }
       : undefined;
@@ -266,51 +237,45 @@ export default class ModalPickerMultiple<T> extends React.Component<
         isOpen={isOpen}
         page={page}
         canSearch={canSearch}
-        fetchOptions={(query: string) => this.fetchOptions(query)}
-        pageChanged={(page: number) => {
-          this.loadPage(page);
-        }}
-        closeModal={() => this.closeModal()}
-        modalSaved={() => this.modalSaved()}
-        saveButtonEnabled={!!selected}
+        canSearchSync={Array.isArray(options)}
+        queryChanged={queryChanged}
+        pageChanged={setPageNumber}
+        closeModal={closeModal}
+        modalSaved={modalSaved}
         addButton={addButtonOptions}
+        loading={loading}
+        userHasSearched={userHasSearched}
+        selected={selected}
+        renderOptionsConfig={
+          renderOptions
+            ? {
+                labelForOption,
+                isOptionEqual,
+                keyForOption,
+                isOptionEnabled,
+                renderOptions,
+                onChange: optionClicked
+              }
+            : undefined
+        }
       >
-        {this.renderModalCurrentSelection()}
-        <Row className="mt-3">
-          <Col>{this.renderModalContent()}</Col>
-        </Row>
+        {renderModalCurrentSelection()}
+
+        {renderModalContent()}
       </ModalPicker>
     );
   }
 
-  renderModalContent(): React.ReactNode {
-    const { page, selected } = this.state;
-
-    if (page.totalElements === 0) {
-      return <EmptyModal userHasSearched={this.state.userHasSearched} />;
-    }
-
-    const {
-      optionForValue,
-      isOptionEqual,
-      uniqueKeyForValue,
-      ...props
-    } = this.props;
-
-    if ('renderOptions' in props && props.renderOptions) {
-      return props.renderOptions(
-        this.mapOptions({ page, selected, optionForValue, isOptionEqual })
-      );
-    }
-
+  function renderModalContent(): React.ReactNode {
     return page.content.map((option) => {
-      const label = optionForValue(option);
-      const key = keyForOption({ option, uniqueKeyForValue, optionForValue });
+      const label = labelForOption(option);
+      const key = getKeyForOption({ option, keyForOption, labelForOption });
 
-      const isChecked = isOptionSelected({
+      const isSelected = isOptionSelected({
         option,
-        optionForValue,
+        labelForOption,
         isOptionEqual,
+        keyForOption,
         value: selected
       });
 
@@ -319,8 +284,9 @@ export default class ModalPickerMultiple<T> extends React.Component<
           <Label check>
             <Input
               type="checkbox"
-              checked={isChecked}
-              onChange={() => this.itemClicked(option, isChecked)}
+              checked={isSelected}
+              disabled={!isOptionEnabled(option)}
+              onChange={() => optionClicked(option, isSelected)}
             />
             {label}
           </Label>
@@ -329,59 +295,33 @@ export default class ModalPickerMultiple<T> extends React.Component<
     });
   }
 
-  mapOptions({
-    page,
-    selected,
-    optionForValue,
-    isOptionEqual
-  }: {
-    page: Page<T>;
-    selected: T[];
-    optionForValue: OptionForValue<T>;
-    isOptionEqual?: OptionEqual<T>;
-  }): RenderOptionsOption<T>[] {
-    return page.content.map((option) => {
-      const isSelected = isOptionSelected({
-        option,
-        optionForValue,
-        isOptionEqual,
-        value: selected
-      });
-
-      return {
-        option,
-        isSelected,
-        toggle: () => this.itemClicked(option, isSelected)
-      };
-    });
-  }
-
-  renderModalCurrentSelection() {
-    const { selected } = this.state;
-
+  function renderModalCurrentSelection() {
     if (!selected || selected.length === 0) {
       return null;
     }
 
     return (
       <Row
-        className="mt-3 p-2"
+        className="mb-3 p-2"
         style={{
           backgroundColor: '#edecf1'
         }}
       >
-        <Col>{this.renderTags((v) => this.itemClicked(v, true), selected)}</Col>
+        <Col>
+          {selected.map((value) => {
+            const label = labelForOption(value);
+
+            return (
+              <Tag
+                key={label}
+                onRemove={() => optionClicked(value, true)}
+                text={label}
+              />
+            );
+          })}
+        </Col>
       </Row>
     );
-  }
-
-  renderTags(onClick: (value: T) => void, values: T[]): JSX.Element[] | null {
-    const { optionForValue } = this.props;
-
-    return values.map((value) => {
-      const label = optionForValue(value);
-      return <Tag key={label} onRemove={() => onClick(value)} text={label} />;
-    });
   }
 }
 

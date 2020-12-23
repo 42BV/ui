@@ -14,6 +14,14 @@ import Pagination from '../../core/Pagination/Pagination';
 import { t } from '../../utilities/translation/translation';
 import SearchInput from '../../core/SearchInput/SearchInput';
 import { useBodyFixOnModalClose } from '../../core/useBodyFixOnModalClose/useBodyFixOnModalClose';
+import ContentState from '../../core/ContentState/ContentState';
+import EmptyModal from './EmptyModal';
+import { RenderOptions, RenderOptionsOption } from './types';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  isOptionSelected,
+  IsOptionEnabled
+} from '../option';
 
 type Text = {
   placeholder?: string;
@@ -21,7 +29,7 @@ type Text = {
   select?: string;
 };
 
-type Props = {
+type Props<T> = {
   /**
    * The placeholder of the form element.
    */
@@ -36,7 +44,7 @@ type Props = {
    * The current page of options. Used to determine if the
    * pagination should be rendered.
    */
-  page: Page<any>;
+  page: Page<T>;
 
   /**
    * Here the component using the ModalPicker must render in the options.
@@ -54,9 +62,17 @@ type Props = {
   canSearch: boolean;
 
   /**
-   * Callback to fetch the options to display to the user.
+   * Whether or not the search can happen synchronously. Used
+   * when the `options` for the ModalPickerSingle / ModalPickerMultiple
+   * is an array, in that case the query will be filtered locally
+   * so no debounce is needed.
    */
-  fetchOptions: (query: string) => void;
+  canSearchSync: boolean;
+
+  /**
+   * Callback for when the query changes.
+   */
+  queryChanged: (query: string) => void;
 
   /**
    * Callback for when the page changes.
@@ -74,11 +90,6 @@ type Props = {
   modalSaved: () => void;
 
   /**
-   * Whether or not the save button is enabled
-   */
-  saveButtonEnabled: boolean;
-
-  /**
    * Optionally an add button to display in the Modal. Can
    * be used to dynamically add an option which was not there
    * before.
@@ -89,10 +100,42 @@ type Props = {
   };
 
   /**
+   * Whether or not the ModelPicker is loading
+   */
+  loading: boolean;
+
+  /**
+   * Whether or not the user has searched.
+   */
+  userHasSearched: boolean;
+
+  /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
   text?: Text;
+
+  renderOptionsConfig?: RenderOptionsConfig<T>;
+
+  /**
+   * The selected option
+   */
+  selected: T | T[];
+};
+
+export type RenderOptionsConfig<T> = Omit<
+  FieldCompatibleWithPredeterminedOptions<T>,
+  'options' | 'reloadOptions' | 'isOptionEnabled'
+> & {
+  // It is always provided by the ModalPickerSingle and ModalPickerMultiple
+  isOptionEnabled: IsOptionEnabled<T>;
+
+  /**
+   * Callback to customize display of options.
+   */
+  renderOptions: RenderOptions<T>;
+
+  onChange: (option: T, isSelected: boolean) => void;
 };
 
 /**
@@ -100,7 +143,7 @@ type Props = {
  * and ModalPickerSingle to render a modal. It contains the code which
  * could be shared by the two components.
  */
-export default function ModalPicker(props: Props) {
+export default function ModalPicker<T>(props: Props<T>) {
   const {
     placeholder,
     isOpen,
@@ -108,12 +151,16 @@ export default function ModalPicker(props: Props) {
     children,
     query,
     canSearch,
-    fetchOptions,
+    canSearchSync,
+    queryChanged,
     pageChanged,
     closeModal,
     modalSaved,
-    saveButtonEnabled,
     addButton,
+    loading,
+    userHasSearched,
+    renderOptionsConfig,
+    selected,
     text = {}
   } = props;
 
@@ -135,12 +182,15 @@ export default function ModalPicker(props: Props) {
                   key: 'ModalPicker.SEARCH',
                   fallback: 'Search...'
                 })}
-                onChange={(value) => fetchOptions(value)}
+                debounce={canSearchSync ? 0 : 500}
+                onChange={queryChanged}
               />
             </Col>
           </Row>
         ) : null}
-        {children}
+        <Row className="mt-3">
+          <Col>{renderChildren()}</Col>
+        </Row>
       </ModalBody>
 
       {shouldRenderPagination ? (
@@ -174,7 +224,7 @@ export default function ModalPicker(props: Props) {
             className="ml-1"
             color="primary"
             onClick={() => modalSaved()}
-            disabled={!saveButtonEnabled}
+            disabled={!!!selected}
           >
             {t({
               overrideText: text.select,
@@ -186,4 +236,51 @@ export default function ModalPicker(props: Props) {
       </ModalFooter>
     </Modal>
   );
+
+  function renderChildren() {
+    if (loading) {
+      return <ContentState mode="loading" title="" />;
+    }
+
+    if (page.totalElements === 0) {
+      return <EmptyModal userHasSearched={userHasSearched} />;
+    }
+
+    if (renderOptionsConfig) {
+      return renderOptionsConfig.renderOptions(mapOptions(renderOptionsConfig));
+    }
+
+    return <>{children}</>;
+  }
+
+  function mapOptions(
+    renderOptionsConfig: RenderOptionsConfig<T>
+  ): RenderOptionsOption<T>[] {
+    const {
+      onChange,
+      labelForOption,
+      isOptionEqual,
+      keyForOption,
+      isOptionEnabled
+    } = renderOptionsConfig;
+
+    return page.content.map((option) => {
+      const isSelected = isOptionSelected({
+        option,
+        labelForOption,
+        isOptionEqual,
+        keyForOption,
+        value: selected
+      });
+
+      const enabled = isOptionEnabled(option);
+
+      return {
+        option,
+        isSelected,
+        enabled,
+        toggle: () => (enabled ? onChange(option, isSelected) : undefined)
+      };
+    });
+  }
 }

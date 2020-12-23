@@ -43,8 +43,8 @@ exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseM
     tag="div"
   >
     <RadioGroup
+      labelForOption={[Function]}
       onChange={[MockFunction]}
-      optionForValue={[Function]}
       options={
         Array [
           "local",
@@ -122,8 +122,8 @@ exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => 
     tag="div"
   >
     <RadioGroup
+      labelForOption={[Function]}
       onChange={[MockFunction]}
-      optionForValue={[Function]}
       options={
         Array [
           "local",
@@ -202,8 +202,8 @@ exports[`Component: OpenCloseModal ui sans sticky footer: Component: OpenCloseMo
     tag="div"
   >
     <RadioGroup
+      labelForOption={[Function]}
       onChange={[MockFunction]}
-      optionForValue={[Function]}
       options={
         Array [
           "local",
@@ -281,8 +281,8 @@ exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => u
     tag="div"
   >
     <RadioGroup
+      labelForOption={[Function]}
       onChange={[MockFunction]}
-      optionForValue={[Function]}
       options={
         Array [
           "local",
@@ -360,8 +360,8 @@ exports[`Component: OpenCloseModal ui without buttons: Component: OpenCloseModal
     tag="div"
   >
     <RadioGroup
+      labelForOption={[Function]}
       onChange={[MockFunction]}
-      optionForValue={[Function]}
       options={
         Array [
           "local",
@@ -410,8 +410,8 @@ exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal =
     tag="div"
   >
     <RadioGroup
+      labelForOption={[Function]}
       onChange={[MockFunction]}
-      optionForValue={[Function]}
       options={
         Array [
           "local",

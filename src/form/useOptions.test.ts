@@ -1,149 +1,1244 @@
 import { renderHook } from '@testing-library/react-hooks';
 
 import { useOptions } from './useOptions';
-import {
-  userUser,
-  coordinatorUser,
-  adminUser,
-  nobodyUser
-} from '../test/fixtures';
 import { pageOf } from '../utilities/page/page';
-import { User } from '../test/types';
+import { range } from 'lodash';
+import { emptyPage } from '@42.nl/spring-connect';
+
+type Option = {
+  id: number;
+  label: string;
+};
+
+function generateOptions(): Option[] {
+  return range(1, 10).map((index) => ({
+    id: index,
+    label: `${index}`
+  }));
+}
 
 describe('useOptions', () => {
-  describe('when optionsOrFetcher is an array', () => {
-    test('that the options are used as is and loading is false', () => {
-      const config = {
-        optionsOrFetcher: [userUser(), coordinatorUser(), adminUser()],
-        value: userUser(),
-        optionForValue: (user) => user.email,
-        isOptionEqual: (a, b) => a.id === b.id
-      };
+  describe('when options is an array', () => {
+    it('should turn the options into a page', () => {
+      const { result } = renderHook(() => {
+        const options = generateOptions();
 
-      const { result } = renderHook(() => useOptions(config));
+        return useOptions({
+          options,
+          value: undefined,
+          labelForOption: (option: Option) => option.label,
+          isOptionEqual: (a, b) => a.id === b.id,
+          reloadOptions: 'constant',
+          query: '',
+          pageNumber: 1,
+          size: 2,
+          optionsShouldAlwaysContainValue: false
+        });
+      });
 
+      // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
-        options: [userUser(), coordinatorUser(), adminUser()],
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
         loading: false
       });
     });
 
-    test('that when the value is set but not in options that it is added to the options on the first place', () => {
-      const config = {
-        optionsOrFetcher: [userUser(), coordinatorUser(), adminUser()],
-        value: nobodyUser(),
-        optionForValue: (user) => user.email,
-        isOptionEqual: (a, b) => a.id === b.id
-      };
+    it('should when the reloadOptions changes update the options', () => {
+      const { result, rerender } = renderHook(
+        ({ reloadOptions }) => {
+          const options = generateOptions();
 
-      const { result } = renderHook(() => useOptions(config));
+          return useOptions({
+            options: reloadOptions === 'all' ? options : [options[0]],
+            value: undefined,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions,
+            query: '',
+            pageNumber: 1,
+            size: 2,
+            optionsShouldAlwaysContainValue: false
+          });
+        },
+        {
+          initialProps: {
+            reloadOptions: 'all'
+          }
+        }
+      );
+
+      // Check if the first page of 5 pages total is given.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      rerender({ reloadOptions: 'filter' });
 
       expect(result.current).toEqual({
-        options: [nobodyUser(), userUser(), coordinatorUser(), adminUser()],
+        page: {
+          first: true,
+          last: true,
+          number: 1,
+          numberOfElements: 1,
+          size: 1,
+          totalElements: 1,
+          totalPages: 1,
+          content: [{ id: 1, label: '1' }]
+        },
         loading: false
+      });
+    });
+
+    it('should when the query changes apply the query', () => {
+      const { result, rerender } = renderHook(
+        ({ query }) => {
+          const options = generateOptions();
+
+          return useOptions({
+            options,
+            value: undefined,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions: 'constant',
+            query,
+            pageNumber: 1,
+            size: 2,
+            optionsShouldAlwaysContainValue: false
+          });
+        },
+        {
+          initialProps: {
+            query: ''
+          }
+        }
+      );
+
+      // Check if the first page of 5 pages total is given.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      // There should be only 1 match for this label
+      rerender({ query: '1' });
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: true,
+          number: 1,
+          numberOfElements: 1,
+          size: 1,
+          totalElements: 1,
+          totalPages: 1,
+          content: [{ id: 1, label: '1' }]
+        },
+        loading: false
+      });
+    });
+
+    it('should when the pageNumber changes move the page', () => {
+      const { result, rerender } = renderHook(
+        ({ pageNumber }) => {
+          const options = generateOptions();
+
+          return useOptions({
+            options,
+            value: undefined,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions: 'constant',
+            query: '',
+            pageNumber,
+            size: 2,
+            optionsShouldAlwaysContainValue: false
+          });
+        },
+        {
+          initialProps: {
+            pageNumber: 1
+          }
+        }
+      );
+
+      // Check if the first page of 5 pages total is given.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      // Goto the second page
+      rerender({ pageNumber: 2 });
+      expect(result.current).toEqual({
+        page: {
+          first: false,
+          last: false,
+          number: 2,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 3, label: '3' },
+            { id: 4, label: '4' }
+          ]
+        },
+        loading: false
+      });
+    });
+
+    it('should when the size changes update the options', () => {
+      expect.assertions(2);
+
+      const { result, rerender } = renderHook(
+        ({ size }) => {
+          const options = generateOptions();
+
+          return useOptions({
+            options,
+            value: undefined,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions: 'constant',
+            query: '',
+            pageNumber: 1,
+            size,
+            optionsShouldAlwaysContainValue: false
+          });
+        },
+        {
+          initialProps: {
+            size: 2
+          }
+        }
+      );
+
+      // Check if the first page of 5 pages total is given.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      // Request 1 more item this time.
+      rerender({ size: 3 });
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 3,
+          size: 3,
+          totalElements: 9,
+          totalPages: 3,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' },
+            { id: 3, label: '3' }
+          ]
+        },
+        loading: false
+      });
+    });
+
+    describe('adding the value to the page content behavior', () => {
+      it('it should not prepend the value when optionsShouldAlwaysContainValue is false', () => {
+        const { result } = renderHook(
+          () => {
+            const options = generateOptions();
+
+            return useOptions({
+              options,
+              value: { id: 1337, label: '1337' },
+              labelForOption: (option: Option) => option.label,
+              isOptionEqual: (a, b) => a.id === b.id,
+              reloadOptions: 'constant',
+              query: '',
+              pageNumber: 1,
+              size: 2,
+              optionsShouldAlwaysContainValue: false
+            });
+          },
+          {
+            initialProps: { pageNumber: 1 }
+          }
+        );
+
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+      });
+
+      it('it should not prepend the value when value is falsy', () => {
+        const { result } = renderHook(() => {
+          const options = generateOptions();
+
+          return useOptions({
+            options,
+            value: undefined,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions: 'constant',
+            query: '',
+            pageNumber: 1,
+            size: 2,
+            optionsShouldAlwaysContainValue: true
+          });
+        });
+
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+      });
+
+      it('it should not prepend the value when value is already in the page', () => {
+        const { result } = renderHook(() => {
+          const options = generateOptions();
+
+          return useOptions({
+            options,
+            value: options[0],
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions: 'constant',
+            query: '',
+            pageNumber: 1,
+            size: 2,
+            optionsShouldAlwaysContainValue: true
+          });
+        });
+
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+      });
+
+      it('it should prepend the value when the options is a singular value', () => {
+        const { result, rerender } = renderHook(
+          ({ pageNumber }) => {
+            const options = generateOptions();
+
+            return useOptions({
+              options,
+              value: { id: 1337, label: '1337' },
+              labelForOption: (option: Option) => option.label,
+              isOptionEqual: (a, b) => a.id === b.id,
+              reloadOptions: 'constant',
+              query: '',
+              pageNumber,
+              size: 2,
+              optionsShouldAlwaysContainValue: true
+            });
+          },
+          {
+            initialProps: { pageNumber: 1 }
+          }
+        );
+
+        // Test that the page useState sets the value initially
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1337, label: '1337' },
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+
+        // Test that when the watch changes that the value is appended as well
+        rerender({ pageNumber: 2 });
+
+        expect(result.current).toEqual({
+          page: {
+            first: false,
+            last: false,
+            number: 2,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1337, label: '1337' },
+              { id: 3, label: '3' },
+              { id: 4, label: '4' }
+            ]
+          },
+          loading: false
+        });
+      });
+
+      it('it should prepend all values not in the page when the options is an array', () => {
+        const { result, rerender } = renderHook(
+          ({ pageNumber }) => {
+            const options = generateOptions();
+
+            return useOptions({
+              options,
+              value: [
+                { id: 1, label: 1 }, // Should not be added on the first page
+                { id: 1337, label: '1337' }, // Should be added on both pages
+                { id: 4242, label: '4242' }, // Should be added on both pages
+                { id: 2, label: '2' } // Should not be added on the first page
+              ],
+              labelForOption: (option: Option) => option.label,
+              isOptionEqual: (a, b) => a.id === b.id,
+              reloadOptions: 'constant',
+              query: '',
+              pageNumber,
+              size: 2,
+              optionsShouldAlwaysContainValue: true
+            });
+          },
+          {
+            initialProps: { pageNumber: 1 }
+          }
+        );
+
+        // Test that the page useState sets the value initially
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1337, label: '1337' },
+              { id: 4242, label: '4242' },
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+
+        // Test that when the watch changes that the value is appended as well
+        rerender({ pageNumber: 2 });
+
+        expect(result.current).toEqual({
+          page: {
+            first: false,
+            last: false,
+            number: 2,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1, label: 1 },
+              { id: 1337, label: '1337' },
+              { id: 4242, label: '4242' },
+              { id: 2, label: '2' },
+              { id: 3, label: '3' },
+              { id: 4, label: '4' }
+            ]
+          },
+          loading: false
+        });
       });
     });
   });
 
-  describe('when optionsOrFetcher is a function', () => {
-    test('that the options are fetched', async () => {
-      expect.assertions(2);
+  describe('when options is a fetcher function', () => {
+    it('it should fetch the options and set the loading state correctly', async () => {
+      expect.assertions(4);
+
+      const fetcher = jest.fn(({ size, page }) => {
+        return Promise.resolve(pageOf(generateOptions(), page, size));
+      });
 
       const config = {
-        optionsOrFetcher: () =>
-          Promise.resolve(pageOf([adminUser(), userUser()], 1)),
+        options: fetcher,
         value: undefined,
-        optionForValue: (user) => user.email,
-        isOptionEqual: (a, b) => a.id === b.id
+        labelForOption: (option) => option.label,
+        isOptionEqual: (a, b) => a.id === b.id,
+        query: '',
+        pageNumber: 1,
+        size: 2,
+        optionsShouldAlwaysContainValue: false
       };
 
       const { result, waitForNextUpdate } = renderHook(() =>
         useOptions(config)
       );
 
+      // Should start by loading
       expect(result.current).toEqual({
-        options: [],
+        page: emptyPage(),
         loading: true
       });
 
       await waitForNextUpdate();
 
+      // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
-        options: [adminUser(), userUser()],
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
         loading: false
       });
+
+      expect(fetcher).toBeCalledTimes(1);
+      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
     });
 
-    test('that when the watch value changes the options are fetched again', async () => {
-      expect.assertions(3);
+    it('should when the reloadOptions changes re-fetch the options and go back in loading state', async () => {
+      expect.assertions(8);
 
-      const { result, waitForNextUpdate, rerender } = renderHook(
-        ({ watch }) =>
-          useOptions({
-            optionsOrFetcher: () =>
-              Promise.resolve(
-                pageOf(
-                  watch === 'filter'
-                    ? [adminUser()]
-                    : [adminUser(), userUser()],
-                  1
-                )
-              ),
+      const fetcher = jest.fn(({ size, page }) => {
+        const options = generateOptions();
+
+        return Promise.resolve(pageOf(options, page, size));
+      });
+
+      const { result, rerender, waitForNextUpdate } = renderHook(
+        ({ reloadOptions }) => {
+          return useOptions({
+            options: fetcher,
             value: undefined,
-            optionForValue: (user: User) => user.email,
+            labelForOption: (option: Option) => option.label,
             isOptionEqual: (a, b) => a.id === b.id,
-            watch
-          }),
-        { initialProps: { watch: 'nofilter' } }
+            reloadOptions,
+            query: '',
+            pageNumber: 1,
+            size: 2,
+            optionsShouldAlwaysContainValue: false
+          });
+        },
+        {
+          initialProps: {
+            reloadOptions: 'all'
+          }
+        }
       );
 
+      // Should start by loading
       expect(result.current).toEqual({
-        options: [],
+        page: emptyPage(),
         loading: true
       });
 
       await waitForNextUpdate();
 
+      // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
-        options: [adminUser(), userUser()],
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
         loading: false
       });
 
-      rerender({ watch: 'filter' });
+      expect(fetcher).toBeCalledTimes(1);
+      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+
+      rerender({ reloadOptions: 'filter' });
+
+      // Should go back into loading with the previous page as content.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: true
+      });
 
       await waitForNextUpdate();
 
+      // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
-        options: [adminUser()],
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
         loading: false
+      });
+
+      expect(fetcher).toBeCalledTimes(2);
+      expect(fetcher).toHaveBeenLastCalledWith({ page: 1, query: '', size: 2 });
+    });
+
+    it('should when the query changes re-fetch the options and go back in loading state', async () => {
+      expect.assertions(8);
+
+      const fetcher = jest.fn(({ size, page }) => {
+        const options = generateOptions();
+
+        return Promise.resolve(pageOf(options, page, size));
+      });
+
+      const { result, rerender, waitForNextUpdate } = renderHook(
+        ({ query }) => {
+          return useOptions({
+            options: fetcher,
+            value: undefined,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions: 'constant',
+            query,
+            pageNumber: 1,
+            size: 2,
+            optionsShouldAlwaysContainValue: false
+          });
+        },
+        {
+          initialProps: {
+            query: ''
+          }
+        }
+      );
+
+      // Should start by loading
+      expect(result.current).toEqual({
+        page: emptyPage(),
+        loading: true
+      });
+
+      await waitForNextUpdate();
+
+      // Check if the first page of 5 pages total is given.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      expect(fetcher).toBeCalledTimes(1);
+      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+
+      rerender({ query: 'filter' });
+
+      // Should go back into loading with the previous page as content.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: true
+      });
+
+      await waitForNextUpdate();
+
+      // Check if the first page of 5 pages total is given.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      expect(fetcher).toBeCalledTimes(2);
+      expect(fetcher).toHaveBeenLastCalledWith({
+        page: 1,
+        query: 'filter',
+        size: 2
       });
     });
 
-    test('that when the value is set but not in options that it is added to the options on the first place', async () => {
-      expect.assertions(2);
+    it('should when the pageNumber changes re-fetch the options and go back in loading state', async () => {
+      expect.assertions(8);
 
-      const config = {
-        optionsOrFetcher: () =>
-          Promise.resolve(pageOf([adminUser(), userUser()], 1)),
-        value: nobodyUser(),
-        optionForValue: (user) => user.email,
-        isOptionEqual: (a, b) => a.id === b.id
-      };
+      const fetcher = jest.fn(({ size, page }) => {
+        const options = generateOptions();
 
-      const { result, waitForNextUpdate } = renderHook(() =>
-        useOptions(config)
+        return Promise.resolve(pageOf(options, page, size));
+      });
+
+      const { result, rerender, waitForNextUpdate } = renderHook(
+        ({ pageNumber }) => {
+          return useOptions({
+            options: fetcher,
+            value: undefined,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions: 'constant',
+            query: '',
+            pageNumber,
+            size: 2,
+            optionsShouldAlwaysContainValue: false
+          });
+        },
+        {
+          initialProps: {
+            pageNumber: 1
+          }
+        }
       );
 
+      // Should start by loading
       expect(result.current).toEqual({
-        options: [nobodyUser()],
+        page: emptyPage(),
         loading: true
       });
 
       await waitForNextUpdate();
 
+      // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
-        options: [nobodyUser(), adminUser(), userUser()],
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
         loading: false
+      });
+
+      expect(fetcher).toBeCalledTimes(1);
+      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+
+      rerender({ pageNumber: 2 });
+
+      // Should go back into loading with the previous page as content.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: true
+      });
+
+      await waitForNextUpdate();
+
+      // Check the next page is loaded
+      expect(result.current).toEqual({
+        page: {
+          first: false,
+          last: false,
+          number: 2,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 3, label: '3' },
+            { id: 4, label: '4' }
+          ]
+        },
+        loading: false
+      });
+
+      expect(fetcher).toBeCalledTimes(2);
+      expect(fetcher).toHaveBeenLastCalledWith({ page: 2, query: '', size: 2 });
+    });
+
+    it('should when the size changes re-fetch the options and go back in loading state', async () => {
+      expect.assertions(8);
+
+      const fetcher = jest.fn(({ size, page }) => {
+        const options = generateOptions();
+
+        return Promise.resolve(pageOf(options, page, size));
+      });
+
+      const { result, rerender, waitForNextUpdate } = renderHook(
+        ({ size }) => {
+          return useOptions({
+            options: fetcher,
+            value: undefined,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            reloadOptions: 'constant',
+            query: '',
+            pageNumber: 1,
+            size,
+            optionsShouldAlwaysContainValue: false
+          });
+        },
+        {
+          initialProps: {
+            size: 2
+          }
+        }
+      );
+
+      // Should start by loading
+      expect(result.current).toEqual({
+        page: emptyPage(),
+        loading: true
+      });
+
+      await waitForNextUpdate();
+
+      // Check if the first page of 5 pages total is given.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      expect(fetcher).toBeCalledTimes(1);
+      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+
+      rerender({ size: 3 });
+
+      // Should go back into loading with the previous page as content.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: true
+      });
+
+      await waitForNextUpdate();
+
+      // Request 1 more item this time.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 3,
+          size: 3,
+          totalElements: 9,
+          totalPages: 3,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' },
+            { id: 3, label: '3' }
+          ]
+        },
+        loading: false
+      });
+
+      expect(fetcher).toBeCalledTimes(2);
+      expect(fetcher).toHaveBeenLastCalledWith({ page: 1, query: '', size: 3 });
+    });
+
+    describe('adding the value to the page content behavior', () => {
+      it('it should not prepend the value when optionsShouldAlwaysContainValue is false', async () => {
+        expect.assertions(1);
+
+        const fetcher = jest.fn(({ size, page }) => {
+          return Promise.resolve(pageOf(generateOptions(), page, size));
+        });
+
+        const config = {
+          options: fetcher,
+          value: { id: 1337, label: '1337' },
+          labelForOption: (option) => option.label,
+          isOptionEqual: (a, b) => a.id === b.id,
+          query: '',
+          pageNumber: 1,
+          size: 2,
+          optionsShouldAlwaysContainValue: false
+        };
+
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useOptions(config)
+        );
+
+        await waitForNextUpdate();
+
+        // Check if the first page of 5 pages total is given.
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+      });
+
+      it('it should not prepend the value when value is falsy', async () => {
+        expect.assertions(1);
+
+        const fetcher = jest.fn(({ size, page }) => {
+          return Promise.resolve(pageOf(generateOptions(), page, size));
+        });
+
+        const config = {
+          options: fetcher,
+          value: undefined,
+          labelForOption: (option) => option.label,
+          isOptionEqual: (a, b) => a.id === b.id,
+          query: '',
+          pageNumber: 1,
+          size: 2,
+          optionsShouldAlwaysContainValue: true
+        };
+
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useOptions(config)
+        );
+
+        await waitForNextUpdate();
+
+        // Check if the first page of 5 pages total is given.
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+      });
+
+      it('it should not prepend the value when value is already in the page', async () => {
+        expect.assertions(1);
+
+        const fetcher = jest.fn(({ size, page }) => {
+          return Promise.resolve(pageOf(generateOptions(), page, size));
+        });
+
+        const config = {
+          options: fetcher,
+          value: { id: 1, label: '1' },
+          labelForOption: (option) => option.label,
+          isOptionEqual: (a, b) => a.id === b.id,
+          query: '',
+          pageNumber: 1,
+          size: 2,
+          optionsShouldAlwaysContainValue: true
+        };
+
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useOptions(config)
+        );
+
+        await waitForNextUpdate();
+
+        // Check if the first page of 5 pages total is given.
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+      });
+
+      it('it should prepend the value when the options is a singular value', async () => {
+        expect.assertions(1);
+
+        const fetcher = jest.fn(({ size, page }) => {
+          return Promise.resolve(pageOf(generateOptions(), page, size));
+        });
+
+        const config = {
+          options: fetcher,
+          value: { id: 1337, label: '1337' },
+          labelForOption: (option) => option.label,
+          isOptionEqual: (a, b) => a.id === b.id,
+          query: '',
+          pageNumber: 1,
+          size: 2,
+          optionsShouldAlwaysContainValue: true
+        };
+
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useOptions(config)
+        );
+
+        await waitForNextUpdate();
+
+        // Check if the first page of 5 pages total is given.
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1337, label: '1337' },
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
+      });
+
+      it('it should prepend all values not in the page when the options is an array', async () => {
+        expect.assertions(1);
+
+        const fetcher = jest.fn(({ size, page }) => {
+          return Promise.resolve(pageOf(generateOptions(), page, size));
+        });
+
+        const config = {
+          options: fetcher,
+          value: [
+            { id: 1, label: 1 }, // Should not be added again
+            { id: 1337, label: '1337' }, // Should be added
+            { id: 4242, label: '4242' }, // Should be added
+            { id: 2, label: '2' } // Should not be added again
+          ],
+          labelForOption: (option) => option.label,
+          isOptionEqual: (a, b) => a.id === b.id,
+          query: '',
+          pageNumber: 1,
+          size: 2,
+          optionsShouldAlwaysContainValue: true
+        };
+
+        const { result, waitForNextUpdate } = renderHook(() =>
+          useOptions(config)
+        );
+
+        await waitForNextUpdate();
+
+        expect(result.current).toEqual({
+          page: {
+            first: true,
+            last: false,
+            number: 1,
+            numberOfElements: 2,
+            size: 2,
+            totalElements: 9,
+            totalPages: 5,
+            content: [
+              { id: 1337, label: '1337' },
+              { id: 4242, label: '4242' },
+              { id: 1, label: '1' },
+              { id: 2, label: '2' }
+            ]
+          },
+          loading: false
+        });
       });
     });
   });

@@ -1,28 +1,28 @@
 import React, { useRef } from 'react';
 import Tooltip from '../../../core/Tooltip/Tooltip';
-import { OptionForValue } from '../../option';
+import { LabelForOption } from '../../option';
 import { useComponentOverflow } from './useComponentOverflow/useComponentOverflow';
 
 export type Props<T> = {
-  values: T | T[];
-  optionForValue: OptionForValue<T>;
+  value: T | T[];
+  labelForOption: LabelForOption<T>;
 };
 
 export function ModalPickerValueTruncator<T>({
-  values,
-  optionForValue
+  value,
+  labelForOption
 }: Props<T>) {
   const ref = useRef<HTMLElement>(null);
-  const isOverflowing = useComponentOverflow(ref, values);
+  const isOverflowing = useComponentOverflow(ref, value);
 
-  if (!values) {
+  if (!value) {
     return null;
   }
 
-  const text = Array.isArray(values) ? (
-    <>{values.map(optionForValue).join(', ')}</>
+  const text = Array.isArray(value) ? (
+    <>{value.map(labelForOption).join(', ')}</>
   ) : (
-    optionForValue(values)
+    labelForOption(value)
   );
 
   return (

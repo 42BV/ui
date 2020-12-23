@@ -1,4 +1,4 @@
-import { isOptionSelected, keyForOption } from './option';
+import { isOptionSelected, getKeyForOption } from './option';
 
 type Boat = {
   id?: number;
@@ -34,13 +34,13 @@ function setup() {
     name: 'Speedie'
   };
 
-  const uniqueKeyForValue = (boat: Boat) => `${boat.uniqueKey}`;
-  const optionForValue = (boat: Boat) => boat.name;
+  const keyForOption = (boat: Boat) => `${boat.uniqueKey}`;
+  const labelForOption = (boat: Boat) => boat.name;
   const isOptionEqual = (a: Boat, b: Boat) => a.id === b.id;
 
   return {
-    uniqueKeyForValue,
-    optionForValue,
+    keyForOption,
+    labelForOption,
     isOptionEqual,
     speedBoat,
     tugBoat,
@@ -51,14 +51,14 @@ function setup() {
 
 describe('Util: isOptionSelected', () => {
   it('should when the value is undefined return false', () => {
-    const { uniqueKeyForValue, optionForValue, speedBoat } = setup();
+    const { keyForOption, labelForOption, speedBoat } = setup();
 
     expect(
       isOptionSelected({
         value: undefined,
         option: speedBoat,
-        uniqueKeyForValue,
-        optionForValue
+        keyForOption,
+        labelForOption
       })
     ).toBe(false);
   });
@@ -67,8 +67,8 @@ describe('Util: isOptionSelected', () => {
     describe('when "isOptionEqual" is defined', () => {
       it('should consider a value selected when the "isOptionEqual" returns true for one item in the array', () => {
         const {
-          uniqueKeyForValue,
-          optionForValue,
+          keyForOption,
+          labelForOption,
           isOptionEqual,
           speedBoat,
           speedBoatCopy
@@ -78,8 +78,8 @@ describe('Util: isOptionSelected', () => {
           isOptionSelected({
             value: [speedBoatCopy],
             option: speedBoat,
-            uniqueKeyForValue,
-            optionForValue,
+            keyForOption,
+            labelForOption,
             isOptionEqual
           })
         ).toBe(true);
@@ -87,8 +87,8 @@ describe('Util: isOptionSelected', () => {
 
       it('should not consider a value selected when "isOptionEqual" returns false for every item in the array', () => {
         const {
-          uniqueKeyForValue,
-          optionForValue,
+          keyForOption,
+          labelForOption,
           isOptionEqual,
           tugBoat,
           anotherTugBoat
@@ -98,8 +98,8 @@ describe('Util: isOptionSelected', () => {
           isOptionSelected({
             value: [tugBoat],
             option: anotherTugBoat,
-            uniqueKeyForValue,
-            optionForValue,
+            keyForOption,
+            labelForOption,
             isOptionEqual
           })
         ).toBe(false);
@@ -109,8 +109,8 @@ describe('Util: isOptionSelected', () => {
     describe('when "isOptionEqual" is not defined', () => {
       it('should consider a value selected when "keyForOption" returns the same string for one item in the array', () => {
         const {
-          uniqueKeyForValue,
-          optionForValue,
+          keyForOption,
+          labelForOption,
           speedBoat,
           speedBoatCopy,
           tugBoat,
@@ -121,30 +121,30 @@ describe('Util: isOptionSelected', () => {
           isOptionSelected({
             value: [tugBoat],
             option: { ...anotherTugBoat, uniqueKey: tugBoat.uniqueKey },
-            optionForValue,
-            uniqueKeyForValue
+            labelForOption,
+            keyForOption
           })
         ).toBe(true);
         expect(
           isOptionSelected({
             value: [speedBoat],
             option: speedBoatCopy,
-            optionForValue
+            labelForOption
           })
         ).toBe(true);
         expect(
           isOptionSelected({
             value: [{ ...tugBoat, id: undefined }],
             option: { ...anotherTugBoat, id: undefined },
-            optionForValue
+            labelForOption
           })
         ).toBe(true);
       });
 
       it('should not consider a value selected when "keyForOption" does not return the same string for any item in the array', () => {
         const {
-          uniqueKeyForValue,
-          optionForValue,
+          keyForOption,
+          labelForOption,
           speedBoat,
           speedBoatCopy,
           tugBoat,
@@ -155,22 +155,22 @@ describe('Util: isOptionSelected', () => {
           isOptionSelected({
             value: [speedBoatCopy],
             option: speedBoat,
-            optionForValue,
-            uniqueKeyForValue
+            labelForOption,
+            keyForOption
           })
         ).toBe(false);
         expect(
           isOptionSelected({
             value: [tugBoat],
             option: anotherTugBoat,
-            optionForValue
+            labelForOption
           })
         ).toBe(false);
         expect(
           isOptionSelected({
             value: [{ ...speedBoatCopy, id: undefined }],
             option: { ...speedBoat, id: undefined },
-            optionForValue
+            labelForOption
           })
         ).toBe(false);
       });
@@ -181,7 +181,7 @@ describe('Util: isOptionSelected', () => {
     describe('when "isOptionEqual" is defined', () => {
       it('should consider a value selected when the "isOptionEqual" returns true', () => {
         const {
-          optionForValue,
+          labelForOption,
           isOptionEqual,
           speedBoat,
           speedBoatCopy
@@ -191,7 +191,7 @@ describe('Util: isOptionSelected', () => {
           isOptionSelected({
             value: speedBoatCopy,
             option: speedBoat,
-            optionForValue,
+            labelForOption,
             isOptionEqual
           })
         ).toBe(true);
@@ -199,7 +199,7 @@ describe('Util: isOptionSelected', () => {
 
       it('should not consider a value selected when "isOptionEqual" returns false', () => {
         const {
-          optionForValue,
+          labelForOption,
           isOptionEqual,
           tugBoat,
           anotherTugBoat
@@ -209,7 +209,7 @@ describe('Util: isOptionSelected', () => {
           isOptionSelected({
             value: tugBoat,
             option: anotherTugBoat,
-            optionForValue,
+            labelForOption,
             isOptionEqual
           })
         ).toBe(false);
@@ -219,8 +219,8 @@ describe('Util: isOptionSelected', () => {
     describe('when "isOptionEqual" is not defined', () => {
       it('should consider a value selected when "keyForOption" returns the same string', () => {
         const {
-          uniqueKeyForValue,
-          optionForValue,
+          keyForOption,
+          labelForOption,
           tugBoat,
           anotherTugBoat
         } = setup();
@@ -229,30 +229,30 @@ describe('Util: isOptionSelected', () => {
           isOptionSelected({
             value: tugBoat,
             option: { ...anotherTugBoat, uniqueKey: tugBoat.uniqueKey },
-            optionForValue,
-            uniqueKeyForValue
+            labelForOption,
+            keyForOption
           })
         ).toBe(true);
         expect(
           isOptionSelected({
             value: tugBoat,
             option: { ...anotherTugBoat, id: tugBoat.id },
-            optionForValue
+            labelForOption
           })
         ).toBe(true);
         expect(
           isOptionSelected({
             value: { ...tugBoat, id: undefined },
             option: { ...anotherTugBoat, id: undefined },
-            optionForValue
+            labelForOption
           })
         ).toBe(true);
       });
 
       it('should not consider a value selected when "keyForOption" does not return the same string', () => {
         const {
-          uniqueKeyForValue,
-          optionForValue,
+          keyForOption,
+          labelForOption,
           speedBoat,
           speedBoatCopy,
           tugBoat
@@ -262,22 +262,22 @@ describe('Util: isOptionSelected', () => {
           isOptionSelected({
             value: speedBoatCopy,
             option: speedBoat,
-            optionForValue,
-            uniqueKeyForValue
+            labelForOption,
+            keyForOption
           })
         ).toBe(false);
         expect(
           isOptionSelected({
             value: tugBoat,
             option: speedBoat,
-            optionForValue
+            labelForOption
           })
         ).toBe(false);
         expect(
           isOptionSelected({
             value: speedBoatCopy,
             option: { ...speedBoat, id: undefined },
-            optionForValue
+            labelForOption
           })
         ).toBe(false);
       });
@@ -285,30 +285,33 @@ describe('Util: isOptionSelected', () => {
   });
 });
 
-describe('util: keyForOption', () => {
-  it('should return uniqueKey property when uniqueKeyForValue is defined', () => {
-    const { optionForValue, uniqueKeyForValue, speedBoat, tugBoat } = setup();
+describe('util: getKeyForOption', () => {
+  it('should return uniqueKey property when keyForOption is defined', () => {
+    const { labelForOption, keyForOption, speedBoat, tugBoat } = setup();
     expect(
-      keyForOption({ option: speedBoat, optionForValue, uniqueKeyForValue })
+      getKeyForOption({ option: speedBoat, labelForOption, keyForOption })
     ).toBe('s');
     expect(
-      keyForOption({ option: tugBoat, optionForValue, uniqueKeyForValue })
+      getKeyForOption({ option: tugBoat, labelForOption, keyForOption })
     ).toBe('t');
   });
 
   it('should return id property when option is an object with an id', () => {
-    const { optionForValue, speedBoat, tugBoat } = setup();
-    expect(keyForOption({ option: speedBoat, optionForValue })).toBe('1');
-    expect(keyForOption({ option: tugBoat, optionForValue })).toBe('2');
+    const { labelForOption, speedBoat, tugBoat } = setup();
+    expect(getKeyForOption({ option: speedBoat, labelForOption })).toBe('1');
+    expect(getKeyForOption({ option: tugBoat, labelForOption })).toBe('2');
   });
 
-  it('should return name property when optionForValue is defined', () => {
-    const { optionForValue, speedBoat, tugBoat } = setup();
+  it('should return name property when labelForOption is defined', () => {
+    const { labelForOption, speedBoat, tugBoat } = setup();
     expect(
-      keyForOption({ option: { ...speedBoat, id: undefined }, optionForValue })
+      getKeyForOption({
+        option: { ...speedBoat, id: undefined },
+        labelForOption
+      })
     ).toBe('Speedy');
     expect(
-      keyForOption({ option: { ...tugBoat, id: undefined }, optionForValue })
+      getKeyForOption({ option: { ...tugBoat, id: undefined }, labelForOption })
     ).toBe('Tugger');
   });
 });

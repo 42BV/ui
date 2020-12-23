@@ -4,8 +4,20 @@ import toJson from 'enzyme-to-json';
 
 import RadioGroup, { Text } from './RadioGroup';
 import { User } from '../../test/types';
-import { adminUser, coordinatorUser, userUser } from '../../test/fixtures';
-import { OptionEnabledCallback } from '../option';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  userUser
+} from '../../test/fixtures';
+import { IsOptionEnabled } from '../option';
+
+import { pageOf } from '../../utilities/page/page';
+import { useOptions } from '../useOptions';
+
+jest.mock('../useOptions', () => {
+  return { useOptions: jest.fn() };
+});
 
 describe('Component: RadioGroup', () => {
   function setup({
@@ -15,36 +27,60 @@ describe('Component: RadioGroup', () => {
     hasPlaceholder = true,
     hasLabel = true,
     horizontal,
-    canClear
+    canClear,
+    loading = false
   }: {
     value?: User;
-    isOptionEnabled?: OptionEnabledCallback<User>;
+    isOptionEnabled?: IsOptionEnabled<User>;
     text?: Text;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
     horizontal?: boolean;
     canClear?: boolean;
+    loading?: boolean;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
+
+    // @ts-expect-error This is in fact a mock
+    useOptions.mockImplementation(
+      ({
+        options,
+        pageNumber,
+        query,
+        size,
+        optionsShouldAlwaysContainValue
+      }) => {
+        expect(pageNumber).toBe(1);
+        expect(query).toBe('');
+        expect(size).toBe(10);
+        expect(optionsShouldAlwaysContainValue).toBe(true);
+
+        return {
+          page: pageOf(options, pageNumber, size),
+          loading
+        };
+      }
+    );
 
     const props = {
       placeholder: hasPlaceholder ? 'Please enter your subject' : undefined,
       text,
       isOptionEnabled,
-      optionForValue: (user: User) => user?.email,
-      options: [adminUser(), coordinatorUser(), userUser()],
+      labelForOption: (user: User) => user?.email,
+      options: listOfUsers(),
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
       valid: false,
       horizontal,
-      label: hasLabel ? 'Subject' : undefined,
       canClear
     };
 
-    const radioGroup = shallow(<RadioGroup {...props} />);
+    const labelProps = hasLabel ? { id: 'subject', label: 'Subject' } : {};
+
+    const radioGroup = shallow(<RadioGroup {...props} {...labelProps} />);
 
     return {
       radioGroup,
@@ -65,26 +101,14 @@ describe('Component: RadioGroup', () => {
       );
     });
 
-    test('when value is not in options select nothing', () => {
+    test('loading', () => {
       const { radioGroup } = setup({
-        value: {
-          id: -1,
-          email: 'none',
-          firstName: 'none',
-          lastName: 'none',
-          active: false,
-          roles: []
-        },
-        isOptionEnabled: undefined
+        loading: true
       });
 
-      const radios = radioGroup.find('Input');
-
-      expect(radios.length).toBe(3);
-
-      expect(radios.at(0).props().checked).toBe(false);
-      expect(radios.at(1).props().checked).toBe(false);
-      expect(radios.at(2).props().checked).toBe(false);
+      expect(toJson(radioGroup)).toMatchSnapshot(
+        'Component: RadioGroup => ui => loading'
+      );
     });
 
     test('without placeholder', () => {

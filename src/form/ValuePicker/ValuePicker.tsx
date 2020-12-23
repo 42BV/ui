@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FetchOptionsCallback,
-  OptionEqual,
-  OptionForValue,
-  UniqueKeyForValue
-} from '../option';
+import { FieldCompatibleWithPredeterminedOptions } from '../option';
 import withJarb from '../withJarb/withJarb';
 
 import ModalPickerMultiple from '../ModalPicker/multiple/ModalPickerMultiple';
@@ -17,6 +12,7 @@ import ModalPickerSingle from '../ModalPicker/single/ModalPickerSingle';
 import Spinner from '../../core/Spinner/Spinner';
 import { t } from '../../utilities/translation/translation';
 import { FieldCompatible } from '../types';
+import { isArray } from 'lodash';
 
 export type Text = {
   /**
@@ -26,51 +22,25 @@ export type Text = {
   loadingMessage?: string;
 };
 
-type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> & {
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder: string;
+type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> &
+  FieldCompatibleWithPredeterminedOptions<T> & {
+    /**
+     * The placeholder of the form element.
+     */
+    placeholder: string;
 
-  /**
-   * Optionally whether or not the user can search.
-   * Defaults to `true`.
-   */
-  canSearch?: boolean;
+    /**
+     * Optionally whether or not the user can search.
+     * Defaults to `true`.
+     */
+    canSearch?: boolean;
 
-  /**
-   * Callback to fetch the options to display to the user.
-   */
-  fetchOptions: FetchOptionsCallback<T>;
-
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
-
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
-};
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
+  };
 
 type SingleValuePicker<T> = Omit<
   BaseValuePickerProps<T>,
@@ -133,21 +103,24 @@ type Props<T> = SingleValuePicker<T> | MultipleValuePicker<T>;
  * for a `Page` of size `1` so it can get the `totalElements`.
  */
 export default function ValuePicker<T>(props: Props<T>) {
-  const { text = {}, fetchOptions } = props;
+  const { text = {}, options } = props;
 
   const [booting, setBooting] = useState(true);
   const [totalElements, setTotalElements] = useState(0);
 
   useEffect(() => {
     async function boot() {
-      const page = await fetchOptions('', 1, 1);
-      setTotalElements(page.totalElements);
-
+      if (isArray(options)) {
+        setTotalElements(options.length);
+      } else {
+        const page = await options({ query: '', page: 1, size: 1 });
+        setTotalElements(page.totalElements);
+      }
       setBooting(false);
     }
 
     boot();
-  }, [fetchOptions]);
+  }, [options]);
 
   // Until we know the number of totalElements the ValuePicker is booting.
   // and we do not shown anything to the user yet.
@@ -167,33 +140,22 @@ export default function ValuePicker<T>(props: Props<T>) {
   }
 
   if (props.multiple) {
-    const { fetchOptions, multiple, ...rest } = props;
+    const { multiple, ...rest } = props;
 
     if (totalElements < 11) {
-      return (
-        <CheckboxMultipleSelect
-          options={() => fetchOptions('', 1, 10)}
-          {...rest}
-        />
-      );
+      return <CheckboxMultipleSelect {...rest} />;
     } else {
-      return <ModalPickerMultiple fetchOptions={fetchOptions} {...rest} />;
+      return <ModalPickerMultiple {...rest} />;
     }
   } else {
-    const { fetchOptions, multiple, ...rest } = props;
+    const { multiple, ...rest } = props;
 
     if (totalElements < 4) {
-      return (
-        <RadioGroup
-          options={() => fetchOptions('', 1, 3)}
-          canClear={true}
-          {...rest}
-        />
-      );
+      return <RadioGroup canClear={true} {...rest} />;
     } else if (totalElements < 11) {
-      return <Select options={() => fetchOptions('', 1, 10)} {...rest} />;
+      return <Select {...rest} />;
     } else {
-      return <ModalPickerSingle fetchOptions={fetchOptions} {...rest} />;
+      return <ModalPickerSingle {...rest} />;
     }
   }
 }

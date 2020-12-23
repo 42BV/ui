@@ -1,63 +1,289 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { range } from 'lodash';
 
 import CheckboxMultipleSelect, {
   JarbCheckboxMultipleSelect
 } from './CheckboxMultipleSelect';
-import { FinalForm, Form } from '../story-utils';
-import { pageOfUsers, userUser } from '../../test/fixtures';
-import { User } from '../../test/types';
-import { Icon, Tooltip } from '../..';
-
-type SubjectOption = {
-  value: string;
-  label: string;
-};
-
-const options: SubjectOption[] = range(0, 100).map((i) => ({
-  value: `${i}`,
-  label: `Selection #${i}`
-}));
+import {
+  FinalForm,
+  Form,
+  IsOptionEqualInfo,
+  KeyForOptionInfo,
+  nonExistingProvince,
+  Province,
+  provinceFetcher,
+  provinces,
+  ReloadOptionsInfo
+} from '../story-utils';
+import { Icon, Toggle, Tooltip } from '../..';
 
 storiesOf('Form/CheckboxMultipleSelect', module)
-  .add('defined options', () => {
-    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
+  .add('predefined options', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
 
     return (
-      <div>
-        <Form>
-          <CheckboxMultipleSelect
-            id="subject"
-            label="Subject"
-            placeholder="Please select your subjects"
-            optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={(option) => option.value !== 'awesome'}
-            options={options}
-            value={value}
-            onChange={setValue}
+      <Form>
+        <CheckboxMultipleSelect
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Form>
+    );
+  })
+  .add('async options', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <CheckboxMultipleSelect
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Form>
+    );
+  })
+  .add('disabled options', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <CheckboxMultipleSelect
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEnabled={(option) => !option.label.startsWith('Z')}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Form>
+    );
+  })
+  .add('custom isOptionEqual', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      provinces()[0]
+    ]);
+
+    return (
+      <Form>
+        <CheckboxMultipleSelect
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEqual={(a, b) => a.value === b.value}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+
+        <IsOptionEqualInfo />
+      </Form>
+    );
+  })
+  .add('custom keyForOption', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      provinces()[0]
+    ]);
+
+    return (
+      <Form>
+        <CheckboxMultipleSelect
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          keyForOption={(province) => province.value}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+
+        <KeyForOptionInfo />
+      </Form>
+    );
+  })
+  .add('using reloadOptions', () => {
+    const [limitToNorthern, setLimitToNorthern] = useState(false);
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <p>
+          Limit to northern provinces
+          <Toggle
+            className="ml-2"
+            color="primary"
+            value={limitToNorthern}
+            onChange={() => setLimitToNorthern(!limitToNorthern)}
           />
-        </Form>
-      </div>
+        </p>
+
+        <CheckboxMultipleSelect
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces().filter((option) =>
+            limitToNorthern ? option.north : true
+          )}
+          labelForOption={(option) => option.label}
+          value={value}
+          onChange={setValue}
+          reloadOptions={limitToNorthern}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(',')}
+          </p>
+        ) : null}
+
+        <ReloadOptionsInfo />
+      </Form>
+    );
+  })
+  .add('label & placeholder', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <h3>Without label</h3>
+
+        <CheckboxMultipleSelect
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        <h3>Custom label</h3>
+
+        <CheckboxMultipleSelect
+          id="provinces"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Friends</span>
+              <Tooltip className="ml-1" content="Provinces are nice to have">
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        <h3>Without placeholder</h3>
+
+        <CheckboxMultipleSelect
+          id="provinces"
+          label="Provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Form>
     );
   })
   .add('horizontal', () => {
-    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
 
     return (
       <div>
         <Form>
           <CheckboxMultipleSelect
-            id="subject"
-            label="Subject"
-            placeholder="Please select your subjects"
-            optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={(option) => option.value !== 'awesome'}
-            options={options.filter((_, index) => index < 5)}
+            id="provinces"
+            label="Provinces"
+            placeholder="Please select your provinces"
+            options={provinces()}
+            labelForOption={(province) => province.label}
             value={value}
             onChange={setValue}
             horizontal={true}
           />
+
+          {value ? (
+            <p>
+              Your chosen provinces are:{' '}
+              {value.map((province) => province.label).join(', ')}
+            </p>
+          ) : null}
 
           <p>
             <strong>Disclaimer:</strong> horizontal mode works best when there
@@ -67,128 +293,19 @@ storiesOf('Form/CheckboxMultipleSelect', module)
       </div>
     );
   })
-  .add('fetched options', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
-
-    return (
-      <Form>
-        <CheckboxMultipleSelect
-          id="subject"
-          label="Subject"
-          placeholder="Please select your subjects"
-          optionForValue={(user: User) => user.email}
-          options={() => Promise.resolve(pageOfUsers())}
-          value={value}
-          onChange={setValue}
-        />
-      </Form>
-    );
-  })
-  .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<User[] | undefined>([userUser()]);
-
-    return (
-      <Form>
-        <CheckboxMultipleSelect
-          id="subject"
-          label="Subject"
-          placeholder="Please select your subjects"
-          optionForValue={(user: User) => user.email}
-          options={() => Promise.resolve(pageOfUsers())}
-          isOptionEqual={(a: User, b: User) => a.id === b.id}
-          value={value}
-          onChange={setValue}
-        />
-      </Form>
-    );
-  })
-  .add('without placeholder', () => {
-    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
-
-    return (
-      <div>
-        <Form>
-          <CheckboxMultipleSelect
-            id="subject"
-            label="Subject"
-            optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={(option) => option.value !== 'awesome'}
-            options={options}
-            value={value}
-            onChange={setValue}
-          />
-        </Form>
-      </div>
-    );
-  })
-  .add('without label', () => {
-    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
-
-    return (
-      <div>
-        <Form>
-          <CheckboxMultipleSelect
-            id="subject"
-            placeholder="Please select your subjects"
-            optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={(option) => option.value !== 'awesome'}
-            options={options}
-            value={value}
-            onChange={setValue}
-          />
-        </Form>
-      </div>
-    );
-  })
-  .add('with custom label', () => {
-    const [value, setValue] = useState<SubjectOption[] | undefined>([]);
-
-    return (
-      <div>
-        <Form>
-          <CheckboxMultipleSelect
-            id="subject"
-            label={
-              <div className="d-flex justify-content-between">
-                <span>Subject</span>
-                <Tooltip
-                  className="ml-1"
-                  content="Please select your most important subject"
-                >
-                  <Icon icon="info" />
-                </Tooltip>
-              </div>
-            }
-            placeholder="Please select your subjects"
-            optionForValue={(option: SubjectOption) => option.label}
-            isOptionEnabled={(option) => option.value !== 'awesome'}
-            options={options}
-            value={value}
-            onChange={setValue}
-          />
-        </Form>
-      </div>
-    );
-  })
   .add('jarb', () => {
     return (
       <FinalForm>
         <JarbCheckboxMultipleSelect
-          id="subject"
-          name="subject"
-          label="Subject"
-          placeholder="Please select your subjects"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
+          id="provinces"
+          name="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
           jarb={{
-            validator: 'Hero.name',
-            label: 'Subject'
+            validator: 'User.provinces',
+            label: 'Provinces'
           }}
         />
       </FinalForm>

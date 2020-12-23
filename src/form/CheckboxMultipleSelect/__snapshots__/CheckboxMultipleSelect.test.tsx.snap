@@ -24,7 +24,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
     className="text-muted"
   >
     <em>
-      Please select your subjects
+      Please select your provinces
     </em>
   </p>
   <FormGroup
@@ -121,6 +121,40 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
 </FormGroup>
 `;
 
+exports[`Component: CheckboxMultipleSelect ui loading: Component: CheckboxMultipleSelect => ui => loading 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="subject"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Subject
+  </Label>
+  <p
+    className="text-muted"
+  >
+    <em>
+      Please select your provinces
+    </em>
+  </p>
+  <Loading>
+    Loading...
+  </Loading>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMultipleSelect => ui => with value 1`] = `
 <FormGroup
   className=""
@@ -145,7 +179,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
     className="text-muted"
   >
     <em>
-      Please select your subjects
+      Please select your provinces
     </em>
   </p>
   <Row
@@ -284,7 +318,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
     className="text-muted"
   >
     <em>
-      Please select your subjects
+      Please select your provinces
     </em>
   </p>
   <Row

@@ -1,5 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: Select ui loading: Component: Select => ui => loading 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="subject"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Subject
+  </Label>
+  <Loading
+    className="mt-2"
+  >
+    Loading...
+  </Loading>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: Select ui with value: Component: Select => ui => with value 1`] = `
 <FormGroup
   className=""
@@ -23,12 +52,11 @@ exports[`Component: Select ui with value: Component: Select => ui => with value 
   <Input
     className=""
     id="subject"
-    invalid={true}
     onBlur={[MockFunction]}
     onChange={[Function]}
     placeholder="Please enter your subject"
     type="select"
-    valid={false}
+    valid={true}
     value={0}
   >
     <option>
@@ -68,12 +96,10 @@ exports[`Component: Select ui without label: Component: Select => ui => without 
   <Input
     className=""
     id="1"
-    invalid={true}
     onBlur={[MockFunction]}
     onChange={[Function]}
     placeholder="Please enter your subject"
     type="select"
-    valid={false}
     value={0}
   >
     <option>
@@ -128,11 +154,9 @@ exports[`Component: Select ui without placeholder: Component: Select => ui => wi
   <Input
     className=""
     id="subject"
-    invalid={true}
     onBlur={[MockFunction]}
     onChange={[Function]}
     type="select"
-    valid={false}
     value={0}
   >
     <option />

@@ -13,9 +13,9 @@ describe('Component: ModalPickerValueTruncator', () => {
     hasSingleValue?: boolean;
     hasMultipleValues?: boolean;
   }) {
-    const optionForValueSpy = jest.fn(user => user.email);
+    const labelForOptionSpy = jest.fn((user) => user.email);
 
-    const values = hasSingleValue
+    const value = hasSingleValue
       ? userUser()
       : hasMultipleValues
       ? [adminUser(), userUser()]
@@ -23,12 +23,12 @@ describe('Component: ModalPickerValueTruncator', () => {
 
     const modalPickerValueTruncator = shallow(
       <ModalPickerValueTruncator
-        values={values}
-        optionForValue={optionForValueSpy}
+        value={value}
+        labelForOption={labelForOptionSpy}
       />
     );
 
-    return { modalPickerValueTruncator, optionForValueSpy };
+    return { modalPickerValueTruncator, labelForOptionSpy };
   }
 
   describe('ui', () => {

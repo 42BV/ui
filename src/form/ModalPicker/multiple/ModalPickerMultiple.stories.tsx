@@ -1,39 +1,255 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { pageWithContentAndExactSize } from '../../../test/utils';
-import { adminUser, userUser } from '../../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  pageOfUsers,
+  userUser
+} from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
 import ModalPickerMultiple, {
   JarbModalPickerMultiple
 } from './ModalPickerMultiple';
 
-import { FinalForm, Form } from '../../story-utils';
-import { Icon, Tooltip } from '../../..';
+import {
+  FinalForm,
+  Form,
+  IsOptionEqualInfo,
+  KeyForOptionInfo,
+  nonExistingProvince,
+  Province,
+  provinceFetcher,
+  provinces,
+  ReloadOptionsInfo,
+  resolveAfter
+} from '../../story-utils';
+import { Icon, Toggle, Tooltip } from '../../..';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import Avatar from '../../../core/Avatar/Avatar';
+import classNames from 'classnames';
 
 storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
-  .add('default', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
+  .add('predefined options', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
 
     return (
       <Form>
-        <ModalPickerMultiple<User>
-          id="bestFriend"
-          label="Best friend"
-          placeholder="Select your best friend"
-          canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          optionForValue={(user: User) => user.email}
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
           value={value}
           onChange={setValue}
         />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Form>
+    );
+  })
+  .add('async options', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Form>
+    );
+  })
+  .add('disabled options', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEnabled={(option) => !option.label.startsWith('Z')}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Form>
+    );
+  })
+  .add('custom isOptionEqual', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      provinces()[0]
+    ]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEqual={(a, b) => a.value === b.value}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+
+        <IsOptionEqualInfo />
+      </Form>
+    );
+  })
+  .add('custom keyForOption', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      provinces()[0]
+    ]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          keyForOption={(province) => province.value}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+
+        <KeyForOptionInfo />
+      </Form>
+    );
+  })
+  .add('using reloadOptions', () => {
+    const [limitToNorthern, setLimitToNorthern] = useState(false);
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <p>
+          Limit to northern provinces
+          <Toggle
+            className="ml-2"
+            color="primary"
+            value={limitToNorthern}
+            onChange={() => setLimitToNorthern(!limitToNorthern)}
+          />
+        </p>
+
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces().filter((option) =>
+            limitToNorthern ? option.north : true
+          )}
+          labelForOption={(option) => option.label}
+          value={value}
+          onChange={setValue}
+          reloadOptions={limitToNorthern}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(',')}
+          </p>
+        ) : null}
+
+        <ReloadOptionsInfo />
+      </Form>
+    );
+  })
+  .add('using reloadOptions', () => {
+    const [limitToNorthern, setLimitToNorthern] = useState(false);
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <p>
+          Limit to northern provinces
+          <Toggle
+            className="ml-2"
+            color="primary"
+            value={limitToNorthern}
+            onChange={() => setLimitToNorthern(!limitToNorthern)}
+          />
+        </p>
+
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces().filter((option) =>
+            limitToNorthern ? option.north : true
+          )}
+          labelForOption={(option) => option.label}
+          value={value}
+          onChange={setValue}
+          reloadOptions={limitToNorthern}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(',')}
+          </p>
+        ) : null}
+
+        <ReloadOptionsInfo />
       </Form>
     );
   })
@@ -47,8 +263,8 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
+          labelForOption={(user: User) => user.email}
+          options={() =>
             Promise.resolve(pageWithContentAndExactSize([userUser()]))
           }
           addButton={{
@@ -71,55 +287,19 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('without search', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
 
     return (
       <Form>
-        <ModalPickerMultiple<User>
-          id="bestFriend"
-          label="Best friend"
-          placeholder="Select your best friend"
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
           canSearch={false}
-          optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser()]))
-          }
-          addButton={{
-            label: 'Create friend',
-            onClick: () => {
-              // Just a fake implementation of how this could work.
-              // In real life you probably want to pop a modal window
-              // to create the friend.
-              return new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve(adminUser());
-                }, 1000);
-              });
-            }
-          }}
-          value={value}
-          onChange={setValue}
-        />
-      </Form>
-    );
-  })
-  .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<User[] | undefined>([userUser()]);
-
-    return (
-      <Form>
-        <ModalPickerMultiple<User>
-          id="bestFriend"
-          label="Best friend"
-          placeholder="Select your best friend"
-          canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          optionForValue={(user: User) => user.email}
-          isOptionEqual={(a: User, b: User) => a.id === b.id}
           value={value}
           onChange={setValue}
         />
@@ -136,20 +316,19 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          isOptionEqual={(a, b) => a.id === b.id}
-          optionForValue={(user: User) => user.email}
+          options={[userUser(), adminUser(), coordinatorUser()]}
+          labelForOption={(user: User) => user.email}
+          isOptionEnabled={(user) => user.email !== 'admin@42.nl'}
           renderOptions={(options) => (
             <ListGroup>
-              {options.map(({ option, isSelected, toggle }) => (
+              {options.map(({ option, isSelected, toggle, enabled }) => (
                 <ListGroupItem
                   key={option.email}
                   onClick={toggle}
-                  className="d-flex justify-content-between align-items-center clickable"
+                  className={classNames(
+                    'd-flex justify-content-between align-items-center',
+                    { clickable: enabled, 'bg-light': !enabled }
+                  )}
                 >
                   <span>
                     <Avatar
@@ -169,55 +348,38 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
       </Form>
     );
   })
-  .add('without label', () => {
+  .add('custom renderValue', () => {
     const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
       <Form>
         <ModalPickerMultiple<User>
           id="bestFriend"
+          label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          optionForValue={(user: User) => user.email}
+          options={[userUser(), adminUser(), coordinatorUser()]}
+          labelForOption={(user: User) => user.email}
           value={value}
-          onChange={setValue}
-        />
-      </Form>
-    );
-  })
-  .add('with custom label', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
-
-    return (
-      <Form>
-        <ModalPickerMultiple<User>
-          id="bestFriend"
-          label={
-            <div className="d-flex justify-content-between">
-              <span>Best friend</span>
-              <Tooltip
-                className="ml-1"
-                content="Your best friend is the one you trust the most"
-              >
-                <Icon icon="info" />
-              </Tooltip>
-            </div>
-          }
-          placeholder="Select your best friend"
-          canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          optionForValue={(user: User) => user.email}
-          value={value}
-          onChange={setValue}
+          onChange={(value) => setValue(value)}
+          renderValue={(users) => {
+            return users ? (
+              <>
+                {users.map((user, index) => (
+                  <Fragment key={user.id}>
+                    {index > 0 ? ', ' : ''}
+                    {user.roles.some((role) => role === 'ADMIN') ? (
+                      <Icon icon="supervised_user_circle" />
+                    ) : (
+                      <Icon icon="supervisor_account" />
+                    )}
+                    {user.firstName}
+                    <b>{user.lastName}</b>
+                  </Fragment>
+                ))}
+              </>
+            ) : null;
+          }}
         />
       </Form>
     );
@@ -232,12 +394,8 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Default"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          optionForValue={(user: User) => user.email}
+          options={() => resolveAfter(pageOfUsers())}
+          labelForOption={(user: User) => user.email}
           value={value}
           onChange={setValue}
         />
@@ -246,12 +404,8 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Button on the left"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          optionForValue={(user: User) => user.email}
+          options={() => resolveAfter(pageOfUsers())}
+          labelForOption={(user: User) => user.email}
           value={value}
           onChange={setValue}
           alignButton="left"
@@ -261,12 +415,8 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Button on the right"
           placeholder="Select your best friend"
           canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          optionForValue={(user: User) => user.email}
+          options={() => resolveAfter(pageOfUsers())}
+          labelForOption={(user: User) => user.email}
           value={value}
           onChange={setValue}
           alignButton="right"
@@ -274,43 +424,61 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
       </Form>
     );
   })
-  .add('display values', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
+  .add('labels', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
 
     return (
       <Form>
-        <ModalPickerMultiple<User>
-          id="bestFriend"
-          label="Best friend"
-          placeholder="Select your best friend"
-          canSearch={true}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
-          optionForValue={(user: User) => user.email}
+        <h3>Without label</h3>
+
+        <ModalPickerMultiple
+          id="provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
           value={value}
           onChange={setValue}
-          displayValues={(users) => {
-            return users ? (
-              <>
-                {users.map((user, index) => (
-                  <>
-                    {index > 0 ? ', ' : ''}
-                    {user.roles.some((role) => role === 'ADMIN') ? (
-                      <Icon icon="supervised_user_circle" />
-                    ) : (
-                      <Icon icon="supervisor_account" />
-                    )}
-                    {user.firstName}
-                    <b>{user.lastName}</b>
-                  </>
-                ))}
-              </>
-            ) : null;
-          }}
         />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+
+        <hr />
+
+        <h3>Custom label</h3>
+
+        <ModalPickerMultiple
+          id="provinces"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Friends</span>
+              <Tooltip
+                className="ml-1"
+                content="It is nice to have lots of friends"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
       </Form>
     );
   })
@@ -318,20 +486,15 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     return (
       <FinalForm>
         <JarbModalPickerMultiple
-          id="bestFriend"
-          name="bestFriend"
-          label="Best friend"
-          placeholder="Select your best friend"
-          canSearch={true}
-          optionForValue={(user: User) => user.email}
-          fetchOptions={() =>
-            Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
-            )
-          }
+          id="provinces"
+          name="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
           jarb={{
-            validator: 'Hero.name',
-            label: 'Best friend'
+            validator: 'User.provinces',
+            label: 'Provinces'
           }}
         />
       </FinalForm>

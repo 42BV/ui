@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import CheckboxMultipleSelect, { Text } from './CheckboxMultipleSelect';
@@ -7,17 +7,19 @@ import { User } from '../../test/types';
 import {
   adminUser,
   coordinatorUser,
-  pageOfUsers,
+  listOfUsers,
   userUser
 } from '../../test/fixtures';
-import { OptionEnabledCallback } from '../option';
+
+import { pageOf } from '../../utilities/page/page';
+import { useOptions } from '../useOptions';
+import { IsOptionEnabled } from '../option';
+
+jest.mock('../useOptions', () => {
+  return { useOptions: jest.fn() };
+});
 
 describe('Component: CheckboxMultipleSelect', () => {
-  let checkboxMultipleSelect: ShallowWrapper;
-
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-
   function setup({
     value,
     isOptionEnabled,
@@ -25,82 +27,71 @@ describe('Component: CheckboxMultipleSelect', () => {
     hasPlaceholder = true,
     hasLabel = true,
     horizontal,
-    hasIsOptionEqual = false,
-    options
+    loading = false
   }: {
     value?: User[];
-    isOptionEnabled?: OptionEnabledCallback<User>;
+    isOptionEnabled?: IsOptionEnabled<User>;
     options?: User[];
     text?: Text;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
     horizontal?: boolean;
     hasIsOptionEqual?: boolean;
+    loading?: boolean;
   }) {
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
+
+    // @ts-expect-error This is in fact a mock
+    useOptions.mockImplementation(
+      ({ options, pageNumber, size, optionsShouldAlwaysContainValue }) => {
+        expect(pageNumber).toBe(1);
+        expect(size).toBe(100);
+        expect(optionsShouldAlwaysContainValue).toBe(true);
+
+        return {
+          page: pageOf(options, pageNumber, size),
+          loading
+        };
+      }
+    );
 
     const props = {
-      placeholder: hasPlaceholder ? 'Please select your subjects' : undefined,
+      placeholder: hasPlaceholder ? 'Please select your provinces' : undefined,
       text,
       isOptionEnabled,
-      optionForValue: (user: User) => user.email,
-      options: options ? options : [adminUser(), coordinatorUser(), userUser()],
+      options: listOfUsers(),
+      labelForOption: (user: User) => user.email,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      horizontal,
-      isOptionEqual: hasIsOptionEqual
-        ? (a: User, b: User) => a.id === b.id
-        : undefined
+      horizontal
     };
 
-    if (hasLabel) {
-      checkboxMultipleSelect = shallow(
-        <CheckboxMultipleSelect id="subject" label="Subject" {...props} />
-      );
-    } else {
-      checkboxMultipleSelect = shallow(<CheckboxMultipleSelect {...props} />);
-    }
+    const labelProps = hasLabel ? { id: 'subject', label: 'Subject' } : {};
+
+    const checkboxMultipleSelect = shallow(
+      <CheckboxMultipleSelect {...props} {...labelProps} />
+    );
+
+    return { checkboxMultipleSelect, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: [adminUser()] });
+      const { checkboxMultipleSelect } = setup({ value: [adminUser()] });
 
       expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
         'Component: CheckboxMultipleSelect => ui => with value'
       );
     });
 
-    describe('loading', () => {
-      test('with custom text', () => {
-        setup({
-          value: [adminUser()],
-          text: { loadingMessage: 'Custom loading' }
-        });
-
-        checkboxMultipleSelect.setState({ loading: true });
-
-        expect(checkboxMultipleSelect.find('Spinner').exists()).toBe(true);
-        expect(checkboxMultipleSelect.find('span').text()).toBe(
-          'Custom loading'
-        );
-      });
-
-      test('with default text', () => {
-        setup({ value: [adminUser()] });
-
-        checkboxMultipleSelect.setState({ loading: true });
-
-        expect(checkboxMultipleSelect.find('Spinner').exists()).toBe(true);
-        expect(checkboxMultipleSelect.find('span').text()).toBe('Loading...');
-      });
-    });
-
     test('without placeholder', () => {
-      setup({ value: [adminUser()], hasPlaceholder: false });
+      const { checkboxMultipleSelect } = setup({
+        value: [adminUser()],
+        hasPlaceholder: false
+      });
 
       expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
         'Component: CheckboxMultipleSelect => ui => without placeholder'
@@ -108,7 +99,10 @@ describe('Component: CheckboxMultipleSelect', () => {
     });
 
     test('without label', () => {
-      setup({ value: [adminUser()], hasLabel: false });
+      const { checkboxMultipleSelect } = setup({
+        value: [adminUser()],
+        hasLabel: false
+      });
 
       expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
         'Component: CheckboxMultipleSelect => ui => without label'
@@ -116,231 +110,98 @@ describe('Component: CheckboxMultipleSelect', () => {
     });
 
     test('horizontal', () => {
-      setup({ value: [adminUser()], horizontal: true });
+      const { checkboxMultipleSelect } = setup({
+        value: [adminUser()],
+        horizontal: true
+      });
 
       expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
         'Component: CheckboxMultipleSelect => ui => horizontal'
       );
     });
-  });
 
-  describe('constructor', () => {
-    test('when options is an array use that options and set loading to false', () => {
-      // @ts-expect-error Test mock
-      const checkboxMultipleSelect = new CheckboxMultipleSelect({
-        options: [adminUser()]
+    test('loading', () => {
+      const { checkboxMultipleSelect } = setup({
+        loading: true
       });
 
-      expect(checkboxMultipleSelect.state).toEqual({
-        loading: false,
-        options: [adminUser()]
-      });
-    });
-
-    test('when options is a function set options to empty and loading to true', () => {
-      // @ts-expect-error Test mock
-      const checkboxMultipleSelect = new CheckboxMultipleSelect({
-        options: jest.fn()
-      });
-
-      expect(checkboxMultipleSelect.state).toEqual({
-        loading: true,
-        options: []
-      });
-    });
-  });
-
-  describe('componentDidMount', () => {
-    test('when options is an array do nothing', async (done) => {
-      expect.assertions(2);
-
-      const onChange = jest.fn();
-
-      // @ts-expect-error Test mock
-      const checkboxMultipleSelect = new CheckboxMultipleSelect({
-        options: [adminUser(), coordinatorUser(), userUser()],
-        onChange
-      });
-
-      jest
-        .spyOn(checkboxMultipleSelect, 'setState')
-        .mockImplementation(() => undefined);
-
-      try {
-        await checkboxMultipleSelect.componentDidMount();
-
-        expect(checkboxMultipleSelect.setState).toHaveBeenCalledTimes(0);
-
-        expect(onChange).toHaveBeenCalledTimes(0);
-
-        done();
-      } catch (e) {
-        console.error(e);
-        done.fail();
-      }
-    });
-
-    test('when options is a function set options to empty and loading to true', async (done) => {
-      expect.assertions(2);
-
-      const onChange = jest.fn();
-      const options = () => Promise.resolve(pageOfUsers());
-
-      // @ts-expect-error Test mock
-      const checkboxMultipleSelect = new CheckboxMultipleSelect({
-        options,
-        onChange
-      });
-
-      jest
-        .spyOn(checkboxMultipleSelect, 'setState')
-        .mockImplementation(() => undefined);
-
-      try {
-        await checkboxMultipleSelect.componentDidMount();
-
-        expect(checkboxMultipleSelect.setState).toHaveBeenCalledTimes(1);
-        expect(checkboxMultipleSelect.setState).toHaveBeenCalledWith({
-          loading: false,
-          options: [adminUser(), coordinatorUser(), userUser()]
-        });
-
-        done();
-      } catch (e) {
-        console.error(e);
-        done.fail();
-      }
+      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
+        'Component: CheckboxMultipleSelect => ui => loading'
+      );
     });
   });
 
   describe('events', () => {
-    describe('onChange', () => {
-      it('should when there is no isOptionEqual fall back to simple equality check', () => {
-        const admin = adminUser();
-        const coordinator = coordinatorUser();
-        const user = userUser();
+    test('onChange', () => {
+      const admin = adminUser();
+      const coordinator = coordinatorUser();
+      const user = userUser();
 
-        let value: User[] | undefined = undefined;
+      let value: User[] | undefined = undefined;
 
-        setup({
-          value,
-          isOptionEnabled: undefined,
-          hasIsOptionEqual: false,
-          options: [admin, coordinator, user]
-        });
-
-        // First lets click on the admin it should be added
-        let checkbox = checkboxMultipleSelect.find('Input').at(0);
-        // @ts-expect-error Test mock
-        checkbox.props().onChange();
-
-        expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith([admin]);
-
-        // Check that selected is a copy of value
-        expect(onChangeSpy.mock.calls[0][0]).not.toBe(value);
-
-        expect(onBlurSpy).toHaveBeenCalledTimes(1);
-
-        // Manually set the value since it is external
-        value = [admin];
-        checkboxMultipleSelect.setProps({ value });
-
-        // Now lets click on the coordinator it should be added
-        checkbox = checkboxMultipleSelect.find('Input').at(1);
-
-        // @ts-expect-error Test mock
-        checkbox.props().onChange();
-
-        expect(onChangeSpy).toHaveBeenCalledTimes(2);
-        expect(onChangeSpy).toHaveBeenCalledWith([admin, coordinator]);
-
-        // Check that selected is a copy of value
-        expect(onChangeSpy.mock.calls[1][0]).not.toBe(value);
-
-        expect(onBlurSpy).toHaveBeenCalledTimes(2);
-
-        // Manually set the value since it is external
-        value = [admin, coordinator];
-        checkboxMultipleSelect.setProps({ value });
-
-        // Now lets click on the admin again it should be removed
-        checkbox = checkboxMultipleSelect.find('Input').at(0);
-
-        // @ts-expect-error Test mock
-        checkbox.props().onChange();
-
-        expect(onChangeSpy).toHaveBeenCalledTimes(3);
-        expect(onChangeSpy).toHaveBeenCalledWith([coordinator]);
-
-        // Check that selected is a copy of value
-        expect(onChangeSpy.mock.calls[2][0]).not.toBe(value);
-
-        expect(onBlurSpy).toHaveBeenCalledTimes(3);
+      const { checkboxMultipleSelect, onChangeSpy, onBlurSpy } = setup({
+        value,
+        isOptionEnabled: undefined,
+        hasIsOptionEqual: false,
+        options: [admin, coordinator, user]
       });
 
-      it('should when there is a custom isOptionEqual use that for the equality check', () => {
-        let value: User[] | undefined = undefined;
+      // First lets click on the admin it should be added
+      let checkbox = checkboxMultipleSelect.find('Input').at(0);
+      // @ts-expect-error Test mock
+      checkbox.props().onChange();
 
-        setup({ value, isOptionEnabled: undefined, hasIsOptionEqual: true });
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith([admin]);
 
-        // First lets click on the admin it should be added
-        let checkbox = checkboxMultipleSelect.find('Input').at(0);
-        // @ts-expect-error Test mock
-        checkbox.props().onChange();
+      // Check that selected is a copy of value
+      expect(onChangeSpy.mock.calls[0][0]).not.toBe(value);
 
-        expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith([adminUser()]);
+      expect(onBlurSpy).toHaveBeenCalledTimes(1);
 
-        // Check that selected is a copy of value
-        expect(onChangeSpy.mock.calls[0][0]).not.toBe(value);
+      // Manually set the value since it is external
+      value = [admin];
+      checkboxMultipleSelect.setProps({ value });
 
-        expect(onBlurSpy).toHaveBeenCalledTimes(1);
+      // Now lets click on the coordinator it should be added
+      checkbox = checkboxMultipleSelect.find('Input').at(1);
 
-        // Manually set the value since it is external
-        value = [adminUser()];
-        checkboxMultipleSelect.setProps({ value });
+      // @ts-expect-error Test mock
+      checkbox.props().onChange();
 
-        // Now lets click on the coordinator it should be added
-        checkbox = checkboxMultipleSelect.find('Input').at(1);
+      expect(onChangeSpy).toHaveBeenCalledTimes(2);
+      expect(onChangeSpy).toHaveBeenCalledWith([admin, coordinator]);
 
-        // @ts-expect-error Test mock
-        checkbox.props().onChange();
+      // Check that selected is a copy of value
+      expect(onChangeSpy.mock.calls[1][0]).not.toBe(value);
 
-        expect(onChangeSpy).toHaveBeenCalledTimes(2);
-        expect(onChangeSpy).toHaveBeenCalledWith([
-          adminUser(),
-          coordinatorUser()
-        ]);
+      expect(onBlurSpy).toHaveBeenCalledTimes(2);
 
-        // Check that selected is a copy of value
-        expect(onChangeSpy.mock.calls[1][0]).not.toBe(value);
+      // Manually set the value since it is external
+      value = [admin, coordinator];
+      checkboxMultipleSelect.setProps({ value });
 
-        expect(onBlurSpy).toHaveBeenCalledTimes(2);
+      // Now lets click on the admin again it should be removed
+      checkbox = checkboxMultipleSelect.find('Input').at(0);
 
-        // Manually set the value since it is external
-        value = [adminUser(), coordinatorUser()];
-        checkboxMultipleSelect.setProps({ value });
+      // @ts-expect-error Test mock
+      checkbox.props().onChange();
 
-        // Now lets click on the admin again it should be removed
-        checkbox = checkboxMultipleSelect.find('Input').at(0);
+      expect(onChangeSpy).toHaveBeenCalledTimes(3);
+      expect(onChangeSpy).toHaveBeenCalledWith([coordinator]);
 
-        // @ts-expect-error Test mock
-        checkbox.props().onChange();
+      // Check that selected is a copy of value
+      expect(onChangeSpy.mock.calls[2][0]).not.toBe(value);
 
-        expect(onChangeSpy).toHaveBeenCalledTimes(3);
-        expect(onChangeSpy).toHaveBeenCalledWith([coordinatorUser()]);
-
-        // Check that selected is a copy of value
-        expect(onChangeSpy.mock.calls[2][0]).not.toBe(value);
-
-        expect(onBlurSpy).toHaveBeenCalledTimes(3);
-      });
+      expect(onBlurSpy).toHaveBeenCalledTimes(3);
     });
 
     describe('isOptionEnabled', () => {
       it('should when "isOptionEnabled" is not defined always be true', () => {
-        setup({ value: [adminUser()], isOptionEnabled: undefined });
+        const { checkboxMultipleSelect } = setup({
+          value: [adminUser()],
+          isOptionEnabled: undefined
+        });
 
         const checkboxes = checkboxMultipleSelect.find('Input');
         expect(checkboxes.length).toBe(3);
@@ -356,7 +217,10 @@ describe('Component: CheckboxMultipleSelect', () => {
         // Disabled all option now
         isOptionEnabledSpy.mockReturnValue(false);
 
-        setup({ value: undefined, isOptionEnabled: isOptionEnabledSpy });
+        const { checkboxMultipleSelect } = setup({
+          value: undefined,
+          isOptionEnabled: isOptionEnabledSpy
+        });
 
         const checkboxes = checkboxMultipleSelect.find('Input');
         expect(checkboxes.length).toBe(3);
@@ -377,7 +241,10 @@ describe('Component: CheckboxMultipleSelect', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      setup({ value: [userUser()], isOptionEnabled: undefined });
+      const { checkboxMultipleSelect } = setup({
+        value: [userUser()],
+        isOptionEnabled: undefined
+      });
 
       let checkbox = checkboxMultipleSelect.find('Input').at(2);
       expect(checkbox.props().checked).toBe(true);
@@ -389,7 +256,10 @@ describe('Component: CheckboxMultipleSelect', () => {
     });
 
     test('becomes filled', () => {
-      setup({ value: undefined, isOptionEnabled: undefined });
+      const { checkboxMultipleSelect } = setup({
+        value: undefined,
+        isOptionEnabled: undefined
+      });
 
       let checkbox = checkboxMultipleSelect.find('Input').at(1);
       expect(checkbox.props().checked).toBe(false);

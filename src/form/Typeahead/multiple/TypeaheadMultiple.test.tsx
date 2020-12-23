@@ -7,32 +7,60 @@ import TypeaheadMultiple from './TypeaheadMultiple';
 import {
   adminUser,
   coordinatorUser,
-  pageOfUsers,
+  listOfUsers,
+  pageOfUsersFetcher,
   userUser
 } from '../../../test/fixtures';
 import { User } from '../../../test/types';
-import { resolvablePromise, waitForUI } from '../../../test/utils';
+
+import { pageOf } from '../../../utilities/page/page';
+import { useOptions } from '../../useOptions';
+import { IsOptionEnabled } from '../../option';
+
+jest.mock('../../useOptions', () => {
+  return { useOptions: jest.fn() };
+});
 
 describe('Component: TypeaheadMultiple', () => {
   function setup({
     value,
     hasPlaceholder = true,
-    hasLabel = true
+    hasLabel = true,
+    loading = false,
+    isOptionEnabled,
+    isAsync = false
   }: {
     value?: User[];
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
+    loading?: boolean;
+    isOptionEnabled?: IsOptionEnabled<User>;
+    isAsync?: boolean;
   }) {
-    const fetchOptionsSpy = jest.fn();
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
+
+    // @ts-expect-error This is in fact a mock
+    useOptions.mockImplementation(
+      ({ pageNumber, size, optionsShouldAlwaysContainValue }) => {
+        expect(pageNumber).toBe(1);
+        expect(size).toBe(10);
+        expect(optionsShouldAlwaysContainValue).toBe(false);
+
+        return {
+          page: pageOf(listOfUsers(), pageNumber, size),
+          loading
+        };
+      }
+    );
 
     const props = {
       placeholder: hasPlaceholder
         ? 'Please provide your best friend'
         : undefined,
-      optionForValue: (user: User) => user.email,
-      fetchOptions: fetchOptionsSpy,
+      options: isAsync ? pageOfUsersFetcher : listOfUsers(),
+      labelForOption: (user: User) => user.email,
+      isOptionEnabled,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -47,7 +75,7 @@ describe('Component: TypeaheadMultiple', () => {
       <TypeaheadMultiple {...props} {...labelProps} />
     );
 
-    return { typeaheadMultiple, fetchOptionsSpy, onChangeSpy, onBlurSpy };
+    return { typeaheadMultiple, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
@@ -79,6 +107,33 @@ describe('Component: TypeaheadMultiple', () => {
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => without label'
       );
+    });
+
+    test('loading', () => {
+      const { typeaheadMultiple } = setup({
+        loading: true
+      });
+
+      const asyncTypeahead = typeaheadMultiple.find('div').children().first();
+      expect(asyncTypeahead.props().isLoading).toBe(true);
+    });
+
+    test('async delay', () => {
+      const { typeaheadMultiple } = setup({
+        isAsync: true
+      });
+
+      const asyncTypeahead = typeaheadMultiple.find('div').children().first();
+      expect(asyncTypeahead.props().delay).toBe(200);
+    });
+
+    test('sync delay', () => {
+      const { typeaheadMultiple } = setup({
+        isAsync: false
+      });
+
+      const asyncTypeahead = typeaheadMultiple.find('div').children().first();
+      expect(asyncTypeahead.props().delay).toBe(0);
     });
   });
 
@@ -163,56 +218,34 @@ describe('Component: TypeaheadMultiple', () => {
       });
     });
 
-    it('should fetchOptions when the user starts typing in the input field', async (done) => {
-      expect.assertions(3);
-
-      const { typeaheadMultiple, fetchOptionsSpy } = setup({
+    it('should set the query when the user starts typing in the input field', () => {
+      const { typeaheadMultiple } = setup({
         value: undefined
       });
 
-      const { resolve, promise } = resolvablePromise();
+      const asyncTypeahead = typeaheadMultiple.find('div').children().first();
 
-      fetchOptionsSpy.mockReturnValue(promise);
+      asyncTypeahead.props().onSearch('admin');
 
-      let asyncTypeahead = typeaheadMultiple.find('div').children().first();
+      expect(useOptions).toBeCalledTimes(2);
+      expect(useOptions).toBeCalledWith(
+        expect.objectContaining({ query: 'admin' })
+      );
+    });
 
-      asyncTypeahead.props().onSearch('Ma');
-
-      await waitForUI(() => {
-        asyncTypeahead = typeaheadMultiple.find('div').children().first();
-
-        expect(asyncTypeahead.props().isLoading).toBe(true);
+    it('should filter out already selected values and disabled options from the typeahead options', () => {
+      const { typeaheadMultiple } = setup({
+        value: [adminUser()], // The admin user is select so it should be filtered out
+        isOptionEnabled: (user) => user.id !== userUser().id // Also disable the userUser
       });
 
-      try {
-        resolve(pageOfUsers());
+      const asyncTypeahead = typeaheadMultiple.find('div').children().first();
 
-        await promise;
+      const options = asyncTypeahead.props().options;
 
-        asyncTypeahead = typeaheadMultiple.find('div').children().first();
-
-        expect(asyncTypeahead.props().options).toEqual([
-          {
-            label: 'admin@42.nl',
-            value: adminUser()
-          },
-          {
-            label: 'coordinator@42.nl',
-            value: coordinatorUser()
-          },
-          {
-            label: 'user@42.nl',
-            value: userUser()
-          }
-        ]);
-
-        expect(asyncTypeahead.props().isLoading).toBe(false);
-
-        done();
-      } catch (error) {
-        console.error(error);
-        done.fail();
-      }
+      expect(options).toEqual([
+        { label: 'coordinator@42.nl', value: coordinatorUser() }
+      ]);
     });
 
     describe('value changes', () => {

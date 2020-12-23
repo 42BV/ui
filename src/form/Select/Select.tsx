@@ -1,23 +1,19 @@
 import React from 'react';
 import { FormGroup, Input as RSInput, Label } from 'reactstrap';
-import { constant, get } from 'lodash';
 import { InputType } from 'reactstrap/lib/Input';
 
 import withJarb from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
 import {
+  FieldCompatibleWithPredeterminedOptions,
   isOptionSelected,
-  keyForOption,
-  OptionEnabledCallback,
-  OptionEqual,
-  OptionForValue,
-  OptionsFetcher,
-  UniqueKeyForValue
+  getKeyForOption
 } from '../option';
 import { useOptions } from '../useOptions';
 import Loading from '../../core/Loading/Loading';
 import { useId } from '../../hooks/useId/useId';
 import { FieldCompatible } from '../types';
+import { alwaysTrue } from '../utils';
 
 export type Text = {
   /**
@@ -27,54 +23,14 @@ export type Text = {
   loadingMessage?: string;
 };
 
-export type Props<T> = FieldCompatible<T, T> & {
-  /**
-   * Is either an array of options or a callback which fetches
-   * the options asynchronously.
-   */
-  options: OptionsFetcher<T> | T[];
-
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
-
-  /**
-   * Optional callback which is called for every option to determine
-   * if the option can be selected. By default all options can be
-   * selected.
-   */
-  isOptionEnabled?: OptionEnabledCallback<T>;
-
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-
-  /**
-   * Optionally a value to detect changes and trigger
-   * the optionsFetcher to reload the options.
-   */
-  watch?: any;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
-};
+export type Props<T> = FieldCompatible<T, T> &
+  FieldCompatibleWithPredeterminedOptions<T> & {
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
+  };
 
 /**
  * Select is a form element for which the value can be selected
@@ -93,19 +49,25 @@ export default function Select<T>(props: Props<T>) {
     placeholder,
     onChange,
     onBlur,
-    uniqueKeyForValue,
-    optionForValue,
+    options,
+    isOptionEnabled = alwaysTrue,
+    keyForOption,
+    labelForOption,
     isOptionEqual,
-    watch
+    reloadOptions
   } = props;
 
-  const { options, loading } = useOptions({
-    optionsOrFetcher: props.options,
+  const { page, loading } = useOptions({
+    options,
     value,
-    uniqueKeyForValue,
+    keyForOption,
     isOptionEqual,
-    optionForValue,
-    watch
+    labelForOption,
+    reloadOptions,
+    pageNumber: 1,
+    query: '',
+    size: 10,
+    optionsShouldAlwaysContainValue: true
   });
 
   function selectDefaultOption(option?: HTMLOptionElement | null) {
@@ -117,7 +79,6 @@ export default function Select<T>(props: Props<T>) {
 
   const innerId = useId({ id });
 
-  const isOptionEnabled = get(props, 'isOptionEnabled', constant(true));
   const inputProps = {
     id: innerId,
     valid,
@@ -126,7 +87,7 @@ export default function Select<T>(props: Props<T>) {
     placeholder,
     onChange: (event: { target: { value: string } }) => {
       const index = parseInt(event.target.value, 10);
-      onChange(options[index]);
+      onChange(page.content[index]);
     },
     onBlur,
     className: value === undefined ? 'showing-placeholder' : ''
@@ -134,11 +95,11 @@ export default function Select<T>(props: Props<T>) {
 
   const indexOfValue =
     value !== undefined
-      ? options.findIndex((option) =>
+      ? page.content.findIndex((option) =>
           isOptionSelected({
             option,
-            uniqueKeyForValue,
-            optionForValue,
+            keyForOption,
+            labelForOption,
             isOptionEqual,
             value
           })
@@ -157,20 +118,17 @@ export default function Select<T>(props: Props<T>) {
           })}
         </Loading>
       ) : (
-        <RSInput
-          value={indexOfValue === -1 ? undefined : indexOfValue}
-          {...inputProps}
-        >
+        <RSInput value={indexOfValue} {...inputProps}>
           <option ref={(option) => selectDefaultOption(option)}>
             {placeholder}
           </option>
 
-          {options.map((option, index) => {
-            const label = optionForValue(option);
-            const key = keyForOption({
+          {page.content.map((option, index) => {
+            const label = labelForOption(option);
+            const key = getKeyForOption({
               option,
-              uniqueKeyForValue,
-              optionForValue
+              keyForOption,
+              labelForOption
             });
 
             return (

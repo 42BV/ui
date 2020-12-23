@@ -1,4 +1,4 @@
-import { valueToTypeaheadOption } from './utils';
+import { optionToTypeaheadOption } from './utils';
 
 type User = {
   id: number;
@@ -13,7 +13,7 @@ test('valueToTypeAheadOption', () => {
 
   const optionFor = (v: User) => v.name;
 
-  expect(valueToTypeaheadOption(user, optionFor)).toEqual({
+  expect(optionToTypeaheadOption(user, optionFor)).toEqual({
     label: 'Maarten Hus',
     value: user
   });

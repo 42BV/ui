@@ -1,124 +1,157 @@
-import { Page } from '@42.nl/spring-connect';
-import { useEffect, useState } from 'react';
-
+import { emptyPage, Page } from '@42.nl/spring-connect';
+import { useEffect, useRef, useState } from 'react';
+import { pageOf } from '../utilities/page/page';
 import {
-  isOptionSelected,
-  OptionEqual,
-  OptionForValue,
-  OptionsFetcher,
-  UniqueKeyForValue
+  FetchOptionsCallback,
+  FieldCompatibleWithPredeterminedOptions,
+  isOptionSelected
 } from './option';
-import { isEqual } from 'lodash';
 
-type UseOptionConfig<T> = {
-  optionsOrFetcher: OptionsFetcher<T> | T[];
-  value?: T;
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
-  optionForValue: OptionForValue<T>;
-  isOptionEqual?: OptionEqual<T>;
-  watch?: any;
+type UseOptionConfig<T> = FieldCompatibleWithPredeterminedOptions<T> & {
+  value?: T | T[];
+  query: string;
+  pageNumber: number;
+  size: number;
+  optionsShouldAlwaysContainValue: boolean;
 };
 
 type UseOptionResult<T> = {
-  options: T[];
+  page: Page<T>;
   loading: boolean;
 };
 
 export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
   const {
-    optionsOrFetcher,
+    options: optionsOrFetcher,
     value,
-    uniqueKeyForValue,
-    optionForValue,
+    keyForOption,
+    labelForOption,
     isOptionEqual,
-    watch
+    reloadOptions,
+    query,
+    pageNumber,
+    size,
+    optionsShouldAlwaysContainValue
   } = config;
 
   const [loading, setLoading] = useState(
     () => !Array.isArray(optionsOrFetcher)
   );
 
-  const [options, setOptions] = useState<T[]>(() =>
-    Array.isArray(optionsOrFetcher) ? optionsOrFetcher : []
-  );
+  const [page, setPage] = useState(() => {
+    if (Array.isArray(optionsOrFetcher)) {
+      const page = pageFromOptionsArray(optionsOrFetcher);
+      appendValueToPage(page);
+      return page;
+    } else {
+      return emptyPage<T>();
+    }
+  });
 
-  const [optionsLoaded, setOptionsLoaded] = useState(false);
+  function pageFromOptionsArray(options: T[]): Page<T> {
+    // Filter based on the label for the option
+    const content = options.filter((option) =>
+      labelForOption(option).includes(query)
+    );
 
-  const [watchedValue, setWatchedValue] = useState(watch);
+    // We expect that the caller will change the pageNumber to 1
+    // when the query changes. This is not `useOptions`'s
+    // responsibility.
+    return pageOf(content, pageNumber, size);
+  }
 
-  // Load the options when the options is a OptionsFetcher once.
-  useEffect(() => {
-    async function loadOption(fetcher: OptionsFetcher<T>) {
-      // When already loaded do nothing
-      if (optionsLoaded) {
+  // When the options are loaded make sure that the options always
+  // contain the value that the user has selected when
+  // `optionsShouldAlwaysContainValue` is `true`.
+  function appendValueToPage(page: Page<T>): void {
+    /* 
+        When a form component shows the selected value in one place, 
+        but allows the user to select values from the another place 
+        `optionsShouldAlwaysContainValue` should be `false`.
+  
+        Take for example the `ModalPickerMultiple`. The selected values 
+        are rendered in the modal above the options in `Tag`'s. So there 
+        is no need to append the selected values, because the are already
+        visible.
+      */
+    if (!optionsShouldAlwaysContainValue) {
+      return;
+    }
+
+    // If there is no value there is no need to add it
+    if (!value) {
+      return;
+    }
+
+    if (Array.isArray(value)) {
+      // When the value is an array add each value
+      const prepend = value.filter((v) => {
+        const isValueIncludedInPage = page.content.some((option) =>
+          isOptionSelected({
+            option,
+            keyForOption,
+            labelForOption,
+            isOptionEqual,
+            value: v
+          })
+        );
+
+        return !isValueIncludedInPage;
+      });
+
+      page.content = [...prepend, ...page.content];
+    } else {
+      const isValueIncludedInPage = page.content.some((option) =>
+        isOptionSelected({
+          option,
+          keyForOption,
+          labelForOption,
+          isOptionEqual,
+          value
+        })
+      );
+
+      // If the value is in the page there is no need to add it
+      if (isValueIncludedInPage) {
         return;
       }
 
+      page.content.unshift(value);
+    }
+  }
+
+  const watch = `${reloadOptions}-${query}-${pageNumber}-${size}`;
+
+  const lastWatch = useRef(watch);
+
+  useEffect(() => {
+    async function loadOptions(fetcher: FetchOptionsCallback<T>) {
       setLoading(true);
 
-      const page: Page<T> = await fetcher();
+      const resultPage: Page<T> = await fetcher({
+        query,
+        page: pageNumber,
+        size
+      });
 
-      setOptions(page.content);
+      appendValueToPage(resultPage);
+      setPage(resultPage);
+
       setLoading(false);
-
-      setOptionsLoaded(true);
     }
 
     if (!Array.isArray(optionsOrFetcher)) {
-      loadOption(optionsOrFetcher);
-    } else {
-      setOptions(optionsOrFetcher);
+      loadOptions(optionsOrFetcher);
+    } else if (lastWatch.current !== watch) {
+      lastWatch.current = watch;
+
+      const newPage = pageFromOptionsArray(optionsOrFetcher);
+      appendValueToPage(newPage);
+      setPage(newPage);
     }
-  }, [optionsLoaded, optionsOrFetcher]);
+    // We only want to reload when the following props change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch]);
 
-  // Reload the options when the options is an OptionsFetcher and
-  // watch value changed
-  useEffect(() => {
-    async function loadOption(fetcher: OptionsFetcher<T>) {
-      setLoading(true);
-
-      const page: Page<T> = await fetcher();
-
-      setOptions(page.content);
-      setLoading(false);
-
-      setOptionsLoaded(true);
-    }
-
-    if (!Array.isArray(optionsOrFetcher)) {
-      if (!isEqual(watchedValue, watch)) {
-        loadOption(optionsOrFetcher);
-        setWatchedValue(watch);
-      }
-    }
-  }, [watch, optionsOrFetcher, watchedValue]);
-
-  // When the options are loaded make sure that the options always
-  // contain the value that the user has selected.
-  useEffect(() => {
-    if (value) {
-      if (
-        !options.some((option) =>
-          isOptionSelected({
-            option,
-            uniqueKeyForValue,
-            optionForValue,
-            isOptionEqual,
-            value
-          })
-        )
-      ) {
-        setOptions([value, ...options]);
-      }
-    }
-  }, [
-    value,
-    options,
-    isOptionEqual,
-    uniqueKeyForValue,
-    optionForValue,
-    setOptions
-  ]);
-
-  return { loading, options };
+  return { loading, page };
 }

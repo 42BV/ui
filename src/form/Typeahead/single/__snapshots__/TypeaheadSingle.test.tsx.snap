@@ -24,7 +24,8 @@ exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle =>
     className=""
   >
     <withAsync(Component)
-      delay={200}
+      delay={0}
+      filterBy={[Function]}
       id="bestFriend"
       inputProps={
         Object {
@@ -32,12 +33,41 @@ exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle =>
         }
       }
       isLoading={false}
-      labelKey="label"
       minLength={2}
       multiple={false}
       onChange={[Function]}
       onSearch={[Function]}
-      options={Array []}
+      options={
+        Array [
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
       placeholder="Please provide your best friend"
       promptText="Type to search..."
       searchText="Searching..."
@@ -48,9 +78,9 @@ exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle =>
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],
@@ -74,19 +104,49 @@ exports[`Component: TypeaheadSingle ui without label: Component: TypeaheadSingle
     className=""
   >
     <withAsync(Component)
-      delay={200}
+      delay={0}
+      filterBy={[Function]}
       inputProps={
         Object {
           "className": "form-control",
         }
       }
       isLoading={false}
-      labelKey="label"
       minLength={2}
       multiple={false}
       onChange={[Function]}
       onSearch={[Function]}
-      options={Array []}
+      options={
+        Array [
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
       placeholder="Please provide your best friend"
       promptText="Type to search..."
       searchText="Searching..."
@@ -97,9 +157,9 @@ exports[`Component: TypeaheadSingle ui without label: Component: TypeaheadSingle
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],
@@ -138,7 +198,8 @@ exports[`Component: TypeaheadSingle ui without placeholder: Component: Typeahead
     className=""
   >
     <withAsync(Component)
-      delay={200}
+      delay={0}
+      filterBy={[Function]}
       id="bestFriend"
       inputProps={
         Object {
@@ -146,12 +207,41 @@ exports[`Component: TypeaheadSingle ui without placeholder: Component: Typeahead
         }
       }
       isLoading={false}
-      labelKey="label"
       minLength={2}
       multiple={false}
       onChange={[Function]}
       onSearch={[Function]}
-      options={Array []}
+      options={
+        Array [
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
       promptText="Type to search..."
       searchText="Searching..."
       selected={
@@ -161,9 +251,9 @@ exports[`Component: TypeaheadSingle ui without placeholder: Component: Typeahead
             "value": Object {
               "active": true,
               "email": "admin@42.nl",
-              "firstName": "admin",
+              "firstName": "Addie",
               "id": 42,
-              "lastName": "user",
+              "lastName": "Admin",
               "roles": Array [
                 "ADMIN",
               ],

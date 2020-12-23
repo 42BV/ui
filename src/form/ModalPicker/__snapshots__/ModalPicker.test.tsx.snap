@@ -66,16 +66,96 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
         }
       >
         <SearchInput
+          debounce={0}
           defaultValue=""
-          onChange={[Function]}
+          onChange={[MockFunction]}
           placeholder="Search..."
         />
       </Col>
     </Row>
-    <h1>
-      Children
-    </h1>
+    <Row
+      className="mt-3"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <h1>
+          Children
+        </h1>
+      </Col>
+    </Row>
   </ModalBody>
+  <ModalFooter
+    className="d-flex justify-content-center"
+    tag="div"
+  >
+    <Pagination
+      onChange={[Function]}
+      page={
+        Object {
+          "content": Array [
+            Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+            Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+            Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          ],
+          "first": false,
+          "last": false,
+          "number": 2,
+          "numberOfElements": 3,
+          "size": 3,
+          "totalElements": 9,
+          "totalPages": 3,
+        }
+      }
+    />
+  </ModalFooter>
   <ModalFooter
     className="d-flex flex-row justify-content-between"
     tag="div"
@@ -151,10 +231,89 @@ exports[`Component: ModalPicker ui without addButton and search: Component: Moda
   <ModalBody
     tag="div"
   >
-    <h1>
-      Children
-    </h1>
+    <Row
+      className="mt-3"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <h1>
+          Children
+        </h1>
+      </Col>
+    </Row>
   </ModalBody>
+  <ModalFooter
+    className="d-flex justify-content-center"
+    tag="div"
+  >
+    <Pagination
+      onChange={[Function]}
+      page={
+        Object {
+          "content": Array [
+            Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+            Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+            Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          ],
+          "first": false,
+          "last": false,
+          "number": 2,
+          "numberOfElements": 3,
+          "size": 3,
+          "totalElements": 9,
+          "totalPages": 3,
+        }
+      }
+    />
+  </ModalFooter>
   <ModalFooter
     className="d-flex flex-row justify-content-between"
     tag="div"

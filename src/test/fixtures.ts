@@ -30,8 +30,8 @@ export function adminUser(): User {
   return {
     id: 42,
     email: 'admin@42.nl',
-    firstName: 'admin',
-    lastName: 'user',
+    firstName: 'Addie',
+    lastName: 'Admin',
     active: true,
     roles: ['ADMIN']
   };
@@ -41,8 +41,8 @@ export function userUser(): User {
   return {
     id: 1337,
     email: 'user@42.nl',
-    firstName: 'test',
-    lastName: 'user',
+    firstName: 'Ulysses',
+    lastName: 'User',
     active: false,
     roles: ['USER']
   };
@@ -52,8 +52,8 @@ export function coordinatorUser(): User {
   return {
     id: 777,
     email: 'coordinator@42.nl',
-    firstName: 'coordinator',
-    lastName: 'user',
+    firstName: 'Cordelia',
+    lastName: 'Coordinator',
     active: false,
     roles: ['ADMIN', 'USER']
   };
@@ -70,9 +70,13 @@ export function nobodyUser(): User {
   };
 }
 
+export function listOfUsers(): User[] {
+  return [adminUser(), coordinatorUser(), userUser()];
+}
+
 export function pageOfUsers(): Page<User> {
   return {
-    content: [adminUser(), coordinatorUser(), userUser()],
+    content: listOfUsers(),
     last: false,
     totalElements: 9,
     totalPages: 3,
@@ -81,4 +85,10 @@ export function pageOfUsers(): Page<User> {
     first: false,
     numberOfElements: 3
   };
+}
+
+export function pageOfUsersFetcher(): Promise<Page<User>> {
+  return new Promise((resolve) => {
+    resolve(pageOfUsers());
+  });
 }

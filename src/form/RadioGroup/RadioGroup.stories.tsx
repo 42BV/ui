@@ -1,314 +1,129 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Checkbox, { JarbRadioGroup } from './RadioGroup';
-import { FinalForm, Form, resolveAfter } from '../story-utils';
-import { pageOfUsers, randomUser } from '../../test/fixtures';
-import { User } from '../../test/types';
+import RadioGroup, { JarbRadioGroup } from './RadioGroup';
+import {
+  FinalForm,
+  Form,
+  IsOptionEqualInfo,
+  KeyForOptionInfo,
+  nonExistingProvince,
+  Province,
+  provinceFetcher,
+  provinces,
+  ReloadOptionsInfo,
+  resolveAfter
+} from '../story-utils';
 import { Icon, pageOf, Tooltip } from '../..';
-import Toggle from '../../core/Toggle/Toggle';
-
-type SubjectOption = {
-  value: string;
-  label: string;
-};
 
 storiesOf('Form/RadioGroup', module)
-  .add('defined options', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>(
-      undefined
+  .add('predefined options', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
     );
 
     return (
       <Form>
-        <Checkbox<SubjectOption>
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          value={subject}
-          onChange={setSubject}
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
         />
 
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
-  .add('horizontal', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>(
-      undefined
-    );
+  .add('async options', () => {
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Form>
-        <Checkbox<SubjectOption>
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          value={subject}
-          onChange={setSubject}
-          horizontal={true}
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
         />
 
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
-
-        <p>
-          <strong>Disclaimer:</strong> horizontal mode works best when there are
-          not too many items
-        </p>
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
-  .add('horizontal with clear', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>(
-      undefined
+  .add('disabled options', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
     );
 
     return (
       <Form>
-        <Checkbox<SubjectOption>
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          value={subject}
-          onChange={setSubject}
-          horizontal={true}
-          canClear={true}
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEnabled={(option) => !option.label.startsWith('Z')}
+          value={value}
+          onChange={setValue}
         />
 
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
-
-        <p>
-          <strong>Disclaimer:</strong> horizontal mode works best when there are
-          not too many items
-        </p>
-      </Form>
-    );
-  })
-  .add('with clear button', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>(
-      undefined
-    );
-
-    return (
-      <Form>
-        <Checkbox<SubjectOption>
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          value={subject}
-          onChange={setSubject}
-          canClear={true}
-        />
-
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
-      </Form>
-    );
-  })
-  .add('fetched options', () => {
-    const [subject, setSubject] = useState<User | undefined>(randomUser());
-
-    return (
-      <Form>
-        <Checkbox<User>
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(user: User) => user.email}
-          options={() => resolveAfter(pageOfUsers())}
-          value={subject}
-          onChange={setSubject}
-        />
-
-        {subject ? <p>Your chosen subject is: {subject.email}</p> : null}
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
       </Form>
     );
   })
   .add('custom isOptionEqual', () => {
-    const [subject, setSubject] = useState<User | undefined>(undefined);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Form>
-        <Checkbox<User>
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(user: User) => user.email}
-          options={() => Promise.resolve(pageOfUsers())}
-          isOptionEqual={(a: User, b: User) => a.id === b.id}
-          value={subject}
-          onChange={setSubject}
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          isOptionEqual={(a, b) => a.value === b.value}
+          value={value}
+          onChange={setValue}
         />
 
-        {subject ? <p>Your chosen subject is: {subject.email}</p> : null}
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+
+        <IsOptionEqualInfo />
       </Form>
     );
   })
-  .add('without placeholder', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>(
-      undefined
-    );
+  .add('custom keyForOption', () => {
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Form>
-        <Checkbox<SubjectOption>
-          id="subject"
-          label="Subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          value={subject}
-          onChange={setSubject}
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          keyForOption={(province) => province.value}
+          value={value}
+          onChange={setValue}
         />
 
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+
+        <KeyForOptionInfo />
       </Form>
     );
   })
-  .add('without label', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>(
-      undefined
-    );
-
-    return (
-      <Form>
-        <Checkbox<SubjectOption>
-          id="subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          value={subject}
-          onChange={setSubject}
-        />
-
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
-      </Form>
-    );
-  })
-  .add('with custom label', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>(
-      undefined
-    );
-
-    return (
-      <Form>
-        <Checkbox<SubjectOption>
-          id="subject"
-          label={
-            <>
-              <span>Subject</span>
-              <Tooltip
-                className="ml-1 position-relative"
-                style={{ top: 4 }}
-                content="Subjects are the best"
-              >
-                <Icon icon="info" />
-              </Tooltip>
-            </>
-          }
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          value={subject}
-          onChange={setSubject}
-        />
-
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
-      </Form>
-    );
-  })
-  .add('value based options', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>(
-      undefined
-    );
-    const [filtered, setFiltered] = useState(false);
-
-    const allOptions = [
-      { value: 'awesome', label: 'Awesome shit' },
-      { value: 'super', label: 'Super shit' },
-      { value: 'great', label: 'Great shit' },
-      { value: 'good', label: 'good shit' }
-    ];
-
-    const filteredOptions = allOptions.filter(
-      (option) => option.value !== 'awesome'
-    );
-
-    return (
-      <Form>
-        <div className="mb-3">
-          <Toggle
-            color="primary"
-            onChange={setFiltered}
-            value={filtered}
-            className="mr-2"
-          />
-          Filter options
-        </div>
-        <Checkbox<SubjectOption>
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={filtered ? filteredOptions : allOptions}
-          value={subject}
-          onChange={setSubject}
-        />
-
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
-      </Form>
-    );
-  })
-  .add('value based async options', () => {
+  .add('using reloadOptions', () => {
     const [brand, setBrand] = useState<string>();
     const [model, setModel] = useState<string>();
 
@@ -320,82 +135,190 @@ storiesOf('Form/RadioGroup', module)
 
     return (
       <Form>
-        <Checkbox
+        <RadioGroup
           id="brand"
           label="Brand"
           placeholder="Please select your brand"
-          optionForValue={(option) => option}
           options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
+          labelForOption={(option) => option}
           value={brand}
           onChange={(value) => {
             setBrand(value);
             setModel(undefined);
           }}
         />
-        <Checkbox
+        <RadioGroup
           id="model"
           label="Model"
           placeholder={
             brand ? 'Please select your model' : 'Please select a brand first'
           }
-          optionForValue={(option: string) => option}
           options={() =>
             resolveAfter(pageOf(brand ? allOptions[brand] : [], 1))
           }
+          labelForOption={(option: string) => option}
           value={model}
           onChange={setModel}
-          watch={brand}
+          reloadOptions={brand}
         />
+
+        {brand ? <p>Your chosen brand is: {brand}</p> : null}
+        {model ? <p>Your chosen model is: {model}</p> : null}
+
+        <ReloadOptionsInfo />
       </Form>
     );
   })
+  .add('label & placeholder', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
+    return (
+      <Form>
+        <h3>Without label</h3>
+
+        <RadioGroup<Province>
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        <h3>Custom label</h3>
+
+        <RadioGroup<Province>
+          id="provinces"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Subject</span>
+              <Tooltip className="ml-1" content="The province you live in">
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        <h3>Without placeholder</h3>
+
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+      </Form>
+    );
+  })
+  .add('horizontal', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
+    return (
+      <Form>
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+          horizontal={true}
+        />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+
+        <p>
+          <strong>Disclaimer:</strong> horizontal mode works best when there are
+          not too many items
+        </p>
+      </Form>
+    );
+  })
+  .add('horizontal with clear', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
+    return (
+      <Form>
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+          horizontal={true}
+          canClear={true}
+        />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+
+        <p>
+          <strong>Disclaimer:</strong> horizontal mode works best when there are
+          not too many items
+        </p>
+      </Form>
+    );
+  })
+  .add('with clear button', () => {
+    const [value, setValue] = useState<Province | undefined>(
+      nonExistingProvince()
+    );
+
+    return (
+      <Form>
+        <RadioGroup<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+          canClear={true}
+        />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+      </Form>
+    );
+  })
+
   .add('jarb', () => {
     return (
       <FinalForm>
         <JarbRadioGroup
-          id="subject"
-          name="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          isOptionEnabled={(option) => option.value !== 'awesome'}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
+          id="province"
+          name="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
           jarb={{
-            validator: 'Hero.name',
-            label: 'Subject'
+            validator: 'User.province',
+            label: 'Province'
           }}
         />
       </FinalForm>
-    );
-  })
-  .add('default option', () => {
-    const [subject, setSubject] = useState<SubjectOption | undefined>({
-      value: 'great',
-      label: 'Great shit'
-    });
-
-    return (
-      <Form>
-        <Checkbox<SubjectOption>
-          id="subject"
-          label="Subject"
-          placeholder="Please enter your subject"
-          optionForValue={(option: SubjectOption) => option.label}
-          options={[
-            { value: 'awesome', label: 'Awesome shit' },
-            { value: 'super', label: 'Super shit' },
-            { value: 'great', label: 'Great shit' },
-            { value: 'good', label: 'good shit' }
-          ]}
-          value={subject}
-          onChange={setSubject}
-        />
-        {subject ? <p>Your chosen subject is: {subject.label}</p> : null}
-      </Form>
     );
   });

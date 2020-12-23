@@ -4,8 +4,8 @@ import { ButtonAlignment } from '../types';
 import classNames from 'classnames';
 import { t } from '../../../utilities/translation/translation';
 import TextButton from '../../../core/TextButton/TextButton';
-import { DisplayValue } from '../single/ModalPickerSingle';
-import { DisplayValues } from '../multiple/ModalPickerMultiple';
+import { RenderValue } from '../single/ModalPickerSingle';
+import { RenderValues } from '../multiple/ModalPickerMultiple';
 
 type Text = {
   clear?: string;
@@ -41,13 +41,13 @@ type BaseProps = {
 };
 
 type ModalPickerSingleOpenerProps<T> = BaseProps & {
-  values?: T;
-  displayValues: DisplayValue<T>;
+  value?: T;
+  renderValue: RenderValue<T>;
 };
 
 type ModalPickerMultipleOpenerProps<T> = BaseProps & {
-  values?: T[];
-  displayValues: DisplayValues<T>;
+  value?: T[];
+  renderValue: RenderValues<T>;
 };
 
 type Props<T> =
@@ -58,33 +58,35 @@ export function ModalPickerOpener<T>(props: Props<T>) {
   const {
     openModal,
     label,
-    values,
-    displayValues,
     alignButton,
     onClear,
-    text = {}
+    text = {},
+    renderValue,
+    value
   } = props;
+
+  const hasValue = !!value;
 
   const wrapperClassName = classNames('d-flex', 'align-items-center', {
     'flex-row-reverse': alignButton === 'left',
-    'justify-content-between': alignButton === 'right' && values,
+    'justify-content-between': alignButton === 'right' && hasValue,
     'justify-content-end':
-      alignButton === 'left' || (alignButton === 'right' && !values)
+      alignButton === 'left' || (alignButton === 'right' && !hasValue)
   });
 
   const buttonClassName = classNames('flex-grow-0', 'flex-shrink-0', {
-    'mr-1': values && alignButton === 'left',
-    'ml-1': values && alignButton !== 'left'
+    'mr-1': hasValue && alignButton === 'left',
+    'ml-1': hasValue && alignButton !== 'left'
   });
 
   // @ts-expect-error Accept that DisplayValues is sometimes an array and sometimes not
-  const displayValue = displayValues(values);
+  const displayValue = renderValue(value);
 
   return (
     <div className={wrapperClassName}>
       {displayValue}
 
-      {values && onClear ? (
+      {hasValue && onClear ? (
         <TextButton onClick={onClear} className="mx-3">
           {t({
             overrideText: text.clear,

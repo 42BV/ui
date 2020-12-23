@@ -8,18 +8,18 @@ import { ButtonAlignment } from '../types';
 
 describe('Component: ModalPickerOpener', () => {
   function setup({
-    hasValues = false,
+    hasValue = false,
     withTooltip = false,
     alignButton
   }: {
-    hasValues?: boolean;
+    hasValue?: boolean;
     withTooltip?: boolean;
     alignButton?: ButtonAlignment;
   }) {
     const openModalSpy = jest.fn();
     const onClearSpy = jest.fn();
 
-    const values = hasValues ? adminUser().email : undefined;
+    const value = hasValue ? adminUser().email : undefined;
 
     jest
       .spyOn(useComponentOverflow, 'useComponentOverflow')
@@ -29,10 +29,10 @@ describe('Component: ModalPickerOpener', () => {
       <ModalPickerOpener
         openModal={openModalSpy}
         label="Best friend"
-        values={values}
+        value={value}
         onClear={onClearSpy}
         alignButton={alignButton}
-        displayValues={(value: string) =>
+        renderValue={(value: string) =>
           value ? <span>{value.toUpperCase()}</span> : null
         }
       />
@@ -50,7 +50,7 @@ describe('Component: ModalPickerOpener', () => {
     });
 
     test('with values', () => {
-      const { modalPickerOpener } = setup({ hasValues: true });
+      const { modalPickerOpener } = setup({ hasValue: true });
       expect(toJson(modalPickerOpener)).toMatchSnapshot(
         'Component: ModalPickerOpener => ui => with values'
       );
@@ -58,7 +58,7 @@ describe('Component: ModalPickerOpener', () => {
 
     test('tooltip', () => {
       const { modalPickerOpener } = setup({
-        hasValues: true,
+        hasValue: true,
         withTooltip: true
       });
 
@@ -76,7 +76,7 @@ describe('Component: ModalPickerOpener', () => {
 
     test('button aligned right with values', () => {
       const { modalPickerOpener } = setup({
-        hasValues: true,
+        hasValue: true,
         alignButton: 'right'
       });
       expect(toJson(modalPickerOpener)).toMatchSnapshot(
@@ -93,7 +93,7 @@ describe('Component: ModalPickerOpener', () => {
 
     test('button aligned left with values', () => {
       const { modalPickerOpener } = setup({
-        hasValues: true,
+        hasValue: true,
         alignButton: 'left'
       });
       expect(toJson(modalPickerOpener)).toMatchSnapshot(
@@ -117,7 +117,7 @@ describe('Component: ModalPickerOpener', () => {
     });
 
     it('should call onClear when the clear button is clicked', () => {
-      const { modalPickerOpener, onClearSpy } = setup({ hasValues: true });
+      const { modalPickerOpener, onClearSpy } = setup({ hasValue: true });
 
       // @ts-expect-error Test mock
       modalPickerOpener

@@ -1,23 +1,18 @@
-import React, { Component } from 'react';
+import { chunk, isArray } from 'lodash';
+import React from 'react';
 import { Col, FormGroup, Input as RSInput, Label, Row } from 'reactstrap';
-import { chunk, constant, get, isArray, uniqueId } from 'lodash';
-
-import { Page } from '@42.nl/spring-connect';
-
-import withJarb from '../withJarb/withJarb';
-import Spinner from '../../core/Spinner/Spinner';
-import {
-  isOptionSelected,
-  keyForOption,
-  OptionEnabledCallback,
-  OptionEqual,
-  OptionForValue,
-  OptionsFetcher,
-  UniqueKeyForValue
-} from '../option';
+import { Loading } from '../..';
+import { useId } from '../../hooks/useId/useId';
 import { t } from '../../utilities/translation/translation';
-import { doBlur } from '../utils';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  isOptionSelected,
+  getKeyForOption
+} from '../option';
 import { FieldCompatible } from '../types';
+import { useOptions } from '../useOptions';
+import { alwaysTrue, doBlur } from '../utils';
+import withJarb from '../withJarb/withJarb';
 
 export type Text = {
   /**
@@ -27,126 +22,79 @@ export type Text = {
   loadingMessage?: string;
 };
 
-export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> & {
-  /**
-   * Is either an array of options or a callback which fetches
-   * the options asynchronously.
-   */
-  options: OptionsFetcher<T> | T[];
+export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
+  FieldCompatibleWithPredeterminedOptions<T> & {
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
 
-  /**
-   * Callback to convert an value of type T to an option to show
-   * to the user.
-   */
-  optionForValue: OptionForValue<T>;
-
-  /**
-   * Optional callback which is used to determine if two options
-   * of type T are equal.
-   *
-   * When `isOptionEqual` is not defined the outcome of `optionForValue`
-   * is used to test equality.
-   */
-  isOptionEqual?: OptionEqual<T>;
-
-  /**
-   * Optional callback which is called for every option to determine
-   * if the option can be selected. By default all options can be
-   * selected.
-   */
-  isOptionEnabled?: OptionEnabledCallback<T>;
-
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-
-  /**
-   * Whether or not to show the CheckboxMultipleSelect horizontally.
-   *
-   * Defaults to `false`
-   */
-  horizontal?: boolean;
-
-  /**
-   * Optional callback to get a unique key for an item.
-   * This is used to provide each option in the form element a unique key.
-   * Defaults to the 'id' property if it exists, otherwise uses optionForValue.
-   */
-  uniqueKeyForValue?: UniqueKeyForValue<T>;
-};
-
-type State<T> = {
-  options: T[];
-  loading: boolean;
-};
+    /**
+     * Whether or not to show the CheckboxMultipleSelect horizontally.
+     *
+     * Defaults to `false`
+     */
+    horizontal?: boolean;
+  };
 
 /**
- * Select is a form element for which the value can be selected
- * from a limited range.
+ * CheckboxMultipleSelect is a form element for which the values can
+ * be selected from a limited range. Is shown a grid of options as
+ * checkboxes from which the user can select multiple values.
  */
-export default class CheckboxMultipleSelect<T> extends Component<
-  Props<T>,
-  State<T>
-> {
-  /* istanbul ignore next */
-  innerId = this?.props?.id ?? uniqueId();
+export default function CheckboxMultipleSelect<T>(props: Props<T>) {
+  const {
+    id,
+    label,
+    error,
+    color,
+    text = {},
+    className = '',
+    placeholder,
+    value,
+    isOptionEqual,
+    labelForOption,
+    reloadOptions,
+    keyForOption,
+    horizontal = false,
+    isOptionEnabled = alwaysTrue,
+    onChange,
+    onBlur
+  } = props;
 
-  constructor(props: Props<T>) {
-    super(props);
+  const innerId = useId({ id });
 
-    const { options } = props;
+  const { page, loading } = useOptions({
+    options: props.options,
+    value,
+    isOptionEqual,
+    labelForOption,
+    reloadOptions,
+    pageNumber: 1,
+    query: '',
+    size: 100,
+    optionsShouldAlwaysContainValue: true
+  });
 
-    if (isArray(options)) {
-      this.state = {
-        options,
-        loading: false
-      };
-    } else {
-      this.state = {
-        options: [],
-        loading: true
-      };
-    }
-  }
-
-  async componentDidMount() {
-    const options = this.props.options;
-
-    if (isArray(options) === false) {
-      const fetcher = options as OptionsFetcher<T>;
-
-      const page: Page<T> = await fetcher();
-      this.setState({ options: page.content, loading: false });
-    }
-  }
-
-  optionClicked(option: T, isChecked: boolean) {
-    const {
-      value,
-      onChange,
-      onBlur,
-      uniqueKeyForValue,
-      optionForValue
-    } = this.props;
-
+  function optionClicked(option: T, isSelected: boolean) {
     // Always copy the `value` so the `selected` is a fresh array.
     // Otherwise the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
     let selected = isArray(value) ? [...value] : [];
 
-    if (isChecked) {
-      const { isOptionEqual } = this.props;
-
-      const filterFn = isOptionEqual
-        ? (v: T) => !isOptionEqual(option, v)
-        : (v: T) =>
-            keyForOption({ option: v, uniqueKeyForValue, optionForValue }) !==
-            keyForOption({ option, uniqueKeyForValue, optionForValue });
-
-      selected = selected.filter(filterFn);
+    if (isSelected) {
+      selected = selected.filter(
+        (value) =>
+          !isOptionSelected({
+            option,
+            keyForOption,
+            labelForOption,
+            isOptionEqual,
+            value
+          })
+      );
     } else {
       selected.push(option);
     }
@@ -156,61 +104,42 @@ export default class CheckboxMultipleSelect<T> extends Component<
     doBlur(onBlur);
   }
 
-  render() {
-    const {
-      label,
-      error,
-      color,
-      text = {},
-      className = '',
-      placeholder
-    } = this.props;
-    const { loading } = this.state;
+  return (
+    <FormGroup className={className} color={color}>
+      {label ? <Label for={innerId}>{label}</Label> : null}
+      {placeholder ? (
+        <p className="text-muted">
+          <em>{placeholder}</em>
+        </p>
+      ) : null}
+      {loading ? (
+        <Loading>
+          {t({
+            key: 'Select.LOADING',
+            fallback: 'Loading...',
+            overrideText: text.loadingMessage
+          })}
+        </Loading>
+      ) : (
+        renderCheckboxes()
+      )}
 
-    return (
-      <FormGroup className={className} color={color}>
-        {label ? <Label for={this.innerId}>{label}</Label> : null}
-        {placeholder ? (
-          <p className="text-muted">
-            <em>{placeholder}</em>
-          </p>
-        ) : null}
-        {loading ? (
-          <div>
-            <Spinner color="black" size={16} />
-            <span>
-              {t({
-                key: 'Select.LOADING',
-                fallback: 'Loading...',
-                overrideText: text.loadingMessage
-              })}
-            </span>
-          </div>
-        ) : (
-          this.renderCheckboxes()
-        )}
+      {error}
+    </FormGroup>
+  );
 
-        {error}
-      </FormGroup>
-    );
-  }
-
-  renderCheckboxes() {
-    const { horizontal = false } = this.props;
-
+  function renderCheckboxes() {
     if (horizontal) {
-      return this.renderOptions(this.state.options, true);
+      return renderOptions({ options: page.content, horizontal: true });
     } else {
-      const { options } = this.state;
-
-      const chunks = chunk(options, 10);
+      const chunks = chunk(page.content, 10);
 
       return (
         <Row>
           {chunks.map((options, index) => {
             return (
               <Col xs="auto" key={index} style={{ width: '300px' }}>
-                {this.renderOptions(options, false)}
+                {renderOptions({ options, horizontal: false })}
               </Col>
             );
           })}
@@ -219,24 +148,21 @@ export default class CheckboxMultipleSelect<T> extends Component<
     }
   }
 
-  renderOptions(options: T[], horizontal: boolean) {
-    const {
-      optionForValue,
-      uniqueKeyForValue,
-      value,
-      isOptionEqual
-    } = this.props;
-
-    const isOptionEnabled = get(this.props, 'isOptionEnabled', constant(true));
-
+  function renderOptions({
+    options,
+    horizontal
+  }: {
+    options: T[];
+    horizontal: boolean;
+  }) {
     return options.map((option, index) => {
-      const label = optionForValue(option);
-      const key = keyForOption({ option, uniqueKeyForValue, optionForValue });
+      const label = labelForOption(option);
+      const key = getKeyForOption({ option, keyForOption, labelForOption });
 
-      const isChecked = isOptionSelected({
+      const isSelected = isOptionSelected({
         option,
-        uniqueKeyForValue,
-        optionForValue,
+        keyForOption,
+        labelForOption,
         isOptionEqual,
         value
       });
@@ -246,10 +172,10 @@ export default class CheckboxMultipleSelect<T> extends Component<
           <Label check>
             <RSInput
               type="checkbox"
-              checked={isChecked}
+              checked={isSelected}
               value={index}
               disabled={!isOptionEnabled(option)}
-              onChange={() => this.optionClicked(option, isChecked)}
+              onChange={() => optionClicked(option, isSelected)}
             />{' '}
             {label}
           </Label>

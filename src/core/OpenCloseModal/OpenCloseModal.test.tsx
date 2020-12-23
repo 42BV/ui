@@ -45,10 +45,10 @@ describe('Component: OpenCloseModal', () => {
     }
 
     const children = (
-      <RadioGroup
+      <RadioGroup<string>
         onChange={jest.fn()}
         options={['local', 'development', 'test', 'acceptation', 'production']}
-        optionForValue={(v) => v}
+        labelForOption={(v) => v}
       />
     );
 

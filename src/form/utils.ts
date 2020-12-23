@@ -19,3 +19,7 @@ export function doBlur(onBlur?: () => void): void {
     onBlur();
   }
 }
+
+export function alwaysTrue(): true {
+  return true;
+}
