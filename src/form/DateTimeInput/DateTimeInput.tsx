@@ -27,7 +27,7 @@ export type IsDateAllowed = (date: Moment, selectedDate?: Moment) => boolean;
 
 export type Mode = 'modal' | 'default';
 
-export type Props = FieldCompatible<Date, Date | null> & {
+export type Props = FieldCompatible<Date, Date | undefined> & {
   /**
    * The format for the date, follows Moment.js format.
    *
@@ -147,7 +147,7 @@ export default function DateTimeInput(props: Props) {
       } else {
         setLastStringValue(value);
 
-        onChange(null);
+        onChange(undefined);
 
         setHasFormatError(!isEmpty(value));
       }
@@ -232,9 +232,7 @@ export default function DateTimeInput(props: Props) {
 /**
  * Variant of the DateTimeInput which can be used in a Jarb context.
  */
-export const JarbDateTimeInput = withJarb<Date, Date | null, Props>(
-  DateTimeInput
-);
+export const JarbDateTimeInput = withJarb<Date, Date, Props>(DateTimeInput);
 
 export function maskedInput(props: unknown) {
   return <MaskedInput {...props} render={reactStrapInput} />;

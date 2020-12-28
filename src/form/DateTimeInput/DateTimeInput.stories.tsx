@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
-import DateTimeInput, { JarbDateTimeInput } from './DateTimeInput';
+import { storiesOf } from '@storybook/react';
+import React, { Fragment, useState } from 'react';
+import { Form as ReactFinalForm } from 'react-final-form';
+import { Col, Row } from 'reactstrap';
+import { Icon, SubmitButton, Tooltip } from '../..';
 import { FinalForm, Form } from '../story-utils';
-import { Icon, Tooltip } from '../..';
+import { isDateAfter, isDateBefore, isDateBetween } from './checkers';
+import DateTimeInput, { JarbDateTimeInput } from './DateTimeInput';
+import {
+  isDateAfterValidator,
+  isDateBeforeValidator,
+  isDateBetweenValidator
+} from './validators';
 
-storiesOf('Form/DateTime/DateTimeInput', module)
+storiesOf('Form/DateTimeInput', module)
   .add('date and time', () => {
+    const [value, setValue] = useState<Date | undefined>(undefined);
+
     return (
       <Form>
         <DateTimeInput
@@ -19,12 +28,20 @@ storiesOf('Form/DateTime/DateTimeInput', module)
           isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
-          onChange={() => action('value changed')}
+          value={value}
+          onChange={setValue}
         />
+
+        <div>
+          Date and time of birth is:
+          <pre>{value?.toISOString()}</pre>
+        </div>
       </Form>
     );
   })
   .add('date', () => {
+    const [value, setValue] = useState<Date | undefined>(undefined);
+
     return (
       <Form>
         <DateTimeInput
@@ -36,12 +53,20 @@ storiesOf('Form/DateTime/DateTimeInput', module)
           isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
-          onChange={() => action('value changed')}
+          value={value}
+          onChange={setValue}
         />
+
+        <div>
+          Date of birth is:
+          {value?.toISOString()}
+        </div>
       </Form>
     );
   })
   .add('time', () => {
+    const [value, setValue] = useState<Date | undefined>(undefined);
+
     return (
       <Form>
         <DateTimeInput
@@ -53,12 +78,22 @@ storiesOf('Form/DateTime/DateTimeInput', module)
           isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
-          onChange={() => action('value changed')}
+          value={value}
+          onChange={setValue}
         />
+
+        <div>
+          Start time is:
+          <pre>{value?.toISOString()}</pre>
+        </div>
+
+        <p>Note: that a time will always come with a date</p>
       </Form>
     );
   })
   .add('with custom label', () => {
+    const [value, setValue] = useState<Date | undefined>(undefined);
+
     return (
       <Form>
         <DateTimeInput
@@ -81,13 +116,19 @@ storiesOf('Form/DateTime/DateTimeInput', module)
           isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
-          onChange={() => action('value changed')}
+          value={value}
+          onChange={setValue}
         />
+
+        <div>
+          Date and time of birth is:
+          <pre>{value?.toISOString()}</pre>
+        </div>
       </Form>
     );
   })
   .add('open in modal', () => {
-    const [value, setValue] = useState<Date | undefined | null>();
+    const [value, setValue] = useState<Date | undefined>();
 
     return (
       <Form>
@@ -100,10 +141,100 @@ storiesOf('Form/DateTime/DateTimeInput', module)
           isDateAllowed={(date) => {
             return date.isBefore(new Date());
           }}
-          value={value === null ? new Date() : value}
-          onChange={(value) => setValue(value)}
+          value={value}
+          onChange={setValue}
           mode="modal"
         />
+
+        <div>
+          Date and time of birth is:
+          <pre>{value?.toISOString()}</pre>
+        </div>
+      </Form>
+    );
+  })
+  .add('range', () => {
+    const [start, setStart] = useState<Date | undefined>(undefined);
+    const [end, setEnd] = useState<Date | undefined>(undefined);
+
+    return (
+      <Form>
+        <DateTimeInput
+          id="start"
+          label="Start"
+          placeholder="Please enter your start date and time"
+          dateFormat="YYYY-MM-DD"
+          timeFormat="HH:mm:ss"
+          value={start}
+          onChange={setStart}
+          isDateAllowed={isDateBefore(end)}
+        />
+
+        <DateTimeInput
+          id="end"
+          label="End"
+          placeholder="Please enter your end date and time"
+          dateFormat="YYYY-MM-DD"
+          timeFormat="HH:mm:ss"
+          value={end}
+          onChange={setEnd}
+          isDateAllowed={isDateAfter(start)}
+        />
+
+        <div>
+          Start time:
+          <pre>{start?.toISOString()}</pre>
+        </div>
+
+        <div>
+          End time:
+          <pre>{end?.toISOString()}</pre>
+        </div>
+      </Form>
+    );
+  })
+  .add('range inclusive', () => {
+    const [start, setStart] = useState<Date | undefined>(undefined);
+    const [end, setEnd] = useState<Date | undefined>(undefined);
+
+    return (
+      <Form>
+        <DateTimeInput
+          id="start"
+          label="Start"
+          placeholder="Please enter your start date and time"
+          dateFormat="YYYY-MM-DD"
+          timeFormat="HH:mm:ss"
+          value={start}
+          onChange={setStart}
+          isDateAllowed={isDateBefore(end, { inclusive: true })}
+        />
+
+        <DateTimeInput
+          id="end"
+          label="End"
+          placeholder="Please enter your end date and time"
+          dateFormat="YYYY-MM-DD"
+          timeFormat="HH:mm:ss"
+          value={end}
+          onChange={setEnd}
+          isDateAllowed={isDateAfter(start, { inclusive: true })}
+        />
+
+        <div>
+          Start time:
+          <pre>{start?.toISOString()}</pre>
+        </div>
+
+        <div>
+          End time:
+          <pre>{end?.toISOString()}</pre>
+        </div>
+
+        <p>
+          This example shows ranges can also be inclusive this allows the start
+          and end date to be the same
+        </p>
       </Form>
     );
   })
@@ -172,5 +303,224 @@ storiesOf('Form/DateTime/DateTimeInput', module)
           }}
         />
       </FinalForm>
+    );
+  })
+  .add('jarb range', () => {
+    return (
+      <ReactFinalForm
+        onSubmit={() => action('form submitted')}
+        render={({ handleSubmit, submitting, values, errors }) => (
+          // Do not render a <form> here as it will submit the form when
+          // the submit button is pressed.
+          <Fragment>
+            <Row>
+              <Col lg={6}>
+                <Form>
+                  <JarbDateTimeInput
+                    id="start"
+                    name="start"
+                    label="Start"
+                    placeholder="Please enter your start date and time"
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat="HH:mm:ss"
+                    isDateAllowed={isDateBefore(values.end)}
+                    validators={[
+                      isDateBeforeValidator({
+                        label: 'start',
+                        end: {
+                          path: 'end',
+                          label: 'end'
+                        }
+                      })
+                    ]}
+                    jarb={{
+                      validator: 'Issue.start',
+                      label: 'Start date'
+                    }}
+                  />
+
+                  <JarbDateTimeInput
+                    id="end"
+                    name="end"
+                    label="End"
+                    placeholder="Please enter your end date and time"
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat="HH:mm:ss"
+                    isDateAllowed={isDateAfter(values.start)}
+                    validators={[
+                      isDateAfterValidator({
+                        label: 'end',
+                        start: {
+                          path: 'start',
+                          label: 'start'
+                        }
+                      })
+                    ]}
+                    jarb={{
+                      validator: 'Issue.end',
+                      label: 'End date'
+                    }}
+                  />
+
+                  <JarbDateTimeInput
+                    id="reminder"
+                    name="reminder"
+                    label="Reminder"
+                    placeholder="Please select a reminder date"
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat="HH:mm:ss"
+                    isDateAllowed={isDateBetween(values.start, values.end)}
+                    validators={[
+                      isDateBetweenValidator({
+                        label: 'reminder',
+                        start: {
+                          path: 'start',
+                          label: 'start'
+                        },
+                        end: {
+                          path: 'end',
+                          label: 'end'
+                        }
+                      })
+                    ]}
+                    jarb={{
+                      validator: 'Issue.reminder',
+                      label: 'Reminder date'
+                    }}
+                  />
+
+                  <SubmitButton
+                    onClick={() => handleSubmit()}
+                    inProgress={submitting}
+                  >
+                    Submit
+                  </SubmitButton>
+                </Form>
+              </Col>
+              <Col lg={6}>
+                <h2>Values</h2>
+                <pre>{JSON.stringify(values, null, 2)}</pre>
+                <h2>Errors</h2>
+                <pre>{JSON.stringify(errors, null, 2)}</pre>
+              </Col>
+            </Row>
+          </Fragment>
+        )}
+      />
+    );
+  })
+  .add('jarb range inclusive', () => {
+    return (
+      <ReactFinalForm
+        onSubmit={() => action('form submitted')}
+        render={({ handleSubmit, submitting, values, errors }) => (
+          // Do not render a <form> here as it will submit the form when
+          // the submit button is pressed.
+          <Fragment>
+            <Row>
+              <Col lg={6}>
+                <Form>
+                  <JarbDateTimeInput
+                    id="start"
+                    name="start"
+                    label="Start"
+                    placeholder="Please enter your start date and time"
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat="HH:mm:ss"
+                    isDateAllowed={isDateBefore(values.end, {
+                      inclusive: true
+                    })}
+                    validators={[
+                      isDateBeforeValidator({
+                        label: 'start',
+                        end: {
+                          path: 'end',
+                          label: 'end',
+                          inclusive: true
+                        }
+                      })
+                    ]}
+                    jarb={{
+                      validator: 'Issue.start',
+                      label: 'Start date'
+                    }}
+                  />
+
+                  <JarbDateTimeInput
+                    id="end"
+                    name="end"
+                    label="End"
+                    placeholder="Please enter your end date and time"
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat="HH:mm:ss"
+                    isDateAllowed={isDateAfter(values.start, {
+                      inclusive: true
+                    })}
+                    validators={[
+                      isDateAfterValidator({
+                        label: 'end',
+                        start: {
+                          path: 'start',
+                          label: 'start',
+                          inclusive: true
+                        }
+                      })
+                    ]}
+                    jarb={{
+                      validator: 'Issue.end',
+                      label: 'End date'
+                    }}
+                  />
+
+                  <JarbDateTimeInput
+                    id="reminder"
+                    name="reminder"
+                    label="Reminder"
+                    placeholder="Please select a reminder date"
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat="HH:mm:ss"
+                    isDateAllowed={isDateBetween(values.start, values.end, {
+                      startInclusive: true,
+                      endInclusive: true
+                    })}
+                    validators={[
+                      isDateBetweenValidator({
+                        label: 'reminder',
+                        start: {
+                          path: 'start',
+                          label: 'start',
+                          inclusive: true
+                        },
+                        end: {
+                          path: 'end',
+                          label: 'end',
+                          inclusive: true
+                        }
+                      })
+                    ]}
+                    jarb={{
+                      validator: 'Issue.reminder',
+                      label: 'Reminder date'
+                    }}
+                  />
+
+                  <SubmitButton
+                    onClick={() => handleSubmit()}
+                    inProgress={submitting}
+                  >
+                    Submit
+                  </SubmitButton>
+                </Form>
+              </Col>
+              <Col lg={6}>
+                <h2>Values</h2>
+                <pre>{JSON.stringify(values, null, 2)}</pre>
+                <h2>Errors</h2>
+                <pre>{JSON.stringify(errors, null, 2)}</pre>
+              </Col>
+            </Row>
+          </Fragment>
+        )}
+      />
     );
   });

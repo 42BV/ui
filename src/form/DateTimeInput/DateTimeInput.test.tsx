@@ -207,7 +207,7 @@ describe('Component: DateTimeInput', () => {
         );
       });
 
-      it('should when the value is a string which is not a valid value call onChange with null', () => {
+      it('should when the value is a string which is not a valid value call onChange with undefined', () => {
         setup({});
 
         const dateTime = dateTimeInput.find(Datetime);
@@ -215,7 +215,7 @@ describe('Component: DateTimeInput', () => {
         dateTime.props().onChange('2000-__-__ __:__:__');
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(null);
+        expect(onChangeSpy).toHaveBeenCalledWith(undefined);
 
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
 

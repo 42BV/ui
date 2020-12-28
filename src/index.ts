@@ -46,9 +46,15 @@ export {
   JarbDateTimeInput
 } from './form/DateTimeInput/DateTimeInput';
 export {
-  default as DateRangePicker,
-  JarbDateRangePicker
-} from './form/DateRangePicker/DateRangePicker';
+  isDateAfter,
+  isDateBefore,
+  isDateBetween
+} from './form/DateTimeInput/checkers';
+export {
+  isDateAfterValidator,
+  isDateBeforeValidator,
+  isDateBetweenValidator
+} from './form/DateTimeInput/validators';
 export { default as Select, JarbSelect } from './form/Select/Select';
 export {
   default as ModalPickerSingle,

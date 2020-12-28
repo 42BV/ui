@@ -1,0 +1,483 @@
+import {
+  isDateBeforeValidator,
+  isDateAfterValidator,
+  isDateBetweenValidator
+} from './validators';
+
+describe('isDateBefore', () => {
+  it('should when before is undefined allow every date', () => {
+    const isBefore = isDateBeforeValidator({
+      label: 'start',
+      end: { path: 'end', label: 'end' }
+    });
+
+    const values = {
+      end: undefined
+    };
+
+    expect(isBefore('2020-05-05', values)).toBe(undefined);
+    expect(isBefore('2020-05-06', values)).toBe(undefined);
+    expect(isBefore('2020-05-07', values)).toBe(undefined);
+    expect(isBefore('2020-05-08', values)).toBe(undefined);
+  });
+
+  it('should support a custom error message', () => {
+    const isBefore = isDateBeforeValidator({
+      label: 'start',
+      end: { path: 'end', label: 'end' },
+      overrideErrorText: 'This is a custom error'
+    });
+
+    const values = {
+      end: '2020-05-08 12:00:00'
+    };
+
+    expect(isBefore('2020-05-08 12:00:01', values)).toBe(
+      'This is a custom error'
+    );
+  });
+
+  describe('exclusive', () => {
+    test('date', () => {
+      const isBefore = isDateBeforeValidator({
+        label: 'start',
+        end: { path: 'end', label: 'end' }
+      });
+
+      const values = {
+        end: '2020-05-08'
+      };
+
+      expect(isBefore('2020-05-07', values)).toBe(undefined);
+      expect(isBefore('2020-05-08', values)).toBe(
+        `The "start" must be before the "end"`
+      );
+      expect(isBefore('2020-05-09', values)).toBe(
+        `The "start" must be before the "end"`
+      );
+      expect(isBefore(undefined, values)).toBe(undefined);
+    });
+
+    test('date and time', () => {
+      const isBefore = isDateBeforeValidator({
+        label: 'start',
+        end: { path: 'end', label: 'end' }
+      });
+
+      const values = {
+        end: '2020-05-08 12:00:00'
+      };
+
+      expect(isBefore('2020-05-08 11:59:59', values)).toBe(undefined);
+      expect(isBefore('2020-05-08 12:00:00', values)).toBe(
+        `The "start" must be before the "end"`
+      );
+      expect(isBefore('2020-05-08 12:00:01', values)).toBe(
+        `The "start" must be before the "end"`
+      );
+      expect(isBefore(undefined, values)).toBe(undefined);
+    });
+  });
+
+  describe('inclusive', () => {
+    test('date', () => {
+      const isBefore = isDateBeforeValidator({
+        label: 'start',
+        end: { path: 'end', label: 'end', inclusive: true }
+      });
+
+      const values = {
+        end: '2020-05-08'
+      };
+
+      expect(isBefore('2020-05-07', values)).toBe(undefined);
+      expect(isBefore('2020-05-08', values)).toBe(undefined);
+      expect(isBefore('2020-05-09', values)).toBe(
+        `The "start" must be before the "end"`
+      );
+      expect(isBefore(undefined, values)).toBe(undefined);
+    });
+
+    test('date and time', () => {
+      const isBefore = isDateBeforeValidator({
+        label: 'start',
+        end: { path: 'end', label: 'end', inclusive: true }
+      });
+
+      const values = {
+        end: '2020-05-08 12:00:00'
+      };
+
+      expect(isBefore('2020-05-08 11:59:59', values)).toBe(undefined);
+      expect(isBefore('2020-05-08 12:00:00', values)).toBe(undefined);
+      expect(isBefore('2020-05-08 12:00:01', values)).toBe(
+        `The "start" must be before the "end"`
+      );
+
+      expect(isBefore(undefined, values)).toBe(undefined);
+    });
+  });
+});
+
+describe('isDateAfter', () => {
+  it('should when after is undefined allow every date', () => {
+    const isAfter = isDateAfterValidator({
+      label: 'end',
+      start: { path: 'start', label: 'start' }
+    });
+
+    const values = {
+      start: undefined
+    };
+
+    expect(isAfter('2020-05-05', values)).toBe(undefined);
+    expect(isAfter('2020-05-06', values)).toBe(undefined);
+    expect(isAfter('2020-05-07', values)).toBe(undefined);
+    expect(isAfter('2020-05-08', values)).toBe(undefined);
+  });
+
+  it('should support a custom error message', () => {
+    const isAfter = isDateAfterValidator({
+      label: 'end',
+      start: { path: 'start', label: 'start' },
+      overrideErrorText: 'This is a custom error message'
+    });
+
+    const values = {
+      start: '2020-05-08'
+    };
+
+    expect(isAfter('2020-05-07', values)).toBe(
+      'This is a custom error message'
+    );
+  });
+
+  describe('exclusive', () => {
+    test('date', () => {
+      const isAfter = isDateAfterValidator({
+        label: 'end',
+        start: { path: 'start', label: 'start' }
+      });
+
+      const values = {
+        start: '2020-05-08'
+      };
+
+      expect(isAfter('2020-05-07', values)).toBe(
+        `The "end" must be after the "start"`
+      );
+      expect(isAfter('2020-05-08', values)).toBe(
+        `The "end" must be after the "start"`
+      );
+      expect(isAfter('2020-05-09', values)).toBe(undefined);
+      expect(isAfter(undefined, values)).toBe(undefined);
+    });
+
+    test('date and time', () => {
+      const isAfter = isDateAfterValidator({
+        label: 'end',
+        start: { path: 'start', label: 'start' }
+      });
+
+      const values = {
+        start: '2020-05-08 12:00:00'
+      };
+
+      expect(isAfter('2020-05-08 11:59:59', values)).toBe(
+        `The "end" must be after the "start"`
+      );
+      expect(isAfter('2020-05-08 12:00:00', values)).toBe(
+        `The "end" must be after the "start"`
+      );
+      expect(isAfter('2020-05-08 12:00:01', values)).toBe(undefined);
+
+      expect(isAfter(undefined, values)).toBe(undefined);
+    });
+  });
+
+  describe('inclusive', () => {
+    test('date', () => {
+      const isAfter = isDateAfterValidator({
+        label: 'end',
+        start: { path: 'start', label: 'start', inclusive: true }
+      });
+
+      const values = {
+        start: '2020-05-08'
+      };
+
+      expect(isAfter('2020-05-07', values)).toBe(
+        `The "end" must be after the "start"`
+      );
+      expect(isAfter('2020-05-08', values)).toBe(undefined);
+      expect(isAfter('2020-05-09', values)).toBe(undefined);
+      expect(isAfter(undefined, values)).toBe(undefined);
+    });
+
+    test('date and time', () => {
+      const isAfter = isDateAfterValidator({
+        label: 'end',
+        start: { path: 'start', label: 'start', inclusive: true }
+      });
+
+      const values = {
+        start: '2020-05-08 12:00:00'
+      };
+
+      expect(isAfter('2020-05-08 11:59:59', values)).toBe(
+        `The "end" must be after the "start"`
+      );
+      expect(isAfter('2020-05-08 12:00:00', values)).toBe(undefined);
+      expect(isAfter('2020-05-08 12:00:01', values)).toBe(undefined);
+      expect(isAfter(undefined, values)).toBe(undefined);
+    });
+  });
+});
+
+describe('isDateBetween', () => {
+  it('should when start is undefined allow every date', () => {
+    const isBetween = isDateBetweenValidator({
+      label: 'reminder',
+      start: { path: 'start', label: 'start' },
+      end: { path: 'end', label: 'end' }
+    });
+
+    const values = {
+      start: undefined,
+      end: '2020-05-09'
+    };
+
+    expect(isBetween('2020-05-05', values)).toBe(undefined);
+    expect(isBetween('2020-05-06', values)).toBe(undefined);
+    expect(isBetween('2020-05-07', values)).toBe(undefined);
+    expect(isBetween('2020-05-08', values)).toBe(undefined);
+  });
+
+  it('should when end is undefined allow every date', () => {
+    const isBetween = isDateBetweenValidator({
+      label: 'reminder',
+      start: { path: 'start', label: 'start' },
+      end: { path: 'end', label: 'end' }
+    });
+
+    const values = {
+      start: '2020-05-07',
+      end: undefined
+    };
+
+    expect(isBetween('2020-05-05', values)).toBe(undefined);
+    expect(isBetween('2020-05-06', values)).toBe(undefined);
+    expect(isBetween('2020-05-07', values)).toBe(undefined);
+    expect(isBetween('2020-05-08', values)).toBe(undefined);
+  });
+
+  it('should support a custom error message', () => {
+    const isBetween = isDateBetweenValidator({
+      label: 'reminder',
+      start: { path: 'start', label: 'start' },
+      end: { path: 'end', label: 'end' },
+      overrideErrorText: 'This is a custom error message'
+    });
+
+    const values = {
+      start: '2020-05-07',
+      end: '2020-05-09'
+    };
+
+    expect(isBetween('2020-05-07', values)).toBe(
+      'This is a custom error message'
+    );
+  });
+
+  describe('start and end exclusive', () => {
+    test('date', () => {
+      const isBetween = isDateBetweenValidator({
+        label: 'reminder',
+        start: { path: 'start', label: 'start' },
+        end: { path: 'end', label: 'end' }
+      });
+
+      const values = {
+        start: '2020-05-07',
+        end: '2020-05-09'
+      };
+
+      expect(isBetween('2020-05-07', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween('2020-05-08', values)).toBe(undefined);
+      expect(isBetween('2020-05-09', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween(undefined, values)).toBe(undefined);
+    });
+
+    test('date and time', () => {
+      const isBetween = isDateBetweenValidator({
+        label: 'reminder',
+        start: { path: 'start', label: 'start' },
+        end: { path: 'end', label: 'end' }
+      });
+
+      const values = {
+        start: '2020-05-08 12:00:00',
+        end: '2020-05-08 12:00:02'
+      };
+
+      expect(isBetween('2020-05-08 12:00:00', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween('2020-05-08 12:00:01', values)).toBe(undefined);
+      expect(isBetween('2020-05-08 12:00:02', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween(undefined, values)).toBe(undefined);
+    });
+  });
+
+  describe('start and end inclusive', () => {
+    test('date', () => {
+      const isBetween = isDateBetweenValidator({
+        label: 'reminder',
+        start: { path: 'start', label: 'start', inclusive: true },
+        end: { path: 'end', label: 'end', inclusive: true }
+      });
+
+      const values = {
+        start: '2020-05-07',
+        end: '2020-05-09'
+      };
+
+      expect(isBetween('2020-05-06', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween('2020-05-07', values)).toBe(undefined);
+      expect(isBetween('2020-05-08', values)).toBe(undefined);
+      expect(isBetween('2020-05-09', values)).toBe(undefined);
+      expect(isBetween('2020-05-10', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween(undefined, values)).toBe(undefined);
+    });
+
+    test('date and time', () => {
+      const isBetween = isDateBetweenValidator({
+        label: 'reminder',
+        start: { path: 'start', label: 'start', inclusive: true },
+        end: { path: 'end', label: 'end', inclusive: true }
+      });
+
+      const values = {
+        start: '2020-05-08 12:00:00',
+        end: '2020-05-08 12:00:02'
+      };
+
+      expect(isBetween('2020-05-08 11:59:59', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween('2020-05-08 12:00:00', values)).toBe(undefined);
+      expect(isBetween('2020-05-08 12:00:01', values)).toBe(undefined);
+      expect(isBetween('2020-05-08 12:00:02', values)).toBe(undefined);
+      expect(isBetween('2020-05-08 12:00:03', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween(undefined, values)).toBe(undefined);
+    });
+  });
+
+  describe('start inclusive end exclusive', () => {
+    test('date', () => {
+      const isBetween = isDateBetweenValidator({
+        label: 'reminder',
+        start: { path: 'start', label: 'start', inclusive: true },
+        end: { path: 'end', label: 'end', inclusive: false }
+      });
+
+      const values = {
+        start: '2020-05-07',
+        end: '2020-05-09'
+      };
+
+      expect(isBetween('2020-05-06', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween('2020-05-07', values)).toBe(undefined);
+      expect(isBetween('2020-05-08', values)).toBe(undefined);
+      expect(isBetween('2020-05-09', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween(undefined, values)).toBe(undefined);
+    });
+
+    test('date and time', () => {
+      const isBetween = isDateBetweenValidator({
+        label: 'reminder',
+        start: { path: 'start', label: 'start', inclusive: true },
+        end: { path: 'end', label: 'end', inclusive: false }
+      });
+
+      const values = {
+        start: '2020-05-08 12:00:00',
+        end: '2020-05-08 12:00:02'
+      };
+
+      expect(isBetween('2020-05-08 11:59:59', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween('2020-05-08 12:00:00', values)).toBe(undefined);
+      expect(isBetween('2020-05-08 12:00:01', values)).toBe(undefined);
+      expect(isBetween('2020-05-08 12:00:02', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween(undefined, values)).toBe(undefined);
+    });
+  });
+
+  describe('start exclusive end inclusive', () => {
+    test('date', () => {
+      const isBetween = isDateBetweenValidator({
+        label: 'reminder',
+        start: { path: 'start', label: 'start', inclusive: false },
+        end: { path: 'end', label: 'end', inclusive: true }
+      });
+
+      const values = {
+        start: '2020-05-07',
+        end: '2020-05-09'
+      };
+
+      expect(isBetween('2020-05-07', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween('2020-05-08', values)).toBe(undefined);
+      expect(isBetween('2020-05-09', values)).toBe(undefined);
+      expect(isBetween('2020-05-10', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween(undefined, values)).toBe(undefined);
+    });
+
+    test('date and time', () => {
+      const isBetween = isDateBetweenValidator({
+        label: 'reminder',
+        start: { path: 'start', label: 'start', inclusive: false },
+        end: { path: 'end', label: 'end', inclusive: true }
+      });
+
+      const values = {
+        start: '2020-05-08 12:00:00',
+        end: '2020-05-08 12:00:02'
+      };
+
+      expect(isBetween('2020-05-08 12:00:00', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween('2020-05-08 12:00:01', values)).toBe(undefined);
+      expect(isBetween('2020-05-08 12:00:02', values)).toBe(undefined);
+      expect(isBetween('2020-05-08 12:00:03', values)).toBe(
+        `The "reminder" must be between the "start" and "end"`
+      );
+      expect(isBetween(undefined, values)).toBe(undefined);
+    });
+  });
+});

@@ -238,7 +238,7 @@ export function ModalForm() {
               label="Form example"
               size="lg"
             >
-              <TotalForm />
+              <TotalForm hasSubmit={false} />
             </OpenCloseModal>
           )}
         </Form>
