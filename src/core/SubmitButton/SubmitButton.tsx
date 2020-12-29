@@ -41,7 +41,7 @@ export default function SubmitButton({
   children,
   inProgress,
   size,
-  className = '',
+  className = undefined,
   onClick
 }: Props) {
   return (
@@ -50,7 +50,7 @@ export default function SubmitButton({
       size={size}
       color="primary"
       inProgress={inProgress}
-      className={`float-right ${className}`}
+      className={className}
       onClick={onClick}
       icon="save"
     >

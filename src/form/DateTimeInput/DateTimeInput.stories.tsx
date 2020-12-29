@@ -392,6 +392,7 @@ storiesOf('Form/DateTimeInput', module)
                   <SubmitButton
                     onClick={() => handleSubmit()}
                     inProgress={submitting}
+                    className="float-right"
                   >
                     Submit
                   </SubmitButton>
@@ -507,6 +508,7 @@ storiesOf('Form/DateTimeInput', module)
                   <SubmitButton
                     onClick={() => handleSubmit()}
                     inProgress={submitting}
+                    className="float-right"
                   >
                     Submit
                   </SubmitButton>

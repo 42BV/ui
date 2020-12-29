@@ -35,6 +35,7 @@ export function FinalForm({ children }: Props) {
                 <SubmitButton
                   onClick={() => handleSubmit()}
                   inProgress={submitting}
+                  className="float-right"
                 >
                   Submit
                 </SubmitButton>

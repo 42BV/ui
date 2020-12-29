@@ -455,6 +455,7 @@ export function TotalForm({ hasSubmit }: { hasSubmit: boolean }) {
                 <SubmitButton
                   onClick={() => handleSubmit()}
                   inProgress={submitting}
+                  className="float-right"
                 >
                   Submit
                 </SubmitButton>
