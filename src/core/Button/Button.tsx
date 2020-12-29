@@ -212,17 +212,17 @@ export default function Button({
   }
 }
 
-// Based on the sizes in px's of a button with text but without an icon
+// Based md is based on default the size of the Icon component
 export function getIconSize(size: ButtonSize): number {
   switch (size) {
     case 'lg':
-      return 39;
+      return 32;
 
     case 'md':
-      return 35;
+      return 24;
 
     case 'sm':
-      return 31;
+      return 16;
   }
 }
 

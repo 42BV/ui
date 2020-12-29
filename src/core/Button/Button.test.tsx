@@ -362,9 +362,9 @@ describe('Component: Button', () => {
 });
 
 test('Util: getIconSize', () => {
-  expect(getIconSize('lg')).toBe(39);
-  expect(getIconSize('md')).toBe(35);
-  expect(getIconSize('sm')).toBe(31);
+  expect(getIconSize('lg')).toBe(32);
+  expect(getIconSize('md')).toBe(24);
+  expect(getIconSize('sm')).toBe(16);
 });
 
 test('Util: getSpinnerSize', () => {
