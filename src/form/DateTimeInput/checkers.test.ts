@@ -176,8 +176,8 @@ describe('isDateAfter', () => {
 });
 
 describe('isDateBetween', () => {
-  it('should when start is undefined allow every date', () => {
-    const isBetween = isDateBetween(undefined, '2020-05-09');
+  it('should when start, and end are both undefined allow every date', () => {
+    const isBetween = isDateBetween(undefined, undefined);
 
     expect(isBetween('2020-05-05')).toBe(true);
     expect(isBetween('2020-05-06')).toBe(true);
@@ -185,13 +185,44 @@ describe('isDateBetween', () => {
     expect(isBetween('2020-05-08')).toBe(true);
   });
 
-  it('should when end is undefined allow every date', () => {
-    const isBetween = isDateBetween('2020-05-07', undefined);
+  describe('only start should fallback to after', () => {
+    test('exclusive', () => {
+      const isBetween = isDateBetween('2020-05-07', undefined);
 
-    expect(isBetween('2020-05-05')).toBe(true);
-    expect(isBetween('2020-05-06')).toBe(true);
-    expect(isBetween('2020-05-07')).toBe(true);
-    expect(isBetween('2020-05-08')).toBe(true);
+      expect(isBetween('2020-05-06')).toBe(false);
+      expect(isBetween('2020-05-07')).toBe(false);
+      expect(isBetween('2020-05-08')).toBe(true);
+    });
+
+    test('inclusive', () => {
+      const isBetween = isDateBetween('2020-05-07', undefined, {
+        startInclusive: true
+      });
+
+      expect(isBetween('2020-05-06')).toBe(false);
+      expect(isBetween('2020-05-07')).toBe(true);
+      expect(isBetween('2020-05-08')).toBe(true);
+    });
+  });
+
+  describe('only end should fallback to before', () => {
+    it('exclusive', () => {
+      const isBetween = isDateBetween(undefined, '2020-05-09');
+
+      expect(isBetween('2020-05-08')).toBe(true);
+      expect(isBetween('2020-05-09')).toBe(false);
+      expect(isBetween('2020-05-10')).toBe(false);
+    });
+
+    it('inclusive', () => {
+      const isBetween = isDateBetween(undefined, '2020-05-09', {
+        endInclusive: true
+      });
+
+      expect(isBetween('2020-05-08')).toBe(true);
+      expect(isBetween('2020-05-09')).toBe(true);
+      expect(isBetween('2020-05-10')).toBe(false);
+    });
   });
 
   describe('start and end exclusive', () => {

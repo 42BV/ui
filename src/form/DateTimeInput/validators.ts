@@ -131,12 +131,7 @@ export function isDateBeforeValidator(
     if (result) {
       return undefined;
     } else {
-      return t({
-        key: 'DateTimeInput.DATE_BEFORE_ERROR',
-        fallback: `The "${label}" must be before the "${end.label}"`,
-        data: { start: label, end: end.label },
-        overrideText: overrideErrorText
-      });
+      return dateBeforeError({ label, end, overrideErrorText });
     }
   };
 }
@@ -186,12 +181,7 @@ export function isDateAfterValidator(
     if (result) {
       return undefined;
     } else {
-      return t({
-        key: 'DateTimeInput.DATE_AFTER_ERROR',
-        fallback: `The "${label}" must be after the "${start.label}"`,
-        data: { start: start.label, end: label },
-        overrideText: overrideErrorText
-      });
+      return dateAfterError({ label, start, overrideErrorText });
     }
   };
 }
@@ -248,6 +238,14 @@ export function isDateBetweenValidator(
     if (result) {
       return undefined;
     } else {
+      if (!before) {
+        return dateAfterError({ label, start, overrideErrorText });
+      }
+
+      if (!after) {
+        return dateBeforeError({ label, end, overrideErrorText });
+      }
+
       return t({
         key: 'DateTimeInput.DATE_BETWEEN_ERROR',
         fallback: `The "${label}" must be between the "${start.label}" and "${end.label}"`,
@@ -256,4 +254,38 @@ export function isDateBetweenValidator(
       });
     }
   };
+}
+
+function dateAfterError({
+  label,
+  start,
+  overrideErrorText
+}: {
+  label;
+  start: Start;
+  overrideErrorText?: string;
+}): string {
+  return t({
+    key: 'DateTimeInput.DATE_AFTER_ERROR',
+    fallback: `The "${label}" must be after the "${start.label}"`,
+    data: { start: start.label, end: label },
+    overrideText: overrideErrorText
+  });
+}
+
+function dateBeforeError({
+  label,
+  end,
+  overrideErrorText
+}: {
+  label;
+  end: End;
+  overrideErrorText?: string;
+}): string {
+  return t({
+    key: 'DateTimeInput.DATE_BEFORE_ERROR',
+    fallback: `The "${label}" must be before the "${end.label}"`,
+    data: { start: label, end: end.label },
+    overrideText: overrideErrorText
+  });
 }

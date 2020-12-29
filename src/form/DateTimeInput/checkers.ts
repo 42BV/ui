@@ -139,15 +139,24 @@ export function isDateBetween(
     endInclusive: false
   }
 ): DateChecker {
-  if (!start) {
-    return alwaysTrue;
-  }
-
-  if (!end) {
+  // If there is no start and end allow the user to pick all dates
+  if (!start && !end) {
     return alwaysTrue;
   }
 
   const { startInclusive, endInclusive } = config;
+
+  if (!end) {
+    // If there is no end but a start then the date must at least
+    // lie after the start.
+    return isDateAfter(start, { inclusive: startInclusive });
+  }
+
+  if (!start) {
+    // If there is no start but an end then the date must at least
+    // lie before the end.
+    return isDateBefore(end, { inclusive: endInclusive });
+  }
 
   return (date?: MomentInput) => {
     if (!date) {
