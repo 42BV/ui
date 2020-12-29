@@ -2,7 +2,7 @@
 
 exports[`Component: Button ui button disabled is disabled 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -23,7 +23,7 @@ exports[`Component: Button ui button disabled is disabled 1`] = `
 
 exports[`Component: Button ui button disabled is enabled 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -44,7 +44,7 @@ exports[`Component: Button ui button disabled is enabled 1`] = `
 
 exports[`Component: Button ui button full-width 1`] = `
 <span
-  className="button primary"
+  className="button d-block primary"
 >
   <Button
     block={true}
@@ -65,7 +65,7 @@ exports[`Component: Button ui button full-width 1`] = `
 
 exports[`Component: Button ui button normal inProgress is false 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -85,7 +85,7 @@ exports[`Component: Button ui button normal inProgress is false 1`] = `
 
 exports[`Component: Button ui button normal inProgress is true 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -111,7 +111,7 @@ exports[`Component: Button ui button normal inProgress is true 1`] = `
 
 exports[`Component: Button ui button outline inProgress is false 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -132,7 +132,7 @@ exports[`Component: Button ui button outline inProgress is false 1`] = `
 
 exports[`Component: Button ui button outline inProgress is true 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -159,7 +159,7 @@ exports[`Component: Button ui button outline inProgress is true 1`] = `
 
 exports[`Component: Button ui button size can override size 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -179,7 +179,7 @@ exports[`Component: Button ui button size can override size 1`] = `
 
 exports[`Component: Button ui button size use md by default 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -199,7 +199,7 @@ exports[`Component: Button ui button size use md by default 1`] = `
 
 exports[`Component: Button ui button with icon normal inProgress is false 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -223,7 +223,7 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
 
 exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -249,7 +249,7 @@ exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
 
 exports[`Component: Button ui button with icon normal with icon on the right 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -273,7 +273,7 @@ exports[`Component: Button ui button with icon normal with icon on the right 1`]
 
 exports[`Component: Button ui button with icon outline inProgress is false 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -298,7 +298,7 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
 
 exports[`Component: Button ui button with icon outline inProgress is true 1`] = `
 <span
-  className="button primary"
+  className="button d-inline-block primary"
 >
   <Button
     color="primary"
@@ -353,7 +353,7 @@ exports[`Component: Button ui icon only disabled is enabled 1`] = `
 
 exports[`Component: Button ui icon only full-width full width and icon left 1`] = `
 <span
-  className="button primary d-flex justify-contents-start"
+  className="button primary d-flex justify-content-start"
 >
   <Icon
     color="primary"
@@ -366,7 +366,7 @@ exports[`Component: Button ui icon only full-width full width and icon left 1`] 
 
 exports[`Component: Button ui icon only full-width full width and icon right 1`] = `
 <span
-  className="button primary d-flex justify-contents-end"
+  className="button primary d-flex justify-content-end"
 >
   <Icon
     color="primary"

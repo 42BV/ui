@@ -158,7 +158,14 @@ export default function Button({
     ) : null;
 
     return (
-      <span className={classNames('button', className, color)}>
+      <span
+        className={classNames(
+          'button',
+          fullWidth ? 'd-block' : 'd-inline-block',
+          className,
+          color
+        )}
+      >
         <RSButton
           onClick={handleOnClick}
           disabled={inProgress || disabled}
@@ -181,8 +188,8 @@ export default function Button({
           color,
           fullWidth ? 'd-flex' : 'd-inline-block',
           {
-            'justify-contents-start': fullWidth && iconPosition === 'left',
-            'justify-contents-end': fullWidth && iconPosition === 'right'
+            'justify-content-start': fullWidth && iconPosition === 'left',
+            'justify-content-end': fullWidth && iconPosition === 'right'
           }
         )}
       >
