@@ -13,7 +13,7 @@ exports[`Component: Button ui button disabled is disabled 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
     </div>
@@ -34,7 +34,7 @@ exports[`Component: Button ui button disabled is enabled 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
     </div>
@@ -55,7 +55,7 @@ exports[`Component: Button ui button full-width 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
     </div>
@@ -75,7 +75,7 @@ exports[`Component: Button ui button normal inProgress is false 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
     </div>
@@ -96,7 +96,7 @@ exports[`Component: Button ui button normal inProgress is true 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
       <Spinner
@@ -122,7 +122,7 @@ exports[`Component: Button ui button outline inProgress is false 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
     </div>
@@ -144,7 +144,7 @@ exports[`Component: Button ui button outline inProgress is true 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       <Spinner
         className="mr-2"
@@ -169,7 +169,7 @@ exports[`Component: Button ui button size can override size 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
     </div>
@@ -189,7 +189,7 @@ exports[`Component: Button ui button size use md by default 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
     </div>
@@ -209,7 +209,7 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       <Icon
         className="button-icon mr-2"
@@ -234,7 +234,7 @@ exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       <Spinner
         className="mr-2"
@@ -259,7 +259,7 @@ exports[`Component: Button ui button with icon normal with icon on the right 1`]
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       Save
       <Icon
@@ -284,7 +284,7 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       <Icon
         className="button-icon mr-2"
@@ -310,7 +310,7 @@ exports[`Component: Button ui button with icon outline inProgress is true 1`] = 
     type="button"
   >
     <div
-      className="d-flex align-items-center"
+      className="d-flex justify-content-center align-items-center"
     >
       <Spinner
         className="mr-2"

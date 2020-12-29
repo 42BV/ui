@@ -171,7 +171,7 @@ export default function Button({
           disabled={inProgress || disabled}
           {...buttonProps}
         >
-          <div className="d-flex align-items-center">
+          <div className="d-flex justify-content-center align-items-center">
             {iconPosition === 'left' && widget}
             {children}
             {iconPosition === 'right' && widget}
