@@ -4,7 +4,7 @@ import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
 import { InputType } from 'reactstrap/lib/Input';
 import withJarb from '../withJarb/withJarb';
 
-export type Mask = (string | RegExp)[];
+export type InputMask = (string | RegExp)[];
 
 import { FieldCompatible } from '../types';
 import { useId } from '../../hooks/useId/useId';
@@ -20,7 +20,7 @@ export type Props = FieldCompatible<string, string> & {
    *
    * @see https://text-mask.github.io/text-mask/
    */
-  mask?: Mask;
+  mask?: InputMask;
 
   /**
    * Optional addon to display to the left or right of the input

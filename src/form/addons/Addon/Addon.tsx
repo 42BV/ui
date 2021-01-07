@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { InputGroupAddon } from 'reactstrap';
 
-export type Position = 'left' | 'right';
+export type AddonPosition = 'left' | 'right';
 
 export type Props = {
   /**
@@ -15,7 +15,7 @@ export type Props = {
    *
    * Defaults to 'left'
    */
-  position?: Position;
+  position?: AddonPosition;
 
   /**
    * Optional extra CSS class you want to add to the component.

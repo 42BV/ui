@@ -3,7 +3,7 @@ import Datetime from 'react-datetime';
 import moment, { Moment } from 'moment';
 import { constant, get } from 'lodash';
 
-import { IsDateAllowed } from '../DateTimeInput';
+import { DateTimeInputIsDateAllowed } from '../DateTimeInput';
 import { DateFormat, TimeFormat } from '../types';
 import { t } from '../../../utilities/translation/translation';
 import { useValue } from './useValue';
@@ -70,7 +70,7 @@ type Props = {
    * Is ran for every date which is displayed. By default every
    * date can be selected.
    */
-  isDateAllowed?: IsDateAllowed;
+  isDateAllowed?: DateTimeInputIsDateAllowed;
 
   /**
    * When true, input time values will be interpreted as UTC (Zulu time)
@@ -126,7 +126,7 @@ export function DateTimeModal(props: Props) {
         input={false}
         open={true}
         closeOnSelect={false}
-        onChange={x => setValue(x)}
+        onChange={(x) => setValue(x)}
         value={value}
         dateFormat={dateFormat}
         timeFormat={timeFormat}

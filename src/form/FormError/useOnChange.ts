@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
-import { OnChange } from './types';
+import { FormErrorOnChange } from './types';
 
-export function useOnChange(hasErrors: boolean, onChange?: OnChange): void {
+export function useOnChange(
+  hasErrors: boolean,
+  onChange?: FormErrorOnChange
+): void {
   useEffect(() => {
     if (onChange) {
       onChange(hasErrors);

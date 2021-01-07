@@ -1,16 +1,16 @@
 import { renderHook } from '@testing-library/react-hooks';
 
 import { useOnChange } from './useOnChange';
-import { OnChange } from './types';
+import { FormErrorOnChange } from './types';
 
 describe('useOnChange', () => {
   test('that it passes values only when they change', () => {
     const onChange = jest.fn();
 
     const { rerender } = renderHook<
-      { hasErrors: boolean; onChange: OnChange },
+      { hasErrors: boolean; onChange: FormErrorOnChange },
       void
-    >(props => useOnChange(props.hasErrors, props.onChange), {
+    >((props) => useOnChange(props.hasErrors, props.onChange), {
       initialProps: {
         hasErrors: true,
         onChange

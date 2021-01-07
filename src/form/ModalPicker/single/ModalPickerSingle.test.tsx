@@ -14,7 +14,7 @@ import {
   randomUser,
   userUser
 } from '../../../test/fixtures';
-import { ButtonAlignment } from '../types';
+import { ModalPickerButtonAlignment } from '../types';
 
 import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
@@ -44,7 +44,7 @@ describe('Component: ModalPickerSingle', () => {
     showAddButton?: boolean;
     canSearch?: boolean;
     hasLabel?: boolean;
-    alignButton?: ButtonAlignment;
+    alignButton?: ModalPickerButtonAlignment;
     hasRenderValue?: boolean;
     hasRenderOptions?: boolean;
     loading?: boolean;

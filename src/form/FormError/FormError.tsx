@@ -6,7 +6,7 @@ import { Meta, MetaError } from '../types';
 import { errorMessage } from './utils';
 import { useSettledErrors } from './useSettledErrors';
 import { useOnChange } from './useOnChange';
-import { OnChange } from './types';
+import { FormErrorOnChange } from './types';
 
 type Props = {
   /**
@@ -28,7 +28,7 @@ type Props = {
    * Optionally: callback which is called when there are errors or
    * they are removed.
    */
-  onChange?: OnChange;
+  onChange?: FormErrorOnChange;
 
   /**
    * Optionally: classes to put on the div around the errors.

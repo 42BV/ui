@@ -16,7 +16,10 @@ import SearchInput from '../../core/SearchInput/SearchInput';
 import { useBodyFixOnModalClose } from '../../core/useBodyFixOnModalClose/useBodyFixOnModalClose';
 import ContentState from '../../core/ContentState/ContentState';
 import EmptyModal from './EmptyModal';
-import { RenderOptions, RenderOptionsOption } from './types';
+import {
+  ModalPickerRenderOptions,
+  ModalPickerRenderOptionsOption
+} from './types';
 import {
   FieldCompatibleWithPredeterminedOptions,
   isOptionSelected,
@@ -133,7 +136,7 @@ export type RenderOptionsConfig<T> = Omit<
   /**
    * Callback to customize display of options.
    */
-  renderOptions: RenderOptions<T>;
+  renderOptions: ModalPickerRenderOptions<T>;
 
   onChange: (option: T, isSelected: boolean) => void;
 };
@@ -255,7 +258,7 @@ export default function ModalPicker<T>(props: Props<T>) {
 
   function mapOptions(
     renderOptionsConfig: RenderOptionsConfig<T>
-  ): RenderOptionsOption<T>[] {
+  ): ModalPickerRenderOptionsOption<T>[] {
     const {
       onChange,
       labelForOption,

@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
+import { NewPasswordInputRule } from '../../types';
 import {
   hasLowercase,
   hasMinimumLength,
   hasNoSpaces,
   hasNumber,
   hasSpecialChar,
-  hasUppercase,
-  Rule
+  hasUppercase
 } from '../rules';
 
 export function useRules(
-  rules: Rule[],
+  rules: NewPasswordInputRule[],
   password: string,
   minimumLength: number
 ) {
-  const [compliant, setCompliant] = useState<{ [key in Rule]?: boolean }>(
+  const [compliant, setCompliant] = useState<
+    { [key in NewPasswordInputRule]?: boolean }
+  >(
     rules.reduce(
       (obj, rule) => checkRule(obj, rule, password, minimumLength),
       {}
@@ -35,7 +37,7 @@ export function useRules(
 
 export function checkRule(
   obj: Record<string, boolean>,
-  rule: Rule,
+  rule: NewPasswordInputRule,
   value: string,
   minimumLength: number
 ) {

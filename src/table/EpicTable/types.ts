@@ -1,4 +1,4 @@
-export type Direction = 'ASC' | 'DESC' | 'NONE';
+export type EpicTableSortDirection = 'ASC' | 'DESC' | 'NONE';
 
 export type HeaderRef = {
   ref: HTMLDivElement;

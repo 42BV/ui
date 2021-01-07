@@ -1,19 +1,19 @@
 import React from 'react';
 
 import { Icon, IconType } from '../../../../core/Icon';
-import { Direction } from '../../types';
+import { EpicTableSortDirection } from '../../types';
 import { nextDirection } from './utils';
 
 export type Props = {
   /**
    * The current direction of the sort.
    */
-  direction: Direction;
+  direction: EpicTableSortDirection;
 
   /**
    * The callback which is called when the direction changes.
    */
-  onChange: (direction: Direction) => void;
+  onChange: (direction: EpicTableSortDirection) => void;
 };
 
 /**
@@ -36,7 +36,7 @@ export function EpicSort({ direction, onChange }: Props) {
   );
 }
 
-function iconForDirection(direction: Direction): IconType {
+function iconForDirection(direction: EpicTableSortDirection): IconType {
   if (direction === 'ASC') {
     return 'arrow_drop_up';
   } else if (direction === 'DESC') {

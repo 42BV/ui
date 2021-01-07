@@ -91,6 +91,7 @@ describe('index', () => {
         "TypeaheadSingle": [Function],
         "ValuePicker": [Function],
         "configure": [Function],
+        "errorMessage": [Function],
         "isDateAfter": [Function],
         "isDateAfterValidator": [Function],
         "isDateBefore": [Function],

@@ -5,7 +5,7 @@ import { t } from '../../../utilities/translation/translation';
 import Icon from '../../../core/Icon/Icon';
 import { useMeterWidth } from './useMeterWidth/useMeterWidth';
 import { useRules } from './useRules/useRules';
-import { Rule } from './rules';
+import { NewPasswordInputRule } from '../types';
 
 type Props = {
   /**
@@ -16,7 +16,7 @@ type Props = {
   /**
    * The list of rules to be matched.
    */
-  rules: Rule[];
+  rules: NewPasswordInputRule[];
 
   /**
    * Optionally the minimum length of the password.
@@ -55,7 +55,7 @@ export default function PasswordStrength(props: Props) {
         />
       ) : null}
       <div className="mb-2">
-        {rules.map(rule => {
+        {rules.map((rule) => {
           const isCompliant = compliant[rule];
           return (
             <div key={rule}>
@@ -74,7 +74,10 @@ export default function PasswordStrength(props: Props) {
   );
 }
 
-export function labelForRule(rule: Rule, minimumLength: number) {
+export function labelForRule(
+  rule: NewPasswordInputRule,
+  minimumLength: number
+) {
   switch (rule) {
     case 'lowercase':
       return {

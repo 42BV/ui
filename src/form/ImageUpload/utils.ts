@@ -1,6 +1,6 @@
 // TODO: Declarations
 import picaFn from 'pica';
-import { Crop } from './ImageUpload';
+import { ImageUploadCrop } from './ImageUpload';
 
 let picaInstance: any;
 export function getPicaInstance() {
@@ -34,7 +34,9 @@ type AvatarEditorConfig = {
   height: number;
 };
 
-export function cropToAvatarEditorConfig(crop: Crop): AvatarEditorConfig {
+export function cropToAvatarEditorConfig(
+  crop: ImageUploadCrop
+): AvatarEditorConfig {
   if (crop.type === 'rect') {
     const { width, height } = crop;
 

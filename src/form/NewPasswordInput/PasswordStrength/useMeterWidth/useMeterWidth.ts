@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Rule } from '../rules';
+import { NewPasswordInputRule } from '../../types';
 
-export function useMeterWidth(compliant: { [key in Rule]?: boolean }): number {
+export function useMeterWidth(
+  compliant: { [key in NewPasswordInputRule]?: boolean }
+): number {
   const [meterWidth, setMeterWidth] = useState(0);
 
   useEffect(() => {

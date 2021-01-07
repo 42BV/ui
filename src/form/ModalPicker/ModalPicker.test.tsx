@@ -8,7 +8,7 @@ import { ContentState } from '../..';
 import EmptyModal from './EmptyModal';
 import { User } from '../../test/types';
 import { adminUser, coordinatorUser, pageOfUsers } from '../../test/fixtures';
-import { RenderOptionsOption } from './types';
+import { ModalPickerRenderOptionsOption } from './types';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
 describe('Component: ModalPicker', () => {
@@ -244,12 +244,16 @@ describe('Component: ModalPicker', () => {
     const onChangeSpy = jest.fn();
 
     function renderOptions(
-      options: RenderOptionsOption<User>[]
+      options: ModalPickerRenderOptionsOption<User>[]
     ): React.ReactNode {
       return (
         <ListGroup>
           {options.map(
-            ({ option, toggle, enabled }: RenderOptionsOption<User>) => (
+            ({
+              option,
+              toggle,
+              enabled
+            }: ModalPickerRenderOptionsOption<User>) => (
               <ListGroupItem
                 key={option.id}
                 onClick={toggle}

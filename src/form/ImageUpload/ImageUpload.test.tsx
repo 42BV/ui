@@ -5,7 +5,7 @@ import toJson from 'enzyme-to-json';
 import * as imgUploadUtils from './utils';
 
 import ImageUpload, {
-  Crop,
+  ImageUploadCrop,
   limitImageSize,
   requireImage,
   Text
@@ -37,7 +37,7 @@ describe('Component: ImageUpload', () => {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
 
-    const crop: Crop =
+    const crop: ImageUploadCrop =
       cropType === 'rect'
         ? { width: 500, height: 500, type: 'rect' }
         : { size: 250, type: 'circle' };

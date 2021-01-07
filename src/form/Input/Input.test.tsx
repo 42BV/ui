@@ -2,12 +2,12 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Input, { reactStrapInput, Mask } from './Input';
+import Input, { reactStrapInput, InputMask } from './Input';
 
 import { InputType } from 'reactstrap/lib/Input';
 import { Addon } from '../addons/Addon/Addon';
 
-const mask: Mask = [
+const mask: InputMask = [
   '(',
   /[1-9]/,
   /\d/,
@@ -42,7 +42,7 @@ describe('Component: Input', () => {
   }: {
     value?: string;
     type?: InputType;
-    mask?: Mask;
+    mask?: InputMask;
     addon?: React.ReactElement;
     valid?: boolean;
     hasPlaceholder?: boolean;

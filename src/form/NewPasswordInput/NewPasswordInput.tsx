@@ -12,9 +12,9 @@ import {
   hasNoSpaces,
   hasNumber,
   hasSpecialChar,
-  hasUppercase,
-  Rule
+  hasUppercase
 } from './PasswordStrength/rules';
+import { NewPasswordInputRule } from './types';
 
 type PasswordProps = {
   /**
@@ -109,7 +109,7 @@ export const JarbNewPasswordInput = withJarb<string, string, Props>(
   NewPasswordInput
 );
 
-function getRulesFromProps(props: PasswordProps): Rule[] {
+function getRulesFromProps(props: PasswordProps): NewPasswordInputRule[] {
   const {
     lowercase = true,
     uppercase = true,
@@ -119,7 +119,7 @@ function getRulesFromProps(props: PasswordProps): Rule[] {
     noSpace = true
   } = props;
 
-  const rules: Rule[] = [];
+  const rules: NewPasswordInputRule[] = [];
   if (lowercase) {
     rules.push('lowercase');
   }
@@ -158,7 +158,7 @@ type PasswordValidator = FieldValidator<string>;
  * @returns {(FieldValidator<string>)}
  */
 export function isStrongPassword(
-  rules: Rule[],
+  rules: NewPasswordInputRule[],
   minimumLength: number
 ): PasswordValidator {
   return (value?: string): Translation | undefined => {

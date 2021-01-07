@@ -306,9 +306,15 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('jarb range', () => {
+    type AppointmentFormData = {
+      start: Date;
+      end: Date;
+    };
+
     return (
-      <ReactFinalForm
+      <ReactFinalForm<AppointmentFormData>
         onSubmit={() => action('form submitted')}
+        initialValues={{ start: new Date(), end: new Date() }}
         render={({ handleSubmit, submitting, values, errors }) => (
           // Do not render a <form> here as it will submit the form when
           // the submit button is pressed.

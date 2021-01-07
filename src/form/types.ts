@@ -16,11 +16,6 @@ export type Meta = {
   error?: MetaError | MetaError[];
 };
 
-export type UnionKeys<T> = T extends any ? keyof T : never;
-export type DistributiveOmit<T, K extends UnionKeys<T>> = T extends any
-  ? Omit<T, Extract<keyof T, K>>
-  : never;
-
 export type FieldCompatible<Value, ChangeValue> = {
   /**
    * Optionally the id of the form element. Will be automatically

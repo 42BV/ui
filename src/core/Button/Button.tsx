@@ -10,7 +10,7 @@ import classNames from 'classnames';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
-export type IconPosition = 'left' | 'right';
+export type ButtonIconPosition = 'left' | 'right';
 
 export type Props = {
   /**
@@ -63,7 +63,7 @@ export type Props = {
    *
    * Only applicable when the `icon` prop is set.
    */
-  iconPosition?: IconPosition;
+  iconPosition?: ButtonIconPosition;
 
   /**
    * Optionally whether or not to show the button only as an outline.

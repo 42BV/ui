@@ -15,7 +15,7 @@ import {
 
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
-import { ButtonAlignment } from '../types';
+import { ModalPickerButtonAlignment } from '../types';
 import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { Color } from '../../../core/types';
@@ -45,7 +45,7 @@ describe('Component: ModalPickerMultiple', () => {
     canSearch?: boolean;
     hasLabel?: boolean;
     spyOnRenderOptions?: boolean;
-    alignButton?: ButtonAlignment;
+    alignButton?: ModalPickerButtonAlignment;
     hasRenderValue?: boolean;
     hasRenderOptions?: boolean;
     loading?: boolean;

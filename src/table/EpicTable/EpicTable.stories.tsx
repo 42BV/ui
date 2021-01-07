@@ -17,7 +17,7 @@ import { EpicDetail } from './widgets/EpicDetail/EpicDetail';
 import { EpicSelection } from './widgets/EpicSelection/EpicSelection';
 import { EpicSort } from './widgets/EpicSort/EpicSort';
 
-import { Direction } from './types';
+import { EpicTableSortDirection } from './types';
 import {
   Button,
   ContentState,
@@ -83,11 +83,14 @@ storiesOf('table/EpicTable', module)
     });
 
     const [sort, setSort] = useState<{
-      direction: Direction;
+      direction: EpicTableSortDirection;
       column: string;
     }>({ direction: 'NONE', column: 'firstName' });
 
-    function changeSort(column: keyof Person, direction: Direction) {
+    function changeSort(
+      column: keyof Person,
+      direction: EpicTableSortDirection
+    ) {
       setPage(1);
       setSort({ direction, column });
     }
@@ -1097,7 +1100,7 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with sort', () => {
-    const [direction, setDirection] = useState<Direction>('NONE');
+    const [direction, setDirection] = useState<EpicTableSortDirection>('NONE');
 
     const sortFn =
       direction === 'ASC'

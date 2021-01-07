@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { Color } from '../../../core/types';
 
-import { Addon, Position, Props as AddonProps } from '../Addon/Addon';
+import { Addon, AddonPosition, Props as AddonProps } from '../Addon/Addon';
 
 export type Props = Omit<AddonProps, 'position'> & {
   /**
@@ -18,7 +18,7 @@ export type Props = Omit<AddonProps, 'position'> & {
    *
    * Defaults to 'right'
    */
-  position?: Position;
+  position?: AddonPosition;
 
   /**
    * Callback for when the addon is clicked.

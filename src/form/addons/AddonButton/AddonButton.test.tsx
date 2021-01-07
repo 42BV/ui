@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import { AddonButton } from './AddonButton';
-import { IconPosition } from '../../../core/Button/Button';
+import { ButtonIconPosition } from '../../../core/Button/Button';
 import { Color } from '../../../core/types';
 
 describe('Component: AddonButton', () => {
@@ -11,7 +11,7 @@ describe('Component: AddonButton', () => {
     position,
     color
   }: {
-    position?: IconPosition;
+    position?: ButtonIconPosition;
     color?: Color;
   }) {
     const onClickSpy = jest.fn();

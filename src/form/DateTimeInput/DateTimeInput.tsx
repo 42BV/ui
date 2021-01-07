@@ -23,9 +23,12 @@ import { FieldCompatible } from '../types';
 /**
  * Callback which returns whether a date is selectable.
  */
-export type IsDateAllowed = (date: Moment, selectedDate?: Moment) => boolean;
+export type DateTimeInputIsDateAllowed = (
+  date: Moment,
+  selectedDate?: Moment
+) => boolean;
 
-export type Mode = 'modal' | 'default';
+export type DateTimeInputMode = 'modal' | 'default';
 
 export type Props = FieldCompatible<Date, Date | undefined> & {
   /**
@@ -53,7 +56,7 @@ export type Props = FieldCompatible<Date, Date | undefined> & {
    * Is ran for every date which is displayed. By default every
    * date can be selected.
    */
-  isDateAllowed?: IsDateAllowed;
+  isDateAllowed?: DateTimeInputIsDateAllowed;
 
   /**
    * Optionally the locale moment js should use.
@@ -73,7 +76,7 @@ export type Props = FieldCompatible<Date, Date | undefined> & {
    * Whether or not the date picker should be displayed in a modal.
    * Defaults to opening in a tooltip-like layout.
    */
-  mode?: Mode;
+  mode?: DateTimeInputMode;
 
   /**
    * Optionally customized text within the DateTimeModal component.

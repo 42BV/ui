@@ -4,12 +4,12 @@ import toJson from 'enzyme-to-json';
 
 import { EpicSort } from './EpicSort';
 import { Icon } from '../../../../core/Icon';
-import { Direction } from '../../types';
+import { EpicTableSortDirection } from '../../types';
 
 import * as utils from './utils';
 
 describe('Component: EpicSort', () => {
-  function setup({ direction }: { direction: Direction }) {
+  function setup({ direction }: { direction: EpicTableSortDirection }) {
     jest.spyOn(utils, 'nextDirection').mockReturnValue('ASC');
 
     const onChangeSpy = jest.fn();

@@ -1,15 +1,15 @@
 import { ReactNode } from 'react';
 
-export type AddButtonCallback<T> = () => Promise<T>;
+export type ModalPickerAddButtonCallback<T> = () => Promise<T>;
 
-export type AddButtonOptions<T> = {
+export type ModalPickerAddButtonOptions<T> = {
   label: string;
-  onClick: AddButtonCallback<T>;
+  onClick: ModalPickerAddButtonCallback<T>;
 };
 
-export type ButtonAlignment = 'left' | 'right' | 'default';
+export type ModalPickerButtonAlignment = 'left' | 'right' | 'default';
 
-export type RenderOptionsOption<T> = {
+export type ModalPickerRenderOptionsOption<T> = {
   option: T;
   isSelected: boolean;
   enabled: boolean;
@@ -19,4 +19,6 @@ export type RenderOptionsOption<T> = {
 /**
  * Callback which renders the options.
  */
-export type RenderOptions<T> = (options: RenderOptionsOption<T>[]) => ReactNode;
+export type ModalPickerRenderOptions<T> = (
+  options: ModalPickerRenderOptionsOption<T>[]
+) => ReactNode;

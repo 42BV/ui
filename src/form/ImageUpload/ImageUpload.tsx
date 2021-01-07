@@ -26,7 +26,7 @@ export type Text = {
   done?: string;
 };
 
-type CropRect = {
+export type ImageUploadCropRect = {
   /**
    * Crop is a rectangle
    */
@@ -43,7 +43,7 @@ type CropRect = {
   height: number;
 };
 
-type CropCircle = {
+export type ImageUploadCropCircle = {
   /**
    * Crop is a circle
    */
@@ -58,7 +58,7 @@ type CropCircle = {
 /**
  * Crop is either a rectangle or a circle.
  */
-export type Crop = CropRect | CropCircle;
+export type ImageUploadCrop = ImageUploadCropRect | ImageUploadCropCircle;
 
 type Value = File | string;
 type ChangeValue = File | null;
@@ -70,7 +70,7 @@ export type Props = Omit<
   /**
    * Whether to crop as a circle or as a rectangle.
    */
-  crop: Crop;
+  crop: ImageUploadCrop;
 
   /**
    * Optionally customized text you want to use in this component.

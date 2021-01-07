@@ -1,1 +1,1 @@
-export type OnChange = (hasErrors: boolean) => void;
+export type FormErrorOnChange = (hasErrors: boolean) => void;

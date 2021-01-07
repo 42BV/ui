@@ -1,6 +1,8 @@
-import { Direction } from "../../types";
+import { EpicTableSortDirection } from '../../types';
 
-export function nextDirection(direction: Direction): Direction {
+export function nextDirection(
+  direction: EpicTableSortDirection
+): EpicTableSortDirection {
   if (direction === 'ASC') {
     return 'DESC';
   } else if (direction === 'DESC') {

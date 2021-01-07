@@ -6,10 +6,10 @@ import { alwaysTrue, doBlur } from '../../utils';
 import Tag from '../../../core/Tag/Tag';
 import ModalPicker from '../ModalPicker';
 import {
-  AddButtonCallback,
-  AddButtonOptions,
-  ButtonAlignment,
-  RenderOptions
+  ModalPickerAddButtonCallback,
+  ModalPickerAddButtonOptions,
+  ModalPickerButtonAlignment,
+  ModalPickerRenderOptions
 } from '../types';
 import {
   FieldCompatibleWithPredeterminedOptions,
@@ -22,7 +22,9 @@ import { FieldCompatible } from '../../types';
 import { useId } from '../../../hooks/useId/useId';
 import { useOptions } from '../../useOptions';
 
-export type RenderValues<T> = (value?: T[]) => React.ReactNode;
+export type ModalPickerMultipleRenderValues<T> = (
+  value?: T[]
+) => React.ReactNode;
 
 export type Props<T> = Omit<
   FieldCompatible<T[], T[] | undefined>,
@@ -45,23 +47,23 @@ export type Props<T> = Omit<
      * be used to dynamically add an option which was not there
      * before.
      */
-    addButton?: AddButtonOptions<T>;
+    addButton?: ModalPickerAddButtonOptions<T>;
 
     /**
      * Optionally the position the button should be aligned to
      * within it's container.
      */
-    alignButton?: ButtonAlignment;
+    alignButton?: ModalPickerButtonAlignment;
 
     /**
      * Optionally callback to display the selected items.
      */
-    renderValue?: RenderValues<T>;
+    renderValue?: ModalPickerMultipleRenderValues<T>;
 
     /**
      * Callback to customize display of options.
      */
-    renderOptions?: RenderOptions<T>;
+    renderOptions?: ModalPickerRenderOptions<T>;
   };
 
 /**
@@ -171,7 +173,7 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
     setSelected(newSelected);
   }
 
-  async function addButtonClicked(callback: AddButtonCallback<T>) {
+  async function addButtonClicked(callback: ModalPickerAddButtonCallback<T>) {
     setIsOpen(false);
 
     try {

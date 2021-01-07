@@ -15,10 +15,10 @@ describe('isDateBefore', () => {
       end: undefined
     };
 
-    expect(isBefore('2020-05-05', values)).toBe(undefined);
-    expect(isBefore('2020-05-06', values)).toBe(undefined);
-    expect(isBefore('2020-05-07', values)).toBe(undefined);
-    expect(isBefore('2020-05-08', values)).toBe(undefined);
+    expect(isBefore(new Date('2020-05-05'), values)).toBe(undefined);
+    expect(isBefore(new Date('2020-05-06'), values)).toBe(undefined);
+    expect(isBefore(new Date('2020-05-07'), values)).toBe(undefined);
+    expect(isBefore(new Date('2020-05-08'), values)).toBe(undefined);
   });
 
   it('should support a custom error message', () => {
@@ -29,10 +29,10 @@ describe('isDateBefore', () => {
     });
 
     const values = {
-      end: '2020-05-08 12:00:00'
+      end: new Date('2020-05-08 12:00:00')
     };
 
-    expect(isBefore('2020-05-08 12:00:01', values)).toBe(
+    expect(isBefore(new Date('2020-05-08 12:00:01'), values)).toBe(
       'This is a custom error'
     );
   });
@@ -45,16 +45,17 @@ describe('isDateBefore', () => {
       });
 
       const values = {
-        end: '2020-05-08'
+        end: new Date('2020-05-08')
       };
 
-      expect(isBefore('2020-05-07', values)).toBe(undefined);
-      expect(isBefore('2020-05-08', values)).toBe(
+      expect(isBefore(new Date('2020-05-07'), values)).toBe(undefined);
+      expect(isBefore(new Date('2020-05-08'), values)).toBe(
         `The "start" must be before the "end"`
       );
-      expect(isBefore('2020-05-09', values)).toBe(
+      expect(isBefore(new Date('2020-05-09'), values)).toBe(
         `The "start" must be before the "end"`
       );
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBefore(undefined, values)).toBe(undefined);
     });
 
@@ -65,16 +66,17 @@ describe('isDateBefore', () => {
       });
 
       const values = {
-        end: '2020-05-08 12:00:00'
+        end: new Date('2020-05-08 12:00:00')
       };
 
-      expect(isBefore('2020-05-08 11:59:59', values)).toBe(undefined);
-      expect(isBefore('2020-05-08 12:00:00', values)).toBe(
+      expect(isBefore(new Date('2020-05-08 11:59:59'), values)).toBe(undefined);
+      expect(isBefore(new Date('2020-05-08 12:00:00'), values)).toBe(
         `The "start" must be before the "end"`
       );
-      expect(isBefore('2020-05-08 12:00:01', values)).toBe(
+      expect(isBefore(new Date('2020-05-08 12:00:01'), values)).toBe(
         `The "start" must be before the "end"`
       );
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBefore(undefined, values)).toBe(undefined);
     });
   });
@@ -87,14 +89,15 @@ describe('isDateBefore', () => {
       });
 
       const values = {
-        end: '2020-05-08'
+        end: new Date('2020-05-08')
       };
 
-      expect(isBefore('2020-05-07', values)).toBe(undefined);
-      expect(isBefore('2020-05-08', values)).toBe(undefined);
-      expect(isBefore('2020-05-09', values)).toBe(
+      expect(isBefore(new Date('2020-05-07'), values)).toBe(undefined);
+      expect(isBefore(new Date('2020-05-08'), values)).toBe(undefined);
+      expect(isBefore(new Date('2020-05-09'), values)).toBe(
         `The "start" must be before the "end"`
       );
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBefore(undefined, values)).toBe(undefined);
     });
 
@@ -105,15 +108,16 @@ describe('isDateBefore', () => {
       });
 
       const values = {
-        end: '2020-05-08 12:00:00'
+        end: new Date('2020-05-08 12:00:00')
       };
 
-      expect(isBefore('2020-05-08 11:59:59', values)).toBe(undefined);
-      expect(isBefore('2020-05-08 12:00:00', values)).toBe(undefined);
-      expect(isBefore('2020-05-08 12:00:01', values)).toBe(
+      expect(isBefore(new Date('2020-05-08 11:59:59'), values)).toBe(undefined);
+      expect(isBefore(new Date('2020-05-08 12:00:00'), values)).toBe(undefined);
+      expect(isBefore(new Date('2020-05-08 12:00:01'), values)).toBe(
         `The "start" must be before the "end"`
       );
 
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBefore(undefined, values)).toBe(undefined);
     });
   });
@@ -130,10 +134,10 @@ describe('isDateAfter', () => {
       start: undefined
     };
 
-    expect(isAfter('2020-05-05', values)).toBe(undefined);
-    expect(isAfter('2020-05-06', values)).toBe(undefined);
-    expect(isAfter('2020-05-07', values)).toBe(undefined);
-    expect(isAfter('2020-05-08', values)).toBe(undefined);
+    expect(isAfter(new Date('2020-05-05'), values)).toBe(undefined);
+    expect(isAfter(new Date('2020-05-06'), values)).toBe(undefined);
+    expect(isAfter(new Date('2020-05-07'), values)).toBe(undefined);
+    expect(isAfter(new Date('2020-05-08'), values)).toBe(undefined);
   });
 
   it('should support a custom error message', () => {
@@ -144,10 +148,10 @@ describe('isDateAfter', () => {
     });
 
     const values = {
-      start: '2020-05-08'
+      start: new Date('2020-05-08')
     };
 
-    expect(isAfter('2020-05-07', values)).toBe(
+    expect(isAfter(new Date('2020-05-07'), values)).toBe(
       'This is a custom error message'
     );
   });
@@ -160,16 +164,18 @@ describe('isDateAfter', () => {
       });
 
       const values = {
-        start: '2020-05-08'
+        start: new Date('2020-05-08')
       };
 
-      expect(isAfter('2020-05-07', values)).toBe(
+      expect(isAfter(new Date('2020-05-07'), values)).toBe(
         `The "end" must be after the "start"`
       );
-      expect(isAfter('2020-05-08', values)).toBe(
+      expect(isAfter(new Date('2020-05-08'), values)).toBe(
         `The "end" must be after the "start"`
       );
-      expect(isAfter('2020-05-09', values)).toBe(undefined);
+      expect(isAfter(new Date('2020-05-09'), values)).toBe(undefined);
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isAfter(undefined, values)).toBe(undefined);
     });
 
@@ -180,17 +186,18 @@ describe('isDateAfter', () => {
       });
 
       const values = {
-        start: '2020-05-08 12:00:00'
+        start: new Date('2020-05-08 12:00:00')
       };
 
-      expect(isAfter('2020-05-08 11:59:59', values)).toBe(
+      expect(isAfter(new Date('2020-05-08 11:59:59'), values)).toBe(
         `The "end" must be after the "start"`
       );
-      expect(isAfter('2020-05-08 12:00:00', values)).toBe(
+      expect(isAfter(new Date('2020-05-08 12:00:00'), values)).toBe(
         `The "end" must be after the "start"`
       );
-      expect(isAfter('2020-05-08 12:00:01', values)).toBe(undefined);
+      expect(isAfter(new Date('2020-05-08 12:00:01'), values)).toBe(undefined);
 
+      // @ts-expect-error undefined should work and be guarded against
       expect(isAfter(undefined, values)).toBe(undefined);
     });
   });
@@ -203,14 +210,16 @@ describe('isDateAfter', () => {
       });
 
       const values = {
-        start: '2020-05-08'
+        start: new Date('2020-05-08')
       };
 
-      expect(isAfter('2020-05-07', values)).toBe(
+      expect(isAfter(new Date('2020-05-07'), values)).toBe(
         `The "end" must be after the "start"`
       );
-      expect(isAfter('2020-05-08', values)).toBe(undefined);
-      expect(isAfter('2020-05-09', values)).toBe(undefined);
+      expect(isAfter(new Date('2020-05-08'), values)).toBe(undefined);
+      expect(isAfter(new Date('2020-05-09'), values)).toBe(undefined);
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isAfter(undefined, values)).toBe(undefined);
     });
 
@@ -221,14 +230,16 @@ describe('isDateAfter', () => {
       });
 
       const values = {
-        start: '2020-05-08 12:00:00'
+        start: new Date('2020-05-08 12:00:00')
       };
 
-      expect(isAfter('2020-05-08 11:59:59', values)).toBe(
+      expect(isAfter(new Date('2020-05-08 11:59:59'), values)).toBe(
         `The "end" must be after the "start"`
       );
-      expect(isAfter('2020-05-08 12:00:00', values)).toBe(undefined);
-      expect(isAfter('2020-05-08 12:00:01', values)).toBe(undefined);
+      expect(isAfter(new Date('2020-05-08 12:00:00'), values)).toBe(undefined);
+      expect(isAfter(new Date('2020-05-08 12:00:01'), values)).toBe(undefined);
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isAfter(undefined, values)).toBe(undefined);
     });
   });
@@ -244,13 +255,13 @@ describe('isDateBetween', () => {
 
     const values = {
       start: undefined,
-      end: '2020-05-09'
+      end: new Date('2020-05-09')
     };
 
-    expect(isBetween('2020-05-05', values)).toBe(undefined);
-    expect(isBetween('2020-05-06', values)).toBe(undefined);
-    expect(isBetween('2020-05-07', values)).toBe(undefined);
-    expect(isBetween('2020-05-08', values)).toBe(undefined);
+    expect(isBetween(new Date('2020-05-05'), values)).toBe(undefined);
+    expect(isBetween(new Date('2020-05-06'), values)).toBe(undefined);
+    expect(isBetween(new Date('2020-05-07'), values)).toBe(undefined);
+    expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
   });
 
   describe('only start should fallback to after', () => {
@@ -262,17 +273,17 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-07',
+        start: new Date('2020-05-07'),
         end: undefined
       };
 
-      expect(isBetween('2020-05-06', values)).toBe(
+      expect(isBetween(new Date('2020-05-06'), values)).toBe(
         `The "reminder" must be after the "start"`
       );
-      expect(isBetween('2020-05-07', values)).toBe(
+      expect(isBetween(new Date('2020-05-07'), values)).toBe(
         `The "reminder" must be after the "start"`
       );
-      expect(isBetween('2020-05-08', values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
     });
 
     test('inclusive', () => {
@@ -283,15 +294,15 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-07',
+        start: new Date('2020-05-07'),
         end: undefined
       };
 
-      expect(isBetween('2020-05-06', values)).toBe(
+      expect(isBetween(new Date('2020-05-06'), values)).toBe(
         `The "reminder" must be after the "start"`
       );
-      expect(isBetween('2020-05-07', values)).toBe(undefined);
-      expect(isBetween('2020-05-08', values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-07'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
     });
   });
 
@@ -305,14 +316,14 @@ describe('isDateBetween', () => {
 
       const values = {
         start: undefined,
-        end: '2020-05-09'
+        end: new Date('2020-05-09')
       };
 
-      expect(isBetween('2020-05-08', values)).toBe(undefined);
-      expect(isBetween('2020-05-09', values)).toBe(
+      expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-09'), values)).toBe(
         `The "reminder" must be before the "end"`
       );
-      expect(isBetween('2020-05-10', values)).toBe(
+      expect(isBetween(new Date('2020-05-10'), values)).toBe(
         `The "reminder" must be before the "end"`
       );
     });
@@ -326,12 +337,12 @@ describe('isDateBetween', () => {
 
       const values = {
         start: undefined,
-        end: '2020-05-09'
+        end: new Date('2020-05-09')
       };
 
-      expect(isBetween('2020-05-08', values)).toBe(undefined);
-      expect(isBetween('2020-05-09', values)).toBe(undefined);
-      expect(isBetween('2020-05-10', values)).toBe(
+      expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-09'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-10'), values)).toBe(
         `The "reminder" must be before the "end"`
       );
     });
@@ -346,11 +357,11 @@ describe('isDateBetween', () => {
     });
 
     const values = {
-      start: '2020-05-07',
-      end: '2020-05-09'
+      start: new Date('2020-05-07'),
+      end: new Date('2020-05-09')
     };
 
-    expect(isBetween('2020-05-07', values)).toBe(
+    expect(isBetween(new Date('2020-05-07'), values)).toBe(
       'This is a custom error message'
     );
   });
@@ -364,17 +375,19 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-07',
-        end: '2020-05-09'
+        start: new Date('2020-05-07'),
+        end: new Date('2020-05-09')
       };
 
-      expect(isBetween('2020-05-07', values)).toBe(
+      expect(isBetween(new Date('2020-05-07'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
-      expect(isBetween('2020-05-08', values)).toBe(undefined);
-      expect(isBetween('2020-05-09', values)).toBe(
+      expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-09'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
 
@@ -386,17 +399,21 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-08 12:00:00',
-        end: '2020-05-08 12:00:02'
+        start: new Date('2020-05-08 12:00:00'),
+        end: new Date('2020-05-08 12:00:02')
       };
 
-      expect(isBetween('2020-05-08 12:00:00', values)).toBe(
+      expect(isBetween(new Date('2020-05-08 12:00:00'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
-      expect(isBetween('2020-05-08 12:00:01', values)).toBe(undefined);
-      expect(isBetween('2020-05-08 12:00:02', values)).toBe(
+      expect(isBetween(new Date('2020-05-08 12:00:01'), values)).toBe(
+        undefined
+      );
+      expect(isBetween(new Date('2020-05-08 12:00:02'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
   });
@@ -410,19 +427,21 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-07',
-        end: '2020-05-09'
+        start: new Date('2020-05-07'),
+        end: new Date('2020-05-09')
       };
 
-      expect(isBetween('2020-05-06', values)).toBe(
+      expect(isBetween(new Date('2020-05-06'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
-      expect(isBetween('2020-05-07', values)).toBe(undefined);
-      expect(isBetween('2020-05-08', values)).toBe(undefined);
-      expect(isBetween('2020-05-09', values)).toBe(undefined);
-      expect(isBetween('2020-05-10', values)).toBe(
+      expect(isBetween(new Date('2020-05-07'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-09'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-10'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
 
@@ -434,19 +453,27 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-08 12:00:00',
-        end: '2020-05-08 12:00:02'
+        start: new Date('2020-05-08 12:00:00'),
+        end: new Date('2020-05-08 12:00:02')
       };
 
-      expect(isBetween('2020-05-08 11:59:59', values)).toBe(
+      expect(isBetween(new Date('2020-05-08 11:59:59'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
-      expect(isBetween('2020-05-08 12:00:00', values)).toBe(undefined);
-      expect(isBetween('2020-05-08 12:00:01', values)).toBe(undefined);
-      expect(isBetween('2020-05-08 12:00:02', values)).toBe(undefined);
-      expect(isBetween('2020-05-08 12:00:03', values)).toBe(
+      expect(isBetween(new Date('2020-05-08 12:00:00'), values)).toBe(
+        undefined
+      );
+      expect(isBetween(new Date('2020-05-08 12:00:01'), values)).toBe(
+        undefined
+      );
+      expect(isBetween(new Date('2020-05-08 12:00:02'), values)).toBe(
+        undefined
+      );
+      expect(isBetween(new Date('2020-05-08 12:00:03'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
   });
@@ -460,18 +487,20 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-07',
-        end: '2020-05-09'
+        start: new Date('2020-05-07'),
+        end: new Date('2020-05-09')
       };
 
-      expect(isBetween('2020-05-06', values)).toBe(
+      expect(isBetween(new Date('2020-05-06'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
-      expect(isBetween('2020-05-07', values)).toBe(undefined);
-      expect(isBetween('2020-05-08', values)).toBe(undefined);
-      expect(isBetween('2020-05-09', values)).toBe(
+      expect(isBetween(new Date('2020-05-07'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-09'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
 
@@ -483,18 +512,24 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-08 12:00:00',
-        end: '2020-05-08 12:00:02'
+        start: new Date('2020-05-08 12:00:00'),
+        end: new Date('2020-05-08 12:00:02')
       };
 
-      expect(isBetween('2020-05-08 11:59:59', values)).toBe(
+      expect(isBetween(new Date('2020-05-08 11:59:59'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
-      expect(isBetween('2020-05-08 12:00:00', values)).toBe(undefined);
-      expect(isBetween('2020-05-08 12:00:01', values)).toBe(undefined);
-      expect(isBetween('2020-05-08 12:00:02', values)).toBe(
+      expect(isBetween(new Date('2020-05-08 12:00:00'), values)).toBe(
+        undefined
+      );
+      expect(isBetween(new Date('2020-05-08 12:00:01'), values)).toBe(
+        undefined
+      );
+      expect(isBetween(new Date('2020-05-08 12:00:02'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
   });
@@ -508,18 +543,20 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-07',
-        end: '2020-05-09'
+        start: new Date('2020-05-07'),
+        end: new Date('2020-05-09')
       };
 
-      expect(isBetween('2020-05-07', values)).toBe(
+      expect(isBetween(new Date('2020-05-07'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
-      expect(isBetween('2020-05-08', values)).toBe(undefined);
-      expect(isBetween('2020-05-09', values)).toBe(undefined);
-      expect(isBetween('2020-05-10', values)).toBe(
+      expect(isBetween(new Date('2020-05-08'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-09'), values)).toBe(undefined);
+      expect(isBetween(new Date('2020-05-10'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
 
@@ -531,18 +568,24 @@ describe('isDateBetween', () => {
       });
 
       const values = {
-        start: '2020-05-08 12:00:00',
-        end: '2020-05-08 12:00:02'
+        start: new Date('2020-05-08 12:00:00'),
+        end: new Date('2020-05-08 12:00:02')
       };
 
-      expect(isBetween('2020-05-08 12:00:00', values)).toBe(
+      expect(isBetween(new Date('2020-05-08 12:00:00'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
-      expect(isBetween('2020-05-08 12:00:01', values)).toBe(undefined);
-      expect(isBetween('2020-05-08 12:00:02', values)).toBe(undefined);
-      expect(isBetween('2020-05-08 12:00:03', values)).toBe(
+      expect(isBetween(new Date('2020-05-08 12:00:01'), values)).toBe(
+        undefined
+      );
+      expect(isBetween(new Date('2020-05-08 12:00:02'), values)).toBe(
+        undefined
+      );
+      expect(isBetween(new Date('2020-05-08 12:00:03'), values)).toBe(
         `The "reminder" must be between the "start" and "end"`
       );
+
+      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
   });

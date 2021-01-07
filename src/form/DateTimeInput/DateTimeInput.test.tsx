@@ -5,7 +5,10 @@ import toJson from 'enzyme-to-json';
 import moment from 'moment';
 import Datetime from 'react-datetime';
 
-import DateTimeInput, { IsDateAllowed, Mode } from './DateTimeInput';
+import DateTimeInput, {
+  DateTimeInputIsDateAllowed,
+  DateTimeInputMode
+} from './DateTimeInput';
 import * as FormatError from './hooks/useHasFormatError';
 import * as IsModalOpen from './hooks/useIsModalOpen';
 import * as UseSetLastStringValue from './hooks/useSetLastStringValue';
@@ -25,9 +28,9 @@ describe('Component: DateTimeInput', () => {
     mode
   }: {
     value?: Date;
-    isDateAllowed?: IsDateAllowed;
+    isDateAllowed?: DateTimeInputIsDateAllowed;
     hasLabel?: boolean;
-    mode?: Mode;
+    mode?: DateTimeInputMode;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();

@@ -4,7 +4,7 @@ import { ModalPickerOpener } from './ModalPickerOpener';
 import { adminUser } from '../../../test/fixtures';
 import toJson from 'enzyme-to-json';
 import * as useComponentOverflow from '../ModalPickerValueTruncator/useComponentOverflow/useComponentOverflow';
-import { ButtonAlignment } from '../types';
+import { ModalPickerButtonAlignment } from '../types';
 
 describe('Component: ModalPickerOpener', () => {
   function setup({
@@ -14,7 +14,7 @@ describe('Component: ModalPickerOpener', () => {
   }: {
     hasValue?: boolean;
     withTooltip?: boolean;
-    alignButton?: ButtonAlignment;
+    alignButton?: ModalPickerButtonAlignment;
   }) {
     const openModalSpy = jest.fn();
     const onClearSpy = jest.fn();

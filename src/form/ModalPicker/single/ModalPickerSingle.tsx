@@ -14,13 +14,13 @@ import ModalPicker from '../ModalPicker';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import {
-  AddButtonCallback,
-  AddButtonOptions,
-  ButtonAlignment,
-  RenderOptions
+  ModalPickerAddButtonCallback,
+  ModalPickerAddButtonOptions,
+  ModalPickerButtonAlignment,
+  ModalPickerRenderOptions
 } from '../types';
 
-export type RenderValue<T> = (value?: T) => React.ReactNode;
+export type ModalPickerSingleRenderValue<T> = (value?: T) => React.ReactNode;
 
 type Props<T> = Omit<
   FieldCompatible<T, T | undefined>,
@@ -43,23 +43,23 @@ type Props<T> = Omit<
      * be used to dynamically add an option which was not there
      * before.
      */
-    addButton?: AddButtonOptions<T>;
+    addButton?: ModalPickerAddButtonOptions<T>;
 
     /**
      * Optionally the position the button should be aligned to
      * within it's container.
      */
-    alignButton?: ButtonAlignment;
+    alignButton?: ModalPickerButtonAlignment;
 
     /**
      * Optionally callback to display the selected item.
      */
-    renderValue?: RenderValue<T>;
+    renderValue?: ModalPickerSingleRenderValue<T>;
 
     /**
      * Callback to customize display of options.
      */
-    renderOptions?: RenderOptions<T>;
+    renderOptions?: ModalPickerRenderOptions<T>;
   };
 
 /**
@@ -136,7 +136,7 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
     setUserHasSearched(false);
   }
 
-  async function addButtonClicked(callback: AddButtonCallback<T>) {
+  async function addButtonClicked(callback: ModalPickerAddButtonCallback<T>) {
     setIsOpen(false);
 
     try {

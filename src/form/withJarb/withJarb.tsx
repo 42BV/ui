@@ -28,7 +28,7 @@ const managedProps = [
   'error'
 ];
 
-type JarbFieldCompatible<Value, ChangeValue> = FieldCompatible<
+export type JarbFieldCompatible<Value, ChangeValue> = FieldCompatible<
   Value,
   ChangeValue
 > & {

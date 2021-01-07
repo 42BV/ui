@@ -13,7 +13,7 @@ import { Icon } from '../Icon';
 import { BootstrapSize } from '../types';
 import { useId } from '../../hooks/useId/useId';
 
-type SearchInputApi = {
+export type SearchInputApi = {
   /**
    * Sets the value of the SearchInput's inner <input> element
    * cancels any active debounce, and calls props.onChange with

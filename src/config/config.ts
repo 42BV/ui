@@ -1,4 +1,4 @@
-type Config = {
+export type Config = {
   showRequiredMarkInLabel: boolean;
 };
 

@@ -6,9 +6,9 @@ import { alwaysTrue } from '../utils';
  * or not by returning a boolean. When `true` is returned the date
  * passes, when `false` is returned the date failed the check.
  */
-type DateChecker = (date?: MomentInput) => boolean;
+export type DateChecker = (date?: MomentInput) => boolean;
 
-type isDateBeforeConfig = {
+type IsDateBeforeConfig = {
   /**
    * Whether or not the end date should be inclusive or not.
    *
@@ -27,12 +27,12 @@ type isDateBeforeConfig = {
  * Useful for the `DateTimeInput` components `isDateAllowed` prop.
  *
  * @param {MomentInput} end The end date to which the date must be before.
- * @param {Config} config The configuration of the isDateBefore function.
+ * @param {IsDateBeforeConfig} config The configuration of the isDateBefore function.
  * @returns {DateValidator} A date validator function which checks if the date lies before the end date.
  */
 export function isDateBefore(
   end: MomentInput,
-  config: isDateBeforeConfig = { inclusive: false }
+  config: IsDateBeforeConfig = { inclusive: false }
 ): DateChecker {
   const { inclusive } = config;
 
@@ -53,7 +53,7 @@ export function isDateBefore(
   };
 }
 
-type isDateAfterConfig = {
+type IsDateAfterConfig = {
   /**
    * Whether or not the start date should be inclusive or not.
    *
@@ -72,12 +72,12 @@ type isDateAfterConfig = {
  * Useful for the `DateTimeInput` components `isDateAllowed` prop.
  *
  * @param {MomentInput} start The start date to which the date must be after.
- * @param {Config} config The configuration of the isDateAfter function.
+ * @param {IsDateAfterConfig} config The configuration of the isDateAfter function.
  * @returns {DateValidator} A date validator function which checks if the date lies after the start date.
  */
 export function isDateAfter(
   start: MomentInput,
-  config: isDateAfterConfig = { inclusive: false }
+  config: IsDateAfterConfig = { inclusive: false }
 ): DateChecker {
   const { inclusive } = config;
 

@@ -113,7 +113,7 @@ export const JarbFileInput = withJarb<File, File | null, Props>(FileInput);
  * A FileValidator is a FieldValidator which checks if the `File`
  * is valid.
  */
-type FileValidator = FieldValidator<File>;
+export type FileValidator = FieldValidator<File>;
 
 /**
  * Takes a `label` and returns a validator which can check if the

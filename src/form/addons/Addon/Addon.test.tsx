@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import { Addon } from './Addon';
-import { IconPosition } from '../../../core/Button/Button';
+import { ButtonIconPosition } from '../../../core/Button/Button';
 
 describe('Component: Addon', () => {
-  function setup({ position }: { position?: IconPosition }) {
+  function setup({ position }: { position?: ButtonIconPosition }) {
     const addon = shallow(<Addon position={position}>42</Addon>);
 
     return { addon };
