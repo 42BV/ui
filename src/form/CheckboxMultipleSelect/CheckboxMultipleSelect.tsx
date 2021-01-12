@@ -36,6 +36,36 @@ export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
      * Defaults to `false`
      */
     horizontal?: boolean;
+
+    /**
+     * Whether or not the form element should always contain the value
+     * which is selected.
+     *
+     * It should be `true` when using it in the following situation:
+     * The form element receives a value which is no longer part
+     * of the options. In that case it is handy to have the value
+     * automatically added to the options, so the user still sees
+     * the select value.
+     *
+     * It should be `false` when using it in the following situations:
+     *
+     * 1. The selected `value` is displayed separately from the
+     *    selection of values. In this case it does not make sense
+     *    to add the `value` to the options because it is already
+     *    displayed.
+     *
+     * 2. The form element represents a sub selection of a larger
+     *    value. For example you have an array of permissions of what
+     *    the user can do in the system, visually you display grouped
+     *    by parts of the domain. This means giving the same `value`
+     *    to various form element components to represent parts of the
+     *    same array of permissions. If `optionsShouldAlwaysContainValue`
+     *    were `true` it would add all permissions to each permission
+     *    group.
+     *
+     * This value is `true` by default.
+     */
+    optionsShouldAlwaysContainValue?: boolean;
   };
 
 /**
@@ -59,6 +89,7 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
     keyForOption,
     horizontal = false,
     isOptionEnabled = alwaysTrue,
+    optionsShouldAlwaysContainValue = true,
     onChange,
     onBlur
   } = props;
@@ -74,7 +105,7 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
     pageNumber: 1,
     query: '',
     size: 100,
-    optionsShouldAlwaysContainValue: true
+    optionsShouldAlwaysContainValue
   });
 
   function optionClicked(option: T, isSelected: boolean) {

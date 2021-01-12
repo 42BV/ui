@@ -27,7 +27,8 @@ describe('Component: CheckboxMultipleSelect', () => {
     hasPlaceholder = true,
     hasLabel = true,
     horizontal,
-    loading = false
+    loading = false,
+    optionsShouldAlwaysContainValueConfig
   }: {
     value?: User[];
     isOptionEnabled?: IsOptionEnabled<User>;
@@ -38,6 +39,7 @@ describe('Component: CheckboxMultipleSelect', () => {
     horizontal?: boolean;
     hasIsOptionEqual?: boolean;
     loading?: boolean;
+    optionsShouldAlwaysContainValueConfig?: boolean;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -47,7 +49,9 @@ describe('Component: CheckboxMultipleSelect', () => {
       ({ options, pageNumber, size, optionsShouldAlwaysContainValue }) => {
         expect(pageNumber).toBe(1);
         expect(size).toBe(100);
-        expect(optionsShouldAlwaysContainValue).toBe(true);
+        expect(optionsShouldAlwaysContainValue).toBe(
+          optionsShouldAlwaysContainValueConfig ?? true
+        );
 
         return {
           page: pageOf(options, pageNumber, size),
@@ -66,7 +70,8 @@ describe('Component: CheckboxMultipleSelect', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      horizontal
+      horizontal,
+      optionsShouldAlwaysContainValue: optionsShouldAlwaysContainValueConfig
     };
 
     const labelProps = hasLabel ? { id: 'subject', label: 'Subject' } : {};
@@ -268,6 +273,36 @@ describe('Component: CheckboxMultipleSelect', () => {
 
       checkbox = checkboxMultipleSelect.find('Input').at(1);
       expect(checkbox.props().checked).toBe(true);
+    });
+  });
+
+  describe('optionsShouldAlwaysContainValue behavior', () => {
+    test('when false is provided it should be false', () => {
+      setup({
+        optionsShouldAlwaysContainValueConfig: false
+      });
+
+      expect(useOptions).toBeCalledWith(
+        expect.objectContaining({ optionsShouldAlwaysContainValue: false })
+      );
+    });
+
+    test('when true is provided it should be true', () => {
+      setup({
+        optionsShouldAlwaysContainValueConfig: true
+      });
+
+      expect(useOptions).toBeCalledWith(
+        expect.objectContaining({ optionsShouldAlwaysContainValue: true })
+      );
+    });
+
+    test('when nothing is provided it should be true', () => {
+      setup({});
+
+      expect(useOptions).toBeCalledWith(
+        expect.objectContaining({ optionsShouldAlwaysContainValue: true })
+      );
     });
   });
 });
