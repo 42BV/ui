@@ -47,6 +47,11 @@ type Props = FieldCompatible<IconType, IconType | undefined> & {
    * This text should already be translated.
    */
   text?: Text;
+
+  /**
+   * Optionally the icon to display on the button to open the icon picker.
+   */
+  icon?: IconType;
 };
 
 /**
@@ -57,6 +62,7 @@ type Props = FieldCompatible<IconType, IconType | undefined> & {
 export default function IconPicker(props: Props) {
   const {
     label,
+    icon,
     value,
     color,
     placeholder,
@@ -129,6 +135,9 @@ export default function IconPicker(props: Props) {
                     setIsOpen(!isOpen);
                   }}
                 >
+                  {icon ? (
+                    <Icon icon={icon} className="mr-2 align-bottom" />
+                  ) : null}
                   {placeholder}
                 </Button>
               }

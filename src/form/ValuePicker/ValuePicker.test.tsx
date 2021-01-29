@@ -41,6 +41,7 @@ describe('Component: ValuePicker', () => {
         id="bestFriend"
         label="Best friend"
         placeholder="Select your best friend"
+        icon="face"
         canSearch={true}
         options={options}
         labelForOption={(user: User) => user.email}

@@ -68,6 +68,23 @@ storiesOf('Form/IconPicker', module)
       </div>
     );
   })
+  .add('with icon', () => {
+    const [value, setValue] = useState<IconType | undefined>(undefined);
+
+    return (
+      <div>
+        <Form>
+          <IconPicker
+            id="icon"
+            placeholder="Please select your icon"
+            icon="colorize"
+            value={value}
+            onChange={setValue}
+          />
+        </Form>
+      </div>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

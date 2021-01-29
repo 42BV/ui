@@ -20,6 +20,7 @@ import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { Color } from '../../../core/types';
 import { IsOptionEnabled } from '../../option';
+import { icons } from '../../../core/Icon';
 
 jest.mock('../../useOptions', () => {
   return { useOptions: jest.fn() };
@@ -91,6 +92,7 @@ describe('Component: ModalPickerMultiple', () => {
     const props = {
       name: 'bestFriend',
       placeholder: 'Select your best friend',
+      icon: icons['face'],
       canSearch,
       options: isAsync ? pageOfUsersFetcher : listOfUsers(),
       labelForOption: (user: User) => user.email,

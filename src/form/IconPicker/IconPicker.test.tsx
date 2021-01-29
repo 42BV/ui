@@ -10,10 +10,12 @@ import Popover from '../../core/Popover/Popover';
 describe('Component: IconPicker', () => {
   function setup({
     value,
-    hasLabel = true
+    hasLabel = true,
+    hasIcon = false
   }: {
     value?: IconType;
     hasLabel?: boolean;
+    hasIcon?: boolean;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -24,6 +26,7 @@ describe('Component: IconPicker', () => {
       name: 'bestFriend',
       label: hasLabel ? 'Best Friend' : undefined,
       placeholder: 'Select your best friend',
+      icon: hasIcon ? 'face' : undefined,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -85,6 +88,16 @@ describe('Component: IconPicker', () => {
       const { iconPicker } = setup({ value: undefined, hasLabel: false });
 
       expect(toJson(iconPicker)).toMatchSnapshot();
+    });
+
+    test('with icon', () => {
+      const { iconPicker } = setup({ hasIcon: true });
+
+      const button = shallow(
+        // @ts-expect-error Test mock
+        iconPicker.find('Popover').props().target
+      );
+      expect(button.find('Icon').exists()).toBe(true);
     });
   });
 

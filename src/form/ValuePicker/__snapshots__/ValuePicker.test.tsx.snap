@@ -3,6 +3,7 @@
 exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should render a \`CheckboxMultipleSelect\` component async page \`totalElements\` is less than 11 1`] = `
 <ValuePicker
   canSearch={true}
+  icon="face"
   id="bestFriend"
   label="Best friend"
   labelForOption={[Function]}
@@ -43,6 +44,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
 >
   <CheckboxMultipleSelect
     canSearch={true}
+    icon="face"
     id="bestFriend"
     label="Best friend"
     labelForOption={[Function]}
@@ -310,6 +312,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
 exports[`Component: ValuePicker multiple when ModalPickerMultiple should render a \`ModalPickerMultiple\` async page \`totalElements\` is more than 10 1`] = `
 <ValuePicker
   canSearch={true}
+  icon="face"
   id="bestFriend"
   label="Best friend"
   labelForOption={[Function]}
@@ -350,6 +353,7 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
 >
   <ModalPickerMultiple
     canSearch={true}
+    icon="face"
     id="bestFriend"
     label="Best friend"
     labelForOption={[Function]}
@@ -415,6 +419,7 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
           </label>
         </Label>
         <ModalPickerOpener
+          icon="face"
           label="Select your best friend"
           onClear={[Function]}
           openModal={[Function]}
@@ -438,6 +443,17 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
                 onClick={[Function]}
                 type="button"
               >
+                <Icon
+                  className="mr-2 align-bottom"
+                  icon="face"
+                >
+                  <i
+                    className="icon mr-2 align-bottom material-icons"
+                    onClick={[Function]}
+                  >
+                    face
+                  </i>
+                </Icon>
                 Select your best friend
               </button>
             </Button>
@@ -539,6 +555,7 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
 exports[`Component: ValuePicker should when booting render a loading spinner and request an initial page 1`] = `
 <ValuePicker
   canSearch={true}
+  icon="face"
   id="bestFriend"
   label="Best friend"
   labelForOption={[Function]}
@@ -600,6 +617,7 @@ exports[`Component: ValuePicker should when booting render a loading spinner and
 exports[`Component: ValuePicker single when ModalPickerSingle should render a \`ModalPickerSingle\` when async page \`totalElements\` is more than than 10 1`] = `
 <ValuePicker
   canSearch={true}
+  icon="face"
   id="bestFriend"
   label="Best friend"
   labelForOption={[Function]}
@@ -640,6 +658,7 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
 >
   <ModalPickerSingle
     canSearch={true}
+    icon="face"
     id="bestFriend"
     label="Best friend"
     labelForOption={[Function]}
@@ -705,6 +724,7 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
           </label>
         </Label>
         <ModalPickerOpener
+          icon="face"
           label="Select your best friend"
           onClear={[Function]}
           openModal={[Function]}
@@ -728,6 +748,17 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
                 onClick={[Function]}
                 type="button"
               >
+                <Icon
+                  className="mr-2 align-bottom"
+                  icon="face"
+                >
+                  <i
+                    className="icon mr-2 align-bottom material-icons"
+                    onClick={[Function]}
+                  >
+                    face
+                  </i>
+                </Icon>
                 Select your best friend
               </button>
             </Button>
@@ -828,6 +859,7 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
 exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGroup\` component when async page \`totalElements\` is less than 4 1`] = `
 <ValuePicker
   canSearch={true}
+  icon="face"
   id="bestFriend"
   label="Best friend"
   labelForOption={[Function]}
@@ -869,6 +901,7 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
   <RadioGroup
     canClear={true}
     canSearch={true}
+    icon="face"
     id="bestFriend"
     label="Best friend"
     labelForOption={[Function]}
@@ -1073,6 +1106,7 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
 exports[`Component: ValuePicker single when Select should render a \`Select\` component when async page \`totalElements\` is less than 11 but more than 3 1`] = `
 <ValuePicker
   canSearch={true}
+  icon="face"
   id="bestFriend"
   label="Best friend"
   labelForOption={[Function]}
@@ -1113,6 +1147,7 @@ exports[`Component: ValuePicker single when Select should render a \`Select\` co
 >
   <Select
     canSearch={true}
+    icon="face"
     id="bestFriend"
     label="Best friend"
     labelForOption={[Function]}

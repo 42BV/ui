@@ -191,6 +191,29 @@ storiesOf('Form/ValuePicker/multiple', module)
       </Form>
     );
   })
+  .add('with icon', () => {
+    const [value, setValue] = useState<User[] | undefined>(undefined);
+
+    const promise = sizes['large'];
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={true}
+          id="bestFriend"
+          placeholder="Select your best friend"
+          icon="face"
+          canSearch={true}
+          options={() => promise}
+          labelForOption={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+        />
+
+        <p>The icon only works when there are more than 10 options.</p>
+      </Form>
+    );
+  })
   .add('jarb', () => {
     const [size, setSize] = useState('small');
 
@@ -359,6 +382,29 @@ storiesOf('Form/ValuePicker/single', module)
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
+      </Form>
+    );
+  })
+  .add('with icon', () => {
+    const [value, setValue] = useState<User | undefined>(undefined);
+
+    const promise = sizes['large'];
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={false}
+          id="bestFriend"
+          placeholder="Select your best friend"
+          icon="face"
+          canSearch={true}
+          options={() => promise}
+          labelForOption={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+        />
+
+        <p>The icon only works when there are more than 10 options.</p>
       </Form>
     );
   })

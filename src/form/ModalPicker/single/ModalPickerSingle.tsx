@@ -19,6 +19,7 @@ import {
   ModalPickerButtonAlignment,
   ModalPickerRenderOptions
 } from '../types';
+import { IconType } from '../../../core/Icon';
 
 export type ModalPickerSingleRenderValue<T> = (value?: T) => React.ReactNode;
 
@@ -31,6 +32,11 @@ type Props<T> = Omit<
      * The placeholder of the form element.
      */
     placeholder: string;
+
+    /**
+     * Optionally the icon to display on the button to open the modal picker.
+     */
+    icon?: IconType;
 
     /**
      * Optionally whether or not the user can search.
@@ -81,6 +87,7 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
     label,
     color,
     placeholder,
+    icon,
     className = '',
     value,
     onChange,
@@ -154,6 +161,7 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
   const modalPickerOpenerProps = {
     openModal,
     label: placeholder,
+    icon,
     alignButton,
     renderValue: renderValue
       ? renderValue

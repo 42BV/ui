@@ -9,10 +9,12 @@ import { ModalPickerButtonAlignment } from '../types';
 describe('Component: ModalPickerOpener', () => {
   function setup({
     hasValue = false,
+    hasIcon = false,
     withTooltip = false,
     alignButton
   }: {
     hasValue?: boolean;
+    hasIcon?: boolean;
     withTooltip?: boolean;
     alignButton?: ModalPickerButtonAlignment;
   }) {
@@ -20,6 +22,7 @@ describe('Component: ModalPickerOpener', () => {
     const onClearSpy = jest.fn();
 
     const value = hasValue ? adminUser().email : undefined;
+    const icon = hasIcon ? 'face' : undefined;
 
     jest
       .spyOn(useComponentOverflow, 'useComponentOverflow')
@@ -29,6 +32,7 @@ describe('Component: ModalPickerOpener', () => {
       <ModalPickerOpener
         openModal={openModalSpy}
         label="Best friend"
+        icon={icon}
         value={value}
         onClear={onClearSpy}
         alignButton={alignButton}
@@ -54,6 +58,11 @@ describe('Component: ModalPickerOpener', () => {
       expect(toJson(modalPickerOpener)).toMatchSnapshot(
         'Component: ModalPickerOpener => ui => with values'
       );
+    });
+
+    test('with icon', () => {
+      const { modalPickerOpener } = setup({ hasIcon: true });
+      expect(modalPickerOpener.find('Button').find('Icon').exists()).toBe(true);
     });
 
     test('tooltip', () => {

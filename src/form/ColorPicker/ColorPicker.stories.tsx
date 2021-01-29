@@ -87,6 +87,24 @@ storiesOf('Form/ColorPicker', module)
       </div>
     );
   })
+  .add('with icon', () => {
+    const [value, setValue] = useState<string | undefined>();
+
+    return (
+      <div>
+        <Form>
+          <ColorPicker
+            id="color"
+            label="Color"
+            placeholder="Please select your favorite color"
+            icon="colorize"
+            value={value}
+            onChange={setValue}
+          />
+        </Form>
+      </div>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

@@ -6,6 +6,7 @@ import { t } from '../../../utilities/translation/translation';
 import TextButton from '../../../core/TextButton/TextButton';
 import { ModalPickerSingleRenderValue } from '../single/ModalPickerSingle';
 import { ModalPickerMultipleRenderValues } from '../multiple/ModalPickerMultiple';
+import { Icon, IconType } from '../../../core/Icon';
 
 type Text = {
   clear?: string;
@@ -21,6 +22,11 @@ type BaseProps = {
    * The label to display on the button.
    */
   label: React.ReactNode;
+
+  /**
+   * Optionally the icon to display on the button.
+   */
+  icon?: IconType;
 
   /**
    * Optionally: what needs to happen when the clear button is pressed
@@ -58,6 +64,7 @@ export function ModalPickerOpener<T>(props: Props<T>) {
   const {
     openModal,
     label,
+    icon,
     alignButton,
     onClear,
     text = {},
@@ -97,6 +104,7 @@ export function ModalPickerOpener<T>(props: Props<T>) {
       ) : null}
 
       <Button color="primary" onClick={openModal} className={buttonClassName}>
+        {icon ? <Icon icon={icon} className="mr-2 align-bottom" /> : null}
         {label}
       </Button>
     </div>

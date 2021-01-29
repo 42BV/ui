@@ -13,6 +13,7 @@ import Spinner from '../../core/Spinner/Spinner';
 import { t } from '../../utilities/translation/translation';
 import { FieldCompatible } from '../types';
 import { isArray } from 'lodash';
+import { IconType } from '../../core/Icon';
 
 export type Text = {
   /**
@@ -28,6 +29,12 @@ type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> &
      * The placeholder of the form element.
      */
     placeholder: string;
+
+    /**
+     * Optionally the icon to display on the button that opens the modal picker.
+     * This icon only works when there are more than 10 options.
+     */
+    icon?: IconType;
 
     /**
      * Optionally whether or not the user can search.

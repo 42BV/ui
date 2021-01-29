@@ -482,6 +482,54 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
       </Form>
     );
   })
+  .add('with icon', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <h3>Without icon</h3>
+
+        <ModalPickerMultiple
+          id="provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+
+        <hr />
+
+        <h3>With icon</h3>
+
+        <ModalPickerMultiple
+          id="provinces"
+          placeholder="Please select your provinces"
+          icon="ballot"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

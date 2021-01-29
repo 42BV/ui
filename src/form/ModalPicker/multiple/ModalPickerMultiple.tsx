@@ -21,6 +21,7 @@ import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPic
 import { FieldCompatible } from '../../types';
 import { useId } from '../../../hooks/useId/useId';
 import { useOptions } from '../../useOptions';
+import { IconType } from '../../../core/Icon';
 
 export type ModalPickerMultipleRenderValues<T> = (
   value?: T[]
@@ -32,9 +33,14 @@ export type Props<T> = Omit<
 > &
   FieldCompatibleWithPredeterminedOptions<T> & {
     /**
-     * The placeholder of the form element.	   * The placeholder of the form element.
+     * The placeholder of the form element.
      */
     placeholder: string;
+
+    /**
+     * Optionally the icon to display on the button to open the modal picker.
+     */
+    icon?: IconType;
 
     /**
      * Optionally whether or not the user can search.
@@ -85,6 +91,7 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
     label,
     color,
     placeholder,
+    icon,
     className = '',
     value,
     onChange,
@@ -191,6 +198,7 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
   const modalPickerOpenerProps = {
     openModal,
     label: placeholder,
+    icon,
     alignButton,
     renderValue: renderValue
       ? renderValue

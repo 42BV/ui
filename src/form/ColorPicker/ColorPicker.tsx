@@ -4,11 +4,12 @@ import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 
 import withJarb from '../withJarb/withJarb';
-import { Color } from '../..';
+import { Color, Icon } from '../..';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import Popover from '../../core/Popover/Popover';
 import TextButton from '../../core/TextButton/TextButton';
+import { IconType } from '../../core/Icon';
 
 type Text = {
   /**
@@ -80,6 +81,11 @@ type Props = {
   placeholder: string;
 
   /**
+   * Optionally the icon to display on the button that opens the color picker.
+   */
+  icon?: IconType;
+
+  /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
@@ -97,6 +103,7 @@ export default function ColorPicker(props: Props) {
     value,
     color,
     placeholder,
+    icon,
     className,
     error,
     onChange,
@@ -153,6 +160,7 @@ export default function ColorPicker(props: Props) {
                 setIsOpen(!isOpen);
               }}
             >
+              {icon ? <Icon icon={icon} className="mr-2 align-bottom" /> : null}
               {placeholder}
             </Button>
           }

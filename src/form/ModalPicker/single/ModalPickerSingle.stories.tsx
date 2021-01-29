@@ -390,6 +390,41 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
       </Form>
     );
   })
+  .add('icon', () => {
+    const [value, setValue] = useState<Province | undefined>(undefined);
+
+    return (
+      <Form>
+        <h3>Without icon</h3>
+
+        <ModalPickerSingle<Province>
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        <h3>With icon</h3>
+
+        <ModalPickerSingle<Province>
+          id="provinces"
+          placeholder="Please select your province"
+          icon="home"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+        />
+
+        <hr />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

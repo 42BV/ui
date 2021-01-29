@@ -8,7 +8,7 @@ import Popover from '../../core/Popover/Popover';
 import ColorPicker from './ColorPicker';
 
 describe('Component: ColorPicker', () => {
-  function setup({ value }: { value?: string }) {
+  function setup({ value, hasIcon }: { value?: string; hasIcon?: boolean }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
@@ -17,6 +17,7 @@ describe('Component: ColorPicker', () => {
       name: 'bestFriend',
       label: 'Best Friend',
       placeholder: 'Select your best friend',
+      icon: hasIcon ? 'face' : undefined,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -45,6 +46,16 @@ describe('Component: ColorPicker', () => {
       const { colorPicker } = setup({ value: undefined });
 
       expect(toJson(colorPicker)).toMatchSnapshot();
+    });
+
+    test('with icon', () => {
+      const { colorPicker } = setup({ hasIcon: true });
+
+      const button = shallow(
+        // @ts-expect-error Test mock
+        colorPicker.find('Popover').props().target
+      );
+      expect(button.find('Icon').exists()).toBe(true);
     });
   });
 
