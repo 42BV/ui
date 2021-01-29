@@ -6,16 +6,19 @@ import IconPicker from './IconPicker';
 import { SearchInput, Icon, IconType, Pager } from '../..';
 import { Button } from 'reactstrap';
 import Popover from '../../core/Popover/Popover';
+import TextButton from '../../core/TextButton/TextButton';
 
 describe('Component: IconPicker', () => {
   function setup({
     value,
     hasLabel = true,
-    hasIcon = false
+    hasIcon = false,
+    canClear
   }: {
     value?: IconType;
     hasLabel?: boolean;
     hasIcon?: boolean;
+    canClear?: boolean;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -31,7 +34,8 @@ describe('Component: IconPicker', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      color: 'success'
+      color: 'success',
+      canClear
     };
 
     // @ts-expect-error Test mock
@@ -98,6 +102,12 @@ describe('Component: IconPicker', () => {
         iconPicker.find('Popover').props().target
       );
       expect(button.find('Icon').exists()).toBe(true);
+    });
+
+    test('without clear button', () => {
+      const { iconPicker } = setup({ value: '3d_rotation', canClear: false });
+
+      expect(iconPicker.find(TextButton).exists()).toBe(false);
     });
   });
 

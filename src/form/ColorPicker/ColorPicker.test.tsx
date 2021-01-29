@@ -6,9 +6,10 @@ import { SketchPicker } from 'react-color';
 import Popover from '../../core/Popover/Popover';
 
 import ColorPicker from './ColorPicker';
+import TextButton from '../../core/TextButton/TextButton';
 
 describe('Component: ColorPicker', () => {
-  function setup({ value, hasIcon }: { value?: string; hasIcon?: boolean }) {
+  function setup({ value, hasIcon, canClear }: { value?: string; hasIcon?: boolean; canClear?: boolean }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
@@ -22,7 +23,8 @@ describe('Component: ColorPicker', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      color: 'success'
+      color: 'success',
+      canClear
     };
 
     // @ts-expect-error Test mock
@@ -56,6 +58,12 @@ describe('Component: ColorPicker', () => {
         colorPicker.find('Popover').props().target
       );
       expect(button.find('Icon').exists()).toBe(true);
+    });
+
+    test('without clear button', () => {
+      const { colorPicker } = setup({ value: '#cdcdcd', canClear: false });
+
+      expect(colorPicker.find(TextButton).exists()).toBe(false);
     });
   });
 

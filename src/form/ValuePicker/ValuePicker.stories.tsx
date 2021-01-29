@@ -214,6 +214,32 @@ storiesOf('Form/ValuePicker/multiple', module)
       </Form>
     );
   })
+  .add('without clear button', () => {
+    const [value, setValue] = useState<User[] | undefined>([user]);
+
+    const promise = sizes['large'];
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={true}
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          options={() => promise}
+          labelForOption={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+          canClear={false}
+        />
+        <p className="mt-3">
+          <strong>Disclaimer:</strong> canClear has no effect on small option
+          sets (1-10 options) because checkboxes can be unselected.
+        </p>
+      </Form>
+    );
+  })
   .add('jarb', () => {
     const [size, setSize] = useState('small');
 
@@ -405,6 +431,41 @@ storiesOf('Form/ValuePicker/single', module)
         />
 
         <p>The icon only works when there are more than 10 options.</p>
+      </Form>
+    );
+  })
+  .add('without clear button', () => {
+    const [value, setValue] = useState<User | undefined>(user);
+
+    const [size, setSize] = useState('small');
+
+    const promise = sizes[size];
+
+    return (
+      <Form>
+        <ValuePicker<User>
+          multiple={false}
+          id="bestFriend"
+          label="Best friend"
+          placeholder="Select your best friend"
+          canSearch={true}
+          options={() => promise}
+          labelForOption={(user: User) => user.email}
+          value={value}
+          onChange={setValue}
+          canClear={false}
+        />
+
+        <p>Use these buttons to trigger a morph</p>
+        <Button className="mr-1" onClick={() => setSize('small')}>
+          Small
+        </Button>
+        <Button onClick={() => setSize('large')}>Large</Button>
+        <p className="mt-3">
+          <strong>Disclaimer:</strong> canClear has no effect on medium option
+          sets (4-10 options) because the select dropdown has a placeholder
+          option to clear the value.
+        </p>
       </Form>
     );
   })

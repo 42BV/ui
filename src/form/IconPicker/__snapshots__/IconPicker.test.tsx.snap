@@ -116,12 +116,12 @@ exports[`Component: IconPicker ui with selected value 1`] = `
       className="d-flex justify-content-between"
     >
       <Icon
-        className="pt-2"
+        className="pt-2 mr-3"
         icon="3d_rotation"
         id="icon-picker-value"
       />
       <TextButton
-        className="mx-3"
+        className="mr-3"
         onClick={[Function]}
       >
         Clear

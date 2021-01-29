@@ -899,7 +899,6 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
   placeholder="Select your best friend"
 >
   <RadioGroup
-    canClear={true}
     canSearch={true}
     icon="face"
     id="bestFriend"

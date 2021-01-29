@@ -70,6 +70,13 @@ export type Props<T> = Omit<
      * Callback to customize display of options.
      */
     renderOptions?: ModalPickerRenderOptions<T>;
+
+    /**
+     * Whether or not to show a "clear" button.
+     *
+     * Defaults to `true`
+     */
+    canClear?: boolean;
   };
 
 /**
@@ -107,7 +114,8 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
     alignButton,
     renderOptions,
     error,
-    onBlur
+    onBlur,
+    canClear = true
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -208,7 +216,7 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
             labelForOption={labelForOption}
           />
         ),
-    onClear: () => onChange(undefined),
+    onClear: canClear ? () => onChange(undefined) : undefined,
     // Only render the clear button when it has a value
     value: value && value.length > 0 ? value : undefined
   };

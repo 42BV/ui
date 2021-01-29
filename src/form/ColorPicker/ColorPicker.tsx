@@ -90,6 +90,13 @@ type Props = {
    * This text should already be translated.
    */
   text?: Text;
+
+  /**
+   * Whether or not to show a "clear" button.
+   *
+   * Defaults to `true`
+   */
+  canClear?: boolean;
 };
 
 /**
@@ -108,6 +115,7 @@ export default function ColorPicker(props: Props) {
     error,
     onChange,
     onBlur,
+    canClear = true,
     text = {}
   } = props;
 
@@ -130,23 +138,25 @@ export default function ColorPicker(props: Props) {
       <div className="d-flex">
         {value ? (
           <div className="d-flex justify-content-between">
-            <div className="border p-1">
+            <div className="border p-1 mr-3">
               <div
                 id="color-picker-value"
                 className="h-100"
                 style={{ backgroundColor: value, width: 42 }}
               />
             </div>
-            <TextButton
-              onClick={() => onColorSelected(undefined)}
-              className="mx-3"
-            >
-              {t({
-                key: 'ColorPicker.CLEAR',
-                fallback: 'Clear',
-                overrideText: text.clear
-              })}
-            </TextButton>
+            {canClear ? (
+              <TextButton
+                onClick={() => onColorSelected(undefined)}
+                className="mr-3"
+              >
+                {t({
+                  key: 'ColorPicker.CLEAR',
+                  fallback: 'Clear',
+                  overrideText: text.clear
+                })}
+              </TextButton>
+            ) : null}
           </div>
         ) : null}
         <Popover

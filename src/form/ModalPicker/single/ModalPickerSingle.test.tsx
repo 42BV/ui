@@ -21,6 +21,8 @@ import { useOptions } from '../../useOptions';
 import { Color } from '../../../core/types';
 import { IsOptionEnabled } from '../../option';
 import { icons } from '../../../core/Icon';
+import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
+import TextButton from '../../../core/TextButton/TextButton';
 
 jest.mock('../../useOptions', () => {
   return { useOptions: jest.fn() };
@@ -39,7 +41,8 @@ describe('Component: ModalPickerSingle', () => {
     empty = false,
     reUsePage = false,
     isOptionEnabled,
-    isAsync = false
+    isAsync = false,
+    canClear
   }: {
     value?: User;
     showAddButton?: boolean;
@@ -53,6 +56,7 @@ describe('Component: ModalPickerSingle', () => {
     reUsePage?: boolean;
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
+    canClear?: boolean;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -108,7 +112,8 @@ describe('Component: ModalPickerSingle', () => {
       renderOptions: hasRenderOptions
         ? () => <span>RenderOptions</span>
         : undefined,
-      color: 'success' as Color
+      color: 'success' as Color,
+      canClear
     };
 
     const labelProps = hasLabel
@@ -248,6 +253,16 @@ describe('Component: ModalPickerSingle', () => {
       expect(toJson(modalPickerSingle)).toMatchSnapshot(
         'Component: ModalPickerSingle => ui => should render button right with value'
       );
+    });
+
+    it('should render without clear button', () => {
+      const { modalPickerSingle } = setup({
+        value: adminUser(),
+        canClear: false
+      });
+      expect(
+        modalPickerSingle.find(ModalPickerOpener).find(TextButton).exists()
+      ).toBe(false);
     });
 
     describe('renderValue', () => {

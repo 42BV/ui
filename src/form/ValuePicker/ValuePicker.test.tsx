@@ -26,11 +26,13 @@ describe('Component: ValuePicker', () => {
 
   function setup({
     options,
-    multiple
+    multiple,
+    canClear
   }: {
     options: Options<User>;
     multiple: true | false;
     value?: User | User[];
+    canClear?: boolean;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -48,6 +50,7 @@ describe('Component: ValuePicker', () => {
         value={undefined}
         onChange={onChangeSpy}
         onBlur={onBlurSpy}
+        canClear={canClear}
       />
     );
   }
@@ -123,6 +126,20 @@ describe('Component: ValuePicker', () => {
         valuePicker.update();
 
         expect(valuePicker.find('RadioGroup').exists()).toBe(true);
+      });
+
+      it('should render a `RadioGroup` component without clear button', () => {
+        setup({
+          options: listOfUsers(),
+          multiple: false,
+          canClear: false
+        });
+
+        valuePicker.update();
+
+        expect(valuePicker.find('RadioGroup').find('TextButton').exists()).toBe(
+          false
+        );
       });
     });
 
@@ -256,6 +273,32 @@ describe('Component: ValuePicker', () => {
         valuePicker.update();
 
         expect(valuePicker.find('ModalPickerSingle').exists()).toBe(true);
+      });
+
+      it('should render a `ModalPickerSingle` component without clear button', () => {
+        setup({
+          options: [
+            adminUser(),
+            coordinatorUser(),
+            userUser(),
+            nobodyUser(),
+            randomUser(),
+            randomUser(),
+            randomUser(),
+            randomUser(),
+            randomUser(),
+            randomUser(),
+            randomUser()
+          ],
+          multiple: false,
+          canClear: false
+        });
+
+        valuePicker.update();
+
+        expect(
+          valuePicker.find('ModalPickerSingle').find('TextButton').exists()
+        ).toBe(false);
       });
     });
   });
@@ -403,6 +446,32 @@ describe('Component: ValuePicker', () => {
         valuePicker.update();
 
         expect(valuePicker.find('ModalPickerMultiple').exists()).toBe(true);
+      });
+
+      it('should render a `ModalPickerMultiple` component without clear button', () => {
+        setup({
+          options: [
+            adminUser(),
+            coordinatorUser(),
+            userUser(),
+            nobodyUser(),
+            randomUser(),
+            randomUser(),
+            randomUser(),
+            randomUser(),
+            randomUser(),
+            randomUser(),
+            randomUser()
+          ],
+          multiple: true,
+          canClear: false
+        });
+
+        valuePicker.update();
+
+        expect(
+          valuePicker.find('ModalPickerMultiple').find('TextButton').exists()
+        ).toBe(false);
       });
     });
   });

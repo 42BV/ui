@@ -47,6 +47,15 @@ type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> &
      * This text should already be translated.
      */
     text?: Text;
+
+    /**
+     * Whether or not to show a "clear" button.
+     * This property only has effect when there are more than 10 options
+     * or single value with 1-3 options.
+     *
+     * Defaults to `true`
+     */
+    canClear?: boolean;
   };
 
 type SingleValuePicker<T> = Omit<
@@ -110,7 +119,7 @@ type Props<T> = SingleValuePicker<T> | MultipleValuePicker<T>;
  * for a `Page` of size `1` so it can get the `totalElements`.
  */
 export default function ValuePicker<T>(props: Props<T>) {
-  const { text = {}, options } = props;
+  const { text = {}, options, canClear = true } = props;
 
   const [booting, setBooting] = useState(true);
   const [totalElements, setTotalElements] = useState(0);
@@ -152,17 +161,17 @@ export default function ValuePicker<T>(props: Props<T>) {
     if (totalElements < 11) {
       return <CheckboxMultipleSelect {...rest} />;
     } else {
-      return <ModalPickerMultiple {...rest} />;
+      return <ModalPickerMultiple canClear={canClear} {...rest} />;
     }
   } else {
     const { multiple, ...rest } = props;
 
     if (totalElements < 4) {
-      return <RadioGroup canClear={true} {...rest} />;
+      return <RadioGroup canClear={canClear} {...rest} />;
     } else if (totalElements < 11) {
       return <Select {...rest} />;
     } else {
-      return <ModalPickerSingle {...rest} />;
+      return <ModalPickerSingle canClear={canClear} {...rest} />;
     }
   }
 }

@@ -28,7 +28,7 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
       className="d-flex justify-content-between"
     >
       <div
-        className="border p-1"
+        className="border p-1 mr-3"
       >
         <div
           className="h-100"
@@ -42,7 +42,7 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
         />
       </div>
       <TextButton
-        className="mx-3"
+        className="mr-3"
         onClick={[Function]}
       >
         Clear

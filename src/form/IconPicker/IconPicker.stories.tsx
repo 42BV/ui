@@ -85,6 +85,23 @@ storiesOf('Form/IconPicker', module)
       </div>
     );
   })
+  .add('without clear button', () => {
+    const [value, setValue] = useState<IconType | undefined>(undefined);
+
+    return (
+      <div>
+        <Form>
+          <IconPicker
+            id="icon"
+            placeholder="Please select your icon"
+            value={value}
+            onChange={setValue}
+            canClear={false}
+          />
+        </Form>
+      </div>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

@@ -66,6 +66,13 @@ type Props<T> = Omit<
      * Callback to customize display of options.
      */
     renderOptions?: ModalPickerRenderOptions<T>;
+
+    /**
+     * Whether or not to show a "clear" button.
+     *
+     * Defaults to `true`
+     */
+    canClear?: boolean;
   };
 
 /**
@@ -102,7 +109,8 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
     renderValue,
     alignButton,
     renderOptions,
-    error
+    error,
+    canClear = true
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -171,7 +179,7 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
             labelForOption={labelForOption}
           />
         ),
-    onClear: () => onChange(undefined),
+    onClear: canClear ? () => onChange(undefined) : undefined,
     value
   };
 

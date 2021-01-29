@@ -52,6 +52,13 @@ type Props = FieldCompatible<IconType, IconType | undefined> & {
    * Optionally the icon to display on the button to open the icon picker.
    */
   icon?: IconType;
+
+  /**
+   * Whether or not to show a "clear" button.
+   *
+   * Defaults to `true`
+   */
+  canClear?: boolean;
 };
 
 /**
@@ -70,7 +77,8 @@ export default function IconPicker(props: Props) {
     error,
     onChange,
     onBlur,
-    text = {}
+    text = {},
+    canClear = true
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -107,17 +115,23 @@ export default function IconPicker(props: Props) {
           <div className="d-flex">
             {value ? (
               <div className="d-flex justify-content-between">
-                <Icon id="icon-picker-value" className="pt-2" icon={value} />
-                <TextButton
-                  onClick={() => onIconSelected(undefined)}
-                  className="mx-3"
-                >
-                  {t({
-                    key: 'IconPicker.CLEAR',
-                    fallback: 'Clear',
-                    overrideText: text.clear
-                  })}
-                </TextButton>
+                <Icon
+                  id="icon-picker-value"
+                  className="pt-2 mr-3"
+                  icon={value}
+                />
+                {canClear ? (
+                  <TextButton
+                    onClick={() => onIconSelected(undefined)}
+                    className="mr-3"
+                  >
+                    {t({
+                      key: 'IconPicker.CLEAR',
+                      fallback: 'Clear',
+                      overrideText: text.clear
+                    })}
+                  </TextButton>
+                ) : null}
               </div>
             ) : null}
             <Popover

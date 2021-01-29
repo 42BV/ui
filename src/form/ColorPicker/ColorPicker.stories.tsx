@@ -105,6 +105,24 @@ storiesOf('Form/ColorPicker', module)
       </div>
     );
   })
+  .add('without clear button', () => {
+    const [value, setValue] = useState<string | undefined>('#ff0000');
+
+    return (
+      <div>
+        <Form>
+          <ColorPicker
+            id="color"
+            label="Color"
+            placeholder="Please select your favorite color"
+            value={value}
+            onChange={setValue}
+            canClear={false}
+          />
+        </Form>
+      </div>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

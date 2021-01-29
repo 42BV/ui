@@ -530,6 +530,25 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
       </Form>
     );
   })
+  .add('without clear button', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <ModalPickerMultiple
+          id="provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+          canClear={false}
+        />
+      </Form>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>
