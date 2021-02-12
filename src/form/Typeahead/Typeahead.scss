@@ -40,4 +40,13 @@
       border-color: $danger;
     }
   }
+
+  .rbt-menu {
+    .dropdown-item {
+      font-weight: bold;
+      .rbt-highlight-text {
+        font-weight: normal;
+      }
+    }
+  }
 }
