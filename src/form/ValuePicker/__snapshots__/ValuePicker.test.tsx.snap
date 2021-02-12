@@ -880,7 +880,7 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
           Object {
             "page": 1,
             "query": "",
-            "size": 10,
+            "size": 100,
           },
         ],
       ],
@@ -920,7 +920,7 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
             Object {
               "page": 1,
               "query": "",
-              "size": 10,
+              "size": 100,
             },
           ],
         ],
@@ -1126,7 +1126,7 @@ exports[`Component: ValuePicker single when Select should render a \`Select\` co
           Object {
             "page": 1,
             "query": "",
-            "size": 10,
+            "size": 100,
           },
         ],
       ],
@@ -1166,7 +1166,7 @@ exports[`Component: ValuePicker single when Select should render a \`Select\` co
             Object {
               "page": 1,
               "query": "",
-              "size": 10,
+              "size": 100,
             },
           ],
         ],

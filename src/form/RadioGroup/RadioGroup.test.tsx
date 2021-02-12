@@ -53,7 +53,7 @@ describe('Component: RadioGroup', () => {
       }) => {
         expect(pageNumber).toBe(1);
         expect(query).toBe('');
-        expect(size).toBe(10);
+        expect(size).toBe(3);
         expect(optionsShouldAlwaysContainValue).toBe(true);
 
         return {

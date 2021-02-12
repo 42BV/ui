@@ -35,6 +35,11 @@ export type Props<T> = FieldCompatible<T, T> &
 /**
  * Select is a form element for which the value can be selected
  * from a limited range.
+ *
+ * If you pass a callback to the options property, be aware
+ * that only 100 options will be displayed without pagination.
+ * If you want to display more than 100 options,
+ * you should use the ModalPickerSingle instead.
  */
 export default function Select<T>(props: Props<T>) {
   const {
@@ -66,7 +71,7 @@ export default function Select<T>(props: Props<T>) {
     reloadOptions,
     pageNumber: 1,
     query: '',
-    size: 10,
+    size: Array.isArray(options) ? options.length : 100,
     optionsShouldAlwaysContainValue: true
   });
 

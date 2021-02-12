@@ -107,7 +107,7 @@ describe('Component: ValuePicker', () => {
           expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
             query: '',
             page: 1,
-            size: 10
+            size: 100
           });
 
           done();
@@ -182,7 +182,7 @@ describe('Component: ValuePicker', () => {
           expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
             query: '',
             page: 1,
-            size: 10
+            size: 100
           });
 
           done();

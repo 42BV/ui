@@ -72,6 +72,11 @@ export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
  * CheckboxMultipleSelect is a form element for which the values can
  * be selected from a limited range. Is shown a grid of options as
  * checkboxes from which the user can select multiple values.
+ *
+ * If you pass a callback to the options property, be aware
+ * that only 100 options will be displayed without pagination.
+ * If you want to display more than 100 options,
+ * you should use the ModalPickerMultiple instead.
  */
 export default function CheckboxMultipleSelect<T>(props: Props<T>) {
   const {
@@ -104,7 +109,7 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
     reloadOptions,
     pageNumber: 1,
     query: '',
-    size: 100,
+    size: Array.isArray(props.options) ? props.options.length : 100,
     optionsShouldAlwaysContainValue
   });
 

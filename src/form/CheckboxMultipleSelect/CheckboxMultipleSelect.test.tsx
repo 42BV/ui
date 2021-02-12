@@ -48,7 +48,7 @@ describe('Component: CheckboxMultipleSelect', () => {
     useOptions.mockImplementation(
       ({ options, pageNumber, size, optionsShouldAlwaysContainValue }) => {
         expect(pageNumber).toBe(1);
-        expect(size).toBe(100);
+        expect(size).toBe(3);
         expect(optionsShouldAlwaysContainValue).toBe(
           optionsShouldAlwaysContainValueConfig ?? true
         );

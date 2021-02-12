@@ -67,6 +67,12 @@ storiesOf('Form/CheckboxMultipleSelect', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
+
+        <p className="mt-3">
+          <strong>Disclaimer:</strong> when using async, a maximum of 100
+          options will be displayed. If you want to display more than 100
+          options, you should use the ModalPickerMultiple.
+        </p>
       </Form>
     );
   })
