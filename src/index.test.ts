@@ -17,6 +17,7 @@ describe('index', () => {
         "AvatarStack": [Function],
         "BooleanIcon": [Function],
         "Button": [Function],
+        "Card": [Function],
         "Checkbox": [Function],
         "CheckboxMultipleSelect": [Function],
         "ColorPicker": [Function],
