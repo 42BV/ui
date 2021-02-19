@@ -24,7 +24,11 @@ type Props = {
   confirmText?: string;
 
   /**
-   * Whether or not the modal must be shown
+   * Whether or not the modal is open.
+   * @deprecated Please do not use the isOpen boolean to control whether
+   * or not the modal is opened. Instead always set isOpen to `true`
+   * and only render the ConfirmModal when it should be rendered.
+   * In version 4.0.0 the isOpen property will be removed.
    */
   isOpen: boolean;
 

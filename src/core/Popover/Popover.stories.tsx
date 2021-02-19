@@ -267,9 +267,11 @@ function TinyCrud() {
         </Button>
       </ListGroupItem>
 
-      <OpenCloseModal isOpen={open} onClose={() => setOpen(false)}>
-        Form here?
-      </OpenCloseModal>
+      {open ? (
+        <OpenCloseModal isOpen={true} onClose={() => setOpen(false)}>
+          Form here?
+        </OpenCloseModal>
+      ) : null}
     </ListGroup>
   );
 }

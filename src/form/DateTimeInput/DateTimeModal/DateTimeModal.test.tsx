@@ -8,14 +8,20 @@ import { DateTimeModal } from './DateTimeModal';
 import * as Value from './useValue';
 
 describe('Component: DateTimeModal', () => {
-  function setup({ hasValue = false }: { hasValue?: boolean }) {
+  function setup({
+    hasValue = false,
+    isOpen = true
+  }: {
+    hasValue?: boolean;
+    isOpen?: boolean;
+  }) {
     const onCloseSpy = jest.fn();
     const onSaveSpy = jest.fn();
     const isDateAllowedSpy = jest.fn();
 
     const dateTimeModal = shallow(
       <DateTimeModal
-        isOpen={true}
+        isOpen={isOpen}
         onClose={onCloseSpy}
         onSave={onSaveSpy}
         dateFormat="YYYY-MM-DD"
@@ -28,6 +34,11 @@ describe('Component: DateTimeModal', () => {
   }
 
   describe('ui', () => {
+    test('not open', () => {
+      const { dateTimeModal } = setup({ isOpen: false });
+
+      expect(toJson(dateTimeModal)).toBe('');
+    });
     test('without value', () => {
       const { dateTimeModal } = setup({});
 

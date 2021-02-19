@@ -71,6 +71,7 @@ describe('index', () => {
         "JarbValuePicker": [Function],
         "Loading": [Function],
         "LoadingPage": [Function],
+        "Modal": [Function],
         "ModalPickerMultiple": [Function],
         "ModalPickerSingle": [Function],
         "MoreOrLess": [Function],

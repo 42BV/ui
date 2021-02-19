@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Modal ui sans sticky footer: Component: Modal => ui => sans sticky 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  container="body"
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      Header text
+    </Suspense>
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      <RadioGroup
+        labelForOption={[Function]}
+        onChange={[MockFunction]}
+        options={
+          Array [
+            "local",
+            "development",
+            "test",
+            "acceptation",
+            "production",
+          ]
+        }
+      />
+    </Suspense>
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      Footer text
+    </Suspense>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`Component: Modal ui with header and footer: Component: Modal => ui => with header and footer 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  container="body"
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  wrapClassName="sticky-modal"
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      Header text
+    </Suspense>
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      <RadioGroup
+        labelForOption={[Function]}
+        onChange={[MockFunction]}
+        options={
+          Array [
+            "local",
+            "development",
+            "test",
+            "acceptation",
+            "production",
+          ]
+        }
+      />
+    </Suspense>
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      Footer text
+    </Suspense>
+  </ModalFooter>
+</Modal>
+`;
+
+exports[`Component: Modal ui without footer: Component: Modal => ui => without footer 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  container="body"
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  wrapClassName="sticky-modal"
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      Header text
+    </Suspense>
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      <RadioGroup
+        labelForOption={[Function]}
+        onChange={[MockFunction]}
+        options={
+          Array [
+            "local",
+            "development",
+            "test",
+            "acceptation",
+            "production",
+          ]
+        }
+      />
+    </Suspense>
+  </ModalBody>
+</Modal>
+`;
+
+exports[`Component: Modal ui without header: Component: Modal => ui => without header 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  container="body"
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  toggle={[Function]}
+  unmountOnClose={true}
+  wrapClassName="sticky-modal"
+  zIndex={1050}
+>
+  <ModalBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      <RadioGroup
+        labelForOption={[Function]}
+        onChange={[MockFunction]}
+        options={
+          Array [
+            "local",
+            "development",
+            "test",
+            "acceptation",
+            "production",
+          ]
+        }
+      />
+    </Suspense>
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      Footer text
+    </Suspense>
+  </ModalFooter>
+</Modal>
+`;

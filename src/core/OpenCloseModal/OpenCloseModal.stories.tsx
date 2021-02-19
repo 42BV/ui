@@ -23,6 +23,7 @@ storiesOf('core/OpenCloseModal', module)
 
       setTimeout(() => {
         setIsOpen(false);
+        setInProgress(false);
       }, 2000);
     }
 

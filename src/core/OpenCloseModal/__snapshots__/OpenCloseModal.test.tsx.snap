@@ -2,446 +2,232 @@
 
 exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseModal => ui => custom button texts 1`] = `
 <Modal
-  autoFocus={true}
-  backdrop={true}
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
-    }
+  footer={
+    <React.Fragment>
+      <Button
+        className="ml-1"
+        color="secondary"
+        icon="cancel"
+        onClick={[Function]}
+      >
+        Stop please
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        icon="save"
+        onClick={[Function]}
+      >
+        Select me
+      </Button>
+    </React.Fragment>
   }
-  centered={false}
-  container="body"
-  fade={true}
-  isOpen={false}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
-    }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  wrapClassName="open-close-modal open-close-modal--sticky"
-  zIndex={1050}
+  header="Choose something"
+  onClose={[MockFunction]}
+  stickyFooter={true}
 >
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
-    toggle={[Function]}
-    wrapTag="div"
-  >
-    Choose something
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <RadioGroup
-      labelForOption={[Function]}
-      onChange={[MockFunction]}
-      options={
-        Array [
-          "local",
-          "development",
-          "test",
-          "acceptation",
-          "production",
-        ]
-      }
-    />
-  </ModalBody>
-  <ModalFooter
-    tag="div"
-  >
-    <Button
-      className="ml-1"
-      color="secondary"
-      icon="cancel"
-      onClick={[Function]}
-    >
-      Stop please
-    </Button>
-    <Button
-      className="ml-1"
-      color="primary"
-      icon="save"
-      onClick={[Function]}
-    >
-      Select me
-    </Button>
-  </ModalFooter>
+  <RadioGroup
+    labelForOption={[Function]}
+    onChange={[MockFunction]}
+    options={
+      Array [
+        "local",
+        "development",
+        "test",
+        "acceptation",
+        "production",
+      ]
+    }
+  />
 </Modal>
 `;
 
 exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => ui => in progress 1`] = `
 <Modal
-  autoFocus={true}
-  backdrop={true}
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
-    }
+  footer={
+    <React.Fragment>
+      <Button
+        className="ml-1"
+        color="secondary"
+        icon="cancel"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        icon="save"
+        inProgress={true}
+        onClick={[Function]}
+      >
+        Save
+      </Button>
+    </React.Fragment>
   }
-  centered={false}
-  container="body"
-  fade={true}
-  isOpen={false}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
-    }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  wrapClassName="open-close-modal open-close-modal--sticky"
-  zIndex={1050}
+  header="Choose something"
+  onClose={[MockFunction]}
+  stickyFooter={true}
 >
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
-    toggle={[Function]}
-    wrapTag="div"
-  >
-    Choose something
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <RadioGroup
-      labelForOption={[Function]}
-      onChange={[MockFunction]}
-      options={
-        Array [
-          "local",
-          "development",
-          "test",
-          "acceptation",
-          "production",
-        ]
-      }
-    />
-  </ModalBody>
-  <ModalFooter
-    tag="div"
-  >
-    <Button
-      className="ml-1"
-      color="secondary"
-      icon="cancel"
-      onClick={[Function]}
-    >
-      Cancel
-    </Button>
-    <Button
-      className="ml-1"
-      color="primary"
-      icon="save"
-      inProgress={true}
-      onClick={[Function]}
-    >
-      Save
-    </Button>
-  </ModalFooter>
+  <RadioGroup
+    labelForOption={[Function]}
+    onChange={[MockFunction]}
+    options={
+      Array [
+        "local",
+        "development",
+        "test",
+        "acceptation",
+        "production",
+      ]
+    }
+  />
 </Modal>
 `;
 
 exports[`Component: OpenCloseModal ui sans sticky footer: Component: OpenCloseModal => ui => sans sticky 1`] = `
 <Modal
-  autoFocus={true}
-  backdrop={true}
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
-    }
+  footer={
+    <React.Fragment>
+      <Button
+        className="ml-1"
+        color="secondary"
+        icon="cancel"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        icon="save"
+        onClick={[Function]}
+      >
+        Save
+      </Button>
+    </React.Fragment>
   }
-  centered={false}
-  container="body"
-  fade={true}
-  isOpen={false}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
-    }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  wrapClassName="open-close-modal "
-  zIndex={1050}
+  header="Choose something"
+  onClose={[MockFunction]}
+  stickyFooter={false}
 >
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
-    toggle={[Function]}
-    wrapTag="div"
-  >
-    Choose something
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <RadioGroup
-      labelForOption={[Function]}
-      onChange={[MockFunction]}
-      options={
-        Array [
-          "local",
-          "development",
-          "test",
-          "acceptation",
-          "production",
-        ]
-      }
-    />
-  </ModalBody>
-  <ModalFooter
-    tag="div"
-  >
-    <Button
-      className="ml-1"
-      color="secondary"
-      icon="cancel"
-      onClick={[Function]}
-    >
-      Cancel
-    </Button>
-    <Button
-      className="ml-1"
-      color="primary"
-      icon="save"
-      onClick={[Function]}
-    >
-      Save
-    </Button>
-  </ModalFooter>
+  <RadioGroup
+    labelForOption={[Function]}
+    onChange={[MockFunction]}
+    options={
+      Array [
+        "local",
+        "development",
+        "test",
+        "acceptation",
+        "production",
+      ]
+    }
+  />
 </Modal>
 `;
 
 exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => ui => with label 1`] = `
 <Modal
-  autoFocus={true}
-  backdrop={true}
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
-    }
+  footer={
+    <React.Fragment>
+      <Button
+        className="ml-1"
+        color="secondary"
+        icon="cancel"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        icon="save"
+        onClick={[Function]}
+      >
+        Save
+      </Button>
+    </React.Fragment>
   }
-  centered={false}
-  container="body"
-  fade={true}
-  isOpen={true}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
-    }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  wrapClassName="open-close-modal open-close-modal--sticky"
-  zIndex={1050}
+  header="Choose something"
+  onClose={[MockFunction]}
+  stickyFooter={true}
 >
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
-    toggle={[Function]}
-    wrapTag="div"
-  >
-    Choose something
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <RadioGroup
-      labelForOption={[Function]}
-      onChange={[MockFunction]}
-      options={
-        Array [
-          "local",
-          "development",
-          "test",
-          "acceptation",
-          "production",
-        ]
-      }
-    />
-  </ModalBody>
-  <ModalFooter
-    tag="div"
-  >
-    <Button
-      className="ml-1"
-      color="secondary"
-      icon="cancel"
-      onClick={[Function]}
-    >
-      Cancel
-    </Button>
-    <Button
-      className="ml-1"
-      color="primary"
-      icon="save"
-      onClick={[Function]}
-    >
-      Save
-    </Button>
-  </ModalFooter>
+  <RadioGroup
+    labelForOption={[Function]}
+    onChange={[MockFunction]}
+    options={
+      Array [
+        "local",
+        "development",
+        "test",
+        "acceptation",
+        "production",
+      ]
+    }
+  />
 </Modal>
 `;
 
 exports[`Component: OpenCloseModal ui without buttons: Component: OpenCloseModal => ui => without buttons 1`] = `
 <Modal
-  autoFocus={true}
-  backdrop={true}
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
-    }
-  }
-  centered={false}
-  container="body"
-  fade={true}
-  isOpen={false}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
-    }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  wrapClassName="open-close-modal open-close-modal--sticky"
-  zIndex={1050}
+  header="Choose something"
+  onClose={[MockFunction]}
+  stickyFooter={true}
 >
-  <ModalHeader
-    charCode={215}
-    closeAriaLabel="Close"
-    tag="h5"
-    toggle={[Function]}
-    wrapTag="div"
-  >
-    Choose something
-  </ModalHeader>
-  <ModalBody
-    tag="div"
-  >
-    <RadioGroup
-      labelForOption={[Function]}
-      onChange={[MockFunction]}
-      options={
-        Array [
-          "local",
-          "development",
-          "test",
-          "acceptation",
-          "production",
-        ]
-      }
-    />
-  </ModalBody>
+  <RadioGroup
+    labelForOption={[Function]}
+    onChange={[MockFunction]}
+    options={
+      Array [
+        "local",
+        "development",
+        "test",
+        "acceptation",
+        "production",
+      ]
+    }
+  />
 </Modal>
 `;
 
 exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal => ui => without label 1`] = `
 <Modal
-  autoFocus={true}
-  backdrop={true}
-  backdropTransition={
-    Object {
-      "mountOnEnter": true,
-      "timeout": 150,
-    }
+  footer={
+    <React.Fragment>
+      <Button
+        className="ml-1"
+        color="secondary"
+        icon="cancel"
+        onClick={[Function]}
+      >
+        Cancel
+      </Button>
+      <Button
+        className="ml-1"
+        color="primary"
+        icon="save"
+        onClick={[Function]}
+      >
+        Save
+      </Button>
+    </React.Fragment>
   }
-  centered={false}
-  container="body"
-  fade={true}
-  isOpen={false}
-  keyboard={true}
-  modalTransition={
-    Object {
-      "timeout": 300,
-    }
-  }
-  onClosed={[Function]}
-  onOpened={[Function]}
-  returnFocusAfterClose={true}
-  role="dialog"
-  scrollable={false}
-  toggle={[Function]}
-  unmountOnClose={true}
-  wrapClassName="open-close-modal open-close-modal--sticky"
-  zIndex={1050}
+  onClose={[MockFunction]}
+  stickyFooter={true}
 >
-  <ModalBody
-    tag="div"
-  >
-    <RadioGroup
-      labelForOption={[Function]}
-      onChange={[MockFunction]}
-      options={
-        Array [
-          "local",
-          "development",
-          "test",
-          "acceptation",
-          "production",
-        ]
-      }
-    />
-  </ModalBody>
-  <ModalFooter
-    tag="div"
-  >
-    <Button
-      className="ml-1"
-      color="secondary"
-      icon="cancel"
-      onClick={[Function]}
-    >
-      Cancel
-    </Button>
-    <Button
-      className="ml-1"
-      color="primary"
-      icon="save"
-      onClick={[Function]}
-    >
-      Save
-    </Button>
-  </ModalFooter>
+  <RadioGroup
+    labelForOption={[Function]}
+    onChange={[MockFunction]}
+    options={
+      Array [
+        "local",
+        "development",
+        "test",
+        "acceptation",
+        "production",
+      ]
+    }
+  />
 </Modal>
 `;
