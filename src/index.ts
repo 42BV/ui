@@ -48,6 +48,7 @@ export { OpenClose } from './core/OpenClose/OpenClose';
 export { FavoriteIcon } from './form/FavoriteIcon/FavoriteIcon';
 export { useHover } from './hooks/useHover/useHover';
 export { Modal } from './core/Modal/Modal';
+export { Card } from './core/Card/Card';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';

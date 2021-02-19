@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
+<Card
+  tag="div"
+>
+  <CardHeader
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      A simple header
+    </Suspense>
+  </CardHeader>
+  <CardBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      <RadioGroup
+        labelForOption={[Function]}
+        onChange={[MockFunction]}
+        options={
+          Array [
+            "local",
+            "development",
+            "test",
+            "acceptation",
+            "production",
+          ]
+        }
+      />
+    </Suspense>
+  </CardBody>
+  <CardFooter
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      A simple footer
+    </Suspense>
+  </CardFooter>
+</Card>
+`;
+
+exports[`Component: Card ui without footer: Component: Card => ui => without footer 1`] = `
+<Card
+  tag="div"
+>
+  <CardHeader
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      A simple header
+    </Suspense>
+  </CardHeader>
+  <CardBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      <RadioGroup
+        labelForOption={[Function]}
+        onChange={[MockFunction]}
+        options={
+          Array [
+            "local",
+            "development",
+            "test",
+            "acceptation",
+            "production",
+          ]
+        }
+      />
+    </Suspense>
+  </CardBody>
+</Card>
+`;
+
+exports[`Component: Card ui without header: Component: Card => ui => without header 1`] = `
+<Card
+  tag="div"
+>
+  <CardBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      <RadioGroup
+        labelForOption={[Function]}
+        onChange={[MockFunction]}
+        options={
+          Array [
+            "local",
+            "development",
+            "test",
+            "acceptation",
+            "production",
+          ]
+        }
+      />
+    </Suspense>
+  </CardBody>
+  <CardFooter
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      A simple footer
+    </Suspense>
+  </CardFooter>
+</Card>
+`;
