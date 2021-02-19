@@ -34,6 +34,11 @@ type Props = {
    * Optional callback for when the Toggle is blurred.
    */
   onBlur?: React.FocusEventHandler;
+
+  /**
+   * Optional label to display next to the toggle.
+   */
+  label?: React.ReactNode;
 };
 
 /**
@@ -47,7 +52,8 @@ export default function Toggle({
   id,
   value = false,
   onChange,
-  onBlur
+  onBlur,
+  label
 }: Props) {
   const toggleClasses = classNames(
     'toggle-container',
@@ -57,6 +63,11 @@ export default function Toggle({
 
   return (
     <span className={toggleClasses}>
+      {label ? (
+        <span className="toggle-label mr-2" onClick={() => onChange(!value)}>
+          {label}
+        </span>
+      ) : null}
       <input
         id={id}
         type="checkbox"

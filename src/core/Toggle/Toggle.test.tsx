@@ -3,13 +3,20 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import Toggle from './Toggle';
+import Tooltip from '../Tooltip/Tooltip';
 
 describe('Component: Toggle', () => {
   let toggle: ShallowWrapper;
   let onChangeSpy: jest.Mock<any, any>;
   let onBlurSpy: jest.Mock<any, any>;
 
-  function setup({ value }: { value?: boolean }) {
+  function setup({
+    value,
+    label
+  }: {
+    value?: boolean;
+    label?: React.ReactNode;
+  }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
 
@@ -20,13 +27,33 @@ describe('Component: Toggle', () => {
         value={value}
         onChange={onChangeSpy}
         onBlur={onBlurSpy}
+        label={label}
       />
     );
   }
 
-  test('ui', () => {
-    setup({ value: true });
-    expect(toJson(toggle)).toMatchSnapshot('Component: Toggle => ui');
+  describe('ui', () => {
+    test('without label', () => {
+      setup({ value: true });
+      expect(toJson(toggle)).toMatchSnapshot(
+        'Component: Toggle => ui => without label'
+      );
+    });
+
+    test('with text label', () => {
+      setup({ value: false, label: 'test' });
+      expect(toJson(toggle)).toMatchSnapshot(
+        'Component: Toggle => ui => with text label'
+      );
+    });
+
+    test('with custom label', () => {
+      const label = <Tooltip content="Is this a test?">test</Tooltip>;
+      setup({ value: false, label });
+      expect(toJson(toggle)).toMatchSnapshot(
+        'Component: Toggle => ui => with custom label'
+      );
+    });
   });
 
   describe('events', () => {
@@ -53,6 +80,17 @@ describe('Component: Toggle', () => {
       // @ts-expect-error Test mock
       input.props().onBlur();
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test('click on label should call onChange', () => {
+      setup({ value: false, label: 'test' });
+      const label = toggle.find('span').last();
+
+      // @ts-expect-error Test mock
+      label.props().onClick();
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(true);
     });
   });
 

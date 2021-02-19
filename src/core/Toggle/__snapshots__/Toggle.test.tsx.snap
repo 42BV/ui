@@ -1,6 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Toggle ui: Component: Toggle => ui 1`] = `
+exports[`Component: Toggle ui with custom label: Component: Toggle => ui => with custom label 1`] = `
+<span
+  className="toggle-container toggle-primary"
+>
+  <span
+    className="toggle-label mr-2"
+    onClick={[Function]}
+  >
+    <Tooltip
+      content="Is this a test?"
+    >
+      test
+    </Tooltip>
+  </span>
+  <input
+    checked={false}
+    id="toggle"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    type="checkbox"
+  />
+</span>
+`;
+
+exports[`Component: Toggle ui with text label: Component: Toggle => ui => with text label 1`] = `
+<span
+  className="toggle-container toggle-primary"
+>
+  <span
+    className="toggle-label mr-2"
+    onClick={[Function]}
+  >
+    test
+  </span>
+  <input
+    checked={false}
+    id="toggle"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    type="checkbox"
+  />
+</span>
+`;
+
+exports[`Component: Toggle ui without label: Component: Toggle => ui => without label 1`] = `
 <span
   className="toggle-container toggle-primary"
 >

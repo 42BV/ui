@@ -21,57 +21,64 @@ storiesOf('Core/Toggle', module).add('basic', () => {
         color="primary"
         onChange={setPrimary}
         onBlur={action('onBlur')}
+        label="primary"
       />
-      primary <br />
+      <br />
       <Toggle
         value={secondary}
         color="secondary"
         onChange={setSecondary}
         onBlur={action('onBlur')}
+        label="secondary"
       />
-      secondary <br />
+      <br />
       <Toggle
         value={info}
         color="info"
         onChange={setInfo}
         onBlur={action('onBlur')}
+        label="info"
       />
-      info <br />
+      <br />
       <Toggle
         value={success}
         color="success"
         onChange={setSuccess}
         onBlur={action('onBlur')}
+        label="success"
       />
-      success <br />
+      <br />
       <Toggle
         value={warning}
         color="warning"
         onChange={setWarning}
         onBlur={action('onBlur')}
+        label="warning"
       />
-      warning <br />
+      <br />
       <Toggle
         value={danger}
         color="danger"
         onChange={setDanger}
         onBlur={action('onBlur')}
+        label="danger"
       />
-      danger <br />
+      <br />
       <Toggle
         value={light}
         color="light"
         onChange={setLight}
         onBlur={action('onBlur')}
+        label="light"
       />
-      light <br />
+      <br />
       <Toggle
         value={dark}
         color="dark"
         onChange={setDark}
         onBlur={action('onBlur')}
+        label="dark"
       />
-      dark
     </div>
   );
 });
