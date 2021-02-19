@@ -36,13 +36,10 @@ describe('Component: OpenCloseModal', () => {
       onClose: onCloseSpy,
       text: hasCustomText
         ? { cancel: 'Stop please', save: 'Select me' }
-        : undefined
+        : undefined,
+      label: hasLabel ? 'Choose something' : undefined,
+      onSave: hasButtons ? onSaveSpy : undefined
     };
-
-    if (hasButtons) {
-      // @ts-expect-error Test mock
-      props.onSave = onSaveSpy;
-    }
 
     const children = (
       <RadioGroup<string>
@@ -52,20 +49,18 @@ describe('Component: OpenCloseModal', () => {
       />
     );
 
-    if (hasLabel) {
-      openCloseModal = shallow(
-        <OpenCloseModal label="Choose something" {...props}>
-          {children}
-        </OpenCloseModal>
-      );
-    } else {
-      openCloseModal = shallow(
-        <OpenCloseModal {...props}>{children}</OpenCloseModal>
-      );
-    }
+    openCloseModal = shallow(
+      <OpenCloseModal {...props}>{children}</OpenCloseModal>
+    );
   }
 
   describe('ui', () => {
+    test('not open', () => {
+      setup({ isOpen: false });
+
+      expect(toJson(openCloseModal)).toBe('');
+    });
+
     test('with label', () => {
       setup({ isOpen: true });
 
@@ -75,7 +70,7 @@ describe('Component: OpenCloseModal', () => {
     });
 
     test('without label', () => {
-      setup({ hasLabel: false });
+      setup({ isOpen: true, hasLabel: false });
 
       expect(toJson(openCloseModal)).toMatchSnapshot(
         'Component: OpenCloseModal => ui => without label'
@@ -83,7 +78,7 @@ describe('Component: OpenCloseModal', () => {
     });
 
     test('without buttons', () => {
-      setup({ hasButtons: false });
+      setup({ isOpen: true, hasButtons: false });
 
       expect(toJson(openCloseModal)).toMatchSnapshot(
         'Component: OpenCloseModal => ui => without buttons'
@@ -91,7 +86,7 @@ describe('Component: OpenCloseModal', () => {
     });
 
     test('custom button texts', () => {
-      setup({ hasCustomText: true });
+      setup({ isOpen: true, hasCustomText: true });
 
       expect(toJson(openCloseModal)).toMatchSnapshot(
         'Component: OpenCloseModal => ui => custom button texts'
@@ -99,7 +94,7 @@ describe('Component: OpenCloseModal', () => {
     });
 
     test('in progress', () => {
-      setup({ inProgress: true });
+      setup({ isOpen: true, inProgress: true });
 
       expect(toJson(openCloseModal)).toMatchSnapshot(
         'Component: OpenCloseModal => ui => in progress'
@@ -107,7 +102,7 @@ describe('Component: OpenCloseModal', () => {
     });
 
     test('sans sticky footer', () => {
-      setup({ stickyFooter: false });
+      setup({ isOpen: true, stickyFooter: false });
 
       expect(toJson(openCloseModal)).toMatchSnapshot(
         'Component: OpenCloseModal => ui => sans sticky'
@@ -116,56 +111,26 @@ describe('Component: OpenCloseModal', () => {
   });
 
   describe('events', () => {
-    it('should call onClose when clicked outside modal', () => {
-      setup({});
+    it('should call onClose when cancel button clicked', () => {
+      setup({ isOpen: true });
 
       openCloseModal
         .find('Modal')
-        .at(0)
         .props()
         // @ts-expect-error Test mock
-        .toggle();
-
-      expect(onCloseSpy).toBeCalledTimes(1);
-    });
-
-    it('should call onClose when close button clicked', () => {
-      setup({});
-
-      openCloseModal
-        .find('ModalHeader')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .toggle();
-
-      expect(onCloseSpy).toBeCalledTimes(1);
-    });
-
-    it('should call onClose when cancel button clicked', () => {
-      setup({});
-
-      // @ts-expect-error Test mock
-      openCloseModal
-        .find('Button')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+        .footer.props.children[0].props.onClick();
 
       expect(onCloseSpy).toBeCalledTimes(1);
     });
 
     it('should call onSave when save button clicked', () => {
-      setup({});
+      setup({ isOpen: true });
 
-      // @ts-expect-error Test mock
       openCloseModal
-        .find('Button')
-        .at(1)
+        .find('Modal')
         .props()
         // @ts-expect-error Test mock
-        .onClick();
+        .footer.props.children[1].props.onClick();
 
       expect(onSaveSpy).toBeCalledTimes(1);
     });

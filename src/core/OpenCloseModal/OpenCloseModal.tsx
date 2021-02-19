@@ -1,10 +1,9 @@
 import React from 'react';
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Button from '../Button/Button';
 import { t } from '../../utilities/translation/translation';
 import { BootstrapSize } from '../types';
-import { useBodyFixOnModalClose } from '../useBodyFixOnModalClose/useBodyFixOnModalClose';
 import { IconType } from '../Icon';
+import { Modal } from '../Modal/Modal';
 
 type Text = {
   cancel?: string;
@@ -14,6 +13,10 @@ type Text = {
 type Props = {
   /**
    * Whether or not the modal is open.
+   * @deprecated Please do not use the isOpen boolean to control whether
+   * or not the modal is opened. Instead always set isOpen to `true`
+   * and only render the OpenCloseModal when it should be rendered.
+   * In version 4.0.0 the isOpen property will be removed.
    */
   isOpen: boolean;
 
@@ -84,12 +87,31 @@ type Props = {
   className?: string;
 
   /**
+   * Optional extra CSS class you want to add to the <ModalHeader>.
+   * Useful for styling the component.
+   */
+  modalHeaderClassName?: string;
+
+  /**
    * Optional extra CSS class you want to add to the <ModalBody>.
    * Useful for styling the component.
    */
   modalBodyClassName?: string;
+
+  /**
+   * Optional extra CSS class you want to add to the <ModalFooter>.
+   * Useful for styling the component.
+   */
+  modalFooterClassName?: string;
 };
 
+/**
+ * Often a modal is content with a header and a cancel and save button
+ * in the footer. To make it easier for you developers, we included the
+ * OpenCloseModal which already includes the cancel and save button to
+ * save you some code duplication for all those similar modals. If you
+ * want a more advanced display, you should use the `<Modal>` component.
+ */
 export function OpenCloseModal(props: Props) {
   const {
     isOpen,
@@ -104,54 +126,58 @@ export function OpenCloseModal(props: Props) {
     saveIcon = 'save',
     cancelIcon = 'cancel',
     stickyFooter = true,
-    modalBodyClassName
+    modalHeaderClassName,
+    modalBodyClassName,
+    modalFooterClassName
   } = props;
 
-  useBodyFixOnModalClose(isOpen);
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <Modal
-      wrapClassName={`open-close-modal ${
-        stickyFooter ? 'open-close-modal--sticky' : ''
-      }`}
-      isOpen={isOpen}
-      toggle={() => onClose()}
+      stickyFooter={stickyFooter}
+      onClose={onClose}
       size={size}
       className={className}
+      modalHeaderClassName={modalHeaderClassName}
+      modalBodyClassName={modalBodyClassName}
+      modalFooterClassName={modalFooterClassName}
+      header={label}
+      footer={
+        onSave ? (
+          <>
+            <Button
+              className="ml-1"
+              color="secondary"
+              icon={cancelIcon}
+              onClick={() => onClose()}
+            >
+              {t({
+                overrideText: text?.cancel,
+                key: 'OpenCloseModal.CANCEL',
+                fallback: 'Cancel'
+              })}
+            </Button>
+            <Button
+              className="ml-1"
+              color="primary"
+              inProgress={inProgress}
+              icon={saveIcon}
+              onClick={() => onSave()}
+            >
+              {t({
+                overrideText: text?.save,
+                key: 'OpenCloseModal.SAVE',
+                fallback: 'Save'
+              })}
+            </Button>
+          </>
+        ) : undefined
+      }
     >
-      {label ? (
-        <ModalHeader toggle={() => onClose()}>{label}</ModalHeader>
-      ) : null}
-      <ModalBody className={modalBodyClassName}>{children}</ModalBody>
-      {onSave ? (
-        <ModalFooter>
-          <Button
-            className="ml-1"
-            color="secondary"
-            icon={cancelIcon}
-            onClick={() => onClose()}
-          >
-            {t({
-              overrideText: text?.cancel,
-              key: 'OpenCloseModal.CANCEL',
-              fallback: 'Cancel'
-            })}
-          </Button>
-          <Button
-            className="ml-1"
-            color="primary"
-            inProgress={inProgress}
-            icon={saveIcon}
-            onClick={() => onSave()}
-          >
-            {t({
-              overrideText: text?.save,
-              key: 'OpenCloseModal.SAVE',
-              fallback: 'Save'
-            })}
-          </Button>
-        </ModalFooter>
-      ) : null}
+      {children}
     </Modal>
   );
 }

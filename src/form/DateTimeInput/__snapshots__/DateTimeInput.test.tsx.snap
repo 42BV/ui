@@ -28,7 +28,94 @@ exports[`Component: DateTimeInput ui MaskedInput: Component: DateTimeInput => ui
 />
 `;
 
-exports[`Component: DateTimeInput ui with date picker in modal: Component: DateTimeInput => ui => with date picker in modal 1`] = `
+exports[`Component: DateTimeInput ui with date picker in modal: Component: DateTimeInput => ui => with date picker in modal => not open 1`] = `
+<FormGroup
+  className="date-time-input with-modal"
+  color="success"
+  tag="div"
+>
+  <Label
+    for="dateOfBirth"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Date of birth
+     
+    <span
+      className="date-time-input-format text-muted"
+    >
+      (
+      YYYY-MM-DD HH:mm:ss
+      )
+    </span>
+  </Label>
+  <n
+    className=""
+    closeOnClickOutside={true}
+    closeOnSelect={true}
+    closeOnTab={true}
+    dateFormat="YYYY-MM-DD"
+    input={true}
+    inputProps={
+      Object {
+        "autocomplete": "off",
+        "id": "dateOfBirth",
+        "invalid": false,
+        "mask": Array [
+          /\\\\d/,
+          /\\\\d/,
+          /\\\\d/,
+          /\\\\d/,
+          "-",
+          /\\\\d/,
+          /\\\\d/,
+          "-",
+          /\\\\d/,
+          /\\\\d/,
+          " ",
+          /\\\\d/,
+          /\\\\d/,
+          ":",
+          /\\\\d/,
+          /\\\\d/,
+          ":",
+          /\\\\d/,
+          /\\\\d/,
+        ],
+        "placeholder": "Please enter your date of birth",
+      }
+    }
+    isValidDate={[Function]}
+    onBeforeNavigate={[Function]}
+    onCalendarClose={[Function]}
+    onCalendarOpen={[Function]}
+    onChange={[Function]}
+    onClose={[Function]}
+    onNavigate={[Function]}
+    onNavigateBack={[Function]}
+    onNavigateForward={[Function]}
+    onOpen={[MockFunction]}
+    open={false}
+    renderInput={[Function]}
+    strictParsing={true}
+    timeConstraints={Object {}}
+    timeFormat="HH:mm:ss"
+    utc={true}
+    value=""
+  />
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: DateTimeInput ui with date picker in modal: Component: DateTimeInput => ui => with date picker in modal => open 1`] = `
 <FormGroup
   className="date-time-input with-modal"
   color="success"
@@ -115,7 +202,7 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
   <DateTimeModal
     dateFormat="YYYY-MM-DD"
     isDateAllowed={[Function]}
-    isOpen={false}
+    isOpen={true}
     label="Please enter your date of birth"
     onClose={[Function]}
     onSave={[Function]}

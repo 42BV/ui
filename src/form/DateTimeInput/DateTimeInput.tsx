@@ -214,9 +214,9 @@ export default function DateTimeInput(props: Props) {
         }
       />
       {error}
-      {mode === 'modal' ? (
+      {mode === 'modal' && isModalOpen ? (
         <DateTimeModal
-          isOpen={isModalOpen}
+          isOpen={true}
           onClose={() => setIsModalOpen(false)}
           onSave={onChange}
           dateFormat={dateFormat}

@@ -47,6 +47,7 @@ export { AttributeView } from './core/lists/AttributeView/AttributeView';
 export { OpenClose } from './core/OpenClose/OpenClose';
 export { FavoriteIcon } from './form/FavoriteIcon/FavoriteIcon';
 export { useHover } from './hooks/useHover/useHover';
+export { Modal } from './core/Modal/Modal';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';

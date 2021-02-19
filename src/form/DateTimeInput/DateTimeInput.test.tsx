@@ -98,10 +98,22 @@ describe('Component: DateTimeInput', () => {
     });
 
     test('with date picker in modal', () => {
+      const setIsModalOpenSpy = jest.fn();
+      jest
+        .spyOn(IsModalOpen, 'useIsModalOpen')
+        .mockReturnValueOnce([false, setIsModalOpenSpy])
+        .mockReturnValueOnce([true, setIsModalOpenSpy]);
+
       setup({ mode: 'modal' });
 
       expect(toJson(dateTimeInput)).toMatchSnapshot(
-        'Component: DateTimeInput => ui => with date picker in modal'
+        'Component: DateTimeInput => ui => with date picker in modal => not open'
+      );
+
+      setup({ mode: 'modal' });
+
+      expect(toJson(dateTimeInput)).toMatchSnapshot(
+        'Component: DateTimeInput => ui => with date picker in modal => open'
       );
     });
 
