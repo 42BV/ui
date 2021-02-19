@@ -22,6 +22,7 @@ import { FieldCompatible } from '../../types';
 import { useId } from '../../../hooks/useId/useId';
 import { useOptions } from '../../useOptions';
 import { IconType } from '../../../core/Icon';
+import { t } from '../../../utilities/translation/translation';
 
 export type ModalPickerMultipleRenderValues<T> = (
   value?: T[]
@@ -314,10 +315,6 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
   }
 
   function renderModalCurrentSelection() {
-    if (!selected || selected.length === 0) {
-      return null;
-    }
-
     return (
       <Row
         className="mb-3 p-2"
@@ -326,17 +323,26 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
         }}
       >
         <Col>
-          {selected.map((value) => {
-            const label = labelForOption(value);
+          {selected && selected.length > 0 ? (
+            selected.map((value) => {
+              const label = labelForOption(value);
 
-            return (
-              <Tag
-                key={label}
-                onRemove={() => optionClicked(value, true)}
-                text={label}
-              />
-            );
-          })}
+              return (
+                <Tag
+                  key={label}
+                  onRemove={() => optionClicked(value, true)}
+                  text={label}
+                />
+              );
+            })
+          ) : (
+            <span className="text-muted">
+              {t({
+                key: 'ModalPickerMultiple.NO_OPTION_SELECTED',
+                fallback: 'No option selected'
+              })}
+            </span>
+          )}
         </Col>
       </Row>
     );

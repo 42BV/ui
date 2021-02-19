@@ -186,6 +186,9 @@ Here is a JSON notation containing all keys and default translations:
   },
   "withJarb": {
     "REQUIRED_MARK": " *"
+  },
+  "ModalPickerMultiple": {
+    "NO_OPTION_SELECTED": "No option selected"
   }
 }
 ```

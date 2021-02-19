@@ -100,6 +100,43 @@ exports[`Component: ModalPickerMultiple ui renderValue should be able to use cus
     selected={Array []}
     userHasSearched={false}
   >
+    <Row
+      className="mb-3 p-2"
+      style={
+        Object {
+          "backgroundColor": "#edecf1",
+        }
+      }
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <span
+          className="text-muted"
+        >
+          No option selected
+        </span>
+      </Col>
+    </Row>
     <FormGroup
       check={true}
       key="42"
@@ -304,6 +341,43 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
     selected={Array []}
     userHasSearched={false}
   >
+    <Row
+      className="mb-3 p-2"
+      style={
+        Object {
+          "backgroundColor": "#edecf1",
+        }
+      }
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <span
+          className="text-muted"
+        >
+          No option selected
+        </span>
+      </Col>
+    </Row>
     <FormGroup
       check={true}
       key="42"
@@ -490,6 +564,43 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
     selected={Array []}
     userHasSearched={false}
   >
+    <Row
+      className="mb-3 p-2"
+      style={
+        Object {
+          "backgroundColor": "#edecf1",
+        }
+      }
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <span
+          className="text-muted"
+        >
+          No option selected
+        </span>
+      </Col>
+    </Row>
     <FormGroup
       check={true}
       key="42"
@@ -662,6 +773,43 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
     selected={Array []}
     userHasSearched={false}
   >
+    <Row
+      className="mb-3 p-2"
+      style={
+        Object {
+          "backgroundColor": "#edecf1",
+        }
+      }
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <span
+          className="text-muted"
+        >
+          No option selected
+        </span>
+      </Col>
+    </Row>
     <FormGroup
       check={true}
       key="42"
@@ -842,6 +990,43 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
     selected={Array []}
     userHasSearched={false}
   >
+    <Row
+      className="mb-3 p-2"
+      style={
+        Object {
+          "backgroundColor": "#edecf1",
+        }
+      }
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <span
+          className="text-muted"
+        >
+          No option selected
+        </span>
+      </Col>
+    </Row>
     <FormGroup
       check={true}
       key="42"
@@ -1299,6 +1484,43 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
     selected={Array []}
     userHasSearched={false}
   >
+    <Row
+      className="mb-3 p-2"
+      style={
+        Object {
+          "backgroundColor": "#edecf1",
+        }
+      }
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <span
+          className="text-muted"
+        >
+          No option selected
+        </span>
+      </Col>
+    </Row>
     <FormGroup
       check={true}
       key="42"
