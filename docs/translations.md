@@ -89,7 +89,8 @@ Here is a JSON notation containing all keys and default translations:
   "DateTimeInput": {
     "DATE_AFTER_ERROR": "The {{end}} must be after the {{start}}",
     "DATE_BEFORE_ERROR": "The {{start}} must be before the {{end}}",
-    "DATE_BETWEEN_ERROR": "The {{label}} must be between the {{start}} and {{end}}"
+    "DATE_BETWEEN_ERROR": "The {{label}} must be between the {{start}} and {{end}}",
+    "INVALID_DATE_ERROR": "The {{label}} must be a valid date following the format {{dateFormat}} {{timeFormat}}"
   },
   "ImageUpload": {
     "CHANGE": "Change",

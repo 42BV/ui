@@ -11,6 +11,7 @@ import Tooltip from '../../core/Tooltip/Tooltip';
 import { useHasErrors } from './useHasErrors/useHasErrors';
 import { useMarkedAsRequiredLabel } from './useMarkedAsRequiredLabel/useMarkedAsRequiredLabel';
 import { FieldCompatible } from '../types';
+import { FieldValidator } from 'final-form';
 
 // This is a list of props that `withJarb` will pass to the `final-form`
 // Field, but not the wrapper.
@@ -35,6 +36,29 @@ export type JarbFieldCompatible<Value, ChangeValue> = FieldCompatible<
   errorMode?: 'tooltip' | 'below';
 };
 
+export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
+  Omit<
+    P,
+    | 'onFocus'
+    | 'onBlur'
+    | 'onChange'
+    | 'value'
+    | 'color'
+    | 'valid'
+    | 'error'
+    | 'label'
+  >;
+
+export type WithJarbConfig<Value, P> = {
+  /**
+   *
+   * @param props
+   */
+  defaultValidators?: (
+    props: WithJarbProps<Value, P>
+  ) => FieldValidator<Value | string>[];
+};
+
 /**
  * withJarb is a Higher Order Component which takes an input element
  * which is `JarbFieldCompatible` as defined by the interface, and turns
@@ -49,30 +73,18 @@ export type JarbFieldCompatible<Value, ChangeValue> = FieldCompatible<
  * slot so errors are rendered.
  *
  * @param Wrapper The Component which is `JarbFieldCompatible`.
+ * @param config A list of validators to extend.
  */
 export default function withJarb<
   Value,
   ChangeValue,
   P extends JarbFieldCompatible<Value, ChangeValue>
->(Wrapper: React.ComponentType<P>) {
+>(Wrapper: React.ComponentType<P>, config?: WithJarbConfig<Value, P>) {
   const displayName = `Jarb${getDisplayName(Wrapper)}`;
 
   WithJarb.displayName = displayName;
 
-  function WithJarb(
-    props: JarbFieldProps<Value, any> &
-      Omit<
-        P,
-        | 'onFocus'
-        | 'onBlur'
-        | 'onChange'
-        | 'value'
-        | 'color'
-        | 'valid'
-        | 'error'
-        | 'label'
-      >
-  ) {
+  function WithJarb(props: WithJarbProps<Value, P>) {
     const illegalProps = managedProps.filter((p) => props[p] !== undefined);
 
     if (illegalProps.length > 0) {
@@ -100,12 +112,17 @@ export default function withJarb<
       errorMode = 'below',
       name,
       jarb,
-      validators,
       asyncValidators,
       asyncValidatorsDebounce,
       allowNull,
       ...rest
     } = props;
+
+    const validators = props.validators ? [...props.validators] : [];
+
+    if (config?.defaultValidators) {
+      validators.push(...config?.defaultValidators(props));
+    }
 
     // Bit magical this one but this makes TypeScript accept all other
     // props as the Props to the wrapped component.

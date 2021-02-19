@@ -10,7 +10,7 @@ import { DateFormat, TimeFormat } from './types';
 
 import { combineFormat, formatToMask, isDate } from './utils';
 
-import withJarb from '../withJarb/withJarb';
+import withJarb, { WithJarbProps } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
 import classNames from 'classnames';
@@ -19,6 +19,7 @@ import { useIsModalOpen } from './hooks/useIsModalOpen';
 import { AddonButton } from '../addons/AddonButton/AddonButton';
 import { useSetLastStringValue } from './hooks/useSetLastStringValue';
 import { FieldCompatible } from '../types';
+import { isDateValidator } from './validators';
 
 /**
  * Callback which returns whether a date is selectable.
@@ -235,7 +236,18 @@ export default function DateTimeInput(props: Props) {
 /**
  * Variant of the DateTimeInput which can be used in a Jarb context.
  */
-export const JarbDateTimeInput = withJarb<Date, Date, Props>(DateTimeInput);
+export const JarbDateTimeInput = withJarb<Date, Date | undefined, Props>(
+  DateTimeInput,
+  {
+    defaultValidators: ({
+      dateFormat,
+      timeFormat,
+      jarb: { label }
+    }: WithJarbProps<Date | undefined, Props>) => {
+      return [isDateValidator({ dateFormat, timeFormat, label })];
+    }
+  }
+);
 
 export function maskedInput(props: unknown) {
   return <MaskedInput {...props} render={reactStrapInput} />;

@@ -8,6 +8,8 @@ import {
   isDateBetween,
   IsDateBetweenConfig
 } from './checkers';
+import { DateFormat, TimeFormat } from './types';
+import { isDate } from './utils';
 
 type Start = {
   /**
@@ -288,4 +290,47 @@ function dateBeforeError({
     data: { start: label, end: end.label },
     overrideText: overrideErrorText
   });
+}
+
+type IsDateValidatorConfig = IsDateBetweenConfig & {
+  dateFormat: DateFormat;
+
+  timeFormat: TimeFormat;
+
+  /**
+   * The label of the date which must be a date.
+   *
+   * Used in error messages.
+   */
+  label: string;
+
+  /**
+   * A custom error text which overrides the error message when
+   * provided.
+   */
+  overrideErrorText?: string;
+};
+
+export function isDateValidator(
+  config: IsDateValidatorConfig
+): FieldValidator<Date | string> {
+  const { dateFormat, timeFormat, label, overrideErrorText } = config;
+
+  return (value: Date | string): string | undefined => {
+    console.log('validate date', value);
+    if (typeof value !== 'string') {
+      return undefined;
+    }
+
+    if (isDate(value, dateFormat, timeFormat)) {
+      return undefined;
+    }
+
+    return t({
+      key: 'DateTimeInput.INVALID_DATE_ERROR',
+      fallback: `The "${label}" must be a valid date following the format "${dateFormat} ${timeFormat}"`,
+      data: { label, dateFormat, timeFormat },
+      overrideText: overrideErrorText
+    });
+  };
 }
