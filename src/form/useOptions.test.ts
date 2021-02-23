@@ -55,6 +55,46 @@ describe('useOptions', () => {
       });
     });
 
+    it('should filter case insensitive', () => {
+      const { result } = renderHook(() => {
+        const options: Option[] = [
+          {
+            id: 1,
+            label: 'Nederland'
+          },
+          {
+            id: 2,
+            label: 'Duitsland'
+          }
+        ];
+
+        return useOptions({
+          options,
+          labelForOption: (option: Option) => option.label,
+          isOptionEqual: (a, b) => a.id === b.id,
+          query: 'neder',
+          pageNumber: 1,
+          size: 2,
+          optionsShouldAlwaysContainValue: false
+        });
+      });
+
+      // should return the country by searching case insensitive
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: true,
+          number: 1,
+          numberOfElements: 1,
+          size: 1,
+          totalElements: 1,
+          totalPages: 1,
+          content: [{ id: 1, label: 'Nederland' }]
+        },
+        loading: false
+      });
+    });
+
     it('should when the reloadOptions changes update the options', () => {
       const { result, rerender } = renderHook(
         ({ reloadOptions }) => {
