@@ -51,7 +51,9 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
   function pageFromOptionsArray(options: T[]): Page<T> {
     // Filter based on the label for the option
     const content = options.filter((option) =>
-      labelForOption(option).includes(query)
+      labelForOption(option)
+        .toLocaleLowerCase()
+        .includes(query.toLocaleLowerCase())
     );
 
     // We expect that the caller will change the pageNumber to 1
