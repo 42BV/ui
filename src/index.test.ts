@@ -121,6 +121,7 @@ describe('index', () => {
         "setTranslator": [Function],
         "t": [Function],
         "useBodyFixOnModalClose": [Function],
+        "useBootstrapSize": [Function],
         "useHover": [Function],
         "useShowAfter": [Function],
         "useShowSpinner": [Function],

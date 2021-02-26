@@ -37,7 +37,6 @@ export { default as Pager } from './core/Pager/Pager';
 export { OpenCloseModal } from './core/OpenCloseModal/OpenCloseModal';
 export { default as Popover } from './core/Popover/Popover';
 export { default as TextButton } from './core/TextButton/TextButton';
-export { useShowAfter } from './core/useShowAfter/useShowAfter';
 export { InfoTooltip } from './core/InfoTooltip/InfoTooltip';
 export { BooleanIcon } from './core/BooleanIcon/BooleanIcon';
 export { SuccessIcon } from './core/SuccessIcon/SuccessIcon';
@@ -46,7 +45,6 @@ export { AttributeList } from './core/lists/AttributeList/AttributeList';
 export { AttributeView } from './core/lists/AttributeView/AttributeView';
 export { OpenClose } from './core/OpenClose/OpenClose';
 export { FavoriteIcon } from './form/FavoriteIcon/FavoriteIcon';
-export { useHover } from './hooks/useHover/useHover';
 export { Modal } from './core/Modal/Modal';
 export { Card } from './core/Card/Card';
 export { CardOpenClose } from './core/CardOpenClose/CardOpenClose';
@@ -192,8 +190,13 @@ export {
   Translator
 } from './utilities/translation/translator';
 export { pageOf } from './utilities/page/page';
-export { useBodyFixOnModalClose } from './core/useBodyFixOnModalClose/useBodyFixOnModalClose';
 export { configure, Config } from './config/config';
+
+// Hooks
+export { useBodyFixOnModalClose } from './hooks/useBodyFixOnModalClose/useBodyFixOnModalClose';
+export { useShowAfter } from './hooks/useShowAfter/useShowAfter';
+export { useHover } from './hooks/useHover/useHover';
+export { useBootstrapSize } from './hooks/useBootstrapSize/useBootstrapSize';
 
 // Types
 export { Color } from './core/types';

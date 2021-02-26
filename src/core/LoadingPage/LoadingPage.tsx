@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
 import Spinner from '../Spinner/Spinner';
-import { useShowAfter } from '../useShowAfter/useShowAfter';
+import { useShowAfter } from '../../hooks/useShowAfter/useShowAfter';
 
 type Props = {
   /**
