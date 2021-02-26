@@ -38,6 +38,8 @@ export { OpenCloseModal } from './core/OpenCloseModal/OpenCloseModal';
 export { default as Popover } from './core/Popover/Popover';
 export { default as TextButton } from './core/TextButton/TextButton';
 export { useShowAfter } from './core/useShowAfter/useShowAfter';
+export { AttributeList } from './core/lists/AttributeList/AttributeList';
+export { AttributeView } from './core/lists/AttributeView/AttributeView';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';
