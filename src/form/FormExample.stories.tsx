@@ -34,7 +34,9 @@ import {
   isDateBeforeValidator,
   isDateBetween,
   isDateBetweenValidator,
-  SubmitButton
+  SubmitButton,
+  PlainTextFormControl,
+  InfoTooltip
 } from '..';
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
@@ -150,6 +152,21 @@ export function TotalForm({ hasSubmit }: { hasSubmit: boolean }) {
         <Fragment>
           <Row>
             <Col lg={6}>
+              <PlainTextFormControl
+                label={
+                  <>
+                    Key
+                    <InfoTooltip
+                      tooltip="The 'Key' represents a part of the entity which can only be
+                created once on create but not on edit."
+                      className="ml-2"
+                    />
+                  </>
+                }
+              >
+                83690c32-26af-467b-9105-cde36ef8e21c
+              </PlainTextFormControl>
+
               <JarbInput
                 name="firstName"
                 jarb={{ validator: 'User.email', label: 'First name' }}
