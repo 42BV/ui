@@ -45,6 +45,8 @@ export { OrSeparator } from './core/OrSeparator/OrSeparator';
 export { AttributeList } from './core/lists/AttributeList/AttributeList';
 export { AttributeView } from './core/lists/AttributeView/AttributeView';
 export { OpenClose } from './core/OpenClose/OpenClose';
+export { FavoriteIcon } from './form/FavoriteIcon/FavoriteIcon';
+export { useHover } from './hooks/useHover/useHover';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';
