@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: OrSeparator ui default: Component: OrSeparator => ui => default 1`] = `
+<div
+  className="my-2 px-5 d-flex align-items-center"
+>
+  <div
+    className="border-top flex-grow-1 position-relative"
+  />
+  <em
+    className="mx-2"
+  >
+    OR
+  </em>
+  <div
+    className="border-top flex-grow-1 position-relative"
+  />
+</div>
+`;

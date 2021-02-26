@@ -41,6 +41,7 @@ export { useShowAfter } from './core/useShowAfter/useShowAfter';
 export { InfoTooltip } from './core/InfoTooltip/InfoTooltip';
 export { BooleanIcon } from './core/BooleanIcon/BooleanIcon';
 export { SuccessIcon } from './core/SuccessIcon/SuccessIcon';
+export { OrSeparator } from './core/OrSeparator/OrSeparator';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';
