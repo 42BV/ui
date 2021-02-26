@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: InfoTooltip ui custom content: Component: InfoTooltip => ui => custom content 1`] = `
+<Tooltip
+  content={
+    <Spinner
+      color="primary"
+      size={10}
+    />
+  }
+>
+  <Icon
+    icon="info"
+    size={16}
+  />
+</Tooltip>
+`;
+
+exports[`Component: InfoTooltip ui default: Component: InfoTooltip => ui => default 1`] = `
+<Tooltip
+  content="tooltip content"
+>
+  <Icon
+    icon="info"
+    size={16}
+  />
+</Tooltip>
+`;
