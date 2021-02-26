@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: SuccessIcon ui value true: Component: SuccessIcon => ui => value true 1`] = `
+<Icon
+  color="dark"
+  icon="done"
+/>
+`;
