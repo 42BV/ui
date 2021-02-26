@@ -13,7 +13,7 @@ import {
 import Pagination from '../../core/Pagination/Pagination';
 import { t } from '../../utilities/translation/translation';
 import SearchInput from '../../core/SearchInput/SearchInput';
-import { useBodyFixOnModalClose } from '../../core/useBodyFixOnModalClose/useBodyFixOnModalClose';
+import { useBodyFixOnModalClose } from '../../hooks/useBodyFixOnModalClose/useBodyFixOnModalClose';
 import ContentState from '../../core/ContentState/ContentState';
 import EmptyModal from './EmptyModal';
 import {

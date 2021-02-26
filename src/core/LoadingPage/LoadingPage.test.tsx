@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import * as ShowAfter from '../useShowAfter/useShowAfter';
+import * as ShowAfter from '../../hooks/useShowAfter/useShowAfter';
 
 import LoadingPage from './LoadingPage';
 
