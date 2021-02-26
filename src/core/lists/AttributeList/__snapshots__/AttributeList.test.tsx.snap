@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: AttributeList ui 1`] = `
+<ListGroup
+  flush={true}
+  horizontal={false}
+  tag="ul"
+>
+  <AttributeView
+    label="Name"
+  >
+    42 BV
+  </AttributeView>
+  <AttributeView
+    label="City"
+  >
+    Zoetermeer
+  </AttributeView>
+  <AttributeView
+    label="Country"
+  >
+    Netherlands
+  </AttributeView>
+</ListGroup>
+`;

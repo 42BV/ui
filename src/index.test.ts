@@ -10,6 +10,8 @@ describe('index', () => {
         "AsyncContent": [Function],
         "AsyncList": [Function],
         "AsyncPage": [Function],
+        "AttributeList": [Function],
+        "AttributeView": [Function],
         "AutoSave": [Function],
         "Avatar": [Function],
         "AvatarStack": [Function],
