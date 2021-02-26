@@ -38,6 +38,7 @@ export { OpenCloseModal } from './core/OpenCloseModal/OpenCloseModal';
 export { default as Popover } from './core/Popover/Popover';
 export { default as TextButton } from './core/TextButton/TextButton';
 export { useShowAfter } from './core/useShowAfter/useShowAfter';
+export { BooleanIcon } from './core/BooleanIcon/BooleanIcon';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';
