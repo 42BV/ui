@@ -13,6 +13,7 @@ describe('index', () => {
         "AutoSave": [Function],
         "Avatar": [Function],
         "AvatarStack": [Function],
+        "BooleanIcon": [Function],
         "Button": [Function],
         "Checkbox": [Function],
         "CheckboxMultipleSelect": [Function],
