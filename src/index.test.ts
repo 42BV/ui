@@ -45,6 +45,7 @@ describe('index', () => {
         "IconPicker": [Function],
         "ImageUpload": [Function],
         "InfoBadge": [Function],
+        "InfoTooltip": [Function],
         "Input": [Function],
         "JarbCheckbox": [Function],
         "JarbCheckboxMultipleSelect": [Function],
