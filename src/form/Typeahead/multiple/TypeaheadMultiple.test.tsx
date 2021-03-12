@@ -111,7 +111,8 @@ describe('Component: TypeaheadMultiple', () => {
 
     test('loading', () => {
       const { typeaheadMultiple } = setup({
-        loading: true
+        loading: true,
+        isAsync: true
       });
 
       const asyncTypeahead = typeaheadMultiple.find('div').children().first();
@@ -127,13 +128,15 @@ describe('Component: TypeaheadMultiple', () => {
       expect(asyncTypeahead.props().delay).toBe(200);
     });
 
-    test('sync delay', () => {
+    test('sync', () => {
       const { typeaheadMultiple } = setup({
         isAsync: false
       });
 
       const asyncTypeahead = typeaheadMultiple.find('div').children().first();
-      expect(asyncTypeahead.props().delay).toBe(0);
+      expect(asyncTypeahead.props().delay).toBeUndefined();
+      expect(asyncTypeahead.props().onSearch).toBeUndefined();
+      expect(asyncTypeahead.props().isLoading).toBeUndefined();
     });
   });
 
@@ -220,7 +223,8 @@ describe('Component: TypeaheadMultiple', () => {
 
     it('should set the query when the user starts typing in the input field', () => {
       const { typeaheadMultiple } = setup({
-        value: undefined
+        value: undefined,
+        isAsync: true
       });
 
       const asyncTypeahead = typeaheadMultiple.find('div').children().first();

@@ -32,8 +32,7 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
   <div
     className=""
   >
-    <withAsync(Component)
-      delay={0}
+    <ForwardRef
       filterBy={[Function]}
       id="bestFriend"
       inputProps={
@@ -53,11 +52,9 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
           ],
         }
       }
-      isLoading={false}
-      minLength={2}
       multiple={true}
       onChange={[Function]}
-      onSearch={[Function]}
+      onInputChange={[Function]}
       options={
         Array [
           Object {
@@ -90,9 +87,7 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
         ]
       }
       placeholder="Please provide your best friend"
-      promptText="Type to search..."
       renderToken={[Function]}
-      searchText="Searching..."
       selected={
         Array [
           Object {
@@ -110,7 +105,6 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
           },
         ]
       }
-      useCache={true}
     />
   </div>
   Some error
@@ -125,8 +119,7 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
   <div
     className=""
   >
-    <withAsync(Component)
-      delay={0}
+    <ForwardRef
       filterBy={[Function]}
       inputProps={
         Object {
@@ -145,11 +138,9 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
           ],
         }
       }
-      isLoading={false}
-      minLength={2}
       multiple={true}
       onChange={[Function]}
-      onSearch={[Function]}
+      onInputChange={[Function]}
       options={
         Array [
           Object {
@@ -182,9 +173,7 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
         ]
       }
       placeholder="Please provide your best friend"
-      promptText="Type to search..."
       renderToken={[Function]}
-      searchText="Searching..."
       selected={
         Array [
           Object {
@@ -202,7 +191,6 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
           },
         ]
       }
-      useCache={true}
     />
   </div>
   Some error
@@ -232,8 +220,7 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
   <div
     className=""
   >
-    <withAsync(Component)
-      delay={0}
+    <ForwardRef
       filterBy={[Function]}
       id="bestFriend"
       inputProps={
@@ -253,11 +240,9 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
           ],
         }
       }
-      isLoading={false}
-      minLength={2}
       multiple={true}
       onChange={[Function]}
-      onSearch={[Function]}
+      onInputChange={[Function]}
       options={
         Array [
           Object {
@@ -289,9 +274,7 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
           },
         ]
       }
-      promptText="Type to search..."
       renderToken={[Function]}
-      searchText="Searching..."
       selected={
         Array [
           Object {
@@ -309,7 +292,6 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
           },
         ]
       }
-      useCache={true}
     />
   </div>
   Some error

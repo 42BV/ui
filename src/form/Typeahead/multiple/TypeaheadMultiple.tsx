@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import {
+  AsyncTypeahead,
+  TokenProps,
+  Typeahead,
+  TypeaheadProps
+} from 'react-bootstrap-typeahead';
 import { TypeaheadOption } from '../types';
 import withJarb from '../../withJarb/withJarb';
 import { doBlur, alwaysTrue } from '../../utils';
@@ -99,6 +104,22 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
     doBlur(onBlur);
   }
 
+  function renderToken(
+    option: TypeaheadOption<T>,
+    props: TokenProps,
+    index: number
+  ) {
+    return (
+      <Tag
+        key={index}
+        text={option.label}
+        // @ts-expect-error The prop onRemove actually exists, the typings are wrong
+        onRemove={() => props.onRemove(option)}
+        className="align-self-center"
+      />
+    );
+  }
+
   let selected: TypeaheadOption<T>[] = [];
   if (value && value.length) {
     selected = value.map((v) => optionToTypeaheadOption(v, labelForOption));
@@ -110,39 +131,39 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
 
   const innerId = useId({ id });
 
+  const typeaheadProps: TypeaheadProps<TypeaheadOption<T>> = {
+    id,
+    filterBy: alwaysTrue,
+    multiple: true,
+    placeholder,
+    selected,
+    options: typeaheadOptions,
+    onChange: doOnChange,
+    onFocus,
+    inputProps: {
+      // @ts-expect-error The input props value works
+      value,
+      className: classNames('form-control', {
+        'is-invalid': valid === false
+      })
+    },
+    renderToken
+  };
+
   return (
     <FormGroup className={classes} color={color}>
       {label ? <Label for={innerId}>{label}</Label> : null}
       <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
-        <AsyncTypeahead
-          id={id}
-          delay={Array.isArray(options) ? 0 : 200}
-          isLoading={loading}
-          multiple={true}
-          placeholder={placeholder}
-          selected={selected}
-          options={typeaheadOptions}
-          inputProps={{
-            // @ts-expect-error The input props value works
-            value,
-            className: classNames('form-control', {
-              'is-invalid': valid === false
-            })
-          }}
-          filterBy={alwaysTrue}
-          onChange={doOnChange}
-          onSearch={setQuery}
-          onFocus={onFocus}
-          renderToken={(option, props, index) => (
-            <Tag
-              key={index}
-              text={option.label}
-              // @ts-expect-error The prop onRemove actually exists, the typings are wrong
-              onRemove={() => props.onRemove(option)}
-              className="align-self-center"
-            />
-          )}
-        />
+        {Array.isArray(options) ? (
+          <Typeahead {...typeaheadProps} onInputChange={setQuery} />
+        ) : (
+          <AsyncTypeahead
+            {...typeaheadProps}
+            isLoading={loading}
+            delay={200}
+            onSearch={setQuery}
+          />
+        )}
       </div>
       {error}
     </FormGroup>
