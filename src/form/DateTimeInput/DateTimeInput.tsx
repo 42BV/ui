@@ -192,7 +192,8 @@ export default function DateTimeInput(props: Props) {
           mask: formatToMask(dateFormat, timeFormat),
           placeholder,
           invalid: valid === false || hasFormatError,
-          id
+          id,
+          autocomplete: 'off'
         }}
         open={mode === 'modal' ? false : undefined}
         renderInput={(props) =>
