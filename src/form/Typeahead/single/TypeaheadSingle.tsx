@@ -1,6 +1,10 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import {
+  AsyncTypeahead,
+  Typeahead,
+  TypeaheadProps
+} from 'react-bootstrap-typeahead';
 import { FormGroup, Label } from 'reactstrap';
 import { useId } from '../../../hooks/useId/useId';
 import {
@@ -119,28 +123,36 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
 
   const innerId = useId({ id });
 
+  const typeaheadProps: TypeaheadProps<TypeaheadOption<T>> = {
+    id,
+    filterBy: alwaysTrue,
+    multiple: false,
+    placeholder,
+    selected,
+    options: typeaheadOptions,
+    onChange: doOnChange,
+    onFocus,
+    inputProps: {
+      className: classNames('form-control', {
+        'is-invalid': valid === false
+      })
+    }
+  };
+
   return (
     <FormGroup className={classes} color={color}>
       {label ? <Label for={innerId}>{label}</Label> : null}
       <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
-        <AsyncTypeahead
-          id={id}
-          delay={Array.isArray(options) ? 0 : 200}
-          filterBy={alwaysTrue}
-          isLoading={loading}
-          multiple={false}
-          placeholder={placeholder}
-          selected={selected}
-          options={typeaheadOptions}
-          onSearch={setQuery}
-          onChange={doOnChange}
-          onFocus={onFocus}
-          inputProps={{
-            className: classNames('form-control', {
-              'is-invalid': valid === false
-            })
-          }}
-        />
+        {Array.isArray(options) ? (
+          <Typeahead {...typeaheadProps} onInputChange={setQuery} />
+        ) : (
+          <AsyncTypeahead
+            {...typeaheadProps}
+            isLoading={loading}
+            delay={200}
+            onSearch={setQuery}
+          />
+        )}
       </div>
       {error}
     </FormGroup>

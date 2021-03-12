@@ -114,6 +114,7 @@ describe('Component: TypeaheadSingle', () => {
 
     test('loading', () => {
       const { typeaheadSingle } = setup({
+        isAsync: true,
         loading: true
       });
 
@@ -130,13 +131,15 @@ describe('Component: TypeaheadSingle', () => {
       expect(asyncTypeahead.props().delay).toBe(200);
     });
 
-    test('sync delay', () => {
+    test('sync', () => {
       const { typeaheadSingle } = setup({
         isAsync: false
       });
 
       const asyncTypeahead = typeaheadSingle.find('div').children().first();
-      expect(asyncTypeahead.props().delay).toBe(0);
+      expect(asyncTypeahead.props().delay).toBeUndefined();
+      expect(asyncTypeahead.props().onSearch).toBeUndefined();
+      expect(asyncTypeahead.props().isLoading).toBeUndefined();
     });
   });
 
@@ -195,7 +198,8 @@ describe('Component: TypeaheadSingle', () => {
 
     it('should set the query when the user starts typing in the input field', () => {
       const { typeaheadSingle } = setup({
-        value: undefined
+        value: undefined,
+        isAsync: true
       });
 
       const asyncTypeahead = typeaheadSingle.find('div').children().first();
