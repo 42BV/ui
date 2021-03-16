@@ -7,10 +7,7 @@ import {
 } from 'react-bootstrap-typeahead';
 import { FormGroup, Label } from 'reactstrap';
 import { useId } from '../../../hooks/useId/useId';
-import {
-  FieldCompatibleWithPredeterminedOptions,
-  isOptionSelected
-} from '../../option';
+import { FieldCompatibleWithPredeterminedOptions } from '../../option';
 import { FieldCompatible } from '../../types';
 import { useOptions } from '../../useOptions';
 import { doBlur, alwaysTrue } from '../../utils';
@@ -76,16 +73,6 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
 
   const typeaheadOptions = page.content
     .filter((option) => isOptionEnabled(option))
-    .filter(
-      (option) =>
-        !isOptionSelected({
-          option,
-          keyForOption,
-          labelForOption,
-          isOptionEqual,
-          value
-        })
-    )
     .map((option) => optionToTypeaheadOption(option, labelForOption));
 
   function doOnChange(values: TypeaheadOption<T>[]) {

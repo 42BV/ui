@@ -212,9 +212,9 @@ describe('Component: TypeaheadSingle', () => {
       );
     });
 
-    it('should filter out already selected values and disabled options from the typeahead options', () => {
+    it('should filter out disabled options from the typeahead options', () => {
       const { typeaheadSingle } = setup({
-        value: adminUser(), // The admin user is select so it should be filtered out
+        value: adminUser(),
         isOptionEnabled: (user) => user.id !== userUser().id // Also disable the userUser
       });
 
@@ -223,6 +223,7 @@ describe('Component: TypeaheadSingle', () => {
       const options = asyncTypeahead.props().options;
 
       expect(options).toEqual([
+        { label: 'admin@42.nl', value: adminUser() },
         { label: 'coordinator@42.nl', value: coordinatorUser() }
       ]);
     });
