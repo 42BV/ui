@@ -37,6 +37,19 @@ exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle =>
       options={
         Array [
           Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+          Object {
             "label": "coordinator@42.nl",
             "value": Object {
               "active": false,
@@ -109,6 +122,19 @@ exports[`Component: TypeaheadSingle ui without label: Component: TypeaheadSingle
       onInputChange={[Function]}
       options={
         Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
           Object {
             "label": "coordinator@42.nl",
             "value": Object {
@@ -198,6 +224,19 @@ exports[`Component: TypeaheadSingle ui without placeholder: Component: Typeahead
       onInputChange={[Function]}
       options={
         Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
           Object {
             "label": "coordinator@42.nl",
             "value": Object {
