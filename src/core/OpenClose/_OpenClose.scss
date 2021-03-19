@@ -1,0 +1,9 @@
+.open-close.is-open {
+  transition-duration: 0.2s;
+  transform: rotate(180deg);
+}
+
+.open-close.is-closed {
+  transition-duration: 0.2s;
+  transform: rotate(0deg);
+}

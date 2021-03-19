@@ -44,6 +44,7 @@ export { SuccessIcon } from './core/SuccessIcon/SuccessIcon';
 export { OrSeparator } from './core/OrSeparator/OrSeparator';
 export { AttributeList } from './core/lists/AttributeList/AttributeList';
 export { AttributeView } from './core/lists/AttributeView/AttributeView';
+export { OpenClose } from './core/OpenClose/OpenClose';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';

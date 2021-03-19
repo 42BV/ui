@@ -75,6 +75,7 @@ describe('index', () => {
         "MoreOrLess": [Function],
         "NavigationItem": [Function],
         "NewPasswordInput": [Function],
+        "OpenClose": [Function],
         "OpenCloseModal": [Function],
         "OrSeparator": [Function],
         "Pager": [Function],
