@@ -116,193 +116,161 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
             Select your best friend
           </em>
         </p>
-        <Row
-          tag="div"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-            ]
-          }
+        <div
+          className="d-flex flex-wrap"
         >
           <div
-            className="row"
+            className="pr-3"
+            key="0"
+            style={
+              Object {
+                "flexBasis": "300px",
+              }
+            }
           >
-            <Col
-              key="0"
-              style={
-                Object {
-                  "width": "300px",
-                }
-              }
+            <FormGroup
+              check={true}
+              inline={false}
+              key="42"
               tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-              xs="auto"
             >
               <div
-                className="col-auto"
-                style={
-                  Object {
-                    "width": "300px",
-                  }
-                }
+                className="form-check"
               >
-                <FormGroup
+                <Label
                   check={true}
-                  inline={false}
-                  key="42"
-                  tag="div"
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
                 >
-                  <div
-                    className="form-check"
+                  <label
+                    className="form-check-label"
                   >
-                    <Label
-                      check={true}
-                      tag="label"
-                      widths={
-                        Array [
-                          "xs",
-                          "sm",
-                          "md",
-                          "lg",
-                          "xl",
-                        ]
-                      }
+                    <Input
+                      checked={false}
+                      disabled={false}
+                      onChange={[Function]}
+                      type="checkbox"
+                      value={0}
                     >
-                      <label
-                        className="form-check-label"
-                      >
-                        <Input
-                          checked={false}
-                          disabled={false}
-                          onChange={[Function]}
-                          type="checkbox"
-                          value={0}
-                        >
-                          <input
-                            checked={false}
-                            className="form-check-input"
-                            disabled={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                            value={0}
-                          />
-                        </Input>
-                         
-                        admin@42.nl
-                      </label>
-                    </Label>
-                  </div>
-                </FormGroup>
-                <FormGroup
-                  check={true}
-                  inline={false}
-                  key="777"
-                  tag="div"
-                >
-                  <div
-                    className="form-check"
-                  >
-                    <Label
-                      check={true}
-                      tag="label"
-                      widths={
-                        Array [
-                          "xs",
-                          "sm",
-                          "md",
-                          "lg",
-                          "xl",
-                        ]
-                      }
-                    >
-                      <label
-                        className="form-check-label"
-                      >
-                        <Input
-                          checked={false}
-                          disabled={false}
-                          onChange={[Function]}
-                          type="checkbox"
-                          value={1}
-                        >
-                          <input
-                            checked={false}
-                            className="form-check-input"
-                            disabled={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                            value={1}
-                          />
-                        </Input>
-                         
-                        coordinator@42.nl
-                      </label>
-                    </Label>
-                  </div>
-                </FormGroup>
-                <FormGroup
-                  check={true}
-                  inline={false}
-                  key="1337"
-                  tag="div"
-                >
-                  <div
-                    className="form-check"
-                  >
-                    <Label
-                      check={true}
-                      tag="label"
-                      widths={
-                        Array [
-                          "xs",
-                          "sm",
-                          "md",
-                          "lg",
-                          "xl",
-                        ]
-                      }
-                    >
-                      <label
-                        className="form-check-label"
-                      >
-                        <Input
-                          checked={false}
-                          disabled={false}
-                          onChange={[Function]}
-                          type="checkbox"
-                          value={2}
-                        >
-                          <input
-                            checked={false}
-                            className="form-check-input"
-                            disabled={false}
-                            onChange={[Function]}
-                            type="checkbox"
-                            value={2}
-                          />
-                        </Input>
-                         
-                        user@42.nl
-                      </label>
-                    </Label>
-                  </div>
-                </FormGroup>
+                      <input
+                        checked={false}
+                        className="form-check-input"
+                        disabled={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value={0}
+                      />
+                    </Input>
+                     
+                    admin@42.nl
+                  </label>
+                </Label>
               </div>
-            </Col>
+            </FormGroup>
+            <FormGroup
+              check={true}
+              inline={false}
+              key="777"
+              tag="div"
+            >
+              <div
+                className="form-check"
+              >
+                <Label
+                  check={true}
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <label
+                    className="form-check-label"
+                  >
+                    <Input
+                      checked={false}
+                      disabled={false}
+                      onChange={[Function]}
+                      type="checkbox"
+                      value={1}
+                    >
+                      <input
+                        checked={false}
+                        className="form-check-input"
+                        disabled={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value={1}
+                      />
+                    </Input>
+                     
+                    coordinator@42.nl
+                  </label>
+                </Label>
+              </div>
+            </FormGroup>
+            <FormGroup
+              check={true}
+              inline={false}
+              key="1337"
+              tag="div"
+            >
+              <div
+                className="form-check"
+              >
+                <Label
+                  check={true}
+                  tag="label"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <label
+                    className="form-check-label"
+                  >
+                    <Input
+                      checked={false}
+                      disabled={false}
+                      onChange={[Function]}
+                      type="checkbox"
+                      value={2}
+                    >
+                      <input
+                        checked={false}
+                        className="form-check-input"
+                        disabled={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value={2}
+                      />
+                    </Input>
+                     
+                    user@42.nl
+                  </label>
+                </Label>
+              </div>
+            </FormGroup>
           </div>
-        </Row>
+        </div>
       </div>
     </FormGroup>
   </CheckboxMultipleSelect>
