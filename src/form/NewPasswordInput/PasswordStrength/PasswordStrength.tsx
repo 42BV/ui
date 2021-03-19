@@ -58,14 +58,14 @@ export default function PasswordStrength(props: Props) {
         {rules.map((rule) => {
           const isCompliant = compliant[rule];
           return (
-            <div key={rule}>
+            <div key={rule} className="d-flex">
               <Icon
                 icon={isCompliant ? 'check_circle' : 'cancel'}
                 color={isCompliant ? 'success' : 'danger'}
                 size={16}
-                className="align-bottom mb-1 mr-3"
+                className="align-bottom mt-1 mb-1 mr-3"
               />
-              {t(labelForRule(rule, minimumLength))}
+              <div>{t(labelForRule(rule, minimumLength))}</div>
             </div>
           );
         })}
