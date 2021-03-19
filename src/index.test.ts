@@ -18,6 +18,7 @@ describe('index', () => {
         "BooleanIcon": [Function],
         "Button": [Function],
         "Card": [Function],
+        "CardOpenClose": [Function],
         "Checkbox": [Function],
         "CheckboxMultipleSelect": [Function],
         "ColorPicker": [Function],
