@@ -1,6 +1,6 @@
 import { chunk, isArray } from 'lodash';
 import React from 'react';
-import { Col, FormGroup, Input as RSInput, Label, Row } from 'reactstrap';
+import { FormGroup, Input as RSInput, Label } from 'reactstrap';
 import { Loading } from '../..';
 import { useId } from '../../hooks/useId/useId';
 import { t } from '../../utilities/translation/translation';
@@ -171,15 +171,15 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
       const chunks = chunk(page.content, 10);
 
       return (
-        <Row>
+        <div className="d-flex flex-wrap">
           {chunks.map((options, index) => {
             return (
-              <Col xs="auto" key={index} style={{ width: '300px' }}>
+              <div className="pr-3" key={index} style={{ flexBasis: '300px' }}>
                 {renderOptions({ options, horizontal: false })}
-              </Col>
+              </div>
             );
           })}
-        </Row>
+        </div>
       );
     }
   }
