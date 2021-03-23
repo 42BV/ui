@@ -29,7 +29,15 @@
       display: block;
     }
 
-    td.rdtDay.rdtDisabled:hover {
+    td.rdtDay.rdtDisabled,
+    td.rdtMonth.rdtDisabled,
+    td.rdtYear.rdtDisabled {
+      color: $gray-300;
+    }
+
+    td.rdtDay.rdtDisabled:hover,
+    td.rdtMonth.rdtDisabled:hover,
+    td.rdtYear.rdtDisabled:hover {
       cursor: not-allowed;
       background: none;
     }
