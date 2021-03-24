@@ -132,10 +132,9 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
             className="row"
           >
             <Col
-              key="42"
+              key="0"
               style={
                 Object {
-                  "maxWidth": "100%",
                   "width": "300px",
                 }
               }
@@ -155,13 +154,14 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                 className="col-auto"
                 style={
                   Object {
-                    "maxWidth": "100%",
                     "width": "300px",
                   }
                 }
               >
                 <FormGroup
                   check={true}
+                  inline={false}
+                  key="42"
                   tag="div"
                 >
                   <div
@@ -188,6 +188,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                           disabled={false}
                           onChange={[Function]}
                           type="checkbox"
+                          value={0}
                         >
                           <input
                             checked={false}
@@ -195,6 +196,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                             disabled={false}
                             onChange={[Function]}
                             type="checkbox"
+                            value={0}
                           />
                         </Input>
                          
@@ -203,39 +205,10 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                     </Label>
                   </div>
                 </FormGroup>
-              </div>
-            </Col>
-            <Col
-              key="777"
-              style={
-                Object {
-                  "maxWidth": "100%",
-                  "width": "300px",
-                }
-              }
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-              xs="auto"
-            >
-              <div
-                className="col-auto"
-                style={
-                  Object {
-                    "maxWidth": "100%",
-                    "width": "300px",
-                  }
-                }
-              >
                 <FormGroup
                   check={true}
+                  inline={false}
+                  key="777"
                   tag="div"
                 >
                   <div
@@ -262,6 +235,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                           disabled={false}
                           onChange={[Function]}
                           type="checkbox"
+                          value={1}
                         >
                           <input
                             checked={false}
@@ -269,6 +243,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                             disabled={false}
                             onChange={[Function]}
                             type="checkbox"
+                            value={1}
                           />
                         </Input>
                          
@@ -277,39 +252,10 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                     </Label>
                   </div>
                 </FormGroup>
-              </div>
-            </Col>
-            <Col
-              key="1337"
-              style={
-                Object {
-                  "maxWidth": "100%",
-                  "width": "300px",
-                }
-              }
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-              xs="auto"
-            >
-              <div
-                className="col-auto"
-                style={
-                  Object {
-                    "maxWidth": "100%",
-                    "width": "300px",
-                  }
-                }
-              >
                 <FormGroup
                   check={true}
+                  inline={false}
+                  key="1337"
                   tag="div"
                 >
                   <div
@@ -336,6 +282,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                           disabled={false}
                           onChange={[Function]}
                           type="checkbox"
+                          value={2}
                         >
                           <input
                             checked={false}
@@ -343,6 +290,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                             disabled={false}
                             onChange={[Function]}
                             type="checkbox"
+                            value={2}
                           />
                         </Input>
                          

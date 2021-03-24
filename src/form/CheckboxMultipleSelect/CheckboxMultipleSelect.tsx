@@ -1,4 +1,4 @@
-import { isArray } from 'lodash';
+import { chunk, isArray } from 'lodash';
 import React from 'react';
 import { Col, FormGroup, Input as RSInput, Label, Row } from 'reactstrap';
 import { Loading } from '../..';
@@ -168,8 +168,18 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
     if (horizontal) {
       return renderOptions({ options: page.content, horizontal: true });
     } else {
+      const chunks = chunk(page.content, 10);
+
       return (
-        <Row>{renderOptions({ options: page.content, horizontal: false })}</Row>
+        <Row>
+          {chunks.map((options, index) => {
+            return (
+              <Col xs="auto" key={index} style={{ width: '300px' }}>
+                {renderOptions({ options, horizontal: false })}
+              </Col>
+            );
+          })}
+        </Row>
       );
     }
   }
@@ -181,7 +191,7 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
     options: T[];
     horizontal: boolean;
   }) {
-    return options.map((option) => {
+    return options.map((option, index) => {
       const label = labelForOption(option);
       const key = getKeyForOption({ option, keyForOption, labelForOption });
 
@@ -193,26 +203,19 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
         value
       });
 
-      const checkbox = (
-        <Label check>
-          <RSInput
-            type="checkbox"
-            checked={isSelected}
-            disabled={!isOptionEnabled(option)}
-            onChange={() => optionClicked(option, isSelected)}
-          />{' '}
-          {label}
-        </Label>
-      );
-
-      return horizontal ? (
+      return (
         <FormGroup check key={key} inline={horizontal}>
-          {checkbox}
+          <Label check>
+            <RSInput
+              type="checkbox"
+              checked={isSelected}
+              value={index}
+              disabled={!isOptionEnabled(option)}
+              onChange={() => optionClicked(option, isSelected)}
+            />{' '}
+            {label}
+          </Label>
         </FormGroup>
-      ) : (
-        <Col xs="auto" key={key} style={{ width: '300px', maxWidth: '100%' }}>
-          <FormGroup check>{checkbox}</FormGroup>
-        </Col>
       );
     });
   }

@@ -51,6 +51,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
         disabled={false}
         onChange={[Function]}
         type="checkbox"
+        value={0}
       />
        
       admin@42.nl
@@ -80,6 +81,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
         disabled={false}
         onChange={[Function]}
         type="checkbox"
+        value={1}
       />
        
       coordinator@42.nl
@@ -109,6 +111,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
         disabled={false}
         onChange={[Function]}
         type="checkbox"
+        value={2}
       />
        
       user@42.nl
@@ -192,10 +195,9 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
     }
   >
     <Col
-      key="42"
+      key="0"
       style={
         Object {
-          "maxWidth": "100%",
           "width": "300px",
         }
       }
@@ -213,6 +215,8 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
     >
       <FormGroup
         check={true}
+        inline={false}
+        key="42"
         tag="div"
       >
         <Label
@@ -233,34 +237,16 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={0}
           />
            
           admin@42.nl
         </Label>
       </FormGroup>
-    </Col>
-    <Col
-      key="777"
-      style={
-        Object {
-          "maxWidth": "100%",
-          "width": "300px",
-        }
-      }
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xs="auto"
-    >
       <FormGroup
         check={true}
+        inline={false}
+        key="777"
         tag="div"
       >
         <Label
@@ -281,34 +267,16 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={1}
           />
            
           coordinator@42.nl
         </Label>
       </FormGroup>
-    </Col>
-    <Col
-      key="1337"
-      style={
-        Object {
-          "maxWidth": "100%",
-          "width": "300px",
-        }
-      }
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xs="auto"
-    >
       <FormGroup
         check={true}
+        inline={false}
+        key="1337"
         tag="div"
       >
         <Label
@@ -329,6 +297,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={2}
           />
            
           user@42.nl
@@ -365,10 +334,9 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
     }
   >
     <Col
-      key="42"
+      key="0"
       style={
         Object {
-          "maxWidth": "100%",
           "width": "300px",
         }
       }
@@ -386,6 +354,8 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
     >
       <FormGroup
         check={true}
+        inline={false}
+        key="42"
         tag="div"
       >
         <Label
@@ -406,34 +376,16 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={0}
           />
            
           admin@42.nl
         </Label>
       </FormGroup>
-    </Col>
-    <Col
-      key="777"
-      style={
-        Object {
-          "maxWidth": "100%",
-          "width": "300px",
-        }
-      }
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xs="auto"
-    >
       <FormGroup
         check={true}
+        inline={false}
+        key="777"
         tag="div"
       >
         <Label
@@ -454,34 +406,16 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={1}
           />
            
           coordinator@42.nl
         </Label>
       </FormGroup>
-    </Col>
-    <Col
-      key="1337"
-      style={
-        Object {
-          "maxWidth": "100%",
-          "width": "300px",
-        }
-      }
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xs="auto"
-    >
       <FormGroup
         check={true}
+        inline={false}
+        key="1337"
         tag="div"
       >
         <Label
@@ -502,6 +436,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={2}
           />
            
           user@42.nl
@@ -546,10 +481,9 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
     }
   >
     <Col
-      key="42"
+      key="0"
       style={
         Object {
-          "maxWidth": "100%",
           "width": "300px",
         }
       }
@@ -567,6 +501,8 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
     >
       <FormGroup
         check={true}
+        inline={false}
+        key="42"
         tag="div"
       >
         <Label
@@ -587,34 +523,16 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={0}
           />
            
           admin@42.nl
         </Label>
       </FormGroup>
-    </Col>
-    <Col
-      key="777"
-      style={
-        Object {
-          "maxWidth": "100%",
-          "width": "300px",
-        }
-      }
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xs="auto"
-    >
       <FormGroup
         check={true}
+        inline={false}
+        key="777"
         tag="div"
       >
         <Label
@@ -635,34 +553,16 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={1}
           />
            
           coordinator@42.nl
         </Label>
       </FormGroup>
-    </Col>
-    <Col
-      key="1337"
-      style={
-        Object {
-          "maxWidth": "100%",
-          "width": "300px",
-        }
-      }
-      tag="div"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-        ]
-      }
-      xs="auto"
-    >
       <FormGroup
         check={true}
+        inline={false}
+        key="1337"
         tag="div"
       >
         <Label
@@ -683,6 +583,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
             disabled={false}
             onChange={[Function]}
             type="checkbox"
+            value={2}
           />
            
           user@42.nl

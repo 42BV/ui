@@ -426,42 +426,6 @@ storiesOf('Form/CheckboxMultipleSelect', module)
       </div>
     );
   })
-  .add('less columns', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
-      nonExistingProvince()
-    ]);
-
-    return (
-      <Form>
-        <p>
-          If you want to regulate the amount of checkboxes that are displayed
-          next to eachother, you should wrap the component in an element with a
-          maximum width. The checkboxes are displayed in columns of 300 pixels,
-          so any multiple of 300 will work. Anything in between works as well,
-          though keep in mind you then will always have whitespace.
-        </p>
-
-        <div style={{ maxWidth: 600 }}>
-          <CheckboxMultipleSelect
-            id="provinces"
-            label="Provinces"
-            placeholder="Please select your provinces"
-            options={provinces()}
-            labelForOption={(province) => province.label}
-            value={value}
-            onChange={setValue}
-          />
-        </div>
-
-        {value ? (
-          <p>
-            Your chosen provinces are:{' '}
-            {value.map((province) => province.label).join(', ')}
-          </p>
-        ) : null}
-      </Form>
-    );
-  })
   .add('jarb', () => {
     return (
       <FinalForm>
