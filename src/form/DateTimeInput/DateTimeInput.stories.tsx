@@ -190,6 +190,13 @@ storiesOf('Form/DateTimeInput', module)
           End time:
           <pre>{end?.toISOString()}</pre>
         </div>
+
+        <p>
+          Note: isDateAllowed is not a validator, it only disables selectable
+          dates to prevent users from selecting invalid dates. Manually typing a
+          date that is out of range should be validated using validators,
+          preferably using the JarbDateTimeInput.
+        </p>
       </Form>
     );
   })
