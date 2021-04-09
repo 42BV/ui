@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from '../../core/Icon/Icon';
 import { useHover } from '../../hooks/useHover/useHover';
+import { Color } from '../../core/types';
 
 type FavoriteIconProps = {
   /**
@@ -18,6 +19,29 @@ type FavoriteIconProps = {
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optionally the size of the icon in pixels.
+   *
+   * Defaults to `24px`
+   */
+  size?: number;
+
+  /**
+   * Optionally the color of the icon when value is false
+   * and the icon is not hovered.
+   *
+   * Defaults to secondary.
+   */
+  color?: Color;
+
+  /**
+   * Optionally the color of the icon when value is true
+   * or the icon is hovered.
+   *
+   * Defaults to primary.
+   */
+  activeColor?: Color;
 };
 
 /**
@@ -28,17 +52,21 @@ type FavoriteIconProps = {
 export function FavoriteIcon({
   value,
   onChange,
-  className = ''
+  className = '',
+  size,
+  color = 'secondary',
+  activeColor = 'primary'
 }: FavoriteIconProps) {
   const [hover, hoverEvents] = useHover();
 
   return (
     <div {...hoverEvents}>
       <Icon
-        color={value || hover ? 'primary' : 'secondary'}
+        color={value || hover ? activeColor : color}
         className={className}
         icon={value ? 'star' : 'star_border'}
         onClick={() => onChange(!value)}
+        size={size}
       />
     </div>
   );

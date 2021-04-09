@@ -3,13 +3,27 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import { FavoriteIcon } from './FavoriteIcon';
+import { Color } from '../../core/types';
 
 describe('Component: FavoriteIcon', () => {
-  function setup({ value }: { value: boolean }) {
+  function setup({
+    value,
+    color,
+    size
+  }: {
+    value: boolean;
+    color?: Color;
+    size?: number;
+  }) {
     const onChangeSpy = jest.fn();
 
     const favoriteIcon = shallow(
-      <FavoriteIcon onChange={onChangeSpy} value={value} />
+      <FavoriteIcon
+        onChange={onChangeSpy}
+        value={value}
+        color={color}
+        size={size}
+      />
     );
 
     return { favoriteIcon, onChangeSpy };
@@ -30,6 +44,18 @@ describe('Component: FavoriteIcon', () => {
       expect(toJson(favoriteIcon)).toMatchSnapshot(
         'Component: FavoriteIcon => ui => not favorite'
       );
+    });
+
+    test('size', () => {
+      const { favoriteIcon } = setup({ value: false, size: 10 });
+
+      expect(favoriteIcon.find('Icon').props().size).toBe(10);
+    });
+
+    test('color', () => {
+      const { favoriteIcon } = setup({ value: false, color: 'primary' });
+
+      expect(favoriteIcon.find('Icon').props().color).toBe('primary');
     });
   });
 
