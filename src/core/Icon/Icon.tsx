@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Color } from '../..';
 import IconType from './types';
 
-type Props = {
+export type Props = {
   /**
    * The material icon you want to render.
    */
