@@ -31,7 +31,8 @@ describe('Component: TypeaheadSingle', () => {
     hasLabel = true,
     loading = false,
     isOptionEnabled,
-    isAsync = false
+    isAsync = false,
+    pageSize
   }: {
     value?: User;
     hasPlaceholder?: boolean;
@@ -39,6 +40,7 @@ describe('Component: TypeaheadSingle', () => {
     loading?: boolean;
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
+    pageSize?: number;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -47,7 +49,7 @@ describe('Component: TypeaheadSingle', () => {
     useOptions.mockImplementation(
       ({ pageNumber, size, optionsShouldAlwaysContainValue }) => {
         expect(pageNumber).toBe(1);
-        expect(size).toBe(10);
+        expect(size).toBe(!isAsync ? listOfUsers().length : pageSize ?? 10);
         expect(optionsShouldAlwaysContainValue).toBe(false);
 
         return {
@@ -67,7 +69,8 @@ describe('Component: TypeaheadSingle', () => {
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
-      error: 'Some error'
+      error: 'Some error',
+      pageSize
     };
 
     const labelProps = hasLabel
@@ -87,6 +90,33 @@ describe('Component: TypeaheadSingle', () => {
 
       expect(toJson(typeaheadSingle)).toMatchSnapshot(
         'Component: TypeaheadSingle => ui => with value'
+      );
+    });
+
+    test('async with a custom pageSize of 2 options in the dropdown', () => {
+      const { typeaheadSingle } = setup({
+        isAsync: true,
+        pageSize: 2
+      });
+
+      expect(useOptions).toBeCalledTimes(1);
+      expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 2 }));
+
+      expect(toJson(typeaheadSingle)).toMatchSnapshot(
+        'Component: TypeaheadSingle => ui => async with a custom pageSize of 2 options in the dropdown'
+      );
+    });
+
+    test('async with the default pageSize of 10 options in the dropdown', () => {
+      const { typeaheadSingle } = setup({
+        isAsync: true
+      });
+
+      expect(useOptions).toBeCalledTimes(1);
+      expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 10 }));
+
+      expect(toJson(typeaheadSingle)).toMatchSnapshot(
+        'Component: TypeaheadSingle => ui => async with the default pageSize of 10 options in the dropdown'
       );
     });
 

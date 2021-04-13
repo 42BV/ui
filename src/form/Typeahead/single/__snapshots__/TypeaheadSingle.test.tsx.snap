@@ -1,5 +1,176 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options in the dropdown: Component: TypeaheadSingle => ui => async with a custom pageSize of 2 options in the dropdown 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best friend
+  </Label>
+  <div
+    className="showing-placeholder"
+  >
+    <withAsync(Component)
+      delay={200}
+      filterBy={[Function]}
+      id="bestFriend"
+      inputProps={
+        Object {
+          "className": "form-control",
+        }
+      }
+      isLoading={false}
+      minLength={2}
+      multiple={false}
+      onChange={[Function]}
+      onSearch={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
+      placeholder="Please provide your best friend"
+      promptText="Type to search..."
+      searchText="Searching..."
+      selected={Array []}
+      useCache={true}
+    />
+  </div>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 options in the dropdown: Component: TypeaheadSingle => ui => async with the default pageSize of 10 options in the dropdown 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best friend
+  </Label>
+  <div
+    className="showing-placeholder"
+  >
+    <withAsync(Component)
+      delay={200}
+      filterBy={[Function]}
+      id="bestFriend"
+      inputProps={
+        Object {
+          "className": "form-control",
+        }
+      }
+      isLoading={false}
+      minLength={2}
+      multiple={false}
+      onChange={[Function]}
+      onSearch={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
+      placeholder="Please provide your best friend"
+      promptText="Type to search..."
+      searchText="Searching..."
+      selected={Array []}
+      useCache={true}
+    />
+  </div>
+  Some error
+</FormGroup>
+`;
+
 exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle => ui => with value 1`] = `
 <FormGroup
   className=""

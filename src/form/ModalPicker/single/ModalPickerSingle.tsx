@@ -45,6 +45,26 @@ type Props<T> = Omit<
     canSearch?: boolean;
 
     /**
+     * Optionally specify the number of options to show / fetch per
+     * page in the modal.
+     *
+     * When `options` is an array, it will determine how many options
+     * will be displayed per page.
+     *
+     * When `options` is a fetcher, it will determine how many options
+     * are requested through the fetcher as the `page` parameter.
+     * This means that when you set the pageSize to `100` that
+     * `100` items are fetched from the back-end. Beware of
+     * performance issues when setting the value too high.
+     *
+     * Beware that setting the page size too high will cause the UX
+     * to deteriorate on smaller screens!
+     *
+     * Defaults to `10`.
+     */
+    pageSize?: number;
+
+    /**
      * Optionally an add button to display in the Modal. Can
      * be used to dynamically add an option which was not there
      * before.
@@ -100,6 +120,7 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
     onChange,
     addButton,
     canSearch = true,
+    pageSize = 10,
     options,
     keyForOption,
     isOptionEqual,
@@ -127,7 +148,7 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
     reloadOptions,
     pageNumber,
     query,
-    size: 10,
+    size: pageSize,
     optionsShouldAlwaysContainValue: false
   });
 
