@@ -17,7 +17,27 @@ import { optionToTypeaheadOption } from '../utils';
 import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
 
 type Props<T> = FieldCompatible<T, T | undefined> &
-  FieldCompatibleWithPredeterminedOptions<T>;
+  FieldCompatibleWithPredeterminedOptions<T> & {
+    /**
+     * Optionally specify the number of suggestions to show / fetch
+     * in the dropdown.
+     *
+     * When `options` is an array, all options will always be shown
+     * and this prop has no effect.
+     *
+     * When `options` is a fetcher, it will determine how many options
+     * are requested through the fetcher as the `page` parameter.
+     * This means that when you set the pageSize to `100` that
+     * `100` items are fetched from the back-end. Beware of
+     * performance issues when setting the value too high.
+     *
+     * Beware that setting the page size too high will cause the UX
+     * to deteriorate on smaller screens!
+     *
+     * Defaults to `10`.
+     */
+    pageSize?: number;
+  };
 
 /**
  * The TypeaheadSingle is a form element which allows the user
@@ -53,7 +73,8 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
     keyForOption,
     isOptionEqual,
     reloadOptions,
-    isOptionEnabled = alwaysTrue
+    isOptionEnabled = alwaysTrue,
+    pageSize = 10
   } = props;
 
   const [query, setQuery] = useState('');
@@ -67,7 +88,7 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
     reloadOptions,
     query,
     pageNumber: 1,
-    size: 10,
+    size: Array.isArray(options) ? options.length : pageSize,
     optionsShouldAlwaysContainValue: false
   });
 

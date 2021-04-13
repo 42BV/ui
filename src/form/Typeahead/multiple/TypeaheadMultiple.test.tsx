@@ -28,7 +28,8 @@ describe('Component: TypeaheadMultiple', () => {
     hasLabel = true,
     loading = false,
     isOptionEnabled,
-    isAsync = false
+    isAsync = false,
+    pageSize
   }: {
     value?: User[];
     hasPlaceholder?: boolean;
@@ -36,6 +37,7 @@ describe('Component: TypeaheadMultiple', () => {
     loading?: boolean;
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
+    pageSize?: number;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -44,7 +46,7 @@ describe('Component: TypeaheadMultiple', () => {
     useOptions.mockImplementation(
       ({ pageNumber, size, optionsShouldAlwaysContainValue }) => {
         expect(pageNumber).toBe(1);
-        expect(size).toBe(10);
+        expect(size).toBe(!isAsync ? listOfUsers().length : pageSize ?? 10);
         expect(optionsShouldAlwaysContainValue).toBe(false);
 
         return {
@@ -64,6 +66,7 @@ describe('Component: TypeaheadMultiple', () => {
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
+      pageSize,
       error: 'Some error'
     };
 
@@ -95,6 +98,33 @@ describe('Component: TypeaheadMultiple', () => {
 
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => without placeholder'
+      );
+    });
+
+    test('async with a custom pageSize of 2 options in the dropdown', () => {
+      const { typeaheadMultiple } = setup({
+        isAsync: true,
+        pageSize: 2
+      });
+
+      expect(useOptions).toBeCalledTimes(1);
+      expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 2 }));
+
+      expect(toJson(typeaheadMultiple)).toMatchSnapshot(
+        'Component: TypeaheadMultiple => ui => async with a custom pageSize of 2 options in the dropdown'
+      );
+    });
+
+    test('async with the default pageSize of 10 options in the dropdown', () => {
+      const { typeaheadMultiple } = setup({
+        isAsync: true
+      });
+
+      expect(useOptions).toBeCalledTimes(1);
+      expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 10 }));
+
+      expect(toJson(typeaheadMultiple)).toMatchSnapshot(
+        'Component: TypeaheadMultiple => ui => async with the default pageSize of 10 options in the dropdown'
       );
     });
 

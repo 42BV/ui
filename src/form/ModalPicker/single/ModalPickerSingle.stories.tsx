@@ -41,6 +41,31 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
       </Form>
     );
   })
+  .add('show 5 options per page', () => {
+    const [value, setValue] = useState<Province | undefined>(undefined);
+
+    return (
+      <Form>
+        <ModalPickerSingle<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+          pageSize={5}
+        />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+
+        <p>
+          Note: Beware of performance issues when setting the page size too
+          high, that will cause the UX to deteriorate on smaller screens!
+        </p>
+      </Form>
+    );
+  })
   .add('async options', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 

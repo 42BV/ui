@@ -42,7 +42,8 @@ describe('Component: ModalPickerMultiple', () => {
     reUsePage = false,
     isOptionEnabled,
     isAsync = false,
-    canClear
+    canClear,
+    pageSize = 10
   }: {
     value?: User[];
     showAddButton?: boolean;
@@ -58,6 +59,7 @@ describe('Component: ModalPickerMultiple', () => {
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
     canClear?: boolean;
+    pageSize?: number;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -73,7 +75,7 @@ describe('Component: ModalPickerMultiple', () => {
         if (doInitialCheck) {
           expect(pageNumber).toBe(1);
           expect(query).toBe('');
-          expect(size).toBe(10);
+          expect(size).toBe(pageSize);
           expect(optionsShouldAlwaysContainValue).toBe(false);
           doInitialCheck = false;
         }
@@ -120,7 +122,8 @@ describe('Component: ModalPickerMultiple', () => {
         ? () => <span>RenderOptions</span>
         : undefined,
       color: 'success' as Color,
-      canClear
+      canClear,
+      pageSize
     };
 
     const labelProps = hasLabel
@@ -273,6 +276,7 @@ describe('Component: ModalPickerMultiple', () => {
         // @ts-expect-error Test mock
         .openModal();
 
+      expect(modalPickerMultiple.find('Input')).toHaveLength(3);
       const admin = modalPickerMultiple.find('Input').at(0);
       const coordinator = modalPickerMultiple.find('Input').at(1);
       const user = modalPickerMultiple.find('Input').at(2);
@@ -280,6 +284,27 @@ describe('Component: ModalPickerMultiple', () => {
       expect(admin.props().disabled).toBe(false);
       expect(coordinator.props().disabled).toBe(true);
       expect(user.props().disabled).toBe(true);
+    });
+
+    it('should only render 2 options when pageSize is set to 2', () => {
+      const { modalPickerMultiple } = setup({
+        pageSize: 2,
+        value: [adminUser(), coordinatorUser()]
+      });
+
+      // Open the modal
+      modalPickerMultiple
+        .find('ModalPickerOpener')
+        .props()
+        // @ts-expect-error Test mock
+        .openModal();
+
+      expect(modalPickerMultiple.find('Input')).toHaveLength(2);
+      const admin = modalPickerMultiple.find('Input').at(0);
+      const coordinator = modalPickerMultiple.find('Input').at(1);
+
+      expect(admin.props().checked).toBe(true);
+      expect(coordinator.props().checked).toBe(true);
     });
 
     it('should render button left', () => {

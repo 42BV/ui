@@ -69,6 +69,39 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
       </Form>
     );
   })
+
+  .add('async options - limited pageSize', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Form>
+        <TypeaheadMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinceFetcher}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+          pageSize={5}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+
+        <p>
+          Note: Beware of performance issues when setting the page size too
+          high, that will cause the UX to deteriorate on smaller screens!
+        </p>
+      </Form>
+    );
+  })
   .add('disabled options', () => {
     const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
