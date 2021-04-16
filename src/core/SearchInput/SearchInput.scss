@@ -1,0 +1,12 @@
+.search-input input[type='search']::-webkit-search-cancel-button {
+  display: none;
+}
+
+.cancel-search {
+  margin-top: -24px;
+  margin-right: 16px;
+  position: relative;
+  float: right;
+  top: 31px;
+  z-index: 4;
+}

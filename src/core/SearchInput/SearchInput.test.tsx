@@ -13,16 +13,22 @@ describe('Component: SearchInput', () => {
     showIcon,
     debounceSettings,
     showLabel,
-    withChildren
+    withChildren,
+    canClear
   }: {
     debounce?: number;
     showIcon?: boolean;
     debounceSettings?: lodash.DebounceSettings;
     showLabel?: boolean;
     withChildren?: boolean;
+    canClear?: boolean;
   }) {
+    const debounceCancelSpy = jest.fn();
+
     // @ts-expect-error Test mock
     jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+      // @ts-expect-error Test mock
+      fn.cancel = debounceCancelSpy;
       return fn;
     });
 
@@ -33,7 +39,8 @@ describe('Component: SearchInput', () => {
       debounce,
       debounceSettings,
       onChange: onChangeSpy,
-      placeholder: 'Search...'
+      placeholder: 'Search...',
+      canClear
     };
 
     if (showLabel) {
@@ -59,7 +66,7 @@ describe('Component: SearchInput', () => {
 
     const searchInput = shallow(<SearchInput {...props} />);
 
-    return { searchInput, onChangeSpy };
+    return { searchInput, onChangeSpy, debounceCancelSpy };
   }
 
   describe('ui', () => {
@@ -93,6 +100,26 @@ describe('Component: SearchInput', () => {
         showLabel: true,
         withChildren: true
       });
+
+      expect(toJson(searchInput)).toMatchSnapshot();
+    });
+
+    test('with value', () => {
+      jest
+        .spyOn(React, 'useRef')
+        .mockReturnValueOnce({ current: { value: 'test' } });
+
+      const { searchInput } = setup({});
+
+      expect(toJson(searchInput)).toMatchSnapshot();
+    });
+
+    test('without clear button', () => {
+      jest
+        .spyOn(React, 'useRef')
+        .mockReturnValueOnce({ current: { value: 'test' } });
+
+      const { searchInput } = setup({ canClear: false });
 
       expect(toJson(searchInput)).toMatchSnapshot();
     });
@@ -237,6 +264,30 @@ describe('Component: SearchInput', () => {
 
         expect(onChangeSpy).toBeCalledTimes(0);
       });
+    });
+
+    it('should clear value when clear icon is clicked', () => {
+      jest
+        .spyOn(React, 'useRef')
+        .mockReturnValueOnce({ current: { value: 'test' } });
+
+      const { searchInput, onChangeSpy, debounceCancelSpy } = setup({});
+
+      // @ts-expect-error Test mock
+      searchInput
+        .find('Icon')
+        .at(0)
+        .props()
+        // @ts-expect-error Test mock
+        .onClick();
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith('');
+
+      expect(debounceCancelSpy).toHaveBeenCalledTimes(1);
+
+      // @ts-expect-error Test mock
+      expect(searchInput.find('Input').props().innerRef.current.value).toBe('');
     });
   });
 });

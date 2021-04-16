@@ -118,6 +118,13 @@ export type Props = ModifiedInputProps & {
    * Optional size you want to give the icon.
    */
   size?: BootstrapSize;
+
+  /**
+   * Whether or not to show a "clear" button.
+   *
+   * Defaults to `true`
+   */
+  canClear?: boolean;
 };
 
 /**
@@ -140,7 +147,8 @@ export default function SearchInput(props: Props) {
     showIcon = true,
     className = '',
     children,
-    size
+    size,
+    canClear = true
   } = props;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -164,6 +172,8 @@ export default function SearchInput(props: Props) {
     if (inputRef.current) {
       inputRef.current.value = value;
       onChange(value);
+      // if you change the value externally within the debounce time,
+      // the debounce should be cancelled to prevent an overwrite
       handleChange.current.cancel();
     }
   }
@@ -174,13 +184,14 @@ export default function SearchInput(props: Props) {
   // controlled by us. Otherwise the value of the <Input> will only
   // update after the onChange. Which would never work because it is
   // debounced.
-  const inputProps = {
+  const inputProps: InputProps = {
     id: innerId,
     innerRef: inputRef,
     defaultValue,
     onChange: (event) => handleChange.current(event.target.value),
     onKeyUp: handleKeyUp,
-    placeholder: placeholder
+    placeholder: placeholder,
+    type: 'search'
   };
 
   function getInput() {
@@ -198,10 +209,17 @@ export default function SearchInput(props: Props) {
     return <Input className={className} {...inputProps} />;
   }
 
-  const searchInputWrapper = children ? (
-    <>{children(getInput(), { setValue })}</>
-  ) : (
-    getInput()
+  const searchInputWrapper = (
+    <div className="search-input">
+      {inputRef.current?.value && canClear ? (
+        <Icon
+          icon="close"
+          className="cancel-search"
+          onClick={() => setValue('')}
+        />
+      ) : null}
+      {children ? <>{children(getInput(), { setValue })}</> : getInput()}
+    </div>
   );
 
   return label ? (
