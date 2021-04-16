@@ -1,14 +1,14 @@
-<p align="center">
+<p style="text-align:center">
   <a href="https://www.42.nl">
-    <img alt="@42.nl/ui" src="https://github.com/42BV/ui/blob/assets/banner.png?raw=true" width="547">
+    <img alt="42 BV" src="https://42bv.github.io/ui/assets/img/logo.svg" width="60">
   </a>
 </p>
 
-<p align="center">
+<p style="text-align:center">
   Components that are commonly used within 42.nl products.
 </p>
 
-<p align="center">
+<p style="text-align:center">
     <a href="https://travis-ci.org/42BV/ui/">
       <img alt="Build status" src="https://travis-ci.org/42BV/ui.svg?branch=master" />
     </a>
@@ -40,36 +40,50 @@ npm i @42.nl/ui --save
 
 ### Setup
 
-1. Ensure you have Node.js 10.13+ and Yarn installed.
+1. Ensure you have Node.js 10.13+ installed.
 2. Git clone the repository.
-3. From the root of the repository, run `yarn` to install the dependencies required for development.
+3. From the root of the repository, run `npm i` to install the dependencies required for development.
 
 ### Testing
 
 First follow the build instructions above. Then to run both the linters and tests, use:
 
 ```bash
-npm run test-all
+npm test
 ```
 
-Or to run them seperately, use:
+Or to run them separately, use:
 
 ```bash
 npm run lint
 ```
 
 ```bash
-npm run test
+npm run test:ts
 ```
 
-#### Development
+```bash
+npm run test:coverage
+```
+
+### Development
+
+We use [Storybook](https://42bv.github.io/ui/storybook/) to test our components
+during development. To start up a local storybook, run `npm start` from the root directory.
+
+Also make sure the test coverage is 100%. To run the tests automatically on every change, run `npm run test:watch` from the root directory.
+
+If all tests pass, the test coverage is 100% and you want to test the changes in
+a project of your choice, you can create a local release.
+
+#### Local release
 
 To prevent multiple prelease publishes for a single feature, we recommend using
-[https://verdaccio.org/](Verdaccio). Verdaccio enables you to spin up
+[Verdaccio](https://verdaccio.org/). Verdaccio enables you to spin up
 a local NPM registry which in turn allows us to publish multiple versions for testing purposes without polluting the version in NPM.
 
 > We recommend the Docker approach instead of locally installing
-> Verdaccio, if you do not want to use Docker, refer to the Verdaccio
+> Verdaccio. If you do not want to use Docker, refer to the Verdaccio
 > documentation.
 
 To publish to the Verdaccio registry run `npm run dev:publish` this
