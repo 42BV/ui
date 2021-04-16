@@ -25,6 +25,7 @@ import FlashMessage from '../../core/FlashMessage/FlashMessage';
 import { OpenCloseModal, Pagination } from '../../index';
 import { emptyPage, Page } from '@42.nl/spring-connect/lib';
 import { FormSpy } from 'react-final-form';
+import { sleep } from '../../form/story-utils';
 
 storiesOf('table/FormTable', module)
   .add('basic example', () => {
@@ -2135,9 +2136,3 @@ const movies: Movie[] = uniq(
     .filter((person) => person.favoriteMovie)
     .map((person) => person.favoriteMovie?.name)
 ).map((movie) => ({ name: movie } as Movie));
-
-function sleep(ms: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}

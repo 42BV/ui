@@ -93,6 +93,8 @@ describe('index', () => {
         "Spinner": [Function],
         "SubmitButton": [Function],
         "SuccessIcon": [Function],
+        "Tab": [Function],
+        "Tabs": [Function],
         "Tag": [Function],
         "TextButton": [Function],
         "TextEditor": [Function],

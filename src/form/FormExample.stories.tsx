@@ -5,7 +5,7 @@ import { Moment } from 'moment';
 import { Form as ReactFinalForm } from 'react-final-form';
 
 import { JarbInput } from './Input/Input';
-import { Form, provinceFetcher, resolveAfter } from './story-utils';
+import { Form, provinceFetcher, resolveAfter, sleep } from './story-utils';
 import {
   isStrongPassword,
   JarbCheckbox,
@@ -44,12 +44,6 @@ import { ModalForm } from '../core/OpenCloseModal/OpenCloseModal.stories';
 import { AddonIcon } from './addons/AddonIcon/AddonIcon';
 import { Col, Row } from 'reactstrap';
 import { action } from '@storybook/addon-actions';
-
-function sleep(ms: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
 
 function required(value?: any) {
   return value ? undefined : 'Required';
