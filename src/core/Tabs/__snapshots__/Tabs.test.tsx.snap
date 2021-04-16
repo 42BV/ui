@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Tabs ui hide inactive tabs by CSS: Component: Tabs => ui => hide inactive tabs by CSS 1`] = `
+<div
+  className="tabs"
+>
+  <Nav
+    className="flex-nowrap"
+    fill={true}
+    style={
+      Object {
+        "overflowY": "hidden",
+      }
+    }
+    tabs={true}
+    tag="ul"
+    vertical={false}
+  >
+    <Tab
+      active={true}
+      label="test active true"
+      onClick={[MockFunction]}
+    >
+      <Component />
+    </Tab>
+    <Tab
+      active={false}
+      label="test active false"
+      onClick={[MockFunction]}
+    >
+      <Component />
+    </Tab>
+  </Nav>
+  <div
+    className="mt-3 tab-content"
+  >
+    <Suspense
+      fallback={
+        <LoadingPage
+          className="bg-white"
+          height={200}
+        />
+      }
+    >
+      <TabContent
+        active={true}
+        hideInactiveTabsBy="CSS"
+        key=".0"
+        label="test active true"
+        onClick={[MockFunction]}
+      >
+        <Component />
+      </TabContent>
+      <TabContent
+        active={false}
+        hideInactiveTabsBy="CSS"
+        key=".1"
+        label="test active false"
+        onClick={[MockFunction]}
+      >
+        <Component />
+      </TabContent>
+    </Suspense>
+  </div>
+</div>
+`;
+
+exports[`Component: Tabs ui hide inactive tabs by removing from dom: Component: Tabs => ui => hide inactive tabs by removing from dom 1`] = `
+<div
+  className="tabs"
+>
+  <Nav
+    className="flex-nowrap"
+    fill={true}
+    style={
+      Object {
+        "overflowY": "hidden",
+      }
+    }
+    tabs={true}
+    tag="ul"
+    vertical={false}
+  >
+    <Tab
+      active={true}
+      label="test active true"
+      onClick={[MockFunction]}
+    >
+      <Component />
+    </Tab>
+    <Tab
+      active={false}
+      label="test active false"
+      onClick={[MockFunction]}
+    >
+      <Component />
+    </Tab>
+  </Nav>
+  <div
+    className="mt-3 tab-content"
+  >
+    <Suspense
+      fallback={
+        <LoadingPage
+          className="bg-white"
+          height={200}
+        />
+      }
+    >
+      <TabContent
+        active={true}
+        hideInactiveTabsBy="excluding-from-dom"
+        key=".0"
+        label="test active true"
+        onClick={[MockFunction]}
+      >
+        <Component />
+      </TabContent>
+      <TabContent
+        active={false}
+        hideInactiveTabsBy="excluding-from-dom"
+        key=".1"
+        label="test active false"
+        onClick={[MockFunction]}
+      >
+        <Component />
+      </TabContent>
+    </Suspense>
+  </div>
+</div>
+`;
+
+exports[`Component: Tabs ui should throw an exception if any child is not a Tab component 1`] = `"Tabs: expecting children of Tabs to be of type Tab but got something else"`;

@@ -1,0 +1,9 @@
+.tabs {
+  .nav-item.disabled {
+    cursor: not-allowed;
+  }
+
+  .nav-link {
+    cursor: pointer;
+  }
+}
