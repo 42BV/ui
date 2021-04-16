@@ -143,4 +143,18 @@ storiesOf('core/SearchInput', module)
         </SearchInput>
       </Card>
     );
+  })
+  .add('without clear button', () => {
+    const [query, setQuery] = useState('');
+
+    return (
+      <Card body>
+        <p>You searched for: {query}</p>
+        <SearchInput
+          defaultValue={query}
+          onChange={setQuery}
+          canClear={false}
+        />
+      </Card>
+    );
   });
