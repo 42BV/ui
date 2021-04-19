@@ -78,6 +78,7 @@ exports[`Component: TypeaheadMultiple ui async with a custom pageSize of 2 optio
           },
         ]
       }
+      paginationText="Display additional results..."
       placeholder="Please provide your best friend"
       promptText="Type to search..."
       renderToken={[Function]}
@@ -172,12 +173,191 @@ exports[`Component: TypeaheadMultiple ui async with the default pageSize of 10 o
           },
         ]
       }
+      paginationText="Display additional results..."
       placeholder="Please provide your best friend"
       promptText="Type to search..."
       renderToken={[Function]}
       searchText="Searching..."
       selected={Array []}
       useCache={true}
+    />
+  </div>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: TypeaheadMultiple ui with a custom pagination text: Component: TypeaheadMultiple => ui => with a custom pagination text 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best friend
+  </Label>
+  <div
+    className="showing-placeholder"
+  >
+    <ForwardRef
+      filterBy={[Function]}
+      id="bestFriend"
+      inputProps={
+        Object {
+          "className": "form-control",
+          "value": undefined,
+        }
+      }
+      multiple={true}
+      onChange={[Function]}
+      onInputChange={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
+      paginationText="Show more"
+      placeholder="Please provide your best friend"
+      renderToken={[Function]}
+      selected={Array []}
+    />
+  </div>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: TypeaheadMultiple ui with the default pagination text: Component: TypeaheadMultiple => ui => with the default pagination text 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best friend
+  </Label>
+  <div
+    className="showing-placeholder"
+  >
+    <ForwardRef
+      filterBy={[Function]}
+      id="bestFriend"
+      inputProps={
+        Object {
+          "className": "form-control",
+          "value": undefined,
+        }
+      }
+      multiple={true}
+      onChange={[Function]}
+      onInputChange={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
+      paginationText="Display additional results..."
+      placeholder="Please provide your best friend"
+      renderToken={[Function]}
+      selected={Array []}
     />
   </div>
   Some error
@@ -261,6 +441,7 @@ exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultipl
           },
         ]
       }
+      paginationText="Display additional results..."
       placeholder="Please provide your best friend"
       renderToken={[Function]}
       selected={
@@ -347,6 +528,7 @@ exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMult
           },
         ]
       }
+      paginationText="Display additional results..."
       placeholder="Please provide your best friend"
       renderToken={[Function]}
       selected={
@@ -449,6 +631,7 @@ exports[`Component: TypeaheadMultiple ui without placeholder: Component: Typeahe
           },
         ]
       }
+      paginationText="Display additional results..."
       renderToken={[Function]}
       selected={
         Array [

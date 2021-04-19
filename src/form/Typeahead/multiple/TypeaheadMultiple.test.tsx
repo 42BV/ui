@@ -29,7 +29,8 @@ describe('Component: TypeaheadMultiple', () => {
     loading = false,
     isOptionEnabled,
     isAsync = false,
-    pageSize
+    pageSize,
+    text
   }: {
     value?: User[];
     hasPlaceholder?: boolean;
@@ -38,6 +39,9 @@ describe('Component: TypeaheadMultiple', () => {
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
     pageSize?: number;
+    text?: {
+      paginationText?: string;
+    };
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -67,6 +71,7 @@ describe('Component: TypeaheadMultiple', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       pageSize,
+      text,
       error: 'Some error'
     };
 
@@ -126,6 +131,40 @@ describe('Component: TypeaheadMultiple', () => {
       expect(toJson(typeaheadMultiple)).toMatchSnapshot(
         'Component: TypeaheadMultiple => ui => async with the default pageSize of 10 options in the dropdown'
       );
+    });
+
+    test('with the default pagination text', () => {
+      const { typeaheadMultiple } = setup({});
+
+      expect(toJson(typeaheadMultiple)).toMatchSnapshot(
+        'Component: TypeaheadMultiple => ui => with the default pagination text'
+      );
+
+      const reactstrapTypeahead = typeaheadMultiple
+        .find('div')
+        .children()
+        .first();
+      expect(reactstrapTypeahead.props().paginationText).toBe(
+        'Display additional results...'
+      );
+    });
+
+    test('with a custom pagination text', () => {
+      const { typeaheadMultiple } = setup({
+        text: {
+          paginationText: 'Show more'
+        }
+      });
+
+      expect(toJson(typeaheadMultiple)).toMatchSnapshot(
+        'Component: TypeaheadMultiple => ui => with a custom pagination text'
+      );
+
+      const reactstrapTypeahead = typeaheadMultiple
+        .find('div')
+        .children()
+        .first();
+      expect(reactstrapTypeahead.props().paginationText).toBe('Show more');
     });
 
     test('without label', () => {

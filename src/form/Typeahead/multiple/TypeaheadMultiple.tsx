@@ -19,6 +19,18 @@ import Tag from '../../../core/Tag/Tag';
 import { FieldCompatible } from '../../types';
 import { useId } from '../../../hooks/useId/useId';
 import { useOptions } from '../../useOptions';
+import { t } from '../../../utilities/translation/translation';
+
+type Text = {
+  /**
+   * Text to show when more than 100 items are available
+   * in the dropdown. This is used by the pagination built
+   * into the Typeahead of reactstrap.
+   *
+   * Defaults to `Display additional results...`
+   */
+  paginationText?: string;
+};
 
 type Props<T> = FieldCompatible<T[], T[] | undefined> &
   FieldCompatibleWithPredeterminedOptions<T> & {
@@ -41,6 +53,11 @@ type Props<T> = FieldCompatible<T[], T[] | undefined> &
      * Defaults to `10`.
      */
     pageSize?: number;
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
   };
 
 /**
@@ -78,7 +95,8 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
     isOptionEqual,
     reloadOptions,
     isOptionEnabled = alwaysTrue,
-    pageSize = 10
+    pageSize = 10,
+    text = {}
   } = props;
 
   const [query, setQuery] = useState('');
@@ -155,6 +173,11 @@ export default function TypeaheadMultiple<T>(props: Props<T>) {
   const typeaheadProps: TypeaheadProps<TypeaheadOption<T>> = {
     id,
     filterBy: alwaysTrue,
+    paginationText: t({
+      key: 'TypeaheadMultiple.PAGINATION_TEXT',
+      fallback: 'Display additional results...',
+      overrideText: text.paginationText
+    }),
     multiple: true,
     placeholder,
     selected,

@@ -15,6 +15,18 @@ import withJarb from '../../withJarb/withJarb';
 import { TypeaheadOption } from '../types';
 import { optionToTypeaheadOption } from '../utils';
 import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
+import { t } from '../../../utilities/translation/translation';
+
+type Text = {
+  /**
+   * Text to show when more than 100 items are available
+   * in the dropdown. This is used by the pagination built
+   * into the Typeahead of reactstrap.
+   *
+   * Defaults to `Display additional results...`
+   */
+  paginationText?: string;
+};
 
 type Props<T> = FieldCompatible<T, T | undefined> &
   FieldCompatibleWithPredeterminedOptions<T> & {
@@ -37,6 +49,11 @@ type Props<T> = FieldCompatible<T, T | undefined> &
      * Defaults to `10`.
      */
     pageSize?: number;
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
   };
 
 /**
@@ -74,7 +91,8 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
     isOptionEqual,
     reloadOptions,
     isOptionEnabled = alwaysTrue,
-    pageSize = 10
+    pageSize = 10,
+    text = {}
   } = props;
 
   const [query, setQuery] = useState('');
@@ -140,6 +158,11 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
     options: typeaheadOptions,
     onChange: doOnChange,
     onFocus,
+    paginationText: t({
+      key: 'TypeaheadSingle.PAGINATION_TEXT',
+      fallback: 'Display additional results...',
+      overrideText: text.paginationText
+    }),
     inputProps: {
       className: classNames('form-control', {
         'is-invalid': valid === false

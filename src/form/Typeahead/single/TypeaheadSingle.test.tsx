@@ -32,7 +32,8 @@ describe('Component: TypeaheadSingle', () => {
     loading = false,
     isOptionEnabled,
     isAsync = false,
-    pageSize
+    pageSize,
+    text
   }: {
     value?: User;
     hasPlaceholder?: boolean;
@@ -41,6 +42,9 @@ describe('Component: TypeaheadSingle', () => {
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
     pageSize?: number;
+    text?: {
+      paginationText?: string;
+    };
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -70,7 +74,8 @@ describe('Component: TypeaheadSingle', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      pageSize
+      pageSize,
+      text
     };
 
     const labelProps = hasLabel
@@ -129,6 +134,40 @@ describe('Component: TypeaheadSingle', () => {
       expect(toJson(typeaheadSingle)).toMatchSnapshot(
         'Component: TypeaheadSingle => ui => without placeholder'
       );
+    });
+
+    test('with the default pagination text', () => {
+      const { typeaheadSingle } = setup({});
+
+      expect(toJson(typeaheadSingle)).toMatchSnapshot(
+        'Component: TypeaheadSingle => ui => with the default pagination text'
+      );
+
+      const reactstrapTypeahead = typeaheadSingle
+        .find('div')
+        .children()
+        .first();
+      expect(reactstrapTypeahead.props().paginationText).toBe(
+        'Display additional results...'
+      );
+    });
+
+    test('with a custom pagination text', () => {
+      const { typeaheadSingle } = setup({
+        text: {
+          paginationText: 'Show more'
+        }
+      });
+
+      expect(toJson(typeaheadSingle)).toMatchSnapshot(
+        'Component: TypeaheadSingle => ui => with a custom pagination text'
+      );
+
+      const reactstrapTypeahead = typeaheadSingle
+        .find('div')
+        .children()
+        .first();
+      expect(reactstrapTypeahead.props().paginationText).toBe('Show more');
     });
 
     test('without label', () => {
