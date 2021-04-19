@@ -192,6 +192,12 @@ Here is a JSON notation containing all keys and default translations:
   },
   "OrSeparator": {
     "OR": "OR"
+  },
+  "TypeaheadSingle": {
+    "PAGINATION_TEXT": "Display additional results..."
+  },
+  "TypeaheadMultiple": {
+    "PAGINATION_TEXT": "Display additional results..."
   }
 }
 ```

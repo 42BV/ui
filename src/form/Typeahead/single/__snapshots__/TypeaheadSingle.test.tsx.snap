@@ -68,6 +68,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
           },
         ]
       }
+      paginationText="Display additional results..."
       placeholder="Please provide your best friend"
       promptText="Type to search..."
       searchText="Searching..."
@@ -160,11 +161,186 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
           },
         ]
       }
+      paginationText="Display additional results..."
       placeholder="Please provide your best friend"
       promptText="Type to search..."
       searchText="Searching..."
       selected={Array []}
       useCache={true}
+    />
+  </div>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: TypeaheadSingle ui with a custom pagination text: Component: TypeaheadSingle => ui => with a custom pagination text 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best friend
+  </Label>
+  <div
+    className="showing-placeholder"
+  >
+    <ForwardRef
+      filterBy={[Function]}
+      id="bestFriend"
+      inputProps={
+        Object {
+          "className": "form-control",
+        }
+      }
+      multiple={false}
+      onChange={[Function]}
+      onInputChange={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
+      paginationText="Show more"
+      placeholder="Please provide your best friend"
+      selected={Array []}
+    />
+  </div>
+  Some error
+</FormGroup>
+`;
+
+exports[`Component: TypeaheadSingle ui with the default pagination text: Component: TypeaheadSingle => ui => with the default pagination text 1`] = `
+<FormGroup
+  className=""
+  tag="div"
+>
+  <Label
+    for="bestFriend"
+    tag="label"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    Best friend
+  </Label>
+  <div
+    className="showing-placeholder"
+  >
+    <ForwardRef
+      filterBy={[Function]}
+      id="bestFriend"
+      inputProps={
+        Object {
+          "className": "form-control",
+        }
+      }
+      multiple={false}
+      onChange={[Function]}
+      onInputChange={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "admin@42.nl",
+            "value": Object {
+              "active": true,
+              "email": "admin@42.nl",
+              "firstName": "Addie",
+              "id": 42,
+              "lastName": "Admin",
+              "roles": Array [
+                "ADMIN",
+              ],
+            },
+          },
+          Object {
+            "label": "coordinator@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "coordinator@42.nl",
+              "firstName": "Cordelia",
+              "id": 777,
+              "lastName": "Coordinator",
+              "roles": Array [
+                "ADMIN",
+                "USER",
+              ],
+            },
+          },
+          Object {
+            "label": "user@42.nl",
+            "value": Object {
+              "active": false,
+              "email": "user@42.nl",
+              "firstName": "Ulysses",
+              "id": 1337,
+              "lastName": "User",
+              "roles": Array [
+                "USER",
+              ],
+            },
+          },
+        ]
+      }
+      paginationText="Display additional results..."
+      placeholder="Please provide your best friend"
+      selected={Array []}
     />
   </div>
   Some error
@@ -249,6 +425,7 @@ exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle =>
           },
         ]
       }
+      paginationText="Display additional results..."
       placeholder="Please provide your best friend"
       selected={
         Array [
@@ -335,6 +512,7 @@ exports[`Component: TypeaheadSingle ui without label: Component: TypeaheadSingle
           },
         ]
       }
+      paginationText="Display additional results..."
       placeholder="Please provide your best friend"
       selected={
         Array [
@@ -437,6 +615,7 @@ exports[`Component: TypeaheadSingle ui without placeholder: Component: Typeahead
           },
         ]
       }
+      paginationText="Display additional results..."
       selected={
         Array [
           Object {
