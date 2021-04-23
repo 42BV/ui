@@ -193,7 +193,7 @@ export default function DateTimeInput(props: Props) {
           placeholder,
           invalid: valid === false || hasFormatError,
           id,
-          autocomplete: 'off'
+          autoComplete: 'off'
         }}
         open={mode === 'modal' ? false : undefined}
         renderInput={(props) =>
