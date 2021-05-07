@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Debug ui 1`] = `
+<CardOpenClose
+  content={[Function]}
+  header="DEBUG"
+  isOpen={true}
+  toggle={[Function]}
+/>
+`;
+
+exports[`Component: Debug ui 2`] = `undefined`;
