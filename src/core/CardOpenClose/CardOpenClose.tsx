@@ -3,16 +3,11 @@ import { OpenClose } from '../OpenClose/OpenClose';
 import { Card, CardHeader } from 'reactstrap';
 import classNames from 'classnames';
 
-type Props = {
+type BaseProps = {
   /**
    * The important details you always want to be displayed.
    */
   header: React.ReactNode;
-
-  /**
-   * The content that might be hidden in the collapsable body.
-   */
-  content: () => React.ReactNode;
 
   /**
    * Whether or not the collapsable body is opened.
@@ -32,18 +27,34 @@ type Props = {
   className?: string;
 };
 
+type PropsWithChildren = BaseProps & {
+  /**
+   * The content that might be hidden in the collapsable body.
+   */
+  children: () => React.ReactNode;
+};
+
+type DeprecatedPropsWithContent = BaseProps & {
+  /**
+   * The content that might be hidden in the collapsable body.
+   *
+   * @deprecated Please do not use the content property anymore.
+   * Instead use the children property.
+   * In version 4.0.0 the content property will be removed.
+   */
+  content: () => React.ReactNode;
+};
+
+type Props = PropsWithChildren | DeprecatedPropsWithContent;
+
 /**
  * CardOpenClose is a collapsable bootstrap card that you can use to only display
  * important details and hide other details in a collapsable body to prevent extra
  * long pages that cause the user to scroll a lot.
  */
-export function CardOpenClose({
-  header,
-  content,
-  isOpen,
-  toggle,
-  className
-}: Props) {
+export function CardOpenClose(props: Props) {
+  const { header, isOpen, toggle, className } = props;
+
   return (
     <Card className={classNames('my-2', className)}>
       <CardHeader
@@ -55,7 +66,15 @@ export function CardOpenClose({
         <OpenClose open={isOpen} />
       </CardHeader>
 
-      {isOpen ? content() : null}
+      {!isOpen
+        ? null
+        : propsHasChildren(props)
+        ? props.children()
+        : props.content()}
     </Card>
   );
+}
+
+function propsHasChildren(props: Props): props is PropsWithChildren {
+  return (props as PropsWithChildren).children !== undefined;
 }

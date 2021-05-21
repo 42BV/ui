@@ -2,11 +2,12 @@
 
 exports[`Component: Debug ui 1`] = `
 <CardOpenClose
-  content={[Function]}
   header="DEBUG"
   isOpen={true}
   toggle={[Function]}
-/>
+>
+  <Component />
+</CardOpenClose>
 `;
 
 exports[`Component: Debug ui 2`] = `undefined`;

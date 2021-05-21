@@ -12,7 +12,8 @@ storiesOf('core/CardOpenClose', module)
         header="You should see this!"
         isOpen={isOpen}
         toggle={() => setIsOpen(!isOpen)}
-        content={() => (
+      >
+        {() => (
           <iframe
             width="560"
             height="315"
@@ -23,6 +24,6 @@ storiesOf('core/CardOpenClose', module)
             allowFullScreen
           ></iframe>
         )}
-      />
+      </CardOpenClose>
     );
   });

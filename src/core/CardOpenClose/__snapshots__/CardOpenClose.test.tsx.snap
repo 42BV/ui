@@ -1,5 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: CardOpenClose deprecated: content closed: Component: CardOpenClose => deprecated: content => closed 1`] = `
+<Card
+  className="my-2"
+  tag="div"
+>
+  <CardHeader
+    className="d-flex justify-content-between align-content-center clickable"
+    onClick={[MockFunction]}
+    tag="div"
+  >
+    click this
+    <OpenClose
+      open={false}
+    />
+  </CardHeader>
+</Card>
+`;
+
+exports[`Component: CardOpenClose deprecated: content open: Component: CardOpenClose => deprecated: content => open 1`] = `
+<Card
+  className="my-2"
+  tag="div"
+>
+  <CardHeader
+    className="d-flex justify-content-between align-content-center clickable"
+    onClick={[MockFunction]}
+    tag="div"
+  >
+    click this
+    <OpenClose
+      open={true}
+    />
+  </CardHeader>
+  <p>
+    This is collapsable content that should not be included in the HTML when isOpen is false
+  </p>
+</Card>
+`;
+
 exports[`Component: CardOpenClose ui closed: Component: CardOpenClose => ui => closed 1`] = `
 <Card
   className="my-2"
