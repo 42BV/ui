@@ -44,7 +44,8 @@ export function Debug({ value, defaultOpen = true }: Props) {
       header="DEBUG"
       isOpen={isOpen}
       toggle={() => setIsOpen(!isOpen)}
-      content={() => <pre>{JSON.stringify(value, null, 2)}</pre>}
-    />
+    >
+      {() => <pre>{JSON.stringify(value, null, 2)}</pre>}
+    </CardOpenClose>
   );
 }

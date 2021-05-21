@@ -9,17 +9,14 @@ describe('Component: CardOpenClose', () => {
     const toggleSpy = jest.fn();
 
     const cardOpenClose = shallow(
-      <CardOpenClose
-        header="click this"
-        isOpen={isOpen}
-        toggle={toggleSpy}
-        content={() => (
+      <CardOpenClose header="click this" isOpen={isOpen} toggle={toggleSpy}>
+        {() => (
           <p>
             This is collapsable content that should not be included in the HTML
             when isOpen is false
           </p>
         )}
-      />
+      </CardOpenClose>
     );
 
     return { cardOpenClose, toggleSpy };
@@ -55,6 +52,41 @@ describe('Component: CardOpenClose', () => {
         .onClick();
 
       expect(toggleSpy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('deprecated: content', () => {
+    function setup({ isOpen }: { isOpen: boolean }) {
+      const cardOpenClose = shallow(
+        <CardOpenClose
+          header="click this"
+          isOpen={isOpen}
+          toggle={jest.fn()}
+          content={() => (
+            <p>
+              This is collapsable content that should not be included in the
+              HTML when isOpen is false
+            </p>
+          )}
+        />
+      );
+      return { cardOpenClose };
+    }
+
+    test('open', () => {
+      const { cardOpenClose } = setup({ isOpen: true });
+
+      expect(toJson(cardOpenClose)).toMatchSnapshot(
+        'Component: CardOpenClose => deprecated: content => open'
+      );
+    });
+
+    test('closed', () => {
+      const { cardOpenClose } = setup({ isOpen: false });
+
+      expect(toJson(cardOpenClose)).toMatchSnapshot(
+        'Component: CardOpenClose => deprecated: content => closed'
+      );
     });
   });
 });

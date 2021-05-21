@@ -16,7 +16,7 @@ describe('Component: Debug', () => {
     const { debug } = setup({});
 
     expect(toJson(debug)).toMatchSnapshot();
-    expect(toJson(debug.props().content())).toMatchSnapshot();
+    expect(toJson(debug.props().children())).toMatchSnapshot();
   });
 
   it('should start closed when open is false', () => {
