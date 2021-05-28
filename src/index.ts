@@ -50,6 +50,7 @@ export { Card } from './core/Card/Card';
 export { CardOpenClose } from './core/CardOpenClose/CardOpenClose';
 export { Tabs } from './core/Tabs/Tabs';
 export { Tab } from './core/Tabs/Tab/Tab';
+export { AsyncActionButton } from './core/AsyncActionButton/AsyncActionButton';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';

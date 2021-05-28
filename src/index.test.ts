@@ -7,6 +7,7 @@ describe('index', () => {
         "Addon": [Function],
         "AddonButton": [Function],
         "AddonIcon": [Function],
+        "AsyncActionButton": [Function],
         "AsyncContent": [Function],
         "AsyncList": [Function],
         "AsyncPage": [Function],
