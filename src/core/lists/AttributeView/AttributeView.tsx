@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import { ListGroupItem, ListGroupItemHeading } from 'reactstrap';
 
@@ -11,17 +12,21 @@ type Props = {
    * The value described by the label.
    */
   children: React.ReactNode;
+
+  /**
+   * Optional extra CSS class you want to add to the component.
+   * Useful for styling the component.
+   */
+  className?: string;
 };
 
 /**
  * AttributeView is used inside AttributeList to display object properties
  * in a clear and beautiful list.
  */
-export function AttributeView(props: Props) {
-  const { label, children } = props;
-
+export function AttributeView({ label, children, className }: Props) {
   return (
-    <ListGroupItem className="pl-0">
+    <ListGroupItem className={classnames('pl-0', className)}>
       <ListGroupItemHeading className="small text-primary">
         {label}
       </ListGroupItemHeading>

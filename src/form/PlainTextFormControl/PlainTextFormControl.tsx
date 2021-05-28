@@ -14,6 +14,12 @@ type Props = {
   children: React.ReactNode;
 
   /**
+   * Optional extra CSS class you want to add to the component.
+   * Useful for styling the component.
+   */
+  className?: string;
+
+  /**
    * Optional extra CSS class you want to add to the value.
    * Useful for styling the value.
    */
@@ -43,13 +49,14 @@ type Props = {
 export function PlainTextFormControl({
   label,
   children,
+  className,
   valueClassName,
   labelClassName
 }: Props) {
   const valueClasses = classNames('form-control-plaintext', valueClassName);
 
   return (
-    <FormGroup>
+    <FormGroup className={className}>
       {label ? <Label className={labelClassName}>{label}</Label> : null}
       <div className={valueClasses}>{children}</div>
     </FormGroup>
