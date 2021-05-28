@@ -62,6 +62,14 @@ export function resolveAfter<T>(value: T, after = 1000): Promise<T> {
   });
 }
 
+export function rejectAfter<T>(reason: T, after = 1000): Promise<T> {
+  return new Promise((resolve, reject) => {
+    return setTimeout(() => {
+      reject(reason);
+    }, after);
+  });
+}
+
 export function IsOptionEqualInfo() {
   return (
     <>

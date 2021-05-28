@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: AsyncActionButton ui in progress: Component: AsyncActionButton => ui => in progress 1`] = `
+<Button
+  inProgress={true}
+  onClick={[Function]}
+>
+  Resend confirmation
+</Button>
+`;
+
+exports[`Component: AsyncActionButton ui not in progress: Component: AsyncActionButton => ui => not in progess 1`] = `
+<Button
+  inProgress={false}
+  onClick={[Function]}
+>
+  Resend confirmation
+</Button>
+`;
