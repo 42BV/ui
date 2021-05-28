@@ -47,6 +47,12 @@ type Props = {
    * Text which is rendered inside the modal
    */
   modalText: React.ReactNode;
+
+  /**
+   * Optional extra CSS class you want to add to the component.
+   * Useful for styling the component.
+   */
+  className?: string;
 };
 
 /**
@@ -65,7 +71,8 @@ export default function ConfirmModal({
   label,
   cancelText,
   confirmText,
-  modalText
+  modalText,
+  className
 }: Props) {
   return (
     <OpenCloseModal
@@ -89,6 +96,7 @@ export default function ConfirmModal({
           fallback: 'Confirm'
         })
       }}
+      className={className}
     >
       {modalText}
     </OpenCloseModal>

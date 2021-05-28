@@ -56,6 +56,12 @@ export type Props = {
    * contains validation errors.
    */
   iconColor?: Color;
+
+  /**
+   * Optional extra CSS class you want to add to the component.
+   * Useful for styling the component.
+   */
+  className?: string;
 };
 
 /**
@@ -70,14 +76,15 @@ export function Tab({
   active,
   show = alwaysTrue,
   disabled,
-  iconColor
+  iconColor,
+  className
 }: Props) {
   if (!show()) {
     return null;
   }
 
   return (
-    <NavItem className={classNames({ disabled })}>
+    <NavItem className={classNames({ disabled }, className)}>
       <NavLink active={active} onClick={onClick} disabled={disabled}>
         <div className="d-flex p-2 justify-content-center">
           {icon ? (
