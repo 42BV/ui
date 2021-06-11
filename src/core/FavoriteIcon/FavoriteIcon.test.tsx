@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import { FavoriteIcon } from './FavoriteIcon';
-import { Color } from '../../core/types';
+import { Color } from '../types';
 
 describe('Component: FavoriteIcon', () => {
   function setup({

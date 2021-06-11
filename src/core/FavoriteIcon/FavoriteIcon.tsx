@@ -1,7 +1,7 @@
 import React from 'react';
-import Icon from '../../core/Icon/Icon';
+import Icon from '../Icon/Icon';
 import { useHover } from '../../hooks/useHover/useHover';
-import { Color } from '../../core/types';
+import { Color } from '../types';
 
 type FavoriteIconProps = {
   /**
