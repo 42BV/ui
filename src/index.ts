@@ -44,7 +44,7 @@ export { OrSeparator } from './core/OrSeparator/OrSeparator';
 export { AttributeList } from './core/lists/AttributeList/AttributeList';
 export { AttributeView } from './core/lists/AttributeView/AttributeView';
 export { OpenClose } from './core/OpenClose/OpenClose';
-export { FavoriteIcon } from './form/FavoriteIcon/FavoriteIcon';
+export { FavoriteIcon } from './core/FavoriteIcon/FavoriteIcon';
 export { Modal } from './core/Modal/Modal';
 export { Card } from './core/Card/Card';
 export { CardOpenClose } from './core/CardOpenClose/CardOpenClose';
