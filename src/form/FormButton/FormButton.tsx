@@ -33,7 +33,7 @@ export function FormButton({
   function onClick() {
     document
       .getElementById(formId)
-      ?.dispatchEvent(new Event(type, { cancelable: true }));
+      ?.dispatchEvent(new Event(type, { cancelable: true, bubbles: true }));
   }
 
   const buttonProps = { type, onClick, ...rest } as ButtonProps;

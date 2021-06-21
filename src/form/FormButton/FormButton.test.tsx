@@ -34,7 +34,7 @@ describe('Component: FormButton', () => {
 
       expect(element.dispatchEvent).toBeCalledTimes(1);
       expect(element.dispatchEvent).toBeCalledWith(
-        new Event('submit', { cancelable: true })
+        new Event('submit', { cancelable: true, bubbles: true })
       );
     });
 
