@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import {
-  Form,
   FinalForm,
   IsOptionEqualInfo,
   ReloadOptionsInfo,
@@ -13,7 +12,7 @@ import {
 } from '../../story-utils';
 
 import TypeaheadMultiple, { JarbTypeaheadMultiple } from './TypeaheadMultiple';
-import { Icon, Tooltip } from '../../..';
+import { Icon, Tooltip, Card } from '../../..';
 import Toggle from '../../../core/Toggle/Toggle';
 
 storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
@@ -23,7 +22,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadMultiple
           id="provinces"
           label="Provinces"
@@ -40,7 +39,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('async options', () => {
@@ -49,7 +48,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadMultiple
           id="provinces"
           label="Provinces"
@@ -66,7 +65,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
 
@@ -76,7 +75,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadMultiple
           id="provinces"
           label="Provinces"
@@ -99,7 +98,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
           Note: Beware of performance issues when setting the page size too
           high, that will cause the UX to deteriorate on smaller screens!
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('disabled options', () => {
@@ -108,7 +107,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadMultiple
           id="provinces"
           label="Provinces"
@@ -126,7 +125,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('custom isOptionEqual', () => {
@@ -135,7 +134,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadMultiple
           id="provinces"
           label="Provinces"
@@ -155,7 +154,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
         ) : null}
 
         <IsOptionEqualInfo />
-      </Form>
+      </Card>
     );
   })
   .add('using reloadOptions', () => {
@@ -165,7 +164,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <p>
           Limit to northern provinces
           <Toggle
@@ -197,7 +196,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
         ) : null}
 
         <ReloadOptionsInfo />
-      </Form>
+      </Card>
     );
   })
   .add('label & placeholder', () => {
@@ -206,7 +205,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <h3>Without label</h3>
 
         <TypeaheadMultiple
@@ -259,7 +258,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

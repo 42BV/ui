@@ -1,9 +1,8 @@
 import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
-import { Icon, pageOf, Tooltip } from '../../..';
+import { Icon, pageOf, Tooltip, Card } from '../../..';
 import {
   FinalForm,
-  Form,
   IsOptionEqualInfo,
   nonExistingProvince,
   Province,
@@ -21,7 +20,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
     );
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadSingle<Province>
           id="province"
           label="Province"
@@ -33,14 +32,14 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('async options', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadSingle<Province>
           id="province"
           label="Province"
@@ -52,7 +51,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('async options - limited pageSize', () => {
@@ -61,7 +60,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
     );
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadSingle<Province>
           id="province"
           label="Province"
@@ -79,7 +78,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
           Note: Beware of performance issues when setting the page size too
           high, that will cause the UX to deteriorate on smaller screens!
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('disabled options', () => {
@@ -88,7 +87,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
     );
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadSingle<Province>
           id="province"
           label="Province"
@@ -101,14 +100,14 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('custom isOptionEqual', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadSingle<Province>
           id="province"
           label="Province"
@@ -123,7 +122,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
         {value ? <p>Your chosen province is: {value.label}</p> : null}
 
         <IsOptionEqualInfo />
-      </Form>
+      </Card>
     );
   })
   .add('using reloadOptions', () => {
@@ -137,7 +136,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
     };
 
     return (
-      <Form>
+      <Card className="m-2">
         <TypeaheadSingle
           id="brand"
           label="Brand"
@@ -169,7 +168,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
         {model ? <p>Your chosen model is: {model}</p> : null}
 
         <ReloadOptionsInfo />
-      </Form>
+      </Card>
     );
   })
   .add('label & placeholder', () => {
@@ -178,7 +177,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
     );
 
     return (
-      <Form>
+      <Card className="m-2">
         <h3>Without label</h3>
 
         <TypeaheadSingle<Province>
@@ -226,7 +225,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
         <hr />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

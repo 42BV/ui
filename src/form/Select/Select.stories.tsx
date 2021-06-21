@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/react';
 import Select, { JarbSelect } from './Select';
 import {
   FinalForm,
-  Form,
   IsOptionEqualInfo,
   KeyForOptionInfo,
   nonExistingProvince,
@@ -14,7 +13,7 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../story-utils';
-import { Icon, pageOf, Tooltip } from '../..';
+import { Icon, pageOf, Tooltip, Card } from '../..';
 
 storiesOf('Form/Select', module)
   .add('predefined options', () => {
@@ -23,7 +22,7 @@ storiesOf('Form/Select', module)
     );
 
     return (
-      <Form>
+      <Card className="m-2">
         <Select<Province>
           id="province"
           label="Province"
@@ -35,14 +34,14 @@ storiesOf('Form/Select', module)
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('async options', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <Select<Province>
           id="province"
           label="Province"
@@ -60,7 +59,7 @@ storiesOf('Form/Select', module)
           options will be displayed. If you want to display more than 100
           options, you should use the ModalPickerSingle.
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('disabled options', () => {
@@ -69,7 +68,7 @@ storiesOf('Form/Select', module)
     );
 
     return (
-      <Form>
+      <Card className="m-2">
         <Select<Province>
           id="province"
           label="Province"
@@ -82,14 +81,14 @@ storiesOf('Form/Select', module)
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('custom isOptionEqual', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <Select<Province>
           id="province"
           label="Province"
@@ -104,14 +103,14 @@ storiesOf('Form/Select', module)
         {value ? <p>Your chosen province is: {value.label}</p> : null}
 
         <IsOptionEqualInfo />
-      </Form>
+      </Card>
     );
   })
   .add('custom keyForOption', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <Select<Province>
           id="province"
           label="Province"
@@ -126,7 +125,7 @@ storiesOf('Form/Select', module)
         {value ? <p>Your chosen province is: {value.label}</p> : null}
 
         <KeyForOptionInfo />
-      </Form>
+      </Card>
     );
   })
   .add('using reloadOptions', () => {
@@ -140,7 +139,7 @@ storiesOf('Form/Select', module)
     };
 
     return (
-      <Form>
+      <Card className="m-2">
         <Select
           id="brand"
           label="Brand"
@@ -172,7 +171,7 @@ storiesOf('Form/Select', module)
         {model ? <p>Your chosen model is: {model}</p> : null}
 
         <ReloadOptionsInfo />
-      </Form>
+      </Card>
     );
   })
   .add('label & placeholder', () => {
@@ -181,7 +180,7 @@ storiesOf('Form/Select', module)
     );
 
     return (
-      <Form>
+      <Card className="m-2">
         <h3>Without label</h3>
 
         <Select<Province>
@@ -229,7 +228,7 @@ storiesOf('Form/Select', module)
         <hr />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

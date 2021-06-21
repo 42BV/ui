@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import IconPicker, { JarbIconPicker } from './IconPicker';
-import { FinalForm, Form } from '../story-utils';
-import { IconType, Tooltip, Icon } from '../../';
+import { FinalForm } from '../story-utils';
+import { IconType, Tooltip, Icon, Card } from '../../';
 
 function is3DRotation(value: IconType) {
   return value === '3d_rotation' ? undefined : 'Not "3d_rotation"';
@@ -15,7 +15,7 @@ storiesOf('Form/IconPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <IconPicker
             id="icon"
             label="Icon"
@@ -23,7 +23,7 @@ storiesOf('Form/IconPicker', module)
             value={value}
             onChange={setValue}
           />
-        </Form>
+        </Card>
       </div>
     );
   })
@@ -31,14 +31,14 @@ storiesOf('Form/IconPicker', module)
     const [value, setValue] = useState<IconType | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <IconPicker
           id="icon"
           placeholder="Please select your icon"
           value={value}
           onChange={setValue}
         />
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
@@ -46,7 +46,7 @@ storiesOf('Form/IconPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <IconPicker
             id="icon"
             label={
@@ -64,7 +64,7 @@ storiesOf('Form/IconPicker', module)
             value={value}
             onChange={setValue}
           />
-        </Form>
+        </Card>
       </div>
     );
   })
@@ -73,7 +73,7 @@ storiesOf('Form/IconPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <IconPicker
             id="icon"
             placeholder="Please select your icon"
@@ -81,7 +81,7 @@ storiesOf('Form/IconPicker', module)
             value={value}
             onChange={setValue}
           />
-        </Form>
+        </Card>
       </div>
     );
   })
@@ -90,7 +90,7 @@ storiesOf('Form/IconPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <IconPicker
             id="icon"
             placeholder="Please select your icon"
@@ -98,7 +98,7 @@ storiesOf('Form/IconPicker', module)
             onChange={setValue}
             canClear={false}
           />
-        </Form>
+        </Card>
       </div>
     );
   })

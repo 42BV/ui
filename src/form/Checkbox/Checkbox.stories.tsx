@@ -3,10 +3,11 @@ import { storiesOf } from '@storybook/react';
 import { Alert } from 'reactstrap';
 
 import Checkbox, { JarbCheckbox } from './Checkbox';
-import { FinalForm, Form } from '../story-utils';
+import { FinalForm } from '../story-utils';
 
 import { Icon } from '../../core/Icon';
 import Tooltip from '../../core/Tooltip/Tooltip';
+import { Card } from '../../core/Card/Card';
 
 function isSClass(value?: boolean) {
   if (value !== false) {
@@ -21,7 +22,7 @@ storiesOf('Form/Checkbox', module)
     const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <Checkbox
           id="isSClass"
           label="Is S class hero"
@@ -36,14 +37,14 @@ storiesOf('Form/Checkbox', module)
             caliber
           </Alert>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('basic with indeterminate', () => {
     const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <Checkbox
           id="isSClass"
           label="Is S class hero"
@@ -59,14 +60,14 @@ storiesOf('Form/Checkbox', module)
             caliber
           </Alert>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('without placeholder', () => {
     const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <Checkbox
           id="isSClass"
           label="Is S class hero"
@@ -80,14 +81,14 @@ storiesOf('Form/Checkbox', module)
             caliber
           </Alert>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
     const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <Checkbox
           id="isSClass"
           label={
@@ -112,7 +113,7 @@ storiesOf('Form/Checkbox', module)
             caliber
           </Alert>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

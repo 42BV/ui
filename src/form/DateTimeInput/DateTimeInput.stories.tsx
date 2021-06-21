@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 import React, { Fragment, useState } from 'react';
 import { Form as ReactFinalForm } from 'react-final-form';
 import { Col, Row } from 'reactstrap';
-import { Icon, SubmitButton, Tooltip } from '../..';
-import { FinalForm, Form } from '../story-utils';
+import { Icon, SubmitButton, Tooltip, Card } from '../..';
+import { FinalForm } from '../story-utils';
 import { isDateAfter, isDateBefore, isDateBetween } from './checkers';
 import DateTimeInput, { JarbDateTimeInput } from './DateTimeInput';
 import {
@@ -18,7 +18,7 @@ storiesOf('Form/DateTimeInput', module)
     const [value, setValue] = useState<Date | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m2">
         <DateTimeInput
           id="dateOfBirth"
           label="Date of birth"
@@ -36,14 +36,14 @@ storiesOf('Form/DateTimeInput', module)
           Date and time of birth is:
           <pre>{value?.toISOString()}</pre>
         </div>
-      </Form>
+      </Card>
     );
   })
   .add('date', () => {
     const [value, setValue] = useState<Date | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m2">
         <DateTimeInput
           id="dateOfBirth"
           label="Date of birth"
@@ -61,14 +61,14 @@ storiesOf('Form/DateTimeInput', module)
           Date of birth is:
           {value?.toISOString()}
         </div>
-      </Form>
+      </Card>
     );
   })
   .add('time', () => {
     const [value, setValue] = useState<Date | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m2">
         <DateTimeInput
           id="startTime"
           label="Start time"
@@ -88,14 +88,14 @@ storiesOf('Form/DateTimeInput', module)
         </div>
 
         <p>Note: that a time will always come with a date</p>
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
     const [value, setValue] = useState<Date | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m2">
         <DateTimeInput
           id="dateOfBirth"
           label={
@@ -124,14 +124,14 @@ storiesOf('Form/DateTimeInput', module)
           Date and time of birth is:
           <pre>{value?.toISOString()}</pre>
         </div>
-      </Form>
+      </Card>
     );
   })
   .add('open in modal', () => {
     const [value, setValue] = useState<Date | undefined>();
 
     return (
-      <Form>
+      <Card className="m2">
         <DateTimeInput
           id="dateOfBirth"
           label="Date of birth"
@@ -150,7 +150,7 @@ storiesOf('Form/DateTimeInput', module)
           Date and time of birth is:
           <pre>{value?.toISOString()}</pre>
         </div>
-      </Form>
+      </Card>
     );
   })
   .add('range', () => {
@@ -158,7 +158,7 @@ storiesOf('Form/DateTimeInput', module)
     const [end, setEnd] = useState<Date | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m2">
         <DateTimeInput
           id="start"
           label="Start"
@@ -197,7 +197,7 @@ storiesOf('Form/DateTimeInput', module)
           date that is out of range should be validated using validators,
           preferably using the JarbDateTimeInput.
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('range inclusive', () => {
@@ -205,7 +205,7 @@ storiesOf('Form/DateTimeInput', module)
     const [end, setEnd] = useState<Date | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m2">
         <DateTimeInput
           id="start"
           label="Start"
@@ -242,7 +242,7 @@ storiesOf('Form/DateTimeInput', module)
           This example shows ranges can also be inclusive this allows the start
           and end date to be the same
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {
@@ -328,7 +328,7 @@ storiesOf('Form/DateTimeInput', module)
           <Fragment>
             <Row>
               <Col lg={6}>
-                <Form>
+                <Card className="m2">
                   <JarbDateTimeInput
                     id="start"
                     name="start"
@@ -409,7 +409,7 @@ storiesOf('Form/DateTimeInput', module)
                   >
                     Submit
                   </SubmitButton>
-                </Form>
+                </Card>
               </Col>
               <Col lg={6}>
                 <h2>Values</h2>
@@ -433,7 +433,7 @@ storiesOf('Form/DateTimeInput', module)
           <Fragment>
             <Row>
               <Col lg={6}>
-                <Form>
+                <Card className="m2">
                   <JarbDateTimeInput
                     id="start"
                     name="start"
@@ -525,7 +525,7 @@ storiesOf('Form/DateTimeInput', module)
                   >
                     Submit
                   </SubmitButton>
-                </Form>
+                </Card>
               </Col>
               <Col lg={6}>
                 <h2>Values</h2>

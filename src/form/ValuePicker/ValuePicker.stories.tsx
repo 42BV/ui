@@ -7,9 +7,9 @@ import { User } from '../../test/types';
 
 import ValuePicker, { JarbValuePicker } from './ValuePicker';
 
-import { FinalForm, Form } from '../story-utils';
+import { FinalForm } from '../story-utils';
 import Button from '../../core/Button/Button';
-import { Tooltip, Icon } from '../..';
+import { Tooltip, Icon, Card } from '../..';
 
 /*
   Storing users here instead of calling the fixtures again so
@@ -73,7 +73,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
@@ -91,7 +91,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           Small
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
-      </Form>
+      </Card>
     );
   })
   .add('custom isOptionEqual', () => {
@@ -102,7 +102,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
@@ -121,7 +121,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           Small
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
-      </Form>
+      </Card>
     );
   })
   .add('without label', () => {
@@ -132,7 +132,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
@@ -149,7 +149,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           Small
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
@@ -160,7 +160,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
@@ -188,7 +188,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           Small
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
-      </Form>
+      </Card>
     );
   })
   .add('with icon', () => {
@@ -197,7 +197,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     const promise = sizes['large'];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
@@ -211,7 +211,7 @@ storiesOf('Form/ValuePicker/multiple', module)
         />
 
         <p>The icon only works when there are more than 10 options.</p>
-      </Form>
+      </Card>
     );
   })
   .add('without clear button', () => {
@@ -220,7 +220,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     const promise = sizes['large'];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
@@ -237,7 +237,7 @@ storiesOf('Form/ValuePicker/multiple', module)
           <strong>Disclaimer:</strong> canClear has no effect on small option
           sets (1-10 options) because checkboxes can be unselected.
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {
@@ -281,7 +281,7 @@ storiesOf('Form/ValuePicker/single', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
@@ -302,7 +302,7 @@ storiesOf('Form/ValuePicker/single', module)
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
-      </Form>
+      </Card>
     );
   })
   .add('custom isOptionEqual', () => {
@@ -313,7 +313,7 @@ storiesOf('Form/ValuePicker/single', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
@@ -335,7 +335,7 @@ storiesOf('Form/ValuePicker/single', module)
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
-      </Form>
+      </Card>
     );
   })
   .add('without label', () => {
@@ -346,7 +346,7 @@ storiesOf('Form/ValuePicker/single', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
@@ -366,7 +366,7 @@ storiesOf('Form/ValuePicker/single', module)
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
@@ -377,7 +377,7 @@ storiesOf('Form/ValuePicker/single', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
@@ -408,7 +408,7 @@ storiesOf('Form/ValuePicker/single', module)
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
-      </Form>
+      </Card>
     );
   })
   .add('with icon', () => {
@@ -417,7 +417,7 @@ storiesOf('Form/ValuePicker/single', module)
     const promise = sizes['large'];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
@@ -431,7 +431,7 @@ storiesOf('Form/ValuePicker/single', module)
         />
 
         <p>The icon only works when there are more than 10 options.</p>
-      </Form>
+      </Card>
     );
   })
   .add('without clear button', () => {
@@ -442,7 +442,7 @@ storiesOf('Form/ValuePicker/single', module)
     const promise = sizes[size];
 
     return (
-      <Form>
+      <Card className="m-2">
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
@@ -466,7 +466,7 @@ storiesOf('Form/ValuePicker/single', module)
           sets (4-10 options) because the select dropdown has a placeholder
           option to clear the value.
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

@@ -1,23 +1,16 @@
 import React, { Fragment } from 'react';
 import { Form as ReactFinalForm } from 'react-final-form';
-import { Row, Col, Card, CardBody } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import SubmitButton from '../core/SubmitButton/SubmitButton';
 import { action } from '@storybook/addon-actions';
 import { Page } from '@42.nl/spring-connect';
 import { FetchOptionsCallbackConfig } from './option';
 import { pageOf } from '../utilities/page/page';
+import { Card } from '..';
 
 type Props = {
   children: React.ReactNode;
 };
-
-export function Form({ children }: Props) {
-  return (
-    <Card className="m-2">
-      <CardBody>{children}</CardBody>
-    </Card>
-  );
-}
 
 export function FinalForm({ children }: Props) {
   return (
@@ -29,7 +22,7 @@ export function FinalForm({ children }: Props) {
         <Fragment>
           <Row>
             <Col lg={6}>
-              <Form>
+              <Card className="m-2">
                 {children}
 
                 <SubmitButton
@@ -39,7 +32,7 @@ export function FinalForm({ children }: Props) {
                 >
                   Submit
                 </SubmitButton>
-              </Form>
+              </Card>
             </Col>
             <Col lg={6}>
               <h2>Values</h2>

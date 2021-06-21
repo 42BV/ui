@@ -16,7 +16,6 @@ import ModalPickerMultiple, {
 
 import {
   FinalForm,
-  Form,
   IsOptionEqualInfo,
   KeyForOptionInfo,
   nonExistingProvince,
@@ -26,7 +25,7 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../../story-utils';
-import { Icon, Toggle, Tooltip } from '../../..';
+import { Icon, Toggle, Tooltip, Card } from '../../..';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import Avatar from '../../../core/Avatar/Avatar';
 import classNames from 'classnames';
@@ -38,7 +37,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
           label="Provinces"
@@ -55,7 +54,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('show 5 options per page', () => {
@@ -64,7 +63,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
           label="Provinces"
@@ -87,7 +86,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           Note: Beware of performance issues when setting the page size too
           high, that will cause the UX to deteriorate on smaller screens!
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('async options', () => {
@@ -96,7 +95,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
           label="Provinces"
@@ -113,7 +112,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('disabled options', () => {
@@ -122,7 +121,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
           label="Provinces"
@@ -140,7 +139,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('custom isOptionEqual', () => {
@@ -149,7 +148,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
           label="Provinces"
@@ -169,7 +168,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
         ) : null}
 
         <IsOptionEqualInfo />
-      </Form>
+      </Card>
     );
   })
   .add('custom keyForOption', () => {
@@ -178,7 +177,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
           label="Provinces"
@@ -198,7 +197,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
         ) : null}
 
         <KeyForOptionInfo />
-      </Form>
+      </Card>
     );
   })
   .add('using reloadOptions', () => {
@@ -208,7 +207,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <p>
           Limit to northern provinces
           <Toggle
@@ -240,7 +239,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
         ) : null}
 
         <ReloadOptionsInfo />
-      </Form>
+      </Card>
     );
   })
   .add('using reloadOptions', () => {
@@ -250,7 +249,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <p>
           Limit to northern provinces
           <Toggle
@@ -282,14 +281,14 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
         ) : null}
 
         <ReloadOptionsInfo />
-      </Form>
+      </Card>
     );
   })
   .add('with extra add button', () => {
     const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple<User>
           id="bestFriend"
           label="Best friend"
@@ -315,7 +314,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           value={value}
           onChange={setValue}
         />
-      </Form>
+      </Card>
     );
   })
   .add('without search', () => {
@@ -324,7 +323,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
           label="Provinces"
@@ -335,14 +334,14 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           value={value}
           onChange={setValue}
         />
-      </Form>
+      </Card>
     );
   })
   .add('custom renderOptions', () => {
     const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple<User>
           id="bestFriend"
           label="Best friend"
@@ -377,14 +376,14 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           value={value}
           onChange={setValue}
         />
-      </Form>
+      </Card>
     );
   })
   .add('custom renderValue', () => {
     const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple<User>
           id="bestFriend"
           label="Best friend"
@@ -413,14 +412,14 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
             ) : null;
           }}
         />
-      </Form>
+      </Card>
     );
   })
   .add('button alignment', () => {
     const [value, setValue] = useState<User[] | undefined>([]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple<User>
           id="bestFriend"
           label="Default"
@@ -453,7 +452,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           onChange={setValue}
           alignButton="right"
         />
-      </Form>
+      </Card>
     );
   })
   .add('labels', () => {
@@ -462,7 +461,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <h3>Without label</h3>
 
         <ModalPickerMultiple
@@ -511,7 +510,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('with icon', () => {
@@ -520,7 +519,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <h3>Without icon</h3>
 
         <ModalPickerMultiple
@@ -559,7 +558,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('without clear button', () => {
@@ -568,7 +567,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
           placeholder="Please select your provinces"
@@ -578,7 +577,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           onChange={setValue}
           canClear={false}
         />
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

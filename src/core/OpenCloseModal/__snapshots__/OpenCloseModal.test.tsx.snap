@@ -12,14 +12,14 @@ exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseM
       >
         Stop please
       </Button>
-      <Button
+      <SubmitButton
         className="ml-1"
-        color="primary"
         icon="save"
+        inProgress={false}
         onClick={[Function]}
       >
         Select me
-      </Button>
+      </SubmitButton>
     </React.Fragment>
   }
   header="Choose something"
@@ -54,15 +54,14 @@ exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => 
       >
         Cancel
       </Button>
-      <Button
+      <SubmitButton
         className="ml-1"
-        color="primary"
         icon="save"
         inProgress={true}
         onClick={[Function]}
       >
         Save
-      </Button>
+      </SubmitButton>
     </React.Fragment>
   }
   header="Choose something"
@@ -97,14 +96,14 @@ exports[`Component: OpenCloseModal ui sans sticky footer: Component: OpenCloseMo
       >
         Cancel
       </Button>
-      <Button
+      <SubmitButton
         className="ml-1"
-        color="primary"
         icon="save"
+        inProgress={false}
         onClick={[Function]}
       >
         Save
-      </Button>
+      </SubmitButton>
     </React.Fragment>
   }
   header="Choose something"
@@ -139,14 +138,14 @@ exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => u
       >
         Cancel
       </Button>
-      <Button
+      <SubmitButton
         className="ml-1"
-        color="primary"
         icon="save"
+        inProgress={false}
         onClick={[Function]}
       >
         Save
-      </Button>
+      </SubmitButton>
     </React.Fragment>
   }
   header="Choose something"
@@ -203,14 +202,14 @@ exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal =
       >
         Cancel
       </Button>
-      <Button
+      <SubmitButton
         className="ml-1"
-        color="primary"
         icon="save"
+        inProgress={false}
         onClick={[Function]}
       >
         Save
-      </Button>
+      </SubmitButton>
     </React.Fragment>
   }
   onClose={[MockFunction]}

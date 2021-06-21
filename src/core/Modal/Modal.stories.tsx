@@ -8,6 +8,7 @@ import { Modal } from './Modal';
 import Button from '../Button/Button';
 import { TotalForm } from '../../form/FormExample.stories';
 import { range } from 'lodash';
+import SubmitButton from '../SubmitButton/SubmitButton';
 
 storiesOf('core/Modal', module)
   .add('basic', () => {
@@ -175,18 +176,21 @@ export function ModalForm() {
 
       {isOpen ? (
         <Form onSubmit={onSave}>
-          {({ submitting, handleSubmit }) => (
+          {(formRenderProps) => (
             <Modal
               onClose={onClose}
               header="Form example"
               footer={
-                <Button onClick={handleSubmit} inProgress={submitting}>
+                <SubmitButton
+                  onClick={formRenderProps.handleSubmit}
+                  inProgress={formRenderProps.submitting}
+                >
                   Save
-                </Button>
+                </SubmitButton>
               }
               size="lg"
             >
-              <TotalForm hasSubmit={false} />
+              <TotalForm hasSubmit={false} formRenderProps={formRenderProps} />
             </Modal>
           )}
         </Form>
