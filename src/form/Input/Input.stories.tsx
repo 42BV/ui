@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Input, { JarbInput } from './Input';
-import { Form, FinalForm } from '../story-utils';
-import { Tooltip, Icon, Addon, AddonIcon, AddonButton } from '../..';
+import { FinalForm } from '../story-utils';
+import { Tooltip, Icon, Addon, AddonIcon, AddonButton, Card } from '../..';
 
 function isSuperman(value: string) {
   return value === 'superman' ? undefined : 'Not "superman"';
@@ -13,19 +13,19 @@ function isSuperman(value: string) {
 storiesOf('Form/Input', module)
   .add('basic', () => {
     return (
-      <Form>
+      <Card className="m2">
         <Input
           id="firstName"
           label="First name"
           placeholder="Please enter your first name"
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('with addon', () => {
     return (
-      <Form>
+      <Card className="m2">
         <Input
           id="firstName"
           label="First name"
@@ -62,23 +62,23 @@ storiesOf('Form/Input', module)
             </AddonButton>
           }
         />
-      </Form>
+      </Card>
     );
   })
   .add('without placeholder', () => {
     return (
-      <Form>
+      <Card className="m2">
         <Input
           id="firstName"
           label="First name"
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('mask', () => {
     return (
-      <Form>
+      <Card className="m2">
         <Input
           id="zipcode"
           label="Zipcode"
@@ -93,22 +93,22 @@ storiesOf('Form/Input', module)
           </a>
           for more example on how to use mask
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('without label', () => {
     return (
-      <Form>
+      <Card className="m2">
         <Input
           placeholder="Please enter your first name"
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
     return (
-      <Form>
+      <Card className="m2">
         <Input
           id="firstName"
           label={
@@ -125,7 +125,7 @@ storiesOf('Form/Input', module)
           placeholder="Please enter your first name"
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

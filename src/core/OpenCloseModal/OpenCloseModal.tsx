@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button/Button';
+import SubmitButton from '../SubmitButton/SubmitButton';
 import { t } from '../../utilities/translation/translation';
 import { BootstrapSize } from '../types';
 import { IconType } from '../Icon';
@@ -160,10 +161,9 @@ export function OpenCloseModal(props: Props) {
                 fallback: 'Cancel'
               })}
             </Button>
-            <Button
+            <SubmitButton
               className="ml-1"
-              color="primary"
-              inProgress={inProgress}
+              inProgress={!!inProgress}
               icon={saveIcon}
               onClick={() => onSave()}
             >
@@ -172,7 +172,7 @@ export function OpenCloseModal(props: Props) {
                 key: 'OpenCloseModal.SAVE',
                 fallback: 'Save'
               })}
-            </Button>
+            </SubmitButton>
           </>
         ) : undefined
       }

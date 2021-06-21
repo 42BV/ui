@@ -6,7 +6,6 @@ import CheckboxMultipleSelect, {
 } from './CheckboxMultipleSelect';
 import {
   FinalForm,
-  Form,
   IsOptionEqualInfo,
   KeyForOptionInfo,
   nonExistingProvince,
@@ -15,7 +14,7 @@ import {
   provinces,
   ReloadOptionsInfo
 } from '../story-utils';
-import { Icon, Toggle, Tooltip } from '../..';
+import { Card, Icon, Toggle, Tooltip } from '../..';
 
 storiesOf('Form/CheckboxMultipleSelect', module)
   .add('predefined options', () => {
@@ -24,7 +23,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <CheckboxMultipleSelect
           id="provinces"
           label="Provinces"
@@ -41,7 +40,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('async options', () => {
@@ -50,7 +49,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <CheckboxMultipleSelect
           id="provinces"
           label="Provinces"
@@ -73,7 +72,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
           options will be displayed. If you want to display more than 100
           options, you should use the ModalPickerMultiple.
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('disabled options', () => {
@@ -82,7 +81,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <CheckboxMultipleSelect
           id="provinces"
           label="Provinces"
@@ -100,7 +99,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('custom isOptionEqual', () => {
@@ -109,7 +108,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <CheckboxMultipleSelect
           id="provinces"
           label="Provinces"
@@ -129,7 +128,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
         ) : null}
 
         <IsOptionEqualInfo />
-      </Form>
+      </Card>
     );
   })
   .add('custom keyForOption', () => {
@@ -138,7 +137,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <CheckboxMultipleSelect
           id="provinces"
           label="Provinces"
@@ -158,7 +157,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
         ) : null}
 
         <KeyForOptionInfo />
-      </Form>
+      </Card>
     );
   })
   .add('using reloadOptions', () => {
@@ -168,7 +167,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <p>
           Limit to northern provinces
           <Toggle
@@ -200,7 +199,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
         ) : null}
 
         <ReloadOptionsInfo />
-      </Form>
+      </Card>
     );
   })
   .add('optionsShouldAlwaysContainValue', () => {
@@ -242,7 +241,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <CheckboxMultipleSelect
           key="car"
           id="carPermission"
@@ -327,7 +326,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
           the selected CREATE options would appear in each form element, and not
           just the one for the group.
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('label & placeholder', () => {
@@ -336,7 +335,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     ]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <h3>Without label</h3>
 
         <CheckboxMultipleSelect
@@ -389,7 +388,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
             {value.map((province) => province.label).join(', ')}
           </p>
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('horizontal', () => {
@@ -399,7 +398,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <CheckboxMultipleSelect
             id="provinces"
             label="Provinces"
@@ -422,7 +421,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
             <strong>Disclaimer:</strong> horizontal mode works best when there
             are not too many items
           </p>
-        </Form>
+        </Card>
       </div>
     );
   })

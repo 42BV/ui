@@ -3,14 +3,14 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import ImageUpload, { JarbImageUpload, requireImage } from './ImageUpload';
-import { Form, FinalForm } from '../story-utils';
-import { Tooltip, Icon } from '../..';
+import { FinalForm } from '../story-utils';
+import { Tooltip, Icon, Card } from '../..';
 import FileInput from '../FileInput/FileInput';
 
 storiesOf('Form/ImageUpload', module)
   .add('rect', () => {
     return (
-      <Form>
+      <Card className="m2">
         <ImageUpload
           id="image-uploader"
           label="Profile photo"
@@ -21,12 +21,12 @@ storiesOf('Form/ImageUpload', module)
           }}
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('circle', () => {
     return (
-      <Form>
+      <Card className="m2">
         <ImageUpload
           id="image-uploader"
           label="Profile photo"
@@ -36,12 +36,12 @@ storiesOf('Form/ImageUpload', module)
           }}
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('without label', () => {
     return (
-      <Form>
+      <Card className="m2">
         <ImageUpload
           id="image-uploader"
           crop={{
@@ -51,12 +51,12 @@ storiesOf('Form/ImageUpload', module)
           }}
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
     return (
-      <Form>
+      <Card className="m2">
         <ImageUpload
           id="image-uploader"
           label={
@@ -78,13 +78,13 @@ storiesOf('Form/ImageUpload', module)
           }}
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('File as initial value', () => {
     const [file, setFile] = useState<File | null>();
     return (
-      <Form>
+      <Card className="m2">
         <FileInput
           id="image-uploader"
           label="Choose an image"
@@ -104,7 +104,7 @@ storiesOf('Form/ImageUpload', module)
             onChange={setFile}
           />
         ) : null}
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

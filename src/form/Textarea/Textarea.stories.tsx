@@ -3,47 +3,47 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Textarea, { JarbTextarea } from './Textarea';
-import { FinalForm, Form } from '../story-utils';
-import { Tooltip, Icon } from '../..';
+import { FinalForm } from '../story-utils';
+import { Tooltip, Icon, Card } from '../..';
 
 storiesOf('Form/Textarea', module)
   .add('basic', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <Textarea
           id="description"
           label="Description"
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('without placeholder', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <Textarea
           id="description"
           label="Description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('without label', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <Textarea
           id="description"
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <Textarea
           id="description"
           label={
@@ -60,7 +60,7 @@ storiesOf('Form/Textarea', module)
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/react';
 import ModalPickerSingle, { JarbModalPickerSingle } from './ModalPickerSingle';
 import {
   FinalForm,
-  Form,
   IsOptionEqualInfo,
   KeyForOptionInfo,
   Province,
@@ -16,7 +15,7 @@ import {
 import { pageWithContentAndExactSize } from '../../../test/utils';
 import { adminUser, coordinatorUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
-import { Icon, pageOf, Tooltip } from '../../..';
+import { Icon, pageOf, Tooltip, Card } from '../../..';
 import Avatar from '../../../core/Avatar/Avatar';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import classNames from 'classnames';
@@ -26,7 +25,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     const [value, setValue] = useState<Province | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<Province>
           id="province"
           label="Province"
@@ -38,14 +37,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('show 5 options per page', () => {
     const [value, setValue] = useState<Province | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<Province>
           id="province"
           label="Province"
@@ -63,14 +62,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           Note: Beware of performance issues when setting the page size too
           high, that will cause the UX to deteriorate on smaller screens!
         </p>
-      </Form>
+      </Card>
     );
   })
   .add('async options', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<Province>
           id="province"
           label="Province"
@@ -82,14 +81,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('disabled options', () => {
     const [value, setValue] = useState<Province | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<Province>
           id="province"
           label="Province"
@@ -102,14 +101,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('custom isOptionEqual', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<Province>
           id="province"
           label="Province"
@@ -124,14 +123,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
         {value ? <p>Your chosen province is: {value.label}</p> : null}
 
         <IsOptionEqualInfo />
-      </Form>
+      </Card>
     );
   })
   .add('custom keyForOption', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<Province>
           id="province"
           label="Province"
@@ -146,7 +145,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
         {value ? <p>Your chosen province is: {value.label}</p> : null}
 
         <KeyForOptionInfo />
-      </Form>
+      </Card>
     );
   })
   .add('using reloadOptions', () => {
@@ -160,7 +159,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     };
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle
           id="brand"
           label="Brand"
@@ -192,14 +191,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
         {model ? <p>Your chosen model is: {model}</p> : null}
 
         <ReloadOptionsInfo />
-      </Form>
+      </Card>
     );
   })
   .add('with extra add button', () => {
     const [value, setValue] = useState<User | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<User>
           id="bestFriend"
           label="Best friend"
@@ -225,14 +224,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           value={value}
           onChange={setValue}
         />
-      </Form>
+      </Card>
     );
   })
   .add('without search', () => {
     const [value, setValue] = useState<User | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle
           id="bestFriend"
           label="Best friend"
@@ -245,14 +244,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           value={value}
           onChange={setValue}
         />
-      </Form>
+      </Card>
     );
   })
   .add('custom renderOptions', () => {
     const [value, setValue] = useState<User | undefined>();
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<User>
           id="bestFriend"
           label="Best friend"
@@ -286,14 +285,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           value={value}
           onChange={setValue}
         />
-      </Form>
+      </Card>
     );
   })
   .add('custom renderValue', () => {
     const [value, setValue] = useState<User | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle
           id="bestFriend"
           label="Best friend"
@@ -317,14 +316,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
             ) : null;
           }}
         />
-      </Form>
+      </Card>
     );
   })
   .add('button alignment', () => {
     const [value, setValue] = useState<User | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle
           id="bestFriend"
           label="Default"
@@ -370,14 +369,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           onChange={setValue}
           alignButton="right"
         />
-      </Form>
+      </Card>
     );
   })
   .add('label & placeholder', () => {
     const [value, setValue] = useState<Province | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <h3>Without label</h3>
 
         <ModalPickerSingle<Province>
@@ -412,14 +411,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
         <hr />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('icon', () => {
     const [value, setValue] = useState<Province | undefined>(undefined);
 
     return (
-      <Form>
+      <Card className="m-2">
         <h3>Without icon</h3>
 
         <ModalPickerSingle<Province>
@@ -447,14 +446,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
         <hr />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}
-      </Form>
+      </Card>
     );
   })
   .add('without clear button', () => {
     const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
-      <Form>
+      <Card className="m-2">
         <ModalPickerSingle<Province>
           placeholder="Please select your province"
           options={provinces()}
@@ -463,7 +462,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           onChange={setValue}
           canClear={false}
         />
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

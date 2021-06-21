@@ -4,9 +4,9 @@ exports[`Component: SubmitButton ui with all optional params: Component: SubmitB
 <Button
   className="extra-css-class"
   color="primary"
-  icon="save"
+  icon="360"
   inProgress={true}
-  onClick={[MockFunction]}
+  onClick={[Function]}
   size="lg"
   type="submit"
 >
@@ -19,7 +19,7 @@ exports[`Component: SubmitButton ui with all required props: Component: SubmitBu
   color="primary"
   icon="save"
   inProgress={true}
-  onClick={[MockFunction]}
+  onClick={[Function]}
   type="submit"
 >
   Submit

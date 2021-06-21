@@ -4,8 +4,8 @@ import { action } from '@storybook/addon-actions';
 
 import TextEditor, { JarbTextEditor } from './TextEditor';
 
-import { FinalForm, Form } from '../story-utils';
-import { Icon, Tooltip } from '../..';
+import { FinalForm } from '../story-utils';
+import { Icon, Tooltip, Card } from '../..';
 
 const disclaimer = (
   <>
@@ -30,7 +30,7 @@ const disclaimer = (
 storiesOf('Form/TextEditor', module)
   .add('basic', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <TextEditor
           id="description"
           label="Description"
@@ -38,36 +38,36 @@ storiesOf('Form/TextEditor', module)
           onChange={(value) => action(`onChange: ${value}`)}
         />
         {disclaimer}
-      </Form>
+      </Card>
     );
   })
   .add('without placeholder', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <TextEditor
           id="description"
           label="Description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
         {disclaimer}
-      </Form>
+      </Card>
     );
   })
   .add('without label', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <TextEditor
           id="description"
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
         {disclaimer}
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <TextEditor
           id="description"
           label={
@@ -85,12 +85,12 @@ storiesOf('Form/TextEditor', module)
           onChange={(value) => action(`onChange: ${value}`)}
         />
         {disclaimer}
-      </Form>
+      </Card>
     );
   })
   .add('custom toolbar', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <TextEditor
           id="description"
           label="Description"
@@ -122,7 +122,7 @@ storiesOf('Form/TextEditor', module)
         />
 
         {disclaimer}
-      </Form>
+      </Card>
     );
   })
   .add('custom toolbar option', () => {
@@ -169,7 +169,7 @@ storiesOf('Form/TextEditor', module)
     }
 
     return (
-      <Form>
+      <Card className="m-2">
         <TextEditor
           id="description"
           label="Description"
@@ -209,12 +209,12 @@ storiesOf('Form/TextEditor', module)
           }}
         />
         {disclaimer}
-      </Form>
+      </Card>
     );
   })
   .add('manual formats', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <TextEditor
           id="description"
           label="Description"
@@ -248,7 +248,7 @@ storiesOf('Form/TextEditor', module)
         </p>
 
         {disclaimer}
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

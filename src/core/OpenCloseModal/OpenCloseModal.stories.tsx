@@ -230,16 +230,16 @@ export function ModalForm() {
 
       {isOpen ? (
         <Form onSubmit={onSave}>
-          {({ submitting, handleSubmit }) => (
+          {(formRenderProps) => (
             <OpenCloseModal
               isOpen={true}
-              inProgress={submitting}
+              inProgress={formRenderProps.submitting}
               onClose={onClose}
-              onSave={handleSubmit}
+              onSave={formRenderProps.handleSubmit}
               label="Form example"
               size="lg"
             >
-              <TotalForm hasSubmit={false} />
+              <TotalForm hasSubmit={false} formRenderProps={formRenderProps} />
             </OpenCloseModal>
           )}
         </Form>

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import ColorPicker, { JarbColorPicker } from './ColorPicker';
-import { FinalForm, Form } from '../story-utils';
-import { Icon, Tooltip } from '../..';
+import { FinalForm } from '../story-utils';
+import { Icon, Tooltip, Card } from '../..';
 
 function isToDark(value?: string) {
   if (!value) {
@@ -31,7 +31,7 @@ storiesOf('Form/ColorPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <ColorPicker
             id="color"
             label="Color"
@@ -39,7 +39,7 @@ storiesOf('Form/ColorPicker', module)
             value={value}
             onChange={setValue}
           />
-        </Form>
+        </Card>
       </div>
     );
   })
@@ -48,7 +48,7 @@ storiesOf('Form/ColorPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <ColorPicker
             id="color"
             label="Color"
@@ -56,7 +56,7 @@ storiesOf('Form/ColorPicker', module)
             value={value}
             onChange={setValue}
           />
-        </Form>
+        </Card>
       </div>
     );
   })
@@ -65,7 +65,7 @@ storiesOf('Form/ColorPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <ColorPicker
             id="color"
             label={
@@ -83,7 +83,7 @@ storiesOf('Form/ColorPicker', module)
             value={value}
             onChange={setValue}
           />
-        </Form>
+        </Card>
       </div>
     );
   })
@@ -92,7 +92,7 @@ storiesOf('Form/ColorPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <ColorPicker
             id="color"
             label="Color"
@@ -101,7 +101,7 @@ storiesOf('Form/ColorPicker', module)
             value={value}
             onChange={setValue}
           />
-        </Form>
+        </Card>
       </div>
     );
   })
@@ -110,7 +110,7 @@ storiesOf('Form/ColorPicker', module)
 
     return (
       <div>
-        <Form>
+        <Card className="m-2">
           <ColorPicker
             id="color"
             label="Color"
@@ -119,7 +119,7 @@ storiesOf('Form/ColorPicker', module)
             onChange={setValue}
             canClear={false}
           />
-        </Form>
+        </Card>
       </div>
     );
   })

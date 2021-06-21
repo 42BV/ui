@@ -4,13 +4,13 @@ import { action } from '@storybook/addon-actions';
 
 import FileInput, { JarbFileInput, requireFile } from './FileInput';
 
-import { Form, FinalForm } from '../story-utils';
-import { Tooltip, Icon } from '../..';
+import { FinalForm } from '../story-utils';
+import { Tooltip, Icon, Card } from '../..';
 
 storiesOf('Form/FileInput', module)
   .add('basic', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <FileInput
           id="file-upload-with-button"
           placeholder="Upload a file here"
@@ -18,36 +18,36 @@ storiesOf('Form/FileInput', module)
           accept="text/plain"
           onChange={() => action('value changed')}
         />
-      </Form>
+      </Card>
     );
   })
   .add('without placeholder', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <FileInput
           id="file-upload-with-button"
           label="Upload a file here"
           accept="text/plain"
           onChange={() => action('value changed')}
         />
-      </Form>
+      </Card>
     );
   })
   .add('without label', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <FileInput
           id="file-upload-with-button"
           placeholder="Upload a file here"
           accept="text/plain"
           onChange={() => action('value changed')}
         />
-      </Form>
+      </Card>
     );
   })
   .add('with custom label', () => {
     return (
-      <Form>
+      <Card className="m-2">
         <FileInput
           id="file-upload-with-button"
           placeholder="Upload a file here"
@@ -66,7 +66,7 @@ storiesOf('Form/FileInput', module)
           accept="text/plain"
           onChange={() => action('value changed')}
         />
-      </Form>
+      </Card>
     );
   })
   .add('jarb', () => {

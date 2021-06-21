@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Button, { ButtonSize } from '../Button/Button';
+import { IconType } from '../Icon';
+import { useScrollToClosestError } from './useScrollToClosestError';
 
 export type Props = {
   /**
@@ -31,19 +33,48 @@ export type Props = {
    * progress. If so a spinner is rendered inside of the button.
    */
   inProgress: boolean;
+
+  /**
+   * Optionally whether or not to scroll to the closest error message.
+   *
+   * Defaults to `true`
+   */
+  scrollToClosestError?: boolean;
+
+  /**
+   * Optionally the Icon you want to use.
+   *
+   * Defaults to 'save'.
+   */
+  icon?: IconType;
 };
 
 /**
- * A SubmitButton is a Button with a 'save' icon and and
- * a button of type "submit".
+ * A SubmitButton is a Button with default 'save' icon and  a button
+ * of type "submit". It will scroll to the closest error when
+ * `scrollToClosestError` is `true` which it is by default.
  */
 export default function SubmitButton({
   children,
   inProgress,
   size,
   className = undefined,
-  onClick
+  onClick,
+  scrollToClosestError = true,
+  icon = 'save'
 }: Props) {
+  const { doScrollToClosestError } = useScrollToClosestError({
+    enabled: scrollToClosestError
+  });
+
+  function submitAndScrollToClosestError(event: React.MouseEvent<HTMLElement>) {
+    doScrollToClosestError();
+
+    if (onClick) {
+      onClick(event);
+    }
+  }
+
   return (
     <Button
       type="submit"
@@ -51,8 +82,8 @@ export default function SubmitButton({
       color="primary"
       inProgress={inProgress}
       className={className}
-      onClick={onClick}
-      icon="save"
+      onClick={submitAndScrollToClosestError}
+      icon={icon}
     >
       {children}
     </Button>
