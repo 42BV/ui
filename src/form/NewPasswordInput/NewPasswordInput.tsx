@@ -91,14 +91,14 @@ export default function NewPasswordInput(props: Props) {
   const passwordStrengthProps = pick(props, ['minimumLength', 'showMeter']);
 
   return (
-    <>
+    <div className="new-password-input">
       <Input {...inputProps} />
       <PasswordStrength
         password={inputProps.value ?? ''}
         rules={rules}
         {...passwordStrengthProps}
       />
-    </>
+    </div>
   );
 }
 

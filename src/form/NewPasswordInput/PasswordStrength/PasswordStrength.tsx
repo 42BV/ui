@@ -51,7 +51,6 @@ export default function PasswordStrength(props: Props) {
           }
           value={meterWidth}
           className="mb-2"
-          style={{ height: 5 }}
         />
       ) : null}
       <div className="mb-2">
