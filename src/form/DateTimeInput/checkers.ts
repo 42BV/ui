@@ -170,7 +170,6 @@ export function isDateBetween(
       start,
       end,
       undefined,
-      // @ts-expect-error This will work because the chars are valid
       `${startChar}${endChar}`
     );
   };

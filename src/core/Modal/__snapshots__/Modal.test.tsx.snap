@@ -26,6 +26,7 @@ exports[`Component: Modal ui sans sticky footer: Component: Modal => ui => sans 
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -101,6 +102,7 @@ exports[`Component: Modal ui with header and footer: Component: Modal => ui => w
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   wrapClassName="sticky-modal"
   zIndex={1050}
@@ -177,6 +179,7 @@ exports[`Component: Modal ui without footer: Component: Modal => ui => without f
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   wrapClassName="sticky-modal"
   zIndex={1050}
@@ -244,6 +247,7 @@ exports[`Component: Modal ui without header: Component: Modal => ui => without h
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   wrapClassName="sticky-modal"
   zIndex={1050}

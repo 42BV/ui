@@ -70,7 +70,7 @@ describe('Component: ValuePicker', () => {
 
   describe('single', () => {
     describe('when RadioGroup', () => {
-      it('should render a `RadioGroup` component when async page `totalElements` is less than 4', async (done) => {
+      it('should render a `RadioGroup` component when async page `totalElements` is less than 4', async () => {
         expect.assertions(5);
 
         const promise = Promise.resolve(
@@ -88,7 +88,7 @@ describe('Component: ValuePicker', () => {
           multiple: false
         });
 
-        try {
+        
           await act(async () => {
             await promise;
           });
@@ -110,11 +110,7 @@ describe('Component: ValuePicker', () => {
             size: 100
           });
 
-          done();
-        } catch (e) {
-          console.error(e);
-          done.fail();
-        }
+      
       });
 
       it('should render a `RadioGroup` component when options array length is less than 4', () => {
@@ -144,7 +140,7 @@ describe('Component: ValuePicker', () => {
     });
 
     describe('when Select', () => {
-      it('should render a `Select` component when async page `totalElements` is less than 11 but more than 3', async (done) => {
+      it('should render a `Select` component when async page `totalElements` is less than 11 but more than 3', async () => {
         expect.assertions(5);
 
         const promise = Promise.resolve(
@@ -163,7 +159,7 @@ describe('Component: ValuePicker', () => {
           multiple: false
         });
 
-        try {
+       
           await act(async () => {
             await promise;
           });
@@ -184,12 +180,6 @@ describe('Component: ValuePicker', () => {
             page: 1,
             size: 100
           });
-
-          done();
-        } catch (e) {
-          console.error(e);
-          done.fail();
-        }
       });
 
       it('should render a `Select` component when options array length is less than 11 but more than 3', () => {
@@ -205,7 +195,7 @@ describe('Component: ValuePicker', () => {
     });
 
     describe('when ModalPickerSingle', () => {
-      it('should render a `ModalPickerSingle` when async page `totalElements` is more than than 10', async (done) => {
+      it('should render a `ModalPickerSingle` when async page `totalElements` is more than than 10', async () => {
         expect.assertions(5);
 
         const promise = Promise.resolve(
@@ -223,7 +213,7 @@ describe('Component: ValuePicker', () => {
           multiple: false
         });
 
-        try {
+       
           await act(async () => {
             await promise;
           });
@@ -244,12 +234,6 @@ describe('Component: ValuePicker', () => {
             page: 1,
             size: 10
           });
-
-          done();
-        } catch (e) {
-          console.error(e);
-          done.fail();
-        }
       });
 
       it('should render a `ModalPickerSingle` component when options array length is more than than 10', () => {
@@ -305,7 +289,7 @@ describe('Component: ValuePicker', () => {
 
   describe('multiple', () => {
     describe('when CheckboxMultipleSelect', () => {
-      it('should render a `CheckboxMultipleSelect` component async page `totalElements` is less than 11', async (done) => {
+      it('should render a `CheckboxMultipleSelect` component async page `totalElements` is less than 11', async () => {
         expect.assertions(5);
 
         const promise = Promise.resolve(
@@ -323,7 +307,7 @@ describe('Component: ValuePicker', () => {
           multiple: true
         });
 
-        try {
+       
           await act(async () => {
             await promise;
           });
@@ -346,12 +330,6 @@ describe('Component: ValuePicker', () => {
             page: 1,
             size: 100
           });
-
-          done();
-        } catch (e) {
-          console.error(e);
-          done.fail();
-        }
       });
 
       it('should render a `CheckboxMultipleSelect` component when options array length is less than 11', () => {
@@ -378,7 +356,7 @@ describe('Component: ValuePicker', () => {
     });
 
     describe('when ModalPickerMultiple', () => {
-      it('should render a `ModalPickerMultiple` async page `totalElements` is more than 10', async (done) => {
+      it('should render a `ModalPickerMultiple` async page `totalElements` is more than 10', async () => {
         expect.assertions(5);
 
         const promise = Promise.resolve(
@@ -396,7 +374,7 @@ describe('Component: ValuePicker', () => {
           multiple: true
         });
 
-        try {
+       
           await act(async () => {
             await promise;
           });
@@ -417,12 +395,6 @@ describe('Component: ValuePicker', () => {
             page: 1,
             size: 10
           });
-
-          done();
-        } catch (e) {
-          console.error(e);
-          done.fail();
-        }
       });
 
       it('should render a `ModalPickerMultiple` component when options array length is more than 10', () => {

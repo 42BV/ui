@@ -78,7 +78,7 @@ describe('Component: AsyncActionButton', () => {
       expect(actionSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should set inProgress to false when promise is resolved', async (done) => {
+    it('should set inProgress to false when promise is resolved', async () => {
       expect.assertions(1);
 
       const { promise, resolve } = resolvablePromise();
@@ -91,20 +91,16 @@ describe('Component: AsyncActionButton', () => {
         // @ts-expect-error Test mock
         .onClick();
 
-      try {
+     
         await resolve();
 
         // @ts-expect-error Test mock
         expect(asyncActionButton.find('Button').props().inProgress).toBe(false);
 
-        done();
-      } catch (error) {
-        console.error(error);
-        done.fail();
-      }
+     
     });
 
-    it('should call onError and set inProgress to false when promise is rejected', async (done) => {
+    it('should call onError and set inProgress to false when promise is rejected', async () => {
       expect.assertions(1);
 
       const { promise, reject } = rejectablePromise();
@@ -117,17 +113,12 @@ describe('Component: AsyncActionButton', () => {
         // @ts-expect-error Test mock
         .onClick();
 
-      try {
+     
         await reject('test rejection reason');
 
         // @ts-expect-error Test mock
         expect(asyncActionButton.find('Button').props().inProgress).toBe(false);
 
-        done();
-      } catch (error) {
-        console.error(error);
-        done.fail();
-      }
     });
   });
 });

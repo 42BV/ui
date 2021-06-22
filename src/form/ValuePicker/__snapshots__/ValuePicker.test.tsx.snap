@@ -510,6 +510,7 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
             role="dialog"
             scrollable={false}
             toggle={[Function]}
+            trapFocus={false}
             unmountOnClose={true}
             zIndex={1050}
           />
@@ -814,6 +815,7 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
             role="dialog"
             scrollable={false}
             toggle={[Function]}
+            trapFocus={false}
             unmountOnClose={true}
             zIndex={1050}
           />
