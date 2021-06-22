@@ -28,7 +28,7 @@ exports[`Component: ImageUpload ui edit as circle: Component: ImageUpload => ui 
       <div
         onWheel={[Function]}
       >
-        <i
+        <a
           border={25}
           borderRadius={9000000}
           color={
@@ -123,7 +123,7 @@ exports[`Component: ImageUpload ui edit as rect: Component: ImageUpload => ui =>
       <div
         onWheel={[Function]}
       >
-        <i
+        <a
           border={25}
           borderRadius={0}
           color={

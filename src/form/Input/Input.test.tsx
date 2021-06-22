@@ -53,6 +53,7 @@ describe('Component: Input', () => {
     onFocusSpy = jest.fn();
 
     const props = {
+      name: "firstName",
       placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,
       type,
       value,

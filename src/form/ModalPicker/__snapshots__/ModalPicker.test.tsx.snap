@@ -26,6 +26,7 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >
@@ -216,6 +217,7 @@ exports[`Component: ModalPicker ui without addButton and search: Component: Moda
   role="dialog"
   scrollable={false}
   toggle={[Function]}
+  trapFocus={false}
   unmountOnClose={true}
   zIndex={1050}
 >

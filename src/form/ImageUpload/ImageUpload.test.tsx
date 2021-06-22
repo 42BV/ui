@@ -355,7 +355,7 @@ describe('Component: ImageUpload', () => {
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should set the final image when done button is clicked and move to state file-selected', async (done) => {
+    it('should set the final image when done button is clicked and move to state file-selected', async () => {
       expect.assertions(10);
 
       setup({ value: undefined, cropType: 'circle' });
@@ -391,48 +391,41 @@ describe('Component: ImageUpload', () => {
       };
       jest.spyOn(instance, 'setState');
 
-      try {
-        await imgUpload.find('Button').at(3).simulate('click');
+      await imgUpload.find('Button').at(3).simulate('click');
 
-        resolve({
-          toDataURL: jest.fn(() => 'Some base 64 string')
-        });
+      resolve({
+        toDataURL: jest.fn(() => 'Some base 64 string')
+      });
 
-        await promise;
+      await promise;
 
-        expect(resizeSpy).toHaveBeenCalledTimes(1);
-        // @ts-expect-error Test mock
-        expect(resizeSpy.mock.calls[0][0]).toBe('fakeCanvas');
-        // @ts-expect-error Test mock
-        expect(resizeSpy.mock.calls[0][2]).toEqual({ alpha: true });
+      expect(resizeSpy).toHaveBeenCalledTimes(1);
+      // @ts-expect-error Test mock
+      expect(resizeSpy.mock.calls[0][0]).toBe('fakeCanvas');
+      // @ts-expect-error Test mock
+      expect(resizeSpy.mock.calls[0][2]).toEqual({ alpha: true });
 
-        // @ts-expect-error Test mock
-        const offScreenCanvas = resizeSpy.mock.calls[0][1];
-        // @ts-expect-error Test mock
-        expect(offScreenCanvas.width).toBe(250);
-        // @ts-expect-error Test mock
-        expect(offScreenCanvas.height).toBe(250);
+      // @ts-expect-error Test mock
+      const offScreenCanvas = resizeSpy.mock.calls[0][1];
+      // @ts-expect-error Test mock
+      expect(offScreenCanvas.width).toBe(250);
+      // @ts-expect-error Test mock
+      expect(offScreenCanvas.height).toBe(250);
 
-        expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(file);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(file);
 
-        expect(onBlurSpy).toHaveBeenCalledTimes(1);
+      expect(onBlurSpy).toHaveBeenCalledTimes(1);
 
-        expect(instance.setState).toHaveBeenCalledTimes(1);
-        expect(instance.setState).toHaveBeenCalledWith({
-          mode: 'file-selected',
-          imageSrc: 'Some base 64 string',
-          fileName: 'maarten.png'
-        });
-
-        done();
-      } catch (error) {
-        console.error(error);
-        done.fail();
-      }
+      expect(instance.setState).toHaveBeenCalledTimes(1);
+      expect(instance.setState).toHaveBeenCalledWith({
+        mode: 'file-selected',
+        imageSrc: 'Some base 64 string',
+        fileName: 'maarten.png'
+      });
     });
 
-    it('should replace the file extension when keepOriginalFileExtension is undefined', async (done) => {
+    it('should replace the file extension when keepOriginalFileExtension is undefined', async () => {
       expect.assertions(2);
 
       setup({ value: undefined, cropType: 'circle' });
@@ -468,30 +461,23 @@ describe('Component: ImageUpload', () => {
       };
       jest.spyOn(instance, 'setState');
 
-      try {
-        await imgUpload.find('Button').at(3).simulate('click');
+      await imgUpload.find('Button').at(3).simulate('click');
 
-        resolve({
-          toDataURL: jest.fn(() => 'Some base 64 string')
-        });
+      resolve({
+        toDataURL: jest.fn(() => 'Some base 64 string')
+      });
 
-        await promise;
+      await promise;
 
-        expect(instance.setState).toHaveBeenCalledTimes(1);
-        expect(instance.setState).toHaveBeenCalledWith({
-          mode: 'file-selected',
-          imageSrc: 'Some base 64 string',
-          fileName: 'maarten.png'
-        });
-
-        done();
-      } catch (error) {
-        console.error(error);
-        done.fail();
-      }
+      expect(instance.setState).toHaveBeenCalledTimes(1);
+      expect(instance.setState).toHaveBeenCalledWith({
+        mode: 'file-selected',
+        imageSrc: 'Some base 64 string',
+        fileName: 'maarten.png'
+      });
     });
 
-    it('should not replace the file extension when keepOriginalFileExtension is true', async (done) => {
+    it('should not replace the file extension when keepOriginalFileExtension is true', async () => {
       expect.assertions(2);
 
       setup({
@@ -531,27 +517,20 @@ describe('Component: ImageUpload', () => {
       };
       jest.spyOn(instance, 'setState');
 
-      try {
-        await imgUpload.find('Button').at(3).simulate('click');
+      await imgUpload.find('Button').at(3).simulate('click');
 
-        resolve({
-          toDataURL: jest.fn(() => 'Some base 64 string')
-        });
+      resolve({
+        toDataURL: jest.fn(() => 'Some base 64 string')
+      });
 
-        await promise;
+      await promise;
 
-        expect(instance.setState).toHaveBeenCalledTimes(1);
-        expect(instance.setState).toHaveBeenCalledWith({
-          mode: 'file-selected',
-          imageSrc: 'Some base 64 string',
-          fileName: 'maarten.jpg'
-        });
-
-        done();
-      } catch (error) {
-        console.error(error);
-        done.fail();
-      }
+      expect(instance.setState).toHaveBeenCalledTimes(1);
+      expect(instance.setState).toHaveBeenCalledWith({
+        mode: 'file-selected',
+        imageSrc: 'Some base 64 string',
+        fileName: 'maarten.jpg'
+      });
     });
   });
 

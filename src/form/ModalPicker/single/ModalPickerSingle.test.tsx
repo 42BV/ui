@@ -591,7 +591,7 @@ describe('Component: ModalPickerSingle', () => {
     });
 
     describe('addButton', () => {
-      it('should add an item on the first position, when the promise resolves', async (done) => {
+      it('should add an item on the first position, when the promise resolves', async () => {
         expect.assertions(9);
 
         const { modalPickerSingle, addButtonCallbackSpy, page } = setup({
@@ -627,10 +627,9 @@ describe('Component: ModalPickerSingle', () => {
         const addedUser = randomUser();
         resolve(addedUser);
 
-        try {
           await promise;
 
-          testUtils.waitForUI(() => {
+          await testUtils.waitForUI(() => {
             const modalPicker = modalPickerSingle.find('ModalPicker').props();
 
             // @ts-expect-error Test mock
@@ -649,16 +648,10 @@ describe('Component: ModalPickerSingle', () => {
 
             // Test that the user is selected
             expect(modalPicker.selected).toEqual(addedUser);
-
-            done();
           });
-        } catch (error) {
-          console.error(error);
-          done.fail();
-        }
       });
 
-      it('should hide when the promise is rejected', async (done) => {
+      it('should hide when the promise is rejected', async () => {
         expect.assertions(7);
 
         const { modalPickerSingle, addButtonCallbackSpy } = setup({
@@ -694,15 +687,12 @@ describe('Component: ModalPickerSingle', () => {
 
         try {
           await promise;
-          done.fail();
         } catch (error) {
-          testUtils.waitForUI(() => {
+          await testUtils.waitForUI(() => {
             // Expect the modal to be opened
             const modalPicker = modalPickerSingle.find('ModalPicker').props();
             // @ts-expect-error Test mock
             expect(modalPicker.isOpen).toBe(true);
-
-            done();
           });
         }
       });

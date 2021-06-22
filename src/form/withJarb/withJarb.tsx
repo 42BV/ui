@@ -210,6 +210,7 @@ function mapFieldRenderProps<T>(
       // Remove any back-end errors now that the value has changed
       clearErrorsForValidator(validator);
     },
+    name: input.name,
     onFocus: input.onFocus,
     onBlur: input.onBlur,
     value: input.value
