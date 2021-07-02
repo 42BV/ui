@@ -14,6 +14,7 @@ describe('HoC: useResizeObserver', () => {
 
     const oldResizeObserver = setResizeObserver(resizeObserverSpy);
 
+    // @ts-expect-error Test mock
     useResizeObserver.useResizeObserver(handleResizeSpy).fire(entries);
 
     expect(resizeObserverSpy).toBeCalledTimes(1);

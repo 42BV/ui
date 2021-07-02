@@ -1,5 +1,5 @@
 module.exports = {
-  stories: ['../src/**/*.stories.(js|mxs|tsx|ts)'],
+  stories: ['../src/**/*.stories.@(js|mxs|tsx|ts)'],
   addons: [
     '@storybook/addon-actions/register',
     {
@@ -10,19 +10,13 @@ module.exports = {
     },
     '@storybook/preset-scss'
   ],
-  webpackFinal: async config => {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      use: [
-        {
-          loader: require.resolve('awesome-typescript-loader')
-        },
-        {
-          loader: require.resolve('react-docgen-typescript-loader')
-        }
-      ]
-    });
-    config.resolve.extensions.push('.ts', '.tsx');
-    return config;
-  }
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
+  },
 };

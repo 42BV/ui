@@ -88,7 +88,7 @@ describe('Component: AutoSave', () => {
       expect(onSaveSpy).toBeCalledTimes(0);
     });
 
-    it('should wait until saving again until the previous save has finished', async (done) => {
+    it('should wait until saving again until the previous save has finished', async () => {
       expect.assertions(5);
 
       const { promise, resolve } = resolvablePromise();
@@ -114,17 +114,10 @@ describe('Component: AutoSave', () => {
 
       expect(onSaveSpy).toBeCalledTimes(0);
 
-      try {
-        await resolve();
+      await resolve();
 
-        expect(onSaveSpy).toBeCalledTimes(1);
-        expect(onSaveSpy).toBeCalledWith({ test: 'testing' });
-
-        done();
-      } catch (e) {
-        console.error(e);
-        done.fail();
-      }
+      expect(onSaveSpy).toBeCalledTimes(1);
+      expect(onSaveSpy).toBeCalledWith({ test: 'testing' });
     });
 
     it('should save when another field changes', () => {
