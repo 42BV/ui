@@ -33,9 +33,13 @@ exports[`Component: CardOpenClose deprecated: content open: Component: CardOpenC
       open={true}
     />
   </CardHeader>
-  <p>
-    This is collapsable content that should not be included in the HTML when isOpen is false
-  </p>
+  <Suspense
+    fallback={<Loading />}
+  >
+    <p>
+      This is collapsable content that should not be included in the HTML when isOpen is false
+    </p>
+  </Suspense>
 </Card>
 `;
 
@@ -72,8 +76,12 @@ exports[`Component: CardOpenClose ui open: Component: CardOpenClose => ui => ope
       open={true}
     />
   </CardHeader>
-  <p>
-    This is collapsable content that should not be included in the HTML when isOpen is false
-  </p>
+  <Suspense
+    fallback={<Loading />}
+  >
+    <p>
+      This is collapsable content that should not be included in the HTML when isOpen is false
+    </p>
+  </Suspense>
 </Card>
 `;
