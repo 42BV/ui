@@ -1,10 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: Card deprecated: modalBodyClassName: Component: Card => deprecated: modalBodyClassName 1`] = `
+<Card
+  tag="div"
+>
+  <CardBody
+    className="deprecated classes"
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      This is the content
+    </Suspense>
+  </CardBody>
+</Card>
+`;
+
+exports[`Component: Card deprecated: modalFooterClassName: Component: Card => deprecated: modalFooterClassName 1`] = `
+<Card
+  tag="div"
+>
+  <CardBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      This is the content
+    </Suspense>
+  </CardBody>
+  <CardFooter
+    className="deprecated classes"
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      test
+    </Suspense>
+  </CardFooter>
+</Card>
+`;
+
+exports[`Component: Card deprecated: modalHeaderClassName: Component: Card => deprecated: modalHeaderClassName 1`] = `
+<Card
+  tag="div"
+>
+  <CardHeader
+    className="deprecated classes"
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      test
+    </Suspense>
+  </CardHeader>
+  <CardBody
+    tag="div"
+  >
+    <Suspense
+      fallback={<Loading />}
+    >
+      This is the content
+    </Suspense>
+  </CardBody>
+</Card>
+`;
+
 exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
 <Card
   tag="div"
 >
   <CardHeader
+    className="card-header"
     tag="div"
   >
     <Suspense
@@ -14,6 +84,7 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
     </Suspense>
   </CardHeader>
   <CardBody
+    className="card-body"
     tag="div"
   >
     <Suspense
@@ -35,6 +106,7 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
     </Suspense>
   </CardBody>
   <CardFooter
+    className="card-footer"
     tag="div"
   >
     <Suspense
@@ -51,6 +123,7 @@ exports[`Component: Card ui without footer: Component: Card => ui => without foo
   tag="div"
 >
   <CardHeader
+    className="card-header"
     tag="div"
   >
     <Suspense
@@ -60,6 +133,7 @@ exports[`Component: Card ui without footer: Component: Card => ui => without foo
     </Suspense>
   </CardHeader>
   <CardBody
+    className="card-body"
     tag="div"
   >
     <Suspense
@@ -88,6 +162,7 @@ exports[`Component: Card ui without header: Component: Card => ui => without hea
   tag="div"
 >
   <CardBody
+    className="card-body"
     tag="div"
   >
     <Suspense
@@ -109,6 +184,7 @@ exports[`Component: Card ui without header: Component: Card => ui => without hea
     </Suspense>
   </CardBody>
   <CardFooter
+    className="card-footer"
     tag="div"
   >
     <Suspense

@@ -16,7 +16,10 @@ describe('Component: Card', () => {
   }) {
     const props = {
       header: hasHeader ? 'A simple header' : undefined,
-      footer: hasFooter ? 'A simple footer' : undefined
+      footer: hasFooter ? 'A simple footer' : undefined,
+      cardHeaderClassName: 'card-header',
+      cardBodyClassName: 'card-body',
+      cardFooterClassName: 'card-footer'
     };
 
     const children = (
@@ -54,5 +57,26 @@ describe('Component: Card', () => {
         'Component: Card => ui => without footer'
       );
     });
+  });
+
+  test('deprecated: modalHeaderClassName', () => {
+    const card = shallow(<Card header="test" modalHeaderClassName="deprecated classes">This is the content</Card>);
+    expect(toJson(card)).toMatchSnapshot(
+      'Component: Card => deprecated: modalHeaderClassName'
+    );
+  });
+
+  test('deprecated: modalBodyClassName', () => {
+    const card = shallow(<Card modalBodyClassName="deprecated classes">This is the content</Card>);
+    expect(toJson(card)).toMatchSnapshot(
+      'Component: Card => deprecated: modalBodyClassName'
+    );
+  });
+
+  test('deprecated: modalFooterClassName', () => {
+    const card = shallow(<Card footer="test" modalFooterClassName="deprecated classes">This is the content</Card>);
+    expect(toJson(card)).toMatchSnapshot(
+      'Component: Card => deprecated: modalFooterClassName'
+    );
   });
 });
