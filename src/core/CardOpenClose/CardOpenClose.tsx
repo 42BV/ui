@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { OpenClose } from '../OpenClose/OpenClose';
 import { Card, CardHeader } from 'reactstrap';
 import classNames from 'classnames';
+import Loading from '../Loading/Loading';
 
 type BaseProps = {
   /**
@@ -68,9 +69,13 @@ export function CardOpenClose(props: Props) {
 
       {!isOpen
         ? null
-        : propsHasChildren(props)
-        ? props.children()
-        : props.content()}
+        : (
+          <Suspense fallback={<Loading />}>
+            {propsHasChildren(props)
+              ? props.children()
+              : props.content()}
+          </Suspense>
+        )}
     </Card>
   );
 }
