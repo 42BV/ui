@@ -27,6 +27,7 @@ describe('index', () => {
         "ConfirmModal": [Function],
         "ContentState": [Function],
         "DateTimeInput": [Function],
+        "Debug": [Function],
         "EpicCell": [Function],
         "EpicCellLayout": [Function],
         "EpicDetail": [Function],
