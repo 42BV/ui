@@ -156,7 +156,7 @@ export default function ValuePicker<T>(props: Props<T>) {
   }
 
   if (props.multiple) {
-    const { multiple, ...rest } = props;
+    const { multiple, text, ...rest } = props;
 
     if (totalElements < 11) {
       return <CheckboxMultipleSelect {...rest} />;
@@ -164,7 +164,7 @@ export default function ValuePicker<T>(props: Props<T>) {
       return <ModalPickerMultiple canClear={canClear} {...rest} />;
     }
   } else {
-    const { multiple, ...rest } = props;
+    const { multiple, text, ...rest } = props;
 
     if (totalElements < 4) {
       return <RadioGroup canClear={canClear} {...rest} />;

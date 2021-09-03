@@ -580,6 +580,36 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
       </Card>
     );
   })
+  .add('with custom text', () => {
+    const [value, setValue] = useState<Province[] | undefined>([
+      nonExistingProvince()
+    ]);
+
+    return (
+      <Card className="m2">
+        <ModalPickerMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+          text={{
+            cancel: 'Take me back',
+            select: 'Confirm my choice'
+          }}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(', ')}
+          </p>
+        ) : null}
+      </Card>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>

@@ -4,7 +4,7 @@ import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 import withJarb from '../../withJarb/withJarb';
 import { alwaysTrue, doBlur } from '../../utils';
 import Tag from '../../../core/Tag/Tag';
-import ModalPicker from '../ModalPicker';
+import ModalPicker, { Text } from '../ModalPicker';
 import {
   ModalPickerAddButtonCallback,
   ModalPickerAddButtonOptions,
@@ -98,6 +98,12 @@ export type Props<T> = Omit<
      * Defaults to `true`
      */
     canClear?: boolean;
+
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
   };
 
 /**
@@ -137,7 +143,8 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
     renderOptions,
     error,
     onBlur,
-    canClear = true
+    canClear = true,
+    text
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -298,6 +305,7 @@ export default function ModalPickerMultiple<T>(props: Props<T>) {
               }
             : undefined
         }
+        text={text}
       >
         {renderModalCurrentSelection()}
 
