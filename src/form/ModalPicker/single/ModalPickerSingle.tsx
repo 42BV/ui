@@ -10,7 +10,7 @@ import { FieldCompatible } from '../../types';
 import { useOptions } from '../../useOptions';
 import { alwaysTrue } from '../../utils';
 import withJarb from '../../withJarb/withJarb';
-import ModalPicker from '../ModalPicker';
+import ModalPicker, { Text } from '../ModalPicker';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import {
@@ -93,6 +93,12 @@ type Props<T> = Omit<
      * Defaults to `true`
      */
     canClear?: boolean;
+
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
   };
 
 /**
@@ -131,7 +137,8 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
     alignButton,
     renderOptions,
     error,
-    canClear = true
+    canClear = true,
+    text
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -260,6 +267,7 @@ export default function ModalPickerSingle<T>(props: Props<T>) {
               }
             : undefined
         }
+        text={text}
       >
         {renderModalContent()}
       </ModalPicker>

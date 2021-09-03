@@ -26,7 +26,7 @@ import {
   IsOptionEnabled
 } from '../option';
 
-type Text = {
+export type Text = {
   placeholder?: string;
   cancel?: string;
   select?: string;

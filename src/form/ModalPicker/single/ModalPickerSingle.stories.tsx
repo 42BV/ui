@@ -465,6 +465,29 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
       </Card>
     );
   })
+  .add('with custom text', () => {
+    const [value, setValue] = useState<Province | undefined>(undefined);
+
+    return (
+      <Card className="m-2">
+        <ModalPickerSingle<Province>
+          id="province"
+          label="Province"
+          placeholder="Please select your province"
+          options={provinces()}
+          labelForOption={(province) => province.label}
+          value={value}
+          onChange={setValue}
+          text={{
+            cancel: 'Take me back',
+            select: 'Confirm my choice'
+          }}
+        />
+
+        {value ? <p>Your chosen province is: {value.label}</p> : null}
+      </Card>
+    );
+  })
   .add('jarb', () => {
     return (
       <FinalForm>
