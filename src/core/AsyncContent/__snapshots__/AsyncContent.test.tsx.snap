@@ -1,5 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Component: AsyncContent deprecated React Async when fulfilled when empty 1`] = `
+<ContentState
+  mode="empty"
+  title="No results found"
+/>
+`;
+
+exports[`Component: AsyncContent deprecated React Async when fulfilled when empty with custom empty  1`] = `
+<Fragment>
+  <h1>
+    Custom renderer
+  </h1>
+</Fragment>
+`;
+
+exports[`Component: AsyncContent deprecated React Async when fulfilled when not empty 1`] = `
+<Fragment>
+  <h2>
+    importantos data
+  </h2>
+</Fragment>
+`;
+
+exports[`Component: AsyncContent deprecated React Async when rejected should not render when showRetryButton is undefined 1`] = `
+<ContentState
+  mode="error"
+  title="Oops something went wrong!"
+>
+  <Button
+    icon="refresh"
+    onClick={[Function]}
+  >
+    Retry
+  </Button>
+</ContentState>
+`;
+
+exports[`Component: AsyncContent deprecated React Async when rejected with retry button 1`] = `
+<ContentState
+  mode="error"
+  title="Oops something went wrong!"
+>
+  <Button
+    icon="refresh"
+    onClick={[Function]}
+  >
+    Retry
+  </Button>
+</ContentState>
+`;
+
+exports[`Component: AsyncContent deprecated React Async when rejected without retry button 1`] = `
+<ContentState
+  mode="error"
+  title="Oops something went wrong!"
+/>
+`;
+
 exports[`Component: AsyncContent when fulfilled when empty 1`] = `
 <ContentState
   mode="empty"

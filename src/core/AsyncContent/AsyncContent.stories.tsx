@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import AsyncContent from './AsyncContent';
-import { useAsync } from 'react-async';
+import { useQuery } from 'react-query';
 import { action } from '@storybook/addon-actions';
 import { ContentState, Button } from '../..';
 
@@ -29,7 +29,7 @@ function loadingData() {
 storiesOf('core/async/AsyncContent', module)
   .addParameters({ component: AsyncContent })
   .add('when loaded', () => {
-    const state = useAsync(loadData);
+    const state = useQuery('data', loadData);
 
     return (
       <div className="text-center">
@@ -41,7 +41,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when error', () => {
-    const state = useAsync(rejectData);
+    const state = useQuery('data', rejectData);
 
     return (
       <div className="text-center">
@@ -53,7 +53,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when error with custom text', () => {
-    const state = useAsync(rejectData);
+    const state = useQuery('data', rejectData);
 
     return (
       <div className="text-center">
@@ -68,7 +68,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when error with no retry button', () => {
-    const state = useAsync(rejectData);
+    const state = useQuery('data', rejectData);
 
     return (
       <div className="text-center">
@@ -80,7 +80,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when loading', () => {
-    const state = useAsync(loadingData);
+    const state = useQuery('data', loadingData);
 
     return (
       <div className="text-center">
@@ -92,7 +92,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when loading with custom title', () => {
-    const state = useAsync(loadingData);
+    const state = useQuery('data', loadingData);
 
     return (
       <div className="text-center">
@@ -104,7 +104,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when empty', () => {
-    const state = useAsync(loadData);
+    const state = useQuery('data', loadData);
 
     return (
       <div className="text-center">
@@ -119,7 +119,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when empty with title', () => {
-    const state = useAsync(loadData);
+    const state = useQuery('data', loadData);
 
     return (
       <div className="text-center">
@@ -135,7 +135,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when empty with custom empty', () => {
-    const state = useAsync(loadData);
+    const state = useQuery('data', loadData);
 
     return (
       <div className="text-center">

@@ -48,7 +48,7 @@ exports[`Component: AsyncPage ui 1`] = `
         "totalElements": 9,
         "totalPages": 3,
       },
-      "isFulfilled": true,
+      "isError": false,
       "isLoading": false,
     }
   }

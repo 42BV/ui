@@ -9,7 +9,7 @@ import { pageOfUsers } from '../../test/fixtures';
 
 type State = {
   isLoading: boolean;
-  isFulfilled: boolean;
+  isError: boolean;
   data: User[];
 };
 
@@ -38,7 +38,7 @@ describe('Component: Async|AsyncList', () => {
   test('ui', () => {
     const state = {
       isLoading: false,
-      isFulfilled: true,
+      isError: false,
       data: pageOfUsers().content
     };
 
