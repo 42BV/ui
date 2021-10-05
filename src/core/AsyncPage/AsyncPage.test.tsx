@@ -10,7 +10,7 @@ import { pageOfUsers } from '../../test/fixtures';
 
 type State = {
   isLoading: boolean;
-  isFulfilled: boolean;
+  isError: boolean;
   data: Page<User>;
 };
 
@@ -39,7 +39,7 @@ describe('Component: AsyncPage', () => {
   test('ui', () => {
     const state = {
       isLoading: false,
-      isFulfilled: true,
+      isError: false,
       data: pageOfUsers()
     };
 

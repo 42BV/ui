@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { useAsync } from 'react-async';
+import { useQuery } from 'react-query';
 import { Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
@@ -42,7 +42,7 @@ function loadingData(): Promise<Page<User>> {
 storiesOf('core/async/AsyncPage', module)
   .addParameters({ component: AsyncPage })
   .add('when loaded', () => {
-    const state = useAsync(loadData);
+    const state = useQuery('data', loadData);
 
     return (
       <Card body>
@@ -60,7 +60,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('when error', () => {
-    const state = useAsync(rejectData);
+    const state = useQuery('data', rejectData);
 
     return (
       <Card body>
@@ -78,7 +78,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('when error with custom text', () => {
-    const state = useAsync(rejectData);
+    const state = useQuery('data', rejectData);
 
     return (
       <Card body>
@@ -99,7 +99,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('when error with no retry button', () => {
-    const state = useAsync(rejectData);
+    const state = useQuery('data', rejectData);
 
     return (
       <Card body>
@@ -117,7 +117,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('when loading', () => {
-    const state = useAsync(loadingData);
+    const state = useQuery('data', loadingData);
 
     return (
       <Card body>
@@ -135,7 +135,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('when loading with custom title', () => {
-    const state = useAsync(loadingData);
+    const state = useQuery('data', loadingData);
 
     return (
       <Card body>
@@ -153,7 +153,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('when empty', () => {
-    const state = useAsync(emptyData);
+    const state = useQuery('data', emptyData);
 
     return (
       <Card body>
@@ -171,7 +171,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('when empty with custom title', () => {
-    const state = useAsync(emptyData);
+    const state = useQuery('data', emptyData);
 
     return (
       <Card body>
@@ -192,7 +192,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('when empty with custom content', () => {
-    const state = useAsync(emptyData);
+    const state = useQuery('data', emptyData);
 
     return (
       <Card body>

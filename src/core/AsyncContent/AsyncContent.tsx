@@ -1,5 +1,6 @@
 import React from 'react';
 import { AsyncState } from 'react-async';
+import { UseQueryResult } from 'react-query';
 
 import ContentState from '../ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
@@ -28,18 +29,27 @@ type Text = {
   retry?: string;
 };
 
-export type Props<T> = {
-  /**
-   * Render function which takes the `data` from the `useAsync`'s
-   * `state` when the promise is fulfilled, and expects a you
-   * to render content.
-   */
-  children: (data: T) => React.ReactNode;
-
+export type ReactAsyncState<T> = {
   /**
    * Result from calling `useAsync` from `react-async`.
    */
   state: AsyncState<T>;
+}
+
+export type ReactQueryState<T> = {
+  /**
+   * Result from calling `useQuery` from `react-query`.
+   */
+  state: UseQueryResult<T>;
+}
+
+export type Props<T> = {
+  /**
+   * Render function which takes the `data` from the `useQuery`'s
+   * or `useAsync`'s `state` when the promise is fulfilled, and
+   * expects you to render content.
+   */
+  children: (data: T) => React.ReactNode;
 
   /**
    * Optionally customized text within the component.
@@ -60,19 +70,20 @@ export type Props<T> = {
    * loaded. When `isEmpty` returns `true` the `emptyContent` is
    * rendered.
    */
-  isEmpty?: (data: T) => boolean;
+  isEmpty?: (data?: T) => boolean;
 
   /**
    * Optionally when `isEmpty` returns `true` what content to render.
    *
    * Defaults to rendering a `ContentState` in the `empty` mode.
    */
-  emptyContent?: (data: T) => React.ReactNode;
+  emptyContent?: (data?: T) => React.ReactNode;
 };
 
 /**
  * AsyncContent is a component which can be used to render the
- * result of a call to `useAsync` from `react-async`.
+ * result of a call to `useQuery` from `react-query` or `useAsync`
+ * from `react-async`.
  *
  * It has the following behaviors:
  *
@@ -82,18 +93,18 @@ export type Props<T> = {
  *    By default it will then show a `Retry` button allowing the user
  *    to try again.
  *
- * 3. When the state has loaded successfully it will render the `children`
+ * 3. When the state has loaded successfully, it will render the `children`
  *    render function and it provides the `state.data` for you to render.
  *
- * 4. When the state has loaded successfully will ask via the `isEmpty`
+ * 4. When the state has loaded successfully, it will ask via the `isEmpty`
  *    callback if you consider the `state.data` empty. It will then
  *    render the `emptyContent` when defined or by default show
  *    a `ContentState` in the `empty` mode.
  *
  * With these behaviors you ensure that you always handle the error and
- * loading state when using `useAsync`.
+ * loading state when using `useQuery` or `useAsync`.
  */
-export default function AsyncContent<T>(props: Props<T>) {
+export default function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQueryState<T>)) {
   const {
     state,
     text = {},
@@ -113,24 +124,22 @@ export default function AsyncContent<T>(props: Props<T>) {
         })}
       />
     );
-  } else if (state.isFulfilled) {
-    if (isEmpty && isEmpty(state.data)) {
-      if (emptyContent) {
-        return <>{emptyContent(state.data)}</>;
-      } else {
-        return (
-          <ContentState
-            mode="empty"
-            title={t({
-              key: 'AsyncContent.EMPTY.TITLE',
-              fallback: 'No results found',
-              overrideText: text.empty
-            })}
-          />
-        );
-      }
-    } else {
+  } else if (isStateFulfilled(state)) {
+    if (state.data && (!isEmpty || !isEmpty(state.data))) {
       return <>{props.children(state.data)}</>;
+    } else if (emptyContent) {
+      return <>{emptyContent(state.data)}</>;
+    } else {
+      return (
+        <ContentState
+          mode="empty"
+          title={t({
+            key: 'AsyncContent.EMPTY.TITLE',
+            fallback: 'No results found',
+            overrideText: text.empty
+          })}
+        />
+      );
     }
   } else {
     console.error(state.error);
@@ -144,7 +153,7 @@ export default function AsyncContent<T>(props: Props<T>) {
         })}
       >
         {showRetryButton ? (
-          <Button icon="refresh" onClick={() => state.reload()}>
+          <Button icon="refresh" onClick={() => stateIsAsyncState(state) ? state.reload() : state.refetch()}>
             {t({
               key: 'AsyncContent.ERROR.RETRY',
               fallback: 'Retry',
@@ -155,4 +164,12 @@ export default function AsyncContent<T>(props: Props<T>) {
       </ContentState>
     );
   }
+}
+
+function isStateFulfilled<T>(state: AsyncState<T> | UseQueryResult<T>) {
+  return stateIsAsyncState(state) ? state.isFulfilled : !state.isError;
+}
+
+function stateIsAsyncState<T>(state: AsyncState<T> | UseQueryResult<T>): state is AsyncState<T> {
+  return state.hasOwnProperty('isFulfilled');
 }

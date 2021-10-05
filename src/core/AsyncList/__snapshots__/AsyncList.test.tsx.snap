@@ -39,7 +39,7 @@ exports[`Component: Async|AsyncList ui 1`] = `
           ],
         },
       ],
-      "isFulfilled": true,
+      "isError": false,
       "isLoading": false,
     }
   }
