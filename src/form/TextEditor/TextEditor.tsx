@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
-import ReactQuill from 'react-quill';
 import classNames from 'classnames';
-import { StringMap } from 'quill';
+import { Editor, EditorState, ContentState } from 'draft-js';
 
 import withJarb from '../withJarb/withJarb';
-import { doBlur } from '../utils';
 import { formatsFromToolbarModule } from './utils';
 import { FieldCompatible } from '../types';
 import { useId } from '../../hooks/useId/useId';
@@ -59,8 +57,6 @@ export default function TextEditor(props: Props) {
     label,
     placeholder,
     onChange,
-    onBlur,
-    onFocus,
     valid,
     error,
     color,
@@ -70,15 +66,17 @@ export default function TextEditor(props: Props) {
     formats
   } = props;
 
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createWithContent(ContentState.createFromText(value)),
+  );
+
   const inputProps = {
-    id,
     placeholder,
-    onChange: (content: string) => onChange(content),
-    onBlur: () => doBlur(onBlur),
-    onFocus,
-    value,
-    modules,
-    formats: formats ? formats : formatsFromToolbarModule(modules)
+    onChange: (content: string) => {
+      setEditorState(content);
+      onChange(content);
+    },
+    editorState
   };
 
   const innerId = useId({ id });
@@ -88,7 +86,13 @@ export default function TextEditor(props: Props) {
   return (
     <FormGroup className={className} color={color}>
       {label ? <Label for={innerId}>{label}</Label> : null}
-      <ReactQuill className={classes} {...inputProps} />
+      <Editor className={classes}
+              placeholder={placeholder}
+              onChange={(editorState: EditorState) => {
+                setEditorState(editorState);
+                onChange(editorState.getCurrentContent().get);
+              }}
+      />
       {error}
     </FormGroup>
   );
