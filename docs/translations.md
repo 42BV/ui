@@ -198,6 +198,11 @@ Here is a JSON notation containing all keys and default translations:
   },
   "TypeaheadMultiple": {
     "PAGINATION_TEXT": "Display additional results..."
+  },
+  "ErrorBoundary": {
+    "ERROR": {
+      "TITLE": "Oops something went wrong!"
+    }
   }
 }
 ```

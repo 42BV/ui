@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Card as ReactstrapCard, CardBody, CardFooter, CardHeader } from 'reactstrap';
 import Loading from '../Loading/Loading';
+import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
 
 export type Props = {
   /**
@@ -99,7 +100,11 @@ export function Card({
         </CardHeader>
       ) : null}
       <CardBody className={cardBodyClassName ? cardBodyClassName : modalBodyClassName}>
-        <Suspense fallback={<Loading />}>{children}</Suspense>
+        <Suspense fallback={<Loading />}>
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
+        </Suspense>
       </CardBody>
       {footer ? (
         <CardFooter className={cardFooterClassName ? cardFooterClassName : modalFooterClassName}>

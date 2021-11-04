@@ -52,6 +52,7 @@ export { Tabs } from './core/Tabs/Tabs';
 export { Tab } from './core/Tabs/Tab/Tab';
 export { AsyncActionButton } from './core/AsyncActionButton/AsyncActionButton';
 export { Debug } from './core/Debug/Debug';
+export { ErrorBoundary } from './core/ErrorBoundary/ErrorBoundary';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';
