@@ -11,7 +11,9 @@ exports[`Component: Card deprecated: modalBodyClassName: Component: Card => depr
     <Suspense
       fallback={<Loading />}
     >
-      This is the content
+      <ErrorBoundary>
+        This is the content
+      </ErrorBoundary>
     </Suspense>
   </CardBody>
 </Card>
@@ -27,7 +29,9 @@ exports[`Component: Card deprecated: modalFooterClassName: Component: Card => de
     <Suspense
       fallback={<Loading />}
     >
-      This is the content
+      <ErrorBoundary>
+        This is the content
+      </ErrorBoundary>
     </Suspense>
   </CardBody>
   <CardFooter
@@ -63,7 +67,9 @@ exports[`Component: Card deprecated: modalHeaderClassName: Component: Card => de
     <Suspense
       fallback={<Loading />}
     >
-      This is the content
+      <ErrorBoundary>
+        This is the content
+      </ErrorBoundary>
     </Suspense>
   </CardBody>
 </Card>
@@ -90,19 +96,21 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
     <Suspense
       fallback={<Loading />}
     >
-      <RadioGroup
-        labelForOption={[Function]}
-        onChange={[MockFunction]}
-        options={
-          Array [
-            "local",
-            "development",
-            "test",
-            "acceptation",
-            "production",
-          ]
-        }
-      />
+      <ErrorBoundary>
+        <RadioGroup
+          labelForOption={[Function]}
+          onChange={[MockFunction]}
+          options={
+            Array [
+              "local",
+              "development",
+              "test",
+              "acceptation",
+              "production",
+            ]
+          }
+        />
+      </ErrorBoundary>
     </Suspense>
   </CardBody>
   <CardFooter
@@ -139,19 +147,21 @@ exports[`Component: Card ui without footer: Component: Card => ui => without foo
     <Suspense
       fallback={<Loading />}
     >
-      <RadioGroup
-        labelForOption={[Function]}
-        onChange={[MockFunction]}
-        options={
-          Array [
-            "local",
-            "development",
-            "test",
-            "acceptation",
-            "production",
-          ]
-        }
-      />
+      <ErrorBoundary>
+        <RadioGroup
+          labelForOption={[Function]}
+          onChange={[MockFunction]}
+          options={
+            Array [
+              "local",
+              "development",
+              "test",
+              "acceptation",
+              "production",
+            ]
+          }
+        />
+      </ErrorBoundary>
     </Suspense>
   </CardBody>
 </Card>
@@ -168,19 +178,21 @@ exports[`Component: Card ui without header: Component: Card => ui => without hea
     <Suspense
       fallback={<Loading />}
     >
-      <RadioGroup
-        labelForOption={[Function]}
-        onChange={[MockFunction]}
-        options={
-          Array [
-            "local",
-            "development",
-            "test",
-            "acceptation",
-            "production",
-          ]
-        }
-      />
+      <ErrorBoundary>
+        <RadioGroup
+          labelForOption={[Function]}
+          onChange={[MockFunction]}
+          options={
+            Array [
+              "local",
+              "development",
+              "test",
+              "acceptation",
+              "production",
+            ]
+          }
+        />
+      </ErrorBoundary>
     </Suspense>
   </CardBody>
   <CardFooter

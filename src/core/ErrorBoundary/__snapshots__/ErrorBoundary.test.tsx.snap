@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: ErrorBoundary ui with custom text: Component: ErrorBoundary => ui => with custom text 1`] = `
+<ContentState
+  mode="error"
+  title="Failure!"
+/>
+`;
+
+exports[`Component: ErrorBoundary ui with error: Component: ErrorBoundary => ui => with error 1`] = `
+<ContentState
+  mode="error"
+  title="Oops something went wrong!"
+/>
+`;
+
+exports[`Component: ErrorBoundary ui without error: Component: ErrorBoundary => ui => without error 1`] = `
+<RadioGroup
+  labelForOption={[Function]}
+  onChange={[MockFunction]}
+  options={
+    Array [
+      "local",
+      "development",
+      "test",
+      "acceptation",
+      "production",
+    ]
+  }
+/>
+`;
