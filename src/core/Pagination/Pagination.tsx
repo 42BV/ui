@@ -18,7 +18,7 @@ type Props<T> = {
   page: Page<T>;
 
   /**
-   * Called when navigation to a certain page number.
+   * Called when navigating to a certain page number.
    */
   onChange: (pageNumber: number) => void;
 
@@ -86,13 +86,13 @@ export function Pagination<T>({
       ) : null}
       {content.map((item, index) => (
         <PaginationItem active={item === current} key={index}>
-          {item !== '...' ? (
-            <PaginationLink onClick={() => onChange(item)}>
+          {item === '...' ? (
+            <PaginationLink className="disabled" disabled={true}>
               {item}
             </PaginationLink>
           ) : (
-            <PaginationLink className="disabled" disabled={true}>
-              ...
+            <PaginationLink onClick={() => onChange(item)}>
+              {item}
             </PaginationLink>
           )}
         </PaginationItem>

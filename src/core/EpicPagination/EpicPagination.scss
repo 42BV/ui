@@ -1,0 +1,44 @@
+.epic-pagination {
+  user-select: none;
+
+  .page-item {
+    margin: 2px;
+
+    .page-link {
+      background-color: transparent;
+      border-color: transparent;
+      border-radius: 50%;
+      padding: initial;
+      width: 2.5rem;
+      height: 2.5rem;
+
+      .icon {
+        display: block;
+      }
+    }
+
+    &.disabled .page-link,
+    .page-link.disabled {
+      background-color: transparent;
+      border-color: transparent;
+      color: $text-muted;
+    }
+
+    &.active .page-link {
+      color: $body-color;
+    }
+
+    .total-elements {
+      border: var(--bs-pagination-border-width) solid transparent;
+      padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+    }
+
+    .scale-to-page-size-1000 {
+      font-size: small;
+    }
+
+    .scale-to-page-size-10000 {
+      font-size: x-small;
+    }
+  }
+}
