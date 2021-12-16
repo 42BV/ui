@@ -63,7 +63,10 @@ describe('Component: FavoriteIcon', () => {
     it('should when value is false and the icon is clicked call onChange with true', () => {
       const { favoriteIcon, onChangeSpy } = setup({ value: false });
 
-      favoriteIcon.find('Icon').simulate('click');
+      const event = {
+        preventDefault: jest.fn()
+      };
+      favoriteIcon.find('Icon').simulate('click', event);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(true);
@@ -72,10 +75,25 @@ describe('Component: FavoriteIcon', () => {
     it('should when value is true and the icon is clicked call onChange with false', () => {
       const { favoriteIcon, onChangeSpy } = setup({ value: true });
 
-      favoriteIcon.find('Icon').simulate('click');
+      const event = {
+        preventDefault: jest.fn()
+      };
+      favoriteIcon.find('Icon').simulate('click', event);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(false);
+    });
+
+    it('should prevent click callbacks in parent components from being called', () => {
+
+      const { favoriteIcon } = setup({ value: true });
+
+      const event = {
+        preventDefault: jest.fn()
+      };
+      favoriteIcon.find('Icon').simulate('click', event);
+
+      expect(event.preventDefault).toHaveBeenCalledTimes(1);
     });
   });
 });

@@ -69,7 +69,10 @@ export function BooleanIcon({
       <div {...hoverEvents}>
         <Icon
           color={value || hover ? activeColor : color}
-          onClick={onChange}
+          onClick={(e: React.MouseEvent<HTMLElement>) => {
+            e.preventDefault();
+            onChange();
+          }}
           {...props}
         />
       </div>

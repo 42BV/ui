@@ -59,13 +59,18 @@ export function FavoriteIcon({
 }: FavoriteIconProps) {
   const [hover, hoverEvents] = useHover();
 
+  function onClick(e: React.MouseEvent<HTMLElement>) {
+    e.preventDefault();
+    onChange(!value);
+  }
+
   return (
     <div {...hoverEvents}>
       <Icon
         color={value || hover ? activeColor : color}
         className={className}
         icon={value ? 'star' : 'star_border'}
-        onClick={() => onChange(!value)}
+        onClick={onClick}
         size={size}
       />
     </div>

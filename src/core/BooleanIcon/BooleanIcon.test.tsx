@@ -89,14 +89,13 @@ describe('Component: BooleanIcon', () => {
         hasOnChangeSpy: true
       });
 
-      // @ts-expect-error Test mock
-      booleanIcon
-        .find('Icon')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      const event = {
+        preventDefault: jest.fn()
+      };
+      booleanIcon.find('Icon').simulate('click', event);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(event.preventDefault).toHaveBeenCalledTimes(1);
     });
 
     it('should change the color of the icon when hovered', () => {

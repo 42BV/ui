@@ -88,12 +88,10 @@ describe('Component: SuccessIcon', () => {
         hasOnChangeSpy: true
       });
 
-      // @ts-expect-error Test mock
-      successIcon
-        .find('Icon')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      const event = {
+        preventDefault: jest.fn()
+      };
+      successIcon.find('Icon').simulate('click', event);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
     });
