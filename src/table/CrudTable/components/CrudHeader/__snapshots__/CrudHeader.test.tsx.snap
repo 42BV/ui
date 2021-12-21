@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: CrudHeader ui default 1`] = `
+<EpicHeader
+  width={300}
+>
+  crud header
+</EpicHeader>
+`;
+
+exports[`Component: CrudHeader ui with resize 1`] = `
+<CrudHeader
+  onResize={[MockFunction]}
+  width={300}
+>
+  <EpicHeader
+    onResize={[MockFunction]}
+    width={300}
+  >
+    <div
+      className="epic-table-header d-flex align-items-center justify-content-between p-1"
+      style={
+        Object {
+          "height": 44,
+          "minWidth": 300,
+          "width": 300,
+        }
+      }
+    >
+      epic header
+      <EpicResize
+        onResize={[MockFunction]}
+        width={300}
+      >
+        <div
+          className="epic-table-header-resizeable"
+          onMouseDown={[Function]}
+        />
+      </EpicResize>
+    </div>
+  </EpicHeader>
+</CrudHeader>
+`;
+
+exports[`Component: CrudHeader ui with search 1`] = `
+<EpicHeader
+  height={88}
+  width={300}
+>
+  <EpicCellLayout
+    mode="vertical"
+  >
+    crud header
+    <Input
+      onChange={[Function]}
+    />
+  </EpicCellLayout>
+</EpicHeader>
+`;
+
+exports[`Component: CrudHeader ui with search options 1`] = `
+<EpicHeader
+  height={88}
+  width={300}
+>
+  <EpicCellLayout
+    mode="vertical"
+  >
+    crud header
+    <Select
+      labelForOption={[Function]}
+      onChange={[MockFunction]}
+      options={
+        Array [
+          "crud",
+          "header",
+        ]
+      }
+    />
+  </EpicCellLayout>
+</EpicHeader>
+`;
+
+exports[`Component: CrudHeader ui with sort 1`] = `
+<EpicHeader
+  width={300}
+>
+  <EpicCellLayout
+    mode="horizontal"
+  >
+    crud header
+    <EpicSort
+      direction="NONE"
+      onChange={[MockFunction]}
+    />
+  </EpicCellLayout>
+</EpicHeader>
+`;
+
+exports[`Component: CrudHeader ui with sort and search 1`] = `
+<EpicHeader
+  height={88}
+  width={300}
+>
+  <EpicCellLayout
+    mode="vertical"
+  >
+    <EpicCellLayout
+      mode="horizontal"
+    >
+      crud header
+      <EpicSort
+        direction="NONE"
+        onChange={[MockFunction]}
+      />
+    </EpicCellLayout>
+    <Input
+      onChange={[Function]}
+    />
+  </EpicCellLayout>
+</EpicHeader>
+`;
