@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: EpicCell ui 1`] = `
+exports[`Component: EpicCell ui default 1`] = `
 <div
   className="epic-table-cell border-bottom p-1"
   onClick={[Function]}
@@ -9,6 +9,24 @@ exports[`Component: EpicCell ui 1`] = `
   style={
     Object {
       "height": 44,
+      "minWidth": 300,
+      "width": 300,
+    }
+  }
+>
+  epic cell
+</div>
+`;
+
+exports[`Component: EpicCell ui with height 1`] = `
+<div
+  className="epic-table-cell border-bottom p-1"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "height": 50,
       "minWidth": 300,
       "width": 300,
     }

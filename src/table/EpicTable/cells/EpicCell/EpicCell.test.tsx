@@ -5,14 +5,14 @@ import toJson from 'enzyme-to-json';
 import { EpicCell } from './EpicCell';
 
 describe('Component: EpicCell', () => {
-  function setup({ hasOnRowClick = true }: { hasOnRowClick?: boolean }) {
+  function setup({ hasOnRowClick = true, height }: { hasOnRowClick?: boolean; height?: number; }) {
     const onRowClickSpy = jest.fn();
     const onHoverChangedSpy = jest.fn();
 
     const epicCell = shallow(
       <EpicCell
         width={300}
-        height={44}
+        height={height}
         // @ts-expect-error Test mock
         onRowClick={hasOnRowClick ? onRowClickSpy : undefined}
         onHoverChanged={hasOnRowClick ? onHoverChangedSpy : undefined}
@@ -24,10 +24,18 @@ describe('Component: EpicCell', () => {
     return { epicCell, onRowClickSpy, onHoverChangedSpy };
   }
 
-  test('ui', () => {
-    const { epicCell } = setup({});
+  describe('ui', () => {
+    test('default', () => {
+      const { epicCell } = setup({});
 
-    expect(toJson(epicCell)).toMatchSnapshot();
+      expect(toJson(epicCell)).toMatchSnapshot();
+    });
+
+    test('with height', () => {
+      const { epicCell } = setup({ height: 50 });
+
+      expect(toJson(epicCell)).toMatchSnapshot();
+    });
   });
 
   describe('events', () => {

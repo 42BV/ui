@@ -8,14 +8,15 @@ type Props = {
   children: React.ReactNode;
 
   /**
-   * The width of the cell.
+   * The width of the cell in pixels.
    */
   width: number;
 
   /**
-   * The height of the cell.
+   * Optionally the height of the cell in pixels.
+   * Defaults to 44.
    */
-  height: number;
+  height?: number;
 };
 
 // Props that will be injected by the EpicTable.
@@ -53,7 +54,7 @@ type InjectedProps = {
  * The EpicCell is used inside of a EpicRow to render content in.
  * It can be seen as the EpicTable's variant of the `<td>` element.
  */
-export function EpicCell({ children, width, height, ...rest }: Props) {
+export function EpicCell({ children, width, height = 44, ...rest }: Props) {
   const ref = useRef(null);
 
   const { odd, onRowClick, hover, onHoverChanged } = rest as InjectedProps;

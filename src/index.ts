@@ -185,6 +185,9 @@ export { EpicSort } from './table/EpicTable/widgets/EpicSort/EpicSort';
 
 export { EpicTableSortDirection } from './table/EpicTable/types';
 
+export { CrudTable } from './table/CrudTable/CrudTable';
+export { CrudHeader } from './table/CrudTable/components/CrudHeader/CrudHeader';
+
 // Utilities
 export { t } from './utilities/translation/translation';
 export {
