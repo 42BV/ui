@@ -98,12 +98,14 @@ export function GooeyCenter({
       }, 200);
 
       window.addEventListener('resize', calculateCenterWidth);
+      window.addEventListener('resizeEpicTables', calculateCenterWidth);
 
       // Calculate at least once on startup
       calculateCenterWidth();
 
       return () => {
         window.removeEventListener('resize', calculateCenterWidth);
+        window.removeEventListener('resizeEpicTables', calculateCenterWidth);
       };
     },
     [setCenterWidth, onCenterWidthChanged, left, center, right]
