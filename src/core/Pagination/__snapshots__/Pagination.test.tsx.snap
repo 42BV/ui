@@ -119,11 +119,10 @@ exports[`Component: Pagination ui no next: Component: Pagination => ui => no nex
     tag="li"
   >
     <PaginationLink
-      className="disabled"
-      disabled={true}
+      onClick={[Function]}
       tag="a"
     >
-      ...
+      2
     </PaginationLink>
   </PaginationItem>
   <PaginationItem
@@ -135,12 +134,49 @@ exports[`Component: Pagination ui no next: Component: Pagination => ui => no nex
       onClick={[Function]}
       tag="a"
     >
+      3
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem
+    active={false}
+    key="3"
+    tag="li"
+  >
+    <PaginationLink
+      className="disabled"
+      disabled={true}
+      tag="a"
+    >
+      ...
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem
+    active={false}
+    key="4"
+    tag="li"
+  >
+    <PaginationLink
+      onClick={[Function]}
+      tag="a"
+    >
+      8
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem
+    active={false}
+    key="5"
+    tag="li"
+  >
+    <PaginationLink
+      onClick={[Function]}
+      tag="a"
+    >
       9
     </PaginationLink>
   </PaginationItem>
   <PaginationItem
     active={true}
-    key="3"
+    key="6"
     tag="li"
   >
     <PaginationLink
@@ -189,6 +225,18 @@ exports[`Component: Pagination ui no previous: Component: Pagination => ui => no
     tag="li"
   >
     <PaginationLink
+      onClick={[Function]}
+      tag="a"
+    >
+      3
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem
+    active={false}
+    key="3"
+    tag="li"
+  >
+    <PaginationLink
       className="disabled"
       disabled={true}
       tag="a"
@@ -198,7 +246,31 @@ exports[`Component: Pagination ui no previous: Component: Pagination => ui => no
   </PaginationItem>
   <PaginationItem
     active={false}
-    key="3"
+    key="4"
+    tag="li"
+  >
+    <PaginationLink
+      onClick={[Function]}
+      tag="a"
+    >
+      8
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem
+    active={false}
+    key="5"
+    tag="li"
+  >
+    <PaginationLink
+      onClick={[Function]}
+      tag="a"
+    >
+      9
+    </PaginationLink>
+  </PaginationItem>
+  <PaginationItem
+    active={false}
+    key="6"
     tag="li"
   >
     <PaginationLink

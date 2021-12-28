@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 
 import { Icon } from '../Icon';
+import { range } from 'lodash';
 
 type Props<T> = {
   /**
@@ -92,46 +93,40 @@ export default function Pagination<T>({
   );
 }
 
-type Dots = '...';
+type Ellipsis = '...';
 
 // Calculates which pages surround the current page.
 export function pagesFor(
   currentPage: number,
   totalPages: number
-): (number | Dots)[] {
-  const content: (number | Dots)[] = [];
+): (number | Ellipsis)[] {
+  const ellipsis: Ellipsis = '...';
 
-  if (currentPage > 1) {
-    content.push(1);
+  if (totalPages < 8) {
+    return range(1, totalPages + 1);
   }
 
-  const prev = currentPage - 1;
-  if (prev > 1) {
-    content.push(prev);
+  if (currentPage < 5) {
+    // {1} 2 3 ... 29 30 31
+    // till
+    // 1 2 3 {4} 5 ... 31
+
+    const tillEllipsis = range(1, Math.max(4, currentPage + 2));
+    const fromEllipsis = range(totalPages - (5 - tillEllipsis.length), totalPages + 1)
+
+    return [ ...tillEllipsis, ellipsis, ...fromEllipsis ];
   }
 
-  content.push(currentPage);
+  if (currentPage > totalPages - 4) {
+    // 1 ... 27 {28} 29 30 31
+    // till
+    // 1 2 3 ... 29 30 {31}
 
-  const next = currentPage + 1;
-  if (next <= totalPages) {
-    content.push(next);
+    const fromEllipsis = range(Math.min(totalPages - 2, currentPage - 1), totalPages + 1);
+    const tillEllipsis = range(1, 7 - fromEllipsis.length);
+
+    return [ ...tillEllipsis, ellipsis, ...fromEllipsis ];
   }
 
-  if (next + 1 <= totalPages) {
-    content.push(totalPages);
-  }
-
-  if (content[0] === 1 && content[1] !== 2) {
-    content.splice(1, 0, '...');
-  }
-
-  const lastIndex = content.length - 1;
-  if (
-    content[lastIndex] === totalPages &&
-    content[lastIndex - 1] !== totalPages - 1
-  ) {
-    content.splice(lastIndex, 0, '...');
-  }
-
-  return content;
+  return [1, ellipsis, ...range(currentPage - 1, currentPage + 2), ellipsis, totalPages];
 }
