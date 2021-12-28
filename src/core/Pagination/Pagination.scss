@@ -2,6 +2,11 @@
   margin-bottom: 0;
 
   .page-item {
+    .page-link {
+      min-width: 38px;
+      padding: 0.5rem 0.5rem;
+    }
+
     button.disabled.page-link {
       border-radius: 0;
       background-color: $white;

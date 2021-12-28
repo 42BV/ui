@@ -170,32 +170,37 @@ describe('pages', () => {
   });
 
   test('almost middle', () => {
-    expect(pagesFor(4, 10)).toEqual([1, '...', 3, 4, 5, '...', 10]);
+    expect(pagesFor(5, 10)).toEqual([1, '...', 4, 5, 6, '...', 10]);
     expect(pagesFor(6, 10)).toEqual([1, '...', 5, 6, 7, '...', 10]);
   });
 
   test('absolute left', () => {
-    expect(pagesFor(1, 10)).toEqual([1, 2, '...', 10]);
+    expect(pagesFor(1, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('almost left', () => {
-    expect(pagesFor(2, 10)).toEqual([1, 2, 3, '...', 10]);
-    expect(pagesFor(3, 10)).toEqual([1, 2, 3, 4, '...', 10]);
-    expect(pagesFor(4, 10)).toEqual([1, '...', 3, 4, 5, '...', 10]);
+    expect(pagesFor(2, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
+    expect(pagesFor(3, 10)).toEqual([1, 2, 3, 4, '...', 9, 10]);
+    expect(pagesFor(4, 10)).toEqual([1, 2, 3, 4, 5, '...', 10]);
   });
 
   test('almost right', () => {
-    expect(pagesFor(7, 10)).toEqual([1, '...', 6, 7, 8, '...', 10]);
-    expect(pagesFor(8, 10)).toEqual([1, '...', 7, 8, 9, 10]);
-    expect(pagesFor(9, 10)).toEqual([1, '...', 8, 9, 10]);
+    expect(pagesFor(7, 10)).toEqual([1, '...', 6, 7, 8, 9, 10]);
+    expect(pagesFor(8, 10)).toEqual([1, 2, '...', 7, 8, 9, 10]);
+    expect(pagesFor(9, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('absolute right', () => {
-    expect(pagesFor(10, 10)).toEqual([1, '...', 9, 10]);
+    expect(pagesFor(10, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('shortage', () => {
     expect(pagesFor(1, 3)).toEqual([1, 2, 3]);
     expect(pagesFor(3, 3)).toEqual([1, 2, 3]);
+    expect(pagesFor(1, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(4, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(7, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(1, 8)).toEqual([1, 2, 3, '...', 6, 7, 8]);
+    expect(pagesFor(8, 8)).toEqual([1, 2, 3, '...', 6, 7, 8]);
   });
 });
