@@ -30,7 +30,16 @@ storiesOf('core/Icons', module)
         <Icon icon="drafts" />
         <Icon icon="drafts" disabled={true} />
         <Icon icon="timer_3" onClick={action('timer clicked')} />
-        <Icon icon="home" disabled={true} onClick={action('timer clicked')} />
+        <Icon icon="home" disabled={true} onClick={action('home clicked')} />
+      </div>
+    );
+  })
+  .add('hover color', () => {
+    return (
+      <div className="d-flex flex-column align-items-center">
+        <Icon icon="child_care" color="secondary" hoverColor="danger" onClick={action('child care clicked')} />
+        <Icon icon="train" color="primary" hoverColor="success" onClick={action('train clicked')} />
+        <Icon icon="home" disabled={true} color="primary" hoverColor="success" onClick={action('home clicked')} />
       </div>
     );
   });

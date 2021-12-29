@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Color } from '../..';
+import { Color, useHover } from '../..';
 import IconType from './types';
 
 export type Props = {
@@ -14,6 +14,13 @@ export type Props = {
    * Optional color you want the Icon to have.
    */
   color?: Color;
+
+  /**
+   * Optional color you want the Icon to have when it is hovered.
+   * When `disabled` is true, hoverColor does not work.
+   * This will only be used when onClick is defined.
+   */
+  hoverColor?: Color;
 
   /**
    * Optional extra CSS class you want to add to the component.
@@ -57,16 +64,25 @@ export default function Icon({
   icon,
   id,
   color,
+  hoverColor,
   disabled,
   size
 }: Props) {
-  const colorCssClass = color !== undefined ? `text-${color}` : undefined;
+  const [hover, hoverEvents] = useHover();
+
+  const colorCssClasses = {};
+  if (color) {
+    colorCssClasses[`text-${color}`] = (hoverColor && !hover) || disabled || onClick === undefined;
+  }
+  if (hoverColor) {
+    colorCssClasses[`text-${hoverColor}`] = hover && !disabled && onClick !== undefined;
+  }
 
   const classes = classNames(
     'icon',
     className,
     'material-icons',
-    colorCssClass,
+    colorCssClasses,
     {
       clickable: !disabled && onClick,
       'icon--disabled': disabled
@@ -85,6 +101,7 @@ export default function Icon({
         }
       }}
       className={classes}
+      {...hoverEvents}
     >
       {icon}
     </i>

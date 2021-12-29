@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 
 import Icon from './Icon';
 import * as components from './index';
+import * as UseHover from '../../hooks/useHover/useHover';
 
 describe('index', () => {
   it('should contain exports', () => {
@@ -59,6 +60,11 @@ describe('Icon', () => {
       const icon = shallow(<Icon icon="alarm" size={144} />);
       expect(toJson(icon)).toMatchSnapshot('Icon => ui => with size');
     });
+
+    test('with hoverColor', () => {
+      const icon = shallow(<Icon icon="alarm" size={144} color="secondary" hoverColor="primary" />);
+      expect(toJson(icon)).toMatchSnapshot('Icon => ui => with hoverColor');
+    });
   });
 
   describe('events', () => {
@@ -91,6 +97,53 @@ describe('Icon', () => {
       icon.find('i').simulate('click');
 
       expect(onClickSpy).toHaveBeenCalledTimes(0);
+    });
+
+    describe('hover', () => {
+      it('should change color when hoverColor is defined', () => {
+        jest
+          .spyOn(UseHover, 'useHover')
+          .mockReturnValue([
+            true,
+            { onMouseEnter: jest.fn(), onMouseLeave: jest.fn() }
+          ]);
+
+        const icon = shallow(
+          <Icon icon="alarm" onClick={jest.fn()} hoverColor="primary" />
+        );
+
+        expect(toJson(icon)).toMatchSnapshot('Icon => events => hover => should change color when hoverColor is defined');
+      });
+
+      it('should not change color when onClick is not defined', () => {
+        jest
+          .spyOn(UseHover, 'useHover')
+          .mockReturnValue([
+            true,
+            { onMouseEnter: jest.fn(), onMouseLeave: jest.fn() }
+          ]);
+
+        const icon = shallow(
+          <Icon icon="alarm" hoverColor="primary" />
+        );
+
+        expect(toJson(icon)).toMatchSnapshot('Icon => events => hover => should not change color when onClick is not defined');
+      });
+
+      it('should not change color when disabled', () => {
+        jest
+          .spyOn(UseHover, 'useHover')
+          .mockReturnValue([
+            true,
+            { onMouseEnter: jest.fn(), onMouseLeave: jest.fn() }
+          ]);
+
+        const icon = shallow(
+          <Icon icon="alarm" onClick={jest.fn()} disabled={true} hoverColor="primary" />
+        );
+
+        expect(toJson(icon)).toMatchSnapshot('Icon => events => hover => should not change color when disabled');
+      });
     });
   });
 });

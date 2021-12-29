@@ -1,6 +1,5 @@
 import React from 'react';
 import Icon from '../Icon/Icon';
-import { useHover } from '../../hooks/useHover/useHover';
 import { Color } from '../types';
 
 type FavoriteIconProps = {
@@ -36,8 +35,15 @@ type FavoriteIconProps = {
   color?: Color;
 
   /**
-   * Optionally the color of the icon when value is true
-   * or the icon is hovered.
+   * Optional color you want the icon to have when it is hovered.
+   * When hoverColor is not defined, activeColor will be used.
+   */
+  hoverColor?: Color;
+
+  /**
+   * Optionally the color of the icon when value is true.
+   * Also used when hoverColor is not defined and the icon
+   * is hovered.
    *
    * Defaults to primary.
    */
@@ -55,24 +61,22 @@ export function FavoriteIcon({
   className = '',
   size,
   color = 'secondary',
-  activeColor = 'primary'
+  activeColor = 'primary',
+  hoverColor
 }: FavoriteIconProps) {
-  const [hover, hoverEvents] = useHover();
-
   function onClick(e: React.MouseEvent<HTMLElement>) {
     e.preventDefault();
     onChange(!value);
   }
 
   return (
-    <div {...hoverEvents}>
-      <Icon
-        color={value || hover ? activeColor : color}
-        className={className}
-        icon={value ? 'star' : 'star_border'}
-        onClick={onClick}
-        size={size}
-      />
-    </div>
+    <Icon
+      color={value ? activeColor : color}
+      hoverColor={hoverColor ? hoverColor : activeColor}
+      className={className}
+      icon={value ? 'star' : 'star_border'}
+      onClick={onClick}
+      size={size}
+    />
   );
 }

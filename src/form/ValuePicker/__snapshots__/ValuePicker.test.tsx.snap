@@ -418,6 +418,8 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
                   <i
                     className="icon mr-2 align-bottom material-icons"
                     onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
                     face
                   </i>
@@ -724,6 +726,8 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
                   <i
                     className="icon mr-2 align-bottom material-icons"
                     onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onMouseLeave={[Function]}
                   >
                     face
                   </i>

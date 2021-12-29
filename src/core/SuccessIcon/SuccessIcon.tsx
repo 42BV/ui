@@ -1,7 +1,6 @@
 import React from 'react';
 import Icon, { Props as IconProps } from '../Icon/Icon';
 import { Color } from '../types';
-import { useHover } from '../../hooks/useHover/useHover';
 
 type Props = {
   /**
@@ -26,9 +25,15 @@ type Props = {
   color?: Color;
 
   /**
-   * Optionally the color of the icon when value is true
-   * or the icon is hovered. This is only used when onChange
-   * is defined.
+   * Optional color you want the icon to have when it is hovered.
+   * When hoverColor is not defined, activeColor will be used.
+   */
+  hoverColor?: Color;
+
+  /**
+   * Optionally the color of the icon when value is true.
+   * Also used when hoverColor is not defined and the icon
+   * is hovered. This is only used when onChange is defined.
    *
    * Defaults to primary.
    */
@@ -55,11 +60,10 @@ export function SuccessIcon({
   size,
   color = 'dark',
   activeColor = 'primary',
+  hoverColor,
   onChange,
   className
 }: Props) {
-  const [hover, hoverEvents] = useHover();
-
   const props: IconProps = {
     icon: value ? 'done' : 'clear',
     size,
@@ -68,16 +72,15 @@ export function SuccessIcon({
 
   if (onChange) {
     return (
-      <div {...hoverEvents}>
-        <Icon
-          color={value || hover ? activeColor : color}
-          onClick={(e: React.MouseEvent<HTMLElement>) => {
-            e.preventDefault();
-            onChange();
-          }}
-          {...props}
-        />
-      </div>
+      <Icon
+        color={value ? activeColor : color}
+        hoverColor={hoverColor ? hoverColor : activeColor}
+        onClick={(e: React.MouseEvent<HTMLElement>) => {
+          e.preventDefault();
+          onChange();
+        }}
+        {...props}
+      />
     );
   }
 

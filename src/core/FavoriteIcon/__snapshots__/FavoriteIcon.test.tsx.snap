@@ -1,29 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: FavoriteIcon ui favorite: Component: FavoriteIcon => ui => favorite 1`] = `
-<div
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  <Icon
-    className=""
-    color="primary"
-    icon="star"
-    onClick={[Function]}
-  />
-</div>
+<Icon
+  className=""
+  color="primary"
+  hoverColor="primary"
+  icon="star"
+  onClick={[Function]}
+/>
 `;
 
 exports[`Component: FavoriteIcon ui not favorite: Component: FavoriteIcon => ui => not favorite 1`] = `
-<div
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  <Icon
-    className=""
-    color="secondary"
-    icon="star_border"
-    onClick={[Function]}
-  />
-</div>
+<Icon
+  className=""
+  color="secondary"
+  hoverColor="primary"
+  icon="star_border"
+  onClick={[Function]}
+/>
 `;
