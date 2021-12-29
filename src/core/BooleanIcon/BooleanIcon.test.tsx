@@ -5,17 +5,17 @@ import toJson from 'enzyme-to-json';
 import { BooleanIcon } from './BooleanIcon';
 import { Color } from '../types';
 
-import * as UseHover from '../../hooks/useHover/useHover';
-
 describe('Component: BooleanIcon', () => {
   function setup({
     value,
     color,
+    hoverColor,
     size,
     hasOnChangeSpy
   }: {
     value: boolean;
     color?: Color;
+    hoverColor?: Color;
     size?: number;
     hasOnChangeSpy?: boolean;
   }) {
@@ -26,6 +26,7 @@ describe('Component: BooleanIcon', () => {
         value={value}
         size={size}
         color={color}
+        hoverColor={hoverColor}
         onChange={hasOnChangeSpy ? onChangeSpy : undefined}
       />
     );
@@ -80,6 +81,38 @@ describe('Component: BooleanIcon', () => {
         expect(booleanIcon.find('Icon').props().color).toBe('primary');
       });
     });
+
+    describe('hoverColor', () => {
+      it('should use hoverColor when onChange and hoverColor are defined', () => {
+        const { booleanIcon } = setup({
+          value: true,
+          color: 'secondary',
+          hoverColor: 'success',
+          hasOnChangeSpy: true
+        });
+
+        // @ts-expect-error Mock test
+        expect(booleanIcon.find('Icon').props().hoverColor).toBe('success');
+      });
+
+      it('should not use activeColor when onChange and hoverColor are not defined', () => {
+        const { booleanIcon } = setup({
+          value: true,
+          color: 'secondary',
+          hasOnChangeSpy: false
+        });
+
+        // @ts-expect-error Mock test
+        expect(booleanIcon.find('Icon').props().hoverColor).toBe(undefined);
+      });
+
+      it('should use activeColor when hoverColor is not defined and onChange is defined', () => {
+        const { booleanIcon } = setup({ value: true, hasOnChangeSpy: true });
+
+        // @ts-expect-error Mock test
+        expect(booleanIcon.find('Icon').props().hoverColor).toBe('primary');
+      });
+    });
   });
 
   describe('events', () => {
@@ -96,22 +129,6 @@ describe('Component: BooleanIcon', () => {
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(event.preventDefault).toHaveBeenCalledTimes(1);
-    });
-
-    it('should change the color of the icon when hovered', () => {
-      jest
-        .spyOn(UseHover, 'useHover')
-        .mockReturnValue([
-          true,
-          { onMouseEnter: jest.fn(), onMouseLeave: jest.fn() }
-        ]);
-
-      const { booleanIcon } = setup({
-        value: false,
-        hasOnChangeSpy: true
-      });
-
-      expect(booleanIcon.find('Icon').props().color).toBe('primary');
     });
   });
 });

@@ -15,4 +15,16 @@ storiesOf('core/FavoriteIcon', module)
         />
       </div>
     );
+  })
+  .add('hover color', () => {
+    const [favorite, setFavorite] = useState(false);
+    return (
+      <div className="text-center">
+        <FavoriteIcon
+          onChange={() => setFavorite(!favorite)}
+          value={favorite}
+          hoverColor="danger"
+        />
+      </div>
+    );
   });

@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { BooleanIcon } from './BooleanIcon';
+import { action } from '@storybook/addon-actions';
 
 storiesOf('core/BooleanIcon', module)
   .addParameters({ component: BooleanIcon })
@@ -75,4 +76,13 @@ storiesOf('core/BooleanIcon', module)
         <BooleanIcon value={false} color="light" />
       </div>
     );
+  })
+  .add('hover color', () => {
+      return (
+        <div className="text-center align-middle">
+            true <BooleanIcon value={true} hoverColor="primary" onChange={action('active icon clicked')} />
+            <br />
+            false <BooleanIcon value={false} hoverColor="primary" onChange={action('inactive icon clicked')} />
+        </div>
+      );
   });

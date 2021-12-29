@@ -9,10 +9,12 @@ describe('Component: FavoriteIcon', () => {
   function setup({
     value,
     color,
+    hoverColor,
     size
   }: {
     value: boolean;
     color?: Color;
+    hoverColor?: Color;
     size?: number;
   }) {
     const onChangeSpy = jest.fn();
@@ -22,6 +24,7 @@ describe('Component: FavoriteIcon', () => {
         onChange={onChangeSpy}
         value={value}
         color={color}
+        hoverColor={hoverColor}
         size={size}
       />
     );
@@ -56,6 +59,26 @@ describe('Component: FavoriteIcon', () => {
       const { favoriteIcon } = setup({ value: false, color: 'primary' });
 
       expect(favoriteIcon.find('Icon').props().color).toBe('primary');
+    });
+
+    describe('hoverColor', () => {
+      it('should use hoverColor when hoverColor is defined', () => {
+        const { favoriteIcon } = setup({
+          value: true,
+          color: 'secondary',
+          hoverColor: 'success'
+        });
+
+        // @ts-expect-error Mock test
+        expect(favoriteIcon.find('Icon').props().hoverColor).toBe('success');
+      });
+
+      it('should use activeColor when hoverColor is not defined', () => {
+        const { favoriteIcon } = setup({ value: true });
+
+        // @ts-expect-error Mock test
+        expect(favoriteIcon.find('Icon').props().hoverColor).toBe('primary');
+      });
     });
   });
 
