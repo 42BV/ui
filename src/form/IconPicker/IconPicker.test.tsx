@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import IconPicker from './IconPicker';
-import { SearchInput, Icon, IconType, Pager } from '../..';
+import { Icon, IconType, Pager, SearchInput } from '../..';
 import { Button } from 'reactstrap';
 import Popover from '../../core/Popover/Popover';
 import TextButton from '../../core/TextButton/TextButton';
@@ -145,7 +145,7 @@ describe('Component: IconPicker', () => {
       // Now search for home which should make it go back to the first page
       iconPickerParent.find(SearchInput).props().onChange('home');
 
-      expect(updateIconPicker().find(Icon).length).toBe(1);
+      expect(updateIconPicker().find(Icon).length).toBe(5);
     });
 
     it('should when the user moves to another page load the new page', () => {
@@ -154,14 +154,14 @@ describe('Component: IconPicker', () => {
       });
 
       // The first icon on the first page is the 3d_rotation
-      expect(iconPicker.find(Icon).first().props().icon).toBe('3d_rotation');
+      expect(iconPicker.find(Icon).first().props().icon).toBe('10k');
 
       // @ts-expect-error Test mock
       updateIconPicker().find(Pager).props().onChange(2);
 
       // The first icon on the second page is the calendar_today
       expect(updateIconPicker().find(Icon).first().props().icon).toBe(
-        'calendar_today'
+        '4mp'
       );
     });
 
@@ -181,7 +181,7 @@ describe('Component: IconPicker', () => {
       expect(iconPicker.find(Popover).props().isOpen).toBe(false);
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith('3d_rotation');
+      expect(onChangeSpy).toHaveBeenCalledWith('10k');
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });

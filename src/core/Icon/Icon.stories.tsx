@@ -3,20 +3,18 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Icon from './Icon';
+import Button from '../Button/Button';
 
 storiesOf('core/Icons', module)
   .addParameters({ component: Icon })
   .add('available icons', () => {
     return (
-      <iframe
-        style={{
-          height: '100vh',
-          width: '100%',
-          border: 0
-        }}
-        title="Material.io icons"
-        src="https://material.io/tools/icons/?icon=call_made&style=baseline"
-      />
+      <>
+        <p>You can find the available icons on Google Fonts</p>
+        <Button onClick={() => window.open('https://fonts.google.com/icons', '_blank')}>
+          Go to Icons on Google Fonts
+        </Button>
+      </>
     );
   })
   .add('examples', () => {
