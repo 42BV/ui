@@ -164,6 +164,422 @@ exports[`Component: IconPicker ui with selected value 1`] = `
           >
             <span
               className="d-inline-block"
+              key="10k"
+            >
+              <Tooltip
+                content="10k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="10k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="10mp"
+            >
+              <Tooltip
+                content="10mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="10mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="11mp"
+            >
+              <Tooltip
+                content="11mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="11mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="123"
+            >
+              <Tooltip
+                content="123"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="123"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="12mp"
+            >
+              <Tooltip
+                content="12mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="12mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="13mp"
+            >
+              <Tooltip
+                content="13mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="13mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="14mp"
+            >
+              <Tooltip
+                content="14mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="14mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="15mp"
+            >
+              <Tooltip
+                content="15mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="15mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="16mp"
+            >
+              <Tooltip
+                content="16mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="16mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="17mp"
+            >
+              <Tooltip
+                content="17mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="17mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="18mp"
+            >
+              <Tooltip
+                content="18mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="18mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="19mp"
+            >
+              <Tooltip
+                content="19mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="19mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1k"
+            >
+              <Tooltip
+                content="1k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1k_plus"
+            >
+              <Tooltip
+                content="1k_plus"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1k_plus"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1x_mobiledata"
+            >
+              <Tooltip
+                content="1x_mobiledata"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1x_mobiledata"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="20mp"
+            >
+              <Tooltip
+                content="20mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="20mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="21mp"
+            >
+              <Tooltip
+                content="21mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="21mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="22mp"
+            >
+              <Tooltip
+                content="22mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="22mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="23mp"
+            >
+              <Tooltip
+                content="23mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="23mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="24mp"
+            >
+              <Tooltip
+                content="24mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="24mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2k"
+            >
+              <Tooltip
+                content="2k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2k_plus"
+            >
+              <Tooltip
+                content="2k_plus"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2k_plus"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2mp"
+            >
+              <Tooltip
+                content="2mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="30fps"
+            >
+              <Tooltip
+                content="30fps"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="30fps"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="30fps_select"
+            >
+              <Tooltip
+                content="30fps_select"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="30fps_select"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="360"
+            >
+              <Tooltip
+                content="360"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="360"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
               key="3d_rotation"
             >
               <Tooltip
@@ -180,560 +596,144 @@ exports[`Component: IconPicker ui with selected value 1`] = `
             </span>
             <span
               className="d-inline-block"
-              key="accessibility"
+              key="3g_mobiledata"
             >
               <Tooltip
-                content="accessibility"
+                content="3g_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessibility"
+                  icon="3g_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessibility_new"
+              key="3k"
             >
               <Tooltip
-                content="accessibility_new"
+                content="3k"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessibility_new"
+                  icon="3k"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessible"
+              key="3k_plus"
             >
               <Tooltip
-                content="accessible"
+                content="3k_plus"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessible"
+                  icon="3k_plus"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessible_forward"
+              key="3mp"
             >
               <Tooltip
-                content="accessible_forward"
+                content="3mp"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessible_forward"
+                  icon="3mp"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_balance"
+              key="3p"
             >
               <Tooltip
-                content="account_balance"
+                content="3p"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_balance"
+                  icon="3p"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_balance_wallet"
+              key="4g_mobiledata"
             >
               <Tooltip
-                content="account_balance_wallet"
+                content="4g_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_balance_wallet"
+                  icon="4g_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_box"
+              key="4g_plus_mobiledata"
             >
               <Tooltip
-                content="account_box"
+                content="4g_plus_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_box"
+                  icon="4g_plus_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_circle"
+              key="4k"
             >
               <Tooltip
-                content="account_circle"
+                content="4k"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_circle"
+                  icon="4k"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="add_shopping_cart"
+              key="4k_plus"
             >
               <Tooltip
-                content="add_shopping_cart"
+                content="4k_plus"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="add_shopping_cart"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm"
-            >
-              <Tooltip
-                content="alarm"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_add"
-            >
-              <Tooltip
-                content="alarm_add"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_add"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_off"
-            >
-              <Tooltip
-                content="alarm_off"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_off"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_on"
-            >
-              <Tooltip
-                content="alarm_on"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_on"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="all_inbox"
-            >
-              <Tooltip
-                content="all_inbox"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="all_inbox"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="all_out"
-            >
-              <Tooltip
-                content="all_out"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="all_out"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="android"
-            >
-              <Tooltip
-                content="android"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="android"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="announcement"
-            >
-              <Tooltip
-                content="announcement"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="announcement"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="arrow_right_alt"
-            >
-              <Tooltip
-                content="arrow_right_alt"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="arrow_right_alt"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="aspect_ratio"
-            >
-              <Tooltip
-                content="aspect_ratio"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="aspect_ratio"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assessment"
-            >
-              <Tooltip
-                content="assessment"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assessment"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment"
-            >
-              <Tooltip
-                content="assignment"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_ind"
-            >
-              <Tooltip
-                content="assignment_ind"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_ind"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_late"
-            >
-              <Tooltip
-                content="assignment_late"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_late"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_return"
-            >
-              <Tooltip
-                content="assignment_return"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_return"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_returned"
-            >
-              <Tooltip
-                content="assignment_returned"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_returned"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_turned_in"
-            >
-              <Tooltip
-                content="assignment_turned_in"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_turned_in"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="autorenew"
-            >
-              <Tooltip
-                content="autorenew"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="autorenew"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="backup"
-            >
-              <Tooltip
-                content="backup"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="backup"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="book"
-            >
-              <Tooltip
-                content="book"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="book"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmark"
-            >
-              <Tooltip
-                content="bookmark"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmark"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmark_border"
-            >
-              <Tooltip
-                content="bookmark_border"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmark_border"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmarks"
-            >
-              <Tooltip
-                content="bookmarks"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmarks"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bug_report"
-            >
-              <Tooltip
-                content="bug_report"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bug_report"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="build"
-            >
-              <Tooltip
-                content="build"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="build"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="cached"
-            >
-              <Tooltip
-                content="cached"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="cached"
+                  icon="4k_plus"
                   onClick={[Function]}
                 />
               </Tooltip>
@@ -747,50 +747,50 @@ exports[`Component: IconPicker ui with selected value 1`] = `
               page={
                 Object {
                   "content": Array [
+                    "10k",
+                    "10mp",
+                    "11mp",
+                    "123",
+                    "12mp",
+                    "13mp",
+                    "14mp",
+                    "15mp",
+                    "16mp",
+                    "17mp",
+                    "18mp",
+                    "19mp",
+                    "1k",
+                    "1k_plus",
+                    "1x_mobiledata",
+                    "20mp",
+                    "21mp",
+                    "22mp",
+                    "23mp",
+                    "24mp",
+                    "2k",
+                    "2k_plus",
+                    "2mp",
+                    "30fps",
+                    "30fps_select",
+                    "360",
                     "3d_rotation",
-                    "accessibility",
-                    "accessibility_new",
-                    "accessible",
-                    "accessible_forward",
-                    "account_balance",
-                    "account_balance_wallet",
-                    "account_box",
-                    "account_circle",
-                    "add_shopping_cart",
-                    "alarm",
-                    "alarm_add",
-                    "alarm_off",
-                    "alarm_on",
-                    "all_inbox",
-                    "all_out",
-                    "android",
-                    "announcement",
-                    "arrow_right_alt",
-                    "aspect_ratio",
-                    "assessment",
-                    "assignment",
-                    "assignment_ind",
-                    "assignment_late",
-                    "assignment_return",
-                    "assignment_returned",
-                    "assignment_turned_in",
-                    "autorenew",
-                    "backup",
-                    "book",
-                    "bookmark",
-                    "bookmark_border",
-                    "bookmarks",
-                    "bug_report",
-                    "build",
-                    "cached",
+                    "3g_mobiledata",
+                    "3k",
+                    "3k_plus",
+                    "3mp",
+                    "3p",
+                    "4g_mobiledata",
+                    "4g_plus_mobiledata",
+                    "4k",
+                    "4k_plus",
                   ],
                   "first": true,
                   "last": false,
                   "number": 1,
                   "numberOfElements": 36,
                   "size": 36,
-                  "totalElements": 1010,
-                  "totalPages": 29,
+                  "totalElements": 2007,
+                  "totalPages": 56,
                 }
               }
             />
@@ -848,6 +848,422 @@ exports[`Component: IconPicker ui without label 1`] = `
           >
             <span
               className="d-inline-block"
+              key="10k"
+            >
+              <Tooltip
+                content="10k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="10k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="10mp"
+            >
+              <Tooltip
+                content="10mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="10mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="11mp"
+            >
+              <Tooltip
+                content="11mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="11mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="123"
+            >
+              <Tooltip
+                content="123"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="123"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="12mp"
+            >
+              <Tooltip
+                content="12mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="12mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="13mp"
+            >
+              <Tooltip
+                content="13mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="13mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="14mp"
+            >
+              <Tooltip
+                content="14mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="14mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="15mp"
+            >
+              <Tooltip
+                content="15mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="15mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="16mp"
+            >
+              <Tooltip
+                content="16mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="16mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="17mp"
+            >
+              <Tooltip
+                content="17mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="17mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="18mp"
+            >
+              <Tooltip
+                content="18mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="18mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="19mp"
+            >
+              <Tooltip
+                content="19mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="19mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1k"
+            >
+              <Tooltip
+                content="1k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1k_plus"
+            >
+              <Tooltip
+                content="1k_plus"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1k_plus"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1x_mobiledata"
+            >
+              <Tooltip
+                content="1x_mobiledata"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1x_mobiledata"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="20mp"
+            >
+              <Tooltip
+                content="20mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="20mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="21mp"
+            >
+              <Tooltip
+                content="21mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="21mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="22mp"
+            >
+              <Tooltip
+                content="22mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="22mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="23mp"
+            >
+              <Tooltip
+                content="23mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="23mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="24mp"
+            >
+              <Tooltip
+                content="24mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="24mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2k"
+            >
+              <Tooltip
+                content="2k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2k_plus"
+            >
+              <Tooltip
+                content="2k_plus"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2k_plus"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2mp"
+            >
+              <Tooltip
+                content="2mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="30fps"
+            >
+              <Tooltip
+                content="30fps"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="30fps"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="30fps_select"
+            >
+              <Tooltip
+                content="30fps_select"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="30fps_select"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="360"
+            >
+              <Tooltip
+                content="360"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="360"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
               key="3d_rotation"
             >
               <Tooltip
@@ -864,560 +1280,144 @@ exports[`Component: IconPicker ui without label 1`] = `
             </span>
             <span
               className="d-inline-block"
-              key="accessibility"
+              key="3g_mobiledata"
             >
               <Tooltip
-                content="accessibility"
+                content="3g_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessibility"
+                  icon="3g_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessibility_new"
+              key="3k"
             >
               <Tooltip
-                content="accessibility_new"
+                content="3k"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessibility_new"
+                  icon="3k"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessible"
+              key="3k_plus"
             >
               <Tooltip
-                content="accessible"
+                content="3k_plus"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessible"
+                  icon="3k_plus"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessible_forward"
+              key="3mp"
             >
               <Tooltip
-                content="accessible_forward"
+                content="3mp"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessible_forward"
+                  icon="3mp"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_balance"
+              key="3p"
             >
               <Tooltip
-                content="account_balance"
+                content="3p"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_balance"
+                  icon="3p"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_balance_wallet"
+              key="4g_mobiledata"
             >
               <Tooltip
-                content="account_balance_wallet"
+                content="4g_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_balance_wallet"
+                  icon="4g_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_box"
+              key="4g_plus_mobiledata"
             >
               <Tooltip
-                content="account_box"
+                content="4g_plus_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_box"
+                  icon="4g_plus_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_circle"
+              key="4k"
             >
               <Tooltip
-                content="account_circle"
+                content="4k"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_circle"
+                  icon="4k"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="add_shopping_cart"
+              key="4k_plus"
             >
               <Tooltip
-                content="add_shopping_cart"
+                content="4k_plus"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="add_shopping_cart"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm"
-            >
-              <Tooltip
-                content="alarm"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_add"
-            >
-              <Tooltip
-                content="alarm_add"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_add"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_off"
-            >
-              <Tooltip
-                content="alarm_off"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_off"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_on"
-            >
-              <Tooltip
-                content="alarm_on"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_on"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="all_inbox"
-            >
-              <Tooltip
-                content="all_inbox"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="all_inbox"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="all_out"
-            >
-              <Tooltip
-                content="all_out"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="all_out"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="android"
-            >
-              <Tooltip
-                content="android"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="android"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="announcement"
-            >
-              <Tooltip
-                content="announcement"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="announcement"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="arrow_right_alt"
-            >
-              <Tooltip
-                content="arrow_right_alt"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="arrow_right_alt"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="aspect_ratio"
-            >
-              <Tooltip
-                content="aspect_ratio"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="aspect_ratio"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assessment"
-            >
-              <Tooltip
-                content="assessment"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assessment"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment"
-            >
-              <Tooltip
-                content="assignment"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_ind"
-            >
-              <Tooltip
-                content="assignment_ind"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_ind"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_late"
-            >
-              <Tooltip
-                content="assignment_late"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_late"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_return"
-            >
-              <Tooltip
-                content="assignment_return"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_return"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_returned"
-            >
-              <Tooltip
-                content="assignment_returned"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_returned"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_turned_in"
-            >
-              <Tooltip
-                content="assignment_turned_in"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_turned_in"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="autorenew"
-            >
-              <Tooltip
-                content="autorenew"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="autorenew"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="backup"
-            >
-              <Tooltip
-                content="backup"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="backup"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="book"
-            >
-              <Tooltip
-                content="book"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="book"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmark"
-            >
-              <Tooltip
-                content="bookmark"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmark"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmark_border"
-            >
-              <Tooltip
-                content="bookmark_border"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmark_border"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmarks"
-            >
-              <Tooltip
-                content="bookmarks"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmarks"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bug_report"
-            >
-              <Tooltip
-                content="bug_report"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bug_report"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="build"
-            >
-              <Tooltip
-                content="build"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="build"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="cached"
-            >
-              <Tooltip
-                content="cached"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="cached"
+                  icon="4k_plus"
                   onClick={[Function]}
                 />
               </Tooltip>
@@ -1431,50 +1431,50 @@ exports[`Component: IconPicker ui without label 1`] = `
               page={
                 Object {
                   "content": Array [
+                    "10k",
+                    "10mp",
+                    "11mp",
+                    "123",
+                    "12mp",
+                    "13mp",
+                    "14mp",
+                    "15mp",
+                    "16mp",
+                    "17mp",
+                    "18mp",
+                    "19mp",
+                    "1k",
+                    "1k_plus",
+                    "1x_mobiledata",
+                    "20mp",
+                    "21mp",
+                    "22mp",
+                    "23mp",
+                    "24mp",
+                    "2k",
+                    "2k_plus",
+                    "2mp",
+                    "30fps",
+                    "30fps_select",
+                    "360",
                     "3d_rotation",
-                    "accessibility",
-                    "accessibility_new",
-                    "accessible",
-                    "accessible_forward",
-                    "account_balance",
-                    "account_balance_wallet",
-                    "account_box",
-                    "account_circle",
-                    "add_shopping_cart",
-                    "alarm",
-                    "alarm_add",
-                    "alarm_off",
-                    "alarm_on",
-                    "all_inbox",
-                    "all_out",
-                    "android",
-                    "announcement",
-                    "arrow_right_alt",
-                    "aspect_ratio",
-                    "assessment",
-                    "assignment",
-                    "assignment_ind",
-                    "assignment_late",
-                    "assignment_return",
-                    "assignment_returned",
-                    "assignment_turned_in",
-                    "autorenew",
-                    "backup",
-                    "book",
-                    "bookmark",
-                    "bookmark_border",
-                    "bookmarks",
-                    "bug_report",
-                    "build",
-                    "cached",
+                    "3g_mobiledata",
+                    "3k",
+                    "3k_plus",
+                    "3mp",
+                    "3p",
+                    "4g_mobiledata",
+                    "4g_plus_mobiledata",
+                    "4k",
+                    "4k_plus",
                   ],
                   "first": true,
                   "last": false,
                   "number": 1,
                   "numberOfElements": 36,
                   "size": 36,
-                  "totalElements": 1010,
-                  "totalPages": 29,
+                  "totalElements": 2007,
+                  "totalPages": 56,
                 }
               }
             />
@@ -1546,6 +1546,422 @@ exports[`Component: IconPicker ui without selected value 1`] = `
           >
             <span
               className="d-inline-block"
+              key="10k"
+            >
+              <Tooltip
+                content="10k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="10k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="10mp"
+            >
+              <Tooltip
+                content="10mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="10mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="11mp"
+            >
+              <Tooltip
+                content="11mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="11mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="123"
+            >
+              <Tooltip
+                content="123"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="123"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="12mp"
+            >
+              <Tooltip
+                content="12mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="12mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="13mp"
+            >
+              <Tooltip
+                content="13mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="13mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="14mp"
+            >
+              <Tooltip
+                content="14mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="14mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="15mp"
+            >
+              <Tooltip
+                content="15mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="15mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="16mp"
+            >
+              <Tooltip
+                content="16mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="16mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="17mp"
+            >
+              <Tooltip
+                content="17mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="17mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="18mp"
+            >
+              <Tooltip
+                content="18mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="18mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="19mp"
+            >
+              <Tooltip
+                content="19mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="19mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1k"
+            >
+              <Tooltip
+                content="1k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1k_plus"
+            >
+              <Tooltip
+                content="1k_plus"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1k_plus"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="1x_mobiledata"
+            >
+              <Tooltip
+                content="1x_mobiledata"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="1x_mobiledata"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="20mp"
+            >
+              <Tooltip
+                content="20mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="20mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="21mp"
+            >
+              <Tooltip
+                content="21mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="21mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="22mp"
+            >
+              <Tooltip
+                content="22mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="22mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="23mp"
+            >
+              <Tooltip
+                content="23mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="23mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="24mp"
+            >
+              <Tooltip
+                content="24mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="24mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2k"
+            >
+              <Tooltip
+                content="2k"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2k"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2k_plus"
+            >
+              <Tooltip
+                content="2k_plus"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2k_plus"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="2mp"
+            >
+              <Tooltip
+                content="2mp"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="2mp"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="30fps"
+            >
+              <Tooltip
+                content="30fps"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="30fps"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="30fps_select"
+            >
+              <Tooltip
+                content="30fps_select"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="30fps_select"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
+              key="360"
+            >
+              <Tooltip
+                content="360"
+                distance={18}
+                placement="top"
+              >
+                <Icon
+                  className="m-2"
+                  icon="360"
+                  onClick={[Function]}
+                />
+              </Tooltip>
+            </span>
+            <span
+              className="d-inline-block"
               key="3d_rotation"
             >
               <Tooltip
@@ -1562,560 +1978,144 @@ exports[`Component: IconPicker ui without selected value 1`] = `
             </span>
             <span
               className="d-inline-block"
-              key="accessibility"
+              key="3g_mobiledata"
             >
               <Tooltip
-                content="accessibility"
+                content="3g_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessibility"
+                  icon="3g_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessibility_new"
+              key="3k"
             >
               <Tooltip
-                content="accessibility_new"
+                content="3k"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessibility_new"
+                  icon="3k"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessible"
+              key="3k_plus"
             >
               <Tooltip
-                content="accessible"
+                content="3k_plus"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessible"
+                  icon="3k_plus"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="accessible_forward"
+              key="3mp"
             >
               <Tooltip
-                content="accessible_forward"
+                content="3mp"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="accessible_forward"
+                  icon="3mp"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_balance"
+              key="3p"
             >
               <Tooltip
-                content="account_balance"
+                content="3p"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_balance"
+                  icon="3p"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_balance_wallet"
+              key="4g_mobiledata"
             >
               <Tooltip
-                content="account_balance_wallet"
+                content="4g_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_balance_wallet"
+                  icon="4g_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_box"
+              key="4g_plus_mobiledata"
             >
               <Tooltip
-                content="account_box"
+                content="4g_plus_mobiledata"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_box"
+                  icon="4g_plus_mobiledata"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="account_circle"
+              key="4k"
             >
               <Tooltip
-                content="account_circle"
+                content="4k"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="account_circle"
+                  icon="4k"
                   onClick={[Function]}
                 />
               </Tooltip>
             </span>
             <span
               className="d-inline-block"
-              key="add_shopping_cart"
+              key="4k_plus"
             >
               <Tooltip
-                content="add_shopping_cart"
+                content="4k_plus"
                 distance={18}
                 placement="top"
               >
                 <Icon
                   className="m-2"
-                  icon="add_shopping_cart"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm"
-            >
-              <Tooltip
-                content="alarm"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_add"
-            >
-              <Tooltip
-                content="alarm_add"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_add"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_off"
-            >
-              <Tooltip
-                content="alarm_off"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_off"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="alarm_on"
-            >
-              <Tooltip
-                content="alarm_on"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="alarm_on"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="all_inbox"
-            >
-              <Tooltip
-                content="all_inbox"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="all_inbox"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="all_out"
-            >
-              <Tooltip
-                content="all_out"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="all_out"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="android"
-            >
-              <Tooltip
-                content="android"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="android"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="announcement"
-            >
-              <Tooltip
-                content="announcement"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="announcement"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="arrow_right_alt"
-            >
-              <Tooltip
-                content="arrow_right_alt"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="arrow_right_alt"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="aspect_ratio"
-            >
-              <Tooltip
-                content="aspect_ratio"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="aspect_ratio"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assessment"
-            >
-              <Tooltip
-                content="assessment"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assessment"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment"
-            >
-              <Tooltip
-                content="assignment"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_ind"
-            >
-              <Tooltip
-                content="assignment_ind"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_ind"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_late"
-            >
-              <Tooltip
-                content="assignment_late"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_late"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_return"
-            >
-              <Tooltip
-                content="assignment_return"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_return"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_returned"
-            >
-              <Tooltip
-                content="assignment_returned"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_returned"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="assignment_turned_in"
-            >
-              <Tooltip
-                content="assignment_turned_in"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="assignment_turned_in"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="autorenew"
-            >
-              <Tooltip
-                content="autorenew"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="autorenew"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="backup"
-            >
-              <Tooltip
-                content="backup"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="backup"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="book"
-            >
-              <Tooltip
-                content="book"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="book"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmark"
-            >
-              <Tooltip
-                content="bookmark"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmark"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmark_border"
-            >
-              <Tooltip
-                content="bookmark_border"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmark_border"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bookmarks"
-            >
-              <Tooltip
-                content="bookmarks"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bookmarks"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="bug_report"
-            >
-              <Tooltip
-                content="bug_report"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="bug_report"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="build"
-            >
-              <Tooltip
-                content="build"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="build"
-                  onClick={[Function]}
-                />
-              </Tooltip>
-            </span>
-            <span
-              className="d-inline-block"
-              key="cached"
-            >
-              <Tooltip
-                content="cached"
-                distance={18}
-                placement="top"
-              >
-                <Icon
-                  className="m-2"
-                  icon="cached"
+                  icon="4k_plus"
                   onClick={[Function]}
                 />
               </Tooltip>
@@ -2129,50 +2129,50 @@ exports[`Component: IconPicker ui without selected value 1`] = `
               page={
                 Object {
                   "content": Array [
+                    "10k",
+                    "10mp",
+                    "11mp",
+                    "123",
+                    "12mp",
+                    "13mp",
+                    "14mp",
+                    "15mp",
+                    "16mp",
+                    "17mp",
+                    "18mp",
+                    "19mp",
+                    "1k",
+                    "1k_plus",
+                    "1x_mobiledata",
+                    "20mp",
+                    "21mp",
+                    "22mp",
+                    "23mp",
+                    "24mp",
+                    "2k",
+                    "2k_plus",
+                    "2mp",
+                    "30fps",
+                    "30fps_select",
+                    "360",
                     "3d_rotation",
-                    "accessibility",
-                    "accessibility_new",
-                    "accessible",
-                    "accessible_forward",
-                    "account_balance",
-                    "account_balance_wallet",
-                    "account_box",
-                    "account_circle",
-                    "add_shopping_cart",
-                    "alarm",
-                    "alarm_add",
-                    "alarm_off",
-                    "alarm_on",
-                    "all_inbox",
-                    "all_out",
-                    "android",
-                    "announcement",
-                    "arrow_right_alt",
-                    "aspect_ratio",
-                    "assessment",
-                    "assignment",
-                    "assignment_ind",
-                    "assignment_late",
-                    "assignment_return",
-                    "assignment_returned",
-                    "assignment_turned_in",
-                    "autorenew",
-                    "backup",
-                    "book",
-                    "bookmark",
-                    "bookmark_border",
-                    "bookmarks",
-                    "bug_report",
-                    "build",
-                    "cached",
+                    "3g_mobiledata",
+                    "3k",
+                    "3k_plus",
+                    "3mp",
+                    "3p",
+                    "4g_mobiledata",
+                    "4g_plus_mobiledata",
+                    "4k",
+                    "4k_plus",
                   ],
                   "first": true,
                   "last": false,
                   "number": 1,
                   "numberOfElements": 36,
                   "size": 36,
-                  "totalElements": 1010,
-                  "totalPages": 29,
+                  "totalElements": 2007,
+                  "totalPages": 56,
                 }
               }
             />
