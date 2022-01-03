@@ -159,7 +159,6 @@ exports[`Component: Select ui without placeholder: Component: Select => ui => wi
     type="select"
     value={0}
   >
-    <option />
     <option
       disabled={false}
       key="42"
