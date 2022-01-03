@@ -124,12 +124,14 @@ export default function Select<T>(props: Props<T>) {
         </Loading>
       ) : (
         <RSInput value={indexOfValue} {...inputProps}>
-          <option ref={(option) => selectDefaultOption(option)}>
-            {placeholder}
-          </option>
+          {placeholder ? (
+            <option ref={(option) => selectDefaultOption(option)}>
+              {placeholder}
+            </option>
+          ) : null}
 
           {page.content.map((option, index) => {
-            const label = labelForOption(option);
+            const optionLabel = labelForOption(option);
             const key = getKeyForOption({
               option,
               keyForOption,
@@ -142,7 +144,7 @@ export default function Select<T>(props: Props<T>) {
                 value={index}
                 disabled={!isOptionEnabled(option)}
               >
-                {label}
+                {optionLabel}
               </option>
             );
           })}
