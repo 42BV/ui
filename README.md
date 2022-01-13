@@ -22,6 +22,65 @@
 
 ---
 
+## Migration to React Query
+
+In version 3.17 we added support for React Query. We still support React Async, but the library has not been updated for
+almost 2 years now, and React Query provides more features we would like to use.
+
+Replacing React Async with React Query in your project is done in a few simple steps:
+1. Install React Query by running `npm i -S react-query`
+2. In your index.tsx file, add the following:
+    ```ts
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                // These options will make React Query work similar to React Async
+                retry: false,
+                refetchOnWindowFocus: false,
+                cacheTime: 0
+            }
+        }
+    });
+    ```
+3. In your index.tsx file, wrap the `<App/>` in the provider:
+    ```tsx
+    <QueryClientProvider client={queryClient}>
+        <App/>
+    </QueryClientProvider>
+    ```
+4. Search for all occurrences of `useAsync(...)` in your project and replace them with `useQuery(...)`.
+    
+`useQuery()` requires the first parameter to be a key. You have to provide a unique key for every useQuery. If you used
+the watch property in `useAsync`, you have to add the properties you watched to the key. The key is allowed to be an
+array, so something like `useQuery(['users', page, sort], loadUsers)` will refetch once page or sort changed. You are
+allowed to pass an entire object to the array, so `useQuery(['users', queryParams], loadUsers)` will work as well.
+
+There are multiple ways to pass parameters to the callback. Per default, an object containing the key is passed to the
+callback. The callback would look like this:
+```ts
+import { QueryFunction } from 'react-query';
+
+...
+
+function loadUsers({ queryKey }: QueryFunctionContext) {
+    // The first item in the array is ignored as it contains the unique key
+    const [ , page, sort ] = queryKey;
+    ...
+}
+
+...
+```
+If you specify the parameters yourself, you have to use a closure like this:
+```ts
+const users = useQuery(['users', page, sort], () => loadUsers({ page, sort }));
+```
+Don't forget to add all parameters to the key as well, otherwise when one of the parameters changes, the query will not
+be called and the result will not be updated.
+
+For more details about how to use React Query, we refer you to [their docs](https://react-query.tanstack.com/overview).
+
+---
+
 ## Installation
 
 ### Setup
