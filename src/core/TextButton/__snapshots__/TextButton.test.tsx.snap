@@ -2,7 +2,7 @@
 
 exports[`component: TextButton ui standard 1`] = `
 <u
-  className="align-self-center clickable font-weight-lighter "
+  className="align-self-center clickable fw-lighter "
   onClick={[MockFunction]}
   role="button"
 >
@@ -12,7 +12,7 @@ exports[`component: TextButton ui standard 1`] = `
 
 exports[`component: TextButton ui with custom classname 1`] = `
 <u
-  className="align-self-center clickable font-weight-lighter yolo"
+  className="align-self-center clickable fw-lighter yolo"
   onClick={[MockFunction]}
   role="button"
 >

@@ -16,6 +16,7 @@ exports[`Component: ModalPickerSingle ui renderValue should be able to use custo
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -112,6 +113,7 @@ exports[`Component: ModalPickerSingle ui renderValue should be able to use custo
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -139,6 +141,7 @@ exports[`Component: ModalPickerSingle ui renderValue should be able to use custo
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -166,6 +169,7 @@ exports[`Component: ModalPickerSingle ui renderValue should be able to use custo
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -216,6 +220,7 @@ exports[`Component: ModalPickerSingle ui should render button left: Component: M
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -313,6 +318,7 @@ exports[`Component: ModalPickerSingle ui should render button left: Component: M
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -340,6 +346,7 @@ exports[`Component: ModalPickerSingle ui should render button left: Component: M
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -367,6 +374,7 @@ exports[`Component: ModalPickerSingle ui should render button left: Component: M
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -399,6 +407,7 @@ exports[`Component: ModalPickerSingle ui should render button right with value: 
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -496,6 +505,7 @@ exports[`Component: ModalPickerSingle ui should render button right with value: 
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -523,6 +533,7 @@ exports[`Component: ModalPickerSingle ui should render button right with value: 
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -550,6 +561,7 @@ exports[`Component: ModalPickerSingle ui should render button right with value: 
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -582,6 +594,7 @@ exports[`Component: ModalPickerSingle ui should render button right without valu
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -667,6 +680,7 @@ exports[`Component: ModalPickerSingle ui should render button right without valu
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -694,6 +708,7 @@ exports[`Component: ModalPickerSingle ui should render button right without valu
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -721,6 +736,7 @@ exports[`Component: ModalPickerSingle ui should render button right without valu
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -834,6 +850,7 @@ exports[`Component: ModalPickerSingle ui should render without label: Component:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -861,6 +878,7 @@ exports[`Component: ModalPickerSingle ui should render without label: Component:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -888,6 +906,7 @@ exports[`Component: ModalPickerSingle ui should render without label: Component:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -920,6 +939,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -1016,6 +1036,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1043,6 +1064,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1070,6 +1092,7 @@ exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSi
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >

@@ -138,7 +138,7 @@ export default function ColorPicker(props: Props) {
       <div className="d-flex">
         {value ? (
           <div className="d-flex justify-content-between">
-            <div className="border p-1 mr-3">
+            <div className="border p-1 me-3">
               <div
                 id="color-picker-value"
                 className="h-100"
@@ -148,7 +148,7 @@ export default function ColorPicker(props: Props) {
             {canClear ? (
               <TextButton
                 onClick={() => onColorSelected(undefined)}
-                className="mr-3"
+                className="me-3"
               >
                 {t({
                   key: 'ColorPicker.CLEAR',
@@ -170,7 +170,7 @@ export default function ColorPicker(props: Props) {
                 setIsOpen(!isOpen);
               }}
             >
-              {icon ? <Icon icon={icon} className="mr-2 align-bottom" /> : null}
+              {icon ? <Icon icon={icon} className="me-2 align-bottom" /> : null}
               {placeholder}
             </Button>
           }

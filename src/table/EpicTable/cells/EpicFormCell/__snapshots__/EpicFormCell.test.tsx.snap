@@ -2,7 +2,7 @@
 
 exports[`Component: EpicFormCell ui 1`] = `
 <div
-  className="epic-table-form-cell border-bottom py-1 pr-1"
+  className="epic-table-form-cell border-bottom py-1 pe-1"
   style={
     Object {
       "height": 48,

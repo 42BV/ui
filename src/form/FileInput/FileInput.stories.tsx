@@ -55,7 +55,7 @@ storiesOf('Form/FileInput', module)
             <div className="d-flex justify-content-between">
               <span>Upload a file here</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 style={{ zIndex: 101 }}
                 content="The file should be a plain text file"
               >

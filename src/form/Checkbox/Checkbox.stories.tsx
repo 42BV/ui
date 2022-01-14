@@ -33,7 +33,7 @@ storiesOf('Form/Checkbox', module)
 
         {isSClass ? (
           <Alert color="success" className="d-flex">
-            <Icon icon="warning" className="mr-1" /> This hero is of the highest
+            <Icon icon="warning" className="me-1" /> This hero is of the highest
             caliber
           </Alert>
         ) : null}
@@ -56,7 +56,7 @@ storiesOf('Form/Checkbox', module)
 
         {isSClass ? (
           <Alert color="success" className="d-flex">
-            <Icon icon="warning" className="mr-1" /> This hero is of the highest
+            <Icon icon="warning" className="me-1" /> This hero is of the highest
             caliber
           </Alert>
         ) : null}
@@ -77,7 +77,7 @@ storiesOf('Form/Checkbox', module)
 
         {isSClass ? (
           <Alert color="success" className="d-flex">
-            <Icon icon="warning" className="mr-1" /> This hero is of the highest
+            <Icon icon="warning" className="me-1" /> This hero is of the highest
             caliber
           </Alert>
         ) : null}
@@ -95,7 +95,7 @@ storiesOf('Form/Checkbox', module)
             <div className="d-flex justify-content-between">
               <span>Is S class hero</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 content="An S class hero is a hero of the highest caliber"
               >
                 <Icon icon="info" />
@@ -109,7 +109,7 @@ storiesOf('Form/Checkbox', module)
 
         {isSClass ? (
           <Alert color="success" className="d-flex">
-            <Icon icon="warning" className="mr-1" /> This hero is of the highest
+            <Icon icon="warning" className="me-1" /> This hero is of the highest
             caliber
           </Alert>
         ) : null}

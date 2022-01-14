@@ -168,7 +168,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
         <p>
           Limit to northern provinces
           <Toggle
-            className="ml-2"
+            className="ms-2"
             color="primary"
             value={limitToNorthern}
             onChange={() => setLimitToNorthern(!limitToNorthern)}
@@ -225,7 +225,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
           label={
             <div className="d-flex justify-content-between">
               <span>Friends</span>
-              <Tooltip className="ml-1" content="Provinces are nice to have">
+              <Tooltip className="ms-1" content="Provinces are nice to have">
                 <Icon icon="info" />
               </Tooltip>
             </div>

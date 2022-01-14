@@ -12,6 +12,7 @@ exports[`Component: DateTimeInput ui InputGroup: Component: DateTimeInput => ui 
     onClick={[Function]}
   >
     <Icon
+      className="d-block"
       icon="calendar_today"
     />
   </AddonButton>
@@ -44,6 +45,7 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -132,6 +134,7 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -230,6 +233,7 @@ exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -317,6 +321,7 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

@@ -25,7 +25,7 @@ $progress-stepper-icons: (
     }
 
     @each $color, $value in $theme-colors {
-      &.#{$color} {
+      &.#{"" + $color} {
         .step-circle {
           background-color: $value;
 

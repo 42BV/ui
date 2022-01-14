@@ -5,7 +5,7 @@
   }
 
   &.with-modal > .rdt {
-    .input-group-append .material-icons {
+    .input-group .material-icons:last-child {
       margin-right: 0;
     }
 

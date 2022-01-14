@@ -213,7 +213,7 @@ export default function ModalPicker<T>(props: Props<T>) {
 
         <div>
           <Button
-            className="ml-1"
+            className="ms-1"
             color="secondary"
             onClick={() => closeModal()}
           >
@@ -224,7 +224,7 @@ export default function ModalPicker<T>(props: Props<T>) {
             })}
           </Button>
           <Button
-            className="ml-1"
+            className="ms-1"
             color="primary"
             onClick={() => modalSaved()}
             disabled={!!!selected}

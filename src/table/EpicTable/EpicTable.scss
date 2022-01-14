@@ -38,7 +38,7 @@
 
   &-header {
     background-color: map-get($theme-colors, primary);
-    color: color-yiq(map-get($theme-colors, primary));
+    color: white;
     font-weight: bold;
     flex-grow: 1;
 
@@ -56,10 +56,6 @@
 
     select.form-control {
       padding: 0 0.2rem;
-    }
-
-    .form-group {
-      margin-bottom: 0;
     }
   }
 
@@ -93,4 +89,8 @@
 
 .user-select-none {
   user-select: none;
+}
+
+.epic-table-form-cell .mb-3 {
+  margin-bottom: 0 !important;
 }

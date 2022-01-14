@@ -113,18 +113,9 @@ select.showing-placeholder {
   color: $input-placeholder-color;
 }
 
-.input-group {
-  &-append,
-  &-prepend {
-    i {
-      @extend .input-group-text;
-    }
-
-    .btn > i.material-icons {
-      border: 0;
-      background: none;
-      color: #fff;
-      padding: 0;
-    }
-  }
+.input-group .btn > i.material-icons {
+  border: 0;
+  background: none;
+  color: #fff;
+  padding: 0;
 }

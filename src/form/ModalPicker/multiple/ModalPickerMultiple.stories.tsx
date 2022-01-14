@@ -211,7 +211,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
         <p>
           Limit to northern provinces
           <Toggle
-            className="ml-2"
+            className="ms-2"
             color="primary"
             value={limitToNorthern}
             onChange={() => setLimitToNorthern(!limitToNorthern)}
@@ -253,7 +253,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
         <p>
           Limit to northern provinces
           <Toggle
-            className="ml-2"
+            className="ms-2"
             color="primary"
             value={limitToNorthern}
             onChange={() => setLimitToNorthern(!limitToNorthern)}
@@ -490,7 +490,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
             <div className="d-flex justify-content-between">
               <span>Friends</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 content="It is nice to have lots of friends"
               >
                 <Icon icon="info" />

@@ -72,7 +72,7 @@ storiesOf('Form/ColorPicker', module)
               <div className="d-flex justify-content-between">
                 <span>Color</span>
                 <Tooltip
-                  className="ml-1"
+                  className="ms-1"
                   content="Use the color picker to select a color"
                 >
                   <Icon icon="info" />

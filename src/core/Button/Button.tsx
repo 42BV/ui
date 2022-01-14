@@ -145,14 +145,14 @@ export default function Button({
       <Spinner
         size={getSpinnerSize(size)}
         color={outline ? '' : 'white'}
-        className={iconPosition === 'left' ? 'mr-2' : 'ml-2'}
+        className={iconPosition === 'left' ? 'me-2' : 'ms-2'}
       />
     ) : icon ? (
       <Icon
         icon={icon}
         className={classNames(
           'button-icon',
-          iconPosition === 'left' ? 'mr-2' : 'ml-2'
+          iconPosition === 'left' ? 'me-2' : 'ms-2'
         )}
       />
     ) : null;

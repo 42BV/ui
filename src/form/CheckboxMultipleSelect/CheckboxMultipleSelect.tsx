@@ -174,7 +174,7 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
         <div className="d-flex flex-wrap">
           {chunks.map((options, index) => {
             return (
-              <div className="pr-3" key={index} style={{ flexBasis: '300px' }}>
+              <div className="pe-3" key={index} style={{ flexBasis: '300px' }}>
                 {renderOptions({ options, horizontal: false })}
               </div>
             );

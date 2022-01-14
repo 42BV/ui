@@ -15,6 +15,7 @@ exports[`Component: Select ui loading: Component: Select => ui => loading 1`] = 
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -44,6 +45,7 @@ exports[`Component: Select ui with value: Component: Select => ui => with value 
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -146,6 +148,7 @@ exports[`Component: Select ui without placeholder: Component: Select => ui => wi
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

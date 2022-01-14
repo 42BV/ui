@@ -4,7 +4,6 @@ import {
   FormGroup,
   Input,
   InputGroup,
-  InputGroupAddon,
   InputProps,
   Label
 } from 'reactstrap';
@@ -12,6 +11,7 @@ import {
 import { Icon } from '../Icon';
 import { BootstrapSize } from '../types';
 import { useId } from '../../hooks/useId/useId';
+import { AddonIcon } from '../../form/addons/AddonIcon/AddonIcon';
 
 export type SearchInputApi = {
   /**
@@ -22,8 +22,7 @@ export type SearchInputApi = {
   setValue: (value: string) => void;
 };
 
-type ModifiedInputProps = Omit<
-  InputProps,
+type ModifiedInputProps = Omit<InputProps,
   // We are going to override onChange so it sends out strings.
   | 'onChange'
   // We want to remove the value because we use defaultValue,
@@ -39,8 +38,7 @@ type ModifiedInputProps = Omit<
   | 'children'
   // We are going to override some properties to be able to provide docs.
   | 'placeholder'
-  | 'className'
->;
+  | 'className'>;
 
 export type Props = ModifiedInputProps & {
   /**
@@ -160,7 +158,7 @@ export default function SearchInput(props: Props) {
   // When the onChange changes update the handleChange
   useEffect(() => {
     handleChange.current = lodashDebounce(onChange, debounce, debounceSettings);
-  }, [onChange, debounce, debounceSettings]);
+  }, [ onChange, debounce, debounceSettings ]);
 
   function handleKeyUp(event: KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter') {
@@ -198,9 +196,7 @@ export default function SearchInput(props: Props) {
     if (showIcon) {
       return (
         <InputGroup className={className} size={size}>
-          <InputGroupAddon addonType="prepend">
-            <Icon icon="search" />
-          </InputGroupAddon>
+          <AddonIcon icon="search" />
           <Input {...inputProps} />
         </InputGroup>
       );

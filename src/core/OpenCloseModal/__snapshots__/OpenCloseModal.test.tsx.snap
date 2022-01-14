@@ -5,7 +5,7 @@ exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseM
   footer={
     <React.Fragment>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="secondary"
         icon="cancel"
         onClick={[Function]}
@@ -13,7 +13,7 @@ exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseM
         Stop please
       </Button>
       <SubmitButton
-        className="ml-1"
+        className="ms-1"
         icon="save"
         inProgress={false}
         onClick={[Function]}
@@ -47,7 +47,7 @@ exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => 
   footer={
     <React.Fragment>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="secondary"
         icon="cancel"
         onClick={[Function]}
@@ -55,7 +55,7 @@ exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => 
         Cancel
       </Button>
       <SubmitButton
-        className="ml-1"
+        className="ms-1"
         icon="save"
         inProgress={true}
         onClick={[Function]}
@@ -89,7 +89,7 @@ exports[`Component: OpenCloseModal ui sans sticky footer: Component: OpenCloseMo
   footer={
     <React.Fragment>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="secondary"
         icon="cancel"
         onClick={[Function]}
@@ -97,7 +97,7 @@ exports[`Component: OpenCloseModal ui sans sticky footer: Component: OpenCloseMo
         Cancel
       </Button>
       <SubmitButton
-        className="ml-1"
+        className="ms-1"
         icon="save"
         inProgress={false}
         onClick={[Function]}
@@ -131,7 +131,7 @@ exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => u
   footer={
     <React.Fragment>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="secondary"
         icon="cancel"
         onClick={[Function]}
@@ -139,7 +139,7 @@ exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => u
         Cancel
       </Button>
       <SubmitButton
-        className="ml-1"
+        className="ms-1"
         icon="save"
         inProgress={false}
         onClick={[Function]}
@@ -195,7 +195,7 @@ exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal =
   footer={
     <React.Fragment>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="secondary"
         icon="cancel"
         onClick={[Function]}
@@ -203,7 +203,7 @@ exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal =
         Cancel
       </Button>
       <SubmitButton
-        className="ml-1"
+        className="ms-1"
         icon="save"
         inProgress={false}
         onClick={[Function]}

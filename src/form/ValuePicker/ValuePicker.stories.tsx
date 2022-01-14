@@ -168,7 +168,7 @@ storiesOf('Form/ValuePicker/multiple', module)
             <div className="d-flex justify-content-between">
               <span>Best friend</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 content="Don't be jealous of your best friends wife"
               >
                 <Icon icon="info" />
@@ -295,10 +295,10 @@ storiesOf('Form/ValuePicker/single', module)
         />
 
         <p>Use these buttons to trigger a morph</p>
-        <Button className="mr-1" onClick={() => setSize('small')}>
+        <Button className="me-1" onClick={() => setSize('small')}>
           Small
         </Button>
-        <Button className="mr-1" onClick={() => setSize('medium')}>
+        <Button className="me-1" onClick={() => setSize('medium')}>
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
@@ -328,10 +328,10 @@ storiesOf('Form/ValuePicker/single', module)
         />
 
         <p>Use these buttons to trigger a morph</p>
-        <Button className="mr-1" onClick={() => setSize('small')}>
+        <Button className="me-1" onClick={() => setSize('small')}>
           Small
         </Button>
-        <Button className="mr-1" onClick={() => setSize('medium')}>
+        <Button className="me-1" onClick={() => setSize('medium')}>
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
@@ -359,10 +359,10 @@ storiesOf('Form/ValuePicker/single', module)
         />
 
         <p>Use these buttons to trigger a morph</p>
-        <Button className="mr-1" onClick={() => setSize('small')}>
+        <Button className="me-1" onClick={() => setSize('small')}>
           Small
         </Button>
-        <Button className="mr-1" onClick={() => setSize('medium')}>
+        <Button className="me-1" onClick={() => setSize('medium')}>
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
@@ -385,7 +385,7 @@ storiesOf('Form/ValuePicker/single', module)
             <div className="d-flex justify-content-between">
               <span>Best friend</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 content="Don't be jealous of your best friends wife"
               >
                 <Icon icon="info" />
@@ -401,10 +401,10 @@ storiesOf('Form/ValuePicker/single', module)
         />
 
         <p>Use these buttons to trigger a morph</p>
-        <Button className="mr-1" onClick={() => setSize('small')}>
+        <Button className="me-1" onClick={() => setSize('small')}>
           Small
         </Button>
-        <Button className="mr-1" onClick={() => setSize('medium')}>
+        <Button className="me-1" onClick={() => setSize('medium')}>
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
@@ -457,7 +457,7 @@ storiesOf('Form/ValuePicker/single', module)
         />
 
         <p>Use these buttons to trigger a morph</p>
-        <Button className="mr-1" onClick={() => setSize('small')}>
+        <Button className="me-1" onClick={() => setSize('small')}>
           Small
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>
@@ -491,10 +491,10 @@ storiesOf('Form/ValuePicker/single', module)
           }}
         />
         <p>Use these buttons to trigger a morph</p>
-        <Button className="mr-1" onClick={() => setSize('small')}>
+        <Button className="me-1" onClick={() => setSize('small')}>
           Small
         </Button>
-        <Button className="mr-1" onClick={() => setSize('medium')}>
+        <Button className="me-1" onClick={() => setSize('medium')}>
           Medium
         </Button>
         <Button onClick={() => setSize('large')}>Large</Button>

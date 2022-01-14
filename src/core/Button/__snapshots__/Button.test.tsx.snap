@@ -100,7 +100,7 @@ exports[`Component: Button ui button normal inProgress is true 1`] = `
     >
       Save
       <Spinner
-        className="ml-2"
+        className="ms-2"
         color="white"
         size={16}
       />
@@ -147,7 +147,7 @@ exports[`Component: Button ui button outline inProgress is true 1`] = `
       className="d-flex justify-content-center align-items-center"
     >
       <Spinner
-        className="mr-2"
+        className="me-2"
         color=""
         size={16}
       />
@@ -212,7 +212,7 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
       className="d-flex justify-content-center align-items-center"
     >
       <Icon
-        className="button-icon mr-2"
+        className="button-icon me-2"
         icon="save"
       />
       Save
@@ -237,7 +237,7 @@ exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
       className="d-flex justify-content-center align-items-center"
     >
       <Spinner
-        className="mr-2"
+        className="me-2"
         color="white"
         size={16}
       />
@@ -263,7 +263,7 @@ exports[`Component: Button ui button with icon normal with icon on the right 1`]
     >
       Save
       <Icon
-        className="button-icon ml-2"
+        className="button-icon ms-2"
         icon="save"
       />
     </div>
@@ -287,7 +287,7 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
       className="d-flex justify-content-center align-items-center"
     >
       <Icon
-        className="button-icon mr-2"
+        className="button-icon me-2"
         icon="save"
       />
       Save
@@ -313,7 +313,7 @@ exports[`Component: Button ui button with icon outline inProgress is true 1`] = 
       className="d-flex justify-content-center align-items-center"
     >
       <Spinner
-        className="mr-2"
+        className="me-2"
         color=""
         size={16}
       />

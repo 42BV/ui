@@ -102,7 +102,7 @@ storiesOf('Form/DateTimeInput', module)
             <>
               <span>Date of birth</span>
               <Tooltip
-                className="position-relative ml-1"
+                className="position-relative ms-1"
                 style={{ top: 5 }}
                 content="This is the date you where born on"
               >
@@ -405,7 +405,7 @@ storiesOf('Form/DateTimeInput', module)
                   <SubmitButton
                     onClick={() => handleSubmit()}
                     inProgress={submitting}
-                    className="float-right"
+                    className="float-end"
                   >
                     Submit
                   </SubmitButton>
@@ -521,7 +521,7 @@ storiesOf('Form/DateTimeInput', module)
                   <SubmitButton
                     onClick={() => handleSubmit()}
                     inProgress={submitting}
-                    className="float-right"
+                    className="float-end"
                   >
                     Submit
                   </SubmitButton>

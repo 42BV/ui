@@ -50,7 +50,7 @@ storiesOf('Form/Textarea', module)
             <div className="d-flex justify-content-between">
               <span>Description</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 content="The description is shown inside a tooltip"
               >
                 <Icon icon="info" />

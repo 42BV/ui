@@ -72,7 +72,7 @@ export default function NavigationItem({
   return (
     <NavItem className={classNames('navigation-item', className)}>
       <NavLink to={to} exact={exact} tag={RRNavLink} activeClassName="active">
-        <Icon icon={icon} className="mr-3 align-bottom" />
+        <Icon icon={icon} className="me-3 align-bottom" />
         {text}
       </NavLink>
     </NavItem>

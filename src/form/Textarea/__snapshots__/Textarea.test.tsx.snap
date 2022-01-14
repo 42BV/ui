@@ -16,6 +16,7 @@ exports[`Component: Textarea ui with value: Component: textarea => ui => with va
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -69,6 +70,7 @@ exports[`Component: Textarea ui without placeholder: Component: textarea => ui =
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

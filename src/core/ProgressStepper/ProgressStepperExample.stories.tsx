@@ -46,7 +46,7 @@ storiesOf('core/ProgressStepper', module)
       <>
         <div className="text-center">
           <ProgressStepper<Step>
-            className="ml-auto"
+            className="ms-auto"
             steps={steps}
             onClick={(step) => setCurrent(step)}
             isStepClickable={(step) => {
@@ -75,7 +75,7 @@ storiesOf('core/ProgressStepper', module)
             }}
           />
         </div>
-        <div className="ml-2">
+        <div className="ms-2">
           <h1>Form: {current}</h1>
 
           <button className="btn btn-primary" onClick={onSubmit}>

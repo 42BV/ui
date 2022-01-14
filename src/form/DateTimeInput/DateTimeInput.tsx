@@ -247,7 +247,7 @@ export function maskedInputGroup(props: unknown, onClick: () => void) {
     <InputGroup>
       <MaskedInput {...props} render={reactStrapInput} />
       <AddonButton onClick={onClick}>
-        <Icon icon="calendar_today" />
+        <Icon icon="calendar_today" className="d-block" />
       </AddonButton>
     </InputGroup>
   );

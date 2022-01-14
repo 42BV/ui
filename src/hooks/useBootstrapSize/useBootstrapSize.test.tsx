@@ -60,12 +60,26 @@ describe('useBootstrapSize', () => {
 
   it('should return xl and desktop true when window width more than 1200 pixels', () => {
     // noinspection JSConstantReassignment
-    global.innerWidth = 1400;
+    global.innerWidth = 1300;
 
     const { result } = renderHook(() => useBootstrapSize());
 
     expect(result.current).toEqual({
       bootstrapSize: 'xl',
+      isMobile: false,
+      isTablet: false,
+      isDesktop: true
+    });
+  });
+
+  it('should return xxl and desktop true when window width more than 1400 pixels', () => {
+    // noinspection JSConstantReassignment
+    global.innerWidth = 1600;
+
+    const { result } = renderHook(() => useBootstrapSize());
+
+    expect(result.current).toEqual({
+      bootstrapSize: 'xxl',
       isMobile: false,
       isTablet: false,
       isDesktop: true

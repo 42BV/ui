@@ -16,6 +16,7 @@ exports[`Component: FileInput ui empty value: Component: FileInput => ui => empt
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -44,6 +45,7 @@ exports[`Component: FileInput ui empty value: Component: FileInput => ui => empt
       position="right"
     >
       <Icon
+        className="d-block"
         icon="cloud_upload"
       />
     </AddonButton>
@@ -68,6 +70,7 @@ exports[`Component: FileInput ui with value: Component: FileInput => ui => with 
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -95,6 +98,7 @@ exports[`Component: FileInput ui with value: Component: FileInput => ui => with 
       position="right"
     >
       <Icon
+        className="d-block"
         icon="delete"
       />
     </AddonButton>
@@ -132,6 +136,7 @@ exports[`Component: FileInput ui without label: Component: FileInput => ui => wi
       position="right"
     >
       <Icon
+        className="d-block"
         icon="cloud_upload"
       />
     </AddonButton>
@@ -156,6 +161,7 @@ exports[`Component: FileInput ui without placeholder: Component: FileInput => ui
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -183,6 +189,7 @@ exports[`Component: FileInput ui without placeholder: Component: FileInput => ui
       position="right"
     >
       <Icon
+        className="d-block"
         icon="cloud_upload"
       />
     </AddonButton>

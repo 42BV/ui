@@ -35,7 +35,7 @@ type Props = {
  */
 export function EpicDetail({ children, onClose, text = {} }: Props) {
   return (
-    <div className="bg-white h-100 border-top border-right border-bottom py-1 shadow">
+    <div className="bg-white h-100 border-top border-end border-bottom py-1 shadow">
       <div className="d-flex align-items-center border-bottom">
         <Icon className="text-muted py-2 px-1" onClick={onClose} icon="close" />
         <span className="text-muted">

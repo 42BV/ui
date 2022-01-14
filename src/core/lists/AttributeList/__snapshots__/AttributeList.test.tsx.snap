@@ -4,6 +4,7 @@ exports[`Component: AttributeList ui 1`] = `
 <ListGroup
   flush={true}
   horizontal={false}
+  numbered={false}
   tag="ul"
 >
   <AttributeView

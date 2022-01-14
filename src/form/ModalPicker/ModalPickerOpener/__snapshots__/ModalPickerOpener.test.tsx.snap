@@ -8,13 +8,13 @@ exports[`Component: ModalPickerOpener ui button aligned left with values: Compon
     ADMIN@42.NL
   </span>
   <TextButton
-    className="ml-3"
+    className="ms-3"
     onClick={[MockFunction]}
   >
     Clear
   </TextButton>
   <Button
-    className="flex-grow-0 flex-shrink-0 mr-3"
+    className="flex-grow-0 flex-shrink-0 me-3"
     color="primary"
     onClick={[MockFunction]}
     tag="button"
@@ -47,13 +47,13 @@ exports[`Component: ModalPickerOpener ui button aligned right with values: Compo
     ADMIN@42.NL
   </span>
   <TextButton
-    className="ml-3"
+    className="ms-3"
     onClick={[MockFunction]}
   >
     Clear
   </TextButton>
   <Button
-    className="flex-grow-0 flex-shrink-0 ml-3"
+    className="flex-grow-0 flex-shrink-0 ms-3"
     color="primary"
     onClick={[MockFunction]}
     tag="button"
@@ -86,13 +86,13 @@ exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener =
     ADMIN@42.NL
   </span>
   <TextButton
-    className="ml-3"
+    className="ms-3"
     onClick={[MockFunction]}
   >
     Clear
   </TextButton>
   <Button
-    className="flex-grow-0 flex-shrink-0 ml-3"
+    className="flex-grow-0 flex-shrink-0 ms-3"
     color="primary"
     onClick={[MockFunction]}
     tag="button"
@@ -110,13 +110,13 @@ exports[`Component: ModalPickerOpener ui with values: Component: ModalPickerOpen
     ADMIN@42.NL
   </span>
   <TextButton
-    className="ml-3"
+    className="ms-3"
     onClick={[MockFunction]}
   >
     Clear
   </TextButton>
   <Button
-    className="flex-grow-0 flex-shrink-0 ml-3"
+    className="flex-grow-0 flex-shrink-0 ms-3"
     color="primary"
     onClick={[MockFunction]}
     tag="button"

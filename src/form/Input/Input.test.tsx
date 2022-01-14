@@ -2,9 +2,8 @@ import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import Input, { reactStrapInput, InputMask } from './Input';
+import Input, { reactStrapInput, InputMask, InputType } from './Input';
 
-import { InputType } from 'reactstrap/lib/Input';
 import { Addon } from '../addons/Addon/Addon';
 
 const mask: InputMask = [

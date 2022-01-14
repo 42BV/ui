@@ -97,7 +97,7 @@ storiesOf('core/SearchInput', module)
           label={
             <div className="d-flex justify-content-between">
               <span>Search</span>
-              <Tooltip className="ml-1" content="Search the following fields">
+              <Tooltip className="ms-1" content="Search the following fields">
                 <Icon icon="info" />
               </Tooltip>
             </div>

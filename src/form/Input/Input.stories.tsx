@@ -115,7 +115,7 @@ storiesOf('Form/Input', module)
             <div className="d-flex justify-content-between">
               <span>First name</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 content="Your first name is on your birth certificate"
               >
                 <Icon icon="info" />

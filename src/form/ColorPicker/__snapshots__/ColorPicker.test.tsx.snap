@@ -16,6 +16,7 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -28,7 +29,7 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
       className="d-flex justify-content-between"
     >
       <div
-        className="border p-1 mr-3"
+        className="border p-1 me-3"
       >
         <div
           className="h-100"
@@ -42,7 +43,7 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
         />
       </div>
       <TextButton
-        className="mr-3"
+        className="me-3"
         onClick={[Function]}
       >
         Clear
@@ -134,6 +135,7 @@ exports[`Component: ColorPicker ui without selected value 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

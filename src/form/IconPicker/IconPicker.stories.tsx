@@ -53,7 +53,7 @@ storiesOf('Form/IconPicker', module)
               <div className="d-flex justify-content-between">
                 <span>Icon</span>
                 <Tooltip
-                  className="ml-1"
+                  className="ms-1"
                   content="The icon will be used as an avatar"
                 >
                   <Icon icon="info" />

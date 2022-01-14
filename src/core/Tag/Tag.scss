@@ -1,5 +1,5 @@
 .tag {
-  @extend .badge, .badge-pill, .badge-primary;
+  @extend .badge, .rounded-pill, .bg-primary;
 
   display: inline-block;
   margin-right: 0.1875rem;

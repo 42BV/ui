@@ -67,7 +67,7 @@ export default function Pager<T>({
   return (
     <div className={classNames('pager', className)}>
       <Button
-        className="mr-1"
+        className="me-1"
         outline
         icon="arrow_back"
         disabled={first}

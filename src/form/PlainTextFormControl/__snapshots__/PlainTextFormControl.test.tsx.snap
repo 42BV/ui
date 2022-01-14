@@ -13,6 +13,7 @@ exports[`Component: PlainTextFormControl ui default: Component: PlainTextFormCon
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
