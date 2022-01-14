@@ -2,7 +2,7 @@
 
 exports[`Component: IconPicker ui no results 1`] = `
 <div
-  className="icon-picker form-group"
+  className="icon-picker mb-3"
   color="success"
 >
   <Label
@@ -14,6 +14,7 @@ exports[`Component: IconPicker ui no results 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -92,7 +93,7 @@ exports[`Component: IconPicker ui no results 1`] = `
 
 exports[`Component: IconPicker ui with selected value 1`] = `
 <div
-  className="icon-picker form-group"
+  className="icon-picker mb-3"
   color="success"
 >
   <Label
@@ -104,6 +105,7 @@ exports[`Component: IconPicker ui with selected value 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -116,12 +118,12 @@ exports[`Component: IconPicker ui with selected value 1`] = `
       className="d-flex justify-content-between"
     >
       <Icon
-        className="pt-2 mr-3"
+        className="pt-2 me-3"
         icon="3d_rotation"
         id="icon-picker-value"
       />
       <TextButton
-        className="mr-3"
+        className="me-3"
         onClick={[Function]}
       >
         Clear
@@ -805,7 +807,7 @@ exports[`Component: IconPicker ui with selected value 1`] = `
 
 exports[`Component: IconPicker ui without label 1`] = `
 <div
-  className="icon-picker form-group"
+  className="icon-picker mb-3"
   color="success"
 >
   <div
@@ -1489,7 +1491,7 @@ exports[`Component: IconPicker ui without label 1`] = `
 
 exports[`Component: IconPicker ui without selected value 1`] = `
 <div
-  className="icon-picker form-group"
+  className="icon-picker mb-3"
   color="success"
 >
   <Label
@@ -1501,6 +1503,7 @@ exports[`Component: IconPicker ui without selected value 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

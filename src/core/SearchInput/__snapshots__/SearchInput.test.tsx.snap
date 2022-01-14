@@ -8,14 +8,9 @@ exports[`Component: SearchInput ui with icon 1`] = `
     className=""
     tag="div"
   >
-    <InputGroupAddon
-      addonType="prepend"
-      tag="div"
-    >
-      <Icon
-        icon="search"
-      />
-    </InputGroupAddon>
+    <AddonIcon
+      icon="search"
+    />
     <Input
       defaultValue=""
       id="1"
@@ -41,14 +36,9 @@ exports[`Component: SearchInput ui with icon when undefined 1`] = `
     className=""
     tag="div"
   >
-    <InputGroupAddon
-      addonType="prepend"
-      tag="div"
-    >
-      <Icon
-        icon="search"
-      />
-    </InputGroupAddon>
+    <AddonIcon
+      icon="search"
+    />
     <Input
       defaultValue=""
       id="2"
@@ -80,6 +70,7 @@ exports[`Component: SearchInput ui with label 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -120,6 +111,7 @@ exports[`Component: SearchInput ui with label and children 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -148,14 +140,9 @@ exports[`Component: SearchInput ui with value 1`] = `
     className=""
     tag="div"
   >
-    <InputGroupAddon
-      addonType="prepend"
-      tag="div"
-    >
-      <Icon
-        icon="search"
-      />
-    </InputGroupAddon>
+    <AddonIcon
+      icon="search"
+    />
     <Input
       defaultValue=""
       id="4"
@@ -183,14 +170,9 @@ exports[`Component: SearchInput ui without clear button 1`] = `
     className=""
     tag="div"
   >
-    <InputGroupAddon
-      addonType="prepend"
-      tag="div"
-    >
-      <Icon
-        icon="search"
-      />
-    </InputGroupAddon>
+    <AddonIcon
+      icon="search"
+    />
     <Input
       defaultValue=""
       id="5"

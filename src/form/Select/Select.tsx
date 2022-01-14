@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormGroup, Input as RSInput, Label } from 'reactstrap';
-import { InputType } from 'reactstrap/lib/Input';
 
 import withJarb from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
@@ -14,6 +13,7 @@ import Loading from '../../core/Loading/Loading';
 import { useId } from '../../hooks/useId/useId';
 import { FieldCompatible } from '../types';
 import { alwaysTrue } from '../utils';
+import { InputType } from '../Input/Input';
 
 export type Text = {
   /**

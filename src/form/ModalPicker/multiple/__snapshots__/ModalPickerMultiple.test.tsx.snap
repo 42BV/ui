@@ -16,6 +16,7 @@ exports[`Component: ModalPickerMultiple ui renderValue should be able to use cus
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -115,6 +116,7 @@ exports[`Component: ModalPickerMultiple ui renderValue should be able to use cus
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -127,6 +129,7 @@ exports[`Component: ModalPickerMultiple ui renderValue should be able to use cus
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -152,6 +155,7 @@ exports[`Component: ModalPickerMultiple ui renderValue should be able to use cus
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -179,6 +183,7 @@ exports[`Component: ModalPickerMultiple ui renderValue should be able to use cus
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -206,6 +211,7 @@ exports[`Component: ModalPickerMultiple ui renderValue should be able to use cus
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -256,6 +262,7 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -356,6 +363,7 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -368,6 +376,7 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -393,6 +402,7 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -420,6 +430,7 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -447,6 +458,7 @@ exports[`Component: ModalPickerMultiple ui should render button left: Component:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -479,6 +491,7 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -579,6 +592,7 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -591,6 +605,7 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -616,6 +631,7 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -643,6 +659,7 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -670,6 +687,7 @@ exports[`Component: ModalPickerMultiple ui should render button right with value
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -702,6 +720,7 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -788,6 +807,7 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -800,6 +820,7 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -825,6 +846,7 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -852,6 +874,7 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -879,6 +902,7 @@ exports[`Component: ModalPickerMultiple ui should render button right without va
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1005,6 +1029,7 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -1017,6 +1042,7 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1042,6 +1068,7 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1069,6 +1096,7 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1096,6 +1124,7 @@ exports[`Component: ModalPickerMultiple ui should render properly without label:
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1128,6 +1157,7 @@ exports[`Component: ModalPickerMultiple ui should render the options with the co
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -1262,6 +1292,7 @@ exports[`Component: ModalPickerMultiple ui should render the options with the co
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -1274,6 +1305,7 @@ exports[`Component: ModalPickerMultiple ui should render the options with the co
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1304,6 +1336,7 @@ exports[`Component: ModalPickerMultiple ui should render the options with the co
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1331,6 +1364,7 @@ exports[`Component: ModalPickerMultiple ui should render the options with the co
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1358,6 +1392,7 @@ exports[`Component: ModalPickerMultiple ui should render the options with the co
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1390,6 +1425,7 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -1499,6 +1535,7 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -1511,6 +1548,7 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1536,6 +1574,7 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1563,6 +1602,7 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -1590,6 +1630,7 @@ exports[`Component: ModalPickerMultiple ui should render: Component: ModalPicker
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >

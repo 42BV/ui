@@ -15,6 +15,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -95,6 +96,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -188,6 +190,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text: Component:
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -275,6 +278,7 @@ exports[`Component: TypeaheadSingle ui with the default pagination text: Compone
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -362,6 +366,7 @@ exports[`Component: TypeaheadSingle ui with value: Component: TypeaheadSingle =>
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -552,6 +557,7 @@ exports[`Component: TypeaheadSingle ui without placeholder: Component: Typeahead
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

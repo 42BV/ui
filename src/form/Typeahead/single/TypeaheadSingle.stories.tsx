@@ -197,7 +197,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadSingle', module)
           label={
             <div className="d-flex justify-content-between">
               <span>Subject</span>
-              <Tooltip className="ml-1" content="The province you live in">
+              <Tooltip className="ms-1" content="The province you live in">
                 <Icon icon="info" />
               </Tooltip>
             </div>

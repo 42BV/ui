@@ -14,7 +14,7 @@ exports[`Component: Tab ui with icon: Component: Tab => ui => with icon 1`] = `
       className="d-flex p-2 justify-content-center"
     >
       <Icon
-        className="mr-1"
+        className="me-1"
         icon="close"
       />
       test

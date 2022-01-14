@@ -2,7 +2,7 @@
 
 exports[`Component: EpicSort ui is ASC 1`] = `
 <Icon
-  className="pr-1"
+  className="pe-1"
   icon="arrow_drop_up"
   onClick={[Function]}
 />
@@ -10,7 +10,7 @@ exports[`Component: EpicSort ui is ASC 1`] = `
 
 exports[`Component: EpicSort ui is DESC 1`] = `
 <Icon
-  className="pr-1"
+  className="pe-1"
   icon="arrow_drop_down"
   onClick={[Function]}
 />
@@ -18,7 +18,7 @@ exports[`Component: EpicSort ui is DESC 1`] = `
 
 exports[`Component: EpicSort ui is NONE 1`] = `
 <Icon
-  className="pr-1"
+  className="pe-1"
   icon="sort"
   onClick={[Function]}
 />

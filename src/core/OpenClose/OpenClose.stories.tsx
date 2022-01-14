@@ -11,7 +11,7 @@ storiesOf('core/OpenClose', module).add('basic', () => {
   return (
     <Card body>
       <div className="d-flex align-items-center justify-content-start">
-        <Button onClick={() => setIsOpen(!isOpen)} className="mr-3">
+        <Button onClick={() => setIsOpen(!isOpen)} className="me-3">
           Toggle
         </Button>
         <OpenClose open={isOpen} />

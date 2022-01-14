@@ -62,7 +62,7 @@ export default function PasswordStrength(props: Props) {
                 icon={isCompliant ? 'check_circle' : 'cancel'}
                 color={isCompliant ? 'success' : 'danger'}
                 size={16}
-                className="align-bottom mt-1 mb-1 mr-3"
+                className="align-bottom mt-1 mb-1 me-3"
               />
               <div>{t(labelForRule(rule, minimumLength))}</div>
             </div>

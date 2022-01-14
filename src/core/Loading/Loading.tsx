@@ -37,7 +37,7 @@ export default function Loading({ children, className, text = {} }: Props) {
   return (
     <div className={classes}>
       <Spinner className="align-self-center" color="black" size={16} />
-      <span className="ml-1">
+      <span className="ms-1">
         {children
           ? children
           : t({

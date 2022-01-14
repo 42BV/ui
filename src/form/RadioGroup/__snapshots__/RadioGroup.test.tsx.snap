@@ -31,6 +31,7 @@ exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => hor
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -61,6 +62,7 @@ exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => hor
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -91,6 +93,7 @@ exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => hor
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -162,6 +165,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -192,6 +196,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -222,6 +227,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -268,6 +274,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -298,6 +305,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -328,6 +336,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -370,6 +379,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -400,6 +410,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -430,6 +441,7 @@ exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => 
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >

@@ -88,7 +88,7 @@ export function Tab({
       <NavLink active={active} onClick={onClick} disabled={disabled}>
         <div className="d-flex p-2 justify-content-center">
           {icon ? (
-            <Icon icon={icon} color={iconColor} className="mr-1" />
+            <Icon icon={icon} color={iconColor} className="me-1" />
           ) : null}
           {label}
         </div>

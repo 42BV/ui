@@ -24,6 +24,12 @@ export type Props = Omit<AddonProps, 'position'> & {
    * Callback for when the addon is clicked.
    */
   onClick: () => void;
+
+  /**
+   * Optional extra CSS class you want to add to the component.
+   * Useful for styling the component.
+   */
+  className?: string;
 };
 
 /**
@@ -38,13 +44,14 @@ export function AddonButton({
   className
 }: Props) {
   return (
-    <Addon className={className} position={position}>
+    <Addon position={position}>
       <Button
         // Tabindex set to -1 to avoid tabbing through it
         tabIndex={-1}
         type="button"
         color={!color ? 'primary' : color}
         onClick={onClick}
+        className={className}
       >
         {children}
       </Button>

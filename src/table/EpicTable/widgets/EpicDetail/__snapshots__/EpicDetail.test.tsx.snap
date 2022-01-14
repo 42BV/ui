@@ -2,7 +2,7 @@
 
 exports[`Component: EpicDetail ui 1`] = `
 <div
-  className="bg-white h-100 border-top border-right border-bottom py-1 shadow"
+  className="bg-white h-100 border-top border-end border-bottom py-1 shadow"
 >
   <div
     className="d-flex align-items-center border-bottom"

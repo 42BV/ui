@@ -29,7 +29,7 @@ export type Props = {
 export function EpicSort({ direction, onChange }: Props) {
   return (
     <Icon
-      className="pr-1"
+      className="pe-1"
       onClick={() => onChange(nextDirection(direction))}
       icon={iconForDirection(direction)}
     />

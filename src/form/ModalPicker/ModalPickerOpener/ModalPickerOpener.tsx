@@ -82,8 +82,8 @@ export function ModalPickerOpener<T>(props: Props<T>) {
   });
 
   const buttonClassName = classNames('flex-grow-0', 'flex-shrink-0', {
-    'mr-3': hasValue && alignButton === 'left',
-    'ml-3': hasValue && alignButton !== 'left'
+    'me-3': hasValue && alignButton === 'left',
+    'ms-3': hasValue && alignButton !== 'left'
   });
 
   // @ts-expect-error Accept that DisplayValues is sometimes an array and sometimes not
@@ -94,7 +94,7 @@ export function ModalPickerOpener<T>(props: Props<T>) {
       {displayValue}
 
       {hasValue && onClear ? (
-        <TextButton onClick={onClear} className="ml-3">
+        <TextButton onClick={onClear} className="ms-3">
           {t({
             overrideText: text.clear,
             key: 'ModalPickerOpener.CLEAR',
@@ -104,7 +104,7 @@ export function ModalPickerOpener<T>(props: Props<T>) {
       ) : null}
 
       <Button color="primary" onClick={openModal} className={buttonClassName}>
-        {icon ? <Icon icon={icon} className="mr-2 align-bottom" /> : null}
+        {icon ? <Icon icon={icon} className="me-2 align-bottom" /> : null}
         {label}
       </Button>
     </div>

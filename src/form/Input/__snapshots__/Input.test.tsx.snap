@@ -16,6 +16,7 @@ exports[`Component: Input ui addon default: Component: Input => addon position d
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -57,6 +58,7 @@ exports[`Component: Input ui addon left: Component: Input => addon position left
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -100,6 +102,7 @@ exports[`Component: Input ui addon right: Component: Input => addon position rig
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -143,6 +146,7 @@ exports[`Component: Input ui defaults to text: Component: Input => ui => default
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -178,6 +182,7 @@ exports[`Component: Input ui is invalid: Component: Input => is invalid 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -214,6 +219,7 @@ exports[`Component: Input ui is valid: Component: Input => is valid 1`] = `
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -249,6 +255,7 @@ exports[`Component: Input ui type email: Component: Input => ui => type email 1`
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -284,6 +291,7 @@ exports[`Component: Input ui with mask: Component: Input => ui => with mask 1`] 
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -358,6 +366,7 @@ exports[`Component: Input ui without placeholder: Component: Input => ui => with
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

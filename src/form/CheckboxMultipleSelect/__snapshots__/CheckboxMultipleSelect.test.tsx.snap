@@ -15,6 +15,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -43,6 +44,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -73,6 +75,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -103,6 +106,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -136,6 +140,7 @@ exports[`Component: CheckboxMultipleSelect ui loading: Component: CheckboxMultip
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -170,6 +175,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -186,7 +192,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
     className="d-flex flex-wrap"
   >
     <div
-      className="pr-3"
+      className="pe-3"
       key="0"
       style={
         Object {
@@ -210,6 +216,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
@@ -240,6 +247,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
@@ -270,6 +278,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
@@ -306,7 +315,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
     className="d-flex flex-wrap"
   >
     <div
-      className="pr-3"
+      className="pe-3"
       key="0"
       style={
         Object {
@@ -330,6 +339,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
@@ -360,6 +370,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
@@ -390,6 +401,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
@@ -425,6 +437,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -434,7 +447,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
     className="d-flex flex-wrap"
   >
     <div
-      className="pr-3"
+      className="pe-3"
       key="0"
       style={
         Object {
@@ -458,6 +471,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
@@ -488,6 +502,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
@@ -518,6 +533,7 @@ exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: Ch
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >

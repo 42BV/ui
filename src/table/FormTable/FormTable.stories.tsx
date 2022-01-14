@@ -178,7 +178,7 @@ storiesOf('table/FormTable', module)
                       formId={'personForm' + person.id}
                       type="submit"
                       icon="save"
-                      className="mr-1"
+                      className="me-1"
                       color={dirtyPersons[person.id] ? 'primary' : 'secondary'}
                     >
                       Save
@@ -189,7 +189,7 @@ storiesOf('table/FormTable', module)
                         type="reset"
                         icon="restore"
                         color="secondary"
-                        className="mr-1"
+                        className="me-1"
                       >
                         Reset
                       </FormButton>
@@ -344,6 +344,7 @@ storiesOf('table/FormTable', module)
                     labelForOption={(option) => option.name}
                     errorMode="tooltip"
                     alignButton="right"
+                    className="mw-100"
                   />
                 </EpicFormCell>
 
@@ -381,7 +382,7 @@ storiesOf('table/FormTable', module)
                   <JarbRadioGroup
                     id={`sex-${person.id}`}
                     name="sex"
-                    className="ml-1"
+                    className="ms-1"
                     options={['male', 'female']}
                     labelForOption={(option) => option}
                     horizontal={true}
@@ -564,7 +565,7 @@ storiesOf('table/FormTable', module)
                           formId={'personForm' + person.id}
                           type="submit"
                           icon="save"
-                          className="mr-1"
+                          className="me-1"
                           color={dirty ? 'primary' : 'secondary'}
                         >
                           Save
@@ -574,7 +575,7 @@ storiesOf('table/FormTable', module)
                         type="button"
                         icon="cancel"
                         color="secondary"
-                        className="mr-1"
+                        className="me-1"
                         onClick={() => setEditingPerson(undefined)}
                       >
                         Cancel
@@ -763,7 +764,7 @@ storiesOf('table/FormTable', module)
                     <JarbRadioGroup
                       id={`sex-${person.id}`}
                       name="sex"
-                      className="ml-1"
+                      className="ms-1"
                       options={['male', 'female']}
                       labelForOption={(option) => option}
                       horizontal={true}
@@ -788,7 +789,7 @@ storiesOf('table/FormTable', module)
                           onConfirm={() => setEditingPerson(person)}
                           icon="edit"
                           color="primary"
-                          className="mr-1"
+                          className="me-1"
                           dialogText={`All progress on ${editingPerson.firstName} will be lost. Are you sure you want to edit ${person.firstName}?`}
                         >
                           Edit
@@ -798,7 +799,7 @@ storiesOf('table/FormTable', module)
                           onClick={() => setEditingPerson(person)}
                           icon="edit"
                           color="primary"
-                          className="mr-1"
+                          className="me-1"
                         >
                           Edit
                         </Button>
@@ -1209,7 +1210,7 @@ storiesOf('table/FormTable', module)
                   <JarbRadioGroup
                     id={`sex-${person.id}`}
                     name="sex"
-                    className="ml-1"
+                    className="ms-1"
                     options={['male', 'female']}
                     labelForOption={(option) => option}
                     horizontal={true}
@@ -1425,7 +1426,7 @@ storiesOf('table/FormTable', module)
 
           <Button
             onClick={paste}
-            className="ml-2"
+            className="ms-2"
             icon="assignment"
             inProgress={processingPaste}
           >
@@ -1498,7 +1499,7 @@ storiesOf('table/FormTable', module)
                       formId={'personForm' + person.id}
                       type="submit"
                       icon="save"
-                      className="mr-1"
+                      className="me-1"
                       color={dirtyPersons[person.id] ? 'primary' : 'secondary'}
                     >
                       Save
@@ -1509,7 +1510,7 @@ storiesOf('table/FormTable', module)
                         type="reset"
                         icon="restore"
                         color="secondary"
-                        className="mr-1"
+                        className="me-1"
                       >
                         Reset
                       </FormButton>
@@ -1701,7 +1702,7 @@ storiesOf('table/FormTable', module)
                   <JarbRadioGroup
                     id={`sex-${person.id}`}
                     name="sex"
-                    className="ml-1"
+                    className="ms-1"
                     options={['male', 'female']}
                     labelForOption={(option) => option}
                     horizontal={true}

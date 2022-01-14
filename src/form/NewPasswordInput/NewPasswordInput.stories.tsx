@@ -81,7 +81,7 @@ storiesOf('Form/NewPasswordInput', module)
             <div className="d-flex justify-content-between">
               <span>Password</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 content="Your password should be secret"
               >
                 <Icon icon="info" />

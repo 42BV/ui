@@ -63,7 +63,7 @@ storiesOf('Form/ImageUpload', module)
             <div className="d-flex justify-content-between">
               <span>Profile photo</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 style={{ zIndex: 101 }}
                 content="You can edit the photo after you've selected it"
               >

@@ -17,6 +17,7 @@ exports[`Component: Checkbox ui with placeholder: Component: Checkbox => ui => w
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -59,6 +60,7 @@ exports[`Component: Checkbox ui without placeholder: Component: Checkbox => ui =
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

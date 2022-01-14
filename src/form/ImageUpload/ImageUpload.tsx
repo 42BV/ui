@@ -371,7 +371,7 @@ export default class ImageUpload extends Component<Props, State> {
           })}
         </Button>
         <Button
-          className="ml-1"
+          className="ms-1"
           onClick={() => this.resetFileInput()}
           color="danger"
           icon="delete"
@@ -399,14 +399,14 @@ export default class ImageUpload extends Component<Props, State> {
         />
 
         <Button
-          className="ml-1 mt-2"
+          className="ms-1 mt-2"
           onClick={() => this.rotateRight()}
           color="secondary"
           icon="rotate_right"
         />
 
         <Button
-          className="ml-3"
+          className="ms-3"
           onClick={() => this.resetFileInput()}
           color="secondary"
           icon="cancel"
@@ -419,7 +419,7 @@ export default class ImageUpload extends Component<Props, State> {
         </Button>
 
         <Button
-          className="ml-1"
+          className="ms-1"
           onClick={() => this.onCrop()}
           color="primary"
           icon="done"

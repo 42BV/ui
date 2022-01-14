@@ -17,7 +17,7 @@ exports[`Component: NavigationItem ui 1`] = `
     to="/dashboard"
   >
     <Icon
-      className="mr-3 align-bottom"
+      className="me-3 align-bottom"
       icon="dashboard"
     />
     Dashboard

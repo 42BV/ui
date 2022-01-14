@@ -117,13 +117,13 @@ export default function IconPicker(props: Props) {
               <div className="d-flex justify-content-between">
                 <Icon
                   id="icon-picker-value"
-                  className="pt-2 mr-3"
+                  className="pt-2 me-3"
                   icon={value}
                 />
                 {canClear ? (
                   <TextButton
                     onClick={() => onIconSelected(undefined)}
-                    className="mr-3"
+                    className="me-3"
                   >
                     {t({
                       key: 'IconPicker.CLEAR',
@@ -150,7 +150,7 @@ export default function IconPicker(props: Props) {
                   }}
                 >
                   {icon ? (
-                    <Icon icon={icon} className="mr-2 align-bottom" />
+                    <Icon icon={icon} className="me-2 align-bottom" />
                   ) : null}
                   {placeholder}
                 </Button>

@@ -6,8 +6,9 @@ import { useEffect, useState } from 'react';
  * md: for tablets (devices with resolutions ≥ 768px).
  * lg: for laptops (devices with resolutions ≥ 992px).
  * xl: for desktops (devices with resolutions ≥ 1200px)
+ * xxl: for larger desktops (devices with resolutions ≥ 1400px)
  */
-export type BootstrapSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type BootstrapSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 export type BootstrapInfo = {
   bootstrapSize: BootstrapSize;
@@ -73,7 +74,7 @@ function isTablet(size: BootstrapSize) {
 }
 
 function isDesktop(size: BootstrapSize) {
-  return ['lg', 'xl'].includes(size);
+  return ['lg', 'xl', 'xxl'].includes(size);
 }
 
 function getBootstrapSize(width: number): BootstrapSize {
@@ -85,7 +86,9 @@ function getBootstrapSize(width: number): BootstrapSize {
     return 'md';
   } else if (width >= 992 && width < 1200) {
     return 'lg';
-  } else {
+  } else if (width >= 1200 && width < 1400) {
     return 'xl';
+  } else {
+    return 'xxl';
   }
 }

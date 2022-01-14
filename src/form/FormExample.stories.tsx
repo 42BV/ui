@@ -161,7 +161,7 @@ export function TotalForm({
               <InfoTooltip
                 tooltip="The 'Key' represents a part of the entity which can only be
                 created once on create but not on edit."
-                className="ml-2"
+                className="ms-2"
               />
             </>
           }

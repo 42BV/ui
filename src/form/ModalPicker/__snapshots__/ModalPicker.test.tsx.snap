@@ -31,7 +31,6 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
   zIndex={1050}
 >
   <ModalHeader
-    charCode={215}
     closeAriaLabel="Close"
     tag="h5"
     toggle={[Function]}
@@ -51,6 +50,7 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -63,6 +63,7 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -84,6 +85,7 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -96,6 +98,7 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -170,7 +173,7 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
     </Button>
     <div>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="secondary"
         onClick={[Function]}
         tag="button"
@@ -178,7 +181,7 @@ exports[`Component: ModalPicker ui with addButton and search: Component: ModalPi
         Cancel
       </Button>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="primary"
         disabled={false}
         onClick={[Function]}
@@ -222,7 +225,6 @@ exports[`Component: ModalPicker ui without addButton and search: Component: Moda
   zIndex={1050}
 >
   <ModalHeader
-    charCode={215}
     closeAriaLabel="Close"
     tag="h5"
     toggle={[Function]}
@@ -243,6 +245,7 @@ exports[`Component: ModalPicker ui without addButton and search: Component: Moda
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -255,6 +258,7 @@ exports[`Component: ModalPicker ui without addButton and search: Component: Moda
             "md",
             "lg",
             "xl",
+            "xxl",
           ]
         }
       >
@@ -323,7 +327,7 @@ exports[`Component: ModalPicker ui without addButton and search: Component: Moda
     <div />
     <div>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="secondary"
         onClick={[Function]}
         tag="button"
@@ -331,7 +335,7 @@ exports[`Component: ModalPicker ui without addButton and search: Component: Moda
         Cancel
       </Button>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="primary"
         disabled={false}
         onClick={[Function]}

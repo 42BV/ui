@@ -1,13 +1,40 @@
 import React, { ChangeEvent } from 'react';
 import RTMaskedInput from 'react-text-mask';
 import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
-import { InputType } from 'reactstrap/lib/Input';
 import withJarb from '../withJarb/withJarb';
 
 export type InputMask = (string | RegExp)[];
 
 import { FieldCompatible } from '../types';
 import { useId } from '../../hooks/useId/useId';
+
+export type InputType =
+  | 'text'
+  | 'email'
+  | 'select'
+  | 'file'
+  | 'radio'
+  | 'checkbox'
+  | 'switch'
+  | 'textarea'
+  | 'button'
+  | 'reset'
+  | 'submit'
+  | 'date'
+  | 'datetime-local'
+  | 'hidden'
+  | 'image'
+  | 'month'
+  | 'number'
+  | 'range'
+  | 'search'
+  | 'tel'
+  | 'url'
+  | 'week'
+  | 'password'
+  | 'datetime'
+  | 'time'
+  | 'color';
 
 export type Props = FieldCompatible<string, string> & {
   /**

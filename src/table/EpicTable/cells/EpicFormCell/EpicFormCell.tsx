@@ -24,7 +24,7 @@ type Props = {
 export function EpicFormCell({ children, width, height }: Props) {
   return (
     <div
-      className={'epic-table-form-cell border-bottom py-1 pr-1'}
+      className={'epic-table-form-cell border-bottom py-1 pe-1'}
       style={{
         minWidth: width,
         width,

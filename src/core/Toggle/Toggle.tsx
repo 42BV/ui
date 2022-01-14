@@ -64,7 +64,7 @@ export default function Toggle({
   return (
     <span className={toggleClasses}>
       {label ? (
-        <span className="toggle-label mr-2" onClick={() => onChange(!value)}>
+        <span className="toggle-label me-2" onClick={() => onChange(!value)}>
           {label}
         </span>
       ) : null}

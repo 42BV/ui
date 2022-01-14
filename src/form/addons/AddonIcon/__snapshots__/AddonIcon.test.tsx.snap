@@ -2,11 +2,15 @@
 
 exports[`Component: AddonIcon ui: Component: AddonIcon 1`] = `
 <Addon
-  className="custom-class"
   position="right"
 >
-  <Icon
-    icon="360"
-  />
+  <InputGroupText
+    tag="span"
+  >
+    <Icon
+      className="custom-class"
+      icon="360"
+    />
+  </InputGroupText>
 </Addon>
 `;

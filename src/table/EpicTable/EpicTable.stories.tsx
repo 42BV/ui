@@ -1014,21 +1014,21 @@ storiesOf('table/EpicTable', module)
     return (
       <Card body>
         <div className="d-flex mb-2">
-          <Button className="mr-1" onClick={() => setMode('loading')}>
+          <Button className="me-1" onClick={() => setMode('loading')}>
             Loading
           </Button>
-          <Button className="mr-1" onClick={() => setMode('empty')}>
+          <Button className="me-1" onClick={() => setMode('empty')}>
             Empty
           </Button>
-          <Button className="mr-1" onClick={() => setMode('error')}>
+          <Button className="me-1" onClick={() => setMode('error')}>
             Error
           </Button>
-          <Button className="mr-1" onClick={() => setMode('no-results')}>
+          <Button className="me-1" onClick={() => setMode('no-results')}>
             No results
           </Button>
 
           <Button
-            className="d-inline-block float-right"
+            className="d-inline-block float-end"
             icon="details"
             onClick={() => setDetail(true)}
           >

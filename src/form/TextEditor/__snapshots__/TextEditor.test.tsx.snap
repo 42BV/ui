@@ -72,6 +72,7 @@ exports[`Component: TextEditor ui with value: Component: textEditor => ui => wit
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >
@@ -148,6 +149,7 @@ exports[`Component: TextEditor ui without placeholder: Component: textEditor => 
         "md",
         "lg",
         "xl",
+        "xxl",
       ]
     }
   >

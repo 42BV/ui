@@ -74,7 +74,7 @@ storiesOf('Form/TextEditor', module)
             <div className="d-flex justify-content-between">
               <span>Description</span>
               <Tooltip
-                className="ml-1"
+                className="ms-1"
                 content="Be sure to secure against XSS attacks"
               >
                 <Icon icon="info" />
@@ -144,7 +144,7 @@ storiesOf('Form/TextEditor', module)
           }
 
           const span = document.createElement('span');
-          span.className = 'd-inline-block mr-3';
+          span.className = 'd-inline-block me-3';
           span.innerText = 'Insert placeholder';
           label.insertBefore(span, label.firstChild);
         });

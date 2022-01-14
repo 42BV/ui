@@ -150,7 +150,7 @@ export function OpenCloseModal(props: Props) {
         onSave ? (
           <>
             <Button
-              className="ml-1"
+              className="ms-1"
               color="secondary"
               icon={cancelIcon}
               onClick={() => onClose()}
@@ -162,7 +162,7 @@ export function OpenCloseModal(props: Props) {
               })}
             </Button>
             <SubmitButton
-              className="ml-1"
+              className="ms-1"
               inProgress={!!inProgress}
               icon={saveIcon}
               onClick={() => onSave()}

@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import { InputGroupAddon } from 'reactstrap';
 
 export type AddonPosition = 'left' | 'right';
 
@@ -16,12 +15,6 @@ export type Props = {
    * Defaults to 'left'
    */
   position?: AddonPosition;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
 };
 
 /**
@@ -32,12 +25,10 @@ export type Props = {
  * is using an addon with the value of "km" to show that the input's
  * unit is a kilometer.
  */
-export function Addon({ children, position = 'left', className }: Props) {
-  const addonType = position === 'left' ? 'prepend' : 'append';
-
+export function Addon({ children }: Props) {
   return (
-    <InputGroupAddon className={className} addonType={addonType}>
+    <>
       {children}
-    </InputGroupAddon>
+    </>
   );
 }

@@ -26,7 +26,7 @@ export default function TextButton({ onClick, children, className }: Props) {
   return (
     <u
       role="button"
-      className={`align-self-center clickable font-weight-lighter ${className ??
+      className={`align-self-center clickable fw-lighter ${className ??
         ''}`}
       onClick={onClick}
     >

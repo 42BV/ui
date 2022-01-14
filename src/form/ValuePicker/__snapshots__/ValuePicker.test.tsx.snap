@@ -87,7 +87,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
       tag="div"
     >
       <div
-        className="form-group"
+        className="mb-3"
       >
         <Label
           for="bestFriend"
@@ -99,11 +99,12 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
           <label
-            className=""
+            className="form-label"
             htmlFor="bestFriend"
           >
             Best friend
@@ -120,7 +121,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
           className="d-flex flex-wrap"
         >
           <div
-            className="pr-3"
+            className="pe-3"
             key="0"
             style={
               Object {
@@ -147,11 +148,12 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                       "md",
                       "lg",
                       "xl",
+                      "xxl",
                     ]
                   }
                 >
                   <label
-                    className="form-check-label"
+                    className="form-check-label form-label"
                   >
                     <Input
                       checked={false}
@@ -194,11 +196,12 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                       "md",
                       "lg",
                       "xl",
+                      "xxl",
                     ]
                   }
                 >
                   <label
-                    className="form-check-label"
+                    className="form-check-label form-label"
                   >
                     <Input
                       checked={false}
@@ -241,11 +244,12 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                       "md",
                       "lg",
                       "xl",
+                      "xxl",
                     ]
                   }
                 >
                   <label
-                    className="form-check-label"
+                    className="form-check-label form-label"
                   >
                     <Input
                       checked={false}
@@ -364,7 +368,7 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
       tag="div"
     >
       <div
-        className="form-group"
+        className="mb-3"
       >
         <Label
           for="bestFriend"
@@ -376,11 +380,12 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
           <label
-            className=""
+            className="form-label"
             htmlFor="bestFriend"
           >
             Best friend
@@ -412,11 +417,11 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
                 type="button"
               >
                 <Icon
-                  className="mr-2 align-bottom"
+                  className="me-2 align-bottom"
                   icon="face"
                 >
                   <i
-                    className="icon mr-2 align-bottom material-icons"
+                    className="icon me-2 align-bottom material-icons"
                     onClick={[Function]}
                     onMouseEnter={[Function]}
                     onMouseLeave={[Function]}
@@ -672,7 +677,7 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
       tag="div"
     >
       <div
-        className="form-group"
+        className="mb-3"
       >
         <Label
           for="bestFriend"
@@ -684,11 +689,12 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
           <label
-            className=""
+            className="form-label"
             htmlFor="bestFriend"
           >
             Best friend
@@ -720,11 +726,11 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
                 type="button"
               >
                 <Icon
-                  className="mr-2 align-bottom"
+                  className="me-2 align-bottom"
                   icon="face"
                 >
                   <i
-                    className="icon mr-2 align-bottom material-icons"
+                    className="icon me-2 align-bottom material-icons"
                     onClick={[Function]}
                     onMouseEnter={[Function]}
                     onMouseLeave={[Function]}
@@ -917,7 +923,7 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
       tag="fieldset"
     >
       <fieldset
-        className="radio-group  form-group"
+        className="radio-group  mb-3"
       >
         <legend>
           Best friend
@@ -948,11 +954,12 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
                   "md",
                   "lg",
                   "xl",
+                  "xxl",
                 ]
               }
             >
               <label
-                className="form-check-label"
+                className="form-check-label form-label"
               >
                 <Input
                   checked={false}
@@ -995,11 +1002,12 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
                   "md",
                   "lg",
                   "xl",
+                  "xxl",
                 ]
               }
             >
               <label
-                className="form-check-label"
+                className="form-check-label form-label"
               >
                 <Input
                   checked={false}
@@ -1042,11 +1050,12 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
                   "md",
                   "lg",
                   "xl",
+                  "xxl",
                 ]
               }
             >
               <label
-                className="form-check-label"
+                className="form-check-label form-label"
               >
                 <Input
                   checked={false}
@@ -1163,7 +1172,7 @@ exports[`Component: ValuePicker single when Select should render a \`Select\` co
       tag="div"
     >
       <div
-        className="form-group"
+        className="mb-3"
       >
         <Label
           for="bestFriend"
@@ -1175,11 +1184,12 @@ exports[`Component: ValuePicker single when Select should render a \`Select\` co
               "md",
               "lg",
               "xl",
+              "xxl",
             ]
           }
         >
           <label
-            className=""
+            className="form-label"
             htmlFor="bestFriend"
           >
             Best friend
@@ -1194,7 +1204,7 @@ exports[`Component: ValuePicker single when Select should render a \`Select\` co
           type="select"
         >
           <select
-            className="showing-placeholder form-control"
+            className="showing-placeholder form-select"
             id="bestFriend"
             onBlur={[MockFunction]}
             onChange={[Function]}

@@ -10,7 +10,7 @@ exports[`Component: Loading ui with children: Component: Loading => ui => with c
     size={16}
   />
   <span
-    className="ml-1"
+    className="ms-1"
   >
     We are 
     <b>
@@ -31,7 +31,7 @@ exports[`Component: Loading ui without children: Component: Loading => ui => wit
     size={16}
   />
   <span
-    className="ml-1"
+    className="ms-1"
   >
     Loading...
   </span>

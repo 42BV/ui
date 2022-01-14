@@ -17,6 +17,7 @@ exports[`Component: ImageUpload ui edit as circle: Component: ImageUpload => ui 
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -68,13 +69,13 @@ exports[`Component: ImageUpload ui edit as circle: Component: ImageUpload => ui 
         onClick={[Function]}
       />
       <Button
-        className="ml-1 mt-2"
+        className="ms-1 mt-2"
         color="secondary"
         icon="rotate_right"
         onClick={[Function]}
       />
       <Button
-        className="ml-3"
+        className="ms-3"
         color="secondary"
         icon="cancel"
         onClick={[Function]}
@@ -82,7 +83,7 @@ exports[`Component: ImageUpload ui edit as circle: Component: ImageUpload => ui 
         Cancel
       </Button>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="primary"
         icon="done"
         onClick={[Function]}
@@ -112,6 +113,7 @@ exports[`Component: ImageUpload ui edit as rect: Component: ImageUpload => ui =>
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -163,13 +165,13 @@ exports[`Component: ImageUpload ui edit as rect: Component: ImageUpload => ui =>
         onClick={[Function]}
       />
       <Button
-        className="ml-1 mt-2"
+        className="ms-1 mt-2"
         color="secondary"
         icon="rotate_right"
         onClick={[Function]}
       />
       <Button
-        className="ml-3"
+        className="ms-3"
         color="secondary"
         icon="cancel"
         onClick={[Function]}
@@ -177,7 +179,7 @@ exports[`Component: ImageUpload ui edit as rect: Component: ImageUpload => ui =>
         CANCEL
       </Button>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="primary"
         icon="done"
         onClick={[Function]}
@@ -207,6 +209,7 @@ exports[`Component: ImageUpload ui file-selected as circle: Component: ImageUplo
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -238,7 +241,7 @@ exports[`Component: ImageUpload ui file-selected as circle: Component: ImageUplo
         CHANGE
       </Button>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="danger"
         icon="delete"
         onClick={[Function]}
@@ -284,7 +287,7 @@ exports[`Component: ImageUpload ui file-selected as rect without label: Componen
         Change
       </Button>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="danger"
         icon="delete"
         onClick={[Function]}
@@ -314,6 +317,7 @@ exports[`Component: ImageUpload ui file-selected as rect: Component: ImageUpload
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >
@@ -345,7 +349,7 @@ exports[`Component: ImageUpload ui file-selected as rect: Component: ImageUpload
         Change
       </Button>
       <Button
-        className="ml-1"
+        className="ms-1"
         color="danger"
         icon="delete"
         onClick={[Function]}
@@ -375,6 +379,7 @@ exports[`Component: ImageUpload ui no-file: Component: ImageUpload => ui => no-f
           "md",
           "lg",
           "xl",
+          "xxl",
         ]
       }
     >

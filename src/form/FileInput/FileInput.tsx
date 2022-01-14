@@ -94,7 +94,7 @@ export default class FileInput extends Component<Props> {
             color={value || valid === false ? 'danger' : 'primary'}
             onClick={noop}
           >
-            <Icon icon={value ? 'delete' : 'cloud_upload'} />
+            <Icon icon={value ? 'delete' : 'cloud_upload'} className="d-block" />
           </AddonButton>
         </InputGroup>
 
