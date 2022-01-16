@@ -65,6 +65,11 @@ describe('Icon', () => {
       const icon = shallow(<Icon icon="alarm" size={144} color="secondary" hoverColor="primary" />);
       expect(toJson(icon)).toMatchSnapshot('Icon => ui => with hoverColor');
     });
+
+    test('with onClick', () => {
+      const icon = shallow(<Icon icon="alarm" size={144} color="secondary" hoverColor="primary" onClick={jest.fn()} />);
+      expect(toJson(icon)).toMatchSnapshot('Icon => ui => with onClick');
+    });
   });
 
   describe('events', () => {
@@ -109,7 +114,7 @@ describe('Icon', () => {
           ]);
 
         const icon = shallow(
-          <Icon icon="alarm" onClick={jest.fn()} hoverColor="primary" />
+          <Icon icon="alarm" color="secondary" onClick={jest.fn()} hoverColor="primary" />
         );
 
         expect(toJson(icon)).toMatchSnapshot('Icon => events => hover => should change color when hoverColor is defined');
@@ -124,7 +129,7 @@ describe('Icon', () => {
           ]);
 
         const icon = shallow(
-          <Icon icon="alarm" hoverColor="primary" />
+          <Icon icon="alarm" color="secondary" hoverColor="primary" />
         );
 
         expect(toJson(icon)).toMatchSnapshot('Icon => events => hover => should not change color when onClick is not defined');
@@ -139,7 +144,7 @@ describe('Icon', () => {
           ]);
 
         const icon = shallow(
-          <Icon icon="alarm" onClick={jest.fn()} disabled={true} hoverColor="primary" />
+          <Icon icon="alarm" color="secondary" onClick={jest.fn()} disabled={true} hoverColor="primary" />
         );
 
         expect(toJson(icon)).toMatchSnapshot('Icon => events => hover => should not change color when disabled');

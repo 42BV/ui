@@ -71,11 +71,10 @@ export default function Icon({
   const [hover, hoverEvents] = useHover();
 
   const colorCssClasses = {};
-  if (color) {
-    colorCssClasses[`text-${color}`] = (hoverColor && !hover) || disabled || onClick === undefined;
-  }
-  if (hoverColor) {
-    colorCssClasses[`text-${hoverColor}`] = hover && !disabled && onClick !== undefined;
+  if (hoverColor && hover && !disabled && onClick !== undefined) {
+    colorCssClasses[`text-${hoverColor}`] = true;
+  } else if (color) {
+    colorCssClasses[`text-${color}`] = true;
   }
 
   const classes = classNames(
