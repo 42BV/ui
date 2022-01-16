@@ -13,7 +13,7 @@ exports[`Icon events hover should change color when hoverColor is defined: Icon 
 
 exports[`Icon events hover should not change color when disabled: Icon => events => hover => should not change color when disabled 1`] = `
 <i
-  className="icon material-icons icon--disabled"
+  className="icon material-icons text-secondary icon--disabled"
   onClick={[Function]}
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
@@ -24,7 +24,7 @@ exports[`Icon events hover should not change color when disabled: Icon => events
 
 exports[`Icon events hover should not change color when onClick is not defined: Icon => events => hover => should not change color when onClick is not defined 1`] = `
 <i
-  className="icon material-icons"
+  className="icon material-icons text-secondary"
   onClick={[Function]}
   onMouseEnter={[MockFunction]}
   onMouseLeave={[MockFunction]}
@@ -134,6 +134,22 @@ exports[`Icon ui with id: Icon => ui => with id 1`] = `
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
+>
+  alarm
+</i>
+`;
+
+exports[`Icon ui with onClick: Icon => ui => with onClick 1`] = `
+<i
+  className="icon material-icons text-secondary clickable"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "fontSize": 144,
+    }
+  }
 >
   alarm
 </i>
