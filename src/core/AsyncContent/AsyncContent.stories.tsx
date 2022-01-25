@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import AsyncContent from './AsyncContent';
-import { useQuery } from 'react-query';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { action } from '@storybook/addon-actions';
 import { ContentState, Button } from '../..';
 
@@ -26,8 +26,23 @@ function loadingData() {
   return new Promise(() => undefined);
 }
 
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      cacheTime: 0
+    }
+  },
+});
+
 storiesOf('core/async/AsyncContent', module)
   .addParameters({ component: AsyncContent })
+  .addDecorator((Story) => (
+    <QueryClientProvider client={client}>
+      <Story />
+    </QueryClientProvider>
+  ))
   .add('when loaded', () => {
     const state = useQuery('data', loadData);
 

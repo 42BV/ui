@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { useQuery } from 'react-query';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
@@ -39,8 +39,23 @@ function loadingData(): Promise<Page<User>> {
   return new Promise(() => undefined);
 }
 
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      cacheTime: 0
+    }
+  }
+});
+
 storiesOf('core/async/AsyncPage', module)
   .addParameters({ component: AsyncPage })
+  .addDecorator((Story) => (
+    <QueryClientProvider client={client}>
+      <Story />
+    </QueryClientProvider>
+  ))
   .add('when loaded', () => {
     const state = useQuery('data', loadData);
 
