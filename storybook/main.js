@@ -1,5 +1,10 @@
+const path = require('path');
+
 module.exports = {
-  stories: ['../src/**/*.stories.@(js|mxs|tsx|ts)'],
+  core: {
+    builder: "webpack5",
+  },
+  stories: [ '../src/**/*.stories.@(js|mxs|tsx|ts)' ],
   addons: [
     '@storybook/addon-actions/register',
     {
@@ -7,8 +12,7 @@ module.exports = {
       options: {
         configureJSX: true
       }
-    },
-    '@storybook/preset-scss'
+    }
   ],
   typescript: {
     check: false,
@@ -19,4 +23,14 @@ module.exports = {
       propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+      include: path.resolve(__dirname, '../'),
+    });
+
+    // Return the altered config
+    return config;
+  }
 };
