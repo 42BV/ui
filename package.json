@@ -39,7 +39,7 @@
   "dependencies": {
     "@tippyjs/react": "4.2.6",
     "bootstrap": "5.1.3",
-    "moment": "2.29.1",
+    "moment": "2.29.2",
     "overlayscrollbars": "1.13.1",
     "overlayscrollbars-react": "0.2.3",
     "pica": "9.0.1",
