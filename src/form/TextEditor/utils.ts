@@ -2,22 +2,22 @@ import { StringMap } from 'quill';
 import { isArray, flatMap, uniq } from 'lodash';
 
 /* 
-  When module.toolbar exists it will generate the formats for Quill
+  When module.toolbar exists it will generate the customToolbarButtons for Quill
   based on the items in the toolbar.
 
-  When module or toolbar is empty the default formats are returned.
+  When module or toolbar is empty the default customToolbarButtons are returned.
 */
 export function formatsFromToolbarModule(
   modules: StringMap | undefined
 ): string[] {
-  // If there are no modules use the default formats
+  // If there are no modules use the default customToolbarButtons
   if (!modules) {
     return defaultFormats();
   }
 
   let { toolbar } = modules;
 
-  // If there is no toolbar defined use the default formats
+  // If there is no toolbar defined use the default customToolbarButtons
   if (!toolbar) {
     return defaultFormats();
   }
@@ -35,26 +35,26 @@ export function formatsFromToolbarModule(
 }
 
 /* 
-  Recursive function which can generate the formats based 
+  Recursive function which can generate the customToolbarButtons based
   on the toolbar
 */
 function formatsForToolbar(toolbarItem: any): string | string[] {
   if (typeof toolbarItem === 'string') {
-    // toolbar strings are also the formats, so we can just return
+    // toolbar strings are also the customToolbarButtons, so we can just return
     // them as is.
     return toolbarItem;
   } else if (isArray(toolbarItem)) {
-    // Further reduce the array of formats, it could be an array of
+    // Further reduce the array of customToolbarButtons, it could be an array of
     // strings or objects or mixed at this point.
     return flatMap(toolbarItem, formatsForToolbar);
   } else {
-    // When an object the keys of the objects are the formats
+    // When an object the keys of the objects are the customToolbarButtons
     return formatsForToolbar(Object.keys(toolbarItem));
   }
 }
 
 /* 
-  Helper to create the default formats. These are the formats of
+  Helper to create the default customToolbarButtons. These are the customToolbarButtons of
   the default toolbar of the TextEditor component.
   
   Is a function to prevent accidental mutations.

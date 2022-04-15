@@ -3,6 +3,7 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import TextEditor from './TextEditor';
+import { ToolbarCustomButtons } from 'react-draft-wysiwyg';
 
 describe('Component: TextEditor', () => {
   let textEditor: ShallowWrapper;
@@ -15,14 +16,14 @@ describe('Component: TextEditor', () => {
     value,
     hasPlaceholder = true,
     hasLabel = true,
-    hasModules = false,
-    formats = undefined
+    hasCustomToolbarOptions = false,
+    toolbarCustomButtons = undefined
   }: {
     value?: string;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
-    hasModules?: boolean;
-    formats?: string[];
+    hasCustomToolbarOptions?: boolean;
+    toolbarCustomButtons?: ToolbarCustomButtons;
   }) {
     onChangeSpy = jest.fn();
     onBlurSpy = jest.fn();
@@ -36,12 +37,12 @@ describe('Component: TextEditor', () => {
       onFocus: onFocusSpy,
       error: 'Some error',
       valid: true,
-      modules: hasModules
+      modules: hasCustomToolbarOptions
         ? {
             toolbar: ['bold']
           }
         : undefined,
-      formats
+      customToolbarButtons: toolbarCustomButtons
     };
 
     if (hasLabel) {
@@ -84,18 +85,18 @@ describe('Component: TextEditor', () => {
     });
 
     test('with modules', () => {
-      setup({ value: 'Maarten', hasLabel: false, hasModules: true });
+      setup({ value: 'Maarten', hasLabel: false, hasCustomToolbarOptions: true });
 
       expect(toJson(textEditor)).toMatchSnapshot(
         'Component: textEditor => ui => with modules'
       );
     });
 
-    test('with formats', () => {
-      setup({ value: 'Maarten', hasLabel: false, formats: ['italic'] });
+    test('with toolbarCustomButtons', () => {
+      setup({ value: 'Maarten', hasLabel: false, toolbarCustomButtons: ['italic'] });
 
       expect(toJson(textEditor)).toMatchSnapshot(
-        'Component: textEditor => ui => with formats'
+        'Component: textEditor => ui => with toolbarCustomButtons'
       );
     });
   });

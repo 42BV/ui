@@ -1,7 +1,7 @@
 import { formatsFromToolbarModule } from './utils';
 
 describe('formatsFromToolbarModule', () => {
-  it('should when the "modules" are undefined return the default formats', () => {
+  it('should when the "modules" are undefined return the default customToolbarButtons', () => {
     expect(formatsFromToolbarModule(undefined)).toEqual([
       'header',
       'list',
@@ -12,7 +12,7 @@ describe('formatsFromToolbarModule', () => {
     ]);
   });
 
-  it('should when the "toolbar" is undefined return the default formats', () => {
+  it('should when the "toolbar" is undefined return the default customToolbarButtons', () => {
     expect(formatsFromToolbarModule({ haha: 42 })).toEqual([
       'header',
       'list',
@@ -57,7 +57,7 @@ describe('formatsFromToolbarModule', () => {
     }).toThrowError('TextEditor: expecting modules.toolbar to be an array');
   });
 
-  it('should know how to extract formats from a complex toolbar definition ', () => {
+  it('should know how to extract customToolbarButtons from a complex toolbar definition ', () => {
     const modules = {
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'], // toggled buttons

@@ -1,42 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
-import ReactQuill from 'react-quill';
+import { Editor, Toolbar, ToolbarCustomButtons } from 'react-draft-wysiwyg';
+import { EditorState } from 'draft-js';
 import classNames from 'classnames';
-import { StringMap } from 'quill';
+import { convertToHTML, convertFromHTML } from 'draft-convert';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import withJarb from '../withJarb/withJarb';
-import { doBlur } from '../utils';
-import { formatsFromToolbarModule } from './utils';
 import { FieldCompatible } from '../types';
 import { useId } from '../../hooks/useId/useId';
 
 export type Props = FieldCompatible<string, string> & {
   /**
-   * Optional configuration option to i.e. customize the toolbar.
+   * Optional configuration to determine which toolbar options are
+   * allowed.
    *
-   * @see https://quilljs.com/docs/modules/
+   * @see https://jpuri.github.io/react-draft-wysiwyg/#/docs
    */
-  modules?: StringMap;
+  toolbar?: Toolbar;
 
   /**
-   * Optional configuration to determine which `Quill` formats are
-   * allowed. A format in `Quill` is: bold text, headers, links,
-   * colors, etc etc. If something is not in the `formats` it is not
-   * allowed in the `TextEditor`.
+   * Optional configuration to add custom toolbar options.
    *
-   * In Quill it is possible to not show an item in the toolbar but
-   * allow it in the `formats`. For example you can remove the "bold"
-   * item from the toolbar but allow it in the `formats`. This way the
-   * user can still copy paste bold text into the `TextEditor`, or use
-   * the ctrl-b keyboard shortcut to make bold text.
-   *
-   * By default the `formats` will be the same as the allowed `toolbar`
-   * items in the `modules` prop. This way you do not need to keep
-   * `formats` and `modules.toolbar` in sync.
-   *
-   * @see https://quilljs.com/docs/formats/
+   * @see https://jpuri.github.io/react-draft-wysiwyg/#/docs
    */
-  formats?: string[];
+  toolbarCustomButtons?: ToolbarCustomButtons;
+
+  /**
+   * Optional configuration to determine which language the editor
+   * should use.
+   * Defaults to English.
+   */
+  locale?: 'en' | 'fr' | 'zh' | 'ru' | 'pt' | 'ko' | 'it' | 'nl' | 'de' | 'da' | 'zh_tw' | 'pl' | 'es';
 };
 
 /**
@@ -64,31 +59,41 @@ export default function TextEditor(props: Props) {
     valid,
     error,
     color,
-    value,
+    value = '',
     className = '',
-    modules,
-    formats
+    toolbar,
+    toolbarCustomButtons,
+    locale = 'en'
   } = props;
-
-  const inputProps = {
-    id,
-    placeholder,
-    onChange: (content: string) => onChange(content),
-    onBlur: () => doBlur(onBlur),
-    onFocus,
-    value,
-    modules,
-    formats: formats ? formats : formatsFromToolbarModule(modules)
-  };
 
   const innerId = useId({ id });
 
   const classes = classNames({ 'is-invalid': valid === false });
 
+  const [editorState, setEditorState] = useState(EditorState.createWithContent(convertFromHTML({})(value)));
+
+  function onEditorStateChange(state: EditorState) {
+    setEditorState(state);
+    onChange(convertToHTML(state.getCurrentContent()));
+  }
+
   return (
     <FormGroup className={className} color={color}>
       {label ? <Label for={innerId}>{label}</Label> : null}
-      <ReactQuill className={classes} {...inputProps} />
+      <Editor
+        editorState={editorState}
+        editorClassName={classes}
+        onEditorStateChange={onEditorStateChange}
+        localization={{
+          locale
+        }}
+        toolbar={toolbar}
+        toolbarCustomButtons={toolbarCustomButtons}
+        id={innerId}
+        placeholder={placeholder}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
       {error}
     </FormGroup>
   );

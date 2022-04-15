@@ -1,11 +1,13 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import TextEditor, { JarbTextEditor } from './TextEditor';
+import { EditorState, Modifier } from 'draft-js';
 
 import { FinalForm } from '../story-utils';
 import { Icon, Tooltip, Card } from '../..';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 
 const disclaimer = (
   <>
@@ -96,28 +98,38 @@ storiesOf('Form/TextEditor', module)
           label="Description"
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
-          modules={{
-            toolbar: [
-              ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-              ['blockquote', 'code-block'],
-
-              [{ header: 1 }, { header: 2 }], // custom button values
-              [{ list: 'ordered' }, { list: 'bullet' }],
-              [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-              [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-              [{ direction: 'rtl' }], // text direction
-
-              [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-              [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-              [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-              [{ font: [] }],
-              [{ align: [] }],
-
-              ['link', 'image', 'video'],
-
-              ['clean']
-            ]
+          toolbar={{
+            options: ['inline', 'blockType', 'list', 'link', 'image', 'remove'],
+            inline: {
+              inDropdown: false,
+              options: ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript'],
+            },
+            blockType: {
+              inDropdown: true,
+              options: ['Normal', 'H1', 'H2', 'Blockquote', 'Code'],
+            },
+            list: {
+              inDropdown: false,
+              options: ['unordered', 'ordered', 'indent', 'outdent'],
+            },
+            link: {
+              inDropdown: false,
+              showOpenOptionOnHover: true,
+              defaultTargetOption: '_blank',
+              options: ['link', 'unlink'],
+            },
+            image: {
+              urlEnabled: true,
+              uploadEnabled: true,
+              alignmentEnabled: true,
+              previewImage: false,
+              inputAccept: 'image/jpeg,image/jpg,image/png,image/svg',
+              alt: { present: false, mandatory: false },
+              defaultSize: {
+                height: 'auto',
+                width: 'auto',
+              },
+            }
           }}
         />
 
@@ -126,46 +138,38 @@ storiesOf('Form/TextEditor', module)
     );
   })
   .add('custom toolbar option', () => {
+    const [value, setValue] = useState('');
+
     const placeholders = useMemo(
       () => [{ label: 'First name', value: 'firstName' }],
       []
     );
 
-    useEffect(() => {
-      /**
-       * Supply the HTML content of the placeholder dropdown.
-       * We need this because QuillJS shows an empty dropdown when supplying a custom dropdown list.
-       */
-      document
-        .querySelectorAll('.ql-placeholder .ql-picker-label')
-        .forEach((label: HTMLElement) => {
-          if (label.innerHTML.startsWith('<span')) {
-            return;
-          }
+    function PlaceholderDropdown({onChange, editorState}: {onChange: (editorState: EditorState) => void; editorState: EditorState}) {
+      const [isOpen, setIsOpen] = useState(false);
 
-          const span = document.createElement('span');
-          span.className = 'd-inline-block me-3';
-          span.innerText = 'Insert placeholder';
-          label.insertBefore(span, label.firstChild);
-        });
-      document
-        .querySelectorAll('.ql-placeholder .ql-picker-item')
-        .forEach((item: HTMLElement) => {
-          item.textContent =
-            placeholders.find((ph) => ph.value === item.dataset.value)?.label ||
-            item.dataset.value ||
-            null;
-        });
-    }, [placeholders]);
+      function onClick(placeholder: string) {
+        const contentState = Modifier.replaceText(
+          editorState.getCurrentContent(),
+          editorState.getSelection(),
+          placeholder,
+          editorState.getCurrentInlineStyle()
+        );
+        onChange(EditorState.push(editorState, contentState, 'insert-characters'));
+      }
 
-    function insertPlaceholder(value: string) {
-      const quill = this.quill;
-      const cursorPosition = quill.getSelection().index;
-      quill.insertText(cursorPosition, `[${value}]`);
-      quill.setSelection({
-        index: cursorPosition + value.length + 2,
-        length: 0
-      });
+      return (
+        <Dropdown isOpen={isOpen} toggle={() => setIsOpen(!isOpen)}>
+          <DropdownToggle caret>
+            Placeholders
+          </DropdownToggle>
+          <DropdownMenu>
+            {placeholders.map((placeholder) => (
+              <DropdownItem key={placeholder.value} onClick={() => onClick(placeholder.value)}>{placeholder.label}</DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
+      );
     }
 
     return (
@@ -174,79 +178,11 @@ storiesOf('Form/TextEditor', module)
           id="description"
           label="Description"
           placeholder="Please add a description"
-          onChange={(value) => action(`onChange: ${value}`)}
-          modules={{
-            toolbar: {
-              container: [
-                [
-                  {
-                    placeholder: placeholders.map((ph) => ph.value)
-                  }
-                ],
-                [
-                  {
-                    size: ['small', false, 'large', 'huge']
-                  },
-                  'bold',
-                  'italic',
-                  'underline',
-                  'link'
-                ],
-                [
-                  {
-                    list: 'ordered'
-                  },
-                  {
-                    list: 'bullet'
-                  }
-                ],
-                ['clean']
-              ],
-              handlers: {
-                placeholder: insertPlaceholder
-              }
-            }
-          }}
+          value={value}
+          onChange={setValue}
+          // @ts-expect-error The component is cloned with the required properties, so we can ignore the error here
+          toolbarCustomButtons={[<PlaceholderDropdown key="placeholder" />]}
         />
-        {disclaimer}
-      </Card>
-    );
-  })
-  .add('manual formats', () => {
-    return (
-      <Card className="m-2">
-        <TextEditor
-          id="description"
-          label="Description"
-          placeholder="Please add a description"
-          onChange={(value) => action(`onChange: ${value}`)}
-          modules={{
-            // This determines what is in the toolbar. But not
-            // which formats are supported. Quill does this to
-            // allow bold text to be pasted or entered with a
-            // shortcut, but not show a toolbar button.
-            toolbar: ['italic', 'underline', 'strike']
-          }}
-          // These are the formats which are allowed to be used.
-          // When you include a format here you can paste or use
-          // the shortcut to use the format. In this case we allow
-          // text to be bold, but we do not include it in the toolbar.
-          // This means that using the ctrl-b shortcut, or pasting bold
-          // text, will result in bold text.
-          formats={['bold', 'italic', 'underline', 'strike']}
-        />
-
-        <p>
-          This example shows how to use the <strong>formats</strong> props. Even
-          though there is no bold button in the toolbar you can still paste bold
-          text or use the ctrl-b shortcut.
-        </p>
-
-        <p>
-          This is achieved by not including <strong>bold</strong> in the toolbar
-          but only including it in the <strong>formats</strong> prop.
-        </p>
-
         {disclaimer}
       </Card>
     );

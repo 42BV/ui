@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: TextEditor ui with formats: Component: textEditor => ui => with formats 1`] = `
+exports[`Component: TextEditor ui with customToolbarButtons: Component: textEditor => ui => with customToolbarButtons 1`] = `
 <FormGroup
   className=""
   color="success"
@@ -8,7 +8,7 @@ exports[`Component: TextEditor ui with formats: Component: textEditor => ui => w
 >
   <Quill
     className=""
-    formats={
+    customToolbarButtons={
       Array [
         "italic",
       ]
@@ -33,7 +33,7 @@ exports[`Component: TextEditor ui with modules: Component: textEditor => ui => w
 >
   <Quill
     className=""
-    formats={
+    customToolbarButtons={
       Array [
         "bold",
       ]
@@ -80,7 +80,7 @@ exports[`Component: TextEditor ui with value: Component: textEditor => ui => wit
   </Label>
   <Quill
     className=""
-    formats={
+    customToolbarButtons={
       Array [
         "header",
         "list",
@@ -111,7 +111,7 @@ exports[`Component: TextEditor ui without label: Component: textEditor => ui => 
 >
   <Quill
     className=""
-    formats={
+    customToolbarButtons={
       Array [
         "header",
         "list",
@@ -157,7 +157,7 @@ exports[`Component: TextEditor ui without placeholder: Component: textEditor => 
   </Label>
   <Quill
     className=""
-    formats={
+    customToolbarButtons={
       Array [
         "header",
         "list",
