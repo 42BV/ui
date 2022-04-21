@@ -1,42 +1,73 @@
 import React from 'react';
 import { FormGroup, Label } from 'reactstrap';
-import ReactQuill from 'react-quill';
 import classNames from 'classnames';
-import { StringMap } from 'quill';
+
+import { EditorState } from 'lexical';
+import LexicalComposer from '@lexical/react/LexicalComposer';
+import LexicalContentEditable from '@lexical/react/LexicalContentEditable';
+import LexicalOnChangePlugin from '@lexical/react/LexicalOnChangePlugin';
+import LexicalRichTextPlugin from '@lexical/react/LexicalRichTextPlugin';
+import LexicalPlainTextPlugin from '@lexical/react/LexicalPlainTextPlugin';
+import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
+import LexicalLinkPlugin from '@lexical/react/LexicalLinkPlugin';
+import LexicalListPlugin from '@lexical/react/LexicalListPlugin';
+import LexicalTablePlugin from '@lexical/react/LexicalTablePlugin';
+import LexicalMarkdownShortcutPlugin from '@lexical/react/LexicalMarkdownShortcutPlugin';
+import LexicalCharacterLimitPlugin from '@lexical/react/LexicalCharacterLimitPlugin';
+import { createLexicalComposerContext, useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+
+import { convertFromHTML, convertToHTML } from 'draft-convert';
 
 import withJarb from '../withJarb/withJarb';
-import { doBlur } from '../utils';
-import { formatsFromToolbarModule } from './utils';
 import { FieldCompatible } from '../types';
 import { useId } from '../../hooks/useId/useId';
 
 export type Props = FieldCompatible<string, string> & {
   /**
-   * Optional configuration option to i.e. customize the toolbar.
+   * Optionally enable rich text editing like bold, italic, underline,
+   * but also copy/paste, indent/outdent.
    *
-   * @see https://quilljs.com/docs/modules/
+   * Defaults to true.
    */
-  modules?: StringMap;
+  richTextEnabled?: boolean;
 
   /**
-   * Optional configuration to determine which `Quill` formats are
-   * allowed. A format in `Quill` is: bold text, headers, links,
-   * colors, etc etc. If something is not in the `formats` it is not
-   * allowed in the `TextEditor`.
+   * Optionally enable editing history.
    *
-   * In Quill it is possible to not show an item in the toolbar but
-   * allow it in the `formats`. For example you can remove the "bold"
-   * item from the toolbar but allow it in the `formats`. This way the
-   * user can still copy paste bold text into the `TextEditor`, or use
-   * the ctrl-b keyboard shortcut to make bold text.
-   *
-   * By default the `formats` will be the same as the allowed `toolbar`
-   * items in the `modules` prop. This way you do not need to keep
-   * `formats` and `modules.toolbar` in sync.
-   *
-   * @see https://quilljs.com/docs/formats/
+   * Defaults to true.
    */
-  formats?: string[];
+  historyEnabled?: boolean;
+
+  /**
+   * Optionally allow links.
+   *
+   * Defaults to true.
+   */
+  linksEnabled?: boolean;
+
+  /**
+   * Optionally allow lists.
+   *
+   * Defaults to true.
+   */
+  listsEnabled?: boolean;
+
+  /**
+   * Optionally allow creating HTML tables.
+   *
+   * Defaults to false.
+   */
+  tablesEnabled?: boolean;
+
+  /**
+   * Optionally allow usage of Markdown for markup of text, like
+   * double stars for bold, hashtags for headings, etc.
+   *
+   * Defaults to true.
+   */
+  markdownEnabled?: boolean;
+
+  characterLimit?: number;
 };
 
 /**
@@ -66,29 +97,57 @@ export default function TextEditor(props: Props) {
     color,
     value,
     className = '',
-    modules,
-    formats
+    richTextEnabled = true,
+    historyEnabled = true,
+    linksEnabled = true,
+    listsEnabled = true,
+    tablesEnabled = false,
+    markdownEnabled = true,
+    characterLimit
   } = props;
-
-  const inputProps = {
-    id,
-    placeholder,
-    onChange: (content: string) => onChange(content),
-    onBlur: () => doBlur(onBlur),
-    onFocus,
-    value,
-    modules,
-    formats: formats ? formats : formatsFromToolbarModule(modules)
-  };
 
   const innerId = useId({ id });
 
   const classes = classNames({ 'is-invalid': valid === false });
 
+  createLexicalComposerContext(undefined, undefined);
+
+  const [editor] = useLexicalComposerContext();
+  editor.setEditorState(convertFromHTML({})(value));
+
+  function onEditorStateChange(state: EditorState) {
+    onChange(convertToHTML(state));
+  }
+
   return (
     <FormGroup className={className} color={color}>
       {label ? <Label for={innerId}>{label}</Label> : null}
-      <ReactQuill className={classes} {...inputProps} />
+      <LexicalComposer initialConfig={{ onError: (e) => { throw e; } }}>
+        <LexicalOnChangePlugin onChange={onEditorStateChange} />
+        {richTextEnabled ? (
+          <LexicalRichTextPlugin contentEditable={<LexicalContentEditable className={classes} />} placeholder={<>{placeholder}</>} />
+        ) : (
+          <LexicalPlainTextPlugin contentEditable={<LexicalContentEditable className={classes} />} placeholder={<>{placeholder}</>} />
+        )}
+        {historyEnabled ? (
+          <HistoryPlugin />
+        ) : <></>}
+        {linksEnabled ? (
+          <LexicalLinkPlugin />
+        ) : <></>}
+        {listsEnabled ? (
+          <LexicalListPlugin />
+        ) : <></>}
+        {tablesEnabled ? (
+          <LexicalTablePlugin />
+        ) : <></>}
+        {markdownEnabled ? (
+          <LexicalMarkdownShortcutPlugin />
+        ) : <></>}
+        {characterLimit ? (
+          <LexicalCharacterLimitPlugin charset="UTF-8" />
+        ) : <></>}
+      </LexicalComposer>
       {error}
     </FormGroup>
   );
