@@ -22,6 +22,17 @@
 
 ---
 
+## Migration to Bootstrap v5
+
+We finally upgraded to Bootstrap v5! It took a while, but Reactstrap released a new major version with support for Bootstrap v5.
+We managed to upgrade without changing user experience or any breaking changes, but Bootstrap renamed a lot of classes, so we had
+to release a major version as well.
+
+To upgrade, just run `npm i -S @42.nl/ui@latest reactstrap@latest` and follow the
+[Bootstrap migration guide](https://getbootstrap.com/docs/5.0/migration/).
+
+---
+
 ## Migration to React Query
 
 In version 3.17 we added support for React Query. We still support React Async, but the library has not been updated for
