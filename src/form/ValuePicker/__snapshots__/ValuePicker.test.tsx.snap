@@ -153,7 +153,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                   }
                 >
                   <label
-                    className="form-check-label form-label"
+                    className="form-check-label"
                   >
                     <Input
                       checked={false}
@@ -201,7 +201,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                   }
                 >
                   <label
-                    className="form-check-label form-label"
+                    className="form-check-label"
                   >
                     <Input
                       checked={false}
@@ -249,7 +249,7 @@ exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should rend
                   }
                 >
                   <label
-                    className="form-check-label form-label"
+                    className="form-check-label"
                   >
                     <Input
                       checked={false}
@@ -411,7 +411,6 @@ exports[`Component: ValuePicker multiple when ModalPickerMultiple should render 
               tag="button"
             >
               <button
-                aria-label={null}
                 className="flex-grow-0 flex-shrink-0 btn btn-primary"
                 onClick={[Function]}
                 type="button"
@@ -720,7 +719,6 @@ exports[`Component: ValuePicker single when ModalPickerSingle should render a \`
               tag="button"
             >
               <button
-                aria-label={null}
                 className="flex-grow-0 flex-shrink-0 btn btn-primary"
                 onClick={[Function]}
                 type="button"
@@ -959,7 +957,7 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
               }
             >
               <label
-                className="form-check-label form-label"
+                className="form-check-label"
               >
                 <Input
                   checked={false}
@@ -1007,7 +1005,7 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
               }
             >
               <label
-                className="form-check-label form-label"
+                className="form-check-label"
               >
                 <Input
                   checked={false}
@@ -1055,7 +1053,7 @@ exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGr
               }
             >
               <label
-                className="form-check-label form-label"
+                className="form-check-label"
               >
                 <Input
                   checked={false}
