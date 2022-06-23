@@ -57,7 +57,7 @@
   "peerDependencies": {
     "@42.nl/jarb-final-form": "^2.0.4",
     "@42.nl/react-error-store": "^1.1.1",
-    "@42.nl/spring-connect": "^4.3.0",
+    "@42.nl/spring-connect": "^4.3.0||^5.1.0",
     "classnames": "^2.3.1",
     "final-form": "^4.20.4",
     "lodash": "^4.17.21",
