@@ -22,6 +22,17 @@
 
 ---
 
+## React Quill optional dependency
+
+Due to a lot of reports from npm about vulnerabilities in React Quill, we decided to make React Quill an optional dependency.
+TextEditor uses React Quill, but not all projects use the TextEditor component. To be able to use the TextEditor component,
+you have to install react-quill
+`npm i -S react-quill@latest`
+and include the css file in your project
+`@import '~react-quill/dist/quill.snow.css';` in your CSS or `import 'react-quill/dist/quill.snow.css';` in javascript.
+
+---
+
 ## Migration to Bootstrap v5
 
 We finally upgraded to Bootstrap v5! It took a while, but Reactstrap released a new major version with support for Bootstrap v5.

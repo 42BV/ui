@@ -1,3 +1,4 @@
+import 'react-quill/dist/quill.snow.css';
 import '../src/main.scss';
 import {setConstraints} from "@42.nl/jarb-final-form/lib";
 
