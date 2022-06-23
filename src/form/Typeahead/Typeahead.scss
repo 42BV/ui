@@ -13,10 +13,17 @@
 }
 
 .rbt-input-multi {
-  // By default the text is to close to the left so give it some space
-  // and it adds to much padding on the top, right and bottom so we
-  // remove it.
-  padding: 0 0 0 12px;
+  .rbt-input-wrapper {
+    margin: 0;
+
+    .tag {
+      height: auto;
+    }
+
+    .rbt-input-main {
+      margin: 0;
+    }
+  }
 
   // Remove border shadow on focus like we do for all inputs
   &.focus {
