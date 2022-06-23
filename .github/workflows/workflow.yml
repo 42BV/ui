@@ -27,7 +27,7 @@ jobs:
       uses: zcong1993/setup-timezone@v1.1.0
       with:
         timezone: Europe/Amsterdam
-    - run: npm install
+    - run: npm install --legacy-peer-deps
     - run: npm run lint
     - run: npm run test:ts
     - run: npm run test:coverage
