@@ -73,6 +73,7 @@
     "@42.nl/jarb-final-form": "2.1.3",
     "@42.nl/react-error-store": "1.1.3",
     "@42.nl/spring-connect": "5.1.0",
+    "@storybook/addon-a11y": "^6.5.9",
     "@storybook/addon-actions": "6.5.9",
     "@storybook/addon-docs": "6.5.9",
     "@storybook/builder-webpack5": "6.5.9",
