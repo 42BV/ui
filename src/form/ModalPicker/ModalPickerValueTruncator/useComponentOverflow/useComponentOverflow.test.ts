@@ -42,7 +42,7 @@ describe('HoC: useComponentOverflow', () => {
       handleResizeSpy.mockReset();
       addEventListenerSpy.mockReset();
       removeEventListenerSpy.mockReset();
-    })
+    });
 
     it('should not call handleResize when ref is empty', () => {
       useComponentOverflow.layoutEffect(ref, handleResizeSpy, undefined)();

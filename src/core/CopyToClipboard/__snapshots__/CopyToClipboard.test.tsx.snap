@@ -7,6 +7,7 @@ exports[`Component: CopyToClipboard ui default 1`] = `
   >
     <pre
       class="flex-grow-1 flex-shrink-1 me-3 mb-0"
+      tabindex="0"
     >
       <code
         id="1"

@@ -23,6 +23,7 @@ describe('Component: TypeaheadSingle', () => {
     value,
     hasPlaceholder,
     hasLabel,
+    hasId = true,
     loading = false,
     isOptionEnabled,
     isAsync,
@@ -33,6 +34,7 @@ describe('Component: TypeaheadSingle', () => {
     value?: User;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
+    hasId?: boolean;
     loading?: boolean;
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
@@ -73,8 +75,9 @@ describe('Component: TypeaheadSingle', () => {
       pageSize,
       maxResults,
       text,
-      id: 'bestFriend',
-      label: hasLabel ? 'Best friend' : undefined
+      id: hasId ? 'bestFriend' : undefined,
+      label: 'Best friend',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender, asFragment } = render(
@@ -105,16 +108,21 @@ describe('Component: TypeaheadSingle', () => {
       expect(screen.queryByPlaceholderText('Please provide your best friend')).not.toBeInTheDocument();
     });
 
-    test('with label', () => {
+    test('without id', () => {
+      setup({ hasId: false, hasLabel: true });
+      expect(screen.queryByLabelText('Best friend')).toBeInTheDocument();
+    });
+
+    test('visible label', () => {
       setup({ hasLabel: true });
       expect(screen.queryByText('Best friend')).toBeInTheDocument();
       expect(screen.queryByLabelText('Best friend')).toBeInTheDocument();
     });
 
-    test('without label', () => {
+    test('invisible label', () => {
       setup({ hasLabel: false });
       expect(screen.queryByText('Best friend')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('Best friend')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Best friend')).toBeInTheDocument();
     });
 
     test('async with a custom pageSize of 2 options in the dropdown', async () => {
@@ -172,7 +180,7 @@ describe('Component: TypeaheadSingle', () => {
     });
 
     test('with a custom pagination text', async () => {
-      expect.assertions(12);
+      expect.assertions(9);
 
       const { asFragment } = setup({
         maxResults: 2,

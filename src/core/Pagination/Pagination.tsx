@@ -1,15 +1,16 @@
 import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 
-import {
-  Pagination as RPagination,
-  PaginationItem,
-  PaginationLink
-} from 'reactstrap';
+import { Pagination as RPagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 import { Icon } from '../Icon';
 import { range } from 'lodash';
 import { Select } from '../../form/Select/Select';
+import { t } from '../../utilities/translation/translation';
+
+type Text = {
+  pageSizeDropdownLabel?: string;
+};
 
 type Props<T> = {
   /**
@@ -63,9 +64,10 @@ export function Pagination<T>({
   page,
   onChange,
   onPageSizeChange,
-  allowedPageSizes = [5, 10, 20, 50, 100],
+  allowedPageSizes = [ 5, 10, 20, 50, 100 ],
   className,
-  showPreviousAndNextButtons = true
+  showPreviousAndNextButtons = true,
+  text = {}
 }: Props<T>) {
   const { first, last, totalPages, totalElements, size, number: current } = page;
   const content = pagesFor(current, totalPages);
@@ -76,44 +78,52 @@ export function Pagination<T>({
   }
 
   return (
-    <RPagination className={className}>
-      {showPreviousAndNextButtons ? (
-        <PaginationItem disabled={first}>
-          <PaginationLink onClick={() => onChange(current - 1)}>
-            <Icon icon="arrow_back" size={14} />
-          </PaginationLink>
-        </PaginationItem>
-      ) : null}
-      {content.map((item, index) => (
-        <PaginationItem active={item === current} key={index}>
-          {item === '...' ? (
-            <PaginationLink className="disabled" disabled={true}>
-              {item}
+    <div className="d-flex justify-content-center flex-wrap flex-sm-nowrap">
+      <RPagination className={className}>
+        {showPreviousAndNextButtons ? (
+          <PaginationItem disabled={first}>
+            <PaginationLink onClick={() => onChange(current - 1)}>
+              <Icon icon="arrow_back" size={14} />
             </PaginationLink>
-          ) : (
-            <PaginationLink onClick={() => onChange(item)}>
-              {item}
+          </PaginationItem>
+        ) : null}
+        {content.map((item, index) => (
+          <PaginationItem active={item === current} key={index}>
+            {item === '...' ? (
+              <PaginationLink className="disabled" disabled={true}>
+                {item}
+              </PaginationLink>
+            ) : (
+              <PaginationLink onClick={() => onChange(item)}>
+                {item}
+              </PaginationLink>
+            )}
+          </PaginationItem>
+        ))}
+        {showPreviousAndNextButtons ? (
+          <PaginationItem disabled={last}>
+            <PaginationLink onClick={() => onChange(current + 1)}>
+              <Icon icon="arrow_forward" size={14} />
             </PaginationLink>
-          )}
-        </PaginationItem>
-      ))}
-      {showPreviousAndNextButtons ? (
-        <PaginationItem disabled={last}>
-          <PaginationLink onClick={() => onChange(current + 1)}>
-            <Icon icon="arrow_forward" size={14} />
-          </PaginationLink>
-        </PaginationItem>
-      ) : null}
+          </PaginationItem>
+        ) : null}
+      </RPagination>
       {onPageSizeChange && allowedPageSizes ? (
         <Select<number>
           onChange={onPageSizeChange}
           options={allowedPageSizes}
           labelForOption={(pageSize) => `${pageSize}`}
           value={size}
-          className="ms-3 pagination__select-size"
+          className="ms-3 mt-2 mt-sm-0 pagination__select-size"
+          label={t({
+            key: 'Pagination.PAGE_SIZE_DROPDOWN_LABEL',
+            fallback: 'Select page size',
+            overrideText: text.pageSizeDropdownLabel
+          })}
+          hiddenLabel={true}
         />
       ) : null}
-    </RPagination>
+    </div>
   );
 }
 
@@ -136,9 +146,9 @@ export function pagesFor(
     // 1 2 3 {4} 5 ... 31
 
     const tillEllipsis = range(1, Math.max(4, currentPage + 2));
-    const fromEllipsis = range(totalPages - (5 - tillEllipsis.length), totalPages + 1)
+    const fromEllipsis = range(totalPages - (5 - tillEllipsis.length), totalPages + 1);
 
-    return [...tillEllipsis, ellipsis, ...fromEllipsis];
+    return [ ...tillEllipsis, ellipsis, ...fromEllipsis ];
   }
 
   if (currentPage > totalPages - 4) {
@@ -149,8 +159,8 @@ export function pagesFor(
     const fromEllipsis = range(Math.min(totalPages - 2, currentPage - 1), totalPages + 1);
     const tillEllipsis = range(1, 7 - fromEllipsis.length);
 
-    return [...tillEllipsis, ellipsis, ...fromEllipsis];
+    return [ ...tillEllipsis, ellipsis, ...fromEllipsis ];
   }
 
-  return [1, ellipsis, ...range(currentPage - 1, currentPage + 2), ellipsis, totalPages];
+  return [ 1, ellipsis, ...range(currentPage - 1, currentPage + 2), ellipsis, totalPages ];
 }

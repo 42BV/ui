@@ -2,8 +2,10 @@
 
 exports[`Component: EpicRow is header row 1`] = `
 <div>
-  <h1>
-    children
-  </h1>
+  <span>
+    <h1>
+      children
+    </h1>
+  </span>
 </div>
 `;

@@ -6,11 +6,7 @@ import { Alert, Col, Row } from 'reactstrap';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { isDateAfter, isDateBefore, isDateBetween } from './checkers';
 import { DateTimeInput, JarbDateTimeInput } from './DateTimeInput';
-import {
-  isDateAfterValidator,
-  isDateBeforeValidator,
-  isDateBetweenValidator
-} from './validators';
+import { isDateAfterValidator, isDateBeforeValidator, isDateBetweenValidator } from './validators';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { Icon } from '../../core/Icon';
@@ -28,7 +24,7 @@ storiesOf('Form/DateTimeInput', module)
     </>
   ))
   .add('date and time', () => {
-    const [value, setValue] = useState<Date | string | undefined>(undefined);
+    const [ value, setValue ] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -53,7 +49,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('date', () => {
-    const [value, setValue] = useState<Date | string | undefined>(undefined);
+    const [ value, setValue ] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -78,7 +74,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('time', () => {
-    const [value, setValue] = useState<Date | string | undefined>(undefined);
+    const [ value, setValue ] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -105,7 +101,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('with custom label', () => {
-    const [value, setValue] = useState<Date | string | undefined>(undefined);
+    const [ value, setValue ] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -141,7 +137,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('open in modal', () => {
-    const [value, setValue] = useState<Date | string | undefined>();
+    const [ value, setValue ] = useState<Date | string | undefined>();
 
     return (
       <Card className="m2">
@@ -167,8 +163,8 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('range', () => {
-    const [start, setStart] = useState<Date | string | undefined>(undefined);
-    const [end, setEnd] = useState<Date | string | undefined>(undefined);
+    const [ start, setStart ] = useState<Date | string | undefined>(undefined);
+    const [ end, setEnd ] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -214,8 +210,8 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('range inclusive', () => {
-    const [start, setStart] = useState<Date | string | undefined>(undefined);
-    const [end, setEnd] = useState<Date | string | undefined>(undefined);
+    const [ start, setStart ] = useState<Date | string | undefined>(undefined);
+    const [ end, setEnd ] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">

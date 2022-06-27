@@ -101,7 +101,7 @@ export function DateTimeModal(props: Props) {
   } = props;
   const isDateAllowed = get(props, 'isDateAllowed', constant(true));
 
-  const [value, setValue] = useValue(
+  const [ value, setValue ] = useValue(
     props.defaultValue ? moment(props.defaultValue) : ''
   );
 

@@ -19,7 +19,7 @@ exports[`Component: ErrorBoundary ui with error 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -39,7 +39,7 @@ exports[`Component: ErrorBoundary ui with error 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -52,9 +52,11 @@ exports[`Component: ErrorBoundary ui with error 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Oops something went wrong!
-    </h4>
+    </span>
   </div>
 </div>
 `;

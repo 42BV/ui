@@ -4,12 +4,7 @@ import '@testing-library/jest-dom';
 
 import { RadioGroup, Text } from './RadioGroup';
 import { User } from '../../test/types';
-import {
-  adminUser,
-  coordinatorUser,
-  listOfUsers, pageOfUsers, pageOfUsersFetcher,
-  userUser
-} from '../../test/fixtures';
+import { adminUser, coordinatorUser, listOfUsers, pageOfUsers, pageOfUsersFetcher, userUser } from '../../test/fixtures';
 import { IsOptionEnabled } from '../option';
 
 import { pageOf } from '../../utilities/page/page';
@@ -81,7 +76,8 @@ describe('Component: RadioGroup', () => {
       horizontal,
       canClear,
       id: hasLabel ? 'subject' : undefined,
-      label: hasLabel ? 'Subject' : undefined
+      label: 'Subject',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender } = render(
@@ -202,9 +198,9 @@ describe('Component: RadioGroup', () => {
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
-          [adminUser()],
-          [coordinatorUser()],
-          [userUser()]
+          [ adminUser() ],
+          [ coordinatorUser() ],
+          [ userUser() ]
         ]);
       });
     });

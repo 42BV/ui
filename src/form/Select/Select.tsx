@@ -3,17 +3,13 @@ import { FormGroup, Input as RSInput, Label } from 'reactstrap';
 
 import { withJarb } from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
-import {
-  FieldCompatibleWithPredeterminedOptions,
-  isOptionSelected,
-  getKeyForOption
-} from '../option';
+import { FieldCompatibleWithPredeterminedOptions, getKeyForOption, isOptionSelected } from '../option';
 import { useOptions } from '../useOptions';
 import { Loading } from '../../core/Loading/Loading';
-import { useId } from '../../hooks/useId/useId';
 import { FieldCompatible } from '../types';
 import { alwaysTrue } from '../utils';
 import { InputType } from '../Input/Input';
+import { uniqueId } from 'lodash';
 
 export type Text = {
   /**
@@ -25,12 +21,12 @@ export type Text = {
 
 export type Props<T> = FieldCompatible<T, T> &
   FieldCompatibleWithPredeterminedOptions<T> & {
-    /**
-     * Optionally customized text within the component.
-     * This text should already be translated.
-     */
-    text?: Text;
-  };
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
+};
 
 /**
  * Select is a form element for which the value can be selected
@@ -43,8 +39,9 @@ export type Props<T> = FieldCompatible<T, T> &
  */
 export function Select<T>(props: Props<T>) {
   const {
-    id,
+    id = uniqueId(),
     label,
+    hiddenLabel,
     value,
     error,
     color,
@@ -82,10 +79,8 @@ export function Select<T>(props: Props<T>) {
     }
   }
 
-  const innerId = useId({ id });
-
   const inputProps = {
-    id: innerId,
+    id,
     valid,
     invalid: valid === false ? true : undefined,
     type: 'select' as InputType,
@@ -95,25 +90,26 @@ export function Select<T>(props: Props<T>) {
       onChange(page.content[index]);
     },
     onBlur,
-    className: value === undefined ? 'showing-placeholder' : ''
+    className: value === undefined ? 'showing-placeholder' : '',
+    'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
   };
 
   const indexOfValue =
     value !== undefined
       ? page.content.findIndex((option) =>
-          isOptionSelected({
-            option,
-            keyForOption,
-            labelForOption,
-            isOptionEqual,
-            value
-          })
-        )
+        isOptionSelected({
+          option,
+          keyForOption,
+          labelForOption,
+          isOptionEqual,
+          value
+        })
+      )
       : undefined;
 
   return (
     <FormGroup className={className} color={color}>
-      {label ? <Label for={innerId}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
       {loading ? (
         <Loading className="mt-2">
           {t({

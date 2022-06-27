@@ -1,4 +1,4 @@
-import { getConfig, configure } from './config';
+import { configure, getConfig } from './config';
 
 test('config', () => {
   expect(getConfig()).toEqual({ showRequiredMarkInLabel: true });

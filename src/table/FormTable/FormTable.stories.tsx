@@ -43,7 +43,7 @@ storiesOf('table/FormTable', module)
     </>
   ))
   .add('basic example', () => {
-    const [newPerson] = useState<Person>({
+    const [ newPerson ] = useState<Person>({
       id: Math.random(),
       firstName: '',
       lastName: '',
@@ -58,31 +58,31 @@ storiesOf('table/FormTable', module)
       sex: ''
     });
 
-    const [page, setPage] = useState(1);
-    const [newPage, setNewPage] = useState<number>();
-    const [personsList, setPersonsList] = useState(persons);
-    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
+    const [ page, setPage ] = useState(1);
+    const [ newPage, setNewPage ] = useState<number>();
+    const [ personsList, setPersonsList ] = useState(persons);
+    const [ pageOfPersons, setPageOfPersons ] = useState<Page<Person>>(
       emptyPage<Person>()
     );
-    const [loading, setLoading] = useState<Person>();
-    const [dirtyPersons, setDirtyPersons] = useState<{ [id: number]: boolean }>(
+    const [ loading, setLoading ] = useState<Person>();
+    const [ dirtyPersons, setDirtyPersons ] = useState<{ [id: number]: boolean }>(
       {}
     );
-    const [flashMessage, setFlashMessage] = useState<string>();
+    const [ flashMessage, setFlashMessage ] = useState<string>();
 
     useEffect(() => {
       const p = pageOf<Person>(personsList, page, 10);
       p.content.push({ ...newPerson });
       setDirtyPersons({});
       setPageOfPersons(p);
-    }, [personsList, newPerson, page]);
+    }, [ personsList, newPerson, page ]);
 
     useEffect(() => {
       const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [flashMessage]);
+    }, [ flashMessage ]);
 
     async function onSubmit(data: Person, form: FormApi<Person>) {
       setLoading(data);
@@ -90,7 +90,7 @@ storiesOf('table/FormTable', module)
       const person = { ...data };
       if (data.id === newPerson.id) {
         person.id = Math.random();
-        setPersonsList([...personsList, person]);
+        setPersonsList([ ...personsList, person ]);
       } else {
         setPersonsList(
           personsList.map((p) => {
@@ -238,6 +238,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`firstName-${person.id}`}
                     name="firstName"
+                    label="First name"
+                    hiddenLabel={true}
                     placeholder="Enter first name"
                     jarb={{
                       validator: 'Person.firstName',
@@ -251,6 +253,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`lastName-${person.id}`}
                     name="lastName"
+                    label="Last name"
+                    hiddenLabel={true}
                     placeholder="Enter last name"
                     jarb={{
                       validator: 'Person.lastName',
@@ -264,6 +268,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`age-${person.id}`}
                     name="age"
+                    label="Age"
+                    hiddenLabel={true}
                     type="number"
                     placeholder="Enter age"
                     jarb={{
@@ -278,8 +284,10 @@ storiesOf('table/FormTable', module)
                   <JarbSelect
                     id={`eyeColor-${person.id}`}
                     name="eyeColor"
+                    label="Eye color"
+                    hiddenLabel={true}
                     placeholder="Enter eye color"
-                    options={['green', 'blue', 'brown']}
+                    options={[ 'green', 'blue', 'brown' ]}
                     labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
@@ -291,8 +299,10 @@ storiesOf('table/FormTable', module)
 
                 <EpicFormCell width={100} height={52}>
                   <JarbInput
-                    id={`age-${person.id}`}
+                    id={`height-${person.id}`}
                     name="height"
+                    label="Height"
+                    hiddenLabel={true}
                     placeholder="Enter height"
                     type="number"
                     jarb={{
@@ -307,6 +317,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`weight-${person.id}`}
                     name="weight"
+                    label="Weight"
+                    hiddenLabel={true}
                     type="number"
                     placeholder="Enter weight"
                     jarb={{
@@ -321,6 +333,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`jobTitle-${person.id}`}
                     name="jobTitle"
+                    label="Job title"
+                    hiddenLabel={true}
                     placeholder="Enter job title"
                     jarb={{
                       validator: 'Person.jobTitle',
@@ -334,6 +348,8 @@ storiesOf('table/FormTable', module)
                   <JarbModalPickerSingle
                     id={`favoriteMovie-${person.id}`}
                     name="favoriteMovie"
+                    label="Favorite movie"
+                    hiddenLabel={true}
                     placeholder="Enter favorite movie"
                     jarb={{
                       validator: 'Person.favoriteMovie',
@@ -366,6 +382,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`favoriteFood-${person.id}`}
                     name="favoriteFood"
+                    label="Favorite food"
+                    hiddenLabel={true}
                     placeholder="Enter favorite food"
                     jarb={{
                       validator: 'Person.favoriteFood',
@@ -379,6 +397,8 @@ storiesOf('table/FormTable', module)
                   <JarbDateTimeInput
                     id={`birthDate-${person.id}`}
                     name="birthDate"
+                    label="Birth date"
+                    hiddenLabel={true}
                     placeholder="Enter birth date"
                     dateFormat="YYYY-MM-DD"
                     timeFormat={false}
@@ -396,8 +416,10 @@ storiesOf('table/FormTable', module)
                   <JarbRadioGroup
                     id={`sex-${person.id}`}
                     name="sex"
+                    label="Sex"
+                    hiddenLabel={true}
                     className="ms-1"
-                    options={['male', 'female']}
+                    options={[ 'male', 'female' ]}
                     labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{
@@ -437,8 +459,8 @@ storiesOf('table/FormTable', module)
     );
   })
   .add('edit per row', () => {
-    const [editingPerson, setEditingPerson] = useState<Person>();
-    const [newPerson] = useState<Person>({
+    const [ editingPerson, setEditingPerson ] = useState<Person>();
+    const [ newPerson ] = useState<Person>({
       id: Math.random(),
       firstName: '',
       lastName: '',
@@ -453,29 +475,29 @@ storiesOf('table/FormTable', module)
       sex: ''
     });
 
-    const [page, setPage] = useState(1);
-    const [newPage, setNewPage] = useState<number>();
-    const [personsList, setPersonsList] = useState(persons);
-    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
+    const [ page, setPage ] = useState(1);
+    const [ newPage, setNewPage ] = useState<number>();
+    const [ personsList, setPersonsList ] = useState(persons);
+    const [ pageOfPersons, setPageOfPersons ] = useState<Page<Person>>(
       emptyPage<Person>()
     );
-    const [loading, setLoading] = useState<Person>();
-    const [dirty, setDirty] = useState(false);
-    const [flashMessage, setFlashMessage] = useState<string>();
+    const [ loading, setLoading ] = useState<Person>();
+    const [ dirty, setDirty ] = useState(false);
+    const [ flashMessage, setFlashMessage ] = useState<string>();
 
     useEffect(() => {
       const p = pageOf<Person>(personsList, page, 10);
       p.content.push({ ...newPerson });
       setPageOfPersons(p);
       setEditingPerson(undefined);
-    }, [personsList, newPerson, page]);
+    }, [ personsList, newPerson, page ]);
 
     useEffect(() => {
       const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [flashMessage]);
+    }, [ flashMessage ]);
 
     async function onSubmit(data: Person, form: FormApi<Person>) {
       setLoading(data);
@@ -483,7 +505,7 @@ storiesOf('table/FormTable', module)
       const person = { ...data };
       if (data.id === newPerson.id) {
         person.id = Math.random();
-        setPersonsList([...personsList, person]);
+        setPersonsList([ ...personsList, person ]);
       } else {
         setPersonsList(
           personsList.map((p) => {
@@ -621,6 +643,8 @@ storiesOf('table/FormTable', module)
                     <JarbInput
                       id={`firstName-${person.id}`}
                       name="firstName"
+                      label="First name"
+                      hiddenLabel={true}
                       placeholder="Enter first name"
                       jarb={{
                         validator: 'Person.firstName',
@@ -634,6 +658,8 @@ storiesOf('table/FormTable', module)
                     <JarbInput
                       id={`lastName-${person.id}`}
                       name="lastName"
+                      label="Last name"
+                      hiddenLabel={true}
                       placeholder="Enter last name"
                       jarb={{
                         validator: 'Person.lastName',
@@ -647,6 +673,8 @@ storiesOf('table/FormTable', module)
                     <JarbInput
                       id={`age-${person.id}`}
                       name="age"
+                      label="Age"
+                      hiddenLabel={true}
                       type="number"
                       placeholder="Enter age"
                       jarb={{
@@ -661,8 +689,10 @@ storiesOf('table/FormTable', module)
                     <JarbSelect
                       id={`eyeColor-${person.id}`}
                       name="eyeColor"
+                      label="Eye color"
+                      hiddenLabel={true}
                       placeholder="Enter eye color"
-                      options={['green', 'blue', 'brown']}
+                      options={[ 'green', 'blue', 'brown' ]}
                       labelForOption={(option) => option}
                       jarb={{
                         validator: 'Person.eyeColor',
@@ -674,8 +704,10 @@ storiesOf('table/FormTable', module)
 
                   <EpicFormCell width={100} height={52}>
                     <JarbInput
-                      id={`age-${person.id}`}
+                      id={`height-${person.id}`}
                       name="height"
+                      label="Height"
+                      hiddenLabel={true}
                       placeholder="Enter height"
                       type="number"
                       jarb={{
@@ -690,6 +722,8 @@ storiesOf('table/FormTable', module)
                     <JarbInput
                       id={`weight-${person.id}`}
                       name="weight"
+                      label="Weight"
+                      hiddenLabel={true}
                       type="number"
                       placeholder="Enter weight"
                       jarb={{
@@ -704,6 +738,8 @@ storiesOf('table/FormTable', module)
                     <JarbInput
                       id={`jobTitle-${person.id}`}
                       name="jobTitle"
+                      label="Job title"
+                      hiddenLabel={true}
                       placeholder="Enter job title"
                       jarb={{
                         validator: 'Person.jobTitle',
@@ -717,6 +753,8 @@ storiesOf('table/FormTable', module)
                     <JarbModalPickerSingle
                       id={`favoriteMovie-${person.id}`}
                       name="favoriteMovie"
+                      label="Favorite movie"
+                      hiddenLabel={true}
                       placeholder="Enter favorite movie"
                       jarb={{
                         validator: 'Person.favoriteMovie',
@@ -748,6 +786,8 @@ storiesOf('table/FormTable', module)
                     <JarbInput
                       id={`favoriteFood-${person.id}`}
                       name="favoriteFood"
+                      label="Favorite food"
+                      hiddenLabel={true}
                       placeholder="Enter favorite food"
                       jarb={{
                         validator: 'Person.favoriteFood',
@@ -761,6 +801,8 @@ storiesOf('table/FormTable', module)
                     <JarbDateTimeInput
                       id={`birthDate-${person.id}`}
                       name="birthDate"
+                      label="Birth date"
+                      hiddenLabel={true}
                       placeholder="Enter birth date"
                       dateFormat="YYYY-MM-DD"
                       timeFormat={false}
@@ -777,8 +819,10 @@ storiesOf('table/FormTable', module)
                     <JarbRadioGroup
                       id={`sex-${person.id}`}
                       name="sex"
+                      label="Sex"
+                      hiddenLabel={true}
                       className="ms-1"
-                      options={['male', 'female']}
+                      options={[ 'male', 'female' ]}
                       labelForOption={(option) => option}
                       horizontal={true}
                       jarb={{
@@ -902,7 +946,7 @@ storiesOf('table/FormTable', module)
     );
   })
   .add('instant edit', () => {
-    const [newPerson] = useState<Person>({
+    const [ newPerson ] = useState<Person>({
       id: Math.random(),
       firstName: '',
       lastName: '',
@@ -917,30 +961,30 @@ storiesOf('table/FormTable', module)
       sex: ''
     });
 
-    const [page, setPage] = useState(1);
-    const [personsList, setPersonsList] = useState(persons);
-    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
+    const [ page, setPage ] = useState(1);
+    const [ personsList, setPersonsList ] = useState(persons);
+    const [ pageOfPersons, setPageOfPersons ] = useState<Page<Person>>(
       emptyPage<Person>()
     );
-    const [loading, setLoading] = useState<Person>();
-    const [dirtyPersons, setDirtyPersons] = useState<{ [id: number]: boolean }>(
+    const [ loading, setLoading ] = useState<Person>();
+    const [ dirtyPersons, setDirtyPersons ] = useState<{ [id: number]: boolean }>(
       {}
     );
-    const [flashMessage, setFlashMessage] = useState<string>();
+    const [ flashMessage, setFlashMessage ] = useState<string>();
 
     useEffect(() => {
       const p = pageOf<Person>(personsList, page, 10);
       p.content.push({ ...newPerson });
       setDirtyPersons({});
       setPageOfPersons(p);
-    }, [personsList, newPerson, page]);
+    }, [ personsList, newPerson, page ]);
 
     useEffect(() => {
       const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [flashMessage]);
+    }, [ flashMessage ]);
 
     async function onSubmit(data: Person) {
       setLoading(data);
@@ -948,7 +992,7 @@ storiesOf('table/FormTable', module)
       const person = { ...data };
       if (data.id === newPerson.id) {
         person.id = Math.random();
-        setPersonsList([...personsList, person]);
+        setPersonsList([ ...personsList, person ]);
       } else {
         setPersonsList(
           personsList.map((p) => {
@@ -1065,6 +1109,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`firstName-${person.id}`}
                     name="firstName"
+                    label="First name"
+                    hiddenLabel={true}
                     placeholder="Enter first name"
                     jarb={{
                       validator: 'Person.firstName',
@@ -1078,6 +1124,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`lastName-${person.id}`}
                     name="lastName"
+                    label="Last name"
+                    hiddenLabel={true}
                     placeholder="Enter last name"
                     jarb={{
                       validator: 'Person.lastName',
@@ -1091,6 +1139,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`age-${person.id}`}
                     name="age"
+                    label="Age"
+                    hiddenLabel={true}
                     type="number"
                     placeholder="Enter age"
                     jarb={{
@@ -1105,8 +1155,10 @@ storiesOf('table/FormTable', module)
                   <JarbSelect
                     id={`eyeColor-${person.id}`}
                     name="eyeColor"
+                    label="Eye color"
+                    hiddenLabel={true}
                     placeholder="Enter eye color"
-                    options={['green', 'blue', 'brown']}
+                    options={[ 'green', 'blue', 'brown' ]}
                     labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
@@ -1118,8 +1170,10 @@ storiesOf('table/FormTable', module)
 
                 <EpicFormCell width={100} height={52}>
                   <JarbInput
-                    id={`age-${person.id}`}
+                    id={`height-${person.id}`}
                     name="height"
+                    label="Height"
+                    hiddenLabel={true}
                     placeholder="Enter height"
                     type="number"
                     jarb={{
@@ -1134,6 +1188,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`weight-${person.id}`}
                     name="weight"
+                    label="Weight"
+                    hiddenLabel={true}
                     type="number"
                     placeholder="Enter weight"
                     jarb={{
@@ -1148,6 +1204,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`jobTitle-${person.id}`}
                     name="jobTitle"
+                    label="Job title"
+                    hiddenLabel={true}
                     placeholder="Enter job title"
                     jarb={{
                       validator: 'Person.jobTitle',
@@ -1161,6 +1219,8 @@ storiesOf('table/FormTable', module)
                   <JarbModalPickerSingle
                     id={`favoriteMovie-${person.id}`}
                     name="favoriteMovie"
+                    label="Favorite movie"
+                    hiddenLabel={true}
                     placeholder="Enter favorite movie"
                     jarb={{
                       validator: 'Person.favoriteMovie',
@@ -1192,6 +1252,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`favoriteFood-${person.id}`}
                     name="favoriteFood"
+                    label="Favorite food"
+                    hiddenLabel={true}
                     placeholder="Enter favorite food"
                     jarb={{
                       validator: 'Person.favoriteFood',
@@ -1205,6 +1267,8 @@ storiesOf('table/FormTable', module)
                   <JarbDateTimeInput
                     id={`birthDate-${person.id}`}
                     name="birthDate"
+                    label="Birth date"
+                    hiddenLabel={true}
                     placeholder="Enter birth date"
                     dateFormat="YYYY-MM-DD"
                     timeFormat={false}
@@ -1222,8 +1286,10 @@ storiesOf('table/FormTable', module)
                   <JarbRadioGroup
                     id={`sex-${person.id}`}
                     name="sex"
+                    label="Sex"
+                    hiddenLabel={true}
                     className="ms-1"
-                    options={['male', 'female']}
+                    options={[ 'male', 'female' ]}
                     labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{
@@ -1249,7 +1315,7 @@ storiesOf('table/FormTable', module)
     );
   })
   .add('copy / paste to spreadsheet', () => {
-    const [newPerson] = useState<Person>({
+    const [ newPerson ] = useState<Person>({
       id: Math.random(),
       firstName: '',
       lastName: '',
@@ -1264,32 +1330,32 @@ storiesOf('table/FormTable', module)
       sex: ''
     });
 
-    const [page, setPage] = useState(1);
-    const [newPage, setNewPage] = useState<number>();
-    const [personsList, setPersonsList] = useState(persons);
-    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
+    const [ page, setPage ] = useState(1);
+    const [ newPage, setNewPage ] = useState<number>();
+    const [ personsList, setPersonsList ] = useState(persons);
+    const [ pageOfPersons, setPageOfPersons ] = useState<Page<Person>>(
       emptyPage<Person>()
     );
-    const [loading, setLoading] = useState<Person>();
-    const [dirtyPersons, setDirtyPersons] = useState<{ [id: number]: boolean }>(
+    const [ loading, setLoading ] = useState<Person>();
+    const [ dirtyPersons, setDirtyPersons ] = useState<{ [id: number]: boolean }>(
       {}
     );
-    const [flashMessage, setFlashMessage] = useState<string>();
-    const [processingPaste, setProcessingPaste] = useState(false);
+    const [ flashMessage, setFlashMessage ] = useState<string>();
+    const [ processingPaste, setProcessingPaste ] = useState(false);
 
     useEffect(() => {
       const p = pageOf<Person>(personsList, page, 10);
       p.content.push({ ...newPerson });
       setDirtyPersons({});
       setPageOfPersons(p);
-    }, [personsList, newPerson, page]);
+    }, [ personsList, newPerson, page ]);
 
     useEffect(() => {
       const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [flashMessage]);
+    }, [ flashMessage ]);
 
     async function onSubmit(data: Person, form: FormApi<Person>) {
       setLoading(data);
@@ -1297,7 +1363,7 @@ storiesOf('table/FormTable', module)
       const person = { ...data };
       if (data.id === newPerson.id) {
         person.id = Math.random();
-        setPersonsList([...personsList, person]);
+        setPersonsList([ ...personsList, person ]);
       } else {
         setPersonsList(
           personsList.map((p) => {
@@ -1340,7 +1406,7 @@ storiesOf('table/FormTable', module)
     }
 
     async function copy() {
-      const csv = [personKeys.join('\t')]
+      const csv = [ personKeys.join('\t') ]
         .concat(
           persons.map((person) =>
             personKeys
@@ -1367,7 +1433,7 @@ storiesOf('table/FormTable', module)
       setProcessingPaste(true);
 
       const text = await navigator.clipboard.readText();
-      const keys = [...personKeys];
+      const keys = [ ...personKeys ];
       const list: Person[] = [];
 
       const rows = text.split('\n');
@@ -1557,6 +1623,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`firstName-${person.id}`}
                     name="firstName"
+                    label="First name"
+                    hiddenLabel={true}
                     placeholder="Enter first name"
                     jarb={{
                       validator: 'Person.firstName',
@@ -1570,6 +1638,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`lastName-${person.id}`}
                     name="lastName"
+                    label="Last name"
+                    hiddenLabel={true}
                     placeholder="Enter last name"
                     jarb={{
                       validator: 'Person.lastName',
@@ -1583,6 +1653,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`age-${person.id}`}
                     name="age"
+                    label="Age"
+                    hiddenLabel={true}
                     type="number"
                     placeholder="Enter age"
                     jarb={{
@@ -1597,8 +1669,10 @@ storiesOf('table/FormTable', module)
                   <JarbSelect
                     id={`eyeColor-${person.id}`}
                     name="eyeColor"
+                    label="Eye color"
+                    hiddenLabel={true}
                     placeholder="Enter eye color"
-                    options={['green', 'blue', 'brown']}
+                    options={[ 'green', 'blue', 'brown' ]}
                     labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
@@ -1610,8 +1684,10 @@ storiesOf('table/FormTable', module)
 
                 <EpicFormCell width={100} height={52}>
                   <JarbInput
-                    id={`age-${person.id}`}
+                    id={`height-${person.id}`}
                     name="height"
+                    label="Height"
+                    hiddenLabel={true}
                     placeholder="Enter height"
                     type="number"
                     jarb={{
@@ -1626,6 +1702,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`weight-${person.id}`}
                     name="weight"
+                    label="Weight"
+                    hiddenLabel={true}
                     type="number"
                     placeholder="Enter weight"
                     jarb={{
@@ -1640,6 +1718,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`jobTitle-${person.id}`}
                     name="jobTitle"
+                    label="Job title"
+                    hiddenLabel={true}
                     placeholder="Enter job title"
                     jarb={{
                       validator: 'Person.jobTitle',
@@ -1653,6 +1733,8 @@ storiesOf('table/FormTable', module)
                   <JarbModalPickerSingle
                     id={`favoriteMovie-${person.id}`}
                     name="favoriteMovie"
+                    label="Favorite movie"
+                    hiddenLabel={true}
                     placeholder="Enter favorite movie"
                     jarb={{
                       validator: 'Person.favoriteMovie',
@@ -1684,6 +1766,8 @@ storiesOf('table/FormTable', module)
                   <JarbInput
                     id={`favoriteFood-${person.id}`}
                     name="favoriteFood"
+                    label="Favorite food"
+                    hiddenLabel={true}
                     placeholder="Enter favorite food"
                     jarb={{
                       validator: 'Person.favoriteFood',
@@ -1697,6 +1781,8 @@ storiesOf('table/FormTable', module)
                   <JarbDateTimeInput
                     id={`birthDate-${person.id}`}
                     name="birthDate"
+                    label="Birth date"
+                    hiddenLabel={true}
                     placeholder="Enter birth date"
                     dateFormat="YYYY-MM-DD"
                     timeFormat={false}
@@ -1714,8 +1800,10 @@ storiesOf('table/FormTable', module)
                   <JarbRadioGroup
                     id={`sex-${person.id}`}
                     name="sex"
+                    label="Sex"
+                    hiddenLabel={true}
                     className="ms-1"
-                    options={['male', 'female']}
+                    options={[ 'male', 'female' ]}
                     labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{

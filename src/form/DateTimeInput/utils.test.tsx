@@ -1,4 +1,4 @@
-import { combineFormat, formatToMask} from './utils';
+import { combineFormat, formatToMask } from './utils';
 
 test('combineFormat', () => {
   expect(combineFormat('YYYY-MM-DD', 'HH:mm:ss')).toBe('YYYY-MM-DD HH:mm:ss');

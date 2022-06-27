@@ -6,7 +6,7 @@ import { SuccessIcon } from './SuccessIcon';
 storiesOf('core/SuccessIcon', module)
   .addParameters({ component: SuccessIcon })
   .add('default', () => {
-    const [value, setValue] = useState(false);
+    const [ value, setValue ] = useState(false);
     return (
       <div className="text-center">
         <SuccessIcon
@@ -17,7 +17,7 @@ storiesOf('core/SuccessIcon', module)
     );
   })
   .add('hover color', () => {
-    const [value, setValue] = useState(false);
+    const [ value, setValue ] = useState(false);
     return (
       <div className="text-center">
         <SuccessIcon

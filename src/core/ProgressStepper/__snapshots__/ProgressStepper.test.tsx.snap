@@ -12,14 +12,14 @@ exports[`Component: ProgressStepper ui 1`] = `
         class="step-item"
       >
         <div
-          class="step-circle"
+          class="step-circle text-bg-primary"
         >
           <span>
             1
           </span>
         </div>
         <div
-          class="step-title"
+          class="step-title text-primary"
         >
           start
         </div>

@@ -4,15 +4,6 @@
     position: relative;
     overflow: hidden;
 
-    @each $color, $value in $theme-colors {
-      &.btn-#{"" + $color} {
-        &:hover,
-        &:active:hover {
-          background-color: darken($value, 6%);
-        }
-      }
-    }
-
     // The sizes for the icons were chosen so that when the button
     // has an icon the buttons do not increase in height. This way
     // buttons with or without icons have the same size.
@@ -41,5 +32,13 @@
         stroke: $value;
       }
     }
+  }
+
+  .btn-outline-info {
+    color: $text-info-contrast;
+  }
+
+  .btn-outline-warning {
+    color: $text-warning-contrast;
   }
 }

@@ -21,8 +21,10 @@ exports[`Component: FileInput ui with value 1`] = `
       class="input-group"
     >
       <input
+        aria-label="This is a placeholder input that should not be reachable. Use the file input instead."
         class="form-control"
         placeholder="Upload a file here"
+        tabindex="-1"
         type="text"
         value="maarten.png"
       />

@@ -7,6 +7,7 @@ exports[`Component: ModalPickerValueTruncator ui overflowing 1`] = `
   >
     <div
       class="w-100 h-100 position-absolute"
+      role="button"
       style="outline: 0;"
       tabindex="0"
     >

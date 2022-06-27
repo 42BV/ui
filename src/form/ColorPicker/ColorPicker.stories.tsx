@@ -40,7 +40,7 @@ storiesOf('Form/ColorPicker', module)
     </>
   ))
   .add('basic', () => {
-    const [value, setValue] = useState<string | undefined>();
+    const [ value, setValue ] = useState<string | undefined>();
 
     return (
       <div>
@@ -57,7 +57,7 @@ storiesOf('Form/ColorPicker', module)
     );
   })
   .add('basic preselected', () => {
-    const [value, setValue] = useState<string | undefined>('#ff0000');
+    const [ value, setValue ] = useState<string | undefined>('#ff0000');
 
     return (
       <div>
@@ -74,7 +74,7 @@ storiesOf('Form/ColorPicker', module)
     );
   })
   .add('with custom label', () => {
-    const [value, setValue] = useState<string | undefined>();
+    const [ value, setValue ] = useState<string | undefined>();
 
     return (
       <div>
@@ -101,7 +101,7 @@ storiesOf('Form/ColorPicker', module)
     );
   })
   .add('with icon', () => {
-    const [value, setValue] = useState<string | undefined>();
+    const [ value, setValue ] = useState<string | undefined>();
 
     return (
       <div>
@@ -119,7 +119,7 @@ storiesOf('Form/ColorPicker', module)
     );
   })
   .add('without clear button', () => {
-    const [value, setValue] = useState<string | undefined>('#ff0000');
+    const [ value, setValue ] = useState<string | undefined>('#ff0000');
 
     return (
       <div>
@@ -146,7 +146,7 @@ storiesOf('Form/ColorPicker', module)
             name="color"
             label="Color"
             placeholder="Please select your favorite color"
-            validators={[isToDark]}
+            validators={[ isToDark ]}
             jarb={{
               validator: 'Hero.color',
               label: 'Color'

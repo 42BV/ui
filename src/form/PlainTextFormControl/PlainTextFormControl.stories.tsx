@@ -6,9 +6,9 @@ import { Form } from 'reactstrap';
 storiesOf('Form/PlainTextFormControl', module)
   .addParameters({ component: PlainTextFormControl })
   .add('basic', () => {
-  return (
-    <Form>
-      <PlainTextFormControl label="Organisation">42 BV</PlainTextFormControl>
-    </Form>
-  );
-});
+    return (
+      <Form>
+        <PlainTextFormControl label="Organisation">42 BV</PlainTextFormControl>
+      </Form>
+    );
+  });

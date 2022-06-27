@@ -20,7 +20,7 @@ There are two ways to `translate` or `override` these default text.
 All components provide a `text` property containing all text which
 the component renders. For example:
 
-```ts
+```tsx
 <Pager
   page={page}
   onChange={action('page changed')}
@@ -57,7 +57,7 @@ setTranslator(({ key, data }) => {
   */
 
   return // translated string here...
-};
+});
 
 ```
 
@@ -74,7 +74,7 @@ Here is a JSON notation containing all keys and default translations:
       "RETRY": "Retry"
     },
     "EMPTY": {
-      "TITLE": "No results found",
+      "TITLE": "No results found"
     }
   },
   "ConfirmButton": {
@@ -112,11 +112,12 @@ Here is a JSON notation containing all keys and default translations:
   },
   "ModalPicker": {
     "SEARCH": "Search...",
+    "SEARCH_LABEL": "Start typing to search",
     "CANCEL": "Cancel",
-    "SELECT": "Select",
+    "SELECT": "Select"
   },
   "ModalPickerOpener": {
-    "CLEAR": "Clear",
+    "CLEAR": "Clear"
   },
   "Select": {
     "LOADING": "Loading..."
@@ -153,7 +154,9 @@ Here is a JSON notation containing all keys and default translations:
     "NO_RESULTS": {
       "TITLE": "No icons found",
       "SUBTITLE": "No icons were found, please try again with a different query."
-    }
+    },
+    "SEARCH_INPUT_LABEL": "Start typing to search an icon",
+    "SEARCH": "Search..."
   },
   "ColorPicker": {
     "CLEAR": "Clear",
@@ -161,7 +164,7 @@ Here is a JSON notation containing all keys and default translations:
     "SELECT": "Select"
   },
   "Loading": {
-    "LOADING": "Loading...",
+    "LOADING": "Loading..."
   },
   "RadioGroup": {
     "LOADING": "Loading...",
@@ -183,7 +186,8 @@ Here is a JSON notation containing all keys and default translations:
     "NUMBER": "Must contain at least one number",
     "SPECIAL_CHARACTER": "Must contain at least one special character ({{specialChars}})",
     "MINIMUM_LENGTH": "Must contain at least {{minimumLength}} characters",
-    "NO_SPACE": "Must not contain any space"
+    "NO_SPACE": "Must not contain any space",
+    "PROGRESS": "Percentage of rules the password matches"
   },
   "withJarb": {
     "REQUIRED_MARK": " *"
@@ -207,6 +211,12 @@ Here is a JSON notation containing all keys and default translations:
   },
   "CopyToClipboard": {
     "COPIED": "Copied!"
+  },
+  "CrudTable": {
+    "SEARCH_LABEL": "Start typing to search"
+  },
+  "Pagination": {
+    "PAGE_SIZE_DROPDOWN_LABEL": "Select page size"
   }
 }
 ```

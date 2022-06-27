@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { pageWithContentAndExactSize, pageWithContent } from '../../test/utils';
-import { userUser, adminUser, randomUser } from '../../test/fixtures';
+import { pageWithContent, pageWithContentAndExactSize } from '../../test/utils';
+import { adminUser, randomUser, userUser } from '../../test/fixtures';
 import { User } from '../../test/types';
 
-import { ValuePicker, JarbValuePicker } from './ValuePicker';
+import { JarbValuePicker, ValuePicker } from './ValuePicker';
 
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Button } from '../../core/Button/Button';
@@ -33,7 +33,7 @@ const randomUser9 = randomUser();
 const randomUser10 = randomUser();
 const randomUser11 = randomUser();
 
-const small = Promise.resolve(pageWithContentAndExactSize([user, admin]));
+const small = Promise.resolve(pageWithContentAndExactSize([ user, admin ]));
 
 const medium = Promise.resolve(
   pageWithContentAndExactSize([
@@ -78,9 +78,9 @@ storiesOf('Form/ValuePicker/multiple', module)
     </>
   ))
   .add('basic', () => {
-    const [value, setValue] = useState<User[] | undefined>(undefined);
+    const [ value, setValue ] = useState<User[] | undefined>(undefined);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -107,9 +107,9 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<User[] | undefined>([user]);
+    const [ value, setValue ] = useState<User[] | undefined>([ user ]);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -136,10 +136,10 @@ storiesOf('Form/ValuePicker/multiple', module)
       </Card>
     );
   })
-  .add('without label', () => {
-    const [value, setValue] = useState<User[] | undefined>(undefined);
+  .add('invisible label', () => {
+    const [ value, setValue ] = useState<User[] | undefined>(undefined);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -148,6 +148,8 @@ storiesOf('Form/ValuePicker/multiple', module)
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
+          label="Best friend"
+          hiddenLabel={true}
           placeholder="Select your best friend"
           canSearch={true}
           options={() => promise}
@@ -165,9 +167,9 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('with custom label', () => {
-    const [value, setValue] = useState<User[] | undefined>(undefined);
+    const [ value, setValue ] = useState<User[] | undefined>(undefined);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -204,7 +206,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('with icon', () => {
-    const [value, setValue] = useState<User[] | undefined>(undefined);
+    const [ value, setValue ] = useState<User[] | undefined>(undefined);
 
     const promise = sizes['large'];
 
@@ -213,6 +215,7 @@ storiesOf('Form/ValuePicker/multiple', module)
         <ValuePicker<User>
           multiple={true}
           id="bestFriend"
+          label="Best friend"
           placeholder="Select your best friend"
           icon="face"
           canSearch={true}
@@ -227,7 +230,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('without clear button', () => {
-    const [value, setValue] = useState<User[] | undefined>([user]);
+    const [ value, setValue ] = useState<User[] | undefined>([ user ]);
 
     const promise = sizes['large'];
 
@@ -253,7 +256,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('jarb', () => {
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -289,9 +292,9 @@ storiesOf('Form/ValuePicker/multiple', module)
 storiesOf('Form/ValuePicker/single', module)
   .addParameters({ component: ValuePicker })
   .add('basic', () => {
-    const [value, setValue] = useState<User | undefined>(undefined);
+    const [ value, setValue ] = useState<User | undefined>(undefined);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -321,9 +324,9 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<User | undefined>(userUser);
+    const [ value, setValue ] = useState<User | undefined>(userUser);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -353,10 +356,10 @@ storiesOf('Form/ValuePicker/single', module)
       </Card>
     );
   })
-  .add('without label', () => {
-    const [value, setValue] = useState<User | undefined>(undefined);
+  .add('invisible label', () => {
+    const [ value, setValue ] = useState<User | undefined>(undefined);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -365,6 +368,8 @@ storiesOf('Form/ValuePicker/single', module)
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
+          label="Best friend"
+          hiddenLabel={true}
           placeholder="Select your best friend"
           canSearch={true}
           options={() => promise}
@@ -385,9 +390,9 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('with custom label', () => {
-    const [value, setValue] = useState<User | undefined>(undefined);
+    const [ value, setValue ] = useState<User | undefined>(undefined);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -427,7 +432,7 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('with icon', () => {
-    const [value, setValue] = useState<User | undefined>(undefined);
+    const [ value, setValue ] = useState<User | undefined>(undefined);
 
     const promise = sizes['large'];
 
@@ -436,6 +441,7 @@ storiesOf('Form/ValuePicker/single', module)
         <ValuePicker<User>
           multiple={false}
           id="bestFriend"
+          label="Best friend"
           placeholder="Select your best friend"
           icon="face"
           canSearch={true}
@@ -450,9 +456,9 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('without clear button', () => {
-    const [value, setValue] = useState<User | undefined>(user);
+    const [ value, setValue ] = useState<User | undefined>(user);
 
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 
@@ -485,7 +491,7 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('jarb', () => {
-    const [size, setSize] = useState('small');
+    const [ size, setSize ] = useState('small');
 
     const promise = sizes[size];
 

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { TextEditor, JarbTextEditor } from './TextEditor';
+import { JarbTextEditor, TextEditor } from './TextEditor';
 
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Alert } from 'reactstrap';
@@ -66,11 +66,13 @@ storiesOf('Form/TextEditor', module)
       </Card>
     );
   })
-  .add('without label', () => {
+  .add('invisible label', () => {
     return (
       <Card className="m-2">
         <TextEditor
           id="description"
+          label="Description"
+          hiddenLabel={true}
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
@@ -109,25 +111,25 @@ storiesOf('Form/TextEditor', module)
           onChange={(value) => action(`onChange: ${value}`)}
           modules={{
             toolbar: [
-              ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-              ['blockquote', 'code-block'],
+              [ 'bold', 'italic', 'underline', 'strike' ], // toggled buttons
+              [ 'blockquote', 'code-block' ],
 
-              [{ header: 1 }, { header: 2 }], // custom button values
-              [{ list: 'ordered' }, { list: 'bullet' }],
-              [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-              [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-              [{ direction: 'rtl' }], // text direction
+              [ { header: 1 }, { header: 2 } ], // custom button values
+              [ { list: 'ordered' }, { list: 'bullet' } ],
+              [ { script: 'sub' }, { script: 'super' } ], // superscript/subscript
+              [ { indent: '-1' }, { indent: '+1' } ], // outdent/indent
+              [ { direction: 'rtl' } ], // text direction
 
-              [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-              [{ header: [1, 2, 3, 4, 5, 6, false] }],
+              [ { size: [ 'small', false, 'large', 'huge' ] } ], // custom dropdown
+              [ { header: [ 1, 2, 3, 4, 5, 6, false ] } ],
 
-              [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-              [{ font: [] }],
-              [{ align: [] }],
+              [ { color: [] }, { background: [] } ], // dropdown with defaults from theme
+              [ { font: [] } ],
+              [ { align: [] } ],
 
-              ['link', 'image', 'video'],
+              [ 'link', 'image', 'video' ],
 
-              ['clean']
+              [ 'clean' ]
             ]
           }}
         />
@@ -136,7 +138,7 @@ storiesOf('Form/TextEditor', module)
   })
   .add('custom toolbar option', () => {
     const placeholders = useMemo(
-      () => [{ label: 'First name', value: 'firstName' }],
+      () => [ { label: 'First name', value: 'firstName' } ],
       []
     );
 
@@ -165,7 +167,7 @@ storiesOf('Form/TextEditor', module)
             item.dataset.value ||
             null;
         });
-    }, [placeholders]);
+    }, [ placeholders ]);
 
     function insertPlaceholder(value: string) {
       const quill = this.quill;
@@ -194,7 +196,7 @@ storiesOf('Form/TextEditor', module)
                 ],
                 [
                   {
-                    size: ['small', false, 'large', 'huge']
+                    size: [ 'small', false, 'large', 'huge' ]
                   },
                   'bold',
                   'italic',
@@ -209,7 +211,7 @@ storiesOf('Form/TextEditor', module)
                     list: 'bullet'
                   }
                 ],
-                ['clean']
+                [ 'clean' ]
               ],
               handlers: {
                 placeholder: insertPlaceholder
@@ -233,7 +235,7 @@ storiesOf('Form/TextEditor', module)
             // which formats are supported. Quill does this to
             // allow bold text to be pasted or entered with a
             // shortcut, but not show a toolbar button.
-            toolbar: ['italic', 'underline', 'strike']
+            toolbar: [ 'italic', 'underline', 'strike' ]
           }}
           // These are the formats which are allowed to be used.
           // When you include a format here you can paste or use
@@ -241,7 +243,7 @@ storiesOf('Form/TextEditor', module)
           // text to be bold, but we do not include it in the toolbar.
           // This means that using the ctrl-b shortcut, or pasting bold
           // text, will result in bold text.
-          formats={['bold', 'italic', 'underline', 'strike']}
+          formats={[ 'bold', 'italic', 'underline', 'strike' ]}
         />
 
         <p>

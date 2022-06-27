@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { NewPasswordInput, isStrongPassword } from './NewPasswordInput';
+import { isStrongPassword, NewPasswordInput } from './NewPasswordInput';
 
 describe('Component: NewPasswordInput', () => {
   function setup(props: {
@@ -15,7 +15,7 @@ describe('Component: NewPasswordInput', () => {
     noSpace?: boolean;
   }) {
     const { container } = render(
-      <NewPasswordInput onChange={jest.fn()} {...props} />
+      <NewPasswordInput onChange={jest.fn()} {...props} label="Password" />
     );
     return { container };
   }

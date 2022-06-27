@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { ProgressStepper } from './ProgressStepper';
+import { Card } from '../Card/Card';
 
 type Step =
   | 'primary'
@@ -27,7 +28,7 @@ storiesOf('core/ProgressStepper', module)
   .addParameters({ component: ProgressStepper })
   .add('colors', () => {
     return (
-      <div className="text-center">
+      <Card>
         <ProgressStepper<Step>
           steps={steps}
           onClick={action(`Clicked`)}
@@ -35,6 +36,6 @@ storiesOf('core/ProgressStepper', module)
           titleForStep={(step) => step}
           colorForStep={(step) => step}
         />
-      </div>
+      </Card>
     );
   });

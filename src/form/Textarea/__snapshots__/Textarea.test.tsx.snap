@@ -7,6 +7,7 @@ exports[`Component: Textarea ui default 1`] = `
     color="success"
   >
     <textarea
+      aria-label="First name"
       class="form-control"
       id="1"
     />

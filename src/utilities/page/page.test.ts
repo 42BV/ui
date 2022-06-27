@@ -2,7 +2,7 @@ import { pageOf } from './page';
 
 describe('Utility: pageOf', () => {
   test('first page', () => {
-    expect(pageOf(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'], 1, 5))
+    expect(pageOf([ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' ], 1, 5))
       .toMatchInlineSnapshot(`
       Object {
         "content": Array [
@@ -24,7 +24,7 @@ describe('Utility: pageOf', () => {
   });
 
   test('center page', () => {
-    expect(pageOf(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'], 2, 2))
+    expect(pageOf([ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' ], 2, 2))
       .toMatchInlineSnapshot(`
       Object {
         "content": Array [
@@ -43,7 +43,7 @@ describe('Utility: pageOf', () => {
   });
 
   test('last page', () => {
-    expect(pageOf(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'], 2, 5))
+    expect(pageOf([ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' ], 2, 5))
       .toMatchInlineSnapshot(`
       Object {
         "content": Array [
@@ -65,7 +65,7 @@ describe('Utility: pageOf', () => {
   });
 
   test('that size default to 10', () => {
-    expect(pageOf(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'], 1))
+    expect(pageOf([ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' ], 1))
       .toMatchInlineSnapshot(`
       Object {
         "content": Array [

@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
  * @param number after The amount of time in milliseconds after which the return value should become `true`.
  */
 export function useShowAfter(after: number): boolean {
-  const [show, setShow] = useState(false);
+  const [ show, setShow ] = useState(false);
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       setShow(true);
@@ -20,7 +20,7 @@ export function useShowAfter(after: number): boolean {
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [after]);
+  }, [ after ]);
 
   return show;
 }

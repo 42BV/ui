@@ -32,7 +32,7 @@ describe('Component: Pagination', () => {
     };
 
     const { container } = render(<Pagination {...props} />);
-    
+
     return { container, onChangeSpy };
   }
 
@@ -44,7 +44,7 @@ describe('Component: Pagination', () => {
     });
 
     test('middle', () => {
-      const { container } = setup({ number: 5, totalPages: 10});
+      const { container } = setup({ number: 5, totalPages: 10 });
       expect(container).toMatchSnapshot();
       expect(screen.queryByText('1')).not.toBeInTheDocument();
       expect(screen.queryByText('3')).toBeInTheDocument();
@@ -58,7 +58,7 @@ describe('Component: Pagination', () => {
     });
 
     test('first page', () => {
-      setup({ number: 1, totalPages: 10});
+      setup({ number: 1, totalPages: 10 });
       expect(screen.queryByText('1')).toBeInTheDocument();
       expect(screen.getByText('1').parentNode).toHaveClass('active');
       expect(screen.queryByText('3')).toBeInTheDocument();
@@ -68,7 +68,7 @@ describe('Component: Pagination', () => {
     });
 
     test('last page', () => {
-      setup({ number: 10, totalPages: 10});
+      setup({ number: 10, totalPages: 10 });
       expect(screen.queryByText('10')).toBeInTheDocument();
       expect(screen.getByText('10').parentNode).toHaveClass('active');
       expect(screen.queryByText('8')).toBeInTheDocument();
@@ -80,12 +80,12 @@ describe('Component: Pagination', () => {
 
   describe('large numbers', () => {
     it('should decrease font size when page number over 1000', () => {
-      setup({number: 1002, totalPages: 100000});
+      setup({ number: 1002, totalPages: 100000 });
       expect(screen.getByText('1002')).toHaveClass('scale-to-page-size-1000');
     });
 
     it('should decrease font size even more when page number over 10000', () => {
-      setup({number: 10002, totalPages: 100000});
+      setup({ number: 10002, totalPages: 100000 });
       expect(screen.getByText('10002')).toHaveClass('scale-to-page-size-10000');
     });
   });
@@ -140,36 +140,36 @@ describe('Component: Pagination', () => {
 
 describe('pages', () => {
   test('exact middle', () => {
-    expect(pagesFor(5, 10)).toEqual([3, 4, 5, 6, 7]);
+    expect(pagesFor(5, 10)).toEqual([ 3, 4, 5, 6, 7 ]);
   });
-  
+
   test('almost middle', () => {
-    expect(pagesFor(4, 10)).toEqual([2, 3, 4, 5, 6]);
-    expect(pagesFor(6, 10)).toEqual([4, 5, 6, 7, 8]);
+    expect(pagesFor(4, 10)).toEqual([ 2, 3, 4, 5, 6 ]);
+    expect(pagesFor(6, 10)).toEqual([ 4, 5, 6, 7, 8 ]);
   });
-  
+
   test('absolute left', () => {
-    expect(pagesFor(1, 10)).toEqual(['...', '...', 1, 2, 3]);
+    expect(pagesFor(1, 10)).toEqual([ '...', '...', 1, 2, 3 ]);
   });
-  
+
   test('almost left', () => {
-    expect(pagesFor(2, 10)).toEqual(["...", 1, 2, 3, 4]);
-    expect(pagesFor(3, 10)).toEqual([1, 2, 3, 4, 5]);
-    expect(pagesFor(4, 10)).toEqual([2, 3, 4, 5, 6]);
+    expect(pagesFor(2, 10)).toEqual([ '...', 1, 2, 3, 4 ]);
+    expect(pagesFor(3, 10)).toEqual([ 1, 2, 3, 4, 5 ]);
+    expect(pagesFor(4, 10)).toEqual([ 2, 3, 4, 5, 6 ]);
   });
-  
+
   test('almost right', () => {
-    expect(pagesFor(7, 10)).toEqual([5, 6, 7, 8, 9]);
-    expect(pagesFor(8, 10)).toEqual([6, 7, 8, 9, 10]);
-    expect(pagesFor(9, 10)).toEqual([7, 8, 9, 10,'...']);
+    expect(pagesFor(7, 10)).toEqual([ 5, 6, 7, 8, 9 ]);
+    expect(pagesFor(8, 10)).toEqual([ 6, 7, 8, 9, 10 ]);
+    expect(pagesFor(9, 10)).toEqual([ 7, 8, 9, 10, '...' ]);
   });
-  
+
   test('absolute right', () => {
-    expect(pagesFor(10, 10)).toEqual([8, 9, 10, '...', '...']);
+    expect(pagesFor(10, 10)).toEqual([ 8, 9, 10, '...', '...' ]);
   });
-  
+
   test('shortage', () => {
-    expect(pagesFor(1, 3)).toEqual(['...', '...', 1, 2, 3]);
-    expect(pagesFor(3, 3)).toEqual([1, 2, 3, '...', '...']);
+    expect(pagesFor(1, 3)).toEqual([ '...', '...', 1, 2, 3 ]);
+    expect(pagesFor(3, 3)).toEqual([ 1, 2, 3, '...', '...' ]);
   });
- }); 
+});

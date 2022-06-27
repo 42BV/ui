@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { Pager } from './Pager';
 import { pageOf } from '../../utilities/page/page';
 import { Alert } from 'reactstrap';
+import { Card } from '../Card/Card';
 
 storiesOf('core/Pager', module)
   .addParameters({ component: Pager })
@@ -17,15 +18,15 @@ storiesOf('core/Pager', module)
     </>
   ))
   .add('default', () => {
-    const [pageNumber, setPageNumber] = useState(1);
+    const [ pageNumber, setPageNumber ] = useState(1);
 
-    const page = pageOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], pageNumber, 2);
+    const page = pageOf([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], pageNumber, 2);
 
     return (
-      <div className="text-center">
-        <h2>You are on page {pageNumber}</h2>
+      <Card>
+        <span className="d-block fs-2">You are on page {pageNumber}</span>
 
         <Pager page={page} onChange={setPageNumber} />
-      </div>
+      </Card>
     );
   });

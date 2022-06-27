@@ -1,11 +1,4 @@
-import {
-  hasLowercase,
-  hasMinimumLength,
-  hasNoSpaces,
-  hasNumber,
-  hasSpecialChar,
-  hasUppercase
-} from './rules';
+import { hasLowercase, hasMinimumLength, hasNoSpaces, hasNumber, hasSpecialChar, hasUppercase } from './rules';
 
 test('hasLowercase', () => {
   expect(hasLowercase(undefined)).toBe(false);

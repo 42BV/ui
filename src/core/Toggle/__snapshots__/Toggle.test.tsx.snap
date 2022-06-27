@@ -6,7 +6,8 @@ exports[`Component: Toggle ui default 1`] = `
     class="toggle-container toggle-primary"
   >
     <input
-      id="toggle"
+      aria-label="Test"
+      id="1"
       type="checkbox"
     />
   </span>
@@ -20,9 +21,10 @@ exports[`Component: Toggle ui with custom label 1`] = `
   >
     <label
       class="d-inline-block toggle-label me-2"
-      for="toggle"
+      for="3"
     >
       <span
+        role="button"
         style="outline: 0;"
         tabindex="0"
       >
@@ -30,7 +32,7 @@ exports[`Component: Toggle ui with custom label 1`] = `
       </span>
     </label>
     <input
-      id="toggle"
+      id="3"
       type="checkbox"
     />
   </span>
@@ -46,7 +48,7 @@ exports[`Component: Toggle ui with text label 1`] = `
       class="d-inline-block toggle-label me-2"
       for="toggle"
     >
-      test
+      Test
     </label>
     <input
       id="toggle"

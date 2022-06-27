@@ -55,7 +55,7 @@ describe('Component: ErrorBoundary', () => {
       };
 
       render(
-        <ErrorBoundary text={{error: 'Something terrible happened!'}}>
+        <ErrorBoundary text={{ error: 'Something terrible happened!' }}>
           <Throw />
         </ErrorBoundary>
       );

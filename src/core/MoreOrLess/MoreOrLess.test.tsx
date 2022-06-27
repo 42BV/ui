@@ -23,13 +23,13 @@ describe('Component: MoreOrLess', () => {
         <h1 key={6}>6</h1>
       ];
     } else {
-      content = [<h1 key={1}>1</h1>, <h1 key={2}>2</h1>, <h1 key={3}>3</h1>];
+      content = [ <h1 key={1}>1</h1>, <h1 key={2}>2</h1>, <h1 key={3}>3</h1> ];
     }
 
     const { container } = render(
       <MoreOrLess limit={3} content={content} text={text} />
     );
-    
+
     return { container };
   }
 

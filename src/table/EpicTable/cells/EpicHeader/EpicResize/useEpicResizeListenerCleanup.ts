@@ -13,5 +13,5 @@ export function useEpicResizeListenerCleanup(
       window.removeEventListener('mousemove', resize, listenerConfig);
       window.removeEventListener('mouseup', resizeEnd, listenerConfig);
     };
-  }, [resize, resizeEnd]);
+  }, [ resize, resizeEnd ]);
 }

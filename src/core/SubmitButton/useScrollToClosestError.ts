@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type UseScrollToClosestErrorConfig = {
   enabled: boolean;
@@ -11,7 +11,7 @@ type UseScrollToClosestErrorResult = {
 export function useScrollToClosestError({
   enabled
 }: UseScrollToClosestErrorConfig): UseScrollToClosestErrorResult {
-  const [scroll, setScroll] = useState<number>(0);
+  const [ scroll, setScroll ] = useState<number>(0);
 
   useEffect(() => {
     // Do not scroll on the initial call of the useEffect,
@@ -38,7 +38,7 @@ export function useScrollToClosestError({
     return () => {
       return clearTimeout(timeoutId);
     };
-  }, [scroll, enabled]);
+  }, [ scroll, enabled ]);
 
   function doScrollToClosestError() {
     setScroll((value) => value + 1);

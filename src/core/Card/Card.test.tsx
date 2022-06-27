@@ -24,8 +24,9 @@ describe('Component: Card', () => {
     const children = (
       <RadioGroup<string>
         onChange={jest.fn()}
-        options={['local', 'development', 'test', 'acceptation', 'production']}
+        options={[ 'local', 'development', 'test', 'acceptation', 'production' ]}
         labelForOption={(v) => v}
+        label="Environment"
       />
     );
 

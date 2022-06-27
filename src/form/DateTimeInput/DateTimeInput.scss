@@ -24,6 +24,7 @@
 .rdt {
   //@extend .dropdown-menu;
   position: relative;
+
   &.rdtOpen {
     .rdtPicker {
       display: block;
@@ -51,10 +52,12 @@
     .rdtTimeToggle:hover {
       cursor: pointer;
     }
+
     .rdtSwitch,
     .rdtPrev,
     .rdtNext {
       @extend .rounded;
+
       &:hover {
         background: $gray-200;
       }
@@ -66,20 +69,24 @@
       .rdtCounter {
         width: 2.5rem;
       }
+
       > div {
         float: left;
       }
     }
   }
+
   .rdtPicker {
     width: 271px;
     padding: 0;
     margin-top: 5px;
     @extend .dropdown-menu;
+
     table {
       @extend .table, .mb-0;
       border-spacing: 5px;
       border-collapse: separate;
+
       thead > tr > th,
       tbody > tr > td,
       tfoot > tr > td {
@@ -93,11 +100,13 @@
           > th {
             border: none;
             font-weight: 400;
+
             &.dow {
               text-transform: uppercase;
             }
           }
         }
+
         &::after {
           content: '';
           position: absolute;
@@ -106,18 +115,21 @@
           left: 0;
         }
       }
+
       tbody > tr > td {
         border: 0;
         padding: 0;
         vertical-align: middle;
         font-weight: 300;
         color: $gray-600;
+
         &.rdtOld,
         &.rdtNew {
           color: lighten($gray-600, 35%);
         }
       }
     }
+
     .rdtMonths,
     .rdtYears,
     .rdtDays {
@@ -126,13 +138,14 @@
         &.rdtActive:hover {
           @extend .rounded-circle;
           @include box-shadow(
-            1px 1px 3px rgba(map-get($theme-colors, success), 0.24),
-            0 1px 2px rgba(map-get($theme-colors, success), 0.48)
+                          1px 1px 3px rgba(map-get($theme-colors, success), 0.24),
+                          0 1px 2px rgba(map-get($theme-colors, success), 0.48)
           );
           background: map-get($theme-colors, success);
           color: white;
           font-weight: 500;
         }
+
         &:hover {
           @extend .rounded-circle;
           background: $gray-200;
@@ -157,6 +170,7 @@
       table > tbody > tr > td {
         width: 61px;
         height: 61px;
+
         &:hover {
           background: $gray-200;
         }

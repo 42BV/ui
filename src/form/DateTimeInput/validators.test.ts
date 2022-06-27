@@ -1,8 +1,4 @@
-import {
-  isDateBeforeValidator,
-  isDateAfterValidator,
-  isDateBetweenValidator, isDateValidator
-} from './validators';
+import { isDateAfterValidator, isDateBeforeValidator, isDateBetweenValidator, isDateValidator } from './validators';
 
 describe('isDateBefore', () => {
   it('should when before is undefined allow every date', () => {

@@ -36,7 +36,7 @@ describe('Component: AutoSave', () => {
     const setActiveSpy = jest.fn();
     jest
       .spyOn(Active, 'useActive')
-      .mockImplementation(() => [activeField, setActiveSpy]);
+      .mockImplementation(() => [ activeField, setActiveSpy ]);
 
     const { container } = render(
       <FinalForm.Form onSubmit={onSubmitSpy}>

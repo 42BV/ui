@@ -42,7 +42,7 @@ storiesOf('core/Tooltip', module)
 
   .add('alignment', () => (
     <>
-      <h6>Alignment</h6>
+      <span className="d-block fs-5">Alignment</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Tooltip content={'Placement bottom'} placement="bottom">
@@ -63,7 +63,7 @@ storiesOf('core/Tooltip', module)
       </Row>
       <hr />
 
-      <h6>Alignment-modifier</h6>
+      <span className="d-block fs-5">Alignment-modifier</span>
       <Row className="mt-3">
         <Col className="d-flex justify-content-around">
           <Tooltip content={'right-start'} placement="right-start">
@@ -84,7 +84,7 @@ storiesOf('core/Tooltip', module)
 
   .add('width, distance and offset', () => (
     <>
-      <h6>Max width</h6>
+      <span className="d-block fs-5">Max width</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Tooltip
@@ -107,7 +107,7 @@ storiesOf('core/Tooltip', module)
 
       <hr />
 
-      <h6>Distance</h6>
+      <span className="d-block fs-5">Distance</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Tooltip content="far away" distance={15}>
@@ -124,7 +124,7 @@ storiesOf('core/Tooltip', module)
         </Col>
       </Row>
 
-      <h6>Offset</h6>
+      <span className="d-block fs-5">Offset</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Tooltip content="far away" offset={100}>
@@ -145,7 +145,7 @@ storiesOf('core/Tooltip', module)
 
   .add('components as content', () => (
     <>
-      <h6>Components</h6>
+      <span className="d-block fs-5">Components</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Tooltip
@@ -214,7 +214,7 @@ storiesOf('core/Tooltip', module)
       </Row>
 
       <hr />
-      <h6>Interactive</h6>
+      <span className="d-block fs-5">Interactive</span>
 
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
@@ -231,7 +231,7 @@ storiesOf('core/Tooltip', module)
 
   .add('custom wrapper', () => (
     <>
-      <h6>Custom wrapper</h6>
+      <span className="d-block fs-5">Custom wrapper</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Tooltip content="My children are in a <span>" tag="span">

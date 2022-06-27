@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen, render, act } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { CopyToClipboard } from './CopyToClipboard';

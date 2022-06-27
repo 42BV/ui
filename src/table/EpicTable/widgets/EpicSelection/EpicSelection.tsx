@@ -28,7 +28,7 @@ export function EpicSelection({ children, checked, onChange }: Props) {
     <Label className="d-flex m-0 align-items-center">
       <Input
         type="checkbox"
-        className="m-0 ms-1 me-2 d-inline-block position-static"
+        className="m-0 ms-1 me-2 flex-shrink-0 flex-grow-0 d-inline-block position-static"
         checked={checked}
         onChange={() => onChange(!checked)}
       />

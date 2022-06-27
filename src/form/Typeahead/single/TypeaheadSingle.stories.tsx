@@ -1,9 +1,10 @@
 import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
-import { Icon, pageOf, Tooltip, Card } from '../../..';
+import { Card, Icon, pageOf, Tooltip } from '../../..';
 import {
   FinalForm,
-  IsOptionEqualInfo, JarbFormElementDependencies,
+  IsOptionEqualInfo,
+  JarbFormElementDependencies,
   nonExistingProvince,
   Province,
   provinceFetcher,
@@ -11,7 +12,7 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../../story-utils';
-import { TypeaheadSingle, JarbTypeaheadSingle } from './TypeaheadSingle';
+import { JarbTypeaheadSingle, TypeaheadSingle } from './TypeaheadSingle';
 import { Alert } from 'reactstrap';
 
 storiesOf('Form/Typeahead/TypeaheadSingle', module)
@@ -28,7 +29,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     </>
   ))
   .add('predefined options', () => {
-    const [value, setValue] = useState<Province | undefined>(
+    const [ value, setValue ] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -49,7 +50,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('async options', () => {
-    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -68,7 +69,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('async options - limited pageSize', () => {
-    const [value, setValue] = useState<Province | undefined>(
+    const [ value, setValue ] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -95,7 +96,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('disabled options', () => {
-    const [value, setValue] = useState<Province | undefined>(
+    const [ value, setValue ] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -117,7 +118,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -139,13 +140,13 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [brand, setBrand] = useState<string>();
-    const [model, setModel] = useState<string>();
+    const [ brand, setBrand ] = useState<string>();
+    const [ model, setModel ] = useState<string>();
 
     const allOptions = {
-      Audi: ['A1', 'A2', 'A3', 'M5'],
-      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
-      Mercedes: ['Viano', 'Vito', 'Sprinter']
+      Audi: [ 'A1', 'A2', 'A3', 'M5' ],
+      BMW: [ 'series 1', 'series 2', 'series 3', 'series 4', 'series 5' ],
+      Mercedes: [ 'Viano', 'Vito', 'Sprinter' ]
     };
 
     return (
@@ -185,15 +186,17 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('label & placeholder', () => {
-    const [value, setValue] = useState<Province | undefined>(
+    const [ value, setValue ] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
     return (
       <Card className="m-2">
-        <h3>Without label</h3>
+        <h3>Invisible label</h3>
 
         <TypeaheadSingle<Province>
+          label="Province"
+          hiddenLabel={true}
           placeholder="Please select your province"
           options={provinces()}
           labelForOption={(province) => province.label}

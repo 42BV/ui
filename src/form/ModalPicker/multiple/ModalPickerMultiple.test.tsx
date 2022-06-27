@@ -103,12 +103,12 @@ describe('Component: ModalPickerMultiple', () => {
       alignButton,
       renderValue: hasRenderValue
         ? (users?: User[]) => (
-            <span>
+          <span>
               {users
                 ? users.map((user) => user.id).join(', ')
                 : 'none selected'}
             </span>
-          )
+        )
         : undefined,
       renderOptions: hasRenderOptions
         ? () => <span>RenderOptions</span>
@@ -117,7 +117,8 @@ describe('Component: ModalPickerMultiple', () => {
       canClear,
       pageSize,
       id: hasLabel ? 'bestFriend' : undefined,
-      label: hasLabel ? 'Best friend' : undefined
+      label: 'Best friend',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender } = render(
@@ -168,7 +169,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     test('with value', () => {
       setup({
-        value: [adminUser(), userUser()]
+        value: [ adminUser(), userUser() ]
       });
 
       expect(screen.queryByText('admin@42.nl, user@42.nl')).toBeInTheDocument();
@@ -176,7 +177,7 @@ describe('Component: ModalPickerMultiple', () => {
       fireEvent.click(screen.getByText('Select your best friend'));
 
       expect(screen.queryAllByText('×').length).toBe(2);
-      expect(screen.queryAllByText('×').map((e) => e.parentNode?.textContent)).toEqual(['admin@42.nl×', 'user@42.nl×']);
+      expect(screen.queryAllByText('×').map((e) => e.parentNode?.textContent)).toEqual([ 'admin@42.nl×', 'user@42.nl×' ]);
     });
 
     test('without value', () => {
@@ -191,7 +192,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render the options with the correct checked state', () => {
       setup({
-        value: [adminUser(), coordinatorUser()]
+        value: [ adminUser(), coordinatorUser() ]
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
@@ -215,7 +216,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should only render 2 options when pageSize is set to 2', () => {
       setup({
-        pageSize: 2,
+        pageSize: 2
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
@@ -225,7 +226,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render button left', () => {
       setup({
-        value: [adminUser()],
+        value: [ adminUser() ],
         alignButton: 'left'
       });
 
@@ -242,7 +243,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render button right with value', () => {
       setup({
-        value: [adminUser()],
+        value: [ adminUser() ],
         alignButton: 'right'
       });
       expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-between');
@@ -251,7 +252,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render without clear button', () => {
       setup({
-        value: [adminUser()],
+        value: [ adminUser() ],
         canClear: false
       });
       expect(screen.queryByText('Clear')).not.toBeInTheDocument();
@@ -267,7 +268,7 @@ describe('Component: ModalPickerMultiple', () => {
 
       it('should use the default ModalPickerValueTruncator to render values', () => {
         setup({
-          value: [adminUser()],
+          value: [ adminUser() ],
           hasRenderValue: false
         });
         expect(screen.getByText('admin@42.nl')).toHaveClass('text-truncate');
@@ -276,7 +277,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should be able to use custom function to render options', () => {
       setup({
-        value: [adminUser()],
+        value: [ adminUser() ],
         hasRenderOptions: true
       });
 
@@ -357,14 +358,14 @@ describe('Component: ModalPickerMultiple', () => {
       fireEvent.click(screen.getByText('Select'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([adminUser()]);
+      expect(onChangeSpy).toHaveBeenCalledWith([ adminUser() ]);
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should clear the value when the user clicks the clear button', () => {
       const { onChangeSpy } = setup({
-        value: [adminUser(), coordinatorUser()]
+        value: [ adminUser(), coordinatorUser() ]
       });
 
       fireEvent.click(screen.getByText('Clear'));
@@ -375,7 +376,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should remove the value after clicking select when the user removes a selected value via the tag inside the modal', () => {
       const { onChangeSpy } = setup({
-        value: [adminUser()]
+        value: [ adminUser() ]
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
@@ -447,7 +448,7 @@ describe('Component: ModalPickerMultiple', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      const value = [adminUser()];
+      const value = [ adminUser() ];
 
       const { props, rerender } = setup({ value: value });
 
@@ -472,7 +473,7 @@ describe('Component: ModalPickerMultiple', () => {
 
       const newProps = {
         ...props,
-        value: [adminUser()]
+        value: [ adminUser() ]
       };
 
       rerender(

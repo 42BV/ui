@@ -7,6 +7,7 @@ module.exports = {
   stories: [ '../src/**/*.stories.@(js|mxs|tsx|ts)' ],
   addons: [
     '@storybook/addon-actions/register',
+    '@storybook/addon-a11y',
     {
       name: '@storybook/addon-docs',
       options: {

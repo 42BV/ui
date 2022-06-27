@@ -1,8 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { EpicDetail } from './EpicDetail';
-import { fireEvent, screen } from '@testing-library/react';
 
 describe('Component: EpicDetail', () => {
   function setup() {

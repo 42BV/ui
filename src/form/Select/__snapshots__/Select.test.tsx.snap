@@ -6,6 +6,7 @@ exports[`Component: Select ui default 1`] = `
     class="mb-3"
   >
     <select
+      aria-label="Subject"
       class="showing-placeholder form-select"
       id="1"
     >

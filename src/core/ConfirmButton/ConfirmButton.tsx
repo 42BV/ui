@@ -66,7 +66,7 @@ export function ConfirmButton({
   text = {},
   className
 }: Props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
   const { modalHeader, confirm, cancel } = text;
 
   function openModal(event: React.MouseEvent<HTMLElement>) {

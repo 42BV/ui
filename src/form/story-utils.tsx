@@ -55,21 +55,13 @@ export function resolveAfter<T>(value: T, after = 1000): Promise<T> {
   });
 }
 
-export function rejectAfter<T>(reason: T, after = 1000): Promise<T> {
-  return new Promise((resolve, reject) => {
-    return setTimeout(() => {
-      reject(reason);
-    }, after);
-  });
-}
-
 export function IsOptionEqualInfo() {
   return (
     <>
       <p>
-        By default when <strong>isOptionEqual</strong> is not provided the ids
+        By default when <code>isOptionEqual</code> is not provided the ids
         of the objects will be compared. If id does not exist the labels for the
-        options coming from <strong>labelForOption</strong> will be compared.
+        options coming from <code>labelForOption</code> will be compared.
       </p>
 
       <p>
@@ -79,9 +71,9 @@ export function IsOptionEqualInfo() {
       </p>
 
       <p>
-        You will only need to provide a custom <strong>isOptionEqual</strong>{' '}
-        when your objects do not have an <strong>id</strong> or when options
-        will have the same <strong>label</strong>.
+        You will only need to provide a custom <code>isOptionEqual</code> when
+        your objects do not have an <code>id</code> or when options will have
+        the same <code>label</code>.
       </p>
     </>
   );
@@ -91,9 +83,9 @@ export function KeyForOptionInfo() {
   return (
     <>
       <p>
-        By default when <strong>keyForOption</strong> is not provided the id of
+        By default when <code>keyForOption</code> is not provided the id of
         the object will be used the key. If id does not exist the labels for the
-        options coming from <strong>labelForOption</strong> will be used as the
+        options coming from <code>labelForOption</code> will be used as the
         key.
       </p>
 
@@ -104,10 +96,10 @@ export function KeyForOptionInfo() {
       </p>
 
       <p>
-        You will rarely need <strong>keyForOption</strong> in practice. You will
-        only need to provide a custom <strong>keyForOption</strong> when your
-        objects do not have an <strong>id</strong> or when options will have the
-        same <strong>label</strong>.
+        You will rarely need <code>keyForOption</code> in practice. You will
+        only need to provide a custom <code>keyForOption</code> when your
+        objects do not have an <code>id</code> or when options will have the
+        same <code>label</code>.
       </p>
     </>
   );
@@ -116,8 +108,8 @@ export function KeyForOptionInfo() {
 export function ReloadOptionsInfo() {
   return (
     <p>
-      Whenever <strong>reloadOptions</strong> changes the options are fetched
-      again. Should only be used when <strong>options</strong> is a function
+      Whenever <code>reloadOptions</code> changes the options are fetched
+      again. Should only be used when <code>options</code> is a function
       which fetches data.
     </p>
   );
@@ -195,20 +187,6 @@ export function provinces(): Province[] {
     },
     { id: 12, value: 'LIMBURG', label: 'Limburg', north: false }
   ];
-}
-
-export function cityFetcher({
-  query,
-  page,
-  size
-}: FetchOptionsCallbackConfig): Promise<Page<Province>> {
-  const content = provinces().filter((province) =>
-    province.label.toLowerCase().includes(query.toLowerCase())
-  );
-
-  const result = pageOf(content, page, size);
-
-  return resolveAfter(result);
 }
 
 export function sleep(ms: number) {

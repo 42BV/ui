@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, act, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Page } from '@42.nl/spring-connect';
 
@@ -8,14 +8,7 @@ import { Options } from '../option';
 
 import { User } from '../../test/types';
 import * as testUtils from '../../test/utils';
-import {
-  adminUser,
-  coordinatorUser,
-  listOfUsers,
-  nobodyUser,
-  randomUser,
-  userUser
-} from '../../test/fixtures';
+import { adminUser, coordinatorUser, listOfUsers, nobodyUser, randomUser, userUser } from '../../test/fixtures';
 
 describe('Component: ValuePicker', () => {
   function setup({
@@ -47,7 +40,7 @@ describe('Component: ValuePicker', () => {
         canClear={canClear}
       />
     );
-    
+
     return { container, asFragment, onChangeSpy, onBlurSpy };
   }
 
@@ -82,7 +75,7 @@ describe('Component: ValuePicker', () => {
           options: fetchOptionsSpy,
           multiple: false
         });
-        
+
         await act(async () => {
           await promise;
         });
@@ -165,7 +158,7 @@ describe('Component: ValuePicker', () => {
 
       it('should render a `Select` component when options array length is less than 11 but more than 3', () => {
         setup({
-          options: [adminUser(), coordinatorUser(), userUser(), nobodyUser()],
+          options: [ adminUser(), coordinatorUser(), userUser(), nobodyUser() ],
           multiple: false
         });
 
@@ -191,7 +184,7 @@ describe('Component: ValuePicker', () => {
           options: fetchOptionsSpy,
           multiple: false
         });
-       
+
         await act(async () => {
           await promise;
         });
@@ -276,7 +269,7 @@ describe('Component: ValuePicker', () => {
           options: fetchOptionsSpy,
           multiple: true
         });
-       
+
         await act(async () => {
           await promise;
         });

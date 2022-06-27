@@ -18,15 +18,22 @@ export type Meta = {
 
 export type FieldCompatible<Value, ChangeValue> = {
   /**
-   * Optionally the id of the form element. Will be automatically
+   * Optionally the id of the form element. Will often be automatically
    * filled in when not provided manually.
    */
   id?: string;
 
   /**
-   * Optionally the label of the form element.
+   * The label of the form element.
    */
-  label?: React.ReactNode;
+  label: ReactNode;
+
+  /**
+   * Optionally whether the label should be invisible (aria-label).
+   * This only works if label is a string.
+   * Defaults to false.
+   */
+  hiddenLabel?: boolean;
 
   /**
    * The value that the form element currently has.

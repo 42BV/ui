@@ -1,4 +1,3 @@
-
 import { nextDirection } from './utils';
 
 test('Util: nextDirection', () => {

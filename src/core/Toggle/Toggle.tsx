@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Color } from '../types';
+import { uniqueId } from 'lodash';
 
 type Props = {
   /**
@@ -36,9 +37,16 @@ type Props = {
   onBlur?: React.FocusEventHandler;
 
   /**
-   * Optional label to display next to the toggle.
+   * Label to display next to the toggle.
    */
-  label?: React.ReactNode;
+  label: React.ReactNode;
+
+  /**
+   * Optionally whether the label should be invisible (aria-label).
+   * This only works if label is a string.
+   * Defaults to false.
+   */
+  hiddenLabel?: boolean;
 };
 
 /**
@@ -49,11 +57,12 @@ type Props = {
 export function Toggle({
   className,
   color,
-  id,
+  id = uniqueId(),
   value = false,
   onChange,
   onBlur,
-  label
+  label,
+  hiddenLabel
 }: Props) {
   const toggleClasses = classNames(
     'toggle-container',
@@ -63,7 +72,7 @@ export function Toggle({
 
   return (
     <span className={toggleClasses}>
-      {label ? (
+      {!hiddenLabel || typeof label !== 'string' ? (
         <label className="d-inline-block toggle-label me-2" htmlFor={id}>
           {label}
         </label>
@@ -74,6 +83,7 @@ export function Toggle({
         onChange={(event) => onChange(event.target.checked)}
         checked={value}
         onBlur={onBlur}
+        aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
       />
     </span>
   );

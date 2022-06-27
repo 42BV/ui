@@ -20,12 +20,12 @@ storiesOf('core/InfoBadge', module)
         </InfoBadge>
         <br />
         <br />
-        <InfoBadge value={25} color="warning">
+        <InfoBadge value={25} color="danger">
           <Button color="primary">Unread messages</Button>
         </InfoBadge>
         <br />
         <br />
-        <InfoBadge value={1000} color="danger">
+        <InfoBadge value={1000} color="secondary">
           <Button color="success">Spam folder</Button>
         </InfoBadge>
         <br />

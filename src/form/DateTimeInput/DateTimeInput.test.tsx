@@ -36,7 +36,8 @@ describe('Component: DateTimeInput', () => {
       error: 'Some error',
       valid: true,
       mode,
-      label: hasLabel ? 'Date of birth' : undefined
+      label: 'Date of birth',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender } = render(
@@ -47,7 +48,7 @@ describe('Component: DateTimeInput', () => {
   }
 
   describe('ui', () => {
-    test('with label', () => {
+    test('visible label', () => {
       const { container } = setup({
         hasLabel: true,
         value: new Date(2000, 0, 1, 12, 30, 40)
@@ -57,10 +58,10 @@ describe('Component: DateTimeInput', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('without label', () => {
+    test('invisible label', () => {
       setup({ hasLabel: false });
       expect(screen.queryByText('Date of birth')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('Date of birth')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Date of birth')).toBeInTheDocument();
     });
 
     test('with date picker in modal', () => {
@@ -89,6 +90,7 @@ describe('Component: DateTimeInput', () => {
             dateFormat="YYYY-MM-DD"
             timeFormat={false}
             onChange={jest.fn()}
+            label="Date of birth"
           />
         );
       }).not.toThrowError(
@@ -104,6 +106,7 @@ describe('Component: DateTimeInput', () => {
             dateFormat={false}
             timeFormat="HH:mm:ss"
             onChange={jest.fn()}
+            label="Date of birth"
           />
         );
       }).not.toThrowError(
@@ -120,6 +123,7 @@ describe('Component: DateTimeInput', () => {
             dateFormat={false}
             timeFormat={false}
             onChange={jest.fn()}
+            label="Date of birth"
           />
         );
       }).toThrowError(

@@ -18,7 +18,7 @@ describe('Component: CrudTable', () => {
     canSearch,
     searchValue,
     page
-  } : {
+  }: {
     buttons?: () => React.ReactNode;
     renderSelection?: () => React.ReactNode;
     canSearch?: () => boolean;
@@ -106,7 +106,7 @@ describe('Component: CrudTable', () => {
     });
 
     it('should call pageChanged when the user clicks a page number', () => {
-      const { pageChangedSpy } = setup({page: pageOfUsers()});
+      const { pageChangedSpy } = setup({ page: pageOfUsers() });
 
       fireEvent.click(screen.getByText('arrow_forward'));
 

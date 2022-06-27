@@ -7,7 +7,7 @@ exports[`Component: EpicSelection ui is checked 1`] = `
   >
     <input
       checked=""
-      class="m-0 ms-1 me-2 d-inline-block position-static form-check-input"
+      class="m-0 ms-1 me-2 flex-shrink-0 flex-grow-0 d-inline-block position-static form-check-input"
       type="checkbox"
     />
   </label>

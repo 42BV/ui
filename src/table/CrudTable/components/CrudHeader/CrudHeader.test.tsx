@@ -30,7 +30,7 @@ describe('Component: CrudHeader', () => {
       onResize: hasResize ? onResizeSpy : undefined,
       onSearch: hasSearch ? onSearchSpy : undefined,
       onSort: hasSort ? onSortSpy : undefined,
-      options: hasSearchOptions ? ['crud', 'header'] : undefined,
+      options: hasSearchOptions ? [ 'crud', 'header' ] : undefined,
       labelForOption: hasSearchOptions ? (option) => option : undefined
     };
 

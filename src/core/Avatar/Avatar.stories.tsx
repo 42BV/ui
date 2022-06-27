@@ -13,7 +13,7 @@ storiesOf('core/Avatar', module)
       <Avatar alt="sm" size="sm" src="https://www.placecage.com/100/100" />
       <Avatar alt="xs" size="xs" src="https://www.placecage.com/100/100" />
       <Avatar alt="muted avatar" src="https://www.placecage.com/100/100">
-        <small className="text-muted">John Doe</small>
+        <small>John Doe</small>
       </Avatar>
     </div>
   ))

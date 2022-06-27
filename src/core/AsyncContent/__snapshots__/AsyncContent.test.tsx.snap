@@ -19,7 +19,7 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when empt
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -39,7 +39,7 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when empt
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -52,9 +52,11 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when empt
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       No results found
-    </h4>
+    </span>
   </div>
 </div>
 `;
@@ -94,7 +96,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected should not
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -114,7 +116,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected should not
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -127,9 +129,11 @@ exports[`Component: AsyncContent deprecated React Async when rejected should not
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Oops something went wrong!
-    </h4>
+    </span>
     <span
       class="button d-inline-block primary"
     >
@@ -172,7 +176,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected with retry
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -192,7 +196,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected with retry
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -205,9 +209,11 @@ exports[`Component: AsyncContent deprecated React Async when rejected with retry
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Oops something went wrong!
-    </h4>
+    </span>
     <span
       class="button d-inline-block primary"
     >
@@ -250,7 +256,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected without re
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -270,7 +276,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected without re
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -283,9 +289,11 @@ exports[`Component: AsyncContent deprecated React Async when rejected without re
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Oops something went wrong!
-    </h4>
+    </span>
   </div>
 </div>
 `;
@@ -309,7 +317,7 @@ exports[`Component: AsyncContent when fulfilled when empty 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -329,7 +337,7 @@ exports[`Component: AsyncContent when fulfilled when empty 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -342,9 +350,11 @@ exports[`Component: AsyncContent when fulfilled when empty 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       No results found
-    </h4>
+    </span>
   </div>
 </div>
 `;
@@ -384,7 +394,7 @@ exports[`Component: AsyncContent when loading 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -404,7 +414,7 @@ exports[`Component: AsyncContent when loading 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -429,9 +439,11 @@ exports[`Component: AsyncContent when loading 1`] = `
         </svg>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Loading...
-    </h4>
+    </span>
   </div>
 </div>
 `;
@@ -455,7 +467,7 @@ exports[`Component: AsyncContent when rejected should not render when showRetryB
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -475,7 +487,7 @@ exports[`Component: AsyncContent when rejected should not render when showRetryB
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -488,9 +500,11 @@ exports[`Component: AsyncContent when rejected should not render when showRetryB
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Oops something went wrong!
-    </h4>
+    </span>
     <span
       class="button d-inline-block primary"
     >
@@ -533,7 +547,7 @@ exports[`Component: AsyncContent when rejected with retry button 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -553,7 +567,7 @@ exports[`Component: AsyncContent when rejected with retry button 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -566,9 +580,11 @@ exports[`Component: AsyncContent when rejected with retry button 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Oops something went wrong!
-    </h4>
+    </span>
     <span
       class="button d-inline-block primary"
     >
@@ -611,7 +627,7 @@ exports[`Component: AsyncContent when rejected without retry button 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -631,7 +647,7 @@ exports[`Component: AsyncContent when rejected without retry button 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -644,9 +660,11 @@ exports[`Component: AsyncContent when rejected without retry button 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Oops something went wrong!
-    </h4>
+    </span>
   </div>
 </div>
 `;

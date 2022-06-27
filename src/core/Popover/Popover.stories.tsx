@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import {
-  Alert,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Col,
-  ListGroup,
-  ListGroupItem,
-  Row
-} from 'reactstrap';
+import { Alert, Col, ListGroup, ListGroupItem, Row } from 'reactstrap';
 
 import { Popover } from './Popover';
 import { Tag } from '../Tag/Tag';
@@ -19,6 +9,8 @@ import { Tag } from '../Tag/Tag';
 import { ConfirmButton } from '../ConfirmButton/ConfirmButton';
 import { Button } from '../Button/Button';
 import { OpenCloseModal } from '../OpenCloseModal/OpenCloseModal';
+import { Icon } from '../Icon';
+import { Card } from '../Card/Card';
 
 storiesOf('core/Popover', module)
   .addParameters({ component: Popover })
@@ -49,7 +41,7 @@ storiesOf('core/Popover', module)
             <NiceCard />
           </Popover>
 
-          <Popover target={<Button>Hover this button!</Button>}>
+          <Popover target={<><Icon icon="map" /> Hover this icon!</>}>
             <TinyCrud />
           </Popover>
         </Col>
@@ -58,72 +50,54 @@ storiesOf('core/Popover', module)
   ))
 
   .add('taking control', () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [ isOpen, setIsOpen ] = useState(false);
 
     return (
-      <div className="d-flex flex-column">
-        <Row className="my-3">
-          <Col className="d-flex justify-content-around align-items-center">
-            Status: {isOpen ? 'opened' : 'closed'}
-            <Popover isOpen={isOpen} target="Open">
-              <TinyCrud />
-            </Popover>
-            <Button onClick={() => setIsOpen(!isOpen)}>Show / hide</Button>
-          </Col>
-          <Col>
-            <p>
-              Note: you can take complete controll over the Popover by using the{' '}
-              <pre className="d-inline text-info">isOpen</pre> prop. Once you
-              make it <pre className="d-inline text-info">true</pre> or{' '}
-              <pre className="d-inline text-info">false</pre> the hover behavior
-              will be disabled.
-            </p>
-          </Col>
-        </Row>
-      </div>
+      <Card>
+        Status: {isOpen ? 'opened' : 'closed'}
+        <Popover isOpen={isOpen} target="Open" tag="div" className="text-center">
+          <TinyCrud />
+        </Popover>
+        <Button onClick={() => setIsOpen(!isOpen)}>Show / hide</Button>
+        <p className="mt-4 mb-0">
+          Note: you can take complete control over the Popover by using the <code>isOpen</code> prop.
+          Once you make it <code>true</code> or <code>false</code> the hover behavior will be disabled.
+        </p>
+      </Card>
     );
   })
 
   .add('on click outside', () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [ isOpen, setIsOpen ] = useState(false);
 
     return (
-      <div className="d-flex flex-column">
-        <Row className="my-3">
-          <Col className="d-flex justify-content-around align-items-center">
-            Status: {isOpen ? 'opened' : 'closed'}
-            <Popover
-              isOpen={isOpen}
-              onClickOutside={() => setIsOpen(false)}
-              target="Open"
-            >
-              <NiceCard />
-            </Popover>
-            <Button onClick={() => setIsOpen(true)}>Show</Button>
-          </Col>
-          <Col>
-            <p>
-              Note: you can take complete controll over the Popover by using the{' '}
-              <pre className="d-inline text-info">isOpen</pre> prop. Once you
-              make it <pre className="d-inline text-info">true</pre> or{' '}
-              <pre className="d-inline text-info">false</pre> the hover behavior
-              will be disabled.
-            </p>
-
-            <p>
-              In combination with{' '}
-              <pre className="d-inline text-info">onClickOutside</pre> you can
-              close the popover when clicked anywhere outside the popover.
-            </p>
-          </Col>
-        </Row>
-      </div>
+      <Card>
+        Status: {isOpen ? 'opened' : 'closed'}
+        <Popover
+          isOpen={isOpen}
+          onClickOutside={() => setIsOpen(false)}
+          target="Open"
+          tag="div"
+          className="text-center"
+        >
+          <NiceCard />
+        </Popover>
+        <Button onClick={() => setIsOpen(true)}>Show</Button>
+        <p className="mt-4">
+          Note: you can take complete control over the Popover by using the <code>isOpen</code> prop.
+          Once you make it <code>true</code> or <code>false</code> the hover behavior will be disabled.
+        </p>
+        <p>
+          In combination with <code>onClickOutside</code> you can
+          close the popover when clicked anywhere outside the popover.
+        </p>
+      </Card>
     );
   })
 
   .add('alignment', () => (
     <>
-      <h6>Alignment</h6>
+      <span className="d-block fs-5">Alignment</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Popover
@@ -156,21 +130,18 @@ storiesOf('core/Popover', module)
       </Row>
       <hr />
 
-      <h6>Alignment-modifier</h6>
+      <span className="d-block fs-5">Alignment-modifier</span>
       <Row className="mt-3">
         <Col className="d-flex justify-content-around">
-          <Popover
-            target={<Button> Hover me! </Button>}
-            placement="right-start"
-          >
+          <Popover target={<div className="py-5 px-3 border"> Hover me! </div>} placement="right-start">
             right-start
           </Popover>
 
-          <Popover target={<Button> Hover me! </Button>} placement="right">
+          <Popover target={<div className="py-5 px-3 border"> Hover me! </div>} placement="right">
             right
           </Popover>
 
-          <Popover target={<Button> Hover me! </Button>} placement="right-end">
+          <Popover target={<div className="py-5 px-3 border"> Hover me! </div>} placement="right-end">
             right-end
           </Popover>
         </Col>
@@ -180,7 +151,7 @@ storiesOf('core/Popover', module)
 
   .add('distance and offset', () => (
     <>
-      <h6>Distance</h6>
+      <span className="d-block fs-5">Distance</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Popover
@@ -203,7 +174,7 @@ storiesOf('core/Popover', module)
         </Col>
       </Row>
 
-      <h6>Offset</h6>
+      <span className="d-block fs-5">Offset</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Popover
@@ -230,7 +201,7 @@ storiesOf('core/Popover', module)
 
   .add('custom wrapper', () => (
     <>
-      <h6>Custom wrapper</h6>
+      <span className="d-block fs-5">Custom wrapper</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Popover target="My target is in a <span>">
@@ -246,9 +217,9 @@ storiesOf('core/Popover', module)
   ));
 
 function TinyCrud() {
-  const [open, setOpen] = useState(false);
+  const [ open, setOpen ] = useState(false);
 
-  const persons = ['aap', 'noot', 'mies'];
+  const persons = [ 'aap', 'noot', 'mies' ];
 
   return (
     <ListGroup style={{ width: 300 }}>
@@ -290,15 +261,11 @@ function TinyCrud() {
 
 function NiceCard() {
   return (
-    <Card>
-      <CardHeader>This is a nice header</CardHeader>
-      <CardBody>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-        eveniet, earum corrupti dicta quidem excepturi cupiditate consequuntur
-        soluta obcaecati alias nobis eaque magnam sed et fugiat facere cumque,
-        quaerat laborum!
-      </CardBody>
-      <CardFooter>Containing a footer</CardFooter>
+    <Card header="This is a nice header" footer="Containing a footer">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
+      eveniet, earum corrupti dicta quidem excepturi cupiditate consequuntur
+      soluta obcaecati alias nobis eaque magnam sed et fugiat facere cumque,
+      quaerat laborum!
     </Card>
   );
 }

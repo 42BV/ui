@@ -4,6 +4,7 @@ exports[`Component: Tooltip ui default 1`] = `
 <div>
   <span
     aria-describedby="tippy-1"
+    role="button"
     style="outline: 0;"
     tabindex="0"
   >

@@ -17,17 +17,13 @@ exports[`Component: IconPicker ui with label 1`] = `
       <div
         class="d-flex"
       >
-        <span
+        <button
           aria-expanded="false"
-          tabindex="0"
+          class="btn btn-primary"
+          type="button"
         >
-          <button
-            class="btn btn-primary"
-            type="button"
-          >
-            Select your best friend
-          </button>
-        </span>
+          Select your best friend
+        </button>
       </div>
       Some error
     </div>
@@ -63,17 +59,13 @@ exports[`Component: IconPicker ui with selected value 1`] = `
             Clear
           </u>
         </div>
-        <span
+        <button
           aria-expanded="false"
-          tabindex="0"
+          class="btn btn-primary"
+          type="button"
         >
-          <button
-            class="btn btn-primary"
-            type="button"
-          >
-            Select your best friend
-          </button>
-        </span>
+          Select your best friend
+        </button>
       </div>
       Some error
     </div>
@@ -93,17 +85,13 @@ exports[`Component: IconPicker ui without selected value 1`] = `
       <div
         class="d-flex"
       >
-        <span
+        <button
           aria-expanded="false"
-          tabindex="0"
+          class="btn btn-primary"
+          type="button"
         >
-          <button
-            class="btn btn-primary"
-            type="button"
-          >
-            Select your best friend
-          </button>
-        </span>
+          Select your best friend
+        </button>
       </div>
       Some error
     </div>

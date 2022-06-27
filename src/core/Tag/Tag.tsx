@@ -10,6 +10,7 @@ type Props = {
 
   /**
    * The color of the badge. Supports Bootstrap colors (e.g. primary, danger).
+   * Defaults to `primary`.
    */
   color?: Color;
 
@@ -35,10 +36,10 @@ type Props = {
  * example is someone' hobby's on a profile page, each hobby could
  * be a `Tag`.
  */
-export function Tag({ text, color, onRemove, className }: Props) {
+export function Tag({ text, color = 'primary', onRemove, className }: Props) {
   const canClose = onRemove !== undefined;
-  const classes = classNames('tag', className, {
-    [`tag-${color}`]: color
+  const classes = classNames('badge rounded-pill', className, {
+    [`text-bg-${color}`]: color
   });
 
   return (

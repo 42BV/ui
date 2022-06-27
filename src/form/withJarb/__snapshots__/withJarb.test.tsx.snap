@@ -4,6 +4,7 @@ exports[`HoC: withJarb errorMode: tooltip 1`] = `
 <div>
   <div
     class="w-100"
+    role="button"
     style="outline: 0;"
     tabindex="0"
   >

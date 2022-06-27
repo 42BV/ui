@@ -39,7 +39,7 @@ describe('Component: Debug', () => {
   describe('events', () => {
     it('should toggle isOpen', () => {
       const setIsOpenSpy = jest.fn();
-      jest.spyOn(React, 'useState').mockReturnValue([true, setIsOpenSpy]);
+      jest.spyOn(React, 'useState').mockReturnValue([ true, setIsOpenSpy ]);
 
       setup({});
 

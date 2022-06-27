@@ -18,6 +18,7 @@ exports[`Component: SearchInput ui default 1`] = `
         </i>
       </span>
       <input
+        aria-label="Search"
         class="form-control"
         id="search"
         placeholder="Search..."
@@ -52,6 +53,7 @@ exports[`Component: SearchInput ui with value 1`] = `
         </i>
       </span>
       <input
+        aria-label="Search"
         class="form-control"
         id="search"
         placeholder="Search..."

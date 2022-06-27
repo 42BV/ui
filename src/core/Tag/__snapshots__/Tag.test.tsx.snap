@@ -3,7 +3,7 @@
 exports[`Component: Tag ui default 1`] = `
 <div>
   <span
-    class="tag"
+    class="badge rounded-pill text-bg-primary"
   >
     Maarten
   </span>
@@ -13,7 +13,7 @@ exports[`Component: Tag ui default 1`] = `
 exports[`Component: Tag ui with remove 1`] = `
 <div>
   <span
-    class="tag"
+    class="badge rounded-pill text-bg-primary"
   >
     Maarten
     <span

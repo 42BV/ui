@@ -7,29 +7,33 @@ import { Checkbox } from './Checkbox';
 describe('Component: Checkbox', () => {
   function setup({
     value,
-    placeholder,
-    allowIndeterminate = false
+    hasPlaceholder,
+    allowIndeterminate,
+    hasLabel
   }: {
-    value?: boolean | '';
-    placeholder?: boolean;
+    value?: boolean;
+    hasPlaceholder?: boolean;
     allowIndeterminate?: boolean;
+    hasLabel?: boolean;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
+    const props = {
+      id: hasLabel ? 'agree' : undefined,
+      label: 'Agree',
+      hiddenLabel: !hasLabel,
+      placeholder: hasPlaceholder ? 'Do you agree' : undefined,
+      value,
+      valid: value === true,
+      allowIndeterminate,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      error: 'Some error',
+    };
+
     const { container, rerender, asFragment } = render(
-      <Checkbox
-        id="agree"
-        label="Agree"
-        placeholder={placeholder ? 'Do you agree' : undefined}
-        // @ts-expect-error Test mock
-        value={value}
-        valid={value === true}
-        allowIndeterminate={allowIndeterminate}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        error="Some error"
-      />
+      <Checkbox {...props} />
     );
 
     return { container, rerender, asFragment, onBlurSpy, onChangeSpy };
@@ -37,13 +41,30 @@ describe('Component: Checkbox', () => {
 
   describe('ui', () => {
     test('default', () => {
-      const { container } = setup({ value: false });
+      const { container } = setup({});
       expect(container).toMatchSnapshot();
     });
 
     test('with placeholder', () => {
-      const { container } = setup({ value: true, placeholder: true });
-      expect(container).toMatchSnapshot();
+      setup({ hasPlaceholder: true });
+      expect(screen.queryByText('Do you agree')).toBeInTheDocument();
+    });
+
+    test('without placeholder', () => {
+      setup({ hasPlaceholder: false });
+      expect(screen.queryByText('Do you agree')).not.toBeInTheDocument();
+    });
+
+    test('visible label', () => {
+      setup({ hasLabel: true });
+      expect(screen.queryByText('Agree')).toBeInTheDocument();
+      expect(screen.queryByLabelText('Agree')).toBeInTheDocument();
+    });
+
+    test('invisible label', () => {
+      setup({ hasLabel: false });
+      expect(screen.queryByText('Agree')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Agree')).toBeInTheDocument();
     });
   });
 
@@ -62,12 +83,6 @@ describe('Component: Checkbox', () => {
 
     it('should set indeterminate to true when value is undefined', () => {
       setup({ value: undefined, allowIndeterminate: true });
-      expect(screen.getByRole('checkbox')).toBePartiallyChecked();
-      expect(screen.getByRole('checkbox')).not.toBeChecked();
-    });
-
-    it('should set indeterminate to true when value is empty string from final-form compat', () => {
-      setup({ value: '', allowIndeterminate: true });
       expect(screen.getByRole('checkbox')).toBePartiallyChecked();
       expect(screen.getByRole('checkbox')).not.toBeChecked();
     });

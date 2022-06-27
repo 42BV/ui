@@ -46,7 +46,7 @@ describe('Component: Input', () => {
     const onFocusSpy = jest.fn();
 
     const props = {
-      name: "firstName",
+      name: 'firstName',
       placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,
       type,
       value,
@@ -58,7 +58,8 @@ describe('Component: Input', () => {
       mask,
       addon,
       id: hasLabel ? 'firstName' : undefined,
-      label: hasLabel ? 'First name' : undefined
+      label: 'First name',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender, asFragment } = render(
@@ -89,17 +90,17 @@ describe('Component: Input', () => {
       expect(screen.queryByPlaceholderText('Please enter your first name')).not.toBeInTheDocument();
     });
 
-    test('with label', () => {
+    test('visible label', () => {
       const { container } = setup({ hasLabel: true });
       expect(screen.queryByText('First name')).toBeInTheDocument();
       expect(screen.queryByLabelText('First name')).toBeInTheDocument();
       expect(container).toMatchSnapshot();
     });
 
-    test('without label', () => {
+    test('invisible label', () => {
       setup({ hasLabel: false });
       expect(screen.queryByText('First name')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('First name')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('First name')).toBeInTheDocument();
     });
 
     test('addon default', () => {

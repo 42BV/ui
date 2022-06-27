@@ -1,16 +1,9 @@
 import React, { KeyboardEvent, useEffect, useRef } from 'react';
-import { debounce as lodashDebounce, DebounceSettings } from 'lodash';
-import {
-  FormGroup,
-  Input,
-  InputGroup,
-  InputProps,
-  Label
-} from 'reactstrap';
+import { debounce as lodashDebounce, DebounceSettings, uniqueId } from 'lodash';
+import { FormGroup, Input, InputGroup, InputProps, Label } from 'reactstrap';
 
 import { Icon } from '../Icon';
 import { BootstrapSize } from '../types';
-import { useId } from '../../hooks/useId/useId';
 import { AddonIcon } from '../../form/addons/AddonIcon/AddonIcon';
 
 export type SearchInputApi = {
@@ -48,9 +41,17 @@ export type Props = ModifiedInputProps & {
   id?: string;
 
   /**
-   * Optionally the label of the SearchInput.
+   * The label of the SearchInput.
    */
-  label?: React.ReactNode;
+  label: React.ReactNode;
+
+
+  /**
+   * Optionally whether the label should be invisible (aria-label).
+   * This only works if label is a string.
+   * Defaults to false.
+   */
+  hiddenLabel?: boolean;
 
   /**
    * Optionally the number of milliseconds to debounce the onChange.
@@ -135,8 +136,9 @@ export type Props = ModifiedInputProps & {
  */
 export function SearchInput(props: Props) {
   const {
-    id,
+    id = uniqueId(),
     label,
+    hiddenLabel,
     debounce = 500,
     debounceSettings,
     placeholder,
@@ -176,22 +178,21 @@ export function SearchInput(props: Props) {
     }
   }
 
-  const innerId = useId({ id });
-
   // We use the defaultValue so this component is completely
   // controlled by us. Otherwise the value of the <Input> will only
   // update after the onChange. Which would never work because it is
   // debounced.
   const inputProps: InputProps = {
-    id: innerId,
+    id,
     innerRef: inputRef,
     defaultValue,
     onChange: (event) => {
-      handleChange.current(event.target.value)
+      handleChange.current(event.target.value);
     },
     onKeyUp: handleKeyUp,
     placeholder: placeholder,
-    type: 'search'
+    type: 'search',
+    'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
   };
 
   function getInput() {
@@ -220,9 +221,9 @@ export function SearchInput(props: Props) {
     </div>
   );
 
-  return label ? (
+  return !hiddenLabel || typeof label !== 'string' ? (
     <FormGroup>
-      <Label for={innerId}>{label}</Label>
+      <Label for={id}>{label}</Label>
       {searchInputWrapper}
     </FormGroup>
   ) : (

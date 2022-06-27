@@ -110,7 +110,8 @@ describe('Component: ModalPickerSingle', () => {
       canClear,
       pageSize,
       id: hasLabel ? 'bestFriend' : undefined,
-      label: hasLabel ? 'Best Friend' : undefined
+      label: 'Best Friend',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender } = render(
@@ -452,7 +453,7 @@ describe('Component: ModalPickerSingle', () => {
 
       const newProps = {
         ...props,
-        value: [adminUser()]
+        value: [ adminUser() ]
       };
 
       rerender(

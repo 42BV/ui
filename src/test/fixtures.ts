@@ -22,7 +22,7 @@ export function randomUser(): User {
     firstName: `user-${id}`,
     lastName: 'random',
     active: true,
-    roles: ['ADMIN']
+    roles: [ 'ADMIN' ]
   };
 }
 
@@ -33,7 +33,7 @@ export function adminUser(): User {
     firstName: 'Addie',
     lastName: 'Admin',
     active: true,
-    roles: ['ADMIN']
+    roles: [ 'ADMIN' ]
   };
 }
 
@@ -44,7 +44,7 @@ export function userUser(): User {
     firstName: 'Ulysses',
     lastName: 'User',
     active: false,
-    roles: ['USER']
+    roles: [ 'USER' ]
   };
 }
 
@@ -55,7 +55,7 @@ export function coordinatorUser(): User {
     firstName: 'Cordelia',
     lastName: 'Coordinator',
     active: false,
-    roles: ['ADMIN', 'USER']
+    roles: [ 'ADMIN', 'USER' ]
   };
 }
 
@@ -71,7 +71,7 @@ export function nobodyUser(): User {
 }
 
 export function listOfUsers(): User[] {
-  return [adminUser(), coordinatorUser(), userUser()];
+  return [ adminUser(), coordinatorUser(), userUser() ];
 }
 
 export function pageOfUsers(): Page<User> {

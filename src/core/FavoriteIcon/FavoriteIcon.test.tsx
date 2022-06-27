@@ -56,7 +56,7 @@ describe('Component: FavoriteIcon', () => {
     test('size', () => {
       const { container } = setup({ value: false, size: 10 });
 
-      expect(container.firstChild).toHaveStyle({fontSize: 10});
+      expect(container.firstChild).toHaveStyle({ fontSize: 10 });
     });
 
     test('color', () => {

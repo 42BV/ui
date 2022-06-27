@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Page } from '@42.nl/spring-connect';
 
-import { Pagination, pagesFor } from './Pagination';
+import { pagesFor, Pagination } from './Pagination';
 import userEvent from '@testing-library/user-event';
 
 describe('Component: Pagination', () => {

@@ -8,6 +8,7 @@ exports[`Component: TextEditor ui default 1`] = `
   >
     <div
       class="quill "
+      id="1"
     >
       <div
         class="ql-toolbar ql-snow"

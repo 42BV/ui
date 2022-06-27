@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import { Button, FormGroup, Label, Card } from 'reactstrap';
+import React, { ForwardedRef, forwardRef, useState } from 'react';
+import { Button, FormGroup, Label } from 'reactstrap';
 import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 
 import { withJarb } from '../withJarb/withJarb';
-import { Color } from '../../core/types';
 import { Icon, IconType } from '../../core/Icon';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
-import { Popover } from '../../core/Popover/Popover';
 import { TextButton } from '../../core/TextButton/TextButton';
+import Tippy from '@tippyjs/react';
+import { Card } from '../../core/Card/Card';
+import { uniqueId } from 'lodash';
+import { FieldCompatible } from '../types';
 
 type Text = {
   /**
@@ -28,58 +30,7 @@ type Text = {
   select?: string;
 };
 
-type Props = {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The color that the form element currently has in hex.
-   */
-  value?: string;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value?: string) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder: string;
-
+type Props = FieldCompatible<string | undefined, string | undefined> & {
   /**
    * Optionally the icon to display on the button that opens the color picker.
    */
@@ -105,8 +56,9 @@ type Props = {
  */
 export function ColorPicker(props: Props) {
   const {
-    id,
+    id = uniqueId(),
     label,
+    hiddenLabel,
     value,
     color,
     placeholder,
@@ -119,12 +71,12 @@ export function ColorPicker(props: Props) {
     text = {}
   } = props;
 
-  const [colorValue, setColorValue] = useState(value ? value : '#ffffff');
+  const [ colorValue, setColorValue ] = useState(value ? value : '#ffffff');
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [ isOpen, setIsOpen ] = useState(false);
 
-  function onColorSelected(color?: string) {
-    onChange(color);
+  function onColorSelected(newColor?: string) {
+    onChange(newColor);
     doBlur(onBlur);
     setIsOpen(false);
   }
@@ -133,7 +85,7 @@ export function ColorPicker(props: Props) {
 
   return (
     <FormGroup className={classes} color={color}>
-      <Label for={id}>{label}</Label>
+      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
 
       <div className="d-flex">
         {value ? (
@@ -159,61 +111,77 @@ export function ColorPicker(props: Props) {
             ) : null}
           </div>
         ) : null}
-        <Popover
+        <Tippy
+          visible={isOpen}
+          className="border-0 tippy-popover"
           placement="bottom"
-          isOpen={isOpen}
-          target={
-            <Button
-              type="button"
-              color="primary"
-              onClick={() => {
-                setIsOpen(!isOpen);
-              }}
-            >
-              {icon ? <Icon icon={icon} className="me-2 align-bottom" /> : null}
-              {placeholder}
-            </Button>
-          }
+          offset={[ 0, 7 ]}
+          interactive={true}
+          zIndex={1049} // One level below bootstrap's modal
+          content={(
+            <Card cardBodyClassName="p-0">
+              <SketchPicker
+                color={colorValue}
+                onChange={(result) => setColorValue(result.hex)}
+              />
+              <div className="d-flex justify-content-between my-1 p-1">
+                <Button
+                  color="secondary"
+                  onClick={() => {
+                    const resetColorValue = value ? value : '#ffffff';
+                    setColorValue(resetColorValue);
+                    setIsOpen(false);
+                  }}
+                >
+                  {t({
+                    key: 'ColorPicker.CANCEL',
+                    fallback: 'Cancel',
+                    overrideText: text.cancel
+                  })}
+                </Button>
+                <Button
+                  color="primary"
+                  onClick={() => onColorSelected(colorValue)}
+                >
+                  {t({
+                    key: 'ColorPicker.SELECT',
+                    fallback: 'Select',
+                    overrideText: text.select
+                  })}
+                </Button>
+              </div>
+            </Card>
+          )}
         >
-          <Card body className="p-0">
-            <SketchPicker
-              color={colorValue}
-              onChange={(color) => setColorValue(color.hex)}
-            />
-
-            <div className="d-flex justify-content-between my-1 p-1">
-              <Button
-                color="secondary"
-                onClick={() => {
-                  const resetColorValue = value ? value : '#ffffff';
-                  setColorValue(resetColorValue);
-                  setIsOpen(false);
-                }}
-              >
-                {t({
-                  key: 'ColorPicker.CANCEL',
-                  fallback: 'Cancel',
-                  overrideText: text.cancel
-                })}
-              </Button>
-              <Button
-                color="primary"
-                onClick={() => onColorSelected(colorValue)}
-              >
-                {t({
-                  key: 'ColorPicker.SELECT',
-                  fallback: 'Select',
-                  overrideText: text.select
-                })}
-              </Button>
-            </div>
-          </Card>
-        </Popover>
+          <ColorPickerButtonRef onClick={() => setIsOpen(!isOpen)} icon={icon} placeholder={placeholder} />
+        </Tippy>
       </div>
       {error}
     </FormGroup>
   );
 }
+
+type ButtonProps = {
+  onClick: () => void;
+  icon?: IconType;
+  placeholder?: string;
+};
+
+function ColorPickerButton({ onClick, icon, placeholder }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
+  return (
+    <button
+      type="button"
+      className="btn btn-primary"
+      onClick={onClick}
+      ref={ref}
+    >
+      {icon ? <Icon icon={icon} className="me-2 align-bottom" /> : null}
+      {placeholder}
+    </button>
+  )
+}
+
+const ColorPickerButtonRef = forwardRef(ColorPickerButton);
 
 /**
  * Variant of the ColorPicker which can be used in a Jarb context.

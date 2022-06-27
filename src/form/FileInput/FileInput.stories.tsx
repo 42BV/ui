@@ -46,11 +46,13 @@ storiesOf('Form/FileInput', module)
       </Card>
     );
   })
-  .add('without label', () => {
+  .add('invisible label', () => {
     return (
       <Card className="m-2">
         <FileInput
           id="file-upload-with-button"
+          label="Upload a file here"
+          hiddenLabel={true}
           placeholder="Upload a file here"
           accept="text/plain"
           onChange={() => action('value changed')}
@@ -93,7 +95,7 @@ storiesOf('Form/FileInput', module)
             placeholder="Upload a file here"
             label="Upload a file here"
             accept="text/plain"
-            validators={[requireFile('Profile photo')]}
+            validators={[ requireFile('Profile photo') ]}
             jarb={{
               validator: 'User.profile',
               label: 'Profile photo'

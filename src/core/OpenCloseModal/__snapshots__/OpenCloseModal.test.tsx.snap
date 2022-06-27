@@ -41,6 +41,9 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
             <fieldset
               class="radio-group  mb-3"
             >
+              <legend>
+                Environment
+              </legend>
               <div
                 class="form-check"
               >
@@ -224,6 +227,9 @@ exports[`Component: OpenCloseModal ui open 1`] = `
             <fieldset
               class="radio-group  mb-3"
             >
+              <legend>
+                Environment
+              </legend>
               <div
                 class="form-check"
               >

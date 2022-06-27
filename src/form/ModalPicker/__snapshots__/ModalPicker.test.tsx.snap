@@ -60,6 +60,7 @@ exports[`Component: ModalPicker ui default 1`] = `
                       </i>
                     </span>
                     <input
+                      aria-label="Start typing to search"
                       class="form-control"
                       id="1"
                       placeholder="Search..."
@@ -85,70 +86,74 @@ exports[`Component: ModalPicker ui default 1`] = `
           <div
             class="d-flex justify-content-center modal-footer"
           >
-            <nav
-              aria-label="pagination"
-              class=""
+            <div
+              class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
             >
-              <ul
-                class="pagination"
+              <nav
+                aria-label="pagination"
+                class=""
               >
-                <li
-                  class="page-item"
+                <ul
+                  class="pagination"
                 >
-                  <button
-                    class="page-link"
+                  <li
+                    class="page-item"
                   >
-                    <i
-                      class="icon material-icons"
-                      style="font-size: 14px;"
+                    <button
+                      class="page-link"
                     >
-                      arrow_back
-                    </i>
-                  </button>
-                </li>
-                <li
-                  class="page-item"
-                >
-                  <button
-                    class="page-link"
+                      <i
+                        class="icon material-icons"
+                        style="font-size: 14px;"
+                      >
+                        arrow_back
+                      </i>
+                    </button>
+                  </li>
+                  <li
+                    class="page-item"
                   >
-                    1
-                  </button>
-                </li>
-                <li
-                  class="page-item active"
-                >
-                  <button
-                    class="page-link"
-                  >
-                    2
-                  </button>
-                </li>
-                <li
-                  class="page-item"
-                >
-                  <button
-                    class="page-link"
-                  >
-                    3
-                  </button>
-                </li>
-                <li
-                  class="page-item"
-                >
-                  <button
-                    class="page-link"
-                  >
-                    <i
-                      class="icon material-icons"
-                      style="font-size: 14px;"
+                    <button
+                      class="page-link"
                     >
-                      arrow_forward
-                    </i>
-                  </button>
-                </li>
-              </ul>
-            </nav>
+                      1
+                    </button>
+                  </li>
+                  <li
+                    class="page-item active"
+                  >
+                    <button
+                      class="page-link"
+                    >
+                      2
+                    </button>
+                  </li>
+                  <li
+                    class="page-item"
+                  >
+                    <button
+                      class="page-link"
+                    >
+                      3
+                    </button>
+                  </li>
+                  <li
+                    class="page-item"
+                  >
+                    <button
+                      class="page-link"
+                    >
+                      <i
+                        class="icon material-icons"
+                        style="font-size: 14px;"
+                      >
+                        arrow_forward
+                      </i>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
           <div
             class="d-flex flex-row justify-content-between modal-footer"
@@ -239,6 +244,7 @@ exports[`Component: ModalPicker ui loading 1`] = `
                       </i>
                     </span>
                     <input
+                      aria-label="Start typing to search"
                       class="form-control"
                       id="5"
                       placeholder="Search..."
@@ -272,7 +278,7 @@ exports[`Component: ModalPicker ui loading 1`] = `
                       <i
                         class="icon material-icons"
                       >
-                        radio_button_unchecked
+                        contrast
                       </i>
                       <i
                         class="icon material-icons"
@@ -292,7 +298,7 @@ exports[`Component: ModalPicker ui loading 1`] = `
                       <i
                         class="icon material-icons"
                       >
-                        add
+                        bolt
                       </i>
                     </div>
                     <div
@@ -317,7 +323,9 @@ exports[`Component: ModalPicker ui loading 1`] = `
                       </svg>
                     </div>
                   </div>
-                  <h4 />
+                  <span
+                    class="d-block fs-4"
+                  />
                 </div>
               </div>
             </div>
@@ -325,70 +333,74 @@ exports[`Component: ModalPicker ui loading 1`] = `
           <div
             class="d-flex justify-content-center modal-footer"
           >
-            <nav
-              aria-label="pagination"
-              class=""
+            <div
+              class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
             >
-              <ul
-                class="pagination"
+              <nav
+                aria-label="pagination"
+                class=""
               >
-                <li
-                  class="page-item"
+                <ul
+                  class="pagination"
                 >
-                  <button
-                    class="page-link"
+                  <li
+                    class="page-item"
                   >
-                    <i
-                      class="icon material-icons"
-                      style="font-size: 14px;"
+                    <button
+                      class="page-link"
                     >
-                      arrow_back
-                    </i>
-                  </button>
-                </li>
-                <li
-                  class="page-item"
-                >
-                  <button
-                    class="page-link"
+                      <i
+                        class="icon material-icons"
+                        style="font-size: 14px;"
+                      >
+                        arrow_back
+                      </i>
+                    </button>
+                  </li>
+                  <li
+                    class="page-item"
                   >
-                    1
-                  </button>
-                </li>
-                <li
-                  class="page-item active"
-                >
-                  <button
-                    class="page-link"
-                  >
-                    2
-                  </button>
-                </li>
-                <li
-                  class="page-item"
-                >
-                  <button
-                    class="page-link"
-                  >
-                    3
-                  </button>
-                </li>
-                <li
-                  class="page-item"
-                >
-                  <button
-                    class="page-link"
-                  >
-                    <i
-                      class="icon material-icons"
-                      style="font-size: 14px;"
+                    <button
+                      class="page-link"
                     >
-                      arrow_forward
-                    </i>
-                  </button>
-                </li>
-              </ul>
-            </nav>
+                      1
+                    </button>
+                  </li>
+                  <li
+                    class="page-item active"
+                  >
+                    <button
+                      class="page-link"
+                    >
+                      2
+                    </button>
+                  </li>
+                  <li
+                    class="page-item"
+                  >
+                    <button
+                      class="page-link"
+                    >
+                      3
+                    </button>
+                  </li>
+                  <li
+                    class="page-item"
+                  >
+                    <button
+                      class="page-link"
+                    >
+                      <i
+                        class="icon material-icons"
+                        style="font-size: 14px;"
+                      >
+                        arrow_forward
+                      </i>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
           <div
             class="d-flex flex-row justify-content-between modal-footer"

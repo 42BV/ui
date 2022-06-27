@@ -4,12 +4,7 @@ import '@testing-library/jest-dom';
 
 import { Select, Text } from './Select';
 import { User } from '../../test/types';
-import {
-  adminUser,
-  coordinatorUser,
-  listOfUsers, pageOfUsers, pageOfUsersFetcher,
-  userUser
-} from '../../test/fixtures';
+import { adminUser, coordinatorUser, listOfUsers, pageOfUsers, pageOfUsersFetcher, userUser } from '../../test/fixtures';
 import { IsOptionEnabled } from '../option';
 
 import { pageOf } from '../../utilities/page/page';
@@ -78,7 +73,8 @@ describe('Component: Select', () => {
       error: 'Some error',
       valid,
       id: hasLabel ? 'subject' : undefined,
-      label: hasLabel ? 'Subject' : undefined
+      label: 'Subject',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender } = render(
@@ -124,16 +120,16 @@ describe('Component: Select', () => {
       expect(screen.queryAllByRole('option').length).toBe(3);
     });
 
-    test('with label', () => {
+    test('visible label', () => {
       setup({ hasLabel: true });
       expect(screen.queryByText('Subject')).toBeInTheDocument();
       expect(screen.queryByLabelText('Subject')).toBeInTheDocument();
     });
 
-    test('without label', () => {
+    test('invisible label', () => {
       setup({ hasLabel: false });
       expect(screen.queryByText('Subject')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('Subject')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Subject')).toBeInTheDocument();
     });
 
     test('valid', () => {
@@ -228,9 +224,9 @@ describe('Component: Select', () => {
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
-          [adminUser()],
-          [coordinatorUser()],
-          [userUser()]
+          [ adminUser() ],
+          [ coordinatorUser() ],
+          [ userUser() ]
         ]);
       });
     });

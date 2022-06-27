@@ -19,7 +19,7 @@ exports[`Component: ContentStateIcon ui empty 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -39,7 +39,7 @@ exports[`Component: ContentStateIcon ui empty 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -52,14 +52,16 @@ exports[`Component: ContentStateIcon ui empty 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       title
-    </h4>
-    <h6
-      class="text-muted mb-3"
+    </span>
+    <span
+      class="d-block fs-6 text-dark mb-3"
     >
       subtitle
-    </h6>
+    </span>
   </div>
 </div>
 `;
@@ -83,7 +85,7 @@ exports[`Component: ContentStateIcon ui error 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -103,7 +105,7 @@ exports[`Component: ContentStateIcon ui error 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -116,14 +118,16 @@ exports[`Component: ContentStateIcon ui error 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       title
-    </h4>
-    <h6
-      class="text-muted mb-3"
+    </span>
+    <span
+      class="d-block fs-6 text-dark mb-3"
     >
       subtitle
-    </h6>
+    </span>
   </div>
 </div>
 `;
@@ -147,7 +151,7 @@ exports[`Component: ContentStateIcon ui loading 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -167,7 +171,7 @@ exports[`Component: ContentStateIcon ui loading 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -192,9 +196,11 @@ exports[`Component: ContentStateIcon ui loading 1`] = `
         </svg>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Loading...
-    </h4>
+    </span>
   </div>
 </div>
 `;
@@ -218,7 +224,7 @@ exports[`Component: ContentStateIcon ui no-results 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -238,7 +244,7 @@ exports[`Component: ContentStateIcon ui no-results 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -251,14 +257,16 @@ exports[`Component: ContentStateIcon ui no-results 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       title
-    </h4>
-    <h6
-      class="text-muted mb-3"
+    </span>
+    <span
+      class="d-block fs-6 text-dark mb-3"
     >
       subtitle
-    </h6>
+    </span>
   </div>
 </div>
 `;
@@ -282,7 +290,7 @@ exports[`Component: ContentStateIcon ui with children 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -302,7 +310,7 @@ exports[`Component: ContentStateIcon ui with children 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -315,14 +323,16 @@ exports[`Component: ContentStateIcon ui with children 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       title
-    </h4>
-    <h6
-      class="text-muted mb-3"
+    </span>
+    <span
+      class="d-block fs-6 text-dark mb-3"
     >
       subtitle
-    </h6>
+    </span>
     <p>
       Children
     </p>

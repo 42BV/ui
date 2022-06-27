@@ -7,47 +7,16 @@ exports[`Component: Checkbox ui default 1`] = `
   >
     <label
       class="form-check-label"
-      for="agree"
+      for="1"
     >
       <input
         aria-invalid="true"
-        class="is-invalid form-check-input"
-        id="agree"
+        aria-label="Agree"
+        class="mr-2 is-invalid form-check-input"
+        id="1"
         type="checkbox"
       />
-       
-      Agree
     </label>
-    Some error
-  </div>
-</div>
-`;
-
-exports[`Component: Checkbox ui with placeholder 1`] = `
-<div>
-  <div
-    class="form-check"
-  >
-    <label
-      class="form-check-label"
-      for="agree"
-    >
-      <input
-        checked=""
-        class="is-valid form-check-input"
-        id="agree"
-        type="checkbox"
-      />
-       
-      Agree
-    </label>
-    <p
-      class="text-muted mb-0"
-    >
-      <em>
-        Do you agree
-      </em>
-    </p>
     Some error
   </div>
 </div>

@@ -2,15 +2,9 @@ import { FieldValidator } from 'final-form';
 import { get } from 'lodash';
 import { MomentInput } from 'moment';
 import { t } from '../../utilities/translation/translation';
-import {
-  isDate,
-  isDateAfter,
-  isDateBefore,
-  isDateBetween,
-  IsDateBetweenConfig
-} from './checkers';
+import { isDate, isDateAfter, isDateBefore, isDateBetween, IsDateBetweenConfig } from './checkers';
 import { DateFormat, TimeFormat } from './types';
-import { combineFormat} from './utils';
+import { combineFormat } from './utils';
 
 type IsDateValidatorConfig = {
   /**
@@ -52,7 +46,7 @@ export function isDateValidator(config: IsDateValidatorConfig): FieldValidator<D
   const { dateFormat, timeFormat, label } = config;
 
   return (value?: string | Date): string | undefined => {
-    if (!value || isDate({dateFormat, timeFormat})(value)) {
+    if (!value || isDate({ dateFormat, timeFormat })(value)) {
       return undefined;
     }
 

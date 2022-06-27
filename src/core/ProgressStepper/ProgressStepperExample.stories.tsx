@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { ProgressStepper } from './ProgressStepper';
+import { Card } from '../Card/Card';
 
 type Step = 'Billing' | 'Coupon' | 'Finished';
 
 type Status = 'complete' | 'incomplete' | 'error';
 
-const steps: Step[] = ['Billing', 'Coupon', 'Finished'];
+const steps: Step[] = [ 'Billing', 'Coupon', 'Finished' ];
 
 type ShoppingWizardState = { [x in Step]: Status };
 
@@ -20,8 +21,8 @@ const initialState: ShoppingWizardState = {
 storiesOf('core/ProgressStepper', module)
   .addParameters({ component: ProgressStepper })
   .add('example', () => {
-    const [status, setStatus] = useState<ShoppingWizardState>(initialState);
-    const [current, setCurrent] = useState<Step>('Billing');
+    const [ status, setStatus ] = useState<ShoppingWizardState>(initialState);
+    const [ current, setCurrent ] = useState<Step>('Billing');
 
     function onSubmit() {
       // Add a random error chance
@@ -43,7 +44,7 @@ storiesOf('core/ProgressStepper', module)
     }
 
     return (
-      <>
+      <Card>
         <div className="text-center">
           <ProgressStepper<Step>
             className="ms-auto"
@@ -87,6 +88,6 @@ storiesOf('core/ProgressStepper', module)
             will either succeed or fail randomly.
           </p>
         </div>
-      </>
+      </Card>
     );
   });

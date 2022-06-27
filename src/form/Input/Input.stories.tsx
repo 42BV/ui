@@ -100,7 +100,7 @@ storiesOf('Form/Input', module)
           label="Zipcode"
           placeholder="Please enter your zipcode"
           onChange={(value) => action(`You entered ${value}`)}
-          mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, ' ', /[A-z]/, /[A-z]/]}
+          mask={[ /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, ' ', /[A-z]/, /[A-z]/ ]}
         />
         <p>
           Look
@@ -112,10 +112,12 @@ storiesOf('Form/Input', module)
       </Card>
     );
   })
-  .add('without label', () => {
+  .add('invisible label', () => {
     return (
       <Card className="m2">
         <Input
+          label="First name"
+          hiddenLabel={true}
           placeholder="Please enter your first name"
           onChange={(value) => action(`You entered ${value}`)}
         />
@@ -152,7 +154,7 @@ storiesOf('Form/Input', module)
           <JarbInput
             name="firstName"
             jarb={{ validator: 'Hero.name', label: 'First name' }}
-            validators={[isSuperman]}
+            validators={[ isSuperman ]}
             id="firstName"
             label="First name"
             placeholder="Please enter your first name"

@@ -22,18 +22,21 @@
       height: 1.25rem;
     }
   }
+
   &.avatar-sm {
     .img-placeholder {
       width: 3.125rem;
       height: 3.125rem;
     }
   }
+
   &.avatar-md {
     .img-placeholder {
       width: 4.375rem;
       height: 4.375rem;
     }
   }
+
   &.avatar-lg {
     .img-placeholder {
       width: 5.625rem;
@@ -47,12 +50,15 @@
     position: relative;
     display: inline-block;
     margin-right: -1.25rem;
+
     .img-placeholder {
       margin-right: 0;
     }
+
     &:hover {
       margin-right: 0;
     }
+
     @include transition(margin-left 0.25s ease, margin-right 0.25s ease);
 
     &.avatar-xs,
@@ -62,17 +68,22 @@
       &:hover {
         margin-right: 0;
       }
+
       @include transition(margin-left 0.25s ease, margin-right 0.25s ease);
     }
+
     &.avatar-xs {
       margin-right: -0.625rem;
     }
+
     &.avatar-sm {
       margin-right: -2.5rem;
     }
+
     &.avatar-md {
       margin-right: -3.75rem;
     }
+
     &.avatar-lg {
       margin-right: -80px;
     }

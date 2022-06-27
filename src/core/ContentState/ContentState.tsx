@@ -65,19 +65,19 @@ export function ContentState({
     mode === 'empty'
       ? 'laptop'
       : mode === 'error'
-      ? 'sentiment_very_dissatisfied'
-      : 'search';
+        ? 'sentiment_very_dissatisfied'
+        : 'search';
 
   return (
     <div className={classNames('text-center', className)}>
       <div className={classNames('content-state', mode)}>
         <div className="state-icons">
           <Icon icon="add" />
-          <Icon icon="radio_button_unchecked" />
+          <Icon icon="contrast" />
           <Icon icon="photo" />
           <Icon icon="folder_open" />
           <Icon icon="radio_button_unchecked" />
-          <Icon icon="add" />
+          <Icon icon="bolt" />
         </div>
         <div className="state-content">
           {mode === 'loading' ? (
@@ -87,8 +87,8 @@ export function ContentState({
           )}
         </div>
       </div>
-      <h4>{title}</h4>
-      {subTitle && <h6 className="text-muted mb-3">{subTitle}</h6>}
+      <span className="d-block fs-4">{title}</span>
+      {subTitle && <span className="d-block fs-6 text-dark mb-3">{subTitle}</span>}
       {children}
     </div>
   );

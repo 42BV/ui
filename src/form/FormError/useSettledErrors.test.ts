@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 
 import { useSettledErrors } from './useSettledErrors';
 import { Meta, MetaError } from '../types';
@@ -22,11 +22,11 @@ describe('useSettledErrors', () => {
   describe('initialisation', () => {
     test('when array that it returns an array', () => {
       const { result } = setup({
-        meta: { touched: true, error: ['Big error', 'Small error'] },
+        meta: { touched: true, error: [ 'Big error', 'Small error' ] },
         value: 'test'
       });
 
-      expect(result.current).toEqual(['Big error', 'Small error']);
+      expect(result.current).toEqual([ 'Big error', 'Small error' ]);
     });
 
     test('when single value return array', () => {
@@ -35,14 +35,14 @@ describe('useSettledErrors', () => {
         value: 'test'
       });
 
-      expect(result.current).toEqual(['Big error']);
+      expect(result.current).toEqual([ 'Big error' ]);
     });
   });
 
   describe('cleanup', () => {
     test('that window clearTimeout is called', () => {
       const { unmount } = setup({
-        meta: { active: true, error: ['Big error', 'Small error'] },
+        meta: { active: true, error: [ 'Big error', 'Small error' ] },
         value: 'test'
       });
 
@@ -77,7 +77,7 @@ describe('useSettledErrors', () => {
       act(() => {
         jest.advanceTimersByTime(1);
       });
-      expect(result.current).toEqual(['Big error']);
+      expect(result.current).toEqual([ 'Big error' ]);
     });
 
     test('active without errors hides the error', () => {
@@ -87,7 +87,7 @@ describe('useSettledErrors', () => {
       });
 
       // It should start of with the error
-      expect(result.current).toEqual(['Big error']);
+      expect(result.current).toEqual([ 'Big error' ]);
 
       // When if the error is cleared it should hide the error after 100 milliseconds
       rerender({ meta: { active: true, error: undefined }, value: 'henk' });
@@ -95,7 +95,7 @@ describe('useSettledErrors', () => {
       act(() => {
         jest.advanceTimersByTime(99);
       });
-      expect(result.current).toEqual(['Big error']);
+      expect(result.current).toEqual([ 'Big error' ]);
 
       act(() => {
         jest.advanceTimersByTime(1);
@@ -126,7 +126,7 @@ describe('useSettledErrors', () => {
       act(() => {
         jest.advanceTimersByTime(1);
       });
-      expect(result.current).toEqual(['Small error']);
+      expect(result.current).toEqual([ 'Small error' ]);
     });
 
     test('inactive and untouched with error hides error immediately', () => {
@@ -136,7 +136,7 @@ describe('useSettledErrors', () => {
       });
 
       // It should start of with errors
-      expect(result.current).toEqual(['Big error']);
+      expect(result.current).toEqual([ 'Big error' ]);
 
       // When no longer active and pristine hide the error after 100 milliseconds
       rerender({
@@ -154,7 +154,7 @@ describe('useSettledErrors', () => {
       });
 
       // It should start of with the error
-      expect(result.current).toEqual(['Small error']);
+      expect(result.current).toEqual([ 'Small error' ]);
 
       // When no longer active and pristine hide the error after 2000 milliseconds
       rerender({ meta: { active: false, error: undefined }, value: 'henk' });
@@ -162,7 +162,7 @@ describe('useSettledErrors', () => {
       act(() => {
         jest.advanceTimersByTime(1999);
       });
-      expect(result.current).toEqual(['Small error']);
+      expect(result.current).toEqual([ 'Small error' ]);
 
       act(() => {
         jest.advanceTimersByTime(1);
@@ -181,7 +181,7 @@ describe('useSettledErrors', () => {
       act(() => {
         jest.advanceTimersByTime(5000);
       });
-      expect(result.current).toEqual(['Small error']);
+      expect(result.current).toEqual([ 'Small error' ]);
 
       // Set the value to "small-error" with no error (undefined), to
       // simulate an async validation which `final-form` will set the
@@ -197,7 +197,7 @@ describe('useSettledErrors', () => {
       act(() => {
         jest.advanceTimersByTime(100);
       });
-      expect(result.current).toEqual(['Small error']);
+      expect(result.current).toEqual([ 'Small error' ]);
 
       // It should clear the error after 2000 milliseconds
       act(() => {

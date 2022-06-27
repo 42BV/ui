@@ -7,9 +7,9 @@ exports[`Component: Input masked 1`] = `
     color="success"
   >
     <input
+      aria-label="First name"
       class="form-control"
       id="11"
-      placeholder=""
       type="text"
       value=""
     />
@@ -29,9 +29,9 @@ exports[`Component: Input ui addon default 1`] = `
     >
       Default on the left
       <input
+        aria-label="First name"
         class="form-control"
         id="6"
-        placeholder=""
         type="text"
         value=""
       />
@@ -48,9 +48,9 @@ exports[`Component: Input ui default 1`] = `
     color="success"
   >
     <input
+      aria-label="First name"
       class="form-control"
       id="1"
-      placeholder=""
       type="text"
       value=""
     />
@@ -59,7 +59,7 @@ exports[`Component: Input ui default 1`] = `
 </div>
 `;
 
-exports[`Component: Input ui with label 1`] = `
+exports[`Component: Input ui visible label 1`] = `
 <div>
   <div
     class="mb-3"
@@ -74,7 +74,6 @@ exports[`Component: Input ui with label 1`] = `
     <input
       class="form-control"
       id="firstName"
-      placeholder=""
       type="text"
       value=""
     />

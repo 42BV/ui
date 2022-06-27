@@ -2,13 +2,8 @@ import { chunk } from 'lodash';
 import React from 'react';
 import { FormGroup, Input as RSInput, Label } from 'reactstrap';
 import { Loading } from '../../core/Loading/Loading';
-import { useId } from '../../hooks/useId/useId';
 import { t } from '../../utilities/translation/translation';
-import {
-  FieldCompatibleWithPredeterminedOptions,
-  isOptionSelected,
-  getKeyForOption
-} from '../option';
+import { FieldCompatibleWithPredeterminedOptions, getKeyForOption, isOptionSelected } from '../option';
 import { FieldCompatible } from '../types';
 import { useOptions } from '../useOptions';
 import { alwaysTrue, doBlur } from '../utils';
@@ -24,49 +19,49 @@ export type Text = {
 
 export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
   FieldCompatibleWithPredeterminedOptions<T> & {
-    /**
-     * Optionally customized text within the component.
-     * This text should already be translated.
-     */
-    text?: Text;
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
 
-    /**
-     * Whether or not to show the CheckboxMultipleSelect horizontally.
-     *
-     * Defaults to `false`
-     */
-    horizontal?: boolean;
+  /**
+   * Whether or not to show the CheckboxMultipleSelect horizontally.
+   *
+   * Defaults to `false`
+   */
+  horizontal?: boolean;
 
-    /**
-     * Whether or not the form element should always contain the value
-     * which is selected.
-     *
-     * It should be `true` when using it in the following situation:
-     * The form element receives a value which is no longer part
-     * of the options. In that case it is handy to have the value
-     * automatically added to the options, so the user still sees
-     * the select value.
-     *
-     * It should be `false` when using it in the following situations:
-     *
-     * 1. The selected `value` is displayed separately from the
-     *    selection of values. In this case it does not make sense
-     *    to add the `value` to the options because it is already
-     *    displayed.
-     *
-     * 2. The form element represents a sub selection of a larger
-     *    value. For example you have an array of permissions of what
-     *    the user can do in the system, visually you display grouped
-     *    by parts of the domain. This means giving the same `value`
-     *    to various form element components to represent parts of the
-     *    same array of permissions. If `optionsShouldAlwaysContainValue`
-     *    were `true` it would add all permissions to each permission
-     *    group.
-     *
-     * This value is `true` by default.
-     */
-    optionsShouldAlwaysContainValue?: boolean;
-  };
+  /**
+   * Whether or not the form element should always contain the value
+   * which is selected.
+   *
+   * It should be `true` when using it in the following situation:
+   * The form element receives a value which is no longer part
+   * of the options. In that case it is handy to have the value
+   * automatically added to the options, so the user still sees
+   * the select value.
+   *
+   * It should be `false` when using it in the following situations:
+   *
+   * 1. The selected `value` is displayed separately from the
+   *    selection of values. In this case it does not make sense
+   *    to add the `value` to the options because it is already
+   *    displayed.
+   *
+   * 2. The form element represents a sub selection of a larger
+   *    value. For example you have an array of permissions of what
+   *    the user can do in the system, visually you display grouped
+   *    by parts of the domain. This means giving the same `value`
+   *    to various form element components to represent parts of the
+   *    same array of permissions. If `optionsShouldAlwaysContainValue`
+   *    were `true` it would add all permissions to each permission
+   *    group.
+   *
+   * This value is `true` by default.
+   */
+  optionsShouldAlwaysContainValue?: boolean;
+};
 
 /**
  * CheckboxMultipleSelect is a form element for which the values can
@@ -80,8 +75,8 @@ export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
  */
 export function CheckboxMultipleSelect<T>(props: Props<T>) {
   const {
-    id,
     label,
+    hiddenLabel,
     error,
     color,
     text = {},
@@ -98,8 +93,6 @@ export function CheckboxMultipleSelect<T>(props: Props<T>) {
     onChange,
     onBlur
   } = props;
-
-  const innerId = useId({ id });
 
   const { page, loading } = useOptions({
     options: props.options,
@@ -118,7 +111,7 @@ export function CheckboxMultipleSelect<T>(props: Props<T>) {
     // Otherwise the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
-    let selected = Array.isArray(value) ? [...value] : [];
+    let selected = Array.isArray(value) ? [ ...value ] : [];
 
     if (isSelected) {
       selected = selected.filter(
@@ -142,9 +135,9 @@ export function CheckboxMultipleSelect<T>(props: Props<T>) {
 
   return (
     <FormGroup className={className} color={color}>
-      {label ? <Label for={innerId}>{label}</Label> : null}
+      {!hiddenLabel ? <Label>{label}</Label> : null}
       {placeholder ? (
-        <p className="text-muted">
+        <p>
           <em>{placeholder}</em>
         </p>
       ) : null}
@@ -224,8 +217,6 @@ export function CheckboxMultipleSelect<T>(props: Props<T>) {
 /**
  * Variant of the CheckboxMultipleSelect which can be used in a Jarb context.
  */
-export const JarbCheckboxMultipleSelect = withJarb<
-  any[],
+export const JarbCheckboxMultipleSelect = withJarb<any[],
   any[] | null,
-  Props<any>
->(CheckboxMultipleSelect);
+  Props<any>>(CheckboxMultipleSelect);

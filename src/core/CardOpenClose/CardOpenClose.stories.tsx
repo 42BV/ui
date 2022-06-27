@@ -5,7 +5,7 @@ import { CardOpenClose } from './CardOpenClose';
 storiesOf('core/CardOpenClose', module)
   .addParameters({ component: CardOpenClose })
   .add('basic', () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [ isOpen, setIsOpen ] = useState(false);
 
     return (
       <CardOpenClose

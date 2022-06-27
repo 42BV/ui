@@ -25,7 +25,9 @@ function rejectData() {
 }
 
 function loadingData() {
-  return new Promise(() => undefined);
+  return new Promise(() => {
+    // this promise never resolves to be able to keep displaying loading state
+  });
 }
 
 const client = new QueryClient({
@@ -35,7 +37,7 @@ const client = new QueryClient({
       refetchOnWindowFocus: false,
       cacheTime: 0
     }
-  },
+  }
 });
 
 storiesOf('core/async/AsyncContent', module)
@@ -49,8 +51,8 @@ storiesOf('core/async/AsyncContent', module)
       <Story />
     </QueryClientProvider>
   ))
-  .add('when loaded', () => {
-    const state = useQuery(['data'], loadData);
+  .add('loaded', () => {
+    const state = useQuery([ 'loaded' ], loadData);
 
     return (
       <div className="text-center">
@@ -61,8 +63,8 @@ storiesOf('core/async/AsyncContent', module)
     );
   })
 
-  .add('when error', () => {
-    const state = useQuery(['data'], rejectData);
+  .add('error', () => {
+    const state = useQuery([ 'error' ], rejectData);
 
     return (
       <div className="text-center">
@@ -73,8 +75,8 @@ storiesOf('core/async/AsyncContent', module)
     );
   })
 
-  .add('when error with custom text', () => {
-    const state = useQuery(['data'], rejectData);
+  .add('error with custom text', () => {
+    const state = useQuery([ 'error', 'custom text' ], rejectData);
 
     return (
       <div className="text-center">
@@ -88,8 +90,8 @@ storiesOf('core/async/AsyncContent', module)
     );
   })
 
-  .add('when error with no retry button', () => {
-    const state = useQuery(['data'], rejectData);
+  .add('error with no retry button', () => {
+    const state = useQuery([ 'error', 'no retry' ], rejectData);
 
     return (
       <div className="text-center">
@@ -100,8 +102,8 @@ storiesOf('core/async/AsyncContent', module)
     );
   })
 
-  .add('when loading', () => {
-    const state = useQuery(['data'], loadingData);
+  .add('loading', () => {
+    const state = useQuery([ 'loading' ], loadingData);
 
     return (
       <div className="text-center">
@@ -112,8 +114,8 @@ storiesOf('core/async/AsyncContent', module)
     );
   })
 
-  .add('when loading with custom title', () => {
-    const state = useQuery(['data'], loadingData);
+  .add('loading with custom title', () => {
+    const state = useQuery([ 'loading', 'custom title' ], loadingData);
 
     return (
       <div className="text-center">
@@ -124,8 +126,8 @@ storiesOf('core/async/AsyncContent', module)
     );
   })
 
-  .add('when empty', () => {
-    const state = useQuery(['data'], loadData);
+  .add('empty', () => {
+    const state = useQuery([ 'empty' ], loadData);
 
     return (
       <div className="text-center">
@@ -139,14 +141,14 @@ storiesOf('core/async/AsyncContent', module)
     );
   })
 
-  .add('when empty with title', () => {
-    const state = useQuery(['data'], loadData);
+  .add('empty with custom title', () => {
+    const state = useQuery([ 'empty', 'custom title' ], loadData);
 
     return (
       <div className="text-center">
         <AsyncContent
           state={state}
-          text={{ empty: "No Jeffrey's match your parameters try again" }}
+          text={{ empty: 'No Jeffrey\'s match your parameters try again' }}
           isEmpty={(data: { user: string }) => data.user === 'Jeffrey'}
         >
           {(data: { user: string }) => <h2>Hi, {data.user}</h2>}
@@ -155,8 +157,8 @@ storiesOf('core/async/AsyncContent', module)
     );
   })
 
-  .add('when empty with custom empty', () => {
-    const state = useQuery(['data'], loadData);
+  .add('empty with custom empty', () => {
+    const state = useQuery([ 'empty', 'custom empty' ], loadData);
 
     return (
       <div className="text-center">

@@ -21,22 +21,23 @@ storiesOf('core/SearchInput', module)
     </>
   ))
   .add('default', () => {
-    const [query, setQuery] = useState('');
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
         <p>You searched for: {query}</p>
-        <SearchInput defaultValue={query} onChange={setQuery} />
+        <SearchInput label="Search" defaultValue={query} onChange={setQuery} />
       </Card>
     );
   })
   .add('without icon', () => {
-    const [query, setQuery] = useState('');
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
         <p>You searched for: {query}</p>
         <SearchInput
+          label="Search"
           defaultValue={query}
           onChange={setQuery}
           showIcon={false}
@@ -45,22 +46,23 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('with custom debounce', () => {
-    const [query, setQuery] = useState('');
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
         <p>You searched for: {query}</p>
-        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000} />
+        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000} label="Search" />
       </Card>
     );
   })
   .add('with custom debounce settings', () => {
-    const [query, setQuery] = useState('');
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
         <p>You searched for: {query}</p>
         <SearchInput
+          label="Search"
           defaultValue={query}
           onChange={setQuery}
           debounce={1000}
@@ -70,7 +72,7 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('with placeholder', () => {
-    const [query, setQuery] = useState('');
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
@@ -79,12 +81,13 @@ storiesOf('core/SearchInput', module)
           defaultValue={query}
           onChange={setQuery}
           placeholder="Search..."
+          label="Search"
         />
       </Card>
     );
   })
-  .add('with label', () => {
-    const [query, setQuery] = useState('');
+  .add('invisible label', () => {
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
@@ -92,6 +95,7 @@ storiesOf('core/SearchInput', module)
         <SearchInput
           id="search"
           label="Search"
+          hiddenLabel={true}
           defaultValue={query}
           onChange={setQuery}
         />
@@ -99,7 +103,7 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('with custom label', () => {
-    const [query, setQuery] = useState('');
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
@@ -121,13 +125,13 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('with external value', () => {
-    const [query, setQuery] = useState('');
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
         <p>You searched for: {query}</p>
 
-        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000}>
+        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000} label="Search">
           {(searchInput, { setValue }) => (
             <>
               {searchInput}
@@ -142,7 +146,7 @@ storiesOf('core/SearchInput', module)
                 label="Predefined queries"
                 value={query}
                 placeholder="Please select a predefined query"
-                options={['Maarten', 'Jeffrey']}
+                options={[ 'Maarten', 'Jeffrey' ]}
                 labelForOption={(option) => option}
                 onChange={(value) => {
                   if (value) {
@@ -157,12 +161,13 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('without clear button', () => {
-    const [query, setQuery] = useState('');
+    const [ query, setQuery ] = useState('');
 
     return (
       <Card body>
         <p>You searched for: {query}</p>
         <SearchInput
+          label="Search"
           defaultValue={query}
           onChange={setQuery}
           canClear={false}
