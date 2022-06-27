@@ -41,10 +41,10 @@ export function Loading({ children, className, text = {} }: Props) {
         {children
           ? children
           : t({
-              key: 'Loading.LOADING',
-              fallback: 'Loading...',
-              overrideText: text.loading
-            })}
+            key: 'Loading.LOADING',
+            fallback: 'Loading...',
+            overrideText: text.loading
+          })}
       </span>
     </div>
   );

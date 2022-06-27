@@ -85,13 +85,13 @@ export function Tooltip({
   return (
     <Tippy
       className="border-0"
-      content={<> {content} </>}
+      content={content}
       placement={placement}
-      offset={[offset, distance]}
+      offset={[ offset, distance ]}
       interactive={interactive}
       maxWidth={maxWidth}
     >
-      <Tag className={className} style={{ outline: 0, ...style }} tabIndex={0}>
+      <Tag className={className} style={{ outline: 0, ...style }} tabIndex={0} role="button">
         {children}
       </Tag>
     </Tippy>

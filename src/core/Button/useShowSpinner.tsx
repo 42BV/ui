@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
  * @param show
  */
 export function useShowSpinner(show: boolean): boolean {
-  const [showSpinner, setShowSpinner] = useState(show);
+  const [ showSpinner, setShowSpinner ] = useState(show);
 
   useEffect(() => {
     let timer: number | undefined = undefined;
@@ -23,7 +23,7 @@ export function useShowSpinner(show: boolean): boolean {
     return () => {
       window.clearTimeout(timer);
     };
-  }, [show]);
+  }, [ show ]);
 
   return showSpinner;
 }

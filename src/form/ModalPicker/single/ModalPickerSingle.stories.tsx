@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { ModalPickerSingle, JarbModalPickerSingle } from './ModalPickerSingle';
+import { JarbModalPickerSingle, ModalPickerSingle } from './ModalPickerSingle';
 import {
   FinalForm,
-  IsOptionEqualInfo, JarbFormElementDependencies,
+  IsOptionEqualInfo,
+  JarbFormElementDependencies,
   KeyForOptionInfo,
   Province,
   provinceFetcher,
@@ -15,7 +16,7 @@ import {
 import { pageWithContentAndExactSize } from '../../../test/utils';
 import { adminUser, coordinatorUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
-import { Icon, pageOf, Tooltip, Card } from '../../..';
+import { Card, Icon, pageOf, Tooltip } from '../../..';
 import { Avatar } from '../../../core/Avatar/Avatar';
 import { Alert, ListGroup, ListGroupItem } from 'reactstrap';
 import classNames from 'classnames';
@@ -32,7 +33,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     </>
   ))
   .add('predefined options', () => {
-    const [value, setValue] = useState<Province | undefined>(undefined);
+    const [ value, setValue ] = useState<Province | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -51,7 +52,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('show 5 options per page', () => {
-    const [value, setValue] = useState<Province | undefined>(undefined);
+    const [ value, setValue ] = useState<Province | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -76,7 +77,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('async options', () => {
-    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -95,7 +96,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('disabled options', () => {
-    const [value, setValue] = useState<Province | undefined>(undefined);
+    const [ value, setValue ] = useState<Province | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -115,7 +116,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -137,7 +138,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('custom keyForOption', () => {
-    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -159,13 +160,13 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [brand, setBrand] = useState<string>();
-    const [model, setModel] = useState<string>();
+    const [ brand, setBrand ] = useState<string>();
+    const [ model, setModel ] = useState<string>();
 
     const allOptions = {
-      Audi: ['A1', 'A2', 'A3', 'M5'],
-      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
-      Mercedes: ['Viano', 'Vito', 'Sprinter']
+      Audi: [ 'A1', 'A2', 'A3', 'M5' ],
+      BMW: [ 'series 1', 'series 2', 'series 3', 'series 4', 'series 5' ],
+      Mercedes: [ 'Viano', 'Vito', 'Sprinter' ]
     };
 
     return (
@@ -205,7 +206,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('with extra add button', () => {
-    const [value, setValue] = useState<User | undefined>(undefined);
+    const [ value, setValue ] = useState<User | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -216,7 +217,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={true}
           labelForOption={(user: User) => user.email}
           options={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser()]))
+            Promise.resolve(pageWithContentAndExactSize([ userUser() ]))
           }
           addButton={{
             label: 'Create friend',
@@ -238,7 +239,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('without search', () => {
-    const [value, setValue] = useState<User | undefined>(undefined);
+    const [ value, setValue ] = useState<User | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -249,7 +250,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           canSearch={false}
           labelForOption={(user: User) => user.email}
           options={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser()]))
+            Promise.resolve(pageWithContentAndExactSize([ userUser() ]))
           }
           value={value}
           onChange={setValue}
@@ -258,7 +259,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('custom renderOptions', () => {
-    const [value, setValue] = useState<User | undefined>();
+    const [ value, setValue ] = useState<User | undefined>();
 
     return (
       <Card className="m-2">
@@ -267,7 +268,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          options={[userUser(), adminUser(), coordinatorUser()]}
+          options={[ userUser(), adminUser(), coordinatorUser() ]}
           labelForOption={(user: User) => user.email}
           renderOptions={(options) => (
             <ListGroup>
@@ -299,7 +300,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('custom renderValue', () => {
-    const [value, setValue] = useState<User | undefined>(undefined);
+    const [ value, setValue ] = useState<User | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -308,7 +309,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          options={[userUser(), adminUser(), coordinatorUser()]}
+          options={[ userUser(), adminUser(), coordinatorUser() ]}
           labelForOption={(user) => user.email}
           value={value}
           onChange={(user) => setValue(user)}
@@ -330,7 +331,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('button alignment', () => {
-    const [value, setValue] = useState<User | undefined>(undefined);
+    const [ value, setValue ] = useState<User | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -342,7 +343,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           labelForOption={(user: User) => user.email}
           options={() =>
             Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
+              pageWithContentAndExactSize([ userUser(), adminUser() ])
             )
           }
           value={value}
@@ -357,7 +358,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           labelForOption={(user: User) => user.email}
           options={() =>
             Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
+              pageWithContentAndExactSize([ userUser(), adminUser() ])
             )
           }
           value={value}
@@ -372,7 +373,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           labelForOption={(user: User) => user.email}
           options={() =>
             Promise.resolve(
-              pageWithContentAndExactSize([userUser(), adminUser()])
+              pageWithContentAndExactSize([ userUser(), adminUser() ])
             )
           }
           value={value}
@@ -383,13 +384,15 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('label & placeholder', () => {
-    const [value, setValue] = useState<Province | undefined>(undefined);
+    const [ value, setValue ] = useState<Province | undefined>(undefined);
 
     return (
       <Card className="m-2">
-        <h3>Without label</h3>
+        <h3>Invisible label</h3>
 
         <ModalPickerSingle<Province>
+          label="Province"
+          hiddenLabel={true}
           placeholder="Please select your province"
           options={provinces()}
           labelForOption={(province) => province.label}
@@ -425,13 +428,14 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('icon', () => {
-    const [value, setValue] = useState<Province | undefined>(undefined);
+    const [ value, setValue ] = useState<Province | undefined>(undefined);
 
     return (
       <Card className="m-2">
         <h3>Without icon</h3>
 
         <ModalPickerSingle<Province>
+          label="Province"
           placeholder="Please select your province"
           options={provinces()}
           labelForOption={(province) => province.label}
@@ -445,6 +449,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
 
         <ModalPickerSingle<Province>
           id="provinces"
+          label="Province"
           placeholder="Please select your province"
           icon="home"
           options={provinces()}
@@ -460,11 +465,12 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('without clear button', () => {
-    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
+    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
         <ModalPickerSingle<Province>
+          label="Province"
           placeholder="Please select your province"
           options={provinces()}
           labelForOption={(province) => province.label}
@@ -476,7 +482,7 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
     );
   })
   .add('with custom text', () => {
-    const [value, setValue] = useState<Province | undefined>(undefined);
+    const [ value, setValue ] = useState<Province | undefined>(undefined);
 
     return (
       <Card className="m-2">

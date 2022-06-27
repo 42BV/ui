@@ -36,12 +36,13 @@ describe('Component: TextEditor', () => {
       valid: true,
       modules: hasModules
         ? {
-            toolbar: ['bold']
-          }
+          toolbar: [ 'bold' ]
+        }
         : undefined,
       formats,
       id: hasLabel ? 'firstName' : undefined,
-      label: hasLabel ? 'First name' : undefined
+      label: 'First name',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender } = render(
@@ -95,7 +96,7 @@ describe('Component: TextEditor', () => {
     });
 
     test('with formats', () => {
-      setup({ formats: ['italic'] });
+      setup({ formats: [ 'italic' ] });
       // We cannot check the formats, but it has to be covered
     });
   });

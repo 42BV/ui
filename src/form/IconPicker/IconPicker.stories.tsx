@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import { IconPicker, JarbIconPicker } from './IconPicker';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import { IconType, Tooltip, Icon, Card } from '../../';
+import { Card, Icon, IconType, Tooltip } from '../../';
 
 function is3DRotation(value: IconType) {
   return value === '3d_rotation' ? undefined : 'Not "3d_rotation"';
@@ -12,7 +12,7 @@ function is3DRotation(value: IconType) {
 storiesOf('Form/IconPicker', module)
   .addParameters({ component: IconPicker })
   .add('basic', () => {
-    const [value, setValue] = useState<IconType | undefined>(undefined);
+    const [ value, setValue ] = useState<IconType | undefined>(undefined);
 
     return (
       <div>
@@ -28,13 +28,15 @@ storiesOf('Form/IconPicker', module)
       </div>
     );
   })
-  .add('without label', () => {
-    const [value, setValue] = useState<IconType | undefined>(undefined);
+  .add('invisible label', () => {
+    const [ value, setValue ] = useState<IconType | undefined>(undefined);
 
     return (
       <Card className="m-2">
         <IconPicker
           id="icon"
+          label="Icon"
+          hiddenLabel={true}
           placeholder="Please select your icon"
           value={value}
           onChange={setValue}
@@ -43,7 +45,7 @@ storiesOf('Form/IconPicker', module)
     );
   })
   .add('with custom label', () => {
-    const [value, setValue] = useState<IconType | undefined>(undefined);
+    const [ value, setValue ] = useState<IconType | undefined>(undefined);
 
     return (
       <div>
@@ -70,13 +72,14 @@ storiesOf('Form/IconPicker', module)
     );
   })
   .add('with icon', () => {
-    const [value, setValue] = useState<IconType | undefined>(undefined);
+    const [ value, setValue ] = useState<IconType | undefined>(undefined);
 
     return (
       <div>
         <Card className="m-2">
           <IconPicker
             id="icon"
+            label="Icon"
             placeholder="Please select your icon"
             icon="colorize"
             value={value}
@@ -87,13 +90,14 @@ storiesOf('Form/IconPicker', module)
     );
   })
   .add('without clear button', () => {
-    const [value, setValue] = useState<IconType | undefined>(undefined);
+    const [ value, setValue ] = useState<IconType | undefined>(undefined);
 
     return (
       <div>
         <Card className="m-2">
           <IconPicker
             id="icon"
+            label="Icon"
             placeholder="Please select your icon"
             value={value}
             onChange={setValue}
@@ -113,7 +117,7 @@ storiesOf('Form/IconPicker', module)
             name="icon"
             label="Icon"
             placeholder="Please select your icon"
-            validators={[is3DRotation]}
+            validators={[ is3DRotation ]}
             jarb={{
               validator: 'Hero.icon',
               label: 'Icon'

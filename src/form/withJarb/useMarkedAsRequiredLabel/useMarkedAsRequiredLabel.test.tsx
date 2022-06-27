@@ -58,7 +58,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: ['text'],
+          types: [ 'text' ],
           required: false,
           minimumLength: null,
           maximumLength: 50,
@@ -80,7 +80,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: ['text'],
+          types: [ 'text' ],
           required: false,
           minimumLength: null,
           maximumLength: 50,
@@ -94,9 +94,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       }
     });
     const { result } = setup({ customLabel: true });
-    expect(result.current).toMatchSnapshot(
-      'Hook: useMarkedAsRequiredLabel => should render label without required mark when label is a custom component'
-    );
+    expect(result.current).toMatchSnapshot();
   });
 
   it('should render label with required mark when constraints include field validator', () => {
@@ -104,7 +102,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: ['text'],
+          types: [ 'text' ],
           required: true,
           minimumLength: null,
           maximumLength: 50,
@@ -118,8 +116,6 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       }
     });
     const { result } = setup({});
-    expect(result.current).toMatchSnapshot(
-      'Hook: useMarkedAsRequiredLabel => should render label with required mark when constraints include field validator'
-    );
+    expect(result.current).toBe('First Name *');
   });
 });

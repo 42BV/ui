@@ -3,11 +3,7 @@ import { FormGroup, Input, Label } from 'reactstrap';
 
 import { withJarb } from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
-import {
-  FieldCompatibleWithPredeterminedOptions,
-  isOptionSelected,
-  getKeyForOption
-} from '../option';
+import { FieldCompatibleWithPredeterminedOptions, getKeyForOption, isOptionSelected } from '../option';
 import { alwaysTrue, doBlur } from '../utils';
 import { Loading } from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
@@ -29,26 +25,26 @@ export type Text = {
 
 export type Props<T> = FieldCompatible<T, T | undefined> &
   FieldCompatibleWithPredeterminedOptions<T> & {
-    /**
-     * Optionally customized text within the component.
-     * This text should already be translated.
-     */
-    text?: Text;
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
 
-    /**
-     * Whether or not to show the RadioGroup horizontally.
-     *
-     * Defaults to `false`
-     */
-    horizontal?: boolean;
+  /**
+   * Whether or not to show the RadioGroup horizontally.
+   *
+   * Defaults to `false`
+   */
+  horizontal?: boolean;
 
-    /**
-     * Whether or not to show a "clear" button.
-     *
-     * Defaults to `false`
-     */
-    canClear?: boolean;
-  };
+  /**
+   * Whether or not to show a "clear" button.
+   *
+   * Defaults to `false`
+   */
+  canClear?: boolean;
+};
 
 /**
  * RadioGroup is a form element for which the value can be selected
@@ -62,6 +58,7 @@ export type Props<T> = FieldCompatible<T, T | undefined> &
 export function RadioGroup<T>(props: Props<T>) {
   const {
     label,
+    hiddenLabel,
     value,
     error,
     color,
@@ -103,9 +100,9 @@ export function RadioGroup<T>(props: Props<T>) {
       className={'radio-group ' + className}
       color={color}
     >
-      {label ? <legend>{label}</legend> : null}
+      {!hiddenLabel ? <legend>{label}</legend> : null}
       {placeholder ? (
-        <p className="text-muted">
+        <p>
           <em>{placeholder}</em>
         </p>
       ) : null}
@@ -170,6 +167,7 @@ export function RadioGroup<T>(props: Props<T>) {
     </FormGroup>
   );
 }
+
 /**
  * Variant of the RadioGroup which can be used in a Jarb context.
  */

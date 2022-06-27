@@ -69,7 +69,7 @@ export function Icon({
   disabled,
   size
 }: Props) {
-  const [hover, hoverEvents] = useHover();
+  const [ hover, hoverEvents ] = useHover();
 
   const colorCssClasses = {};
   if (hoverColor && hover && !disabled && onClick !== undefined) {

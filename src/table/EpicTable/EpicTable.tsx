@@ -96,14 +96,14 @@ export function EpicTable({
   const epicTableEl = useRef<HTMLDivElement>(null);
   const overlayEl = useRef<HTMLDivElement>(null);
 
-  const [centerWidth, setCenterWidth] = useState(0);
-  const [leftScroll, setLeftScroll] = useState(0);
-  const [headerHeight, setHeaderHeight] = useState(0);
-  const [activeDetailRow, setActiveDetailRow] = useState<HTMLDivElement | null>(
+  const [ centerWidth, setCenterWidth ] = useState(0);
+  const [ leftScroll, setLeftScroll ] = useState(0);
+  const [ headerHeight, setHeaderHeight ] = useState(0);
+  const [ activeDetailRow, setActiveDetailRow ] = useState<HTMLDivElement | null>(
     null
   );
 
-  const [hoveredRow, setHoveredRow] = useState(-1);
+  const [ hoveredRow, setHoveredRow ] = useState(-1);
 
   const headerRefs: HeaderRef[] = [];
 
@@ -212,7 +212,7 @@ export function EpicTable({
             >
               {left.map((section, index) => (
                 <Fragment key={index}>
-                  <div ref={(ref) => registerHeader(ref, index)}>
+                  <div ref={(ref) => registerHeader(ref, index)} tabIndex={0}>
                     {section.header}
                   </div>
 
@@ -226,21 +226,22 @@ export function EpicTable({
             // to prevent scrollbars from rendering
             center && center.length > 0 && !activeDetailRow
               ? center.map((section, index) => (
-                  <Fragment key={index}>
-                    <div className="d-flex justify-content-between">
-                      {section.header}
-                    </div>
+                <Fragment key={index}>
+                  <div className="d-flex justify-content-between">
+                    {section.header}
+                  </div>
 
-                    {section.contents.map((row, index) => (
-                      <div
-                        key={index}
-                        className="d-flex justify-content-between"
-                      >
-                        {row}
-                      </div>
-                    ))}
-                  </Fragment>
-                ))
+                  {section.contents.map((row, index) => (
+                    <div
+                      key={index}
+                      className="d-flex justify-content-between"
+                      tabIndex={0}
+                    >
+                      {row}
+                    </div>
+                  ))}
+                </Fragment>
+              ))
               : null
           }
           right={

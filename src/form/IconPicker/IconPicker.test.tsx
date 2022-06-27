@@ -24,7 +24,8 @@ describe('Component: IconPicker', () => {
     const props = {
       id: 'bestFriend',
       name: 'bestFriend',
-      label: hasLabel ? 'Best Friend' : undefined,
+      label: 'Best Friend',
+      hiddenLabel: !hasLabel,
       placeholder: 'Select your best friend',
       icon: hasIcon ? 'face' as IconType : undefined,
       value,
@@ -98,7 +99,7 @@ describe('Component: IconPicker', () => {
     it('should open the popover when the select button is clicked', () => {
       const setIsOpenSpy = jest.fn();
       jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([false, setIsOpenSpy]);
+        .mockReturnValueOnce([ false, setIsOpenSpy ]);
 
       setup({
         value: undefined,
@@ -143,7 +144,7 @@ describe('Component: IconPicker', () => {
     it('should close the popover and call onChange when the user selects an icon', () => {
       const setIsOpenSpy = jest.fn();
       jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([true, setIsOpenSpy]);
+        .mockReturnValueOnce([ true, setIsOpenSpy ]);
 
       const { onBlurSpy, onChangeSpy } = setup({
         value: undefined
@@ -174,9 +175,9 @@ describe('Component: IconPicker', () => {
     it('should when the popover closes clear the query', () => {
       const setQuery = jest.fn();
       jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([true, jest.fn()])
-        .mockReturnValueOnce([1, jest.fn()])
-        .mockReturnValueOnce(['home', setQuery]);
+        .mockReturnValueOnce([ true, jest.fn() ])
+        .mockReturnValueOnce([ 1, jest.fn() ])
+        .mockReturnValueOnce([ 'home', setQuery ]);
 
       setup({
         value: undefined

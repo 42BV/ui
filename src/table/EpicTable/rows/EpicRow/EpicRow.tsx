@@ -1,6 +1,12 @@
 import React from 'react';
 
 export type Props = {
+
+  /**
+   * Tabindex for tab selection.
+   */
+  tabIndex?: number;
+
   /**
    * The cells of the EpicRow
    */
@@ -29,6 +35,6 @@ export type Props = {
  * finds another EpicRow which is a header. This creates so called
  * sections.
  */
-export function EpicRow({ children }: Props) {
-  return <>{children}</>;
+export function EpicRow({ tabIndex, children }: Props) {
+  return <span tabIndex={tabIndex}>{children}</span>;
 }

@@ -3,6 +3,11 @@ import { SearchInput } from '../../core/SearchInput/SearchInput';
 import { EpicTable } from '../EpicTable/EpicTable';
 import { Pagination } from '../../core/Pagination/Pagination';
 import { Page } from '@42.nl/spring-connect';
+import { t } from '../../utilities/translation/translation';
+
+type Text = {
+  searchLabel?: string;
+};
 
 type Props = {
   /**
@@ -28,6 +33,12 @@ type Props = {
   searchValue?: string;
 
   /**
+   * Optionally whether the label for the search input should be invisible.
+   * Defaults to true.
+   */
+  hiddenSearchLabel?: boolean;
+
+  /**
    * Optional callback function which you can use to render the current
    * selected items.
    */
@@ -44,6 +55,12 @@ type Props = {
    * is clicked.
    */
   pageChanged?: (page: number) => void;
+
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
 
   /**
    * The content of the table.
@@ -65,9 +82,11 @@ export function CrudTable(props: Props) {
     canSearch = () => true,
     searchValue = '',
     onSearch,
+    hiddenSearchLabel = true,
     renderSelection,
     page,
     pageChanged,
+    text = {},
     children
   } = props;
 
@@ -79,6 +98,12 @@ export function CrudTable(props: Props) {
 
       {canSearch() && onSearch ? (
         <SearchInput
+          label={t({
+            key: 'CrudTable.SEARCH_LABEL',
+            fallback: 'Start typing to search',
+            overrideText: text.searchLabel
+          })}
+          hiddenLabel={hiddenSearchLabel}
           className="mb-4"
           defaultValue={searchValue}
           onChange={onSearch}

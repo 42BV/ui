@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { withJarb } from '../withJarb/withJarb';
 import { FieldCompatible } from '../types';
-import { useId } from '../../hooks/useId/useId';
+import { uniqueId } from 'lodash';
 
 type Props = FieldCompatible<string, string>;
 
@@ -15,8 +15,9 @@ type Props = FieldCompatible<string, string>;
  */
 export function Textarea(props: Props) {
   const {
-    id,
+    id = uniqueId(),
     label,
+    hiddenLabel,
     placeholder,
     onBlur,
     onFocus,
@@ -28,23 +29,22 @@ export function Textarea(props: Props) {
     className = ''
   } = props;
 
-  const innerId = useId({ id });
-
   const inputProps = {
-    id: innerId,
+    id,
     value,
     placeholder,
     onChange: (event: { target: { value: string } }) =>
       onChange(event.target.value),
     onFocus,
-    onBlur
+    onBlur,
+    'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
   };
 
   const classes = classNames('form-control', { 'is-invalid': valid === false });
 
   return (
     <FormGroup className={className} color={color}>
-      {label ? <Label for={innerId}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
       <TextareaAutosize className={classes} {...inputProps} />
       {error}
     </FormGroup>

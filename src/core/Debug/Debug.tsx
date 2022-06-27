@@ -37,7 +37,7 @@ type Props = {
  * ```
  */
 export function Debug({ value, defaultOpen = true }: Props) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [ isOpen, setIsOpen ] = useState(defaultOpen);
 
   return (
     <CardOpenClose

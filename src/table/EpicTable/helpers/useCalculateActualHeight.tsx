@@ -4,7 +4,7 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type CalculateActualHeightConfig = {
   minHeight: number;
@@ -33,7 +33,7 @@ export function useCalculateActualHeight({
   overlayEl,
   headerHeight
 }: CalculateActualHeightConfig) {
-  const [actualHeight, setActualHeight] = useState(minHeight);
+  const [ actualHeight, setActualHeight ] = useState(minHeight);
   useEffect(() => {
     function resize() {
       const detailRowHeight = activeDetailRow
@@ -74,7 +74,7 @@ export function useCalculateActualHeight({
     return () => {
       window.clearInterval(interval);
     };
-  }, [minHeight, totalDesiredHeight, activeDetailRow, overlayEl, headerHeight]);
+  }, [ minHeight, totalDesiredHeight, activeDetailRow, overlayEl, headerHeight ]);
 
   return actualHeight;
 }

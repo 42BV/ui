@@ -3,6 +3,7 @@ import picaFn from 'pica';
 import { ImageUploadCrop } from './ImageUpload';
 
 let picaInstance: any;
+
 export function getPicaInstance() {
   if (picaInstance) {
     return picaInstance;
@@ -25,7 +26,7 @@ export function dataUrlToFile(dataUrl: string, fileName: string): File {
     bytes[i] = byteString.charCodeAt(i);
   }
 
-  return new File([bytes], fileName, { type: mimeString });
+  return new File([ bytes ], fileName, { type: mimeString });
 }
 
 type AvatarEditorConfig = {

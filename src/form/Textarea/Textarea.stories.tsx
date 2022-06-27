@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Textarea, JarbTextarea } from './Textarea';
+import { JarbTextarea, Textarea } from './Textarea';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
@@ -43,11 +43,13 @@ storiesOf('Form/Textarea', module)
       </Card>
     );
   })
-  .add('without label', () => {
+  .add('invisible label', () => {
     return (
       <Card className="m-2">
         <Textarea
           id="description"
+          label="Description"
+          hiddenLabel={true}
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
         />

@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import {
-  CheckboxMultipleSelect,
-  JarbCheckboxMultipleSelect
-} from './CheckboxMultipleSelect';
+import { CheckboxMultipleSelect, JarbCheckboxMultipleSelect } from './CheckboxMultipleSelect';
 import {
   FinalForm,
-  IsOptionEqualInfo, JarbFormElementDependencies,
+  IsOptionEqualInfo,
+  JarbFormElementDependencies,
   KeyForOptionInfo,
   nonExistingProvince,
   Province,
@@ -33,7 +31,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     </>
   ))
   .add('predefined options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -59,7 +57,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('async options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -91,7 +89,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('disabled options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -118,7 +116,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       provinces()[0]
     ]);
 
@@ -147,7 +145,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('custom keyForOption', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       provinces()[0]
     ]);
 
@@ -176,16 +174,16 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [limitToNorthern, setLimitToNorthern] = useState(false);
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ limitToNorthern, setLimitToNorthern ] = useState(false);
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
     return (
       <Card className="m-2">
         <p>
-          Limit to northern provinces
           <Toggle
+            label="Limit to northern provinces"
             className="ms-2"
             color="primary"
             value={limitToNorthern}
@@ -238,18 +236,18 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     type Permission = typeof permissions[number];
 
     function carPermissions(): Permission[] {
-      return ['CREATE_CAR', 'UPDATE_CAR', 'READ_CAR', 'DELETE_CAR'];
+      return [ 'CREATE_CAR', 'UPDATE_CAR', 'READ_CAR', 'DELETE_CAR' ];
     }
 
     function bikePermissions(): Permission[] {
-      return ['CREATE_BIKE', 'UPDATE_BIKE', 'READ_BIKE', 'DELETE_BIKE'];
+      return [ 'CREATE_BIKE', 'UPDATE_BIKE', 'READ_BIKE', 'DELETE_BIKE' ];
     }
 
     function boatPermissions(): Permission[] {
-      return ['CREATE_BOAT', 'UPDATE_BOAT', 'READ_BOAT', 'DELETE_BOAT'];
+      return [ 'CREATE_BOAT', 'UPDATE_BOAT', 'READ_BOAT', 'DELETE_BOAT' ];
     }
 
-    const [value, setValue] = useState<Permission[] | undefined>([
+    const [ value, setValue ] = useState<Permission[] | undefined>([
       'CREATE_CAR',
       'CREATE_BIKE',
       'CREATE_BOAT'
@@ -345,15 +343,17 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('label & placeholder', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
     return (
       <Card className="m-2">
-        <h3>Without label</h3>
+        <span className="d-block fs-5">Invisible label</span>
 
         <CheckboxMultipleSelect
+          label="Provinces"
+          hiddenLabel={true}
           placeholder="Please select your provinces"
           options={provinces()}
           labelForOption={(province) => province.label}
@@ -407,7 +407,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('horizontal', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 

@@ -9,7 +9,7 @@ import Pagination from './EpicPagination';
 storiesOf('core/EpicPagination', module)
   .addParameters({ component: Pagination })
   .add('default', () => {
-    const [pageNumber, setPageNumber] = useState(5);
+    const [ pageNumber, setPageNumber ] = useState(5);
 
     const page = pageOf(range(0, 100), pageNumber, 10);
 

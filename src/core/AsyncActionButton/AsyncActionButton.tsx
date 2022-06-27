@@ -17,7 +17,7 @@ export type Props = Omit<ButtonProps, 'onClick' | 'inProgress'> & {
  * multiple times asynchronously.
  */
 export function AsyncActionButton({ action, children, ...buttonProps }: Props) {
-  const [inProgress, setInProgress] = useState(false);
+  const [ inProgress, setInProgress ] = useState(false);
 
   async function onClick() {
     setInProgress(true);

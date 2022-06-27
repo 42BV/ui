@@ -6,6 +6,19 @@ import { Icon } from '../../../core/Icon';
 import { useMeterWidth } from './useMeterWidth/useMeterWidth';
 import { useRules } from './useRules/useRules';
 import { NewPasswordInputRule } from '../types';
+import { uniqueId } from 'lodash';
+
+type Text = {
+  /**
+   * Text for the override title of the progress bar.
+   */
+  title?: string;
+
+  /**
+   * Text to indicate the current progress of the progress bar.
+   */
+  currentProgress?: string;
+};
 
 type Props = {
   /**
@@ -30,28 +43,52 @@ type Props = {
    * @default true
    */
   showMeter?: boolean;
+
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
 };
 
 export function PasswordStrength(props: Props) {
-  const { password, rules, minimumLength = 10, showMeter = true } = props;
+  const {
+    password,
+    rules,
+    minimumLength = 10,
+    showMeter = true,
+    text = {}
+  } = props;
 
   const compliant = useRules(rules, password, minimumLength);
   const meterWidth = useMeterWidth(compliant);
 
+  const id = uniqueId();
+
   return (
     <>
       {showMeter ? (
-        <Progress
-          color={
-            meterWidth >= 100
-              ? 'success'
-              : meterWidth >= 75
-              ? 'warning'
-              : 'danger'
-          }
-          value={meterWidth}
-          className="mb-2"
-        />
+        <>
+          <span className="visually-hidden" id={id}>
+            {t({
+              key: 'PasswordStrength.PROGRESS',
+              fallback: 'Percentage of rules the password matches',
+              overrideText: text.currentProgress
+            })}
+          </span>
+          <Progress
+            color={
+              meterWidth >= 100
+                ? 'success'
+                : meterWidth >= 75
+                  ? 'warning'
+                  : 'danger'
+            }
+            value={meterWidth}
+            className="mb-2"
+            barAriaLabelledBy={id}
+          />
+        </>
       ) : null}
       <div className="mb-2">
         {rules.map((rule) => {

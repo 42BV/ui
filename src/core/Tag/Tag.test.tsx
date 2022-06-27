@@ -17,7 +17,7 @@ describe('Component: Tag', () => {
       const { container } = render(
         <Tag text="Maarten" color="success" />
       );
-      expect(container.firstChild).toHaveClass('tag-success');
+      expect(container.firstChild).toHaveClass('badge rounded-pill text-bg-success');
     });
 
     test('with remove', () => {

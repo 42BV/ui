@@ -27,13 +27,14 @@ describe('Component: Textarea', () => {
       error: 'Some error',
       valid: true,
       id: hasLabel ? 'firstName' : undefined,
-      label: hasLabel ? 'First name' : undefined
+      label: 'First name',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender } = render(
       <Textarea color="success" {...props} />
     );
-    
+
     return { container, props, rerender, onChangeSpy, onBlurSpy, onFocusSpy };
   }
 
@@ -58,16 +59,16 @@ describe('Component: Textarea', () => {
       expect(screen.queryByPlaceholderText('Please enter your first name')).not.toBeInTheDocument();
     });
 
-    test('with label', () => {
+    test('visible label', () => {
       setup({ hasLabel: true });
       expect(screen.queryByText('First name')).toBeInTheDocument();
       expect(screen.queryByLabelText('First name')).toBeInTheDocument();
     });
 
-    test('without label', () => {
+    test('invisible label', () => {
       setup({ hasLabel: false });
       expect(screen.queryByText('First name')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('First name')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('First name')).toBeInTheDocument();
     });
   });
 

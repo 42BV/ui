@@ -81,8 +81,9 @@ exports[`Component: ModalPickerSingle ui default: modal 1`] = `
                       </i>
                     </span>
                     <input
+                      aria-label="Start typing to search"
                       class="form-control"
-                      id="2"
+                      id="1"
                       placeholder="Search..."
                       type="search"
                       value=""
@@ -229,8 +230,9 @@ exports[`Component: ModalPickerSingle ui loading 1`] = `
                       </i>
                     </span>
                     <input
+                      aria-label="Start typing to search"
                       class="form-control"
-                      id="24"
+                      id="8"
                       placeholder="Search..."
                       type="search"
                       value=""
@@ -262,7 +264,7 @@ exports[`Component: ModalPickerSingle ui loading 1`] = `
                       <i
                         class="icon material-icons"
                       >
-                        radio_button_unchecked
+                        contrast
                       </i>
                       <i
                         class="icon material-icons"
@@ -282,7 +284,7 @@ exports[`Component: ModalPickerSingle ui loading 1`] = `
                       <i
                         class="icon material-icons"
                       >
-                        add
+                        bolt
                       </i>
                     </div>
                     <div
@@ -307,7 +309,9 @@ exports[`Component: ModalPickerSingle ui loading 1`] = `
                       </svg>
                     </div>
                   </div>
-                  <h4 />
+                  <span
+                    class="d-block fs-4"
+                  />
                 </div>
               </div>
             </div>

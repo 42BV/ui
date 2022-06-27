@@ -7,13 +7,10 @@ exports[`Component: ValuePicker multiple CheckboxMultipleSelect should render a 
   >
     <label
       class="form-label"
-      for="bestFriend"
     >
       Best friend
     </label>
-    <p
-      class="text-muted"
-    >
+    <p>
       <em>
         Select your best friend
       </em>
@@ -80,7 +77,6 @@ exports[`Component: ValuePicker multiple ModalPickerMultiple should render a \`M
   >
     <label
       class="form-label"
-      for="bestFriend"
     >
       Best friend
     </label>
@@ -138,7 +134,6 @@ exports[`Component: ValuePicker single ModalPickerSingle should render a \`Modal
   >
     <label
       class="form-label"
-      for="bestFriend"
     >
       Best friend
     </label>
@@ -169,9 +164,7 @@ exports[`Component: ValuePicker single RadioGroup should render a \`RadioGroup\`
     <legend>
       Best friend
     </legend>
-    <p
-      class="text-muted"
-    >
+    <p>
       <em>
         Select your best friend
       </em>

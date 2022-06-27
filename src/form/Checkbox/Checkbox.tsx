@@ -2,68 +2,11 @@ import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 
 import { withJarb } from '../withJarb/withJarb';
-import { Color } from '../../core/types';
 import { doBlur } from '../utils';
+import { uniqueId } from 'lodash';
+import { FieldCompatible } from '../types';
 
-type Props = {
-  /**
-   * The id of the form element.
-   */
-  id: string;
-
-  /**
-   * The value that the form element currently has.
-   *
-   * When the value is `true` the checkbox is checked.
-   * When the value `false` the checkbox is unchecked.
-   *
-   * When the value is `undefined` it depends on `allowIndeterminate`,
-   * when `allowIndeterminate` is `true` the checkbox is indeterminate.
-   * when  `allowIndeterminate` is `false` the checkbox is unchecked.
-   */
-  value?: boolean;
-
-  /**
-   * Callback for when the form element changes.
-   */
-  onChange: (value: boolean) => void;
-
-  /**
-   * Optional callback for when the form element is blurred.
-   */
-  onBlur?: () => void;
-
-  /**
-   * Optionally the error message to render.
-   */
-  error?: React.ReactNode;
-
-  /**
-   * Optionally the color of the FormGroup.
-   */
-  color?: Color;
-
-  /**
-   * Whether or not the form element is currently valid.
-   */
-  valid?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * The label of the form element.
-   */
-  label: React.ReactNode;
-
-  /**
-   * Optionally the placeholder of the form element.
-   */
-  placeholder?: string;
-
+type Props = FieldCompatible<boolean | undefined, boolean> & {
   /**
    * Optionally whether to support the indeterminate state.
    */
@@ -75,12 +18,13 @@ type Props = {
  */
 export function Checkbox(props: Props) {
   const {
-    id,
+    id = uniqueId(),
     onChange,
     onBlur,
     error,
     color,
     label,
+    hiddenLabel,
     className = '',
     placeholder,
     value,
@@ -117,12 +61,14 @@ export function Checkbox(props: Props) {
               e.indeterminate = value === undefined || value === '';
             }
           }}
-        />{' '}
-        {label}
+          className="mr-2"
+          aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
+        />
+        {!hiddenLabel || typeof label !== 'string' ? label : null}
       </Label>
 
       {placeholder ? (
-        <p className="text-muted mb-0">
+        <p className="mb-0">
           <em>{placeholder}</em>
         </p>
       ) : null}

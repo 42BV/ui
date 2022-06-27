@@ -19,7 +19,7 @@ exports[`Component: EmptyModal mode: empty 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -39,7 +39,7 @@ exports[`Component: EmptyModal mode: empty 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -52,14 +52,16 @@ exports[`Component: EmptyModal mode: empty 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Empty
-    </h4>
-    <h6
-      class="text-muted mb-3"
+    </span>
+    <span
+      class="d-block fs-6 text-dark mb-3"
     >
       There is nothing here yet, the collection is empty.
-    </h6>
+    </span>
   </div>
 </div>
 `;
@@ -83,7 +85,7 @@ exports[`Component: EmptyModal mode: no-results 1`] = `
         <i
           class="icon material-icons"
         >
-          radio_button_unchecked
+          contrast
         </i>
         <i
           class="icon material-icons"
@@ -103,7 +105,7 @@ exports[`Component: EmptyModal mode: no-results 1`] = `
         <i
           class="icon material-icons"
         >
-          add
+          bolt
         </i>
       </div>
       <div
@@ -116,14 +118,16 @@ exports[`Component: EmptyModal mode: no-results 1`] = `
         </i>
       </div>
     </div>
-    <h4>
+    <span
+      class="d-block fs-4"
+    >
       Empty
-    </h4>
-    <h6
-      class="text-muted mb-3"
+    </span>
+    <span
+      class="d-block fs-6 text-dark mb-3"
     >
       No results were found please try again with a different query.
-    </h6>
+    </span>
   </div>
 </div>
 `;

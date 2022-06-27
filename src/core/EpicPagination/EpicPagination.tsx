@@ -2,11 +2,7 @@ import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 import classNames from 'classnames';
 
-import {
-  Pagination as RPagination,
-  PaginationItem,
-  PaginationLink
-} from 'reactstrap';
+import { Pagination as RPagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 import { Icon } from '../Icon';
 

@@ -7,9 +7,9 @@ import { FlashMessage } from '../FlashMessage/FlashMessage';
 storiesOf('core/buttons/AsyncActionButton', module)
   .addParameters({ component: AsyncActionButton })
   .add('default', () => {
-    const [counter, setCounter] = useState(0);
-    const [error, setError] = useState<string>();
-    const [success, setSuccess] = useState<string>();
+    const [ counter, setCounter ] = useState(0);
+    const [ error, setError ] = useState<string>();
+    const [ success, setSuccess ] = useState<string>();
 
     function asyncAction() {
       setError(undefined);

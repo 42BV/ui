@@ -4,7 +4,7 @@
 // Therefore there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import { useEffect, useState, RefObject } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 import { HeaderRef } from '../../types';
 
 /**
@@ -18,7 +18,7 @@ export function useClosestHeaderIndex(
   fixedHeaderEl: RefObject<HTMLDivElement>,
   headers: HeaderRef[]
 ) {
-  const [index, setIndex] = useState(-1);
+  const [ index, setIndex ] = useState(-1);
 
   useEffect(() => {
     function onScroll() {
@@ -48,7 +48,7 @@ export function useClosestHeaderIndex(
     return () => {
       window.removeEventListener('scroll', onScroll, true);
     };
-  }, [fixedHeaderEl, headers]);
+  }, [ fixedHeaderEl, headers ]);
 
   return index;
 }

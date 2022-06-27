@@ -402,7 +402,8 @@ storiesOf('table/CrudTable', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use CrudTable with Page, you have to add @42.nl/spring-connect, lodash, overlayscrollbars and overlayscrollbars-react to your dependencies:</p>
+        <p>To be able to use CrudTable with Page, you have to add @42.nl/spring-connect, lodash, overlayscrollbars and overlayscrollbars-react to your
+          dependencies:</p>
         <code>npm install --save @42.nl/spring-connect lodash overlayscrollbars overlayscrollbars-react</code>
         <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
         <code>@import &apos;~overlayscrollbars/css/OverlayScrollbars.css&apos;;</code>
@@ -482,10 +483,10 @@ storiesOf('table/CrudTable', module)
               return (
                 <EpicDetail onClose={() => setDetail(-1)}>
                   <AttributeList>
-                  {Object.keys(person).map((column) => (
-                    <AttributeView key={column} label={capitalize(column.replace(/([A-Z])/, ' $1'))}>
-                      {person[column]}
-                    </AttributeView>
+                    {Object.keys(person).map((column) => (
+                      <AttributeView key={column} label={capitalize(column.replace(/([A-Z])/, ' $1'))}>
+                        {person[column]}
+                      </AttributeView>
                     ))}
                   </AttributeList>
                 </EpicDetail>
@@ -564,11 +565,11 @@ storiesOf('table/CrudTable', module)
         ? (a, b) => `${a[sort.column]}`.localeCompare(`${b[sort.column]}`)
         : (a, b) => `${b[sort.column]}`.localeCompare(`${a[sort.column]}`);
 
-    const sortedPersons = filteredPersons.sort(sortFn);
+    filteredPersons.sort(sortFn);
 
     const [ page, setPage ] = useState(1);
 
-    const pageOfPersons = pageOf(sortedPersons, page, 20);
+    const pageOfPersons = pageOf(filteredPersons, page, 20);
 
     const [ selected, setSelected ] = useState<Person[]>([]);
 
@@ -635,6 +636,7 @@ storiesOf('table/CrudTable', module)
                 onSort={(direction) => changeSort(column, direction)}
                 onSearch={(value) => filterChanged(column, value)}
                 searchValue={filters[column]}
+                searchLabel={`Search by ${column.replace(/([A-Z])/, ' $1')}`}
               >
                 {capitalize(column.replace(/([A-Z])/, ' $1'))}
               </CrudHeader>
@@ -659,6 +661,8 @@ storiesOf('table/CrudTable', module)
 
                 <DateTimeInput
                   id="dateOfBirth"
+                  label="Date of birth"
+                  hiddenLabel={true}
                   dateFormat="YYYY-MM-DD"
                   placeholder="YYYY-MM-DD"
                   timeFormat={false}
@@ -684,14 +688,9 @@ storiesOf('table/CrudTable', module)
                 <EpicSelection
                   checked={selected.some((p) => p.id === person.id)}
                   onChange={(checked) => onSelect(person, checked)}
-                />
-
-                <span
-                  className="text-primary clickable w-100"
-                  onClick={() => setDetail(person.id)}
                 >
                   {person.firstName}
-                </span>
+                </EpicSelection>
               </EpicCell>
               {Object.keys(columns).filter(column => column !== 'firstName').map((column) => (
                 <EpicCell key={column} width={columns[column]}>
@@ -723,10 +722,10 @@ storiesOf('table/CrudTable', module)
               return (
                 <EpicDetail onClose={() => setDetail(-1)}>
                   <AttributeList>
-                  {Object.keys(columns).map((column) => (
-                    <AttributeView key={column} label={capitalize(column.replace(/([A-Z])/, ' $1'))}>
-                      {person[column]}
-                    </AttributeView>
+                    {Object.keys(columns).map((column) => (
+                      <AttributeView key={column} label={capitalize(column.replace(/([A-Z])/, ' $1'))}>
+                        {person[column]}
+                      </AttributeView>
                     ))}
                   </AttributeList>
                 </EpicDetail>

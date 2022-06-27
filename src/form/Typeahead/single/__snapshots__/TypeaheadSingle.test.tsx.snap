@@ -20,7 +20,8 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
             aria-autocomplete="both"
             aria-expanded="true"
             aria-haspopup="listbox"
-            aria-owns="bestFriend"
+            aria-label="Best friend"
+            aria-owns="bestFriend-options"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input form-control"
             id="bestFriend"
@@ -40,7 +41,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
-          id="bestFriend"
+          id="bestFriend-options"
           role="listbox"
           style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
         >
@@ -49,7 +50,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-0"
+            id="bestFriend-options-item-0"
             role="option"
           >
             admin@
@@ -64,7 +65,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-1"
+            id="bestFriend-options-item-1"
             role="option"
           >
             coordinator@
@@ -102,7 +103,8 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
             aria-autocomplete="both"
             aria-expanded="true"
             aria-haspopup="listbox"
-            aria-owns="bestFriend"
+            aria-label="Best friend"
+            aria-owns="bestFriend-options"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input form-control"
             id="bestFriend"
@@ -122,7 +124,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
-          id="bestFriend"
+          id="bestFriend-options"
           role="listbox"
           style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
         >
@@ -131,7 +133,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-0"
+            id="bestFriend-options-item-0"
             role="option"
           >
             admin@
@@ -146,7 +148,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-1"
+            id="bestFriend-options-item-1"
             role="option"
           >
             coordinator@
@@ -161,7 +163,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-2"
+            id="bestFriend-options-item-2"
             role="option"
           >
             user@
@@ -199,6 +201,7 @@ exports[`Component: TypeaheadSingle ui default 1`] = `
             aria-autocomplete="both"
             aria-expanded="false"
             aria-haspopup="listbox"
+            aria-label="Best friend"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input form-control"
             id="bestFriend"
@@ -242,6 +245,7 @@ exports[`Component: TypeaheadSingle ui loading 1`] = `
             aria-autocomplete="both"
             aria-expanded="false"
             aria-haspopup="listbox"
+            aria-label="Best friend"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input form-control"
             id="bestFriend"
@@ -299,7 +303,8 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
             aria-autocomplete="both"
             aria-expanded="true"
             aria-haspopup="listbox"
-            aria-owns="bestFriend"
+            aria-label="Best friend"
+            aria-owns="bestFriend-options"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input form-control"
             id="bestFriend"
@@ -319,7 +324,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
-          id="bestFriend"
+          id="bestFriend-options"
           role="listbox"
           style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
         >
@@ -328,7 +333,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-0"
+            id="bestFriend-options-item-0"
             role="option"
           >
             admin@
@@ -343,7 +348,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-1"
+            id="bestFriend-options-item-1"
             role="option"
           >
             coordinator@
@@ -362,7 +367,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
             aria-selected="false"
             class="dropdown-item rbt-menu-pagination-option"
             href="#"
-            id="bestFriend-item-2"
+            id="bestFriend-options-item-2"
             role="option"
           >
             Show more
@@ -395,7 +400,8 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
             aria-autocomplete="both"
             aria-expanded="true"
             aria-haspopup="listbox"
-            aria-owns="bestFriend"
+            aria-label="Best friend"
+            aria-owns="bestFriend-options"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input form-control"
             id="bestFriend"
@@ -415,7 +421,7 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
-          id="bestFriend"
+          id="bestFriend-options"
           role="listbox"
           style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
         >
@@ -424,7 +430,7 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-0"
+            id="bestFriend-options-item-0"
             role="option"
           >
             admin@
@@ -439,7 +445,7 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
             aria-selected="false"
             class="dropdown-item"
             href="#"
-            id="bestFriend-item-1"
+            id="bestFriend-options-item-1"
             role="option"
           >
             coordinator@
@@ -458,7 +464,7 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
             aria-selected="false"
             class="dropdown-item rbt-menu-pagination-option"
             href="#"
-            id="bestFriend-item-2"
+            id="bestFriend-options-item-2"
             role="option"
           >
             Display additional results...

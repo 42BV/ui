@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 import Datetime from 'react-datetime';
-import { constant, get } from 'lodash';
+import { constant, get, uniqueId } from 'lodash';
 import moment, { Moment } from 'moment';
 import MaskedInput from 'react-text-mask';
 import { Icon } from '../../core/Icon';
 
 import { DateFormat, TimeFormat } from './types';
 
-import { combineFormat, formatToMask} from './utils';
+import { combineFormat, formatToMask } from './utils';
 
 import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
@@ -104,8 +104,9 @@ export function DateTimeInput(props: Props) {
   const [ isModalOpen, setIsModalOpen ] = useState(false);
 
   const {
-    id,
+    id = uniqueId(),
     label,
+    hiddenLabel,
     placeholder,
     valid,
     onFocus,
@@ -156,7 +157,7 @@ export function DateTimeInput(props: Props) {
 
   return (
     <FormGroup className={formGroupClassName} color={color}>
-      {label ? (
+      {!hiddenLabel || typeof label !== 'string' ? (
         <Label for={id}>
           {label}{' '}
           <span className="date-time-input-format text-muted">
@@ -171,13 +172,14 @@ export function DateTimeInput(props: Props) {
           placeholder,
           invalid: valid === false,
           id,
-          autoComplete: 'off'
+          autoComplete: 'off',
+          'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
         }}
         open={mode === 'modal' ? false : undefined}
-        renderInput={(props) =>
+        renderInput={(inputProps) =>
           mode === 'modal'
-            ? maskedInputGroup(props, () => setIsModalOpen(true))
-            : maskedInput(props)
+            ? maskedInputGroup(inputProps, () => setIsModalOpen(true))
+            : maskedInput(inputProps)
         }
         onChange={onChange}
         onOpen={onFocus}
@@ -198,7 +200,7 @@ export function DateTimeInput(props: Props) {
           onSave={onChange}
           dateFormat={dateFormat}
           timeFormat={timeFormat}
-          defaultValue={value instanceof Date || isDate({dateFormat, timeFormat})(value) ? value : undefined}
+          defaultValue={value instanceof Date || isDate({ dateFormat, timeFormat })(value) ? value : undefined}
           isDateAllowed={isDateAllowed}
           label={placeholder}
           locale={locale}

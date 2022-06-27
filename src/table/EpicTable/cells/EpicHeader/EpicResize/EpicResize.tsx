@@ -35,7 +35,7 @@ export function EpicResize({ width, onResize }: Props) {
   // When the onResize changes re-init the throttle.
   useEffect(() => {
     throttledResize.current = throttle(onResize, 40);
-  }, [onResize]);
+  }, [ onResize ]);
 
   // Stores the width of the element when the resize first started.
   const widthOnResizeStart = useRef(0);
@@ -63,7 +63,7 @@ export function EpicResize({ width, onResize }: Props) {
     document.body.classList.remove('user-select-none');
 
     window.removeEventListener('mousemove', resize, listenerConfig);
-  }, [resize]);
+  }, [ resize ]);
 
   const resizeStart = useCallback(
     (event: RMouseEvent<HTMLDivElement>, width: number) => {
@@ -91,7 +91,7 @@ export function EpicResize({ width, onResize }: Props) {
       // entire document instead until the mouse goes up. This way the
       // user doesn't have to have 100% accuracy to resize the element.
     },
-    [resize, resizeEnd]
+    [ resize, resizeEnd ]
   );
 
   useEpicResizeListenerCleanup(resize, resizeEnd);

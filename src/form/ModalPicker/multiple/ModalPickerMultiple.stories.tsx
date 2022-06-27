@@ -2,19 +2,15 @@ import React, { Fragment, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { pageWithContentAndExactSize } from '../../../test/utils';
-import {
-  adminUser,
-  coordinatorUser,
-  pageOfUsers,
-  userUser
-} from '../../../test/fixtures';
+import { adminUser, coordinatorUser, pageOfUsers, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
-import { ModalPickerMultiple, JarbModalPickerMultiple } from './ModalPickerMultiple';
+import { JarbModalPickerMultiple, ModalPickerMultiple } from './ModalPickerMultiple';
 
 import {
   FinalForm,
-  IsOptionEqualInfo, JarbFormElementDependencies,
+  IsOptionEqualInfo,
+  JarbFormElementDependencies,
   KeyForOptionInfo,
   nonExistingProvince,
   Province,
@@ -23,7 +19,7 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../../story-utils';
-import { Icon, Toggle, Tooltip, Card } from '../../..';
+import { Card, Icon, Toggle, Tooltip } from '../../..';
 import { Alert, ListGroup, ListGroupItem } from 'reactstrap';
 import { Avatar } from '../../../core/Avatar/Avatar';
 import classNames from 'classnames';
@@ -40,7 +36,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     </>
   ))
   .add('predefined options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -66,7 +62,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('show 5 options per page', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -98,7 +94,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('async options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -124,7 +120,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('disabled options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -151,7 +147,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       provinces()[0]
     ]);
 
@@ -180,7 +176,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('custom keyForOption', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       provinces()[0]
     ]);
 
@@ -209,16 +205,16 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [limitToNorthern, setLimitToNorthern] = useState(false);
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ limitToNorthern, setLimitToNorthern ] = useState(false);
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
     return (
       <Card className="m2">
         <p>
-          Limit to northern provinces
           <Toggle
+            label="Limit to northern provinces"
             className="ms-2"
             color="primary"
             value={limitToNorthern}
@@ -251,16 +247,16 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [limitToNorthern, setLimitToNorthern] = useState(false);
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ limitToNorthern, setLimitToNorthern ] = useState(false);
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
     return (
       <Card className="m2">
         <p>
-          Limit to northern provinces
           <Toggle
+            label="Limit to northern provinces"
             className="ms-2"
             color="primary"
             value={limitToNorthern}
@@ -293,7 +289,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('with extra add button', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
+    const [ value, setValue ] = useState<User[] | undefined>([]);
 
     return (
       <Card className="m2">
@@ -304,7 +300,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           canSearch={true}
           labelForOption={(user: User) => user.email}
           options={() =>
-            Promise.resolve(pageWithContentAndExactSize([userUser()]))
+            Promise.resolve(pageWithContentAndExactSize([ userUser() ]))
           }
           addButton={{
             label: 'Create friend',
@@ -326,7 +322,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('without search', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -346,7 +342,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('custom renderOptions', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
+    const [ value, setValue ] = useState<User[] | undefined>([]);
 
     return (
       <Card className="m2">
@@ -355,7 +351,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          options={[userUser(), adminUser(), coordinatorUser()]}
+          options={[ userUser(), adminUser(), coordinatorUser() ]}
           labelForOption={(user: User) => user.email}
           isOptionEnabled={(user) => user.email !== 'admin@42.nl'}
           renderOptions={(options) => (
@@ -388,7 +384,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('custom renderValue', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
+    const [ value, setValue ] = useState<User[] | undefined>([]);
 
     return (
       <Card className="m2">
@@ -397,7 +393,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           label="Best friend"
           placeholder="Select your best friend"
           canSearch={true}
-          options={[userUser(), adminUser(), coordinatorUser()]}
+          options={[ userUser(), adminUser(), coordinatorUser() ]}
           labelForOption={(user: User) => user.email}
           value={value}
           onChange={(value) => setValue(value)}
@@ -424,7 +420,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('button alignment', () => {
-    const [value, setValue] = useState<User[] | undefined>([]);
+    const [ value, setValue ] = useState<User[] | undefined>([]);
 
     return (
       <Card className="m2">
@@ -464,16 +460,18 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('labels', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
     return (
       <Card className="m2">
-        <h3>Without label</h3>
+        <h3>Invisible label</h3>
 
         <ModalPickerMultiple
           id="provinces"
+          label="Province"
+          hiddenLabel={true}
           placeholder="Please select your provinces"
           options={provinces()}
           labelForOption={(province) => province.label}
@@ -522,7 +520,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('with icon', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -532,6 +530,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
 
         <ModalPickerMultiple
           id="provinces"
+          label="Province"
           placeholder="Please select your provinces"
           options={provinces()}
           labelForOption={(province) => province.label}
@@ -552,6 +551,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
 
         <ModalPickerMultiple
           id="provinces"
+          label="Province"
           placeholder="Please select your provinces"
           icon="ballot"
           options={provinces()}
@@ -570,7 +570,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('without clear button', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -578,6 +578,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
       <Card className="m2">
         <ModalPickerMultiple
           id="provinces"
+          label="Province"
           placeholder="Please select your provinces"
           options={provinces()}
           labelForOption={(province) => province.label}
@@ -589,7 +590,7 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
     );
   })
   .add('with custom text', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 

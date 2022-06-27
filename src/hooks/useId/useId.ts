@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { uniqueId } from 'lodash';
 
 type UseIdConfig = {
@@ -17,12 +17,12 @@ type UseIdConfig = {
  * @returns {string} The id.
  */
 export function useId({ id }: UseIdConfig): string {
-  const [innerId, setInnerId] = useState(() => id ?? uniqueId());
+  const [ innerId, setInnerId ] = useState(() => id ?? uniqueId());
   useEffect(() => {
     if (id) {
       setInnerId(id);
     }
-  }, [id]);
+  }, [ id ]);
 
   return innerId;
 }

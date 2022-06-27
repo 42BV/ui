@@ -7,7 +7,7 @@ describe('Hook: useMeterWidth', () => {
     jest.spyOn(React, 'useEffect').mockImplementation(fn => fn());
 
     const setMeterWidthSpy = jest.fn();
-    jest.spyOn(React, 'useState').mockReturnValue([0, setMeterWidthSpy]);
+    jest.spyOn(React, 'useState').mockReturnValue([ 0, setMeterWidthSpy ]);
 
     useMeterWidth({ lowercase: true });
 

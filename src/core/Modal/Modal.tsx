@@ -1,10 +1,5 @@
 import React, { Suspense } from 'react';
-import {
-  Modal as ReactstrapModal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader
-} from 'reactstrap';
+import { Modal as ReactstrapModal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { BootstrapSize } from '../types';
 import { Loading } from '../Loading/Loading';
 

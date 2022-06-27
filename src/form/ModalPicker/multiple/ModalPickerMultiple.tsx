@@ -5,21 +5,11 @@ import { withJarb } from '../../withJarb/withJarb';
 import { alwaysTrue, doBlur } from '../../utils';
 import { Tag } from '../../../core/Tag/Tag';
 import { ModalPicker, Text } from '../ModalPicker';
-import {
-  ModalPickerAddButtonCallback,
-  ModalPickerAddButtonOptions,
-  ModalPickerButtonAlignment,
-  ModalPickerRenderOptions
-} from '../types';
-import {
-  FieldCompatibleWithPredeterminedOptions,
-  getKeyForOption,
-  isOptionSelected
-} from '../../option';
+import { ModalPickerAddButtonCallback, ModalPickerAddButtonOptions, ModalPickerButtonAlignment, ModalPickerRenderOptions } from '../types';
+import { FieldCompatibleWithPredeterminedOptions, getKeyForOption, isOptionSelected } from '../../option';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import { FieldCompatible } from '../../types';
-import { useId } from '../../../hooks/useId/useId';
 import { useOptions } from '../../useOptions';
 import { IconType } from '../../../core/Icon';
 import { t } from '../../../utilities/translation/translation';
@@ -28,83 +18,81 @@ export type ModalPickerMultipleRenderValues<T> = (
   value?: T[]
 ) => React.ReactNode;
 
-export type Props<T> = Omit<
-  FieldCompatible<T[], T[] | undefined>,
-  'valid' | 'placeholder'
-> &
+export type Props<T> = Omit<FieldCompatible<T[], T[] | undefined>,
+  'valid' | 'placeholder'> &
   FieldCompatibleWithPredeterminedOptions<T> & {
-    /**
-     * The placeholder of the form element.
-     */
-    placeholder: string;
+  /**
+   * The placeholder of the form element.
+   */
+  placeholder: string;
 
-    /**
-     * Optionally the icon to display on the button to open the modal picker.
-     */
-    icon?: IconType;
+  /**
+   * Optionally the icon to display on the button to open the modal picker.
+   */
+  icon?: IconType;
 
-    /**
-     * Optionally whether or not the user can search.
-     * Defaults to `true`.
-     */
-    canSearch?: boolean;
+  /**
+   * Optionally whether or not the user can search.
+   * Defaults to `true`.
+   */
+  canSearch?: boolean;
 
-    /**
-     * Optionally specify the number of options to show / fetch per
-     * page in the modal.
-     *
-     * When `options` is an array, it will determine how many options
-     * will be displayed per page.
-     *
-     * When `options` is a fetcher, it will determine how many options
-     * are requested through the fetcher as the `page` parameter.
-     * This means that when you set the pageSize to `100` that
-     * `100` items are fetched from the back-end. Beware of
-     * performance issues when setting the value too high.
-     *
-     * Beware that setting the page size too high will cause the UX
-     * to deteriorate on smaller screens!
-     *
-     * Defaults to `10`.
-     */
-    pageSize?: number;
+  /**
+   * Optionally specify the number of options to show / fetch per
+   * page in the modal.
+   *
+   * When `options` is an array, it will determine how many options
+   * will be displayed per page.
+   *
+   * When `options` is a fetcher, it will determine how many options
+   * are requested through the fetcher as the `page` parameter.
+   * This means that when you set the pageSize to `100` that
+   * `100` items are fetched from the back-end. Beware of
+   * performance issues when setting the value too high.
+   *
+   * Beware that setting the page size too high will cause the UX
+   * to deteriorate on smaller screens!
+   *
+   * Defaults to `10`.
+   */
+  pageSize?: number;
 
-    /**
-     * Optionally an add button to display in the Modal. Can
-     * be used to dynamically add an option which was not there
-     * before.
-     */
-    addButton?: ModalPickerAddButtonOptions<T>;
+  /**
+   * Optionally an add button to display in the Modal. Can
+   * be used to dynamically add an option which was not there
+   * before.
+   */
+  addButton?: ModalPickerAddButtonOptions<T>;
 
-    /**
-     * Optionally the position the button should be aligned to
-     * within it's container.
-     */
-    alignButton?: ModalPickerButtonAlignment;
+  /**
+   * Optionally the position the button should be aligned to
+   * within it's container.
+   */
+  alignButton?: ModalPickerButtonAlignment;
 
-    /**
-     * Optionally callback to display the selected items.
-     */
-    renderValue?: ModalPickerMultipleRenderValues<T>;
+  /**
+   * Optionally callback to display the selected items.
+   */
+  renderValue?: ModalPickerMultipleRenderValues<T>;
 
-    /**
-     * Callback to customize display of options.
-     */
-    renderOptions?: ModalPickerRenderOptions<T>;
+  /**
+   * Callback to customize display of options.
+   */
+  renderOptions?: ModalPickerRenderOptions<T>;
 
-    /**
-     * Whether or not to show a "clear" button.
-     *
-     * Defaults to `true`
-     */
-    canClear?: boolean;
+  /**
+   * Whether or not to show a "clear" button.
+   *
+   * Defaults to `true`
+   */
+  canClear?: boolean;
 
-    /**
-     * Optionally customized text within the component.
-     * This text should already be translated.
-     */
-    text?: Text;
-  };
+  /**
+   * Optionally customized text within the component.
+   * This text should already be translated.
+   */
+  text?: Text;
+};
 
 /**
  * The ModalPickerMultiple is a form element which allows the user
@@ -121,8 +109,8 @@ export type Props<T> = Omit<
  */
 export function ModalPickerMultiple<T>(props: Props<T>) {
   const {
-    id,
     label,
+    hiddenLabel,
     color,
     placeholder,
     icon,
@@ -147,11 +135,11 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     text
   } = props;
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [query, setQuery] = useState<string>('');
-  const [userHasSearched, setUserHasSearched] = useState(false);
-  const [selected, setSelected] = useState<T[]>([]);
+  const [ isOpen, setIsOpen ] = useState(false);
+  const [ pageNumber, setPageNumber ] = useState(1);
+  const [ query, setQuery ] = useState<string>('');
+  const [ userHasSearched, setUserHasSearched ] = useState(false);
+  const [ selected, setSelected ] = useState<T[]>([]);
 
   const { page, loading } = useOptions({
     options,
@@ -165,11 +153,9 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     optionsShouldAlwaysContainValue: false
   });
 
-  const innerId = useId({ id });
-
   function modalSaved() {
     setIsOpen(false);
-    onChange([...selected]);
+    onChange([ ...selected ]);
 
     doBlur(onBlur);
   }
@@ -183,7 +169,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     // Otherwise the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
-    const newSelected = Array.isArray(value) ? [...value] : [];
+    const newSelected = Array.isArray(value) ? [ ...value ] : [];
 
     setSelected(newSelected);
     setIsOpen(true);
@@ -197,7 +183,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     // Otherwise the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
-    let newSelected = [...selected];
+    let newSelected = [ ...selected ];
 
     if (isSelected) {
       newSelected = selected.filter(
@@ -240,11 +226,11 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     renderValue: renderValue
       ? renderValue
       : (value: T[]) => (
-          <ModalPickerValueTruncator
-            value={value}
-            labelForOption={labelForOption}
-          />
-        ),
+        <ModalPickerValueTruncator
+          value={value}
+          labelForOption={labelForOption}
+        />
+      ),
     onClear: canClear ? () => onChange(undefined) : undefined,
     // Only render the clear button when it has a value
     value: value && value.length > 0 ? value : undefined
@@ -252,7 +238,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
 
   return (
     <FormGroup className={className} color={color}>
-      {label ? <Label for={innerId}>{label}</Label> : null}
+      {!hiddenLabel ? <Label>{label}</Label> : null}
 
       <ModalPickerOpener {...modalPickerOpenerProps} />
 
@@ -270,11 +256,11 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
   function renderModal() {
     const addButtonOptions = addButton
       ? {
-          label: addButton.label,
-          onClick: () => {
-            addButtonClicked(addButton.onClick);
-          }
+        label: addButton.label,
+        onClick: () => {
+          addButtonClicked(addButton.onClick);
         }
+      }
       : undefined;
 
     return (
@@ -296,13 +282,13 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
         renderOptionsConfig={
           renderOptions
             ? {
-                labelForOption,
-                isOptionEqual,
-                keyForOption,
-                isOptionEnabled,
-                renderOptions,
-                onChange: optionClicked
-              }
+              labelForOption,
+              isOptionEqual,
+              keyForOption,
+              isOptionEnabled,
+              renderOptions,
+              onChange: optionClicked
+            }
             : undefined
         }
         text={text}
@@ -381,8 +367,6 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
 /**
  * Variant of the ModalPickerMultiple which can be used in a Jarb context.
  */
-export const JarbModalPickerMultiple = withJarb<
-  any[],
+export const JarbModalPickerMultiple = withJarb<any[],
   any[] | null | undefined,
-  Props<any>
->(ModalPickerMultiple);
+  Props<any>>(ModalPickerMultiple);

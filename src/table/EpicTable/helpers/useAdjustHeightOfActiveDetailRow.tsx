@@ -23,5 +23,5 @@ export function useAdjustHeightOfActiveDetailRow({
     if (activeDetailRow) {
       activeDetailRow.style.height = `${actualHeight}px`;
     }
-  }, [actualHeight, activeDetailRow]);
+  }, [ actualHeight, activeDetailRow ]);
 }

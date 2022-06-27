@@ -26,7 +26,7 @@ storiesOf('core/CopyToClipboard', module)
   .add('code', () => {
     return (
       <CopyToClipboard>
-        &lt;div&gt;This is a div&lt;/div&gt;{"\n"}
+        &lt;div&gt;This is a div&lt;/div&gt;{'\n'}
         &lt;span&gt;You should be able to see the &lt;em&gt;HTML&lt;/em&gt;.&lt;/span&gt;
       </CopyToClipboard>
     );

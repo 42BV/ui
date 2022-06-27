@@ -21,6 +21,7 @@ exports[`Component: CrudTable ui default 1`] = `
         </i>
       </span>
       <input
+        aria-label="Start typing to search"
         class="form-control"
         id="1"
         type="search"
@@ -45,7 +46,9 @@ exports[`Component: CrudTable ui default 1`] = `
           class=""
           style="min-height: 400px;"
         >
-          <div />
+          <div
+            tabindex="0"
+          />
           <div
             class="epic-table-cell border-bottom p-1 epic-table-cell--odd"
             style="min-width: 100px; width: 100px; height: 44px;"

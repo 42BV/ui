@@ -1,4 +1,4 @@
-import { isOptionSelected, getKeyForOption } from './option';
+import { getKeyForOption, isOptionSelected } from './option';
 
 type Boat = {
   id?: number;
@@ -76,7 +76,7 @@ describe('Util: isOptionSelected', () => {
 
         expect(
           isOptionSelected({
-            value: [speedBoatCopy],
+            value: [ speedBoatCopy ],
             option: speedBoat,
             keyForOption,
             labelForOption,
@@ -96,7 +96,7 @@ describe('Util: isOptionSelected', () => {
 
         expect(
           isOptionSelected({
-            value: [tugBoat],
+            value: [ tugBoat ],
             option: anotherTugBoat,
             keyForOption,
             labelForOption,
@@ -119,7 +119,7 @@ describe('Util: isOptionSelected', () => {
 
         expect(
           isOptionSelected({
-            value: [tugBoat],
+            value: [ tugBoat ],
             option: { ...anotherTugBoat, uniqueKey: tugBoat.uniqueKey },
             labelForOption,
             keyForOption
@@ -127,14 +127,14 @@ describe('Util: isOptionSelected', () => {
         ).toBe(true);
         expect(
           isOptionSelected({
-            value: [speedBoat],
+            value: [ speedBoat ],
             option: speedBoatCopy,
             labelForOption
           })
         ).toBe(true);
         expect(
           isOptionSelected({
-            value: [{ ...tugBoat, id: undefined }],
+            value: [ { ...tugBoat, id: undefined } ],
             option: { ...anotherTugBoat, id: undefined },
             labelForOption
           })
@@ -153,7 +153,7 @@ describe('Util: isOptionSelected', () => {
 
         expect(
           isOptionSelected({
-            value: [speedBoatCopy],
+            value: [ speedBoatCopy ],
             option: speedBoat,
             labelForOption,
             keyForOption
@@ -161,14 +161,14 @@ describe('Util: isOptionSelected', () => {
         ).toBe(false);
         expect(
           isOptionSelected({
-            value: [tugBoat],
+            value: [ tugBoat ],
             option: anotherTugBoat,
             labelForOption
           })
         ).toBe(false);
         expect(
           isOptionSelected({
-            value: [{ ...speedBoatCopy, id: undefined }],
+            value: [ { ...speedBoatCopy, id: undefined } ],
             option: { ...speedBoat, id: undefined },
             labelForOption
           })

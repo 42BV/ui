@@ -70,6 +70,11 @@ type Props<T> = {
    * Required when `options` is defined.
    */
   labelForOption?: LabelForOption<T>;
+
+  /**
+   * Optionally the (invisible) label for the search field.
+   */
+  searchLabel?: React.ReactNode;
 }
 
 /**
@@ -87,6 +92,7 @@ export function CrudHeader<T = string>({
   width,
   height,
   onResize,
+  searchLabel,
   children
 }: Props<T>) {
   const header = onSort ? (
@@ -112,6 +118,8 @@ export function CrudHeader<T = string>({
               options={options}
               labelForOption={labelForOption}
               onChange={onSearch}
+              label={searchLabel}
+              hiddenLabel={true}
             />
           ) : (
             <Input
@@ -120,6 +128,8 @@ export function CrudHeader<T = string>({
               // @ts-expect-error Default value type is a string
               onChange={onSearch}
               type="search"
+              label={searchLabel}
+              hiddenLabel={true}
             />
           )}
         </EpicCellLayout>

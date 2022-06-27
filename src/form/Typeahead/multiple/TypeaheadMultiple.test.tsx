@@ -4,12 +4,7 @@ import '@testing-library/jest-dom';
 
 import { TypeaheadMultiple } from './TypeaheadMultiple';
 
-import {
-  adminUser,
-  listOfUsers,
-  pageOfUsersFetcher,
-  userUser
-} from '../../../test/fixtures';
+import { adminUser, listOfUsers, pageOfUsersFetcher, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
 import { pageOf } from '../../../utilities/page/page';
@@ -26,6 +21,7 @@ describe('Component: TypeaheadMultiple', () => {
     value,
     hasPlaceholder,
     hasLabel,
+    hasId = true,
     loading = false,
     isOptionEnabled,
     isAsync,
@@ -36,6 +32,7 @@ describe('Component: TypeaheadMultiple', () => {
     value?: User[];
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
+    hasId?: boolean;
     loading?: boolean;
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
@@ -74,8 +71,9 @@ describe('Component: TypeaheadMultiple', () => {
       maxResults,
       text,
       error: 'Some error',
-      id: 'bestFriend',
-      label: hasLabel ? 'Best friend' : undefined
+      id: hasId ? 'bestFriend' : undefined,
+      label: 'Best friend',
+      hiddenLabel: !hasLabel
     };
 
     const { container, rerender, asFragment } = render(
@@ -92,7 +90,7 @@ describe('Component: TypeaheadMultiple', () => {
     });
 
     test('with value', () => {
-      setup({ value: [adminUser()] });
+      setup({ value: [ adminUser() ] });
       expect(screen.queryAllByText('×').length).toBe(1);
       expect(screen.getByText('×').parentNode?.textContent).toBe('admin@42.nl×');
     });
@@ -107,16 +105,21 @@ describe('Component: TypeaheadMultiple', () => {
       expect(screen.queryByPlaceholderText('Please provide your best friend')).not.toBeInTheDocument();
     });
 
-    test('with label', () => {
+    test('without id', () => {
+      setup({ hasId: false, hasLabel: true });
+      expect(screen.queryByLabelText('Best friend')).toBeInTheDocument();
+    });
+
+    test('visible label', () => {
       setup({ hasLabel: true });
       expect(screen.queryByText('Best friend')).toBeInTheDocument();
       expect(screen.queryByLabelText('Best friend')).toBeInTheDocument();
     });
 
-    test('without label', () => {
+    test('invisible label', () => {
       setup({ hasLabel: false });
       expect(screen.queryByText('Best friend')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('Best friend')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Best friend')).toBeInTheDocument();
     });
 
     test('async with a custom pageSize of 2 options in the dropdown', async () => {
@@ -200,7 +203,7 @@ describe('Component: TypeaheadMultiple', () => {
   describe('renderToken', () => {
     it('should when the Tag is closed call onRemove', () => {
       const { onChangeSpy } = setup({
-        value: [adminUser()]
+        value: [ adminUser() ]
       });
 
       fireEvent.click(screen.getByText('×'));
@@ -212,7 +215,7 @@ describe('Component: TypeaheadMultiple', () => {
 
   describe('events', () => {
     test('onChange', async () => {
-      expect.assertions(24);
+      expect.assertions(21);
 
       const { onBlurSpy, onChangeSpy } = setup({
         value: []
@@ -222,7 +225,7 @@ describe('Component: TypeaheadMultiple', () => {
       fireEvent.click(screen.getByLabelText('admin@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([adminUser()]);
+      expect(onChangeSpy).toHaveBeenCalledWith([ adminUser() ]);
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
@@ -248,7 +251,7 @@ describe('Component: TypeaheadMultiple', () => {
       expect.assertions(6);
 
       setup({
-        value: [adminUser()], // The admin user is select so it should be filtered out
+        value: [ adminUser() ], // The admin user is select so it should be filtered out
         isOptionEnabled: (user) => user.id !== userUser().id // Also disable the userUser
       });
 
@@ -264,7 +267,7 @@ describe('Component: TypeaheadMultiple', () => {
     describe('value changes', () => {
       test('becomes empty', () => {
         const { props, rerender } = setup({
-          value: [adminUser()]
+          value: [ adminUser() ]
         });
 
         expect(screen.queryByText('admin@42.nl', { exact: false })).toBeInTheDocument();
@@ -288,7 +291,7 @@ describe('Component: TypeaheadMultiple', () => {
 
         const newProps = {
           ...props,
-          value: [adminUser()]
+          value: [ adminUser() ]
         };
 
         rerender(

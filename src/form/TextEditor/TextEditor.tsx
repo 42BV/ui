@@ -8,6 +8,7 @@ import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { formatsFromToolbarModule } from './utils';
 import { FieldCompatible } from '../types';
+import { uniqueId } from 'lodash';
 
 export type Props = FieldCompatible<string, string> & {
   /**
@@ -54,8 +55,9 @@ export type Props = FieldCompatible<string, string> & {
  */
 export function TextEditor(props: Props) {
   const {
-    id,
+    id = uniqueId(),
     label,
+    hiddenLabel,
     placeholder,
     onChange,
     onBlur,
@@ -84,7 +86,7 @@ export function TextEditor(props: Props) {
 
   return (
     <FormGroup className={className} color={color}>
-      {label ? <Label>{label}</Label> : null}
+      {!hiddenLabel ? <Label>{label}</Label> : null}
       <ReactQuill className={classes} {...inputProps} />
       {error}
     </FormGroup>

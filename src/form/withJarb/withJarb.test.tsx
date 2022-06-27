@@ -17,7 +17,7 @@ describe('HoC: withJarb', () => {
   function setup({ hasErrors = false, errorMode }: { hasErrors?: boolean; errorMode?: 'tooltip' | 'below' }) {
     jest
       .spyOn(useHasErrors, 'useHasErrors')
-      .mockImplementation(() => [hasErrors, jest.fn()]);
+      .mockImplementation(() => [ hasErrors, jest.fn() ]);
 
     setConstraints({
       User: {
@@ -34,8 +34,8 @@ describe('HoC: withJarb', () => {
           <JarbInput
             name="firstName"
             jarb={{ validator: 'User.firstName', label: 'First name' }}
-            validators={[isSuperman]}
-            asyncValidators={[isSuperman]}
+            validators={[ isSuperman ]}
+            asyncValidators={[ isSuperman ]}
             asyncValidatorsDebounce={100}
             id="firstName"
             label="First name"
@@ -129,8 +129,8 @@ describe('HoC: withJarb', () => {
     expect(isDateValidatorSpy).toHaveBeenCalled();
     expect(isDateValidatorSpy).toHaveBeenLastCalledWith(
       '4242-42-42',
-      expect.objectContaining({test: '4242-42-42'}),
-      expect.objectContaining({active: false})
+      expect.objectContaining({ test: '4242-42-42' }),
+      expect.objectContaining({ active: false })
     );
   });
 

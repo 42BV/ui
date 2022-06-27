@@ -89,13 +89,13 @@ export function Popover({
       visible={isOpen}
       onClickOutside={onClickOutside}
       className="border-0 tippy-popover"
-      content={<>{children}</>}
+      content={children}
       placement={placement}
-      offset={[offset, distance]}
+      offset={[ offset, distance ]}
       interactive={true}
       zIndex={1049} // One level below bootstrap's modal
     >
-      <Tag className={className} style={style} tabIndex={0}>
+      <Tag className={className} style={style} tabIndex={0} role="button">
         {target}
       </Tag>
     </Tippy>

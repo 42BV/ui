@@ -9,7 +9,7 @@ storiesOf('core/LoadingPage', module)
     return <LoadingPage className="mt-0" />;
   })
   .add('custom height', () => {
-    return <LoadingPage height={200} />;
+    return <LoadingPage height={100} />;
   })
   .add('custom style', () => {
     return <LoadingPage style={{ backgroundColor: 'red' }} />;

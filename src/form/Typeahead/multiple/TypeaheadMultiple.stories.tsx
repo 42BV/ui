@@ -4,15 +4,16 @@ import { storiesOf } from '@storybook/react';
 import {
   FinalForm,
   IsOptionEqualInfo,
-  ReloadOptionsInfo,
+  JarbFormElementDependencies,
+  nonExistingProvince,
   Province,
-  provinces,
   provinceFetcher,
-  nonExistingProvince, JarbFormElementDependencies
+  provinces,
+  ReloadOptionsInfo
 } from '../../story-utils';
 
-import { TypeaheadMultiple, JarbTypeaheadMultiple } from './TypeaheadMultiple';
-import { Icon, Tooltip, Card } from '../../..';
+import { JarbTypeaheadMultiple, TypeaheadMultiple } from './TypeaheadMultiple';
+import { Card, Icon, Tooltip } from '../../..';
 import { Toggle } from '../../../core/Toggle/Toggle';
 import { Alert } from 'reactstrap';
 
@@ -30,7 +31,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     </>
   ))
   .add('predefined options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -56,7 +57,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('async options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -83,7 +84,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
   })
 
   .add('async options - limited pageSize', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -115,7 +116,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('disabled options', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -142,7 +143,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       provinces()[0]
     ]);
 
@@ -171,16 +172,16 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [limitToNorthern, setLimitToNorthern] = useState(false);
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ limitToNorthern, setLimitToNorthern ] = useState(false);
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
     return (
       <Card className="m-2">
         <p>
-          Limit to northern provinces
           <Toggle
+            label="Limit to northern provinces"
             className="ms-2"
             color="primary"
             value={limitToNorthern}
@@ -213,15 +214,18 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('label & placeholder', () => {
-    const [value, setValue] = useState<Province[] | undefined>([
+    const [ value, setValue ] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
     return (
       <Card className="m-2">
-        <h3>Without label</h3>
+        <span className="d-block fs-5">Invisible label</span>
 
         <TypeaheadMultiple
+          id="provinces"
+          label="Provinces"
+          hiddenLabel={true}
           placeholder="Please select your provinces"
           options={provinces()}
           labelForOption={(province) => province.label}
@@ -231,10 +235,10 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
 
         <hr />
 
-        <h3>Custom label</h3>
+        <span className="d-block fs-5">Custom label</span>
 
         <TypeaheadMultiple
-          id="provinces"
+          id="friends"
           label={
             <div className="d-flex justify-content-between">
               <span>Friends</span>
@@ -243,7 +247,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
               </Tooltip>
             </div>
           }
-          placeholder="Please select your provinces"
+          placeholder="Please select your friends"
           options={provinces()}
           labelForOption={(province) => province.label}
           value={value}
@@ -252,10 +256,10 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
 
         <hr />
 
-        <h3>Without placeholder</h3>
+        <span className="d-block fs-5">Without placeholder</span>
 
         <TypeaheadMultiple
-          id="provinces"
+          id="no-placeholder"
           label="Provinces"
           options={provinces()}
           labelForOption={(province) => province.label}

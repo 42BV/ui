@@ -4,6 +4,7 @@ exports[`Component: Popover ui default 1`] = `
 <div>
   <span
     aria-expanded="false"
+    role="button"
     tabindex="0"
   >
     <div>
@@ -17,6 +18,7 @@ exports[`Component: Popover ui open 1`] = `
 <div>
   <span
     aria-expanded="true"
+    role="button"
     tabindex="0"
   >
     <div>
@@ -61,6 +63,7 @@ exports[`Component: Popover ui with optional properties 1`] = `
 <div>
   <span
     aria-expanded="true"
+    role="button"
     style="margin-top: 5px; padding: 10px;"
     tabindex="0"
   >

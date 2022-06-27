@@ -1,4 +1,4 @@
-import { getState, doBlur, alwaysTrue } from './utils';
+import { alwaysTrue, doBlur, getState } from './utils';
 
 describe('getState', () => {
   expect(getState({ hasErrors: true, touched: true })).toEqual({

@@ -16,6 +16,9 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
       <fieldset
         class="radio-group  mb-3"
       >
+        <legend>
+          Environment
+        </legend>
         <div
           class="form-check"
         >
@@ -118,6 +121,9 @@ exports[`Component: Card ui without footer 1`] = `
       <fieldset
         class="radio-group  mb-3"
       >
+        <legend>
+          Environment
+        </legend>
         <div
           class="form-check"
         >
@@ -210,6 +216,9 @@ exports[`Component: Card ui without header 1`] = `
       <fieldset
         class="radio-group  mb-3"
       >
+        <legend>
+          Environment
+        </legend>
         <div
           class="form-check"
         >

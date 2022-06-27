@@ -4,7 +4,7 @@ import { NewPasswordInputRule } from '../../types';
 export function useMeterWidth(
   compliant: { [key in NewPasswordInputRule]?: boolean }
 ): number {
-  const [meterWidth, setMeterWidth] = useState(0);
+  const [ meterWidth, setMeterWidth ] = useState(0);
 
   useEffect(() => {
     const values = Object.values(compliant);
@@ -12,7 +12,7 @@ export function useMeterWidth(
     const noRules = values.length;
 
     setMeterWidth((noCompliantRules / noRules) * 100);
-  }, [compliant, setMeterWidth]);
+  }, [ compliant, setMeterWidth ]);
 
   return meterWidth;
 }

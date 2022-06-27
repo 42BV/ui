@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 
 import lodash from 'lodash';
 
-import { SearchInput, Props } from './SearchInput';
+import { Props, SearchInput } from './SearchInput';
 
 describe('Component: SearchInput', () => {
   function setup({
@@ -33,13 +33,10 @@ describe('Component: SearchInput', () => {
       placeholder: 'Search...',
       canClear,
       showIcon: showIcon,
-      label: showLabel ? 'Search' : undefined
+      label: 'Search',
+      hiddenLabel: !showLabel,
+      children: withChildren ? () => <h1>Children</h1> : undefined
     };
-
-    if (withChildren) {
-      // eslint-disable-next-line react/display-name
-      props.children = () => <h1>Children</h1>;
-    }
 
     const { container } = render(
       <SearchInput {...props} />
@@ -178,6 +175,7 @@ describe('Component: SearchInput', () => {
 
       render(
         <SearchInput
+          label="Search"
           defaultValue=""
           debounce={300}
           onChange={onChangeSpy}

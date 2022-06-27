@@ -20,7 +20,7 @@ function isSClass(value?: boolean) {
 storiesOf('Form/Checkbox', module)
   .addParameters({ component: Checkbox })
   .add('basic', () => {
-    const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
+    const [ isSClass, setIsSClass ] = useState<boolean | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -42,7 +42,7 @@ storiesOf('Form/Checkbox', module)
     );
   })
   .add('basic with indeterminate', () => {
-    const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
+    const [ isSClass, setIsSClass ] = useState<boolean | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -65,7 +65,7 @@ storiesOf('Form/Checkbox', module)
     );
   })
   .add('without placeholder', () => {
-    const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
+    const [ isSClass, setIsSClass ] = useState<boolean | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -86,7 +86,7 @@ storiesOf('Form/Checkbox', module)
     );
   })
   .add('with custom label', () => {
-    const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
+    const [ isSClass, setIsSClass ] = useState<boolean | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -127,7 +127,7 @@ storiesOf('Form/Checkbox', module)
             name="isSClass"
             label="Is S class hero"
             placeholder="Whether or not the hero is S class"
-            validators={[isSClass]}
+            validators={[ isSClass ]}
             jarb={{
               validator: 'Hero.isSClass',
               label: 'Description'
@@ -147,7 +147,7 @@ storiesOf('Form/Checkbox', module)
             name="isSClass"
             label="Is S class hero"
             placeholder="Whether or not the hero is S class"
-            validators={[isSClass]}
+            validators={[ isSClass ]}
             jarb={{
               validator: 'Hero.isSClass',
               label: 'Description'

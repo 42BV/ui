@@ -19,31 +19,37 @@ storiesOf('core/NavigationItem', module)
   .add('default', () => {
     return (
       <BrowserRouter>
-        <NavigationItem to="/dashboard" icon="dashboard" text="Dashboard" />
+        <ul>
+          <NavigationItem to="/dashboard" icon="dashboard" text="Dashboard" />
+        </ul>
       </BrowserRouter>
     );
   })
   .add('with show boolean', () => {
     return (
       <BrowserRouter>
-        <NavigationItem
-          show={true}
-          to="/dashboard"
-          icon="dashboard"
-          text="Dashboard"
-        />
+        <ul>
+          <NavigationItem
+            show={true}
+            to="/dashboard"
+            icon="dashboard"
+            text="Dashboard"
+          />
+        </ul>
       </BrowserRouter>
     );
   })
   .add('with show as function', () => {
     return (
       <BrowserRouter>
-        <NavigationItem
-          show={() => true}
-          to="/dashboard"
-          icon="dashboard"
-          text="Dashboard"
-        />
+        <ul>
+          <NavigationItem
+            show={() => true}
+            to="/dashboard"
+            icon="dashboard"
+            text="Dashboard"
+          />
+        </ul>
       </BrowserRouter>
     );
   });

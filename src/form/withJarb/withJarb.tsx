@@ -15,7 +15,7 @@ import { FieldValidator } from 'final-form';
 
 // This is a list of props that `withJarb` will pass to the `final-form`
 // Field, but not the wrapper.
-const passedFieldProps = ['initialValue', 'format', 'formatOnBlur', 'parse'];
+const passedFieldProps = [ 'initialValue', 'format', 'formatOnBlur', 'parse' ];
 
 // These are the props that are managed by `withJarb` and should not
 // be set manually by the user.
@@ -29,16 +29,13 @@ const managedProps = [
   'error'
 ];
 
-export type JarbFieldCompatible<Value, ChangeValue> = FieldCompatible<
-  Value,
-  ChangeValue
-> & {
+export type JarbFieldCompatible<Value, ChangeValue> = FieldCompatible<Value,
+  ChangeValue> & {
   errorMode?: 'tooltip' | 'below';
 };
 
 export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
-  Omit<
-    P,
+  Omit<P,
     | 'onFocus'
     | 'onBlur'
     | 'onChange'
@@ -46,8 +43,7 @@ export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
     | 'color'
     | 'valid'
     | 'error'
-    | 'label'
-    >;
+    | 'label'>;
 
 /**
  * withJarb is a Higher Order Component which takes an input element
@@ -65,11 +61,9 @@ export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
  * @param Wrapper The Component which is `JarbFieldCompatible`.
  * @param defaultValidators Optional validators the field should use by default
  */
-export function withJarb<
-  Value,
+export function withJarb<Value,
   ChangeValue,
-  P extends JarbFieldCompatible<Value, ChangeValue>
->(Wrapper: React.ComponentType<P>, defaultValidators?: (props: WithJarbProps<Value, P>) => FieldValidator<Value>[]) {
+  P extends JarbFieldCompatible<Value, ChangeValue>>(Wrapper: React.ComponentType<P>, defaultValidators?: (props: WithJarbProps<Value, P>) => FieldValidator<Value>[]) {
   const displayName = `Jarb${getDisplayName(Wrapper)}`;
 
   WithJarb.displayName = displayName;
@@ -96,7 +90,7 @@ export function withJarb<
       `);
     }
 
-    const [hasErrors, setHasErrors] = useHasErrors();
+    const [ hasErrors, setHasErrors ] = useHasErrors();
 
     const {
       errorMode = 'below',

@@ -41,6 +41,9 @@ exports[`Component: Modal ui with header and footer 1`] = `
             <fieldset
               class="radio-group  mb-3"
             >
+              <legend>
+                Environment
+              </legend>
               <div
                 class="form-check"
               >
@@ -174,6 +177,9 @@ exports[`Component: Modal ui without footer 1`] = `
             <fieldset
               class="radio-group  mb-3"
             >
+              <legend>
+                Environment
+              </legend>
               <div
                 class="form-check"
               >
@@ -288,6 +294,9 @@ exports[`Component: Modal ui without header 1`] = `
             <fieldset
               class="radio-group  mb-3"
             >
+              <legend>
+                Environment
+              </legend>
               <div
                 class="form-check"
               >

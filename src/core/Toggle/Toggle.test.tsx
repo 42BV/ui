@@ -8,25 +8,29 @@ import { Tooltip } from '../Tooltip/Tooltip';
 describe('Component: Toggle', () => {
   function setup({
     value,
-    label
+    label = 'Test',
+    hasLabel
   }: {
     value?: boolean;
     label?: React.ReactNode;
+    hasLabel?: boolean;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
+    const props = {
+      value,
+      onChange: onChangeSpy,
+      onBlur: onBlurSpy,
+      id: hasLabel ? 'toggle' : undefined,
+      label,
+      hiddenLabel: !hasLabel
+    };
+
     const { container, rerender } = render(
-      <Toggle
-        id="toggle"
-        color="primary"
-        value={value}
-        onChange={onChangeSpy}
-        onBlur={onBlurSpy}
-        label={label}
-      />
+      <Toggle {...props} color="primary" />
     );
-    
+
     return { container, rerender, onChangeSpy, onBlurSpy };
   }
 
@@ -42,9 +46,9 @@ describe('Component: Toggle', () => {
     });
 
     test('with text label', () => {
-      const { container } = setup({ value: false, label: 'test' });
-      expect(screen.getByText('test')).toBeInTheDocument();
-      expect(screen.getByLabelText('test')).toBeInTheDocument();
+      const { container } = setup({ value: false, hasLabel: true });
+      expect(screen.getByText('Test')).toBeInTheDocument();
+      expect(screen.getByLabelText('Test')).toBeInTheDocument();
       expect(container).toMatchSnapshot();
     });
 
@@ -89,7 +93,7 @@ describe('Component: Toggle', () => {
     });
 
     it('should call onChange when label is clicked', () => {
-      const { onChangeSpy } = setup({ label: 'Test' });
+      const { onChangeSpy } = setup({ hasLabel: true });
 
       fireEvent.click(screen.getByText('Test'));
 
@@ -104,6 +108,7 @@ describe('Component: Toggle', () => {
     const { rerender } = render(
       <Toggle
         id="toggle"
+        label="toggle"
         color="primary"
         value={false}
         onChange={onChange}
@@ -115,6 +120,7 @@ describe('Component: Toggle', () => {
     rerender(
       <Toggle
         id="toggle"
+        label="toggle"
         color="primary"
         value={true}
         onChange={onChange}

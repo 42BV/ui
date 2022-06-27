@@ -9,5 +9,5 @@ export function useOnChange(
     if (onChange) {
       onChange(hasErrors);
     }
-  }, [hasErrors, onChange]);
+  }, [ hasErrors, onChange ]);
 }

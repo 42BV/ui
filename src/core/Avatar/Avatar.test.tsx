@@ -17,7 +17,7 @@ describe('Component: Avatar', () => {
         <h1>Children</h1>
       </Avatar>
     );
-    
+
     return { container };
   }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import { NewPasswordInput, isStrongPassword, JarbNewPasswordInput } from './NewPasswordInput';
+import { isStrongPassword, JarbNewPasswordInput, NewPasswordInput } from './NewPasswordInput';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Addon } from '../addons/Addon/Addon';
@@ -20,7 +20,7 @@ storiesOf('Form/NewPasswordInput', module)
     </>
   ))
   .add('basic', () => {
-    const [password, setPassword] = useState('');
+    const [ password, setPassword ] = useState('');
 
     return (
       <Card className="m-2">
@@ -35,7 +35,7 @@ storiesOf('Form/NewPasswordInput', module)
     );
   })
   .add('icon', () => {
-    const [password, setPassword] = useState('');
+    const [ password, setPassword ] = useState('');
 
     return (
       <Card className="m-2">
@@ -55,7 +55,7 @@ storiesOf('Form/NewPasswordInput', module)
     );
   })
   .add('without placeholder', () => {
-    const [password, setPassword] = useState('');
+    const [ password, setPassword ] = useState('');
 
     return (
       <Card className="m-2">
@@ -68,12 +68,14 @@ storiesOf('Form/NewPasswordInput', module)
       </Card>
     );
   })
-  .add('without label', () => {
-    const [password, setPassword] = useState('');
+  .add('invisible label', () => {
+    const [ password, setPassword ] = useState('');
 
     return (
       <Card className="m-2">
         <NewPasswordInput
+          label="Password"
+          hiddenLabel={true}
           placeholder="Please enter your password"
           value={password}
           onChange={setPassword}
@@ -82,7 +84,7 @@ storiesOf('Form/NewPasswordInput', module)
     );
   })
   .add('with custom label', () => {
-    const [password, setPassword] = useState('');
+    const [ password, setPassword ] = useState('');
 
     return (
       <Card className="m-2">
@@ -107,7 +109,7 @@ storiesOf('Form/NewPasswordInput', module)
     );
   })
   .add('without meter', () => {
-    const [password, setPassword] = useState('');
+    const [ password, setPassword ] = useState('');
 
     return (
       <Card className="m-2">

@@ -2,319 +2,331 @@
 
 exports[`Component: Pagination ui first page 1`] = `
 <div>
-  <nav
-    aria-label="pagination"
-    class=""
+  <div
+    class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
   >
-    <ul
-      class="pagination"
+    <nav
+      aria-label="pagination"
+      class=""
     >
-      <li
-        class="page-item disabled"
+      <ul
+        class="pagination"
       >
-        <button
-          class="page-link"
+        <li
+          class="page-item disabled"
         >
-          <i
-            class="icon material-icons"
-            style="font-size: 14px;"
+          <button
+            class="page-link"
           >
-            arrow_back
-          </i>
-        </button>
-      </li>
-      <li
-        class="page-item active"
-      >
-        <button
-          class="page-link"
+            <i
+              class="icon material-icons"
+              style="font-size: 14px;"
+            >
+              arrow_back
+            </i>
+          </button>
+        </li>
+        <li
+          class="page-item active"
         >
-          1
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          2
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          3
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="disabled page-link"
-          disabled=""
-        >
-          ...
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          8
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          9
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          10
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          <i
-            class="icon material-icons"
-            style="font-size: 14px;"
+          <button
+            class="page-link"
           >
-            arrow_forward
-          </i>
-        </button>
-      </li>
-    </ul>
-  </nav>
+            1
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            2
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            3
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="disabled page-link"
+            disabled=""
+          >
+            ...
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            8
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            9
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            10
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            <i
+              class="icon material-icons"
+              style="font-size: 14px;"
+            >
+              arrow_forward
+            </i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
 `;
 
 exports[`Component: Pagination ui last page 1`] = `
 <div>
-  <nav
-    aria-label="pagination"
-    class=""
+  <div
+    class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
   >
-    <ul
-      class="pagination"
+    <nav
+      aria-label="pagination"
+      class=""
     >
-      <li
-        class="page-item"
+      <ul
+        class="pagination"
       >
-        <button
-          class="page-link"
+        <li
+          class="page-item"
         >
-          <i
-            class="icon material-icons"
-            style="font-size: 14px;"
+          <button
+            class="page-link"
           >
-            arrow_back
-          </i>
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
+            <i
+              class="icon material-icons"
+              style="font-size: 14px;"
+            >
+              arrow_back
+            </i>
+          </button>
+        </li>
+        <li
+          class="page-item"
         >
-          1
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          2
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          3
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="disabled page-link"
-          disabled=""
-        >
-          ...
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          8
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          9
-        </button>
-      </li>
-      <li
-        class="page-item active"
-      >
-        <button
-          class="page-link"
-        >
-          10
-        </button>
-      </li>
-      <li
-        class="page-item disabled"
-      >
-        <button
-          class="page-link"
-        >
-          <i
-            class="icon material-icons"
-            style="font-size: 14px;"
+          <button
+            class="page-link"
           >
-            arrow_forward
-          </i>
-        </button>
-      </li>
-    </ul>
-  </nav>
+            1
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            2
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            3
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="disabled page-link"
+            disabled=""
+          >
+            ...
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            8
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            9
+          </button>
+        </li>
+        <li
+          class="page-item active"
+        >
+          <button
+            class="page-link"
+          >
+            10
+          </button>
+        </li>
+        <li
+          class="page-item disabled"
+        >
+          <button
+            class="page-link"
+          >
+            <i
+              class="icon material-icons"
+              style="font-size: 14px;"
+            >
+              arrow_forward
+            </i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
 `;
 
 exports[`Component: Pagination ui middle 1`] = `
 <div>
-  <nav
-    aria-label="pagination"
-    class=""
+  <div
+    class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
   >
-    <ul
-      class="pagination"
+    <nav
+      aria-label="pagination"
+      class=""
     >
-      <li
-        class="page-item"
+      <ul
+        class="pagination"
       >
-        <button
-          class="page-link"
+        <li
+          class="page-item"
         >
-          <i
-            class="icon material-icons"
-            style="font-size: 14px;"
+          <button
+            class="page-link"
           >
-            arrow_back
-          </i>
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
+            <i
+              class="icon material-icons"
+              style="font-size: 14px;"
+            >
+              arrow_back
+            </i>
+          </button>
+        </li>
+        <li
+          class="page-item"
         >
-          1
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="disabled page-link"
-          disabled=""
-        >
-          ...
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          4
-        </button>
-      </li>
-      <li
-        class="page-item active"
-      >
-        <button
-          class="page-link"
-        >
-          5
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          6
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="disabled page-link"
-          disabled=""
-        >
-          ...
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          10
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          <i
-            class="icon material-icons"
-            style="font-size: 14px;"
+          <button
+            class="page-link"
           >
-            arrow_forward
-          </i>
-        </button>
-      </li>
-    </ul>
-  </nav>
+            1
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="disabled page-link"
+            disabled=""
+          >
+            ...
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            4
+          </button>
+        </li>
+        <li
+          class="page-item active"
+        >
+          <button
+            class="page-link"
+          >
+            5
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            6
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="disabled page-link"
+            disabled=""
+          >
+            ...
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            10
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            <i
+              class="icon material-icons"
+              style="font-size: 14px;"
+            >
+              arrow_forward
+            </i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
 `;

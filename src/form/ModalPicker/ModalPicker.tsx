@@ -1,34 +1,20 @@
 import React from 'react';
 import { Page } from '@42.nl/spring-connect';
-import {
-  Button,
-  Col,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Row
-} from 'reactstrap';
+import { Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
 
 import { Pagination } from '../../core/Pagination/Pagination';
 import { t } from '../../utilities/translation/translation';
 import { SearchInput } from '../../core/SearchInput/SearchInput';
 import { ContentState } from '../../core/ContentState/ContentState';
 import { EmptyModal } from './EmptyModal';
-import {
-  ModalPickerRenderOptions,
-  ModalPickerRenderOptionsOption
-} from './types';
-import {
-  FieldCompatibleWithPredeterminedOptions,
-  isOptionSelected,
-  IsOptionEnabled
-} from '../option';
+import { ModalPickerRenderOptions, ModalPickerRenderOptionsOption } from './types';
+import { FieldCompatibleWithPredeterminedOptions, IsOptionEnabled, isOptionSelected } from '../option';
 
 export type Text = {
   placeholder?: string;
   cancel?: string;
   select?: string;
+  searchLabel?: string;
 };
 
 type Props<T> = {
@@ -125,10 +111,8 @@ type Props<T> = {
   selected: T | T[];
 };
 
-export type RenderOptionsConfig<T> = Omit<
-  FieldCompatibleWithPredeterminedOptions<T>,
-  'options' | 'reloadOptions' | 'isOptionEnabled'
-> & {
+export type RenderOptionsConfig<T> = Omit<FieldCompatibleWithPredeterminedOptions<T>,
+  'options' | 'reloadOptions' | 'isOptionEnabled'> & {
   // It is always provided by the ModalPickerSingle and ModalPickerMultiple
   isOptionEnabled: IsOptionEnabled<T>;
 
@@ -184,6 +168,12 @@ export function ModalPicker<T>(props: Props<T>) {
                   key: 'ModalPicker.SEARCH',
                   fallback: 'Search...'
                 })}
+                label={t({
+                  overrideText: text.searchLabel,
+                  key: 'ModalPicker.SEARCH_LABEL',
+                  fallback: 'Start typing to search'
+                })}
+                hiddenLabel={true}
                 debounce={canSearchSync ? 0 : 500}
                 onChange={queryChanged}
               />

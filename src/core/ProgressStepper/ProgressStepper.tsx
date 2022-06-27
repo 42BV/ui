@@ -16,7 +16,7 @@ type Props<T> = {
    * Can only be called if the `isStepClickable` for this step
    * returns `true`.
    *
-   * @param {T} step The step which is clicked
+   * @param {any} step The step which is clicked
    * @param {number} index The index of the step that was clicked
    */
   onClick?(step: T, index: number): void;
@@ -27,7 +27,7 @@ type Props<T> = {
    * The color also determines if an icon is shown in the circle
    * or a number.
    *
-   * @param {T} step The step you must provide the color for
+   * @param {any} step The step you must provide the color for
    * @param {number} index The index of the step you must provide the color for\
    * @returns {Color}
    */
@@ -36,7 +36,7 @@ type Props<T> = {
   /**
    * Callback to determine the title for the step to display below the circle.
    *
-   * @param {T} step The step you must provide the title for
+   * @param {any} step The step you must provide the title for
    * @param {number} index The index of the step you must provide the color for
    * @returns {string} The title of the step
    */
@@ -48,7 +48,7 @@ type Props<T> = {
    * When the step is clickable the cursor will be a pointer, and
    * calls to `onClick` are let through.
    *
-   * @param {T} step The step you must answer whether it is clickable or not
+   * @param {any} step The step you must answer whether it is clickable or not
    * @param {number} index The index of the step for which you must answer whether it is clickable or not
    * @returns {boolean} Whether or not the step is clickable
    */
@@ -91,11 +91,11 @@ export function ProgressStepper<T>(props: Props<T>) {
                 }
               }}
             >
-              <div className="step-circle">
+              <div className={`step-circle text-bg-${color}`}>
                 <span>{index + 1}</span>
               </div>
 
-              <div className="step-title">{title}</div>
+              <div className={`step-title text-${color}`}>{title}</div>
             </div>
             <div className="step-bar-left" />
             <div className="step-bar-right" />

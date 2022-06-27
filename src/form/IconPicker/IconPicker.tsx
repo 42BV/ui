@@ -1,12 +1,5 @@
-import React, { useState } from 'react';
-import {
-  Button,
-  FormGroup,
-  Label,
-  Card,
-  CardHeader,
-  CardBody
-} from 'reactstrap';
+import React, { ForwardedRef, forwardRef, useState } from 'react';
+import { FormGroup, Label } from 'reactstrap';
 import classNames from 'classnames';
 
 import { withJarb } from '../withJarb/withJarb';
@@ -18,9 +11,10 @@ import { pageOf } from '../../utilities/page/page';
 import { ContentState } from '../../core/ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
-import { Popover } from '../../core/Popover/Popover';
 import { TextButton } from '../../core/TextButton/TextButton';
 import { FieldCompatible } from '../types';
+import Tippy from '@tippyjs/react';
+import { Card } from '../../core/Card/Card';
 
 type Text = {
   /**
@@ -36,9 +30,19 @@ type Text = {
   noResultsSubtitle?: string;
 
   /**
-   * The text of the clear button
+   * The text of the clear button.
    */
   clear?: string;
+
+  /**
+   * The label of the search input.
+   */
+  searchLabel?: string;
+
+  /**
+   * The placeholder of the search input.
+   */
+  searchPlaceholder?: string;
 };
 
 type Props = FieldCompatible<IconType, IconType | undefined> & {
@@ -69,6 +73,7 @@ type Props = FieldCompatible<IconType, IconType | undefined> & {
 export function IconPicker(props: Props) {
   const {
     label,
+    hiddenLabel,
     icon,
     value,
     color,
@@ -81,9 +86,9 @@ export function IconPicker(props: Props) {
     canClear = true
   } = props;
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [query, setQuery] = useState('');
+  const [ isOpen, setIsOpen ] = useState(false);
+  const [ pageNumber, setPageNumber ] = useState(1);
+  const [ query, setQuery ] = useState('');
 
   const filteredIcons = icons.filter((icon) =>
     icon.toLowerCase().startsWith(query.toLowerCase())
@@ -97,8 +102,8 @@ export function IconPicker(props: Props) {
     setIsOpen(false);
   }
 
-  function onSearch(query: string) {
-    setQuery(query);
+  function onSearch(term: string) {
+    setQuery(term);
     setPageNumber(1);
   }
 
@@ -107,10 +112,24 @@ export function IconPicker(props: Props) {
   const classes = classNames('icon-picker', className);
 
   return (
-    <SearchInput defaultValue={query} onChange={onSearch} debounce={0}>
+    <SearchInput
+      defaultValue={query}
+      onChange={onSearch}
+      debounce={0}
+      label={t({
+        key: 'IconPicker.SEARCH_INPUT_LABEL',
+        fallback: 'Start typing to search an icon',
+        overrideText: text.searchLabel
+      })}
+      placeholder={t({
+        key: 'IconPicker.SEARCH',
+        fallback: 'Search...',
+        overrideText: text.searchPlaceholder
+      })}
+      hiddenLabel={true}>
       {(searchInput, searchInputApi) => (
         <FormGroup className={classes} color={color}>
-          {label ? <Label>{label}</Label> : null}
+          {!hiddenLabel ? <Label>{label}</Label> : null}
 
           <div className="d-flex">
             {value ? (
@@ -134,43 +153,33 @@ export function IconPicker(props: Props) {
                 ) : null}
               </div>
             ) : null}
-            <Popover
+            <Tippy
+              visible={isOpen}
+              className="border-0 tippy-popover"
               placement="bottom"
-              isOpen={isOpen}
-              target={
-                <Button
-                  type="button"
-                  color="primary"
-                  onClick={() => {
-                    if (isOpen) {
-                      searchInputApi.setValue('');
-                    }
-
-                    setIsOpen(!isOpen);
-                  }}
+              offset={[ 0, 7 ]}
+              interactive={true}
+              zIndex={1049} // One level below bootstrap's modal
+              content={(
+                <Card
+                  header={searchInput}
+                  footer={iconsPage.totalPages > 1 ? (
+                    <Pager page={iconsPage} onChange={setPageNumber} />
+                  ) : undefined}
+                  cardFooterClassName="bg-white"
                 >
-                  {icon ? (
-                    <Icon icon={icon} className="me-2 align-bottom" />
-                  ) : null}
-                  {placeholder}
-                </Button>
-              }
-            >
-              <Card>
-                <CardHeader>{searchInput}</CardHeader>
-                <CardBody>
-                  <div style={{ width: 250, height: 250 }}>
+                  <div style={{ width: 240, height: 240, margin: 'auto' }}>
                     {!isEmpty ? (
                       iconsPage.content.map((icon) => (
                         <span key={icon} className="d-inline-block">
-                          <Tooltip placement="top" distance={18} content={icon}>
-                            <Icon
-                              className="m-2"
-                              icon={icon}
-                              onClick={() => onIconSelected(icon)}
-                            />
-                          </Tooltip>
-                        </span>
+                        <Tooltip placement="top" distance={18} content={icon}>
+                          <Icon
+                            className="m-2"
+                            icon={icon}
+                            onClick={() => onIconSelected(icon)}
+                          />
+                        </Tooltip>
+                      </span>
                       ))
                     ) : (
                       <ContentState
@@ -189,13 +198,21 @@ export function IconPicker(props: Props) {
                       />
                     )}
                   </div>
+                </Card>
+              )}
+            >
+              <IconPickerButtonRef
+                onClick={() => {
+                  if (isOpen) {
+                    searchInputApi.setValue('');
+                  }
 
-                  <div className="my-2 text-center">
-                    <Pager page={iconsPage} onChange={setPageNumber} />
-                  </div>
-                </CardBody>
-              </Card>
-            </Popover>
+                  setIsOpen(!isOpen);
+                }}
+                icon={icon}
+                placeholder={placeholder}
+              />
+            </Tippy>
           </div>
 
           {error}
@@ -204,6 +221,30 @@ export function IconPicker(props: Props) {
     </SearchInput>
   );
 }
+
+type ButtonProps = {
+  onClick: () => void;
+  icon?: IconType;
+  placeholder?: string;
+};
+
+function IconPickerButton({ onClick, icon, placeholder }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
+  return (
+    <button
+      type="button"
+      className="btn btn-primary"
+      onClick={onClick}
+      ref={ref}
+    >
+      {icon ? (
+        <Icon icon={icon} className="me-2 align-bottom" />
+      ) : null}
+      {placeholder}
+    </button>
+  );
+}
+
+const IconPickerButtonRef = forwardRef(IconPickerButton);
 
 /**
  * Variant of the IconPicker which can be used in a Jarb context.

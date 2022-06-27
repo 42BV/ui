@@ -24,6 +24,7 @@ export function FileInput(props: Props) {
   const {
     id = uniqueId(),
     label,
+    hiddenLabel,
     accept,
     placeholder,
     error,
@@ -35,7 +36,7 @@ export function FileInput(props: Props) {
     onFocus
   } = props;
 
-  const inputRef = useRef<HTMLInputElement|null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
@@ -72,12 +73,14 @@ export function FileInput(props: Props) {
     placeholder,
     value: name,
     invalid: valid === false ? true : undefined,
-    onChange: () => console.error('The placeholder input of FileInput should not be changeable')
+    onChange: () => console.error('The placeholder input of FileInput should not be changeable'),
+    'aria-label': 'This is a placeholder input that should not be reachable. Use the file input instead.',
+    tabIndex: -1
   };
 
   return (
     <FormGroup className={`file-upload ${className}`} color={color}>
-      {label ? <Label for={id}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
       <input
         id={id}
         accept={accept}
@@ -86,6 +89,7 @@ export function FileInput(props: Props) {
         onClick={onClick}
         onChange={onChange}
         onFocus={onFocus}
+        aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
       />
 
       <InputGroup>

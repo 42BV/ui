@@ -1,10 +1,4 @@
-import {
-  getPicaInstance,
-  dataUrlToFile,
-  cropToAvatarEditorConfig,
-  calculateScale,
-  replaceFileExtension
-} from './utils';
+import { calculateScale, cropToAvatarEditorConfig, dataUrlToFile, getPicaInstance, replaceFileExtension } from './utils';
 
 test('getPicaInstance', () => {
   const first = getPicaInstance();

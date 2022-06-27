@@ -21,7 +21,6 @@ exports[`Component: EpicForm ui 1`] = `
       <input
         class="form-control"
         id="testField"
-        placeholder=""
         type="text"
         value=""
       />

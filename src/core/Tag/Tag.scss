@@ -1,26 +1,8 @@
-.tag {
-  @extend .badge, .rounded-pill, .bg-primary;
-
+.badge {
   display: inline-block;
   margin-right: 0.1875rem;
   height: 18px;
   cursor: default;
-
-  &-info {
-    background-color: $teal !important;
-  }
-
-  &-success {
-    background-color: $green !important;
-  }
-
-  &-warning {
-    background-color: $orange !important;
-  }
-
-  &-danger {
-    background-color: $red !important;
-  }
 
   .close-button {
     cursor: pointer;

@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-  AsyncContent,
-  Props as AsyncContentProps, ReactAsyncState, ReactQueryState
-} from '../AsyncContent/AsyncContent';
+import { AsyncContent, Props as AsyncContentProps, ReactAsyncState, ReactQueryState } from '../AsyncContent/AsyncContent';
 
 type Props<T> = Omit<AsyncContentProps<T>, 'isEmpty'> & (ReactAsyncState<T> | ReactQueryState<T>);
 

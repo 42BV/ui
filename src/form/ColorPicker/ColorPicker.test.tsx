@@ -7,12 +7,13 @@ import { Color } from '../../core/types';
 import { IconType } from '../../core/Icon';
 
 describe('Component: ColorPicker', () => {
-  function setup({ value, hasIcon, canClear }: { value?: string; hasIcon?: boolean; canClear?: boolean }) {
+  function setup({ value, hasIcon, canClear, hasLabel }: { value?: string; hasIcon?: boolean; canClear?: boolean; hasLabel?: boolean; }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
     const props = {
-      id: 'bestFriend',
+      id: hasLabel ? 'bestFriend' : undefined,
+      hiddenLabel: !hasLabel,
       name: 'bestFriend',
       label: 'Best Friend',
       placeholder: 'Select your best friend',
@@ -59,6 +60,16 @@ describe('Component: ColorPicker', () => {
     test('without icon', () => {
       setup({ hasIcon: false });
       expect(screen.queryByText('face')).not.toBeInTheDocument();
+    });
+
+    test('visible label', () => {
+      setup({ hasLabel: true });
+      expect(screen.queryByText('Best Friend')).toBeInTheDocument();
+    });
+
+    test('invisible label', () => {
+      setup({ hasLabel: false });
+      expect(screen.queryByText('Best Friend')).not.toBeInTheDocument();
     });
 
     test('with clear button', () => {

@@ -1,5 +1,13 @@
 .icon {
   &--disabled {
-    opacity: 0.65;
+    opacity: 0.8;
+  }
+
+  &.text-info {
+    color: $text-info-contrast !important;
+  }
+
+  &.text-warning {
+    color: $text-warning-contrast !important;
   }
 }

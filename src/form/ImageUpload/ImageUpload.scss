@@ -1,11 +1,13 @@
 .img-upload {
   position: relative;
+
   &:hover {
     .img-upload-wrapper {
       background: darken($gray-200, 5%);
       cursor: pointer;
     }
   }
+
   input[type='file'] {
     opacity: 0;
     position: absolute;
@@ -15,19 +17,23 @@
     left: 0;
     width: 100%;
     height: 100%;
+
     &:hover {
       cursor: pointer;
     }
   }
+
   canvas {
     max-width: 100%;
     height: auto !important;
   }
+
   .img-upload-wrapper {
     @extend .text-center;
     padding-top: 3rem;
     padding-bottom: 3rem;
     border: 0.625rem dashed darken($gray-200, 10%);
+
     > i {
       font-size: 5rem;
     }

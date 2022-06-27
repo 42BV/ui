@@ -1,8 +1,8 @@
 $progress-stepper-icons: (
-  success: '\2713',
-  warning: '!',
-  info: '?',
-  danger: '!'
+        success: '\2713',
+        warning: '!',
+        info: '?',
+        danger: '!'
 );
 
 .progress-stepper {
@@ -27,8 +27,6 @@ $progress-stepper-icons: (
     @each $color, $value in $theme-colors {
       &.#{"" + $color} {
         .step-circle {
-          background-color: $value;
-
           $icon: map-get($progress-stepper-icons, $color);
 
           @if ($icon) {
@@ -40,10 +38,6 @@ $progress-stepper-icons: (
               display: none;
             }
           }
-        }
-        .step-title {
-          font-weight: 600;
-          color: $value;
         }
       }
     }
@@ -67,6 +61,14 @@ $progress-stepper-icons: (
       font-weight: 600;
       text-align: center;
       color: $gray-900;
+
+      &.text-info {
+        color: $text-info-contrast !important;
+      }
+
+      &.text-warning {
+        color: $text-warning-contrast !important;
+      }
     }
 
     .step-bar-left,

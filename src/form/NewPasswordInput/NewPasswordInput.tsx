@@ -6,14 +6,7 @@ import { Translation } from '../../utilities/translation/translator';
 import { Input, Props as InputProps } from '../Input/Input';
 import { withJarb } from '../withJarb/withJarb';
 import { PasswordStrength } from './PasswordStrength/PasswordStrength';
-import {
-  hasLowercase,
-  hasMinimumLength,
-  hasNoSpaces,
-  hasNumber,
-  hasSpecialChar,
-  hasUppercase
-} from './PasswordStrength/rules';
+import { hasLowercase, hasMinimumLength, hasNoSpaces, hasNumber, hasSpecialChar, hasUppercase } from './PasswordStrength/rules';
 import { NewPasswordInputRule } from './types';
 
 type PasswordProps = {
@@ -88,7 +81,7 @@ export function NewPasswordInput(props: Props) {
     'showMeter'
   ]) as InputProps;
   inputProps.type = 'password';
-  const passwordStrengthProps = pick(props, ['minimumLength', 'showMeter']);
+  const passwordStrengthProps = pick(props, [ 'minimumLength', 'showMeter' ]);
 
   return (
     <div className="new-password-input">

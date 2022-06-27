@@ -117,7 +117,8 @@ export function ImageUpload(props: Props) {
     className,
     error,
     color,
-    label
+    label,
+    hiddenLabel
   } = props;
 
   const [ mode, setMode ] = useState<Mode>('no-file');
@@ -289,14 +290,14 @@ export function ImageUpload(props: Props) {
   return (
     <div className={className}>
       <FormGroup color={color} className="img-upload">
-        {label ? <Label for={id}>{label}</Label> : null}
+        {!hiddenLabel ? <Label for={id}>{label}</Label> : null}
         {mode === 'file-selected' && image ? (
           <>
             <div className="d-flex justify-content-center">
               <img
                 style={{ borderRadius: crop.type === 'rect' ? 0 : '50%' }}
                 className="img-fluid elevated-3"
-                alt={label && typeof label === 'string' ? label : ''}
+                alt={typeof label === 'string' ? label : undefined}
                 src={image.src}
               />
             </div>
@@ -315,6 +316,7 @@ export function ImageUpload(props: Props) {
               type="file"
               accept="image/*"
               ref={inputRef}
+              aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
             />
 
             <div className="img-upload-wrapper bg-faded text-muted">

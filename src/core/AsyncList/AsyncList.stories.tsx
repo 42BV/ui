@@ -35,7 +35,9 @@ function rejectData(): Promise<User[]> {
 }
 
 function loadingData(): Promise<User[]> {
-  return new Promise(() => undefined);
+  return new Promise(() => {
+    // this promise never resolves to be able to keep displaying loading state
+  });
 }
 
 const client = new QueryClient({
@@ -59,8 +61,8 @@ storiesOf('core/Async/AsyncList', module)
       <Story />
     </QueryClientProvider>
   ))
-  .add('when loaded', () => {
-    const state = useQuery(['data'], loadData);
+  .add('loaded', () => {
+    const state = useQuery([ 'loaded' ], loadData);
 
     return (
       <Card body>
@@ -77,8 +79,8 @@ storiesOf('core/Async/AsyncList', module)
     );
   })
 
-  .add('when error', () => {
-    const state = useQuery(['data'], rejectData);
+  .add('error', () => {
+    const state = useQuery([ 'error' ], rejectData);
 
     return (
       <Card body>
@@ -95,8 +97,8 @@ storiesOf('core/Async/AsyncList', module)
     );
   })
 
-  .add('when error with custom text', () => {
-    const state = useQuery(['data'], rejectData);
+  .add('error with custom text', () => {
+    const state = useQuery([ 'error', 'custom text' ], rejectData);
 
     return (
       <Card body>
@@ -116,8 +118,8 @@ storiesOf('core/Async/AsyncList', module)
     );
   })
 
-  .add('when error with no retry button', () => {
-    const state = useQuery(['data'], rejectData);
+  .add('error with no retry button', () => {
+    const state = useQuery([ 'error', 'no retry' ], rejectData);
 
     return (
       <Card body>
@@ -134,8 +136,8 @@ storiesOf('core/Async/AsyncList', module)
     );
   })
 
-  .add('when loading', () => {
-    const state = useQuery(['data'], loadingData);
+  .add('loading', () => {
+    const state = useQuery([ 'loading' ], loadingData);
 
     return (
       <Card body>
@@ -152,8 +154,8 @@ storiesOf('core/Async/AsyncList', module)
     );
   })
 
-  .add('when loading with custom title', () => {
-    const state = useQuery(['data'], loadingData);
+  .add('loading with custom title', () => {
+    const state = useQuery([ 'loading', 'custom title' ], loadingData);
 
     return (
       <Card body>
@@ -170,8 +172,8 @@ storiesOf('core/Async/AsyncList', module)
     );
   })
 
-  .add('when empty', () => {
-    const state = useQuery(['data'], emptyData);
+  .add('empty', () => {
+    const state = useQuery([ 'empty' ], emptyData);
 
     return (
       <Card body>
@@ -188,14 +190,14 @@ storiesOf('core/Async/AsyncList', module)
     );
   })
 
-  .add('when empty with custom title', () => {
-    const state = useQuery(['data'], emptyData);
+  .add('empty with custom title', () => {
+    const state = useQuery([ 'empty', 'custom title' ], emptyData);
 
     return (
       <Card body>
         <AsyncList
           state={state}
-          text={{ empty: "No Jeffrey's match your parameters try again" }}
+          text={{ empty: 'No Jeffrey\'s match your parameters try again' }}
         >
           {(users) => (
             <ListGroup>
@@ -209,8 +211,8 @@ storiesOf('core/Async/AsyncList', module)
     );
   })
 
-  .add('when empty with custom empty', () => {
-    const state = useQuery(['data'], emptyData);
+  .add('empty with custom empty', () => {
+    const state = useQuery([ 'empty', 'custom empty' ], emptyData);
 
     return (
       <Card body>

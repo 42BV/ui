@@ -9,10 +9,10 @@ describe('Component: FormButton', () => {
         Save
       </FormButton>
     );
-    
+
     return { container };
   }
-  
+
   test('ui', () => {
     const { container } = setup();
     expect(container).toMatchSnapshot();

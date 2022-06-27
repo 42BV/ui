@@ -2,11 +2,10 @@ import React, { ChangeEvent } from 'react';
 import RTMaskedInput from 'react-text-mask';
 import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
 import { withJarb } from '../withJarb/withJarb';
+import { FieldCompatible } from '../types';
+import { uniqueId } from 'lodash';
 
 export type InputMask = (string | RegExp)[];
-
-import { FieldCompatible } from '../types';
-import { useId } from '../../hooks/useId/useId';
 
 export type InputType =
   | 'text'
@@ -72,8 +71,9 @@ export type Props = FieldCompatible<string, string> & {
  */
 export function Input(props: Props) {
   const {
-    id,
+    id = uniqueId(),
     label,
+    hiddenLabel,
     placeholder,
     value,
     onChange,
@@ -89,20 +89,18 @@ export function Input(props: Props) {
     className = ''
   } = props;
 
-  const innerId = useId({ id });
-
   const inputProps = {
-    id: innerId,
+    id,
     type,
     valid,
     invalid: valid === false ? true : undefined,
     value,
     innerRef,
-    placeholder: placeholder ? placeholder : '',
+    placeholder,
     onFocus,
-    onChange: (event: ChangeEvent<HTMLInputElement>) =>
-      onChange(event.target.value),
-    onBlur
+    onChange: (event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value),
+    onBlur,
+    'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
   };
 
   // Cannot pass a reference when the input requires a mask
@@ -144,7 +142,7 @@ export function Input(props: Props) {
 
   return (
     <FormGroup className={className} color={color}>
-      {label ? <Label for={innerId}>{label}</Label> : null}
+      {!hiddenLabel ? <Label for={id}>{label}</Label> : null}
       {content}
       {error}
     </FormGroup>

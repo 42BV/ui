@@ -13,7 +13,7 @@ describe('Component: LoadingPage', () => {
     const { container } = render(
       <LoadingPage height={height} />
     );
-    
+
     return { container };
   }
 

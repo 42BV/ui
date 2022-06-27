@@ -19,7 +19,7 @@ storiesOf('core/Pagination', module)
     </>
   ))
   .add('default', () => {
-    const [pageNumber, setPageNumber] = useState(5);
+    const [ pageNumber, setPageNumber ] = useState(5);
 
     const page = pageOf(range(1, 100), pageNumber, 10);
 
@@ -30,7 +30,7 @@ storiesOf('core/Pagination', module)
     );
   })
   .add('without previous and next', () => {
-    const [pageNumber, setPageNumber] = useState(5);
+    const [ pageNumber, setPageNumber ] = useState(5);
 
     const page = pageOf(range(1, 100), pageNumber, 10);
 
@@ -45,41 +45,41 @@ storiesOf('core/Pagination', module)
     );
   })
   .add('with changeable page size', () => {
-    const [pageNumber, setPageNumber] = useState(5);
-    const [pageSize, setPageSize] = useState(10);
+    const [ pageNumber, setPageNumber ] = useState(5);
+    const [ pageSize, setPageSize ] = useState(10);
 
     const page = pageOf(range(1, 200), pageNumber, pageSize);
 
     return (
-        <div className="d-flex justify-content-center">
-          <Pagination
-              page={page}
-              onChange={setPageNumber}
-              onPageSizeChange={(size) => {
-                setPageSize(size);
-                setPageNumber(1);
-              }}
-          />
-        </div>
+      <div className="d-flex justify-content-center">
+        <Pagination
+          page={page}
+          onChange={setPageNumber}
+          onPageSizeChange={(size) => {
+            setPageSize(size);
+            setPageNumber(1);
+          }}
+        />
+      </div>
     );
   })
   .add('with allowed page sizes', () => {
-    const [pageNumber, setPageNumber] = useState(5);
-    const [pageSize, setPageSize] = useState(8);
+    const [ pageNumber, setPageNumber ] = useState(5);
+    const [ pageSize, setPageSize ] = useState(8);
 
     const page = pageOf(range(1, 200), pageNumber, pageSize);
 
     return (
-        <div className="d-flex justify-content-center">
-          <Pagination
-              page={page}
-              onChange={setPageNumber}
-              onPageSizeChange={(size) => {
-                setPageSize(size);
-                setPageNumber(1);
-              }}
-              allowedPageSizes={[2, 4, 8, 16, 32]}
-          />
-        </div>
+      <div className="d-flex justify-content-center">
+        <Pagination
+          page={page}
+          onChange={setPageNumber}
+          onPageSizeChange={(size) => {
+            setPageSize(size);
+            setPageNumber(1);
+          }}
+          allowedPageSizes={[ 2, 4, 8, 16, 32 ]}
+        />
+      </div>
     );
   });

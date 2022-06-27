@@ -10,8 +10,8 @@ describe('Hook: useRules', () => {
     const setCompliantSpy = jest.fn();
     jest
       .spyOn(React, 'useState')
-      .mockReturnValueOnce([{ lowercase: false }, setCompliantSpy]);
-    jest.spyOn(React, 'useState').mockReturnValue([0, jest.fn()]);
+      .mockReturnValueOnce([ { lowercase: false }, setCompliantSpy ]);
+    jest.spyOn(React, 'useState').mockReturnValue([ 0, jest.fn() ]);
 
     render(
       <PasswordStrength

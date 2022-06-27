@@ -7,18 +7,26 @@ import { Form, FormRenderProps } from 'react-final-form';
 import { JarbInput } from './Input/Input';
 import { provinceFetcher, resolveAfter, sleep } from './story-utils';
 import {
+  Card,
+  InfoTooltip,
+  isDateAfter,
+  isDateAfterValidator,
+  isDateBefore,
+  isDateBeforeValidator,
+  isDateBetween,
+  isDateBetweenValidator,
   isStrongPassword,
   JarbCheckbox,
   JarbCheckboxMultipleSelect,
   JarbColorPicker,
-  JarbRadioGroup,
   JarbDateTimeInput,
-  JarbNewPasswordInput,
   JarbFileInput,
   JarbIconPicker,
   JarbImageUpload,
   JarbModalPickerMultiple,
   JarbModalPickerSingle,
+  JarbNewPasswordInput,
+  JarbRadioGroup,
   JarbSelect,
   JarbTextarea,
   JarbTextEditor,
@@ -26,18 +34,10 @@ import {
   JarbTypeaheadSingle,
   limitFileSize,
   limitImageSize,
+  PlainTextFormControl,
   requireFile,
   requireImage,
-  isDateAfter,
-  isDateAfterValidator,
-  isDateBefore,
-  isDateBeforeValidator,
-  isDateBetween,
-  isDateBetweenValidator,
-  SubmitButton,
-  PlainTextFormControl,
-  InfoTooltip,
-  Card
+  SubmitButton
 } from '..';
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
@@ -68,7 +68,7 @@ async function firstNameAvailable(value?: string) {
 
   await sleep(random(2000, 5000));
 
-  return ['Maarten', 'Jeffrey'].includes(value) ? undefined : (
+  return [ 'Maarten', 'Jeffrey' ].includes(value) ? undefined : (
     <ul>
       <li>First name not available</li>
       <li>You can use Jeffrey</li>
@@ -84,7 +84,7 @@ async function lastNameAvailable(value?: string) {
 
   await sleep(random(100, 500));
 
-  return ['Hus', 'van Hoven'].includes(value) ? undefined : (
+  return [ 'Hus', 'van Hoven' ].includes(value) ? undefined : (
     <ul>
       <li>Last name not available</li>
       <li>You can use Hus</li>
@@ -110,19 +110,19 @@ const mask = [
   /\d/
 ];
 
-const validateCv = [requireFile('cv'), limitFileSize(5, 'cv')];
+const validateCv = [ requireFile('cv'), limitFileSize(5, 'cv') ];
 const validateProfile = [
   requireImage('profile photo'),
   limitImageSize(0.5, 'profile photo')
 ];
 
-const requiredValidator = [required];
+const requiredValidator = [ required ];
 
-const firstNameValidators = [required, isLengthBelow100];
-const firstNameAsyncValidators = [firstNameAvailable];
+const firstNameValidators = [ required, isLengthBelow100 ];
+const firstNameAsyncValidators = [ firstNameAvailable ];
 
-const lastNameValidators = [required, isLengthBelow100];
-const lastNameAsyncValidators = [lastNameAvailable];
+const lastNameValidators = [ required, isLengthBelow100 ];
+const lastNameAsyncValidators = [ lastNameAvailable ];
 
 export function userAsOption(user: User): string {
   return user.email;
@@ -483,9 +483,9 @@ export function TotalForm({
         ) : null}
       </Col>
       <Col lg={6}>
-        <h2>Values</h2>
+        <span className="d-block fs-2">Values</span>
         <Debug value={values} />
-        <h2>Errors</h2>
+        <span className="d-block fs-2">Errors</span>
         <Debug value={errors} />
       </Col>
     </Row>

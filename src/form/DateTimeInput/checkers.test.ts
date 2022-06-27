@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { isDateBefore, isDateAfter, isDateBetween, isDate } from './checkers';
+import { isDate, isDateAfter, isDateBefore, isDateBetween } from './checkers';
 
 describe('isDateBefore', () => {
   it('should when before is undefined allow every date', () => {

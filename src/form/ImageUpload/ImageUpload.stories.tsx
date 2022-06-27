@@ -52,11 +52,13 @@ storiesOf('Form/ImageUpload', module)
       </Card>
     );
   })
-  .add('without label', () => {
+  .add('invisible label', () => {
     return (
       <Card className="m2">
         <ImageUpload
           id="image-uploader"
+          label="Profile photo"
+          hiddenLabel={true}
           crop={{
             type: 'rect',
             width: 500,
@@ -95,7 +97,7 @@ storiesOf('Form/ImageUpload', module)
     );
   })
   .add('File as initial value', () => {
-    const [file, setFile] = useState<File | null>();
+    const [ file, setFile ] = useState<File | null>();
     return (
       <Card className="m2">
         <FileInput
@@ -129,7 +131,7 @@ storiesOf('Form/ImageUpload', module)
             id="image-uploader"
             name="profile"
             label="Profile photo"
-            validators={[requireImage('Profile photo')]}
+            validators={[ requireImage('Profile photo') ]}
             crop={{
               type: 'rect',
               width: 500,

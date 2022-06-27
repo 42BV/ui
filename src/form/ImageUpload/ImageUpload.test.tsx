@@ -4,18 +4,11 @@ import '@testing-library/jest-dom';
 
 import * as imgUploadUtils from './utils';
 
-import {
-  ImageUpload,
-  ImageState,
-  ImageUploadCrop,
-  limitImageSize,
-  Mode,
-  requireImage,
-  Text
-} from './ImageUpload';
+import { ImageState, ImageUpload, ImageUploadCrop, limitImageSize, Mode, requireImage, Text } from './ImageUpload';
 
 import * as testUtils from '../../test/utils';
 import AvatarEditor from 'react-avatar-editor';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
 
 describe('Component: ImageUpload', () => {
   function setup({
@@ -23,17 +16,19 @@ describe('Component: ImageUpload', () => {
     cropType = 'rect',
     text,
     hasLabel = true,
+    label,
     emptyLabel = false,
     keepOriginalFileExtension,
     mode,
     image = { src: '', fileName: 'maarten.png', rotate: 0, scale: 1 },
     imageSize = { width: 1000, height: 1000 },
-    file = new File([''], 'maarten.png')
+    file = new File([ '' ], 'maarten.png')
   }: {
     value?: File | string;
     cropType?: 'rect' | 'circle';
     text?: Text;
     hasLabel?: boolean;
+    label?: React.ReactNode;
     emptyLabel?: boolean;
     keepOriginalFileExtension?: boolean;
     mode?: Mode;
@@ -85,15 +80,11 @@ describe('Component: ImageUpload', () => {
       onBlur: onBlurSpy,
       error: 'Some error',
       text,
-      keepOriginalFileExtension
+      keepOriginalFileExtension,
+      id: hasLabel ? 'image-uploader' : undefined,
+      label: emptyLabel ? '' : label ?? 'Profile photo',
+      hiddenLabel: !hasLabel
     };
-
-    if (hasLabel) {
-      // @ts-expect-error We know props doesn't have an id property yet
-      props.id = 'image-uploader';
-      // @ts-expect-error We know props doesn't have a label property yet
-      props.label = emptyLabel ? '' : 'Profile photo';
-    }
 
     const { container, asFragment } = render(
       <ImageUpload color="success" {...props} />
@@ -122,7 +113,7 @@ describe('Component: ImageUpload', () => {
 
     const { setModeSpy, setImageSpy } = setup({
       mode: 'no-file',
-      value: new File(['base64code'], 'gido.png'),
+      value: new File([ 'base64code' ], 'gido.png'),
       image: null
     });
 
@@ -151,7 +142,7 @@ describe('Component: ImageUpload', () => {
     });
 
     test('edit as rect', () => {
-      const { container } = setup({ mode: 'edit' })
+      const { container } = setup({ mode: 'edit' });
       expect(container).toMatchSnapshot();
     });
 
@@ -165,19 +156,28 @@ describe('Component: ImageUpload', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with label', () => {
+    test('visible label', () => {
       setup({});
       expect(screen.queryByText('Profile photo')).toBeInTheDocument();
+      expect(screen.queryByLabelText('Profile photo')).toBeInTheDocument();
     });
 
-    test('without label', () => {
+    test('invisible label', () => {
       setup({ hasLabel: false });
       expect(screen.queryByText('Profile photo')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Profile photo')).toBeInTheDocument();
     });
 
     test('with empty label', () => {
-      setup({ cropType: 'rect', emptyLabel: true });
+      setup({ emptyLabel: true });
       expect(screen.queryByText('Profile photo')).not.toBeInTheDocument();
+    });
+
+    test('with custom label', () => {
+      const label = <Tooltip content="Is this a test?">Profile photo</Tooltip>;
+      setup({ label, hasLabel: true, mode: 'file-selected' });
+      expect(screen.queryByText('Profile photo')).toBeInTheDocument();
+      expect(screen.queryByAltText('Profile photo')).not.toBeInTheDocument();
     });
   });
 
@@ -189,7 +189,7 @@ describe('Component: ImageUpload', () => {
         mode: 'no-file'
       });
 
-      fireEvent.change(screen.getByLabelText('Profile photo'), { target: { files: [new File([''], 'maarten.png')] } });
+      fireEvent.change(screen.getByLabelText('Profile photo'), { target: { files: [ new File([ '' ], 'maarten.png') ] } });
 
       expect(readFileSpy).toHaveBeenCalledTimes(1);
 
@@ -271,7 +271,7 @@ describe('Component: ImageUpload', () => {
     it('should set the final image and set mode to file-selected when done button is clicked', async () => {
       expect.assertions(13);
 
-      const file = new File([''], 'maarten.png');
+      const file = new File([ '' ], 'maarten.png');
 
       const { setModeSpy, setImageSpy, resizeSpy, resolve, promise, onChangeSpy, onBlurSpy } = setup({
         mode: 'edit',
@@ -320,7 +320,7 @@ describe('Component: ImageUpload', () => {
     it('should replace the file extension when keepOriginalFileExtension is undefined', async () => {
       expect.assertions(4);
 
-      const file = new File([''], 'maarten.jpg');
+      const file = new File([ '' ], 'maarten.jpg');
 
       const replaceFileExtensionSpy = jest.spyOn(imgUploadUtils, 'replaceFileExtension');
 
@@ -352,7 +352,7 @@ describe('Component: ImageUpload', () => {
     it('should not replace the file extension when keepOriginalFileExtension is true', async () => {
       expect.assertions(4);
 
-      const file = new File([''], 'maarten.jpg');
+      const file = new File([ '' ], 'maarten.jpg');
 
       const replaceFileExtensionSpy = jest.spyOn(imgUploadUtils, 'replaceFileExtension');
 
@@ -360,7 +360,7 @@ describe('Component: ImageUpload', () => {
         mode: 'edit',
         keepOriginalFileExtension: true,
         file,
-        image: { src: '', fileName: 'maarten.jpg', rotate: 0, scale: 1 },
+        image: { src: '', fileName: 'maarten.jpg', rotate: 0, scale: 1 }
       });
 
       fireEvent.click(screen.getByText('done'));
@@ -436,7 +436,7 @@ describe('Component: ImageUpload', () => {
 
       jest.useFakeTimers();
       const { onChangeSpy, resolve, promise } = setup({
-        mode: 'edit',
+        mode: 'edit'
       });
 
       await act(() => {
@@ -512,7 +512,7 @@ test('requireImage', () => {
     fallback: 'profile picture is required'
   });
 
-  expect(validator(new File([''], 'henkie.png'), {})).toBe(undefined);
+  expect(validator(new File([ '' ], 'henkie.png'), {})).toBe(undefined);
 });
 
 test('limitImageSize', () => {
@@ -523,11 +523,11 @@ test('limitImageSize', () => {
   // @ts-expect-error Even though it accepts Value it will be given undefined and null
   expect(validator(null, {})).toBe(undefined);
 
-  const smallFile = new File([''], 'small.png');
+  const smallFile = new File([ '' ], 'small.png');
   expect(validator(smallFile, {})).toBe(undefined);
 
   const largeFile = new File(
-    ['very large image string'.repeat(100000)],
+    [ 'very large image string'.repeat(100000) ],
     'large.png'
   );
   expect(validator(largeFile, {})).toEqual({
