@@ -88,7 +88,7 @@ export default function ContentState({
         </div>
       </div>
       <h4>{title}</h4>
-      {subTitle && <h6 className="text-muted mb-3">{subTitle}</h6>}
+      {subTitle && <h5 className="text-dark mb-3 small">{subTitle}</h5>}
       {children}
     </div>
   );
