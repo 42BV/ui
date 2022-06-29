@@ -122,7 +122,7 @@ export default function Checkbox(props: Props) {
       </Label>
 
       {placeholder ? (
-        <p className="text-muted mb-0">
+        <p className="mb-0">
           <em>{placeholder}</em>
         </p>
       ) : null}

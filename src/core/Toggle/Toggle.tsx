@@ -74,6 +74,7 @@ export default function Toggle({
         onChange={(event) => onChange(event.target.checked)}
         checked={value}
         onBlur={onBlur}
+        aria-label="Toggle"
       />
     </span>
   );

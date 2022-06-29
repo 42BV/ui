@@ -197,12 +197,12 @@ export default function SearchInput(props: Props) {
       return (
         <InputGroup className={className} size={size}>
           <AddonIcon icon="search" />
-          <Input {...inputProps} />
+          <Input {...inputProps} aria-label="search" />
         </InputGroup>
       );
     }
 
-    return <Input className={className} {...inputProps} />;
+    return <Input className={className} {...inputProps} aria-label="search" />;
   }
 
   const searchInputWrapper = (
