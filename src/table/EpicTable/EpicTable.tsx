@@ -212,7 +212,7 @@ export function EpicTable({
             >
               {left.map((section, index) => (
                 <Fragment key={index}>
-                  <div ref={(ref) => registerHeader(ref, index)}>
+                  <div ref={(ref) => registerHeader(ref, index)} tabIndex={0}>
                     {section.header}
                   </div>
 
@@ -235,6 +235,7 @@ export function EpicTable({
                       <div
                         key={index}
                         className="d-flex justify-content-between"
+                        tabIndex={0}
                       >
                         {row}
                       </div>

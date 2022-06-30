@@ -40,11 +40,11 @@ exports[`Component: ContentStateIcon ui empty: Component: ContentStateIcon => em
   <h4>
     title
   </h4>
-  <h6
-    className="text-muted mb-3"
+  <h5
+    className="text-dark mb-3 small"
   >
     subtitle
-  </h6>
+  </h5>
 </div>
 `;
 
@@ -88,11 +88,11 @@ exports[`Component: ContentStateIcon ui error: Component: ContentStateIcon => er
   <h4>
     title
   </h4>
-  <h6
-    className="text-muted mb-3"
+  <h5
+    className="text-dark mb-3 small"
   >
     subtitle
-  </h6>
+  </h5>
 </div>
 `;
 
@@ -181,10 +181,10 @@ exports[`Component: ContentStateIcon ui no-results: Component: ContentStateIcon 
   <h4>
     title
   </h4>
-  <h6
-    className="text-muted mb-3"
+  <h5
+    className="text-dark mb-3 small"
   >
     subtitle
-  </h6>
+  </h5>
 </div>
 `;

@@ -33,7 +33,7 @@ exports[`Component: Checkbox ui with placeholder: Component: Checkbox => ui => w
     Agree
   </Label>
   <p
-    className="text-muted mb-0"
+    className="mb-0"
   >
     <em>
       Do you agree

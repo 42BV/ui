@@ -271,6 +271,7 @@ storiesOf('table/FormTable', module)
                       validator: 'Person.eyeColor',
                       label: 'Eye color'
                     }}
+                    label="Eye color"
                     errorMode="tooltip"
                   />
                 </EpicFormCell>

@@ -105,7 +105,7 @@ export default function RadioGroup<T>(props: Props<T>) {
     >
       {label ? <legend>{label}</legend> : null}
       {placeholder ? (
-        <p className="text-muted">
+        <p>
           <em>{placeholder}</em>
         </p>
       ) : null}

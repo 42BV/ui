@@ -51,7 +51,6 @@ export default function PasswordStrength(props: Props) {
           }
           value={meterWidth}
           className="mb-2"
-          aria-label="Password strength bar"
           title = "Progress bar"
         />
       ) : null}

@@ -179,7 +179,7 @@ export default function DateTimeInput(props: Props) {
           {label}{' '}
           <span
             className={`date-time-input-format ${
-              value && hasFormatError ? 'text-danger' : 'text-muted'
+              value && hasFormatError ? 'text-danger' : ''
             }`}
           >
             ({combineFormat(dateFormat, timeFormat)})

@@ -120,7 +120,7 @@ export function CrudHeader<T = string>({
               onChange={(value) => {
                 // @ts-expect-error Default value type is a string
                 onSearch(value);
-              }} />
+              }}/>
           )}
         </EpicCellLayout>
       </EpicHeader>

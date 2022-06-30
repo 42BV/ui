@@ -4,6 +4,8 @@ export type Props = {
   /**
    * The cells of the EpicRow
    */
+  tabIndex?: number;
+
   children: React.ReactNode;
 
   /**
@@ -29,6 +31,6 @@ export type Props = {
  * finds another EpicRow which is a header. This creates so called
  * sections.
  */
-export function EpicRow({ children }: Props) {
-  return <>{children}</>;
+export function EpicRow({ tabIndex, ...children }: Props) {
+  return <span tabIndex={tabIndex}>{children}</span>;
 }

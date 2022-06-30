@@ -7,6 +7,13 @@
       padding: 0.5rem 0.5rem;
     }
 
+    &.disabled .page-link {
+      border-radius: 0;
+      background-color: $gray-700;
+      color: $white;
+      border-color: $gray-700;
+    }
+
     button.disabled.page-link {
       border-radius: 0;
       background-color: $white;

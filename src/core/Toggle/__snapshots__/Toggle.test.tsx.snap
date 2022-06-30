@@ -15,6 +15,7 @@ exports[`Component: Toggle ui with custom label: Component: Toggle => ui => with
     </Tooltip>
   </span>
   <input
+    aria-label="Toggle"
     checked={false}
     id="toggle"
     onBlur={[MockFunction]}
@@ -35,6 +36,7 @@ exports[`Component: Toggle ui with text label: Component: Toggle => ui => with t
     test
   </span>
   <input
+    aria-label="Toggle"
     checked={false}
     id="toggle"
     onBlur={[MockFunction]}
@@ -49,6 +51,7 @@ exports[`Component: Toggle ui without label: Component: Toggle => ui => without 
   className="toggle-container toggle-primary"
 >
   <input
+    aria-label="Toggle"
     checked={true}
     id="toggle"
     onBlur={[MockFunction]}

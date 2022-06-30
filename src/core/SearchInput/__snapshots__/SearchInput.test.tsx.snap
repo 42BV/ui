@@ -12,6 +12,7 @@ exports[`Component: SearchInput ui with icon 1`] = `
       icon="search"
     />
     <Input
+      aria-label="search"
       defaultValue=""
       id="1"
       innerRef={
@@ -40,6 +41,7 @@ exports[`Component: SearchInput ui with icon when undefined 1`] = `
       icon="search"
     />
     <Input
+      aria-label="search"
       defaultValue=""
       id="2"
       innerRef={
@@ -80,6 +82,7 @@ exports[`Component: SearchInput ui with label 1`] = `
     className="search-input"
   >
     <Input
+      aria-label="search"
       className=""
       defaultValue=""
       id="search"
@@ -144,6 +147,7 @@ exports[`Component: SearchInput ui with value 1`] = `
       icon="search"
     />
     <Input
+      aria-label="search"
       defaultValue=""
       id="4"
       innerRef={
@@ -174,6 +178,7 @@ exports[`Component: SearchInput ui without clear button 1`] = `
       icon="search"
     />
     <Input
+      aria-label="search"
       defaultValue=""
       id="5"
       innerRef={
@@ -197,6 +202,7 @@ exports[`Component: SearchInput ui without icon 1`] = `
   className="search-input"
 >
   <Input
+    aria-label="search"
     className=""
     defaultValue=""
     id="3"

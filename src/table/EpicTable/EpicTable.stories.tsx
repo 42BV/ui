@@ -449,7 +449,7 @@ storiesOf('table/EpicTable', module)
 
           {pageOfPersons.content.map((person, index) => (
             <Fragment key={person.id}>
-              <EpicRow onClick={() => setDetail(index)}>
+              <EpicRow onClick={() => setDetail(index)} tabIndex={0}>
                 <EpicCell width={widths.firstName} height={44}>
                   <EpicSelection
                     checked={selected.some((p) => p.id === person.id)}
@@ -463,37 +463,37 @@ storiesOf('table/EpicTable', module)
                     {person.firstName}
                   </span>
                 </EpicCell>
-                <EpicCell width={widths.lastName} height={44}>
+                <EpicCell width={widths.lastName} height={44} >
                   {person.lastName}
                 </EpicCell>
-                <EpicCell width={widths.age} height={44}>
+                <EpicCell width={widths.age} height={44} >
                   {person.age}
                 </EpicCell>
-                <EpicCell width={widths.eyeColor} height={44}>
+                <EpicCell width={widths.eyeColor} height={44} >
                   {person.eyeColor}
                 </EpicCell>
-                <EpicCell width={widths.height} height={44}>
+                <EpicCell width={widths.height} height={44} >
                   {person.height}
                 </EpicCell>
-                <EpicCell width={widths.weight} height={44}>
+                <EpicCell width={widths.weight} height={44} >
                   {person.weight}
                 </EpicCell>
-                <EpicCell width={widths.jobTitle} height={44}>
+                <EpicCell width={widths.jobTitle} height={44} >
                   {person.jobTitle}
                 </EpicCell>
-                <EpicCell width={widths.favoriteMovie} height={44}>
+                <EpicCell width={widths.favoriteMovie} height={44} >
                   {person.favoriteMovie}
                 </EpicCell>
-                <EpicCell width={widths.favoriteFood} height={44}>
+                <EpicCell width={widths.favoriteFood} height={44} >
                   {person.favoriteFood}
                 </EpicCell>
-                <EpicCell width={widths.dateOfBirth} height={44}>
+                <EpicCell width={widths.dateOfBirth} height={44} >
                   {person.dateOfBirth}
                 </EpicCell>
-                <EpicCell width={widths.sex} height={44}>
+                <EpicCell width={widths.sex} height={44} >
                   {person.sex}
                 </EpicCell>
-                <EpicCell width={widths.actions} height={44}>
+                <EpicCell width={widths.actions} height={44} >
                   <Button icon="delete" onClick={action('delete')} />
                   <Button icon="edit" onClick={action('edit')} />
                 </EpicCell>

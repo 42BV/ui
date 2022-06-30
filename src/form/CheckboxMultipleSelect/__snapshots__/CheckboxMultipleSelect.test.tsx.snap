@@ -21,9 +21,7 @@ exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMul
   >
     Subject
   </Label>
-  <p
-    className="text-muted"
-  >
+  <p>
     <em>
       Please select your provinces
     </em>
@@ -146,9 +144,7 @@ exports[`Component: CheckboxMultipleSelect ui loading: Component: CheckboxMultip
   >
     Subject
   </Label>
-  <p
-    className="text-muted"
-  >
+  <p>
     <em>
       Please select your provinces
     </em>
@@ -181,9 +177,7 @@ exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMul
   >
     Subject
   </Label>
-  <p
-    className="text-muted"
-  >
+  <p>
     <em>
       Please select your provinces
     </em>
@@ -304,9 +298,7 @@ exports[`Component: CheckboxMultipleSelect ui without label: Component: Checkbox
   className=""
   tag="div"
 >
-  <p
-    className="text-muted"
-  >
+  <p>
     <em>
       Please select your provinces
     </em>

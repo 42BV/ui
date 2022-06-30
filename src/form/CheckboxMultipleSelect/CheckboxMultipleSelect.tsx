@@ -144,7 +144,7 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
     <FormGroup className={className} color={color}>
       {label ? <Label for={innerId}>{label}</Label> : null}
       {placeholder ? (
-        <p className="text-muted">
+        <p>
           <em>{placeholder}</em>
         </p>
       ) : null}

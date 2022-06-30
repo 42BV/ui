@@ -8,9 +8,7 @@ exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => hor
   <legend>
     Subject
   </legend>
-  <p
-    className="text-muted"
-  >
+  <p>
     <em>
       Please enter your subject
     </em>
@@ -120,9 +118,7 @@ exports[`Component: RadioGroup ui loading: Component: RadioGroup => ui => loadin
   <legend>
     Subject
   </legend>
-  <p
-    className="text-muted"
-  >
+  <p>
     <em>
       Please enter your subject
     </em>
@@ -142,9 +138,7 @@ exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => wit
   <legend>
     Subject
   </legend>
-  <p
-    className="text-muted"
-  >
+  <p>
     <em>
       Please enter your subject
     </em>
@@ -251,9 +245,7 @@ exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => 
   className="radio-group "
   tag="fieldset"
 >
-  <p
-    className="text-muted"
-  >
+  <p>
     <em>
       Please enter your subject
     </em>

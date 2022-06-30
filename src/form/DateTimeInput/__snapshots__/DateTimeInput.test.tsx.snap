@@ -52,7 +52,7 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
     Date of birth
      
     <span
-      className="date-time-input-format text-muted"
+      className="date-time-input-format "
     >
       (
       YYYY-MM-DD HH:mm:ss
@@ -141,7 +141,7 @@ exports[`Component: DateTimeInput ui with date picker in modal: Component: DateT
     Date of birth
      
     <span
-      className="date-time-input-format text-muted"
+      className="date-time-input-format "
     >
       (
       YYYY-MM-DD HH:mm:ss
@@ -328,7 +328,7 @@ exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui 
     Date of birth
      
     <span
-      className="date-time-input-format text-muted"
+      className="date-time-input-format "
     >
       (
       YYYY-MM-DD HH:mm:ss
