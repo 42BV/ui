@@ -12,7 +12,6 @@ import ModalPickerSingle from '../ModalPicker/single/ModalPickerSingle';
 import Spinner from '../../core/Spinner/Spinner';
 import { t } from '../../utilities/translation/translation';
 import { FieldCompatible } from '../types';
-import { isArray } from 'lodash';
 import { IconType } from '../../core/Icon';
 
 export type Text = {
@@ -126,7 +125,7 @@ export default function ValuePicker<T>(props: Props<T>) {
 
   useEffect(() => {
     async function boot() {
-      if (isArray(options)) {
+      if (Array.isArray(options)) {
         setTotalElements(options.length);
       } else {
         const page = await options({ query: '', page: 1, size: 1 });

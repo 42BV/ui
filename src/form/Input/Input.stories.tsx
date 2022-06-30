@@ -3,14 +3,25 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Input, { JarbInput } from './Input';
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Tooltip, Icon, Addon, AddonIcon, AddonButton, Card } from '../..';
+import { Alert } from 'reactstrap';
 
 function isSuperman(value: string) {
   return value === 'superman' ? undefined : 'Not "superman"';
 }
 
 storiesOf('Form/Input', module)
+  .addParameters({ component: Input })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use Input, you have to add react-text-mask to your dependencies:</p>
+        <code>npm install --save react-text-mask</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('basic', () => {
     return (
       <Card className="m2">
@@ -130,17 +141,18 @@ storiesOf('Form/Input', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbInput
-          name="firstName"
-          jarb={{ validator: 'Hero.name', label: 'First name' }}
-          validators={[isSuperman]}
-          id="firstName"
-          label="First name"
-          placeholder="Please enter your first name"
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbInput
+            name="firstName"
+            jarb={{ validator: 'Hero.name', label: 'First name' }}
+            validators={[isSuperman]}
+            id="firstName"
+            label="First name"
+            placeholder="Please enter your first name"
+          />
+        </FinalForm>
+      </>
     );
   });
-
-export const _ = '';

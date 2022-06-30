@@ -16,7 +16,7 @@ import ModalPickerMultiple, {
 
 import {
   FinalForm,
-  IsOptionEqualInfo,
+  IsOptionEqualInfo, JarbFormElementDependencies,
   KeyForOptionInfo,
   nonExistingProvince,
   Province,
@@ -26,11 +26,21 @@ import {
   resolveAfter
 } from '../../story-utils';
 import { Icon, Toggle, Tooltip, Card } from '../../..';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Alert, ListGroup, ListGroupItem } from 'reactstrap';
 import Avatar from '../../../core/Avatar/Avatar';
 import classNames from 'classnames';
 
 storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
+  .addParameters({ component: ModalPickerMultiple })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use ModalPickerMultiple with Page, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <code>npm install --save @42.nl/spring-connect</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('predefined options', () => {
     const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
@@ -612,19 +622,22 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbModalPickerMultiple
-          id="provinces"
-          name="provinces"
-          label="Provinces"
-          placeholder="Please select your provinces"
-          options={provinceFetcher}
-          labelForOption={(province) => province.label}
-          jarb={{
-            validator: 'User.provinces',
-            label: 'Provinces'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbModalPickerMultiple
+            id="provinces"
+            name="provinces"
+            label="Provinces"
+            placeholder="Please select your provinces"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+            jarb={{
+              validator: 'User.provinces',
+              label: 'Provinces'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

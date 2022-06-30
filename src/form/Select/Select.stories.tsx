@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import Select, { JarbSelect } from './Select';
 import {
   FinalForm,
-  IsOptionEqualInfo,
+  IsOptionEqualInfo, JarbFormElementDependencies,
   KeyForOptionInfo,
   nonExistingProvince,
   Province,
@@ -16,6 +16,7 @@ import {
 import { Icon, pageOf, Tooltip, Card } from '../..';
 
 storiesOf('Form/Select', module)
+  .addParameters({ component: Select })
   .add('predefined options', () => {
     const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
@@ -233,19 +234,22 @@ storiesOf('Form/Select', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbSelect
-          id="province"
-          name="province"
-          label="Province"
-          placeholder="Please select your province"
-          options={provinceFetcher}
-          labelForOption={(province) => province.label}
-          jarb={{
-            validator: 'User.province',
-            label: 'Province'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbSelect
+            id="province"
+            name="province"
+            label="Province"
+            placeholder="Please select your province"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+            jarb={{
+              validator: 'User.province',
+              label: 'Province'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

@@ -5,9 +5,19 @@ import { range } from 'lodash';
 import { pageOf } from '../../utilities/page/page';
 
 import Pagination from './Pagination';
+import { Alert } from 'reactstrap';
 
 storiesOf('core/Pagination', module)
   .addParameters({ component: Pagination })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use Pagination, you have to add @42.nl/spring-connect and lodash to your dependencies:</p>
+        <code>npm install --save @42.nl/spring-connect lodash</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('default', () => {
     const [pageNumber, setPageNumber] = useState(5);
 

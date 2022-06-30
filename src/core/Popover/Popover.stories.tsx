@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import {
+  Alert,
   Card,
   CardBody,
   CardFooter,
@@ -21,6 +22,17 @@ import { OpenCloseModal } from '../OpenCloseModal/OpenCloseModal';
 
 storiesOf('core/Popover', module)
   .addParameters({ component: Popover })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p className="mb-0">To be able to use Popover, you have to add @tippyjs/react and tippy.js to your dependencies:</p>
+        <code>npm install --save @tippyjs/react tippy.js</code>
+        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <code>@import &apos;~tippy.js/dist/tippy.css&apos;;</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('default', () => (
     <div className="d-flex flex-column">
       <Row className="my-3">

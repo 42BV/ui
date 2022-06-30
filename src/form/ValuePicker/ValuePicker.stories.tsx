@@ -7,9 +7,10 @@ import { User } from '../../test/types';
 
 import ValuePicker, { JarbValuePicker } from './ValuePicker';
 
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import Button from '../../core/Button/Button';
 import { Tooltip, Icon, Card } from '../..';
+import { Alert } from 'reactstrap';
 
 /*
   Storing users here instead of calling the fixtures again so
@@ -65,6 +66,15 @@ const sizes = { small, medium, large };
 
 storiesOf('Form/ValuePicker/multiple', module)
   .addParameters({ component: ValuePicker })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use ValuePicker with Page, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <code>npm install --save @42.nl/spring-connect</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('basic', () => {
     const [value, setValue] = useState<User[] | undefined>(undefined);
 
@@ -246,28 +256,31 @@ storiesOf('Form/ValuePicker/multiple', module)
     const promise = sizes[size];
 
     return (
-      <FinalForm>
-        <JarbValuePicker
-          multiple={true}
-          id="bestFriend"
-          name="bestFriend"
-          label="Best friend"
-          placeholder="Select your best friend"
-          canSearch={true}
-          labelForOption={(user: User) => user.email}
-          options={() => promise}
-          jarb={{
-            validator: 'Hero.name',
-            label: 'Best friend'
-          }}
-        />
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbValuePicker
+            multiple={true}
+            id="bestFriend"
+            name="bestFriend"
+            label="Best friend"
+            placeholder="Select your best friend"
+            canSearch={true}
+            labelForOption={(user: User) => user.email}
+            options={() => promise}
+            jarb={{
+              validator: 'Hero.name',
+              label: 'Best friend'
+            }}
+          />
 
-        <p>Use these buttons to trigger a morph</p>
-        <Button className="mx-2" onClick={() => setSize('small')}>
-          Small
-        </Button>
-        <Button onClick={() => setSize('large')}>Large</Button>
-      </FinalForm>
+          <p>Use these buttons to trigger a morph</p>
+          <Button className="mx-2" onClick={() => setSize('small')}>
+            Small
+          </Button>
+          <Button onClick={() => setSize('large')}>Large</Button>
+        </FinalForm>
+      </>
     );
   });
 
@@ -475,29 +488,32 @@ storiesOf('Form/ValuePicker/single', module)
     const promise = sizes[size];
 
     return (
-      <FinalForm>
-        <JarbValuePicker
-          multiple={false}
-          id="bestFriend"
-          name="bestFriend"
-          label="Best friend"
-          placeholder="Select your best friend"
-          canSearch={true}
-          options={() => promise}
-          labelForOption={(user: User) => user.email}
-          jarb={{
-            validator: 'Hero.name',
-            label: 'Best friend'
-          }}
-        />
-        <p>Use these buttons to trigger a morph</p>
-        <Button className="me-1" onClick={() => setSize('small')}>
-          Small
-        </Button>
-        <Button className="me-1" onClick={() => setSize('medium')}>
-          Medium
-        </Button>
-        <Button onClick={() => setSize('large')}>Large</Button>
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbValuePicker
+            multiple={false}
+            id="bestFriend"
+            name="bestFriend"
+            label="Best friend"
+            placeholder="Select your best friend"
+            canSearch={true}
+            options={() => promise}
+            labelForOption={(user: User) => user.email}
+            jarb={{
+              validator: 'Hero.name',
+              label: 'Best friend'
+            }}
+          />
+          <p>Use these buttons to trigger a morph</p>
+          <Button className="me-1" onClick={() => setSize('small')}>
+            Small
+          </Button>
+          <Button className="me-1" onClick={() => setSize('medium')}>
+            Medium
+          </Button>
+          <Button onClick={() => setSize('large')}>Large</Button>
+        </FinalForm>
+      </>
     );
   });

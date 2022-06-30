@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import NewPasswordInput, {
   isStrongPassword,
   JarbNewPasswordInput
 } from './NewPasswordInput';
 import { Addon, Icon, Tooltip, Card } from '../..';
+import { Alert } from 'reactstrap';
 
 storiesOf('Form/NewPasswordInput', module)
+  .addParameters({ component: NewPasswordInput })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use NewPasswordInput, you have to add lodash and react-text-mask to your dependencies:</p>
+        <code>npm install --save lodash react-text-mask</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('basic', () => {
     const [password, setPassword] = useState('');
 
@@ -113,27 +124,30 @@ storiesOf('Form/NewPasswordInput', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbNewPasswordInput
-          name="password"
-          jarb={{ validator: 'User.password', label: 'Password' }}
-          id="password"
-          label="password"
-          placeholder="Please enter your password"
-          validators={[
-            isStrongPassword(
-              [
-                'lowercase',
-                'uppercase',
-                'number',
-                'specialChar',
-                'minimumLength',
-                'noSpace'
-              ],
-              10
-            )
-          ]}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbNewPasswordInput
+            name="password"
+            jarb={{ validator: 'User.password', label: 'Password' }}
+            id="password"
+            label="password"
+            placeholder="Please enter your password"
+            validators={[
+              isStrongPassword(
+                [
+                  'lowercase',
+                  'uppercase',
+                  'number',
+                  'specialChar',
+                  'minimumLength',
+                  'noSpace'
+                ],
+                10
+              )
+            ]}
+          />
+        </FinalForm>
+      </>
     );
   });

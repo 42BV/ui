@@ -3,7 +3,9 @@ import { storiesOf } from '@storybook/react';
 import { PlainTextFormControl } from './PlainTextFormControl';
 import { Form } from 'reactstrap';
 
-storiesOf('Form/PlainTextFormControl', module).add('basic', () => {
+storiesOf('Form/PlainTextFormControl', module)
+  .addParameters({ component: PlainTextFormControl })
+  .add('basic', () => {
   return (
     <Form>
       <PlainTextFormControl label="Organisation">42 BV</PlainTextFormControl>

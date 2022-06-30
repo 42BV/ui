@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import RadioGroup, { JarbRadioGroup } from './RadioGroup';
 import {
   FinalForm,
-  IsOptionEqualInfo,
+  IsOptionEqualInfo, JarbFormElementDependencies,
   KeyForOptionInfo,
   nonExistingProvince,
   Province,
@@ -16,6 +16,7 @@ import {
 import { Icon, pageOf, Tooltip, Card } from '../..';
 
 storiesOf('Form/RadioGroup', module)
+  .addParameters({ component: RadioGroup })
   .add('predefined options', () => {
     const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
@@ -311,19 +312,22 @@ storiesOf('Form/RadioGroup', module)
 
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbRadioGroup
-          id="province"
-          name="province"
-          label="Province"
-          placeholder="Please select your province"
-          options={provinceFetcher}
-          labelForOption={(province) => province.label}
-          jarb={{
-            validator: 'User.province',
-            label: 'Province'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbRadioGroup
+            id="province"
+            name="province"
+            label="Province"
+            placeholder="Please select your province"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+            jarb={{
+              validator: 'User.province',
+              label: 'Province'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

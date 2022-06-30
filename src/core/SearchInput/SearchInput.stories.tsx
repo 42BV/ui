@@ -3,11 +3,20 @@ import { storiesOf } from '@storybook/react';
 
 import SearchInput from './SearchInput';
 
-import { Card } from 'reactstrap';
+import { Alert, Card } from 'reactstrap';
 import { Button, Icon, Select, Tooltip } from '../..';
 
 storiesOf('core/SearchInput', module)
   .addParameters({ component: SearchInput })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use SearchInput, you have to add lodash to your dependencies:</p>
+        <code>npm install --save lodash</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('default', () => {
     const [query, setQuery] = useState('');
 

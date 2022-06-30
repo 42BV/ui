@@ -3,11 +3,22 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import ImageUpload, { JarbImageUpload, requireImage } from './ImageUpload';
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Tooltip, Icon, Card } from '../..';
 import FileInput from '../FileInput/FileInput';
+import { Alert } from 'reactstrap';
 
 storiesOf('Form/ImageUpload', module)
+  .addParameters({ component: ImageUpload })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use ImageUpload, you have to add lodash, pica and react-avatar-editor to your dependencies:</p>
+        <code>npm install --save lodash pica react-avatar-editor</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('rect', () => {
     return (
       <Card className="m2">
@@ -109,22 +120,25 @@ storiesOf('Form/ImageUpload', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbImageUpload
-          id="image-uploader"
-          name="profile"
-          label="Profile photo"
-          validators={[requireImage('Profile photo')]}
-          crop={{
-            type: 'rect',
-            width: 500,
-            height: 400
-          }}
-          jarb={{
-            validator: 'User.profile',
-            label: 'Profile photo'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbImageUpload
+            id="image-uploader"
+            name="profile"
+            label="Profile photo"
+            validators={[requireImage('Profile photo')]}
+            crop={{
+              type: 'rect',
+              width: 500,
+              height: 400
+            }}
+            jarb={{
+              validator: 'User.profile',
+              label: 'Profile photo'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

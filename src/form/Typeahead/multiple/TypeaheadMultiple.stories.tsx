@@ -8,14 +8,27 @@ import {
   Province,
   provinces,
   provinceFetcher,
-  nonExistingProvince
+  nonExistingProvince, JarbFormElementDependencies
 } from '../../story-utils';
 
 import TypeaheadMultiple, { JarbTypeaheadMultiple } from './TypeaheadMultiple';
 import { Icon, Tooltip, Card } from '../../..';
 import Toggle from '../../../core/Toggle/Toggle';
+import { Alert } from 'reactstrap';
 
-storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
+storiesOf('Form/Typeahead/TypeaheadMultiple', module)
+  .addParameters({ component: TypeaheadMultiple })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p className="mb-0">To be able to use TypeaheadMultiple, you have to add react-bootstrap-typeahead to your dependencies:</p>
+        <code>npm install --save react-bootstrap-typeahead</code>
+        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <code>@import &apos;react-bootstrap-typeahead/css/Typeahead.css&apos;;</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('predefined options', () => {
     const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
@@ -263,19 +276,22 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbTypeaheadMultiple
-          id="provinces"
-          name="provinces"
-          label="Provinces"
-          placeholder="Please select your provinces"
-          options={provinceFetcher}
-          labelForOption={(province) => province.label}
-          jarb={{
-            validator: 'User.provinces',
-            label: 'Provinces'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbTypeaheadMultiple
+            id="provinces"
+            name="provinces"
+            label="Provinces"
+            placeholder="Please select your provinces"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+            jarb={{
+              validator: 'User.provinces',
+              label: 'Provinces'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

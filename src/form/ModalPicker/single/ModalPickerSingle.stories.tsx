@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import ModalPickerSingle, { JarbModalPickerSingle } from './ModalPickerSingle';
 import {
   FinalForm,
-  IsOptionEqualInfo,
+  IsOptionEqualInfo, JarbFormElementDependencies,
   KeyForOptionInfo,
   Province,
   provinceFetcher,
@@ -17,10 +17,20 @@ import { adminUser, coordinatorUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 import { Icon, pageOf, Tooltip, Card } from '../../..';
 import Avatar from '../../../core/Avatar/Avatar';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Alert, ListGroup, ListGroupItem } from 'reactstrap';
 import classNames from 'classnames';
 
 storiesOf('Form/ModalPicker/ModalPickerSingle', module)
+  .addParameters({ component: ModalPickerSingle })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use ModalPickerSingle with Page, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <code>npm install --save @42.nl/spring-connect</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('predefined options', () => {
     const [value, setValue] = useState<Province | undefined>(undefined);
 
@@ -490,19 +500,22 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbModalPickerSingle
-          id="province"
-          name="province"
-          label="Province"
-          placeholder="Please select your province"
-          options={provinceFetcher}
-          labelForOption={(province) => province.label}
-          jarb={{
-            validator: 'User.province',
-            label: 'Province'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbModalPickerSingle
+            id="province"
+            name="province"
+            label="Province"
+            placeholder="Please select your province"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+            jarb={{
+              validator: 'User.province',
+              label: 'Province'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

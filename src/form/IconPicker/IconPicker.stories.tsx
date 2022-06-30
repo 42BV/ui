@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import IconPicker, { JarbIconPicker } from './IconPicker';
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { IconType, Tooltip, Icon, Card } from '../../';
 
 function is3DRotation(value: IconType) {
@@ -10,6 +10,7 @@ function is3DRotation(value: IconType) {
 }
 
 storiesOf('Form/IconPicker', module)
+  .addParameters({ component: IconPicker })
   .add('basic', () => {
     const [value, setValue] = useState<IconType | undefined>(undefined);
 
@@ -104,18 +105,21 @@ storiesOf('Form/IconPicker', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbIconPicker
-          id="icon"
-          name="icon"
-          label="Icon"
-          placeholder="Please select your icon"
-          validators={[is3DRotation]}
-          jarb={{
-            validator: 'Hero.icon',
-            label: 'Icon'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbIconPicker
+            id="icon"
+            name="icon"
+            label="Icon"
+            placeholder="Please select your icon"
+            validators={[is3DRotation]}
+            jarb={{
+              validator: 'Hero.icon',
+              label: 'Icon'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

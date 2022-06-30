@@ -1,4 +1,4 @@
-import { chunk, isArray } from 'lodash';
+import { chunk } from 'lodash';
 import React from 'react';
 import { FormGroup, Input as RSInput, Label } from 'reactstrap';
 import { Loading } from '../..';
@@ -118,7 +118,7 @@ export default function CheckboxMultipleSelect<T>(props: Props<T>) {
     // Otherwise the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
-    let selected = isArray(value) ? [...value] : [];
+    let selected = Array.isArray(value) ? [...value] : [];
 
     if (isSelected) {
       selected = selected.filter(

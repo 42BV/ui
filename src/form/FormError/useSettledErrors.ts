@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import { isArray } from 'lodash';
 
 import { Meta, MetaError } from '../types';
 
@@ -8,7 +7,7 @@ import { Meta, MetaError } from '../types';
  * the input. Basically you are innocent until proven guilty.
  *
  * This is annoying when the user has already made an error. Each
- * time that the input is `validating` the input is considered `valid`
+ * time that the input is `validating`, the input is considered `valid`
  * again. Even though it was in an error state. This causes rapid
  * alternations between `valid` and `invalid`.
  *
@@ -17,13 +16,13 @@ import { Meta, MetaError } from '../types';
  * This causes the UI to jitter and move all over the place.
  *
  * The solution is `useSettledErrors`, it basically debounces the
- * errors, this means that if N changes happen in rapid succession
+ * errors. This means that if N changes happen in rapid succession,
  * only the last state change is shown.
  *
  * It caches the `value` and the resulting `error` for a small window
- * of time, whenever an error occurs. This way when the same value
- * is encountered it will return the previous error during the time
- * window. This way when `final-form` performs async validations
+ * of time whenever an error occurs. This way, when the same value
+ * is encountered, it will return the previous error during the time
+ * window. So when `final-form` performs async validations,
  * the error state will not change rapidly.
  *
  * @param meta
@@ -35,7 +34,7 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
   const [errorCache] = useState({});
 
   const errors: MetaError[] = useMemo(() => {
-    return error === undefined ? [] : isArray(error) ? error : [error];
+    return error === undefined ? [] : Array.isArray(error) ? error : [error];
   }, [error]);
 
   const [settledErrors, setSettledErrors] = useState(errors);
