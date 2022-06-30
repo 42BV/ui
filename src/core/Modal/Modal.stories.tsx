@@ -11,6 +11,7 @@ import { range } from 'lodash';
 import SubmitButton from '../SubmitButton/SubmitButton';
 
 storiesOf('core/Modal', module)
+  .addParameters({ component: Modal })
   .add('basic', () => {
     const [isOpen, setIsOpen] = useState(false);
 

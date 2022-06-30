@@ -13,7 +13,6 @@ import { sleep } from '../../form/story-utils';
 
 storiesOf('core/Tabs', module)
   .addParameters({ component: Tabs })
-  .addParameters({ component: Tab })
   .add('default', () => {
     type AvailableTabs = 'info' | 'testing' | 'details';
     const [activeTab, setActiveTab] = useState<AvailableTabs>('info');

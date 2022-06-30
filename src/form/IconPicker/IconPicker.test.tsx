@@ -1,14 +1,10 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 import IconPicker from './IconPicker';
 import { IconType } from '../..';
-
-import { toMatchDiffSnapshot } from 'snapshot-diff';
-import userEvent from '@testing-library/user-event';
-
-expect.extend({ toMatchDiffSnapshot });
 
 describe('Component: IconPicker', () => {
   function setup({

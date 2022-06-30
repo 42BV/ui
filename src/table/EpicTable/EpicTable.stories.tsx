@@ -32,6 +32,17 @@ import MoreOrLess from '../../core/MoreOrLess/MoreOrLess';
 
 storiesOf('table/EpicTable', module)
   .addParameters({ component: EpicTable })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p className="mb-0">To be able to use EpicTable, you have to add lodash, overlayscrollbars and overlayscrollbars-react to your dependencies:</p>
+        <code>npm install --save lodash overlayscrollbars overlayscrollbars-react</code>
+        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <code>@import &apos;~overlayscrollbars/css/OverlayScrollbars.css&apos;;</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('full example', () => {
     const [widths, setWidths] = useState(() => ({
       firstName: 300,

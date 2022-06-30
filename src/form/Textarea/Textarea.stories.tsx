@@ -3,10 +3,21 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import Textarea, { JarbTextarea } from './Textarea';
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Tooltip, Icon, Card } from '../..';
+import { Alert } from 'reactstrap';
 
 storiesOf('Form/Textarea', module)
+  .addParameters({ component: Textarea })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use Textarea, you have to add react-textarea-autosize to your dependencies:</p>
+        <code>npm install --save react-textarea-autosize</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('basic', () => {
     return (
       <Card className="m-2">
@@ -65,17 +76,20 @@ storiesOf('Form/Textarea', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbTextarea
-          id="description"
-          name="description"
-          label="Description"
-          placeholder="Please add a description"
-          jarb={{
-            validator: 'Hero.description',
-            label: 'Description'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbTextarea
+            id="description"
+            name="description"
+            label="Description"
+            placeholder="Please add a description"
+            jarb={{
+              validator: 'Hero.description',
+              label: 'Description'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

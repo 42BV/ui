@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import ColorPicker, { JarbColorPicker } from './ColorPicker';
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Icon, Tooltip, Card } from '../..';
+import { Alert } from 'reactstrap';
 
 function isToDark(value?: string) {
   if (!value) {
@@ -26,6 +27,16 @@ function isToDark(value?: string) {
 }
 
 storiesOf('Form/ColorPicker', module)
+  .addParameters({ component: ColorPicker })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use ColorPicker, you have to add react-color to your dependencies:</p>
+        <code>npm install --save react-color</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('basic', () => {
     const [value, setValue] = useState<string | undefined>();
 
@@ -125,18 +136,21 @@ storiesOf('Form/ColorPicker', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbColorPicker
-          id="color"
-          name="color"
-          label="Color"
-          placeholder="Please select your favorite color"
-          validators={[isToDark]}
-          jarb={{
-            validator: 'Hero.color',
-            label: 'Color'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbColorPicker
+            id="color"
+            name="color"
+            label="Color"
+            placeholder="Please select your favorite color"
+            validators={[isToDark]}
+            jarb={{
+              validator: 'Hero.color',
+              label: 'Color'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

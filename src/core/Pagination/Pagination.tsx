@@ -41,8 +41,10 @@ type Props<T> = {
 };
 
 /**
- * The Pagination component is an enhanced Bootstrap pagination component. It supports working with `Page`s and shows a fixed
- * layout for the number of pages, indicating that multiple pages exist for the min and max ranges (e.g. 1 ... 4 5 6 ... 10).
+ * The Pagination component is an enhanced Bootstrap pagination component.
+ * It supports working with a `Page` from `@42.nl/spring-connect` and shows
+ * a fixed layout for the number of pages, indicating that multiple pages
+ * exist for the min and max ranges (e.g. 1 ... 4 5 6 ... 10).
  */
 export default function Pagination<T>({
   page,

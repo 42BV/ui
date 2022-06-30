@@ -5,7 +5,8 @@ import { Card } from 'reactstrap';
 import Button from '../../core/Button/Button';
 import Avatar from '../../core/Avatar/Avatar';
 
-storiesOf('hooks/useBootstrapSize', module).add('basic', () => {
+storiesOf('hooks/useBootstrapSize', module)
+  .add('basic', () => {
   const { bootstrapSize, isMobile, isTablet, isDesktop } = useBootstrapSize();
 
   const colors = {

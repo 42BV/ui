@@ -5,6 +5,7 @@ import { CardTitle } from 'reactstrap';
 import { Card } from './Card';
 
 storiesOf('core/Card', module)
+  .addParameters({ component: Card })
   .add('basic', () => {
     return (
       <Card

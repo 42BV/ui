@@ -4,7 +4,9 @@ import { action } from '@storybook/addon-actions';
 
 import Toggle from './Toggle';
 
-storiesOf('Core/Toggle', module).add('basic', () => {
+storiesOf('Core/Toggle', module)
+  .addParameters({ component: Toggle })
+  .add('basic', () => {
   const [primary, setPrimary] = useState(true);
   const [secondary, setSecondary] = useState(true);
   const [info, setInfo] = useState(true);

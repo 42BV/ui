@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
+import { Alert, Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import AsyncPage from './AsyncPage';
@@ -53,6 +53,10 @@ storiesOf('core/async/AsyncPage', module)
   .addParameters({ component: AsyncPage })
   .addDecorator((Story) => (
     <QueryClientProvider client={client}>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use AsyncPage, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <code>npm install --save @42.nl/spring-connect</code>
+      </Alert>
       <Story />
     </QueryClientProvider>
   ))

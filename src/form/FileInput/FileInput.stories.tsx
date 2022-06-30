@@ -4,10 +4,21 @@ import { action } from '@storybook/addon-actions';
 
 import FileInput, { JarbFileInput, requireFile } from './FileInput';
 
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Tooltip, Icon, Card } from '../..';
+import { Alert } from 'reactstrap';
 
 storiesOf('Form/FileInput', module)
+  .addParameters({ component: FileInput })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use FileInput, you have to add lodash to your dependencies:</p>
+        <code>npm install --save lodash</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('basic', () => {
     return (
       <Card className="m-2">
@@ -71,19 +82,22 @@ storiesOf('Form/FileInput', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbFileInput
-          id="file-upload-with-button"
-          name="upload"
-          placeholder="Upload a file here"
-          label="Upload a file here"
-          accept="text/plain"
-          validators={[requireFile('Profile photo')]}
-          jarb={{
-            validator: 'User.profile',
-            label: 'Profile photo'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbFileInput
+            id="file-upload-with-button"
+            name="upload"
+            placeholder="Upload a file here"
+            label="Upload a file here"
+            accept="text/plain"
+            validators={[requireFile('Profile photo')]}
+            jarb={{
+              validator: 'User.profile',
+              label: 'Profile photo'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

@@ -4,30 +4,42 @@ import { action } from '@storybook/addon-actions';
 
 import TextEditor, { JarbTextEditor } from './TextEditor';
 
-import { FinalForm } from '../story-utils';
+import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Icon, Tooltip, Card } from '../..';
-
-const disclaimer = (
-  <>
-    <p>
-      <strong>Disclaimer:</strong> when using the TextEditor you must sanitize
-      the output when rendering the output in the browser. If you do not do this
-      you risk an XSS attack.
-    </p>
-    <p>
-      The 42 way of dealing with this problem is by using{' '}
-      <a href="https://jsoup.org/">jsoup</a> and to use the{' '}
-      <a href="https://jsoup.org/cookbook/cleaning-html/whitelist-sanitizer">
-        sanitizer
-      </a>{' '}
-      with a whitelist. The whitelist should only contain elements which the
-      TextEditor generates. The sanitizer should be applied before sending the
-      content to the browser.
-    </p>
-  </>
-);
+import { Alert } from 'reactstrap';
 
 storiesOf('Form/TextEditor', module)
+  .addParameters({ component: TextEditor })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p className="mb-1">To be able to use TextEditor, you have to add lodash and react-quill to your dependencies:</p>
+        <code>npm install --save lodash react-quill</code>
+        <p className="mb-1 mt-3">You also have to include the react-quill stylesheet in your project stylesheet:</p>
+        <code>@import &apos;~react-quill/dist/quill.snow.css&apos;;</code>
+        <p className="mb-1 mt-1">or in your project index file:</p>
+        <code>import &apos;react-quill/dist/quill.snow.css&apos;;</code>
+      </Alert>
+      <Story />
+      <Alert color="warning" className="mt-4">
+        <p>
+          <strong>Disclaimer:</strong> when using the TextEditor you must sanitize
+          the output when rendering the output in the browser. If you do not do this
+          you risk an XSS attack.
+        </p>
+        <p>
+          The 42 way of dealing with this problem is by using{' '}
+          <a href="https://jsoup.org/">jsoup</a> and to use the{' '}
+          <a href="https://jsoup.org/cookbook/cleaning-html/whitelist-sanitizer">
+            sanitizer
+          </a>{' '}
+          with a whitelist. The whitelist should only contain elements which the
+          TextEditor generates. The sanitizer should be applied before sending the
+          content to the browser.
+        </p>
+      </Alert>
+    </>
+  ))
   .add('basic', () => {
     return (
       <Card className="m-2">
@@ -38,7 +50,6 @@ storiesOf('Form/TextEditor', module)
           onChange={(value) => action(`onChange: ${value}`)}
           onBlur={() => console.log('onblur')}
         />
-        {disclaimer}
       </Card>
     );
   })
@@ -50,7 +61,6 @@ storiesOf('Form/TextEditor', module)
           label="Description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
-        {disclaimer}
       </Card>
     );
   })
@@ -62,7 +72,6 @@ storiesOf('Form/TextEditor', module)
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
-        {disclaimer}
       </Card>
     );
   })
@@ -85,7 +94,6 @@ storiesOf('Form/TextEditor', module)
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
         />
-        {disclaimer}
       </Card>
     );
   })
@@ -121,8 +129,6 @@ storiesOf('Form/TextEditor', module)
             ]
           }}
         />
-
-        {disclaimer}
       </Card>
     );
   })
@@ -209,7 +215,6 @@ storiesOf('Form/TextEditor', module)
             }
           }}
         />
-        {disclaimer}
       </Card>
     );
   })
@@ -247,25 +252,25 @@ storiesOf('Form/TextEditor', module)
           This is achieved by not including <strong>bold</strong> in the toolbar
           but only including it in the <strong>formats</strong> prop.
         </p>
-
-        {disclaimer}
       </Card>
     );
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbTextEditor
-          id="description"
-          name="description"
-          label="Description"
-          placeholder="Please add a description"
-          jarb={{
-            validator: 'Hero.description',
-            label: 'Description'
-          }}
-        />
-        {disclaimer}
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbTextEditor
+            id="description"
+            name="description"
+            label="Description"
+            placeholder="Please add a description"
+            jarb={{
+              validator: 'Hero.description',
+              label: 'Description'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

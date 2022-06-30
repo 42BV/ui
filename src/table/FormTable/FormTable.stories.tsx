@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { Card } from 'reactstrap';
+import { Alert, Card } from 'reactstrap';
 import { random, uniq } from 'lodash';
 
 import { EpicTable } from '../EpicTable/EpicTable';
@@ -28,6 +28,20 @@ import { FormSpy } from 'react-final-form';
 import { sleep } from '../../form/story-utils';
 
 storiesOf('table/FormTable', module)
+  .addParameters({ component: EpicForm })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use EpicForm, you have to add lodash to your dependencies:</p>
+        <code>npm install --save lodash</code>
+      </Alert>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use EpicForm with Page, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <code>npm install --save @42.nl/spring-connect</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('basic example', () => {
     const [newPerson] = useState<Person>({
       id: Math.random(),

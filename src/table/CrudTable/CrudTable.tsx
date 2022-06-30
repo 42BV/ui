@@ -56,6 +56,8 @@ type Props = {
  * with CRUD options. If page is defined, it also includes pagination.
  * It should be filled with `EpicRow`s, where the header row should be filled
  * with `CrudHeader`s.
+ *
+ * It supports working with a `Page` from `@42.nl/spring-connect`.
  */
 export function CrudTable(props: Props) {
   const {

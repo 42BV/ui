@@ -1,5 +1,5 @@
 import { StringMap } from 'quill';
-import { isArray, flatMap, uniq } from 'lodash';
+import { flatMap, uniq } from 'lodash';
 
 /* 
   When module.toolbar exists it will generate the formats for Quill
@@ -27,7 +27,7 @@ export function formatsFromToolbarModule(
     toolbar = toolbar.container;
   }
 
-  if (!isArray(toolbar)) {
+  if (!Array.isArray(toolbar)) {
     throw new Error('TextEditor: expecting modules.toolbar to be an array');
   }
 
@@ -43,7 +43,7 @@ function formatsForToolbar(toolbarItem: any): string | string[] {
     // toolbar strings are also the formats, so we can just return
     // them as is.
     return toolbarItem;
-  } else if (isArray(toolbarItem)) {
+  } else if (Array.isArray(toolbarItem)) {
     // Further reduce the array of formats, it could be an array of
     // strings or objects or mixed at this point.
     return flatMap(toolbarItem, formatsForToolbar);

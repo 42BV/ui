@@ -22,22 +22,25 @@
 
 ---
 
-## React Quill optional dependency
+## Optional dependencies
 
-Due to a lot of reports from npm about vulnerabilities in React Quill, we decided to make React Quill an optional dependency.
-TextEditor uses React Quill, but not all projects use the TextEditor component. To be able to use the TextEditor component,
-you have to install react-quill
-`npm i -S react-quill@latest`
-and include the css file in your project
-`@import '~react-quill/dist/quill.snow.css';` in your CSS or `import 'react-quill/dist/quill.snow.css';` in javascript.
+We have a lot of dependencies making our dependency tree pretty big, while a lot of those dependencies are only used in
+a few or even only in a single component. If you don't use that component(s) in your project, this library would
+unnecessarily increase the size of your dependency tree and slow down the installation and build process.
+
+We moved those dependencies to the optionalDependencies in our package.json, allowing you as developer to decide whether
+you need those dependencies or not. With an alert message displayed for every component/feature in our
+[Storybook](https://42bv.github.io/ui/storybook/), we made it easier for you to figure out which dependencies you have
+to add to your project. If you still miss a dependency, you'll get an error while compiling or in the console stating
+you miss a dependency, so you should not be able to deploy with missing dependencies.
 
 ---
 
 ## Migration to Bootstrap v5
 
-We finally upgraded to Bootstrap v5! It took a while, but Reactstrap released a new major version with support for Bootstrap v5.
-We managed to upgrade without changing user experience or any breaking changes, but Bootstrap renamed a lot of classes, so we had
-to release a major version as well.
+We finally upgraded to Bootstrap v5! It took a while, but Reactstrap released a new major version with support for
+Bootstrap v5. We managed to upgrade without changing user experience or any breaking changes, but Bootstrap renamed a
+lot of classes, so we had to release a major version as well.
 
 To upgrade, just run `npm i -S @42.nl/ui@latest reactstrap@latest` and follow the
 [Bootstrap migration guide](https://getbootstrap.com/docs/5.0/migration/).

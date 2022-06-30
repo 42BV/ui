@@ -3,9 +3,19 @@ import { storiesOf } from '@storybook/react';
 
 import Pager from './Pager';
 import { pageOf } from '../../utilities/page/page';
+import { Alert } from 'reactstrap';
 
 storiesOf('core/Pager', module)
   .addParameters({ component: Pager })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use Pager, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <code>npm install --save @42.nl/spring-connect</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('default', () => {
     const [pageNumber, setPageNumber] = useState(1);
 

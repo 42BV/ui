@@ -11,6 +11,7 @@ import { TotalForm } from '../../form/FormExample.stories';
 import { range } from 'lodash';
 
 storiesOf('core/OpenCloseModal', module)
+  .addParameters({ component: OpenCloseModal })
   .add('basic', () => {
     const [isOpen, setIsOpen] = useState(false);
     const [inProgress, setInProgress] = useState(false);

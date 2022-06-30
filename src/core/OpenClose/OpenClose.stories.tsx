@@ -5,7 +5,9 @@ import { Card } from 'reactstrap';
 import { OpenClose } from './OpenClose';
 import Button from '../Button/Button';
 
-storiesOf('core/OpenClose', module).add('basic', () => {
+storiesOf('core/OpenClose', module)
+  .addParameters({ component: OpenClose })
+  .add('basic', () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

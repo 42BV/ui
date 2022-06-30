@@ -6,7 +6,7 @@ import CheckboxMultipleSelect, {
 } from './CheckboxMultipleSelect';
 import {
   FinalForm,
-  IsOptionEqualInfo,
+  IsOptionEqualInfo, JarbFormElementDependencies,
   KeyForOptionInfo,
   nonExistingProvince,
   Province,
@@ -15,8 +15,19 @@ import {
   ReloadOptionsInfo
 } from '../story-utils';
 import { Card, Icon, Toggle, Tooltip } from '../..';
+import { Alert } from 'reactstrap';
 
 storiesOf('Form/CheckboxMultipleSelect', module)
+  .addParameters({ component: CheckboxMultipleSelect })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use CheckboxMultipleSelect, you have to add lodash to your dependencies:</p>
+        <code>npm install --save lodash</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('predefined options', () => {
     const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
@@ -427,19 +438,22 @@ storiesOf('Form/CheckboxMultipleSelect', module)
   })
   .add('jarb', () => {
     return (
-      <FinalForm>
-        <JarbCheckboxMultipleSelect
-          id="provinces"
-          name="provinces"
-          label="Provinces"
-          placeholder="Please select your provinces"
-          options={provinceFetcher}
-          labelForOption={(province) => province.label}
-          jarb={{
-            validator: 'User.provinces',
-            label: 'Provinces'
-          }}
-        />
-      </FinalForm>
+      <>
+        <JarbFormElementDependencies />
+        <FinalForm>
+          <JarbCheckboxMultipleSelect
+            id="provinces"
+            name="provinces"
+            label="Provinces"
+            placeholder="Please select your provinces"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+            jarb={{
+              validator: 'User.provinces',
+              label: 'Provinces'
+            }}
+          />
+        </FinalForm>
+      </>
     );
   });

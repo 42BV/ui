@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Form as ReactFinalForm } from 'react-final-form';
-import { Row, Col } from 'reactstrap';
+import { Alert, Col, Row } from 'reactstrap';
 import SubmitButton from '../core/SubmitButton/SubmitButton';
 import { action } from '@storybook/addon-actions';
 import { Page } from '@42.nl/spring-connect';
@@ -120,6 +120,16 @@ export function ReloadOptionsInfo() {
       again. Should only be used when <strong>options</strong> is a function
       which fetches data.
     </p>
+  );
+}
+
+export function JarbFormElementDependencies() {
+  return (
+    <Alert color="warning" className="mb-4">
+      <p>To be able to use jarb variants of form elements, you have to add @42.nl/jarb-final-form, @42.nl/react-error-store, final-form, react-final-form and
+        react-display-name to your dependencies:</p>
+      <code>npm install --save @42.nl/spring-connect @42.nl/react-error-store final-form react-final-form react-display-name</code>
+    </Alert>
   );
 }
 

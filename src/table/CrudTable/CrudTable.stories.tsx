@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Card } from 'reactstrap';
+import { Alert, Card } from 'reactstrap';
 import { capitalize, every, lowerCase, startsWith } from 'lodash';
 import { Field, Form } from 'react-final-form';
 import moment from 'moment';
@@ -399,6 +399,17 @@ const persons: Person[] = [
 
 storiesOf('table/CrudTable', module)
   .addParameters({ component: CrudTable })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use CrudTable with Page, you have to add @42.nl/spring-connect, lodash, overlayscrollbars and overlayscrollbars-react to your dependencies:</p>
+        <code>npm install --save @42.nl/spring-connect lodash overlayscrollbars overlayscrollbars-react</code>
+        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <code>@import &apos;~overlayscrollbars/css/OverlayScrollbars.css&apos;;</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('simple example', () => {
     const columns = {
       firstName: 300,

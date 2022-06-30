@@ -145,6 +145,8 @@ export type RenderOptionsConfig<T> = Omit<
  * The ModalPicker component is an abstraction used by the ModalPickerMultiple
  * and ModalPickerSingle to render a modal. It contains the code which
  * could be shared by the two components.
+ *
+ * It supports working with a `Page` from `@42.nl/spring-connect`.
  */
 export default function ModalPicker<T>(props: Props<T>) {
   const {

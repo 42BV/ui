@@ -39,10 +39,12 @@ type Props = {
 /**
  * The FormError component renders errors coming from the front-end
  * and the back-end. It ties the front-end and back-end errors together
- * based on the the validator.
+ * based on the validator.
  *
  * A validator is a string which looks like this: `User.name` the format
  * is `Entity.property`.
+ *
+ * To retrieve back-end errors, we use `@42.nl/react-error-store`.
  */
 export default function FormError(props: Props) {
   const { value, meta, validator, onChange, className } = props;
