@@ -1,15 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: OpenClose ui closed: Component: OpenClose => ui => closed 1`] = `
-<Icon
-  className="open-close is-closed"
-  icon="expand_more"
-/>
-`;
-
-exports[`Component: OpenClose ui open: Component: OpenClose => ui => open 1`] = `
-<Icon
-  className="open-close is-open"
-  icon="expand_more"
-/>
+exports[`Component: OpenClose ui open 1`] = `
+<div>
+  <i
+    class="icon open-close is-open material-icons"
+  >
+    expand_more
+  </i>
+</div>
 `;

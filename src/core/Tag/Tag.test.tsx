@@ -1,27 +1,42 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import Tag from './Tag';
 
 describe('Component: Tag', () => {
   describe('ui', () => {
     test('default', () => {
-      const tag = shallow(<Tag text="Maarten" />);
-      expect(toJson(tag)).toMatchSnapshot('Component: Tag => ui => default');
+      const { container } = render(
+        <Tag text="Maarten" />
+      );
+      expect(container).toMatchSnapshot();
     });
 
     test('with type', () => {
-      const tag = shallow(<Tag text="Maarten" color="success" />);
-      expect(toJson(tag)).toMatchSnapshot('Component: Tag => ui => with type');
+      const { container } = render(
+        <Tag text="Maarten" color="success" />
+      );
+      expect(container.firstChild).toHaveClass('tag-success');
+    });
+
+    test('with remove', () => {
+      const { container } = render(
+        <Tag text="Maarten" onRemove={jest.fn()} />
+      );
+      expect(screen.queryByText('×')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
   });
 
-  test('onClose', () => {
-    const onCloseSpy = jest.fn();
-    const tag = shallow(<Tag text="Maarten" onRemove={onCloseSpy} />);
+  test('onRemove', () => {
+    const onRemoveSpy = jest.fn();
+    render(
+      <Tag text="Maarten" onRemove={onRemoveSpy} />
+    );
 
-    tag.find('span.close-button').simulate('click');
-    expect(onCloseSpy).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole('button'));
+
+    expect(onRemoveSpy).toHaveBeenCalledTimes(1);
   });
 });

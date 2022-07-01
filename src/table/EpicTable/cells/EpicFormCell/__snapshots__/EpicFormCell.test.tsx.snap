@@ -1,17 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: EpicFormCell ui 1`] = `
-<div
-  className="epic-table-form-cell border-bottom py-1 pe-1"
-  style={
-    Object {
-      "height": 48,
-      "minWidth": 200,
-      "paddingLeft": "0px",
-      "width": 200,
-    }
-  }
->
-  just a test
+<div>
+  <div
+    class="epic-table-form-cell border-bottom py-1 pe-1"
+    style="min-width: 200px; width: 200px; height: 48px; padding-left: 0px;"
+  >
+    just a test
+  </div>
 </div>
 `;

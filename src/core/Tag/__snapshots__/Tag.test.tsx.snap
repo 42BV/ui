@@ -1,17 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Tag ui default: Component: Tag => ui => default 1`] = `
-<span
-  className="tag"
->
-  Maarten
-</span>
+exports[`Component: Tag ui default 1`] = `
+<div>
+  <span
+    class="tag"
+  >
+    Maarten
+  </span>
+</div>
 `;
 
-exports[`Component: Tag ui with type: Component: Tag => ui => with type 1`] = `
-<span
-  className="tag tag-success"
->
-  Maarten
-</span>
+exports[`Component: Tag ui with remove 1`] = `
+<div>
+  <span
+    class="tag"
+  >
+    Maarten
+    <span
+      class="close-button"
+      role="button"
+    >
+      ×
+    </span>
+  </span>
+</div>
 `;

@@ -1,31 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ErrorBoundary ui with custom text: Component: ErrorBoundary => ui => with custom text 1`] = `
-<ContentState
-  mode="error"
-  title="Failure!"
-/>
+exports[`Component: ErrorBoundary ui with error 1`] = `
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state error"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
+    </div>
+    <h4>
+      Oops something went wrong!
+    </h4>
+  </div>
+</div>
 `;
 
-exports[`Component: ErrorBoundary ui with error: Component: ErrorBoundary => ui => with error 1`] = `
-<ContentState
-  mode="error"
-  title="Oops something went wrong!"
-/>
-`;
-
-exports[`Component: ErrorBoundary ui without error: Component: ErrorBoundary => ui => without error 1`] = `
-<RadioGroup
-  labelForOption={[Function]}
-  onChange={[MockFunction]}
-  options={
-    Array [
-      "local",
-      "development",
-      "test",
-      "acceptation",
-      "production",
-    ]
-  }
-/>
+exports[`Component: ErrorBoundary ui without error 1`] = `
+<div>
+  Here is some content without an error
+</div>
 `;

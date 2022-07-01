@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { useOnChange } from './useOnChange';
 import { FormErrorOnChange } from './types';
@@ -8,8 +8,8 @@ describe('useOnChange', () => {
     const onChange = jest.fn();
 
     const { rerender } = renderHook<
-      { hasErrors: boolean; onChange: FormErrorOnChange },
-      void
+      void,
+      { hasErrors: boolean; onChange: FormErrorOnChange }
     >((props) => useOnChange(props.hasErrors, props.onChange), {
       initialProps: {
         hasErrors: true,

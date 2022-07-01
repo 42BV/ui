@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { useId } from './useId';
 
@@ -12,7 +12,7 @@ jest.mock('lodash', () => {
 
 describe('useId', () => {
   test('that when an id is given that id will always be returned', () => {
-    const { rerender, result } = renderHook<{ id: string }, void>(
+    const { rerender, result } = renderHook<string, { id: string }>(
       (props) => useId({ id: props.id }),
       {
         initialProps: {
@@ -35,7 +35,7 @@ describe('useId', () => {
     // @ts-expect-error Test mock
     lodash.uniqueId.mockReturnValue('42');
 
-    const { rerender, result } = renderHook<{ id?: string }, void>(
+    const { rerender, result } = renderHook<string, { id?: string }>(
       (props) => useId({ id: props.id }),
       {
         initialProps: {
@@ -60,7 +60,7 @@ describe('useId', () => {
     // @ts-expect-error Test mock
     lodash.uniqueId.mockReturnValue('42');
 
-    const { rerender, result } = renderHook<{ id?: string }, void>(
+    const { rerender, result } = renderHook<string, { id?: string }>(
       (props) => useId({ id: props.id }),
       {
         initialProps: {

@@ -31,13 +31,6 @@ type Props = {
    * Predicate to determine if the link will be shown. Accepts either a boolean or a function that returns a boolean.
    */
   show?: (() => boolean) | boolean;
-
-  /**
-   * Optionally whether the route is an exact route.
-   *
-   * Defaults to true.
-   */
-  exact?: boolean;
 };
 
 /**
@@ -60,8 +53,7 @@ export default function NavigationItem({
   icon,
   text,
   show = true,
-  className,
-  exact = true
+  className
 }: Props) {
   const shouldShow = typeof show === 'function' ? show : () => show;
 
@@ -71,7 +63,7 @@ export default function NavigationItem({
 
   return (
     <NavItem className={classNames('navigation-item', className)}>
-      <NavLink to={to} exact={exact} tag={RRNavLink} activeClassName="active">
+      <NavLink to={to} tag={RRNavLink}>
         <Icon icon={icon} className="me-3 align-bottom" />
         {text}
       </NavLink>

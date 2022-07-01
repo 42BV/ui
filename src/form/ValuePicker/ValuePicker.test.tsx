@@ -1,6 +1,6 @@
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, act, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Page } from '@42.nl/spring-connect';
 
 import ValuePicker from './ValuePicker';
@@ -16,28 +16,22 @@ import {
   randomUser,
   userUser
 } from '../../test/fixtures';
-import { act } from 'react-dom/test-utils';
 
 describe('Component: ValuePicker', () => {
-  let valuePicker: ReactWrapper;
-
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-
   function setup({
     options,
     multiple,
     canClear
   }: {
     options: Options<User>;
-    multiple: true | false;
+    multiple: boolean;
     value?: User | User[];
     canClear?: boolean;
   }) {
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
 
-    valuePicker = mount(
+    const { container, asFragment } = render(
       <ValuePicker<User>
         multiple={multiple}
         id="bestFriend"
@@ -53,23 +47,24 @@ describe('Component: ValuePicker', () => {
         canClear={canClear}
       />
     );
+    
+    return { container, asFragment, onChangeSpy, onBlurSpy };
   }
 
   it('should when booting render a loading spinner and request an initial page', () => {
     const { promise } = testUtils.resolvablePromise<Page<User>>();
     const fetchOptionsSpy = jest.fn(({}) => promise);
 
-    setup({ options: fetchOptionsSpy, multiple: false });
+    const { container } = setup({ options: fetchOptionsSpy, multiple: false });
 
-    expect(valuePicker.find('Spinner').exists()).toBe(true);
-    expect(toJson(valuePicker)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
 
     expect(fetchOptionsSpy).toBeCalledTimes(1);
     expect(fetchOptionsSpy).toBeCalledWith({ query: '', page: 1, size: 1 });
   });
 
   describe('single', () => {
-    describe('when RadioGroup', () => {
+    describe('RadioGroup', () => {
       it('should render a `RadioGroup` component when async page `totalElements` is less than 4', async () => {
         expect.assertions(5);
 
@@ -83,34 +78,29 @@ describe('Component: ValuePicker', () => {
 
         const fetchOptionsSpy = jest.fn(({}) => promise);
 
-        setup({
+        const { asFragment } = setup({
           options: fetchOptionsSpy,
           multiple: false
         });
-
         
-          await act(async () => {
-            await promise;
-          });
+        await act(async () => {
+          await promise;
+        });
 
-          valuePicker.update();
+        expect(screen.queryAllByRole('radio').length).toBe(3);
+        expect(asFragment()).toMatchSnapshot();
 
-          expect(valuePicker.find('RadioGroup').exists()).toBe(true);
-          expect(toJson(valuePicker)).toMatchSnapshot();
-
-          expect(fetchOptionsSpy).toBeCalledTimes(2);
-          expect(fetchOptionsSpy).toBeCalledWith({
-            query: '',
-            page: 1,
-            size: 1
-          });
-          expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
-            query: '',
-            page: 1,
-            size: 100
-          });
-
-      
+        expect(fetchOptionsSpy).toBeCalledTimes(2);
+        expect(fetchOptionsSpy).toBeCalledWith({
+          query: '',
+          page: 1,
+          size: 1
+        });
+        expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
+          query: '',
+          page: 1,
+          size: 100
+        });
       });
 
       it('should render a `RadioGroup` component when options array length is less than 4', () => {
@@ -119,9 +109,7 @@ describe('Component: ValuePicker', () => {
           multiple: false
         });
 
-        valuePicker.update();
-
-        expect(valuePicker.find('RadioGroup').exists()).toBe(true);
+        expect(screen.queryAllByRole('radio').length).toBe(3);
       });
 
       it('should render a `RadioGroup` component without clear button', () => {
@@ -131,15 +119,11 @@ describe('Component: ValuePicker', () => {
           canClear: false
         });
 
-        valuePicker.update();
-
-        expect(valuePicker.find('RadioGroup').find('TextButton').exists()).toBe(
-          false
-        );
+        expect(screen.queryByText('Clear')).not.toBeInTheDocument();
       });
     });
 
-    describe('when Select', () => {
+    describe('Select', () => {
       it('should render a `Select` component when async page `totalElements` is less than 11 but more than 3', async () => {
         expect.assertions(5);
 
@@ -154,32 +138,29 @@ describe('Component: ValuePicker', () => {
 
         const fetchOptionsSpy = jest.fn(({}) => promise);
 
-        setup({
+        const { asFragment } = setup({
           options: fetchOptionsSpy,
           multiple: false
         });
 
-       
-          await act(async () => {
-            await promise;
-          });
+        await act(async () => {
+          await promise;
+        });
 
-          valuePicker.update();
+        expect(screen.queryByRole('combobox')).toBeInTheDocument();
+        expect(asFragment()).toMatchSnapshot();
 
-          expect(valuePicker.find('Select').exists()).toBe(true);
-          expect(toJson(valuePicker)).toMatchSnapshot();
-
-          expect(fetchOptionsSpy).toBeCalledTimes(2);
-          expect(fetchOptionsSpy).toBeCalledWith({
-            query: '',
-            page: 1,
-            size: 1
-          });
-          expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
-            query: '',
-            page: 1,
-            size: 100
-          });
+        expect(fetchOptionsSpy).toBeCalledTimes(2);
+        expect(fetchOptionsSpy).toBeCalledWith({
+          query: '',
+          page: 1,
+          size: 1
+        });
+        expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
+          query: '',
+          page: 1,
+          size: 100
+        });
       });
 
       it('should render a `Select` component when options array length is less than 11 but more than 3', () => {
@@ -188,13 +169,11 @@ describe('Component: ValuePicker', () => {
           multiple: false
         });
 
-        valuePicker.update();
-
-        expect(valuePicker.find('Select').exists()).toBe(true);
+        expect(screen.queryByRole('combobox')).toBeInTheDocument();
       });
     });
 
-    describe('when ModalPickerSingle', () => {
+    describe('ModalPickerSingle', () => {
       it('should render a `ModalPickerSingle` when async page `totalElements` is more than than 10', async () => {
         expect.assertions(5);
 
@@ -208,32 +187,29 @@ describe('Component: ValuePicker', () => {
 
         const fetchOptionsSpy = jest.fn(({}) => promise);
 
-        setup({
+        const { asFragment } = setup({
           options: fetchOptionsSpy,
           multiple: false
         });
-
        
-          await act(async () => {
-            await promise;
-          });
+        await act(async () => {
+          await promise;
+        });
 
-          valuePicker.update();
+        expect(screen.queryByRole('button')).toBeInTheDocument();
+        expect(asFragment()).toMatchSnapshot();
 
-          expect(valuePicker.find('ModalPickerSingle').exists()).toBe(true);
-          expect(toJson(valuePicker)).toMatchSnapshot();
-
-          expect(fetchOptionsSpy).toBeCalledTimes(2);
-          expect(fetchOptionsSpy).toBeCalledWith({
-            query: '',
-            page: 1,
-            size: 1
-          });
-          expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
-            query: '',
-            page: 1,
-            size: 10
-          });
+        expect(fetchOptionsSpy).toBeCalledTimes(2);
+        expect(fetchOptionsSpy).toBeCalledWith({
+          query: '',
+          page: 1,
+          size: 1
+        });
+        expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
+          query: '',
+          page: 1,
+          size: 10
+        });
       });
 
       it('should render a `ModalPickerSingle` component when options array length is more than than 10', () => {
@@ -254,9 +230,7 @@ describe('Component: ValuePicker', () => {
           multiple: false
         });
 
-        valuePicker.update();
-
-        expect(valuePicker.find('ModalPickerSingle').exists()).toBe(true);
+        expect(screen.queryByRole('button')).toBeInTheDocument();
       });
 
       it('should render a `ModalPickerSingle` component without clear button', () => {
@@ -278,18 +252,14 @@ describe('Component: ValuePicker', () => {
           canClear: false
         });
 
-        valuePicker.update();
-
-        expect(
-          valuePicker.find('ModalPickerSingle').find('TextButton').exists()
-        ).toBe(false);
+        expect(screen.queryByText('Clear')).not.toBeInTheDocument();
       });
     });
   });
 
   describe('multiple', () => {
-    describe('when CheckboxMultipleSelect', () => {
-      it('should render a `CheckboxMultipleSelect` component async page `totalElements` is less than 11', async () => {
+    describe('CheckboxMultipleSelect', () => {
+      it('should render a `CheckboxMultipleSelect` component when async page `totalElements` is less than 11', async () => {
         expect.assertions(5);
 
         const promise = Promise.resolve(
@@ -302,34 +272,29 @@ describe('Component: ValuePicker', () => {
 
         const fetchOptionsSpy = jest.fn(({}) => promise);
 
-        setup({
+        const { asFragment } = setup({
           options: fetchOptionsSpy,
           multiple: true
         });
-
        
-          await act(async () => {
-            await promise;
-          });
+        await act(async () => {
+          await promise;
+        });
 
-          valuePicker.update();
+        expect(screen.queryAllByRole('checkbox').length).toBe(3);
+        expect(asFragment()).toMatchSnapshot();
 
-          expect(valuePicker.find('CheckboxMultipleSelect').exists()).toBe(
-            true
-          );
-          expect(toJson(valuePicker)).toMatchSnapshot();
-
-          expect(fetchOptionsSpy).toBeCalledTimes(2);
-          expect(fetchOptionsSpy).toBeCalledWith({
-            query: '',
-            page: 1,
-            size: 1
-          });
-          expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
-            query: '',
-            page: 1,
-            size: 100
-          });
+        expect(fetchOptionsSpy).toBeCalledTimes(2);
+        expect(fetchOptionsSpy).toBeCalledWith({
+          query: '',
+          page: 1,
+          size: 1
+        });
+        expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
+          query: '',
+          page: 1,
+          size: 100
+        });
       });
 
       it('should render a `CheckboxMultipleSelect` component when options array length is less than 11', () => {
@@ -349,14 +314,12 @@ describe('Component: ValuePicker', () => {
           multiple: true
         });
 
-        valuePicker.update();
-
-        expect(valuePicker.find('CheckboxMultipleSelect').exists()).toBe(true);
+        expect(screen.queryAllByRole('checkbox').length).toBe(10);
       });
     });
 
-    describe('when ModalPickerMultiple', () => {
-      it('should render a `ModalPickerMultiple` async page `totalElements` is more than 10', async () => {
+    describe('ModalPickerMultiple', () => {
+      it('should render a `ModalPickerMultiple` when async page `totalElements` is more than 10', async () => {
         expect.assertions(5);
 
         const promise = Promise.resolve(
@@ -369,32 +332,29 @@ describe('Component: ValuePicker', () => {
 
         const fetchOptionsSpy = jest.fn(({}) => promise);
 
-        setup({
+        const { asFragment } = setup({
           options: fetchOptionsSpy,
           multiple: true
         });
 
-       
-          await act(async () => {
-            await promise;
-          });
+        await act(async () => {
+          await promise;
+        });
 
-          valuePicker.update();
+        expect(screen.queryByRole('button')).toBeInTheDocument();
+        expect(asFragment()).toMatchSnapshot();
 
-          expect(valuePicker.find('ModalPickerMultiple').exists()).toBe(true);
-          expect(toJson(valuePicker)).toMatchSnapshot();
-
-          expect(fetchOptionsSpy).toBeCalledTimes(2);
-          expect(fetchOptionsSpy).toBeCalledWith({
-            query: '',
-            page: 1,
-            size: 1
-          });
-          expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
-            query: '',
-            page: 1,
-            size: 10
-          });
+        expect(fetchOptionsSpy).toBeCalledTimes(2);
+        expect(fetchOptionsSpy).toBeCalledWith({
+          query: '',
+          page: 1,
+          size: 1
+        });
+        expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
+          query: '',
+          page: 1,
+          size: 10
+        });
       });
 
       it('should render a `ModalPickerMultiple` component when options array length is more than 10', () => {
@@ -415,9 +375,7 @@ describe('Component: ValuePicker', () => {
           multiple: true
         });
 
-        valuePicker.update();
-
-        expect(valuePicker.find('ModalPickerMultiple').exists()).toBe(true);
+        expect(screen.queryByRole('button')).toBeInTheDocument();
       });
 
       it('should render a `ModalPickerMultiple` component without clear button', () => {
@@ -439,11 +397,7 @@ describe('Component: ValuePicker', () => {
           canClear: false
         });
 
-        valuePicker.update();
-
-        expect(
-          valuePicker.find('ModalPickerMultiple').find('TextButton').exists()
-        ).toBe(false);
+        expect(screen.queryByText('Clear')).not.toBeInTheDocument();
       });
     });
   });

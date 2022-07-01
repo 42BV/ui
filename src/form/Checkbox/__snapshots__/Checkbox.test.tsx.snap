@@ -1,81 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Checkbox ui with placeholder: Component: Checkbox => ui => with placeholder 1`] = `
-<FormGroup
-  check={true}
-  className=""
-  tag="div"
->
-  <Label
-    check={true}
-    for="agree"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: Checkbox ui default 1`] = `
+<div>
+  <div
+    class="form-check"
   >
-    <Input
-      checked={true}
-      id="agree"
-      innerRef={[Function]}
-      onChange={[Function]}
-      type="checkbox"
-      valid={true}
-    />
-     
-    Agree
-  </Label>
-  <p
-    className="text-muted mb-0"
-  >
-    <em>
-      Do you agree
-    </em>
-  </p>
-  Some error
-</FormGroup>
+    <label
+      class="form-check-label"
+      for="agree"
+    >
+      <input
+        aria-invalid="true"
+        class="is-invalid form-check-input"
+        id="agree"
+        type="checkbox"
+      />
+       
+      Agree
+    </label>
+    Some error
+  </div>
+</div>
 `;
 
-exports[`Component: Checkbox ui without placeholder: Component: Checkbox => ui => without placeholder 1`] = `
-<FormGroup
-  check={true}
-  className=""
-  tag="div"
->
-  <Label
-    check={true}
-    for="agree"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: Checkbox ui with placeholder 1`] = `
+<div>
+  <div
+    class="form-check"
   >
-    <Input
-      checked={false}
-      id="agree"
-      innerRef={[Function]}
-      invalid={true}
-      onChange={[Function]}
-      type="checkbox"
-      valid={false}
-    />
-     
-    Agree
-  </Label>
-  Some error
-</FormGroup>
+    <label
+      class="form-check-label"
+      for="agree"
+    >
+      <input
+        checked=""
+        class="is-valid form-check-input"
+        id="agree"
+        type="checkbox"
+      />
+       
+      Agree
+    </label>
+    <p
+      class="text-muted mb-0"
+    >
+      <em>
+        Do you agree
+      </em>
+    </p>
+    Some error
+  </div>
+</div>
 `;

@@ -1,40 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: FormError ui both errors: Component: FormError => ui => has both errors 1`] = `
+exports[`Component: FormError ui both errors 1`] = `
 <div>
-  <FormFeedback
-    key="0"
-    tag="div"
-  >
-    Name is required
-  </FormFeedback>
-  <FormFeedback
-    key="back-end error"
-    tag="div"
-  >
-    back-end error
-  </FormFeedback>
-</div>
-`;
-
-exports[`Component: FormError ui has back-end errors: Component: FormError => ui => has back-end errors 1`] = `
-<div>
-  <FormFeedback
-    key="back-end error"
-    tag="div"
-  >
-    back-end error
-  </FormFeedback>
-</div>
-`;
-
-exports[`Component: FormError ui has front-end errors: Component: FormError => ui => has front-end errors 1`] = `
-<div>
-  <FormFeedback
-    key="0"
-    tag="div"
-  >
-    Name is required
-  </FormFeedback>
+  <div>
+    <div
+      class="invalid-feedback"
+    >
+      Name is required
+    </div>
+    <div
+      class="invalid-feedback"
+    >
+      back-end error
+    </div>
+  </div>
 </div>
 `;

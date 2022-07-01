@@ -1,26 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: NavigationItem ui 1`] = `
-<NavItem
-  className="navigation-item"
-  tag="li"
->
-  <NavLink
-    activeClassName="active"
-    exact={true}
-    tag={
-      Object {
-        "$$typeof": Symbol(react.forward_ref),
-        "render": [Function],
-      }
-    }
-    to="/dashboard"
+exports[`Component: NavigationItem ui default 1`] = `
+<div>
+  <li
+    class="navigation-item nav-item"
   >
-    <Icon
-      className="me-3 align-bottom"
-      icon="dashboard"
-    />
-    Dashboard
-  </NavLink>
-</NavItem>
+    <a
+      class="nav-link"
+      href="[object Object]"
+    >
+      <i
+        class="icon me-3 align-bottom material-icons"
+      >
+        dashboard
+      </i>
+      Dashboard
+    </a>
+  </li>
+</div>
 `;

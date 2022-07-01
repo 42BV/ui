@@ -3,7 +3,7 @@ import { setConstraints } from '@42.nl/jarb-final-form';
 import { configure } from '../../../config/config';
 import Tooltip from '../../../core/Tooltip/Tooltip';
 import { useMarkedAsRequiredLabel } from './useMarkedAsRequiredLabel';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 describe('Hook: useMarkedAsRequiredLabel', () => {
   function setup({

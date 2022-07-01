@@ -1,23 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import { OrSeparator } from './OrSeparator';
 
 describe('Component: OrSeparator', () => {
   function setup() {
-    const orSeparator = shallow(<OrSeparator />);
+    const { container } = render(
+      <OrSeparator />
+    );
 
-    return { orSeparator };
+    return { container };
   }
 
   describe('ui', () => {
     test('default', () => {
-      const { orSeparator } = setup();
-
-      expect(toJson(orSeparator)).toMatchSnapshot(
-        'Component: OrSeparator => ui => default'
-      );
+      const { container } = setup();
+      expect(container).toMatchSnapshot();
     });
   });
 });

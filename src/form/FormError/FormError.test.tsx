@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 import { RequiredError } from '@42.nl/jarb-final-form';
 import * as reactErrorStore from '@42.nl/react-error-store';
 
@@ -10,8 +9,6 @@ import * as SettledErrors from './useSettledErrors';
 import FormError from './FormError';
 
 describe('Component: FormError', () => {
-  let formError: ShallowWrapper;
-
   function setup({
     hasFrontEndErrors,
     hasBackEndErrors,
@@ -38,7 +35,7 @@ describe('Component: FormError', () => {
       .spyOn(SettledErrors, 'useSettledErrors')
       .mockReturnValue(hasFrontEndErrors ? [required] : []);
 
-    formError = shallow(
+    const { container } = render(
       <FormError
         value="henkie"
         meta={validMeta}
@@ -46,49 +43,45 @@ describe('Component: FormError', () => {
         onChange={onChange}
       />
     );
+    
+    return { container };
   }
 
   describe('ui', () => {
     test('both errors', () => {
-      setup({
+      const { container } = setup({
         hasFrontEndErrors: true,
         hasBackEndErrors: true
       });
 
-      expect(toJson(formError)).toMatchSnapshot(
-        'Component: FormError => ui => has both errors'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('no errors', () => {
-      setup({
+      const { container } = setup({
         hasFrontEndErrors: false,
         hasBackEndErrors: false
       });
 
-      expect(formError.isEmptyRender()).toBe(true);
+      expect(container.firstChild).toBeNull();
     });
 
     test('has back-end errors', () => {
-      setup({
+      const { container } = setup({
         hasFrontEndErrors: false,
         hasBackEndErrors: true
       });
 
-      expect(toJson(formError)).toMatchSnapshot(
-        'Component: FormError => ui => has back-end errors'
-      );
+      expect(container.firstChild).not.toBeNull();
     });
 
     test('has front-end errors', () => {
-      setup({
+      const { container } = setup({
         hasFrontEndErrors: true,
         hasBackEndErrors: false
       });
 
-      expect(toJson(formError)).toMatchSnapshot(
-        'Component: FormError => ui => has front-end errors'
-      );
+      expect(container.firstChild).not.toBeNull();
     });
   });
 });

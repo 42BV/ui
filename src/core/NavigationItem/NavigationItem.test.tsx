@@ -1,77 +1,76 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
-import { NavLink } from 'reactstrap';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import NavigationItem from './NavigationItem';
+import { Navigator, Router } from 'react-router-dom';
 
 describe('Component: NavigationItem', () => {
   function setup({
-    show = true,
-    exact
+    show,
+    className,
+    location = 'test'
   }: {
     show?: (() => boolean) | boolean;
-    exact?: boolean;
+    className?: string;
+    location?: string;
   }) {
-    const navigationItem = shallow(
-      <NavigationItem
-        to="/dashboard"
-        icon="dashboard"
-        text="Dashboard"
-        show={show}
-        exact={exact}
-      />
+    // @ts-expect-error Test mock
+    const navigator: Navigator = {
+      createHref: (to: string) => to
+    };
+
+    const { container } = render(
+      <Router location={location} navigator={navigator}>
+        <NavigationItem
+          to="/dashboard"
+          icon="dashboard"
+          text="Dashboard"
+          show={show}
+          className={className}
+        />
+      </Router>
     );
 
-    return { navigationItem };
+    return { container };
   }
 
-  test('ui', () => {
-    const { navigationItem } = setup({});
-    expect(toJson(navigationItem)).toMatchSnapshot();
+  describe('ui', () => {
+    test('default', () => {
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
+    });
+
+    test('active', () => {
+      setup({ location: '/dashboard' });
+      expect(screen.getByText('dashboard').parentNode).toHaveClass('active');
+    });
+
+    test('extra class', () => {
+      const { container } = setup({ className: 'extra-class' });
+      expect(container.firstChild).toHaveClass('extra-class');
+    });
   });
 
   describe('show behavior', () => {
     it('should not render when show is false', () => {
-      const { navigationItem } = setup({ show: false });
-      expect(navigationItem.isEmptyRender()).toBe(true);
+      setup({ show: false });
+      expect(screen.queryByText('dashboard')).not.toBeInTheDocument();
     });
 
     it('should render when predicate resolves to true', () => {
-      const { navigationItem } = setup({ show: () => 1 + 1 === 2 });
-      expect(navigationItem.isEmptyRender()).toBe(false);
+      setup({ show: () => 1 + 1 === 2 });
+      expect(screen.queryByText('dashboard')).toBeInTheDocument();
     });
 
     it('should not render when predicate resolves to false', () => {
-      const { navigationItem } = setup({ show: () => 1 + 2 === 2 });
-      expect(navigationItem.isEmptyRender()).toBe(true);
+      setup({ show: () => 1 + 2 === 2 });
+      expect(screen.queryByText('dashboard')).not.toBeInTheDocument();
     });
 
     it('should default show to true if it is not provided', () => {
-      const navigationItem = shallow(
-        <NavigationItem to="/dashboard" icon="dashboard" text="Dashboard" />
-      );
-
-      expect(navigationItem.isEmptyRender()).toBe(false);
-    });
-  });
-
-  describe('exact behavior', () => {
-    it('should default to exact when exact is undefined', () => {
-      const { navigationItem } = setup({ exact: undefined });
-
-      const exact = navigationItem.find(NavLink).props().exact;
-
-      expect(exact).toBe(true);
-    });
-
-    it('should be able to set exact to false', () => {
-      const { navigationItem } = setup({ exact: false });
-
-      const exact = navigationItem.find(NavLink).props().exact;
-
-      expect(exact).toBe(false);
+      setup({});
+      expect(screen.queryByText('dashboard')).toBeInTheDocument();
     });
   });
 });

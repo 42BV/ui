@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import ProgressStepper from './ProgressStepper';
 
@@ -9,7 +8,7 @@ describe('Component: ProgressStepper', () => {
     const colorForStepSpy = jest.fn((_step, _index) => 'primary');
     const titleForStepSpy = jest.fn((step, _index) => step);
 
-    const progressStepper = shallow(
+    const { container } = render(
       <ProgressStepper
         steps={['start']}
         // @ts-expect-error Test mock
@@ -19,7 +18,7 @@ describe('Component: ProgressStepper', () => {
       />
     );
 
-    expect(toJson(progressStepper)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
 
     expect(colorForStepSpy).toBeCalledTimes(1);
     expect(colorForStepSpy).toHaveBeenCalledWith('start', 0);
@@ -32,25 +31,24 @@ describe('Component: ProgressStepper', () => {
     it('should call onClick when isStepClickable returns true', () => {
       const onClickSpy = jest.fn();
 
-      const progressStepper = shallow(
+      render(
         <ProgressStepper
           steps={['start', 'end']}
           colorForStep={() => 'primary'}
-          titleForStep={() => 'start'}
+          titleForStep={(step) => step}
           // Only enable the first step.
           isStepClickable={(step, index) => index === 0}
           onClick={onClickSpy}
         />
       );
 
-      // Test if 'start' is indeed enabled.
-      progressStepper.find('.step-item').at(0).simulate('click');
+      fireEvent.click(screen.getByText('start'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
       expect(onClickSpy).toHaveBeenCalledWith('start', 0);
 
-      // Test if 'end' is indeed disabled.
-      progressStepper.find('.step-item').at(1).simulate('click');
+      fireEvent.click(screen.getByText('end'));
+
       expect(onClickSpy).toHaveBeenCalledTimes(1);
     });
   });

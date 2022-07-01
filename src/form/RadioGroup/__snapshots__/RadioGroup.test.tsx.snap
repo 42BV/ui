@@ -1,461 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: RadioGroup ui horizontal: Component: RadioGroup => ui => horizontal 1`] = `
-<FormGroup
-  className="radio-group "
-  tag="fieldset"
->
-  <legend>
-    Subject
-  </legend>
-  <p
-    className="text-muted"
+exports[`Component: RadioGroup ui default 1`] = `
+<div>
+  <fieldset
+    class="radio-group  mb-3"
   >
-    <em>
-      Please enter your subject
-    </em>
-  </p>
-  <FormGroup
-    check={true}
-    inline={true}
-    key="42"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
+    <div
+      class="form-check"
     >
-      <Input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="admin@42.nl"
-      />
-       
-      admin@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={true}
-    key="777"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
+      <label
+        class="form-check-label"
+      >
+        <input
+          checked=""
+          class="form-check-input"
+          type="radio"
+          value="admin@42.nl"
+        />
+         
+        admin@42.nl
+      </label>
+    </div>
+    <div
+      class="form-check"
     >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="coordinator@42.nl"
-      />
-       
-      coordinator@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={true}
-    key="1337"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
+      <label
+        class="form-check-label"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          value="coordinator@42.nl"
+        />
+         
+        coordinator@42.nl
+      </label>
+    </div>
+    <div
+      class="form-check"
     >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="user@42.nl"
-      />
-       
-      user@42.nl
-    </Label>
-  </FormGroup>
-  Some error
-</FormGroup>
+      <label
+        class="form-check-label"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          value="user@42.nl"
+        />
+         
+        user@42.nl
+      </label>
+    </div>
+    Some error
+  </fieldset>
+</div>
 `;
 
-exports[`Component: RadioGroup ui loading: Component: RadioGroup => ui => loading 1`] = `
-<FormGroup
-  className="radio-group "
-  tag="fieldset"
->
-  <legend>
-    Subject
-  </legend>
-  <p
-    className="text-muted"
+exports[`Component: RadioGroup ui loading 1`] = `
+<div>
+  <fieldset
+    class="radio-group  mb-3"
   >
-    <em>
-      Please enter your subject
-    </em>
-  </p>
-  <Loading>
-    Loading...
-  </Loading>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: RadioGroup ui with value: Component: RadioGroup => ui => with value 1`] = `
-<FormGroup
-  className="radio-group "
-  tag="fieldset"
->
-  <legend>
-    Subject
-  </legend>
-  <p
-    className="text-muted"
-  >
-    <em>
-      Please enter your subject
-    </em>
-  </p>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="42"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
+    <div
+      class="d-flex"
     >
-      <Input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="admin@42.nl"
-      />
-       
-      admin@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="777"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="coordinator@42.nl"
-      />
-       
-      coordinator@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="1337"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="user@42.nl"
-      />
-       
-      user@42.nl
-    </Label>
-  </FormGroup>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: RadioGroup ui without label: Component: RadioGroup => ui => without label 1`] = `
-<FormGroup
-  className="radio-group "
-  tag="fieldset"
->
-  <p
-    className="text-muted"
-  >
-    <em>
-      Please enter your subject
-    </em>
-  </p>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="42"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="admin@42.nl"
-      />
-       
-      admin@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="777"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="coordinator@42.nl"
-      />
-       
-      coordinator@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="1337"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="user@42.nl"
-      />
-       
-      user@42.nl
-    </Label>
-  </FormGroup>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: RadioGroup ui without placeholder: Component: RadioGroup => ui => without placeholder 1`] = `
-<FormGroup
-  className="radio-group "
-  tag="fieldset"
->
-  <legend>
-    Subject
-  </legend>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="42"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="admin@42.nl"
-      />
-       
-      admin@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="777"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="coordinator@42.nl"
-      />
-       
-      coordinator@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={false}
-    key="1337"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="radio"
-        value="user@42.nl"
-      />
-       
-      user@42.nl
-    </Label>
-  </FormGroup>
-  Some error
-</FormGroup>
+      <svg
+        class="spinner align-self-center"
+        height="16"
+        viewBox="25 25 50 50"
+        width="16"
+      >
+        <circle
+          class="path"
+          cx="50"
+          cy="50"
+          fill="none"
+          r="20"
+          stroke="black"
+          stroke-miterlimit="10"
+          stroke-width="4"
+        />
+      </svg>
+      <span
+        class="ms-1"
+      >
+        Loading...
+      </span>
+    </div>
+    Some error
+  </fieldset>
+</div>
 `;

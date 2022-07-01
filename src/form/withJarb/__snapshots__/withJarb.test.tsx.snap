@@ -1,64 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => formError 1`] = `
-<div
-  className="withjarb-tooltip"
->
-  <FormFeedback
-    key="0"
-    tag="div"
-  />
-</div>
-`;
-
-exports[`HoC: withJarb errorMode: tooltip: withJarb => errorMode: tooltip => jarbField 1`] = `
-<ForwardRef(TippyWrapper)
-  className="border-0"
-  content={
-    <React.Fragment>
-       
-      <ForwardRef(Field)
-        name="firstName"
-        render={[Function]}
-        subscription={
-          Object {
-            "active": true,
-            "error": true,
-            "touched": true,
-            "validating": true,
-            "value": true,
-          }
-        }
-      />
-       
-    </React.Fragment>
-  }
-  maxWidth={350}
-  offset={
-    Array [
-      0,
-      7,
-    ]
-  }
-  placement="bottom"
->
+exports[`HoC: withJarb errorMode: tooltip 1`] = `
+<div>
   <div
-    className="w-100"
-    style={
-      Object {
-        "outline": 0,
-      }
-    }
-    tabIndex={0}
+    class="w-100"
+    style="outline: 0;"
+    tabindex="0"
   >
-    <Input
+    <div
+      class="mb-3"
       color=""
-      onBlur={[MockFunction]}
-      onChange={[Function]}
-      value="value"
-    />
+    >
+      <label
+        class="form-label"
+        for="firstName"
+      >
+        First name
+      </label>
+      <input
+        class="form-control"
+        id="firstName"
+        placeholder="Please enter your first name"
+        type="text"
+        value="yolo"
+      />
+    </div>
   </div>
-</ForwardRef(TippyWrapper)>
+</div>
 `;
 
 exports[`HoC: withJarb should throw an error when detecting illegal props 1`] = `
@@ -77,74 +45,56 @@ exports[`HoC: withJarb should throw an error when detecting illegal props 1`] = 
       "
 `;
 
-exports[`HoC: withJarb ui: withJarb => ui => formError 1`] = `
+exports[`HoC: withJarb ui default 1`] = `
 <div>
-  <FormFeedback
-    key="0"
-    tag="div"
-  />
+  <div
+    class="mb-3"
+    color=""
+  >
+    <label
+      class="form-label"
+      for="firstName"
+    >
+      First name
+    </label>
+    <input
+      class="form-control"
+      id="firstName"
+      placeholder="Please enter your first name"
+      type="text"
+      value="yolo"
+    />
+  </div>
 </div>
 `;
 
-exports[`HoC: withJarb ui: withJarb => ui => jarbField 1`] = `
-<input
-  color=""
-  error={
-    <ForwardRef(Field)
-      name="firstName"
-      render={[Function]}
-      subscription={
-        Object {
-          "active": true,
-          "error": true,
-          "touched": true,
-          "validating": true,
-          "value": true,
-        }
-      }
+exports[`HoC: withJarb ui with error 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
+    color="danger"
+  >
+    <label
+      class="form-label"
+      for="firstName"
+    >
+      First name
+    </label>
+    <input
+      aria-invalid="true"
+      class="is-invalid form-control"
+      id="firstName"
+      placeholder="Please enter your first name"
+      type="text"
+      value="yolo"
     />
-  }
-  id="firstName"
-  label="First name"
-  onBlur={[MockFunction]}
-  onChange={[Function]}
-  placeholder="Please enter your first name"
-  value="value"
-/>
-`;
-
-exports[`HoC: withJarb ui: withJarb => ui 1`] = `
-<JarbField
-  asyncValidators={
-    Array [
-      [Function],
-    ]
-  }
-  asyncValidatorsDebounce={5000}
-  format={[Function]}
-  formatOnBlur={false}
-  initialValue="beheer@42.nl"
-  jarb={
-    Object {
-      "label": "First name",
-      "validator": "User.email",
-    }
-  }
-  name="firstName"
-  parse={[Function]}
-  render={[Function]}
-  subscription={
-    Object {
-      "invalid": true,
-      "touched": true,
-      "validating": true,
-      "value": true,
-    }
-  }
-  validators={
-    Array [
-      [Function],
-    ]
-  }
-/>
+    <div>
+      <div
+        class="invalid-feedback"
+      >
+        not superman
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

@@ -1,21 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import { EpicCellLayout } from './EpicCellLayout';
 
 describe('Component: EpicCellLayout', () => {
   test('vertical', () => {
-    const vertical = shallow(
+    const { container } = render(
       <EpicCellLayout mode="vertical">vertical</EpicCellLayout>
     );
-    expect(toJson(vertical)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   test('horizontal', () => {
-    const horizontal = shallow(
+    const { container } = render(
       <EpicCellLayout mode="horizontal">horizontal</EpicCellLayout>
     );
-    expect(toJson(horizontal)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { AnyObject, Form, FormProps } from 'react-final-form';
-import { omit, pick } from 'lodash';
-import { FormApi } from 'final-form';
+import { Form, FormProps } from 'react-final-form';
 import { AutoSave } from '../../../../form/AutoSave/AutoSave';
 
 interface Props<FormValues> extends FormProps<FormValues> {
@@ -32,19 +30,12 @@ interface Props<FormValues> extends FormProps<FormValues> {
   submitOnChange?: boolean;
 }
 
-// Props that will be injected by the EpicTable.
-type InjectedProps = {
-  odd: boolean;
-};
-
 /**
  * The EpicForm is a wrapper around react-final-form's `Form` to
  * allow forms to be used inside of an EpicRow.
  */
 export function EpicForm<FormValues>(props: Props<FormValues>) {
-  const { id, children, width, height, submitOnChange, ...rest } = props;
-  const { odd } = pick(rest, ['odd']) as InjectedProps;
-  const formProps = omit(rest, ['odd']) as FormProps;
+  const { id, children, width, height, submitOnChange, odd, ...formProps } = props;
 
   const classes = classNames('epic-table-form border-bottom p-1', {
     'epic-table-form--odd': odd
@@ -52,17 +43,7 @@ export function EpicForm<FormValues>(props: Props<FormValues>) {
 
   return (
     <Form {...formProps}>
-      {({
-        handleSubmit,
-        form
-      }: {
-        handleSubmit: (
-          event?: Partial<
-            Pick<React.SyntheticEvent, 'preventDefault' | 'stopPropagation'>
-          >
-        ) => Promise<AnyObject | undefined> | undefined;
-        form: FormApi<FormValues>;
-      }) => (
+      {({ handleSubmit, form }) => (
         <form
           id={id}
           onSubmit={handleSubmit}
@@ -73,6 +54,7 @@ export function EpicForm<FormValues>(props: Props<FormValues>) {
             width,
             height
           }}
+          data-testid="epicform-form"
         >
           {submitOnChange ? (
             <AutoSave

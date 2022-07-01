@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import ConfirmButton from './ConfirmButton';
 import IconType from '../Icon/types';
@@ -8,7 +8,7 @@ import IconType from '../Icon/types';
 describe('Component: ConfirmButton', () => {
   describe('ui', () => {
     test('only button', () => {
-      const confirmButton = shallow(
+      const { container } = render(
         <ConfirmButton
           onConfirm={() => undefined}
           dialogText={
@@ -21,13 +21,11 @@ describe('Component: ConfirmButton', () => {
         </ConfirmButton>
       );
 
-      expect(toJson(confirmButton)).toMatchSnapshot(
-        'Component: ConfirmButton => ui => only button'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('only icon', () => {
-      const confirmButton = shallow(
+      const { container } = render(
         <ConfirmButton
           onConfirm={() => undefined}
           icon="delete"
@@ -39,13 +37,11 @@ describe('Component: ConfirmButton', () => {
         />
       );
 
-      expect(toJson(confirmButton)).toMatchSnapshot(
-        'Component: ConfirmButton => ui => only icon'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('only icon in progress', () => {
-      const confirmButton = shallow(
+      const { container } = render(
         <ConfirmButton
           onConfirm={() => undefined}
           inProgress={true}
@@ -58,13 +54,11 @@ describe('Component: ConfirmButton', () => {
         />
       );
 
-      expect(toJson(confirmButton)).toMatchSnapshot(
-        'Component: ConfirmButton => ui => only icon in progress'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('button and icon', () => {
-      const confirmButton = shallow(
+      const { container } = render(
         <ConfirmButton
           onConfirm={() => undefined}
           icon="delete"
@@ -78,13 +72,11 @@ describe('Component: ConfirmButton', () => {
         </ConfirmButton>
       );
 
-      expect(toJson(confirmButton)).toMatchSnapshot(
-        'Component: ConfirmButton => ui => button and icon'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('custom class, color and texts', () => {
-      const confirmButton = shallow(
+      const { container } = render(
         <ConfirmButton
           className="bigger-better-and-uncut"
           color="info"
@@ -105,22 +97,17 @@ describe('Component: ConfirmButton', () => {
         </ConfirmButton>
       );
 
-      expect(toJson(confirmButton)).toMatchSnapshot(
-        'Component: ConfirmButton => ui => custom color and texts'
-      );
+      expect(container).toMatchSnapshot();
     });
   });
 
   describe('events', () => {
-    let confirmButton: ShallowWrapper;
-    let onConfirmSpy: jest.Mock;
-
     type Props =
       | { icon: IconType; button?: never }
       | { button: string; icon?: never };
 
     function setup({ button, icon }: Props) {
-      onConfirmSpy = jest.fn();
+      const onConfirmSpy = jest.fn();
 
       const props = {
         onConfirm: onConfirmSpy,
@@ -128,87 +115,59 @@ describe('Component: ConfirmButton', () => {
       };
 
       if (icon && button) {
-        confirmButton = shallow(
+        const { container } = render(
           <ConfirmButton icon={icon} {...props}>
             {button}
           </ConfirmButton>
         );
+        return { container, onConfirmSpy };
       } else if (icon) {
-        confirmButton = shallow(<ConfirmButton icon={icon} {...props} />);
+        const { container } = render(
+          <ConfirmButton icon={icon} {...props} />
+        );
+        return { container, onConfirmSpy };
       } else {
-        confirmButton = shallow(
+        const { container } = render(
           <ConfirmButton {...props}>{button}</ConfirmButton>
         );
+        return { container, onConfirmSpy };
       }
     }
 
-    function openModal() {
-      const event = { stopPropagation: jest.fn() };
-
-      // @ts-expect-error Test mock
-      confirmButton
-        .find('Button')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick(event);
-
-      // @ts-expect-error Test mock
-      expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(true);
-    }
-
     it('should open the Modal when the ConfirmButton button is clicked', () => {
-      setup({
-        button: 'Delete',
-        icon: undefined
-      });
+      setup({ button: 'Delete' });
 
-      const event = { stopPropagation: jest.fn() };
+      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
 
-      // @ts-expect-error Test mock
-      confirmButton
-        .find('Button')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick(event);
+      fireEvent.click(screen.getByText('Delete'));
 
-      // @ts-expect-error Test mock
-      expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(true);
-
-      expect(event.stopPropagation).toHaveBeenCalledTimes(1);
+      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
     });
 
-    it('should close the Modal', () => {
-      setup({
-        button: 'Delete',
-        icon: undefined
-      });
+    it('should close the Modal when the Cancel button is clicked', () => {
+      const { onConfirmSpy } = setup({ button: 'Delete' });
 
-      openModal();
+      fireEvent.click(screen.getByText('Delete'));
 
-      // @ts-expect-error Test mock
-      confirmButton.find('ConfirmModal').prop('onClose')();
+      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
 
-      // @ts-expect-error Test mock
-      expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(false);
+      fireEvent.click(screen.getByText('Cancel'));
+
+      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
+      expect(onConfirmSpy).toHaveBeenCalledTimes(0);
     });
 
-    it('should close and save the Modal when the Accept button is clicked', () => {
-      setup({
-        button: 'Delete',
-        icon: undefined
-      });
+    it('should close and save the Modal when the Confirm button is clicked', () => {
+      const { onConfirmSpy } = setup({ button: 'Delete' });
 
-      openModal();
+      fireEvent.click(screen.getByText('Delete'));
 
-      // @ts-expect-error Test mock
-      confirmButton.find('ConfirmModal').prop('onSave')();
+      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
 
+      fireEvent.click(screen.getByText('Confirm'));
+
+      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
       expect(onConfirmSpy).toHaveBeenCalledTimes(1);
-
-      // @ts-expect-error Test mock
-      expect(confirmButton.find('ConfirmModal').props().isOpen).toBe(false);
     });
   });
 });

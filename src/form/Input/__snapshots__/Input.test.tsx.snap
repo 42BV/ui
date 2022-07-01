@@ -1,395 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Input ui addon default: Component: Input => addon position default 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: Input masked 1`] = `
+<div>
+  <div
+    class="mb-3"
+    color="success"
   >
-    First name
-  </Label>
-  <InputGroup
-    tag="div"
+    <input
+      class="form-control"
+      id="11"
+      placeholder=""
+      type="text"
+      value=""
+    />
+    Some error
+  </div>
+</div>
+`;
+
+exports[`Component: Input ui addon default 1`] = `
+<div>
+  <div
+    class="mb-3"
+    color="success"
   >
-    <Addon>
+    <div
+      class="input-group"
+    >
       Default on the left
-    </Addon>
-    <Input
-      id="firstName"
-      key="input"
-      onBlur={[MockFunction]}
-      onChange={[Function]}
-      onFocus={[MockFunction]}
-      placeholder="Please enter your first name"
-      type="text"
-    />
-  </InputGroup>
-  Some error
-</FormGroup>
+      <input
+        class="form-control"
+        id="6"
+        placeholder=""
+        type="text"
+        value=""
+      />
+    </div>
+    Some error
+  </div>
+</div>
 `;
 
-exports[`Component: Input ui addon left: Component: Input => addon position left 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: Input ui default 1`] = `
+<div>
+  <div
+    class="mb-3"
+    color="success"
   >
-    First name
-  </Label>
-  <InputGroup
-    tag="div"
+    <input
+      class="form-control"
+      id="1"
+      placeholder=""
+      type="text"
+      value=""
+    />
+    Some error
+  </div>
+</div>
+`;
+
+exports[`Component: Input ui with label 1`] = `
+<div>
+  <div
+    class="mb-3"
+    color="success"
   >
-    <Addon
-      position="left"
+    <label
+      class="form-label"
+      for="firstName"
     >
-      Left
-    </Addon>
-    <Input
+      First name
+    </label>
+    <input
+      class="form-control"
       id="firstName"
-      key="input"
-      onBlur={[MockFunction]}
-      onChange={[Function]}
-      onFocus={[MockFunction]}
-      placeholder="Please enter your first name"
+      placeholder=""
       type="text"
+      value=""
     />
-  </InputGroup>
-  Some error
-</FormGroup>
+    Some error
+  </div>
+</div>
 `;
 
-exports[`Component: Input ui addon right: Component: Input => addon position right 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <InputGroup
-    tag="div"
-  >
-    <Input
-      id="firstName"
-      key="input"
-      onBlur={[MockFunction]}
-      onChange={[Function]}
-      onFocus={[MockFunction]}
-      placeholder="Please enter your first name"
-      type="text"
-    />
-    <Addon
-      position="right"
-    >
-      Right
-    </Addon>
-  </InputGroup>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Input ui defaults to text: Component: Input => ui => defaults to text 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <Input
-    id="firstName"
-    key="input"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder="Please enter your first name"
+exports[`reactStrapInput 1`] = `
+<div>
+  <input
+    class="form-control"
+    id="10"
     type="text"
-    value="Maarten"
   />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Input ui is invalid: Component: Input => is invalid 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <Input
-    id="firstName"
-    invalid={true}
-    key="input"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder="Please enter your first name"
-    type="text"
-    valid={false}
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Input ui is valid: Component: Input => is valid 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <Input
-    id="firstName"
-    key="input"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder="Please enter your first name"
-    type="text"
-    valid={true}
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Input ui type email: Component: Input => ui => type email 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <Input
-    id="firstName"
-    key="input"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder="Please enter your first name"
-    type="email"
-    value="Maarten"
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Input ui with mask: Component: Input => ui => with mask 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <t
-    id="firstName"
-    key="mask"
-    mask={
-      Array [
-        "(",
-        /\\[1-9\\]/,
-        /\\\\d/,
-        /\\\\d/,
-        ")",
-        " ",
-        /\\\\d/,
-        /\\\\d/,
-        /\\\\d/,
-        "-",
-        /\\\\d/,
-        /\\\\d/,
-        /\\\\d/,
-        /\\\\d/,
-      ]
-    }
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder="Please enter your first name"
-    render={[Function]}
-    type="text"
-    value="Maarten"
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Input ui without label: Component: Input => ui => without label 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Input
-    id="1"
-    key="input"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder="Please enter your first name"
-    type="text"
-    value="Maarten"
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Input ui without placeholder: Component: Input => ui => without placeholder 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <Input
-    id="firstName"
-    key="input"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder=""
-    type="text"
-    value="Maarten"
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`reactStrapInput: reactStrapInput 1`] = `
-<input
-  className="form-control"
-  id={10}
-  type="text"
-/>
+</div>
 `;

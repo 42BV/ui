@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import AsyncList, { isEmpty } from './AsyncList';
 
@@ -15,7 +14,7 @@ type State = {
 
 describe('Component: Async|AsyncList', () => {
   function setup({ state }: { state: State }) {
-    const asyncList = shallow(
+    const { container } = render(
       <AsyncList
         // @ts-expect-error Test mock
         state={state}
@@ -32,7 +31,7 @@ describe('Component: Async|AsyncList', () => {
       </AsyncList>
     );
 
-    return { asyncList };
+    return { container };
   }
 
   test('ui', () => {
@@ -42,9 +41,9 @@ describe('Component: Async|AsyncList', () => {
       data: pageOfUsers().content
     };
 
-    const { asyncList } = setup({ state });
+    const { container } = setup({ state });
 
-    expect(toJson(asyncList)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });
 

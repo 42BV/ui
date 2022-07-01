@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import RadioGroup from '../../form/RadioGroup/RadioGroup';
 
@@ -30,53 +29,51 @@ describe('Component: Card', () => {
       />
     );
 
-    const card = shallow(<Card {...props}>{children}</Card>);
+    const { container } = render(
+      <Card {...props}>{children}</Card>
+    );
 
-    return { card };
+    return { container };
   }
 
   describe('ui', () => {
     test('basic', () => {
-      const { card } = setup({});
+      const { container } = setup({});
 
-      expect(toJson(card)).toMatchSnapshot('Component: Card => ui => basic');
+      expect(container).toMatchSnapshot('Component: Card => ui => basic');
     });
 
     test('without header', () => {
-      const { card } = setup({ hasHeader: false });
+      const { container } = setup({ hasHeader: false });
 
-      expect(toJson(card)).toMatchSnapshot(
-        'Component: Card => ui => without header'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('without footer', () => {
-      const { card } = setup({ hasFooter: false });
+      const { container } = setup({ hasFooter: false });
 
-      expect(toJson(card)).toMatchSnapshot(
-        'Component: Card => ui => without footer'
-      );
+      expect(container).toMatchSnapshot();
     });
   });
 
   test('deprecated: modalHeaderClassName', () => {
-    const card = shallow(<Card header="test" modalHeaderClassName="deprecated classes">This is the content</Card>);
-    expect(toJson(card)).toMatchSnapshot(
-      'Component: Card => deprecated: modalHeaderClassName'
+    const { container } = render(
+      <Card header="test" modalHeaderClassName="deprecated classes">This is the content</Card>
     );
+    expect(container).toMatchSnapshot();
   });
 
   test('deprecated: modalBodyClassName', () => {
-    const card = shallow(<Card modalBodyClassName="deprecated classes">This is the content</Card>);
-    expect(toJson(card)).toMatchSnapshot(
-      'Component: Card => deprecated: modalBodyClassName'
+    const { container } = render(
+      <Card modalBodyClassName="deprecated classes">This is the content</Card>
     );
+    expect(container).toMatchSnapshot();
   });
 
   test('deprecated: modalFooterClassName', () => {
-    const card = shallow(<Card footer="test" modalFooterClassName="deprecated classes">This is the content</Card>);
-    expect(toJson(card)).toMatchSnapshot(
-      'Component: Card => deprecated: modalFooterClassName'
+    const { container } = render(
+      <Card footer="test" modalFooterClassName="deprecated classes">This is the content</Card>
     );
+    expect(container).toMatchSnapshot();
   });
 });

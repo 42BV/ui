@@ -92,12 +92,12 @@ export function Modal(props: Props) {
     <ReactstrapModal
       wrapClassName={stickyFooter ? 'sticky-modal' : undefined}
       isOpen={true}
-      toggle={() => onClose()}
+      toggle={onClose}
       size={size}
       className={className}
     >
       {header ? (
-        <ModalHeader toggle={() => onClose()} className={modalHeaderClassName}>
+        <ModalHeader toggle={onClose} className={modalHeaderClassName}>
           <Suspense fallback={<Loading />}>{header}</Suspense>
         </ModalHeader>
       ) : null}

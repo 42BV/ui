@@ -1,9 +1,9 @@
 import { RefObject, useCallback, useLayoutEffect, useState } from 'react';
 import { useResizeObserver } from '../useResizeObserver/useResizeObserver';
 
-export function useComponentOverflow(
+export function useComponentOverflow<T>(
   ref: RefObject<HTMLElement>,
-  values: React.ReactNode
+  values: T | T[]
 ): boolean {
   const [componentOverflow, setComponentOverflow] = useState(
     isOverflowing(ref.current)
@@ -47,7 +47,7 @@ export function layoutEffect(
   ref: RefObject<HTMLElement>,
   handleResize: () => void,
   resizeObserver?: any
-): () => void {
+): () => (() => void) | void {
   return () => {
     if (!ref.current) {
       return;

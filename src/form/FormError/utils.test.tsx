@@ -4,6 +4,7 @@ import {
   setTranslator,
   Translator
 } from '../../utilities/translation/translator';
+import { MaximumLengthError, MaxValueError, MinimumLengthError, MinValueError, NumberError, NumberFractionError, RequiredError } from '@42.nl/jarb-final-form';
 
 describe('errorMessage', () => {
   let t: Translator;
@@ -49,25 +50,34 @@ describe('errorMessage', () => {
 
   describe('ValidationError from jarb-final-form', () => {
     test('ERROR_REQUIRED', () => {
-      const error = {
+      const error: RequiredError = {
         type: 'ERROR_REQUIRED',
         label: 'Name',
         value: '',
-        reasons: {}
+        reasons: {
+          required: 'required'
+        }
       };
 
       errorMessage(error);
 
       expect(t).toHaveBeenCalledTimes(1);
       expect(t).toHaveBeenCalledWith({
-        data: { label: 'Name', reasons: {}, type: 'ERROR_REQUIRED', value: '' },
+        data: {
+          label: 'Name',
+          reasons: {
+            required: 'required'
+          },
+          type: 'ERROR_REQUIRED',
+          value: ''
+        },
         fallback: 'Name is required',
         key: 'JarbFinalForm.VALIDATION.REQUIRED'
       });
     });
 
     test('ERROR_MINIMUM_LENGTH', () => {
-      const error = {
+      const error: MinimumLengthError = {
         type: 'ERROR_MINIMUM_LENGTH',
         label: 'Age',
         value: '',
@@ -92,7 +102,7 @@ describe('errorMessage', () => {
     });
 
     test('ERROR_MAXIMUM_LENGTH', () => {
-      const error = {
+      const error: MaximumLengthError = {
         type: 'ERROR_MAXIMUM_LENGTH',
         label: 'Eye color',
         value: '',
@@ -117,7 +127,7 @@ describe('errorMessage', () => {
     });
 
     test('ERROR_MIN_VALUE', () => {
-      const error = {
+      const error: MinValueError = {
         type: 'ERROR_MIN_VALUE',
         label: 'Legs',
         value: '',
@@ -142,7 +152,7 @@ describe('errorMessage', () => {
     });
 
     test('ERROR_MAX_VALUE', () => {
-      const error = {
+      const error: MaxValueError = {
         type: 'ERROR_MAX_VALUE',
         label: 'Arms',
         value: '',
@@ -167,12 +177,12 @@ describe('errorMessage', () => {
     });
 
     test('ERROR_NUMBER', () => {
-      const error = {
+      const error: NumberError = {
         type: 'ERROR_NUMBER',
         label: 'Head',
         value: '',
         reasons: {
-          regex: 'regex'
+          regex: new RegExp('regex')
         }
       };
 
@@ -182,7 +192,9 @@ describe('errorMessage', () => {
       expect(t).toHaveBeenCalledWith({
         data: {
           label: 'Head',
-          reasons: { regex: 'regex' },
+          reasons: {
+            regex: new RegExp('regex')
+          },
           type: 'ERROR_NUMBER',
           value: ''
         },
@@ -192,13 +204,13 @@ describe('errorMessage', () => {
     });
 
     test('ERROR_NUMBER_FRACTION', () => {
-      const error = {
+      const error: NumberFractionError = {
         type: 'ERROR_NUMBER_FRACTION',
         label: 'Head',
         value: '',
         reasons: {
-          regex: 'regex',
-          fraction: 2
+          regex: new RegExp('regex'),
+          fractionLength: 2
         }
       };
 
@@ -208,12 +220,15 @@ describe('errorMessage', () => {
       expect(t).toHaveBeenCalledWith({
         data: {
           label: 'Head',
-          reasons: { fraction: 2, regex: 'regex' },
+          reasons: {
+            fractionLength: 2,
+            regex: new RegExp('regex')
+          },
           type: 'ERROR_NUMBER_FRACTION',
           value: ''
         },
         fallback:
-          'Head is not a number. Number may have undefined digits behind the comma',
+          'Head is not a number. Number may have 2 digits behind the comma',
         key: 'JarbFinalForm.VALIDATION.NUMBER_FRACTION'
       });
     });
@@ -224,6 +239,7 @@ describe('errorMessage', () => {
       type: 'UNKNOWN_ERROR'
     };
 
+    // @ts-expect-error Test mock
     errorMessage(error);
 
     expect(t).toHaveBeenCalledTimes(1);

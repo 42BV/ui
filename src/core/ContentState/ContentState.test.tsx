@@ -1,56 +1,45 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import ContentState from './ContentState';
 
 describe('Component: ContentStateIcon', () => {
   describe('ui', () => {
     test('empty', () => {
-      const contentState = shallow(
+      const { container } = render(
         <ContentState mode="empty" title="title" subTitle="subtitle" />
       );
 
-      expect(toJson(contentState)).toMatchSnapshot(
-        'Component: ContentStateIcon => empty'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('no-results', () => {
-      const contentState = shallow(
+      const { container } = render(
         <ContentState mode="no-results" title="title" subTitle="subtitle" />
       );
 
-      expect(toJson(contentState)).toMatchSnapshot(
-        'Component: ContentStateIcon => no-results'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('error', () => {
-      const contentState = shallow(
+      const { container } = render(
         <ContentState mode="error" title="title" subTitle="subtitle" />
       );
 
-      expect(toJson(contentState)).toMatchSnapshot(
-        'Component: ContentStateIcon => error'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('loading', () => {
-      const contentState = shallow(
+      const { container } = render(
         <ContentState mode="loading" title="Loading..." />
       );
 
-      expect(toJson(contentState)).toMatchSnapshot(
-        'Component= ContentStateIcon => loading'
-      );
-
-      // should contain a spinner
-      expect(contentState.find('spinner')).not.toBeNull();
+      expect(container).toMatchSnapshot();
     });
 
     test('with extra className', () => {
-      const contentState = shallow(
+      const { container } = render(
         <ContentState
           className="extra-class"
           mode="error"
@@ -59,17 +48,18 @@ describe('Component: ContentStateIcon', () => {
         />
       );
 
-      expect(contentState.find('.extra-class').length).toBe(1);
+      expect(container.firstChild).toHaveClass('extra-class');
     });
 
     test('with children', () => {
-      const contentState = shallow(
+      const { container } = render(
         <ContentState mode="error" title="title" subTitle="subtitle">
           <p>Children</p>
         </ContentState>
       );
 
-      expect(contentState.contains(<p>Children</p>)).toBe(true);
+      expect(screen.getByText('Children')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
   });
 });

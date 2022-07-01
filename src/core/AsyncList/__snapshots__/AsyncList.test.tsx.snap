@@ -1,54 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: Async|AsyncList ui 1`] = `
-<AsyncContent
-  isEmpty={[Function]}
-  showRetryButton={true}
-  state={
-    Object {
-      "data": Array [
-        Object {
-          "active": true,
-          "email": "admin@42.nl",
-          "firstName": "Addie",
-          "id": 42,
-          "lastName": "Admin",
-          "roles": Array [
-            "ADMIN",
-          ],
-        },
-        Object {
-          "active": false,
-          "email": "coordinator@42.nl",
-          "firstName": "Cordelia",
-          "id": 777,
-          "lastName": "Coordinator",
-          "roles": Array [
-            "ADMIN",
-            "USER",
-          ],
-        },
-        Object {
-          "active": false,
-          "email": "user@42.nl",
-          "firstName": "Ulysses",
-          "id": 1337,
-          "lastName": "User",
-          "roles": Array [
-            "USER",
-          ],
-        },
-      ],
-      "isError": false,
-      "isLoading": false,
-    }
-  }
-  text={
-    Object {
-      "loading": "Custom loading",
-    }
-  }
->
-  <Component />
-</AsyncContent>
+<div>
+  <ul>
+    <li>
+      admin@42.nl
+    </li>
+    <li>
+      coordinator@42.nl
+    </li>
+    <li>
+      user@42.nl
+    </li>
+  </ul>
+</div>
 `;

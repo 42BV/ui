@@ -31,8 +31,8 @@ type Text = {
 type Props<T> = FieldCompatible<T, T | undefined> &
   FieldCompatibleWithPredeterminedOptions<T> & {
     /**
-     * Optionally specify the number of suggestions to show / fetch
-     * in the dropdown.
+     * Optionally specify the number of suggestions fetch for the
+     * dropdown.
      *
      * When `options` is an array, all options will always be shown
      * and this prop has no effect.
@@ -49,6 +49,25 @@ type Props<T> = FieldCompatible<T, T | undefined> &
      * Defaults to `10`.
      */
     pageSize?: number;
+
+    /**
+     * Optionally specify the number of suggestions to show in the
+     * dropdown.
+     *
+     * When `options` is an array, this prop will limit the amount of
+     * suggestions and display pagination.
+     *
+     * When `options` is a fetcher, this prop will limit the amount of
+     * suggestions only when `pageSize` is larger than this prop. This
+     * means the options fetched from the back-end might be a large list
+     * but only a subset of them are displayed at the same time. Every
+     * time the user types in the input, the options are fetched again.
+     * Beware of performance issues when setting the `pageSize` too high.
+     *
+     * Defaults to `100`.
+     */
+    maxResults?: number;
+
     /**
      * Optionally customized text within the component.
      * This text should already be translated.
@@ -92,6 +111,7 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
     reloadOptions,
     isOptionEnabled = alwaysTrue,
     pageSize = 10,
+    maxResults = 100,
     text = {}
   } = props;
 
@@ -164,10 +184,13 @@ export default function TypeaheadSingle<T>(props: Props<T>) {
       overrideText: text.paginationText
     }),
     inputProps: {
+      id: innerId,
       className: classNames('form-control', {
         'is-invalid': valid === false
       })
-    }
+    },
+    maxResults,
+    paginate: true
   };
 
   return (

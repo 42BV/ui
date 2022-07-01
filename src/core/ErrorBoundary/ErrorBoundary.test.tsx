@@ -1,66 +1,67 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { ErrorBoundary } from './ErrorBoundary';
-import RadioGroup from '../../form/RadioGroup/RadioGroup';
 
 describe('Component: ErrorBoundary', () => {
-  function setup({ text }: { text?: { error: string } }) {
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {
-      // Do nothing, we only want to make sure the error is logged
-    });
-
-    const errorBoundary = shallow(
-      <ErrorBoundary text={text}>
-        <RadioGroup<string>
-          onChange={jest.fn().mockImplementation(() => {
-            throw new Error('test');
-          })}
-          options={[ 'local', 'development', 'test', 'acceptation', 'production' ]}
-          labelForOption={(v) => v}
-        />
-      </ErrorBoundary>
-    );
-
-    return { errorBoundary, consoleErrorSpy };
-  }
-
   describe('ui', () => {
     test('without error', () => {
-      const { errorBoundary, consoleErrorSpy } = setup({});
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {
+        // Do nothing, we only want to make sure the error is logged
+      });
 
-      expect(toJson(errorBoundary)).toMatchSnapshot(
-        'Component: ErrorBoundary => ui => without error'
+      const { container } = render(
+        <ErrorBoundary>
+          Here is some content without an error
+        </ErrorBoundary>
       );
+
+      expect(screen.queryByText('Oops something went wrong!')).not.toBeInTheDocument();
+      expect(screen.queryByText('Here is some content without an error')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
       expect(consoleErrorSpy).toHaveBeenCalledTimes(0);
     });
 
     test('with error', () => {
-      const { errorBoundary, consoleErrorSpy } = setup({});
-      const error = new Error('test');
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {
+        // Do nothing, we only want to make sure the error is logged
+      });
 
-      errorBoundary.find('RadioGroup').simulateError(error);
+      const error = new Error('bad');
 
-      expect(toJson(errorBoundary)).toMatchSnapshot(
-        'Component: ErrorBoundary => ui => with error'
+      const Throw = () => {
+        throw error;
+      };
+
+      const { container } = render(
+        <ErrorBoundary>
+          <Throw />
+        </ErrorBoundary>
       );
-      expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(error, `
-    in RadioGroup (created by ErrorBoundary)
-    in ErrorBoundary (created by WrapperComponent)
-    in WrapperComponent`);
+
+      expect(screen.queryByText('Oops something went wrong!')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
+      expect(consoleErrorSpy).toHaveBeenCalledTimes(4);
     });
 
     test('with custom text', () => {
-      const { errorBoundary } = setup({ text: { error: 'Failure!' } });
-      const error = new Error('test');
+      jest.spyOn(console, 'error').mockImplementation(() => {
+        // Do nothing, we only want to make sure the error is logged
+      });
 
-      errorBoundary.find('RadioGroup').simulateError(error);
+      const Throw = () => {
+        throw new Error('bad');
+      };
 
-      expect(toJson(errorBoundary)).toMatchSnapshot(
-        'Component: ErrorBoundary => ui => with custom text'
+      render(
+        <ErrorBoundary text={{error: 'Something terrible happened!'}}>
+          <Throw />
+        </ErrorBoundary>
       );
+
+      expect(screen.queryByText('Oops something went wrong!')).not.toBeInTheDocument();
+      expect(screen.queryByText('Something terrible happened!')).toBeInTheDocument();
     });
   });
 });

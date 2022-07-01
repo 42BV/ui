@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import AsyncContent from './AsyncContent';
 
@@ -28,7 +27,7 @@ describe('Component: AsyncContent', () => {
   }) {
     jest.spyOn(console, 'error');
 
-    const asyncContent = shallow(
+    const { container } = render(
       <AsyncContent
         // @ts-expect-error Test mock
         state={state}
@@ -40,7 +39,7 @@ describe('Component: AsyncContent', () => {
       </AsyncContent>
     );
 
-    return { asyncContent };
+    return { container };
   }
 
   test('when loading', () => {
@@ -49,8 +48,8 @@ describe('Component: AsyncContent', () => {
       refetch: () => undefined
     };
 
-    const { asyncContent } = setup({ state });
-    expect(toJson(asyncContent)).toMatchSnapshot();
+    const { container } = setup({ state });
+    expect(container).toMatchSnapshot();
     expect(console.error).toHaveBeenCalledTimes(0);
   });
 
@@ -63,9 +62,9 @@ describe('Component: AsyncContent', () => {
         refetch: () => undefined
       };
 
-      const { asyncContent } = setup({ state });
+      const { container } = setup({ state });
 
-      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
       expect(console.error).toHaveBeenCalledTimes(0);
     });
 
@@ -77,9 +76,9 @@ describe('Component: AsyncContent', () => {
         refetch: () => undefined
       };
 
-      const { asyncContent } = setup({ state, isEmpty: () => true });
+      const { container } = setup({ state, isEmpty: () => true });
 
-      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
       expect(console.error).toHaveBeenCalledTimes(0);
     });
 
@@ -91,7 +90,7 @@ describe('Component: AsyncContent', () => {
         refetch: () => undefined
       };
 
-      const { asyncContent } = setup({
+      const { container } = setup({
         state,
         isEmpty: () => true,
         // eslint-disable-next-line react/display-name
@@ -102,7 +101,7 @@ describe('Component: AsyncContent', () => {
         }
       });
 
-      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
       expect(console.error).toHaveBeenCalledTimes(0);
     });
   });
@@ -119,13 +118,13 @@ describe('Component: AsyncContent', () => {
         refetch: refetchSpy
       };
 
-      const { asyncContent } = setup({ state, showRetryButton: true });
+      const { container } = setup({ state, showRetryButton: true });
 
-      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
       expect(console.error).toHaveBeenCalledTimes(1);
       expect(console.error).toHaveBeenCalledWith('something error');
 
-      asyncContent.find('Button').simulate('click');
+      fireEvent.click(screen.getByText('Retry'));
 
       expect(refetchSpy).toHaveBeenCalledTimes(1);
     });
@@ -139,9 +138,9 @@ describe('Component: AsyncContent', () => {
         refetch: () => undefined
       };
 
-      const { asyncContent } = setup({ state, showRetryButton: false });
+      const { container } = setup({ state, showRetryButton: false });
 
-      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
       expect(console.error).toHaveBeenCalledTimes(1);
       expect(console.error).toHaveBeenCalledWith('something error');
     });
@@ -157,9 +156,9 @@ describe('Component: AsyncContent', () => {
         refetch: refetchSpy
       };
 
-      const { asyncContent } = setup({ state });
+      const { container } = setup({ state });
 
-      expect(toJson(asyncContent)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
       expect(console.error).toHaveBeenCalledTimes(1);
       expect(console.error).toHaveBeenCalledWith('something error');
     });
@@ -175,9 +174,9 @@ describe('Component: AsyncContent', () => {
           reload: () => undefined
         };
 
-        const { asyncContent } = setup({ state });
+        const { container } = setup({ state });
 
-        expect(toJson(asyncContent)).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
         expect(console.error).toHaveBeenCalledTimes(0);
       });
 
@@ -189,9 +188,9 @@ describe('Component: AsyncContent', () => {
           reload: () => undefined
         };
 
-        const { asyncContent } = setup({ state, isEmpty: () => true });
+        const { container } = setup({ state, isEmpty: () => true });
 
-        expect(toJson(asyncContent)).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
         expect(console.error).toHaveBeenCalledTimes(0);
       });
 
@@ -203,7 +202,7 @@ describe('Component: AsyncContent', () => {
           reload: () => undefined
         };
 
-        const { asyncContent } = setup({
+        const { container } = setup({
           state,
           isEmpty: () => true,
           // eslint-disable-next-line react/display-name
@@ -214,7 +213,7 @@ describe('Component: AsyncContent', () => {
           }
         });
 
-        expect(toJson(asyncContent)).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
         expect(console.error).toHaveBeenCalledTimes(0);
       });
     });
@@ -231,13 +230,13 @@ describe('Component: AsyncContent', () => {
           reload: reloadSpy
         };
 
-        const { asyncContent } = setup({ state, showRetryButton: true });
+        const { container } = setup({ state, showRetryButton: true });
 
-        expect(toJson(asyncContent)).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
         expect(console.error).toHaveBeenCalledTimes(1);
         expect(console.error).toHaveBeenCalledWith('something error');
 
-        asyncContent.find('Button').simulate('click');
+        fireEvent.click(screen.getByText('Retry'));
 
         expect(reloadSpy).toHaveBeenCalledTimes(1);
       });
@@ -251,9 +250,9 @@ describe('Component: AsyncContent', () => {
           reload: () => undefined
         };
 
-        const { asyncContent } = setup({ state, showRetryButton: false });
+        const { container } = setup({ state, showRetryButton: false });
 
-        expect(toJson(asyncContent)).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
         expect(console.error).toHaveBeenCalledTimes(1);
         expect(console.error).toHaveBeenCalledWith('something error');
       });
@@ -269,9 +268,9 @@ describe('Component: AsyncContent', () => {
           reload: reloadSpy
         };
 
-        const { asyncContent } = setup({ state });
+        const { container } = setup({ state });
 
-        expect(toJson(asyncContent)).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
         expect(console.error).toHaveBeenCalledTimes(1);
         expect(console.error).toHaveBeenCalledWith('something error');
       });

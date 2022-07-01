@@ -1,232 +1,354 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: OpenCloseModal ui custom button texts: Component: OpenCloseModal => ui => custom button texts 1`] = `
-<Modal
-  footer={
-    <React.Fragment>
-      <Button
-        className="ms-1"
-        color="secondary"
-        icon="cancel"
-        onClick={[Function]}
-      >
-        Stop please
-      </Button>
-      <SubmitButton
-        className="ms-1"
-        icon="save"
-        inProgress={false}
-        onClick={[Function]}
-      >
-        Select me
-      </SubmitButton>
-    </React.Fragment>
-  }
-  header="Choose something"
-  onClose={[MockFunction]}
-  stickyFooter={true}
+exports[`Component: OpenCloseModal ui in progress 1`] = `
+<div
+  style="position: relative; z-index: 1050; display: block;"
+  tabindex="-1"
 >
-  <RadioGroup
-    labelForOption={[Function]}
-    onChange={[MockFunction]}
-    options={
-      Array [
-        "local",
-        "development",
-        "test",
-        "acceptation",
-        "production",
-      ]
-    }
-  />
-</Modal>
+  <div
+    class="sticky-modal"
+  >
+    <div
+      class="modal fade"
+      role="dialog"
+      style="display: block;"
+      tabindex="-1"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
+        <div
+          class="modal-content"
+        >
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
+            >
+              Choose something
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <fieldset
+              class="radio-group  mb-3"
+            >
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="local"
+                  />
+                   
+                  local
+                </label>
+              </div>
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="development"
+                  />
+                   
+                  development
+                </label>
+              </div>
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="test"
+                  />
+                   
+                  test
+                </label>
+              </div>
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="acceptation"
+                  />
+                   
+                  acceptation
+                </label>
+              </div>
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="production"
+                  />
+                   
+                  production
+                </label>
+              </div>
+            </fieldset>
+          </div>
+          <div
+            class="modal-footer"
+          >
+            <span
+              class="button d-inline-block ms-1 secondary"
+            >
+              <button
+                class="btn btn-secondary btn-md"
+                type="button"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    cancel
+                  </i>
+                  Cancel
+                </div>
+              </button>
+            </span>
+            <span
+              class="button d-inline-block ms-1 primary"
+            >
+              <button
+                class="btn btn-primary btn-md disabled"
+                disabled=""
+                type="submit"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <svg
+                    class="spinner me-2"
+                    height="16"
+                    viewBox="25 25 50 50"
+                    width="16"
+                  >
+                    <circle
+                      class="path"
+                      cx="50"
+                      cy="50"
+                      fill="none"
+                      r="20"
+                      stroke="white"
+                      stroke-miterlimit="10"
+                      stroke-width="4"
+                    />
+                  </svg>
+                  Save
+                </div>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-backdrop fade"
+    />
+  </div>
+</div>
 `;
 
-exports[`Component: OpenCloseModal ui in progress: Component: OpenCloseModal => ui => in progress 1`] = `
-<Modal
-  footer={
-    <React.Fragment>
-      <Button
-        className="ms-1"
-        color="secondary"
-        icon="cancel"
-        onClick={[Function]}
-      >
-        Cancel
-      </Button>
-      <SubmitButton
-        className="ms-1"
-        icon="save"
-        inProgress={true}
-        onClick={[Function]}
-      >
-        Save
-      </SubmitButton>
-    </React.Fragment>
-  }
-  header="Choose something"
-  onClose={[MockFunction]}
-  stickyFooter={true}
+exports[`Component: OpenCloseModal ui open 1`] = `
+<div
+  style="position: relative; z-index: 1050; display: block;"
+  tabindex="-1"
 >
-  <RadioGroup
-    labelForOption={[Function]}
-    onChange={[MockFunction]}
-    options={
-      Array [
-        "local",
-        "development",
-        "test",
-        "acceptation",
-        "production",
-      ]
-    }
-  />
-</Modal>
-`;
-
-exports[`Component: OpenCloseModal ui sans sticky footer: Component: OpenCloseModal => ui => sans sticky 1`] = `
-<Modal
-  footer={
-    <React.Fragment>
-      <Button
-        className="ms-1"
-        color="secondary"
-        icon="cancel"
-        onClick={[Function]}
+  <div
+    class="sticky-modal"
+  >
+    <div
+      class="modal fade"
+      role="dialog"
+      style="display: block;"
+      tabindex="-1"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
       >
-        Cancel
-      </Button>
-      <SubmitButton
-        className="ms-1"
-        icon="save"
-        inProgress={false}
-        onClick={[Function]}
-      >
-        Save
-      </SubmitButton>
-    </React.Fragment>
-  }
-  header="Choose something"
-  onClose={[MockFunction]}
-  stickyFooter={false}
->
-  <RadioGroup
-    labelForOption={[Function]}
-    onChange={[MockFunction]}
-    options={
-      Array [
-        "local",
-        "development",
-        "test",
-        "acceptation",
-        "production",
-      ]
-    }
-  />
-</Modal>
-`;
-
-exports[`Component: OpenCloseModal ui with label: Component: OpenCloseModal => ui => with label 1`] = `
-<Modal
-  footer={
-    <React.Fragment>
-      <Button
-        className="ms-1"
-        color="secondary"
-        icon="cancel"
-        onClick={[Function]}
-      >
-        Cancel
-      </Button>
-      <SubmitButton
-        className="ms-1"
-        icon="save"
-        inProgress={false}
-        onClick={[Function]}
-      >
-        Save
-      </SubmitButton>
-    </React.Fragment>
-  }
-  header="Choose something"
-  onClose={[MockFunction]}
-  stickyFooter={true}
->
-  <RadioGroup
-    labelForOption={[Function]}
-    onChange={[MockFunction]}
-    options={
-      Array [
-        "local",
-        "development",
-        "test",
-        "acceptation",
-        "production",
-      ]
-    }
-  />
-</Modal>
-`;
-
-exports[`Component: OpenCloseModal ui without buttons: Component: OpenCloseModal => ui => without buttons 1`] = `
-<Modal
-  header="Choose something"
-  onClose={[MockFunction]}
-  stickyFooter={true}
->
-  <RadioGroup
-    labelForOption={[Function]}
-    onChange={[MockFunction]}
-    options={
-      Array [
-        "local",
-        "development",
-        "test",
-        "acceptation",
-        "production",
-      ]
-    }
-  />
-</Modal>
-`;
-
-exports[`Component: OpenCloseModal ui without label: Component: OpenCloseModal => ui => without label 1`] = `
-<Modal
-  footer={
-    <React.Fragment>
-      <Button
-        className="ms-1"
-        color="secondary"
-        icon="cancel"
-        onClick={[Function]}
-      >
-        Cancel
-      </Button>
-      <SubmitButton
-        className="ms-1"
-        icon="save"
-        inProgress={false}
-        onClick={[Function]}
-      >
-        Save
-      </SubmitButton>
-    </React.Fragment>
-  }
-  onClose={[MockFunction]}
-  stickyFooter={true}
->
-  <RadioGroup
-    labelForOption={[Function]}
-    onChange={[MockFunction]}
-    options={
-      Array [
-        "local",
-        "development",
-        "test",
-        "acceptation",
-        "production",
-      ]
-    }
-  />
-</Modal>
+        <div
+          class="modal-content"
+        >
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
+            >
+              Choose something
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <fieldset
+              class="radio-group  mb-3"
+            >
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="local"
+                  />
+                   
+                  local
+                </label>
+              </div>
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="development"
+                  />
+                   
+                  development
+                </label>
+              </div>
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="test"
+                  />
+                   
+                  test
+                </label>
+              </div>
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="acceptation"
+                  />
+                   
+                  acceptation
+                </label>
+              </div>
+              <div
+                class="form-check"
+              >
+                <label
+                  class="form-check-label"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="production"
+                  />
+                   
+                  production
+                </label>
+              </div>
+            </fieldset>
+          </div>
+          <div
+            class="modal-footer"
+          >
+            <span
+              class="button d-inline-block ms-1 secondary"
+            >
+              <button
+                class="btn btn-secondary btn-md"
+                type="button"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    cancel
+                  </i>
+                  Cancel
+                </div>
+              </button>
+            </span>
+            <span
+              class="button d-inline-block ms-1 primary"
+            >
+              <button
+                class="btn btn-primary btn-md"
+                type="submit"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    save
+                  </i>
+                  Save
+                </div>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-backdrop fade"
+    />
+  </div>
+</div>
 `;

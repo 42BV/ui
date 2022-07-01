@@ -1,18 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import IconPicker from './IconPicker';
-import { Icon, IconType, Pager, SearchInput } from '../..';
-import { Button } from 'reactstrap';
-import Popover from '../../core/Popover/Popover';
-import TextButton from '../../core/TextButton/TextButton';
+import { IconType } from '../..';
+
+import { toMatchDiffSnapshot } from 'snapshot-diff';
+import userEvent from '@testing-library/user-event';
+
+expect.extend({ toMatchDiffSnapshot });
 
 describe('Component: IconPicker', () => {
   function setup({
     value,
-    hasLabel = true,
-    hasIcon = false,
+    hasLabel,
+    hasIcon,
     canClear
   }: {
     value?: IconType;
@@ -22,179 +24,150 @@ describe('Component: IconPicker', () => {
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
-    const searchInputSetValueSpy = jest.fn();
 
     const props = {
       id: 'bestFriend',
       name: 'bestFriend',
       label: hasLabel ? 'Best Friend' : undefined,
       placeholder: 'Select your best friend',
-      icon: hasIcon ? 'face' : undefined,
+      icon: hasIcon ? 'face' as IconType : undefined,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      color: 'success',
       canClear
     };
 
-    // @ts-expect-error Test mock
-    const iconPickerParent = shallow(<IconPicker {...props} />);
-
-    function updateIconPicker() {
-      const searchInput = iconPickerParent.find(SearchInput);
-
-      return shallow(
-        // @ts-expect-error Test mock
-        searchInput
-          .props()
-          .children(searchInput.debug(), { setValue: searchInputSetValueSpy })
-      );
-    }
+    const { container, asFragment, rerender } = render(
+      <IconPicker color="success" {...props} />
+    );
 
     return {
-      iconPickerParent,
-      iconPicker: updateIconPicker(),
-      updateIconPicker,
+      container,
+      props,
+      rerender,
+      asFragment,
       onBlurSpy,
-      onChangeSpy,
-      searchInputSetValueSpy
+      onChangeSpy
     };
   }
 
   describe('ui', () => {
     test('with selected value', () => {
-      const { iconPicker } = setup({ value: '3d_rotation' });
-
-      expect(toJson(iconPicker)).toMatchSnapshot();
+      const { container } = setup({ value: '3d_rotation' });
+      expect(container).toMatchSnapshot();
     });
 
     test('without selected value', () => {
-      const { iconPicker } = setup({ value: undefined });
-
-      expect(toJson(iconPicker)).toMatchSnapshot();
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
-    test('no results', () => {
-      const { iconPickerParent, updateIconPicker } = setup({
+    test('no results', async () => {
+      expect.assertions(1);
+
+      setup({
         value: undefined
       });
 
-      iconPickerParent
-        .find(SearchInput)
-        .props()
-        .onChange('asdlfjalsdjflajsdlf');
+      fireEvent.click(screen.getByText('Select your best friend'));
+      await userEvent.type(screen.getByRole('searchbox'), 'asdlfjalsdjflajsdlf');
 
-      expect(toJson(updateIconPicker())).toMatchSnapshot();
+      expect(screen.queryByText('No icons found')).toBeInTheDocument();
+    });
+
+    test('with label', () => {
+      const { container } = setup({ hasLabel: true });
+      expect(screen.queryByText('Best Friend')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     test('without label', () => {
-      const { iconPicker } = setup({ value: undefined, hasLabel: false });
-
-      expect(toJson(iconPicker)).toMatchSnapshot();
+      setup({ hasLabel: false });
+      expect(screen.queryByText('Best Friend')).not.toBeInTheDocument();
     });
 
     test('with icon', () => {
-      const { iconPicker } = setup({ hasIcon: true });
-
-      const button = shallow(
-        // @ts-expect-error Test mock
-        iconPicker.find('Popover').props().target
-      );
-      expect(button.find('Icon').exists()).toBe(true);
+      setup({ hasIcon: true });
+      expect(screen.getByText('face')).toBeInTheDocument();
     });
 
     test('without clear button', () => {
-      const { iconPicker } = setup({ value: '3d_rotation', canClear: false });
-
-      expect(iconPicker.find(TextButton).exists()).toBe(false);
+      setup({ value: '3d_rotation', canClear: false });
+      expect(screen.queryByText('clear')).not.toBeInTheDocument();
     });
   });
 
   describe('events', () => {
     it('should open the popover when the select button is clicked', () => {
-      const { iconPicker, updateIconPicker } = setup({
-        value: undefined
+      const setIsOpenSpy = jest.fn();
+      jest.spyOn(React, 'useState')
+        .mockReturnValueOnce([false, setIsOpenSpy]);
+
+      setup({
+        value: undefined,
+        hasIcon: false
       });
 
-      const popover = iconPicker.find(Popover);
+      expect(setIsOpenSpy).toHaveBeenCalledTimes(0);
 
-      expect(popover.props().isOpen).toBe(false);
+      fireEvent.click(screen.getByText('Select your best friend'));
 
-      // @ts-expect-error Test mock
-      popover
-        // @ts-expect-error Test mock
-        .shallow('target')
-        .find(Button)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
-
-      expect(updateIconPicker().find(Popover).props().isOpen).toBe(true);
+      expect(setIsOpenSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should filter the icons when the user searches and go back to the first page', () => {
-      const { iconPickerParent, iconPicker, updateIconPicker } = setup({
-        value: undefined
+      setup({
+        value: undefined,
+        hasIcon: true
       });
 
-      // First we go to the second page
-      // @ts-expect-error Test mock
-      iconPicker.find(Pager).props().onChange(2);
+      fireEvent.click(screen.getByText('face'));
+      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'home' } });
 
-      // Now search for home which should make it go back to the first page
-      iconPickerParent.find(SearchInput).props().onChange('home');
-
-      expect(updateIconPicker().find(Icon).length).toBe(5);
+      expect(screen.queryAllByText('home').length).toBe(0);
     });
 
     it('should when the user moves to another page load the new page', () => {
-      const { iconPicker, updateIconPicker } = setup({
+      setup({
         value: undefined
       });
+
+      fireEvent.click(screen.getByText('Select your best friend'));
 
       // The first icon on the first page is the 3d_rotation
-      expect(iconPicker.find(Icon).first().props().icon).toBe('10k');
+      expect(screen.getByText('10k')).toBeInTheDocument();
 
-      // @ts-expect-error Test mock
-      updateIconPicker().find(Pager).props().onChange(2);
+      fireEvent.click(screen.getByText('arrow_forward'));
 
-      // The first icon on the second page is the calendar_today
-      expect(updateIconPicker().find(Icon).first().props().icon).toBe(
-        '4mp'
-      );
+      expect(screen.queryByText('10k')).not.toBeInTheDocument();
+      expect(screen.getByText('4mp')).toBeInTheDocument();
     });
 
-    it('should when the user selects an icon close the popover and call onChange', () => {
-      const { iconPicker, onChangeSpy, onBlurSpy } = setup({
+    it('should close the popover and call onChange when the user selects an icon', () => {
+      const setIsOpenSpy = jest.fn();
+      jest.spyOn(React, 'useState')
+        .mockReturnValueOnce([true, setIsOpenSpy]);
+
+      const { onBlurSpy, onChangeSpy } = setup({
         value: undefined
       });
 
-      // @ts-expect-error Test mock
-      iconPicker
-        .find(Icon)
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
-
-      expect(iconPicker.find(Popover).props().isOpen).toBe(false);
+      fireEvent.click(screen.getByText('10k'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('10k');
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
+
+      expect(setIsOpenSpy).toHaveBeenCalledTimes(1);
+      expect(setIsOpenSpy).toHaveBeenCalledWith(false);
     });
 
     it('should when the user clicks "clear" reset the icon', () => {
-      const { iconPicker, onBlurSpy, onChangeSpy } = setup({ value: 'home' });
+      const { onBlurSpy, onChangeSpy } = setup({ value: 'home' });
 
-      // @ts-expect-error Test mock
-      iconPicker
-        .find('TextButton')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Clear'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(undefined);
@@ -203,78 +176,60 @@ describe('Component: IconPicker', () => {
     });
 
     it('should when the popover closes clear the query', () => {
-      const { iconPicker, updateIconPicker, searchInputSetValueSpy } = setup({
+      const setQuery = jest.fn();
+      jest.spyOn(React, 'useState')
+        .mockReturnValueOnce([true, jest.fn()])
+        .mockReturnValueOnce([1, jest.fn()])
+        .mockReturnValueOnce(['home', setQuery]);
+
+      setup({
         value: undefined
       });
 
-      let popover = iconPicker.find(Popover);
+      fireEvent.click(screen.getByText('Select your best friend'));
 
-      expect(popover.props().isOpen).toBe(false);
-
-      // @ts-expect-error Test mock
-      popover
-        // @ts-expect-error Test mock
-        .shallow('target')
-        .find(Button)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
-
-      const updatedIconPicker = updateIconPicker();
-
-      expect(updatedIconPicker.find(Popover).props().isOpen).toBe(true);
-
-      popover = updatedIconPicker.find(Popover);
-
-      // @ts-expect-error Test mock
-      popover
-        // @ts-expect-error Test mock
-        .shallow('target')
-        .find(Button)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
-
-      expect(searchInputSetValueSpy).toBeCalledTimes(1);
-      expect(searchInputSetValueSpy).toBeCalledWith('');
+      expect(setQuery).toHaveBeenCalledTimes(1);
+      expect(setQuery).toHaveBeenCalledWith('');
     });
   });
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      const { iconPickerParent, iconPicker, updateIconPicker } = setup({
+      const { props, rerender } = setup({
         value: 'home'
       });
 
-      const value = iconPicker
-        .find('#icon-picker-value')
-        // @ts-expect-error Test mock
-        .props().icon;
-      expect(value).toBe('home');
+      expect(screen.getByText('home')).toBeInTheDocument();
 
-      iconPickerParent.setProps({ value: undefined });
+      const newProps = {
+        ...props,
+        value: undefined
+      };
 
-      expect(updateIconPicker().find('#icon-picker-value').exists()).toBe(
-        false
+      rerender(
+        <IconPicker color="success" {...newProps} />
       );
+
+      expect(screen.queryByText('home')).not.toBeInTheDocument();
     });
 
     test('becomes filled', () => {
-      const { iconPickerParent, iconPicker, updateIconPicker } = setup({
+      const { props, rerender } = setup({
         value: undefined
       });
 
-      expect(iconPicker.find('#icon-picker-value').exists()).toBe(false);
+      expect(screen.queryByText('home')).not.toBeInTheDocument();
 
-      iconPickerParent.setProps({
-        value: 'home'
-      });
+      const newProps = {
+        ...props,
+        value: 'home' as IconType
+      };
 
-      const value = updateIconPicker()
-        .find('#icon-picker-value')
-        // @ts-expect-error Test mock
-        .props().icon;
-      expect(value).toBe('home');
+      rerender(
+        <IconPicker color="success" {...newProps} />
+      );
+
+      expect(screen.getByText('home')).toBeInTheDocument();
     });
   });
 });

@@ -1,142 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ModalPickerOpener ui button aligned left with values: Component: ModalPickerOpener => ui => button aligned left with values 1`] = `
-<div
-  className="d-flex align-items-center flex-row-reverse justify-content-end"
->
-  <span>
-    ADMIN@42.NL
-  </span>
-  <TextButton
-    className="ms-3"
-    onClick={[MockFunction]}
+exports[`Component: ModalPickerOpener ui with values 1`] = `
+<div>
+  <div
+    class="d-flex align-items-center"
   >
-    Clear
-  </TextButton>
-  <Button
-    className="flex-grow-0 flex-shrink-0 me-3"
-    color="primary"
-    onClick={[MockFunction]}
-    tag="button"
-  >
-    Best friend
-  </Button>
+    <span>
+      ADMIN@42.NL
+    </span>
+    <u
+      class="align-self-center clickable fw-lighter ms-3"
+      role="button"
+    >
+      Clear
+    </u>
+    <button
+      class="flex-grow-0 flex-shrink-0 ms-3 btn btn-primary"
+      type="button"
+    >
+      Best friend
+    </button>
+  </div>
 </div>
 `;
 
-exports[`Component: ModalPickerOpener ui button aligned left without values: Component: ModalPickerOpener => ui => button aligned left without values 1`] = `
-<div
-  className="d-flex align-items-center flex-row-reverse justify-content-end"
->
-  <Button
-    className="flex-grow-0 flex-shrink-0"
-    color="primary"
-    onClick={[MockFunction]}
-    tag="button"
+exports[`Component: ModalPickerOpener ui without values 1`] = `
+<div>
+  <div
+    class="d-flex align-items-center"
   >
-    Best friend
-  </Button>
-</div>
-`;
-
-exports[`Component: ModalPickerOpener ui button aligned right with values: Component: ModalPickerOpener => ui => button aligned right with values 1`] = `
-<div
-  className="d-flex align-items-center justify-content-between"
->
-  <span>
-    ADMIN@42.NL
-  </span>
-  <TextButton
-    className="ms-3"
-    onClick={[MockFunction]}
-  >
-    Clear
-  </TextButton>
-  <Button
-    className="flex-grow-0 flex-shrink-0 ms-3"
-    color="primary"
-    onClick={[MockFunction]}
-    tag="button"
-  >
-    Best friend
-  </Button>
-</div>
-`;
-
-exports[`Component: ModalPickerOpener ui button aligned right without values: Component: ModalPickerOpener => ui => button aligned right without values 1`] = `
-<div
-  className="d-flex align-items-center justify-content-end"
->
-  <Button
-    className="flex-grow-0 flex-shrink-0"
-    color="primary"
-    onClick={[MockFunction]}
-    tag="button"
-  >
-    Best friend
-  </Button>
-</div>
-`;
-
-exports[`Component: ModalPickerOpener ui tooltip: Component: ModalPickerOpener => ui => with tooltip 1`] = `
-<div
-  className="d-flex align-items-center"
->
-  <span>
-    ADMIN@42.NL
-  </span>
-  <TextButton
-    className="ms-3"
-    onClick={[MockFunction]}
-  >
-    Clear
-  </TextButton>
-  <Button
-    className="flex-grow-0 flex-shrink-0 ms-3"
-    color="primary"
-    onClick={[MockFunction]}
-    tag="button"
-  >
-    Best friend
-  </Button>
-</div>
-`;
-
-exports[`Component: ModalPickerOpener ui with values: Component: ModalPickerOpener => ui => with values 1`] = `
-<div
-  className="d-flex align-items-center"
->
-  <span>
-    ADMIN@42.NL
-  </span>
-  <TextButton
-    className="ms-3"
-    onClick={[MockFunction]}
-  >
-    Clear
-  </TextButton>
-  <Button
-    className="flex-grow-0 flex-shrink-0 ms-3"
-    color="primary"
-    onClick={[MockFunction]}
-    tag="button"
-  >
-    Best friend
-  </Button>
-</div>
-`;
-
-exports[`Component: ModalPickerOpener ui without values: Component: ModalPickerOpener => ui => without values 1`] = `
-<div
-  className="d-flex align-items-center"
->
-  <Button
-    className="flex-grow-0 flex-shrink-0"
-    color="primary"
-    onClick={[MockFunction]}
-    tag="button"
-  >
-    Best friend
-  </Button>
+    <button
+      class="flex-grow-0 flex-shrink-0 btn btn-primary"
+      type="button"
+    >
+      Best friend
+    </button>
+  </div>
 </div>
 `;

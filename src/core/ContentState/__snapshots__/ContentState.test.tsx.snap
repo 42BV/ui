@@ -1,190 +1,331 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ContentStateIcon ui empty: Component: ContentStateIcon => empty 1`] = `
-<div
-  className="text-center"
->
+exports[`Component: ContentStateIcon ui empty 1`] = `
+<div>
   <div
-    className="content-state empty"
+    class="text-center"
   >
     <div
-      className="state-icons"
+      class="content-state empty"
     >
-      <Icon
-        icon="add"
-      />
-      <Icon
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        icon="photo"
-      />
-      <Icon
-        icon="folder_open"
-      />
-      <Icon
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        icon="add"
-      />
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          laptop
+        </i>
+      </div>
     </div>
-    <div
-      className="state-content"
+    <h4>
+      title
+    </h4>
+    <h6
+      class="text-muted mb-3"
     >
-      <Icon
-        icon="laptop"
-      />
-    </div>
+      subtitle
+    </h6>
   </div>
-  <h4>
-    title
-  </h4>
-  <h6
-    className="text-muted mb-3"
-  >
-    subtitle
-  </h6>
 </div>
 `;
 
-exports[`Component: ContentStateIcon ui error: Component: ContentStateIcon => error 1`] = `
-<div
-  className="text-center"
->
+exports[`Component: ContentStateIcon ui error 1`] = `
+<div>
   <div
-    className="content-state error"
+    class="text-center"
   >
     <div
-      className="state-icons"
+      class="content-state error"
     >
-      <Icon
-        icon="add"
-      />
-      <Icon
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        icon="photo"
-      />
-      <Icon
-        icon="folder_open"
-      />
-      <Icon
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        icon="add"
-      />
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
     </div>
-    <div
-      className="state-content"
+    <h4>
+      title
+    </h4>
+    <h6
+      class="text-muted mb-3"
     >
-      <Icon
-        icon="sentiment_very_dissatisfied"
-      />
-    </div>
+      subtitle
+    </h6>
   </div>
-  <h4>
-    title
-  </h4>
-  <h6
-    className="text-muted mb-3"
-  >
-    subtitle
-  </h6>
 </div>
 `;
 
-exports[`Component: ContentStateIcon ui loading: Component= ContentStateIcon => loading 1`] = `
-<div
-  className="text-center"
->
+exports[`Component: ContentStateIcon ui loading 1`] = `
+<div>
   <div
-    className="content-state loading"
+    class="text-center"
   >
     <div
-      className="state-icons"
+      class="content-state loading"
     >
-      <Icon
-        icon="add"
-      />
-      <Icon
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        icon="photo"
-      />
-      <Icon
-        icon="folder_open"
-      />
-      <Icon
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        icon="add"
-      />
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <svg
+          class="spinner mb-2"
+          height="75"
+          viewBox="25 25 50 50"
+          width="75"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke="#f0ad4e"
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+      </div>
     </div>
-    <div
-      className="state-content"
-    >
-      <Spinner
-        className="mb-2"
-        color="#f0ad4e"
-        size={75}
-      />
-    </div>
+    <h4>
+      Loading...
+    </h4>
   </div>
-  <h4>
-    Loading...
-  </h4>
 </div>
 `;
 
-exports[`Component: ContentStateIcon ui no-results: Component: ContentStateIcon => no-results 1`] = `
-<div
-  className="text-center"
->
+exports[`Component: ContentStateIcon ui no-results 1`] = `
+<div>
   <div
-    className="content-state no-results"
+    class="text-center"
   >
     <div
-      className="state-icons"
+      class="content-state no-results"
     >
-      <Icon
-        icon="add"
-      />
-      <Icon
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        icon="photo"
-      />
-      <Icon
-        icon="folder_open"
-      />
-      <Icon
-        icon="radio_button_unchecked"
-      />
-      <Icon
-        icon="add"
-      />
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          search
+        </i>
+      </div>
     </div>
-    <div
-      className="state-content"
+    <h4>
+      title
+    </h4>
+    <h6
+      class="text-muted mb-3"
     >
-      <Icon
-        icon="search"
-      />
-    </div>
+      subtitle
+    </h6>
   </div>
-  <h4>
-    title
-  </h4>
-  <h6
-    className="text-muted mb-3"
+</div>
+`;
+
+exports[`Component: ContentStateIcon ui with children 1`] = `
+<div>
+  <div
+    class="text-center"
   >
-    subtitle
-  </h6>
+    <div
+      class="content-state error"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
+    </div>
+    <h4>
+      title
+    </h4>
+    <h6
+      class="text-muted mb-3"
+    >
+      subtitle
+    </h6>
+    <p>
+      Children
+    </p>
+  </div>
 </div>
 `;

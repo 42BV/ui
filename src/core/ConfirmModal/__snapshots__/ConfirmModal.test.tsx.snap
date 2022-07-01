@@ -1,47 +1,197 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ConfirmModal ui custom texts: Component: ConfirmModal => ui => custom texts 1`] = `
-<OpenCloseModal
-  isOpen={true}
-  label="Perform dangerous action"
-  onClose={[Function]}
-  onSave={[Function]}
-  text={
-    Object {
-      "cancel": "NO",
-      "save": "YES",
-    }
-  }
+exports[`Component: ConfirmModal ui custom texts 1`] = `
+<div
+  style="position: relative; z-index: 1050; display: block;"
+  tabindex="-1"
 >
-  <p>
-    Are you sure you want to 
-    <strong>
-      delete
-    </strong>
-     all users in the database?
-  </p>
-</OpenCloseModal>
+  <div
+    class="sticky-modal"
+  >
+    <div
+      class="modal fade"
+      role="dialog"
+      style="display: block;"
+      tabindex="-1"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
+        <div
+          class="modal-content"
+        >
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
+            >
+              Perform dangerous action
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <p>
+              Are you sure you want to 
+              <strong>
+                delete
+              </strong>
+               all users in the database?
+            </p>
+          </div>
+          <div
+            class="modal-footer"
+          >
+            <span
+              class="button d-inline-block ms-1 secondary"
+            >
+              <button
+                class="btn btn-secondary btn-md"
+                type="button"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    cancel
+                  </i>
+                  NO
+                </div>
+              </button>
+            </span>
+            <span
+              class="button d-inline-block ms-1 primary"
+            >
+              <button
+                class="btn btn-primary btn-md"
+                type="submit"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    save
+                  </i>
+                  YES
+                </div>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-backdrop fade"
+    />
+  </div>
+</div>
 `;
 
-exports[`Component: ConfirmModal ui default texts: Component: ConfirmModal => ui => default texts 1`] = `
-<OpenCloseModal
-  isOpen={true}
-  label="Confirmation"
-  onClose={[Function]}
-  onSave={[Function]}
-  text={
-    Object {
-      "cancel": "Cancel",
-      "save": "Confirm",
-    }
-  }
+exports[`Component: ConfirmModal ui default texts 1`] = `
+<div
+  style="position: relative; z-index: 1050; display: block;"
+  tabindex="-1"
 >
-  <p>
-    Are you sure you want to 
-    <strong>
-      delete
-    </strong>
-     the user?
-  </p>
-</OpenCloseModal>
+  <div
+    class="sticky-modal"
+  >
+    <div
+      class="modal fade"
+      role="dialog"
+      style="display: block;"
+      tabindex="-1"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
+        <div
+          class="modal-content"
+        >
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
+            >
+              Confirmation
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <p>
+              Are you sure you want to 
+              <strong>
+                delete
+              </strong>
+               the user?
+            </p>
+          </div>
+          <div
+            class="modal-footer"
+          >
+            <span
+              class="button d-inline-block ms-1 secondary"
+            >
+              <button
+                class="btn btn-secondary btn-md"
+                type="button"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    cancel
+                  </i>
+                  Cancel
+                </div>
+              </button>
+            </span>
+            <span
+              class="button d-inline-block ms-1 primary"
+            >
+              <button
+                class="btn btn-primary btn-md"
+                type="submit"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    save
+                  </i>
+                  Confirm
+                </div>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-backdrop fade"
+    />
+  </div>
+</div>
 `;

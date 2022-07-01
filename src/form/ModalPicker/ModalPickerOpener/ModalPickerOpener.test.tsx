@@ -1,21 +1,18 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { ModalPickerOpener } from './ModalPickerOpener';
 import { adminUser } from '../../../test/fixtures';
-import toJson from 'enzyme-to-json';
-import * as useComponentOverflow from '../ModalPickerValueTruncator/useComponentOverflow/useComponentOverflow';
 import { ModalPickerButtonAlignment } from '../types';
 
 describe('Component: ModalPickerOpener', () => {
   function setup({
     hasValue = false,
     hasIcon = false,
-    withTooltip = false,
     alignButton
   }: {
     hasValue?: boolean;
     hasIcon?: boolean;
-    withTooltip?: boolean;
     alignButton?: ModalPickerButtonAlignment;
   }) {
     const openModalSpy = jest.fn();
@@ -24,11 +21,7 @@ describe('Component: ModalPickerOpener', () => {
     const value = hasValue ? adminUser().email : undefined;
     const icon = hasIcon ? 'face' : undefined;
 
-    jest
-      .spyOn(useComponentOverflow, 'useComponentOverflow')
-      .mockImplementation(() => withTooltip);
-
-    const modalPickerOpener = shallow(
+    const { container } = render(
       <ModalPickerOpener
         openModal={openModalSpy}
         label="Best friend"
@@ -42,98 +35,61 @@ describe('Component: ModalPickerOpener', () => {
       />
     );
 
-    return { modalPickerOpener, openModalSpy, onClearSpy };
+    return { container, openModalSpy, onClearSpy };
   }
 
   describe('ui', () => {
     test('without values', () => {
-      const { modalPickerOpener } = setup({});
-      expect(toJson(modalPickerOpener)).toMatchSnapshot(
-        'Component: ModalPickerOpener => ui => without values'
-      );
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
     test('with values', () => {
-      const { modalPickerOpener } = setup({ hasValue: true });
-      expect(toJson(modalPickerOpener)).toMatchSnapshot(
-        'Component: ModalPickerOpener => ui => with values'
-      );
+      const { container } = setup({ hasValue: true });
+      expect(container).toMatchSnapshot();
     });
 
     test('with icon', () => {
-      const { modalPickerOpener } = setup({ hasIcon: true });
-      expect(modalPickerOpener.find('Button').find('Icon').exists()).toBe(true);
-    });
-
-    test('tooltip', () => {
-      const { modalPickerOpener } = setup({
-        hasValue: true,
-        withTooltip: true
-      });
-
-      expect(toJson(modalPickerOpener)).toMatchSnapshot(
-        'Component: ModalPickerOpener => ui => with tooltip'
-      );
+      setup({ hasIcon: true });
+      expect(screen.getByText('face')).toBeInTheDocument();
     });
 
     test('button aligned right without values', () => {
-      const { modalPickerOpener } = setup({ alignButton: 'right' });
-      expect(toJson(modalPickerOpener)).toMatchSnapshot(
-        'Component: ModalPickerOpener => ui => button aligned right without values'
-      );
+      const { container } = setup({ alignButton: 'right' });
+      expect(container.firstChild).toHaveClass('justify-content-end');
     });
 
     test('button aligned right with values', () => {
-      const { modalPickerOpener } = setup({
-        hasValue: true,
-        alignButton: 'right'
-      });
-      expect(toJson(modalPickerOpener)).toMatchSnapshot(
-        'Component: ModalPickerOpener => ui => button aligned right with values'
-      );
+      const { container } = setup({ hasValue: true, alignButton: 'right' });
+      expect(container.firstChild).toHaveClass('justify-content-between');
     });
 
     test('button aligned left without values', () => {
-      const { modalPickerOpener } = setup({ alignButton: 'left' });
-      expect(toJson(modalPickerOpener)).toMatchSnapshot(
-        'Component: ModalPickerOpener => ui => button aligned left without values'
-      );
+      const { container } = setup({ alignButton: 'left' });
+      expect(container.firstChild).toHaveClass('flex-row-reverse');
+      expect(container.firstChild).toHaveClass('justify-content-end');
     });
 
     test('button aligned left with values', () => {
-      const { modalPickerOpener } = setup({
-        hasValue: true,
-        alignButton: 'left'
-      });
-      expect(toJson(modalPickerOpener)).toMatchSnapshot(
-        'Component: ModalPickerOpener => ui => button aligned left with values'
-      );
+      const { container } = setup({ hasValue: true, alignButton: 'left' });
+      expect(container.firstChild).toHaveClass('flex-row-reverse');
+      expect(container.firstChild).toHaveClass('justify-content-end');
     });
   });
 
   describe('events', () => {
     it('should open the modal when the select button is clicked', () => {
-      const { modalPickerOpener, openModalSpy } = setup({});
+      const { openModalSpy } = setup({});
 
-      // @ts-expect-error Test mock
-      modalPickerOpener
-        .find('Button')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Best friend'));
 
       expect(openModalSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should call onClear when the clear button is clicked', () => {
-      const { modalPickerOpener, onClearSpy } = setup({ hasValue: true });
+      const { onClearSpy } = setup({ hasValue: true });
 
-      // @ts-expect-error Test mock
-      modalPickerOpener
-        .find('TextButton')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Clear'));
 
       expect(onClearSpy).toHaveBeenCalledTimes(1);
     });

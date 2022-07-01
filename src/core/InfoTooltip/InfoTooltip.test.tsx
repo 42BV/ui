@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { InfoTooltip } from './InfoTooltip';
 import Spinner from '../Spinner/Spinner';
@@ -21,31 +21,29 @@ describe('Component: InfoTooltip', () => {
       className
     };
 
-    const infoTooltip = shallow(<InfoTooltip {...props} />);
+    const { container } = render(
+      <InfoTooltip {...props} />
+    );
 
-    return { infoTooltip };
+    return { container };
   }
 
   describe('ui', () => {
     test('default', () => {
-      const { infoTooltip } = setup({});
-      expect(toJson(infoTooltip)).toMatchSnapshot(
-        'Component: InfoTooltip => ui => default'
-      );
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
     test('custom content', () => {
-      const { infoTooltip } = setup({
+      const { container } = setup({
         tooltip: <Spinner size={10} color="primary" />
       });
-      expect(toJson(infoTooltip)).toMatchSnapshot(
-        'Component: InfoTooltip => ui => custom content'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('with size', () => {
-      const { infoTooltip } = setup({ size: 10 });
-      expect(infoTooltip.find('Icon').props().size).toBe(10);
+      setup({ size: 10 });
+      expect(screen.getByText('info')).toHaveStyle({ fontSize: 10 });
     });
   });
 });

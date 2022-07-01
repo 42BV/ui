@@ -1,59 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: LoadingPage ui default 1`] = `
-<div
-  className="loading-page"
->
+<div>
   <div
-    className="d-flex flex-column justify-content-center align-items-center vh-100"
-    style={
-      Object {
-        "height": undefined,
-        "marginTop": -75,
-      }
-    }
+    class="loading-page"
   >
-    <Spinner
-      color="#f0ad4e"
-      size={150}
-    />
+    <div
+      class="d-flex flex-column justify-content-center align-items-center vh-100"
+      style="margin-top: -75px;"
+    >
+      <svg
+        class="spinner"
+        height="150"
+        viewBox="25 25 50 50"
+        width="150"
+      >
+        <circle
+          class="path"
+          cx="50"
+          cy="50"
+          fill="none"
+          r="20"
+          stroke="#f0ad4e"
+          stroke-miterlimit="10"
+          stroke-width="4"
+        />
+      </svg>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Component: LoadingPage ui with custom height 1`] = `
-<div
-  className="loading-page"
->
+<div>
   <div
-    className="d-flex flex-column justify-content-center align-items-center"
-    style={
-      Object {
-        "height": 200,
-        "marginTop": undefined,
-      }
-    }
+    class="loading-page"
   >
-    <Spinner
-      color="#f0ad4e"
-      size={150}
-    />
+    <div
+      class="d-flex flex-column justify-content-center align-items-center"
+      style="height: 200px;"
+    >
+      <svg
+        class="spinner"
+        height="150"
+        viewBox="25 25 50 50"
+        width="150"
+      >
+        <circle
+          class="path"
+          cx="50"
+          cy="50"
+          fill="none"
+          r="20"
+          stroke="#f0ad4e"
+          stroke-miterlimit="10"
+          stroke-width="4"
+        />
+      </svg>
+    </div>
   </div>
-</div>
-`;
-
-exports[`Component: LoadingPage ui with no spinner because it is not after the timeout 1`] = `
-<div
-  className="loading-page"
->
-  <div
-    className="d-flex flex-column justify-content-center align-items-center vh-100"
-    style={
-      Object {
-        "height": undefined,
-        "marginTop": -75,
-      }
-    }
-  />
 </div>
 `;

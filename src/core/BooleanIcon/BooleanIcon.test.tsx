@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { BooleanIcon } from './BooleanIcon';
 import { Color } from '../types';
+import userEvent from '@testing-library/user-event';
 
 describe('Component: BooleanIcon', () => {
   function setup({
@@ -21,7 +22,7 @@ describe('Component: BooleanIcon', () => {
   }) {
     const onChangeSpy = jest.fn();
 
-    const booleanIcon = shallow(
+    const { container } = render(
       <BooleanIcon
         value={value}
         size={size}
@@ -31,104 +32,100 @@ describe('Component: BooleanIcon', () => {
       />
     );
 
-    return { booleanIcon, onChangeSpy };
+    return { container, onChangeSpy };
   }
 
   describe('ui', () => {
     test('value true', () => {
-      const { booleanIcon } = setup({ value: true });
+      const { container } = setup({ value: true });
 
-      expect(toJson(booleanIcon)).toMatchSnapshot(
-        'Component: BooleanIcon => ui => value true'
-      );
+      expect(container).toMatchSnapshot();
+      expect(screen.queryByText('check_box')).toBeInTheDocument();
+      expect(screen.queryByText('check_box_outline_blank')).not.toBeInTheDocument();
     });
 
     test('value false', () => {
-      const { booleanIcon } = setup({ value: false });
+      const { container } = setup({ value: false });
 
-      expect(
-        // @ts-expect-error Test mock
-        booleanIcon.find('Icon').props().icon
-      ).toBe('check_box_outline_blank');
+      expect(container).toMatchSnapshot();
+      expect(screen.queryByText('check_box')).not.toBeInTheDocument();
+      expect(screen.queryByText('check_box_outline_blank')).toBeInTheDocument();
     });
 
     test('size', () => {
-      const { booleanIcon } = setup({ value: false, size: 10 });
+      const { container } = setup({ value: false, size: 10 });
 
-      expect(booleanIcon.find('Icon').props().size).toBe(10);
+      expect(container.firstChild).toHaveStyle({fontSize: 10});
     });
 
     test('color', () => {
-      const { booleanIcon } = setup({ value: false, color: 'secondary' });
+      const { container } = setup({ value: false, color: 'secondary' });
 
-      expect(booleanIcon.find('Icon').props().color).toBe('secondary');
+      expect(container.firstChild).toHaveClass('text-secondary');
     });
 
     describe('activeColor', () => {
       it('should not use activeColor when value is true if onChange is not defined', () => {
-        const { booleanIcon } = setup({
+        const { container } = setup({
           value: true,
           color: 'secondary',
           hasOnChangeSpy: false
         });
 
-        expect(booleanIcon.find('Icon').props().color).toBe('secondary');
+        expect(container.firstChild).toHaveClass('text-secondary');
       });
 
       it('should use activeColor when value is true if onChange is defined', () => {
-        const { booleanIcon } = setup({ value: true, hasOnChangeSpy: true });
+        const { container } = setup({ value: true, hasOnChangeSpy: true });
 
-        expect(booleanIcon.find('Icon').props().color).toBe('primary');
+        expect(container.firstChild).toHaveClass('text-primary');
       });
     });
 
     describe('hoverColor', () => {
-      it('should use hoverColor when onChange and hoverColor are defined', () => {
-        const { booleanIcon } = setup({
+      it('should use hoverColor when onChange and hoverColor are defined', async () => {
+        expect.assertions(1);
+
+        const { container } = setup({
           value: true,
           color: 'secondary',
           hoverColor: 'success',
           hasOnChangeSpy: true
         });
 
-        // @ts-expect-error Mock test
-        expect(booleanIcon.find('Icon').props().hoverColor).toBe('success');
+        await userEvent.hover(screen.getByText('check_box'));
+
+        expect(container.firstChild).toHaveClass('text-success');
       });
 
       it('should not use activeColor when onChange and hoverColor are not defined', () => {
-        const { booleanIcon } = setup({
+        const { container } = setup({
           value: true,
           color: 'secondary',
           hasOnChangeSpy: false
         });
 
-        // @ts-expect-error Mock test
-        expect(booleanIcon.find('Icon').props().hoverColor).toBe(undefined);
+        expect(container.firstChild).toHaveClass('text-secondary');
       });
 
       it('should use activeColor when hoverColor is not defined and onChange is defined', () => {
-        const { booleanIcon } = setup({ value: true, hasOnChangeSpy: true });
+        const { container } = setup({ value: true, hasOnChangeSpy: true });
 
-        // @ts-expect-error Mock test
-        expect(booleanIcon.find('Icon').props().hoverColor).toBe('primary');
+        expect(container.firstChild).toHaveClass('text-primary');
       });
     });
   });
 
   describe('events', () => {
     it('should call onChange when clicked', () => {
-      const { booleanIcon, onChangeSpy } = setup({
+      const { onChangeSpy } = setup({
         value: false,
         hasOnChangeSpy: true
       });
 
-      const event = {
-        preventDefault: jest.fn()
-      };
-      booleanIcon.find('Icon').simulate('click', event);
+      fireEvent.click(screen.getByText('check_box_outline_blank'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(event.preventDefault).toHaveBeenCalledTimes(1);
     });
   });
 });

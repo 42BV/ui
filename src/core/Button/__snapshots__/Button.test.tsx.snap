@@ -1,402 +1,471 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: Button ui button disabled is disabled 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    disabled={true}
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="button"
     >
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button disabled is enabled 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    disabled={false}
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
     >
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button full-width 1`] = `
-<span
-  className="button d-block primary"
->
-  <Button
-    block={true}
-    color="primary"
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md d-block w-100"
+      type="button"
     >
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button normal inProgress is false 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
     >
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button normal inProgress is true 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    disabled={true}
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="button"
     >
-      Save
-      <Spinner
-        className="ms-2"
-        color="white"
-        size={16}
-      />
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+        <svg
+          class="spinner ms-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke="white"
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button outline inProgress is false 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    onClick={[Function]}
-    outline={true}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-outline-primary btn-md"
+      type="button"
     >
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button outline inProgress is true 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    disabled={true}
-    onClick={[Function]}
-    outline={true}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-outline-primary btn-md disabled"
+      disabled=""
+      type="button"
     >
-      <Spinner
-        className="me-2"
-        color=""
-        size={16}
-      />
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <svg
+          class="spinner me-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke=""
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button size can override size 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    onClick={[Function]}
-    size="sm"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-sm"
+      type="button"
     >
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button size use md by default 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
     >
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button with icon normal inProgress is false 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
     >
-      <Icon
-        className="button-icon me-2"
-        icon="save"
-      />
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <i
+          class="icon button-icon me-2 material-icons"
+        >
+          save
+        </i>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    disabled={true}
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="button"
     >
-      <Spinner
-        className="me-2"
-        color="white"
-        size={16}
-      />
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <svg
+          class="spinner me-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke="white"
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button with icon normal with icon on the right 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    onClick={[Function]}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
     >
-      Save
-      <Icon
-        className="button-icon ms-2"
-        icon="save"
-      />
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+        <i
+          class="icon button-icon ms-2 material-icons"
+        >
+          save
+        </i>
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button with icon outline inProgress is false 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    onClick={[Function]}
-    outline={true}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-outline-primary btn-md"
+      type="button"
     >
-      <Icon
-        className="button-icon me-2"
-        icon="save"
-      />
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <i
+          class="icon button-icon me-2 material-icons"
+        >
+          save
+        </i>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui button with icon outline inProgress is true 1`] = `
-<span
-  className="button d-inline-block primary"
->
-  <Button
-    color="primary"
-    disabled={true}
-    onClick={[Function]}
-    outline={true}
-    size="md"
-    tag="button"
-    type="button"
+<div>
+  <span
+    class="button d-inline-block primary"
   >
-    <div
-      className="d-flex justify-content-center align-items-center"
+    <button
+      class="btn btn-outline-primary btn-md disabled"
+      disabled=""
+      type="button"
     >
-      <Spinner
-        className="me-2"
-        color=""
-        size={16}
-      />
-      Save
-    </div>
-  </Button>
-</span>
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <svg
+          class="spinner me-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke=""
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui icon only disabled is disabled 1`] = `
-<span
-  className="button primary d-inline-block"
->
-  <Icon
-    color="primary"
-    disabled={true}
-    icon="save"
-    onClick={[Function]}
-    size={24}
-  />
-</span>
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <i
+      class="icon material-icons text-primary icon--disabled"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui icon only disabled is enabled 1`] = `
-<span
-  className="button primary d-inline-block"
->
-  <Icon
-    color="primary"
-    disabled={false}
-    icon="save"
-    onClick={[Function]}
-    size={24}
-  />
-</span>
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui icon only full-width full width and icon left 1`] = `
-<span
-  className="button primary d-flex justify-content-start"
->
-  <Icon
-    color="primary"
-    icon="save"
-    onClick={[Function]}
-    size={24}
-  />
-</span>
+<div>
+  <span
+    class="button primary d-flex justify-content-start"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui icon only full-width full width and icon right 1`] = `
-<span
-  className="button primary d-flex justify-content-end"
->
-  <Icon
-    color="primary"
-    icon="save"
-    onClick={[Function]}
-    size={24}
-  />
-</span>
+<div>
+  <span
+    class="button primary d-flex justify-content-end"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui icon only inProgress inProgress is false 1`] = `
-<span
-  className="button primary d-inline-block"
->
-  <Icon
-    color="primary"
-    icon="save"
-    onClick={[Function]}
-    size={24}
-  />
-</span>
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
 `;
 
 exports[`Component: Button ui icon only inProgress inProgress is true 1`] = `
-<span
-  className="button primary d-inline-block"
->
-  <Spinner
-    color=""
-    size={24}
-  />
-</span>
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <svg
+      class="spinner"
+      height="24"
+      viewBox="25 25 50 50"
+      width="24"
+    >
+      <circle
+        class="path"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="20"
+        stroke=""
+        stroke-miterlimit="10"
+        stroke-width="4"
+      />
+    </svg>
+  </span>
+</div>
+`;
+
+exports[`Component: Button ui icon only that when no icon is provided it will fallback to block 1`] = `
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      block
+    </i>
+  </span>
+</div>
 `;

@@ -1,174 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Icon events hover should change color when hoverColor is defined: Icon => events => hover => should change color when hoverColor is defined 1`] = `
-<i
-  className="icon material-icons text-primary clickable"
-  onClick={[Function]}
-  onMouseEnter={[MockFunction]}
-  onMouseLeave={[MockFunction]}
->
-  alarm
-</i>
+exports[`Icon ui default 1`] = `
+<div>
+  <i
+    class="icon material-icons"
+  >
+    alarm
+  </i>
+</div>
 `;
 
-exports[`Icon events hover should not change color when disabled: Icon => events => hover => should not change color when disabled 1`] = `
-<i
-  className="icon material-icons text-secondary icon--disabled"
-  onClick={[Function]}
-  onMouseEnter={[MockFunction]}
-  onMouseLeave={[MockFunction]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon events hover should not change color when onClick is not defined: Icon => events => hover => should not change color when onClick is not defined 1`] = `
-<i
-  className="icon material-icons text-secondary"
-  onClick={[Function]}
-  onMouseEnter={[MockFunction]}
-  onMouseLeave={[MockFunction]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui default: Icon => ui => default 1`] = `
-<i
-  className="icon material-icons"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui is clickable: Icon => ui => is clickable 1`] = `
-<i
-  className="icon material-icons clickable"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui is disabled: Icon => ui => is disabled 1`] = `
-<i
-  className="icon material-icons icon--disabled"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui is enabled: Icon => ui => is enabled 1`] = `
-<i
-  className="icon material-icons"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui is not clickable: Icon => ui => is not clickable 1`] = `
-<i
-  className="icon material-icons"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui with className: Icon => ui => with className 1`] = `
-<i
-  className="icon text-danger material-icons"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui with color: Icon => ui => with color 1`] = `
-<i
-  className="icon material-icons text-danger"
-  id="1337"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui with hoverColor: Icon => ui => with hoverColor 1`] = `
-<i
-  className="icon material-icons text-secondary"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  style={
-    Object {
-      "fontSize": 144,
-    }
-  }
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui with id: Icon => ui => with id 1`] = `
-<i
-  className="icon material-icons"
-  id="1337"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui with onClick: Icon => ui => with onClick 1`] = `
-<i
-  className="icon material-icons text-secondary clickable"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  style={
-    Object {
-      "fontSize": 144,
-    }
-  }
->
-  alarm
-</i>
-`;
-
-exports[`Icon ui with size: Icon => ui => with size 1`] = `
-<i
-  className="icon material-icons"
-  onClick={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  style={
-    Object {
-      "fontSize": 144,
-    }
-  }
->
-  alarm
-</i>
+exports[`Icon ui with id 1`] = `
+<div>
+  <i
+    class="icon material-icons"
+    id="1337"
+  >
+    alarm
+  </i>
+</div>
 `;
 
 exports[`index should contain exports 1`] = `

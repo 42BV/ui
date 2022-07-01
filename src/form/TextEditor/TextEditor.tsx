@@ -8,7 +8,6 @@ import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { formatsFromToolbarModule } from './utils';
 import { FieldCompatible } from '../types';
-import { useId } from '../../hooks/useId/useId';
 
 export type Props = FieldCompatible<string, string> & {
   /**
@@ -81,13 +80,11 @@ export default function TextEditor(props: Props) {
     formats: formats ? formats : formatsFromToolbarModule(modules)
   };
 
-  const innerId = useId({ id });
-
   const classes = classNames({ 'is-invalid': valid === false });
 
   return (
     <FormGroup className={className} color={color}>
-      {label ? <Label for={innerId}>{label}</Label> : null}
+      {label ? <Label>{label}</Label> : null}
       <ReactQuill className={classes} {...inputProps} />
       {error}
     </FormGroup>

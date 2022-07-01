@@ -1,189 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Select ui loading: Component: Select => ui => loading 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="subject"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: Select ui default 1`] = `
+<div>
+  <div
+    class="mb-3"
   >
-    Subject
-  </Label>
-  <Loading
-    className="mt-2"
-  >
-    Loading...
-  </Loading>
-  Some error
-</FormGroup>
+    <select
+      class="showing-placeholder form-select"
+      id="1"
+    >
+      <option
+        value="0"
+      >
+        admin@42.nl
+      </option>
+      <option
+        value="1"
+      >
+        coordinator@42.nl
+      </option>
+      <option
+        value="2"
+      >
+        user@42.nl
+      </option>
+    </select>
+    Some error
+  </div>
+</div>
 `;
 
-exports[`Component: Select ui with value: Component: Select => ui => with value 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="subject"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: Select ui loading 1`] = `
+<div>
+  <div
+    class="mb-3"
   >
-    Subject
-  </Label>
-  <Input
-    className=""
-    id="subject"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    placeholder="Please enter your subject"
-    type="select"
-    valid={true}
-    value={0}
-  >
-    <option>
-      Please enter your subject
-    </option>
-    <option
-      disabled={false}
-      key="42"
-      value={0}
+    <div
+      class="d-flex mt-2"
     >
-      admin@42.nl
-    </option>
-    <option
-      disabled={false}
-      key="777"
-      value={1}
-    >
-      coordinator@42.nl
-    </option>
-    <option
-      disabled={false}
-      key="1337"
-      value={2}
-    >
-      user@42.nl
-    </option>
-  </Input>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Select ui without label: Component: Select => ui => without label 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Input
-    className=""
-    id="1"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    placeholder="Please enter your subject"
-    type="select"
-    value={0}
-  >
-    <option>
-      Please enter your subject
-    </option>
-    <option
-      disabled={false}
-      key="42"
-      value={0}
-    >
-      admin@42.nl
-    </option>
-    <option
-      disabled={false}
-      key="777"
-      value={1}
-    >
-      coordinator@42.nl
-    </option>
-    <option
-      disabled={false}
-      key="1337"
-      value={2}
-    >
-      user@42.nl
-    </option>
-  </Input>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Select ui without placeholder: Component: Select => ui => without placeholder 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="subject"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Subject
-  </Label>
-  <Input
-    className=""
-    id="subject"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    type="select"
-    value={0}
-  >
-    <option
-      disabled={false}
-      key="42"
-      value={0}
-    >
-      admin@42.nl
-    </option>
-    <option
-      disabled={false}
-      key="777"
-      value={1}
-    >
-      coordinator@42.nl
-    </option>
-    <option
-      disabled={false}
-      key="1337"
-      value={2}
-    >
-      user@42.nl
-    </option>
-  </Input>
-  Some error
-</FormGroup>
+      <svg
+        class="spinner align-self-center"
+        height="16"
+        viewBox="25 25 50 50"
+        width="16"
+      >
+        <circle
+          class="path"
+          cx="50"
+          cy="50"
+          fill="none"
+          r="20"
+          stroke="black"
+          stroke-miterlimit="10"
+          stroke-width="4"
+        />
+      </svg>
+      <span
+        class="ms-1"
+      >
+        Loading...
+      </span>
+    </div>
+    Some error
+  </div>
+</div>
 `;

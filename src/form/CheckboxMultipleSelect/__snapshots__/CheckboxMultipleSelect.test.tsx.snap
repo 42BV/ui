@@ -1,555 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: CheckboxMultipleSelect ui horizontal: Component: CheckboxMultipleSelect => ui => horizontal 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="subject"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Subject
-  </Label>
-  <p
-    className="text-muted"
-  >
-    <em>
-      Please select your provinces
-    </em>
-  </p>
-  <FormGroup
-    check={true}
-    inline={true}
-    key="42"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value={0}
-      />
-       
-      admin@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={true}
-    key="777"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value={1}
-      />
-       
-      coordinator@42.nl
-    </Label>
-  </FormGroup>
-  <FormGroup
-    check={true}
-    inline={true}
-    key="1337"
-    tag="div"
-  >
-    <Label
-      check={true}
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      <Input
-        checked={false}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value={2}
-      />
-       
-      user@42.nl
-    </Label>
-  </FormGroup>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: CheckboxMultipleSelect ui loading: Component: CheckboxMultipleSelect => ui => loading 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="subject"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Subject
-  </Label>
-  <p
-    className="text-muted"
-  >
-    <em>
-      Please select your provinces
-    </em>
-  </p>
-  <Loading>
-    Loading...
-  </Loading>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: CheckboxMultipleSelect ui with value: Component: CheckboxMultipleSelect => ui => with value 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="subject"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Subject
-  </Label>
-  <p
-    className="text-muted"
-  >
-    <em>
-      Please select your provinces
-    </em>
-  </p>
+exports[`Component: CheckboxMultipleSelect ui default 1`] = `
+<div>
   <div
-    className="d-flex flex-wrap"
+    class="mb-3"
   >
     <div
-      className="pe-3"
-      key="0"
-      style={
-        Object {
-          "flexBasis": "300px",
-        }
-      }
+      class="d-flex flex-wrap"
     >
-      <FormGroup
-        check={true}
-        inline={false}
-        key="42"
-        tag="div"
+      <div
+        class="pe-3"
+        style="flex-basis: 300px;"
       >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
+        <div
+          class="form-check"
         >
-          <Input
-            checked={true}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={0}
-          />
-           
-          admin@42.nl
-        </Label>
-      </FormGroup>
-      <FormGroup
-        check={true}
-        inline={false}
-        key="777"
-        tag="div"
-      >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="0"
+            />
+             
+            admin@42.nl
+          </label>
+        </div>
+        <div
+          class="form-check"
         >
-          <Input
-            checked={false}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={1}
-          />
-           
-          coordinator@42.nl
-        </Label>
-      </FormGroup>
-      <FormGroup
-        check={true}
-        inline={false}
-        key="1337"
-        tag="div"
-      >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="1"
+            />
+             
+            coordinator@42.nl
+          </label>
+        </div>
+        <div
+          class="form-check"
         >
-          <Input
-            checked={false}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={2}
-          />
-           
-          user@42.nl
-        </Label>
-      </FormGroup>
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="2"
+            />
+             
+            user@42.nl
+          </label>
+        </div>
+      </div>
     </div>
+    Some error
   </div>
-  Some error
-</FormGroup>
+</div>
 `;
 
-exports[`Component: CheckboxMultipleSelect ui without label: Component: CheckboxMultipleSelect => ui => without label 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <p
-    className="text-muted"
-  >
-    <em>
-      Please select your provinces
-    </em>
-  </p>
+exports[`Component: CheckboxMultipleSelect ui loading 1`] = `
+<div>
   <div
-    className="d-flex flex-wrap"
+    class="mb-3"
   >
     <div
-      className="pe-3"
-      key="0"
-      style={
-        Object {
-          "flexBasis": "300px",
-        }
-      }
+      class="d-flex"
     >
-      <FormGroup
-        check={true}
-        inline={false}
-        key="42"
-        tag="div"
+      <svg
+        class="spinner align-self-center"
+        height="16"
+        viewBox="25 25 50 50"
+        width="16"
       >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
-        >
-          <Input
-            checked={true}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={0}
-          />
-           
-          admin@42.nl
-        </Label>
-      </FormGroup>
-      <FormGroup
-        check={true}
-        inline={false}
-        key="777"
-        tag="div"
+        <circle
+          class="path"
+          cx="50"
+          cy="50"
+          fill="none"
+          r="20"
+          stroke="black"
+          stroke-miterlimit="10"
+          stroke-width="4"
+        />
+      </svg>
+      <span
+        class="ms-1"
       >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
-        >
-          <Input
-            checked={false}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={1}
-          />
-           
-          coordinator@42.nl
-        </Label>
-      </FormGroup>
-      <FormGroup
-        check={true}
-        inline={false}
-        key="1337"
-        tag="div"
-      >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
-        >
-          <Input
-            checked={false}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={2}
-          />
-           
-          user@42.nl
-        </Label>
-      </FormGroup>
+        Loading...
+      </span>
     </div>
+    Some error
   </div>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: CheckboxMultipleSelect ui without placeholder: Component: CheckboxMultipleSelect => ui => without placeholder 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="subject"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Subject
-  </Label>
-  <div
-    className="d-flex flex-wrap"
-  >
-    <div
-      className="pe-3"
-      key="0"
-      style={
-        Object {
-          "flexBasis": "300px",
-        }
-      }
-    >
-      <FormGroup
-        check={true}
-        inline={false}
-        key="42"
-        tag="div"
-      >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
-        >
-          <Input
-            checked={true}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={0}
-          />
-           
-          admin@42.nl
-        </Label>
-      </FormGroup>
-      <FormGroup
-        check={true}
-        inline={false}
-        key="777"
-        tag="div"
-      >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
-        >
-          <Input
-            checked={false}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={1}
-          />
-           
-          coordinator@42.nl
-        </Label>
-      </FormGroup>
-      <FormGroup
-        check={true}
-        inline={false}
-        key="1337"
-        tag="div"
-      >
-        <Label
-          check={true}
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
-        >
-          <Input
-            checked={false}
-            disabled={false}
-            onChange={[Function]}
-            type="checkbox"
-            value={2}
-          />
-           
-          user@42.nl
-        </Label>
-      </FormGroup>
-    </div>
-  </div>
-  Some error
-</FormGroup>
+</div>
 `;

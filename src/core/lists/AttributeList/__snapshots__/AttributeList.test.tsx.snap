@@ -1,26 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: AttributeList ui 1`] = `
-<ListGroup
-  flush={true}
-  horizontal={false}
-  numbered={false}
-  tag="ul"
->
-  <AttributeView
-    label="Name"
+<div>
+  <ul
+    class="list-group list-group-flush"
   >
-    42 BV
-  </AttributeView>
-  <AttributeView
-    label="City"
-  >
-    Zoetermeer
-  </AttributeView>
-  <AttributeView
-    label="Country"
-  >
-    Netherlands
-  </AttributeView>
-</ListGroup>
+    <li
+      class="pl-0 list-group-item"
+    >
+      <h5
+        class="small text-primary list-group-item-heading"
+      >
+        Name
+      </h5>
+      42 BV
+    </li>
+    <li
+      class="pl-0 list-group-item"
+    >
+      <h5
+        class="small text-primary list-group-item-heading"
+      >
+        City
+      </h5>
+      Zoetermeer
+    </li>
+    <li
+      class="pl-0 list-group-item"
+    >
+      <h5
+        class="small text-primary list-group-item-heading"
+      >
+        Country
+      </h5>
+      Netherlands
+    </li>
+  </ul>
+</div>
 `;

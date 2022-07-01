@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHasErrors } from './useHasErrors';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 test('return value', () => {
   const stateSpy = jest.spyOn(React, 'useState');

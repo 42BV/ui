@@ -1,25 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: EpicSort ui is ASC 1`] = `
-<Icon
-  className="pe-1"
-  icon="arrow_drop_up"
-  onClick={[Function]}
-/>
-`;
-
-exports[`Component: EpicSort ui is DESC 1`] = `
-<Icon
-  className="pe-1"
-  icon="arrow_drop_down"
-  onClick={[Function]}
-/>
-`;
-
-exports[`Component: EpicSort ui is NONE 1`] = `
-<Icon
-  className="pe-1"
-  icon="sort"
-  onClick={[Function]}
-/>
+<div>
+  <i
+    class="icon pe-1 material-icons clickable"
+  >
+    arrow_drop_up
+  </i>
+</div>
 `;

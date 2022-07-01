@@ -1,15 +1,10 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import FileInput, { limitFileSize, requireFile } from './FileInput';
 
 describe('Component: FileInput', () => {
-  let fileInput: ShallowWrapper;
-
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-
   function setup({
     value,
     valid,
@@ -21,8 +16,8 @@ describe('Component: FileInput', () => {
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
   }) {
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
 
     const props = {
       placeholder: hasPlaceholder ? 'Upload a file here' : undefined,
@@ -31,72 +26,74 @@ describe('Component: FileInput', () => {
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      valid
+      valid,
+      id: hasLabel ? 'file-upload-with-button' : undefined,
+      label: hasLabel ? 'Upload a file here' : undefined
     };
 
-    if (hasLabel) {
-      fileInput = shallow(
-        <FileInput
-          id="file-upload-with-button"
-          label="Upload a file here"
-          color="success"
-          {...props}
-        />
-      );
-    } else {
-      fileInput = shallow(<FileInput color="success" {...props} />);
-    }
+    const { container } = render(
+      <FileInput color="success" {...props} />
+    );
+
+    return { container, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
     test('with value', () => {
-      setup({ value: new File([''], 'maarten.png'), valid: true });
-
-      fileInput.setState({ imageSrc: 'maarten.png' });
-
-      expect(toJson(fileInput)).toMatchSnapshot(
-        'Component: FileInput => ui => with value'
-      );
+      const { container } = setup({ value: new File([''], 'maarten.png'), valid: true });
+      expect(container).toMatchSnapshot();
     });
 
-    test('empty value', () => {
-      setup({ value: undefined, valid: false });
-
-      expect(toJson(fileInput)).toMatchSnapshot(
-        'Component: FileInput => ui => empty value'
-      );
+    test('without value', () => {
+      setup({ hasLabel: true });
+      expect(screen.getByLabelText('Upload a file here')).not.toHaveValue();
     });
 
     test('without placeholder', () => {
-      setup({ value: undefined, valid: false, hasPlaceholder: false });
-
-      expect(toJson(fileInput)).toMatchSnapshot(
-        'Component: FileInput => ui => without placeholder'
-      );
+      setup({ hasPlaceholder: false });
+      expect(screen.queryByPlaceholderText('Upload a file here')).not.toBeInTheDocument();
     });
 
     test('without label', () => {
-      setup({ value: undefined, valid: false, hasLabel: false });
-
-      expect(toJson(fileInput)).toMatchSnapshot(
-        'Component: FileInput => ui => without label'
-      );
+      setup({ hasLabel: false });
+      expect(screen.queryByText('Upload a file here')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Upload a file here')).not.toBeInTheDocument();
     });
+
+    test('invalid', () => {
+      setup({ valid: false });
+      expect(screen.queryByPlaceholderText('Upload a file here')).toHaveClass('is-invalid');
+    });
+
+    test('valid', () => {
+      setup({ valid: true });
+      expect(screen.queryByPlaceholderText('Upload a file here')).not.toHaveClass('is-invalid');
+    });
+  });
+
+  test('should not be able to change placeholder input', () => {
+    const console = global.console;
+    const consoleErrorSpy = jest.fn();
+    // @ts-expect-error We only use error, not all the other properties
+    global.console = { error: consoleErrorSpy };
+
+    setup({});
+
+    fireEvent.change(screen.getByPlaceholderText('Upload a file here'), { target: { value: 'test' } });
+
+    expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+    expect(consoleErrorSpy).toHaveBeenCalledWith('The placeholder input of FileInput should not be changeable');
+
+    global.console = console;
   });
 
   describe('events', () => {
     test('onChange', () => {
-      setup({ value: undefined });
-
-      const instance = fileInput.instance();
-      jest.spyOn(instance, 'setState');
-
-      const input = fileInput.find('input');
+      const { onChangeSpy, onBlurSpy } = setup({ value: undefined });
 
       const file = new File([''], 'maarten.png');
 
-      // @ts-expect-error Test mock
-      input.props().onChange({ target: { files: { item: () => file } } });
+      fireEvent.change(screen.getByLabelText('Upload a file here'), { target: { files: { item: jest.fn().mockReturnValue(file) } } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy.mock.calls[0][0].name).toBe('maarten.png');
@@ -104,54 +101,25 @@ describe('Component: FileInput', () => {
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    test('onChange of Input should do nothing', () => {
-      setup({ value: undefined });
-
-      // @ts-expect-error Test mock
-      fileInput
-        .find('Input')
-        .props()
-        // @ts-expect-error Test mock
-        .onChange();
-
-      // It should not call the onChangesSpy at all.
-      expect(onChangeSpy).toHaveBeenCalledTimes(0);
-    });
-
     describe('onClick', () => {
       test('with value', () => {
-        setup({ value: new File([''], 'maarten.png') });
+        const { onChangeSpy, onBlurSpy } = setup({ value: new File([''], 'maarten.png') });
 
-        const input = fileInput.find('input');
-
-        // @ts-expect-error Test mock
-        fileInput.instance().inputRef = { current: { value: 'maarten.png' } };
-
-        const eventDefaultSpy = jest.fn();
-        // @ts-expect-error Test mock
-        input.props().onClick({ preventDefault: eventDefaultSpy });
-
-        expect(eventDefaultSpy).toHaveBeenCalledTimes(1);
+        fireEvent.click(screen.getByLabelText('Upload a file here'));
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
         expect(onChangeSpy).toHaveBeenCalledWith(null);
 
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
 
-        // @ts-expect-error Test mock
-        expect(fileInput.instance().inputRef.current.value).toBe('');
+        expect(screen.getByLabelText('Upload a file here')).toHaveValue('');
       });
 
       test('without value', () => {
-        setup({ value: undefined });
+        const { onChangeSpy, onBlurSpy } = setup({ value: undefined });
 
-        const input = fileInput.find('input');
+        fireEvent.click(screen.getByLabelText('Upload a file here'));
 
-        const eventDefaultSpy = jest.fn();
-        // @ts-expect-error Test mock
-        input.props().onClick({ preventDefault: eventDefaultSpy });
-
-        expect(eventDefaultSpy).toHaveBeenCalledTimes(0);
         expect(onChangeSpy).toHaveBeenCalledTimes(0);
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
       });

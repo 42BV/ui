@@ -1,165 +1,130 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ConfirmButton ui button and icon: Component: ConfirmButton => ui => button and icon 1`] = `
-<div
-  style={
-    Object {
-      "display": "block",
-    }
-  }
->
-  <Button
-    color="danger"
-    icon="delete"
-    inProgress={false}
-    onClick={[Function]}
+exports[`Component: ConfirmButton ui button and icon 1`] = `
+<div>
+  <div
+    style="display: block;"
   >
-    Delete user
-  </Button>
-  <ConfirmModal
-    isOpen={false}
-    modalText={
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    }
-    onClose={[Function]}
-    onSave={[Function]}
-  />
+    <span
+      class="button d-inline-block danger"
+    >
+      <button
+        class="btn btn-danger btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          <i
+            class="icon button-icon me-2 material-icons"
+          >
+            delete
+          </i>
+          Delete user
+        </div>
+      </button>
+    </span>
+  </div>
 </div>
 `;
 
-exports[`Component: ConfirmButton ui custom class, color and texts: Component: ConfirmButton => ui => custom color and texts 1`] = `
-<div
-  className="bigger-better-and-uncut"
-  style={
-    Object {
-      "display": "block",
-    }
-  }
->
-  <Button
-    color="info"
-    icon="delete"
-    inProgress={false}
-    onClick={[Function]}
+exports[`Component: ConfirmButton ui custom class, color and texts 1`] = `
+<div>
+  <div
+    class="bigger-better-and-uncut"
+    style="display: block;"
   >
-    Delete user
-  </Button>
-  <ConfirmModal
-    cancelText="NO"
-    confirmText="YES"
-    isOpen={false}
-    label="PLEASE SAY YES"
-    modalText={
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    }
-    onClose={[Function]}
-    onSave={[Function]}
-  />
+    <span
+      class="button d-inline-block info"
+    >
+      <button
+        class="btn btn-info btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          <i
+            class="icon button-icon me-2 material-icons"
+          >
+            delete
+          </i>
+          Delete user
+        </div>
+      </button>
+    </span>
+  </div>
 </div>
 `;
 
-exports[`Component: ConfirmButton ui only button: Component: ConfirmButton => ui => only button 1`] = `
-<div
-  style={
-    Object {
-      "display": "block",
-    }
-  }
->
-  <Button
-    color="danger"
-    inProgress={false}
-    onClick={[Function]}
+exports[`Component: ConfirmButton ui only button 1`] = `
+<div>
+  <div
+    style="display: block;"
   >
-    Delete user
-  </Button>
-  <ConfirmModal
-    isOpen={false}
-    modalText={
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    }
-    onClose={[Function]}
-    onSave={[Function]}
-  />
+    <span
+      class="button d-inline-block danger"
+    >
+      <button
+        class="btn btn-danger btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          Delete user
+        </div>
+      </button>
+    </span>
+  </div>
 </div>
 `;
 
-exports[`Component: ConfirmButton ui only icon in progress: Component: ConfirmButton => ui => only icon in progress 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline",
-    }
-  }
->
-  <Button
-    color="danger"
-    icon="delete"
-    inProgress={true}
-    onClick={[Function]}
-  />
-  <ConfirmModal
-    isOpen={false}
-    modalText={
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    }
-    onClose={[Function]}
-    onSave={[Function]}
-  />
+exports[`Component: ConfirmButton ui only icon 1`] = `
+<div>
+  <div
+    style="display: inline;"
+  >
+    <span
+      class="button danger d-inline-block"
+    >
+      <i
+        class="icon material-icons text-danger clickable"
+        style="font-size: 24px;"
+      >
+        delete
+      </i>
+    </span>
+  </div>
 </div>
 `;
 
-exports[`Component: ConfirmButton ui only icon: Component: ConfirmButton => ui => only icon 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline",
-    }
-  }
->
-  <Button
-    color="danger"
-    icon="delete"
-    inProgress={false}
-    onClick={[Function]}
-  />
-  <ConfirmModal
-    isOpen={false}
-    modalText={
-      <p>
-        Are you sure you want to 
-        <strong>
-          delete
-        </strong>
-         the user?
-      </p>
-    }
-    onClose={[Function]}
-    onSave={[Function]}
-  />
+exports[`Component: ConfirmButton ui only icon in progress 1`] = `
+<div>
+  <div
+    style="display: inline;"
+  >
+    <span
+      class="button danger d-inline-block"
+    >
+      <svg
+        class="spinner"
+        height="24"
+        viewBox="25 25 50 50"
+        width="24"
+      >
+        <circle
+          class="path"
+          cx="50"
+          cy="50"
+          fill="none"
+          r="20"
+          stroke=""
+          stroke-miterlimit="10"
+          stroke-width="4"
+        />
+      </svg>
+    </span>
+  </div>
 </div>
 `;

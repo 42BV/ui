@@ -1,13 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import Avatar from './Avatar';
 import AvatarStack from './AvatarStack';
 
 describe('Component: AvatarsStack', () => {
   test('ui', () => {
-    const multipleAvatars = (
+    const { container } = render(
       <AvatarStack>
         <Avatar
           key="1"
@@ -36,7 +35,6 @@ describe('Component: AvatarsStack', () => {
       </AvatarStack>
     );
 
-    const avatars = shallow(multipleAvatars);
-    expect(toJson(avatars)).toMatchSnapshot('Component: AvatarsStack => ui');
+    expect(container).toMatchSnapshot();
   });
 });

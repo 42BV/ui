@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { AddonButton } from './AddonButton';
 import { ButtonIconPosition } from '../../../core/Button/Button';
@@ -9,48 +9,50 @@ import { Color } from '../../../core/types';
 describe('Component: AddonButton', () => {
   function setup({
     position,
-    color
+    color,
+    className
   }: {
     position?: ButtonIconPosition;
     color?: Color;
+    className?: string;
   }) {
     const onClickSpy = jest.fn();
 
-    const addonButton = shallow(
-      <AddonButton position={position} color={color} onClick={onClickSpy}>
+    const { container } = render(
+      <AddonButton position={position} color={color} onClick={onClickSpy} className={className}>
         42
       </AddonButton>
     );
 
-    return { addonButton, onClickSpy };
+    return { container, onClickSpy };
   }
 
   test('ui', () => {
-    const { addonButton } = setup({});
+    const { container } = setup({});
+    expect(container).toMatchSnapshot();
+  });
 
-    expect(toJson(addonButton)).toMatchSnapshot('Component: AddonButton');
+  test('custom class', () => {
+    const { container } = setup({ className: 'extra-class' });
+    expect(container.firstChild).toHaveClass('extra-class');
   });
 
   describe('color behavior', () => {
     it('should show a primary button when color is empty', () => {
-      const { addonButton } = setup({ color: undefined });
-
-      expect(addonButton.find('Button').props().color).toBe('primary');
+      setup({ color: undefined });
+      expect(screen.getByText('42')).toHaveClass('btn-primary');
     });
 
     it('should show the color when property color is set', () => {
-      const { addonButton } = setup({ color: 'danger' });
-
-      expect(addonButton.find('Button').props().color).toBe('danger');
+      setup({ color: 'danger' });
+      expect(screen.getByText('42')).toHaveClass('btn-danger');
     });
   });
 
   it('should call onClick when the button is clicked', () => {
-    const { addonButton, onClickSpy } = setup({ color: 'danger' });
+    const { onClickSpy } = setup({ color: 'danger' });
 
-    const button = addonButton.find('Button');
-
-    button.simulate('click');
+    fireEvent.click(screen.getByText('42'));
 
     expect(onClickSpy).toHaveBeenCalledTimes(1);
   });

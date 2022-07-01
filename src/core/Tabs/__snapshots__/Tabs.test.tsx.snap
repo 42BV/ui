@@ -1,131 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Tabs ui hide inactive tabs by CSS: Component: Tabs => ui => hide inactive tabs by CSS 1`] = `
-<div
-  className="tabs"
->
-  <Nav
-    className="flex-nowrap"
-    fill={true}
-    style={
-      Object {
-        "overflowY": "hidden",
-      }
-    }
-    tabs={true}
-    tag="ul"
-    vertical={false}
-  >
-    <Tab
-      active={true}
-      label="test active true"
-      onClick={[MockFunction]}
-    >
-      <Component />
-    </Tab>
-    <Tab
-      active={false}
-      label="test active false"
-      onClick={[MockFunction]}
-    >
-      <Component />
-    </Tab>
-  </Nav>
+exports[`Component: Tabs ui hide inactive tabs by CSS 1`] = `
+<div>
   <div
-    className="mt-3 tab-content"
+    class="tabs"
   >
-    <Suspense
-      fallback={
-        <LoadingPage
-          className="bg-white"
-          height={200}
-        />
-      }
+    <ul
+      class="flex-nowrap nav nav-tabs nav-fill"
+      style="overflow-y: hidden;"
     >
-      <TabContent
-        active={true}
-        hideInactiveTabsBy="CSS"
-        key=".0"
-        label="test active true"
-        onClick={[MockFunction]}
+      <li
+        class="nav-item"
       >
-        <Component />
-      </TabContent>
-      <TabContent
-        active={false}
-        hideInactiveTabsBy="CSS"
-        key=".1"
-        label="test active false"
-        onClick={[MockFunction]}
+        <a
+          class="nav-link active"
+        >
+          <div
+            class="d-flex p-2 justify-content-center"
+          >
+            active tab
+          </div>
+        </a>
+      </li>
+      <li
+        class="nav-item"
       >
-        <Component />
-      </TabContent>
-    </Suspense>
+        <a
+          class="nav-link"
+        >
+          <div
+            class="d-flex p-2 justify-content-center"
+          >
+            not active tab
+          </div>
+        </a>
+      </li>
+    </ul>
+    <div
+      class="mt-3 tab-content"
+    >
+      <div
+        class="tab-pane active"
+      >
+        <p>
+          test active true
+        </p>
+      </div>
+      <div
+        class="tab-pane"
+      >
+        <p>
+          test active false
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
-exports[`Component: Tabs ui hide inactive tabs by removing from dom: Component: Tabs => ui => hide inactive tabs by removing from dom 1`] = `
-<div
-  className="tabs"
->
-  <Nav
-    className="flex-nowrap"
-    fill={true}
-    style={
-      Object {
-        "overflowY": "hidden",
-      }
-    }
-    tabs={true}
-    tag="ul"
-    vertical={false}
-  >
-    <Tab
-      active={true}
-      label="test active true"
-      onClick={[MockFunction]}
-    >
-      <Component />
-    </Tab>
-    <Tab
-      active={false}
-      label="test active false"
-      onClick={[MockFunction]}
-    >
-      <Component />
-    </Tab>
-  </Nav>
+exports[`Component: Tabs ui hide inactive tabs by removing from dom 1`] = `
+<div>
   <div
-    className="mt-3 tab-content"
+    class="tabs"
   >
-    <Suspense
-      fallback={
-        <LoadingPage
-          className="bg-white"
-          height={200}
-        />
-      }
+    <ul
+      class="flex-nowrap nav nav-tabs nav-fill"
+      style="overflow-y: hidden;"
     >
-      <TabContent
-        active={true}
-        hideInactiveTabsBy="excluding-from-dom"
-        key=".0"
-        label="test active true"
-        onClick={[MockFunction]}
+      <li
+        class="nav-item"
       >
-        <Component />
-      </TabContent>
-      <TabContent
-        active={false}
-        hideInactiveTabsBy="excluding-from-dom"
-        key=".1"
-        label="test active false"
-        onClick={[MockFunction]}
+        <a
+          class="nav-link active"
+        >
+          <div
+            class="d-flex p-2 justify-content-center"
+          >
+            active tab
+          </div>
+        </a>
+      </li>
+      <li
+        class="nav-item"
       >
-        <Component />
-      </TabContent>
-    </Suspense>
+        <a
+          class="nav-link"
+        >
+          <div
+            class="d-flex p-2 justify-content-center"
+          >
+            not active tab
+          </div>
+        </a>
+      </li>
+    </ul>
+    <div
+      class="mt-3 tab-content"
+    >
+      <div
+        class="tab-pane active"
+      >
+        <p>
+          test active true
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 `;

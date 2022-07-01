@@ -1,214 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: SearchInput ui with icon 1`] = `
-<div
-  className="search-input"
->
-  <InputGroup
-    className=""
-    tag="div"
-  >
-    <AddonIcon
-      icon="search"
-    />
-    <Input
-      defaultValue=""
-      id="1"
-      innerRef={
-        Object {
-          "current": null,
-        }
-      }
-      onChange={[Function]}
-      onKeyUp={[Function]}
-      placeholder="Search..."
-      type="search"
-    />
-  </InputGroup>
-</div>
-`;
-
-exports[`Component: SearchInput ui with icon when undefined 1`] = `
-<div
-  className="search-input"
->
-  <InputGroup
-    className=""
-    tag="div"
-  >
-    <AddonIcon
-      icon="search"
-    />
-    <Input
-      defaultValue=""
-      id="2"
-      innerRef={
-        Object {
-          "current": null,
-        }
-      }
-      onChange={[Function]}
-      onKeyUp={[Function]}
-      placeholder="Search..."
-      type="search"
-    />
-  </InputGroup>
-</div>
-`;
-
-exports[`Component: SearchInput ui with label 1`] = `
-<FormGroup
-  tag="div"
->
-  <Label
-    for="search"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Search
-  </Label>
+exports[`Component: SearchInput ui default 1`] = `
+<div>
   <div
-    className="search-input"
+    class="search-input"
   >
-    <Input
-      className=""
-      defaultValue=""
-      id="search"
-      innerRef={
-        Object {
-          "current": null,
-        }
-      }
-      onChange={[Function]}
-      onKeyUp={[Function]}
-      placeholder="Search..."
-      type="search"
-    />
+    <div
+      class="input-group"
+    >
+      <span
+        class="input-group-text"
+      >
+        <i
+          class="icon material-icons"
+        >
+          search
+        </i>
+      </span>
+      <input
+        class="form-control"
+        id="search"
+        placeholder="Search..."
+        type="search"
+        value=""
+      />
+    </div>
   </div>
-</FormGroup>
-`;
-
-exports[`Component: SearchInput ui with label and children 1`] = `
-<FormGroup
-  tag="div"
->
-  <Label
-    for="search"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Search
-  </Label>
-  <div
-    className="search-input"
-  >
-    <h1>
-      Children
-    </h1>
-  </div>
-</FormGroup>
+</div>
 `;
 
 exports[`Component: SearchInput ui with value 1`] = `
-<div
-  className="search-input"
->
-  <Icon
-    className="cancel-search"
-    icon="close"
-    onClick={[Function]}
-  />
-  <InputGroup
-    className=""
-    tag="div"
+<div>
+  <div
+    class="search-input"
   >
-    <AddonIcon
-      icon="search"
-    />
-    <Input
-      defaultValue=""
-      id="4"
-      innerRef={
-        Object {
-          "current": Object {
-            "value": "test",
-          },
-        }
-      }
-      onChange={[Function]}
-      onKeyUp={[Function]}
-      placeholder="Search..."
-      type="search"
-    />
-  </InputGroup>
-</div>
-`;
-
-exports[`Component: SearchInput ui without clear button 1`] = `
-<div
-  className="search-input"
->
-  <InputGroup
-    className=""
-    tag="div"
-  >
-    <AddonIcon
-      icon="search"
-    />
-    <Input
-      defaultValue=""
-      id="5"
-      innerRef={
-        Object {
-          "current": Object {
-            "value": "test",
-          },
-        }
-      }
-      onChange={[Function]}
-      onKeyUp={[Function]}
-      placeholder="Search..."
-      type="search"
-    />
-  </InputGroup>
-</div>
-`;
-
-exports[`Component: SearchInput ui without icon 1`] = `
-<div
-  className="search-input"
->
-  <Input
-    className=""
-    defaultValue=""
-    id="3"
-    innerRef={
-      Object {
-        "current": null,
-      }
-    }
-    onChange={[Function]}
-    onKeyUp={[Function]}
-    placeholder="Search..."
-    type="search"
-  />
+    <i
+      class="icon cancel-search material-icons clickable"
+    >
+      close
+    </i>
+    <div
+      class="input-group"
+    >
+      <span
+        class="input-group-text"
+      >
+        <i
+          class="icon material-icons"
+        >
+          search
+        </i>
+      </span>
+      <input
+        class="form-control"
+        id="search"
+        placeholder="Search..."
+        type="search"
+        value=""
+      />
+    </div>
+  </div>
 </div>
 `;

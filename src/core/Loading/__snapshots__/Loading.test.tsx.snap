@@ -1,39 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Loading ui with children: Component: Loading => ui => with children 1`] = `
-<div
-  className="d-flex"
->
-  <Spinner
-    className="align-self-center"
-    color="black"
-    size={16}
-  />
-  <span
-    className="ms-1"
+exports[`Component: Loading ui without children 1`] = `
+<div>
+  <div
+    class="d-flex"
   >
-    We are 
-    <b>
-      loading
-    </b>
-     the world!
-  </span>
-</div>
-`;
-
-exports[`Component: Loading ui without children: Component: Loading => ui => without children 1`] = `
-<div
-  className="d-flex"
->
-  <Spinner
-    className="align-self-center"
-    color="black"
-    size={16}
-  />
-  <span
-    className="ms-1"
-  >
-    Loading...
-  </span>
+    <svg
+      class="spinner align-self-center"
+      height="16"
+      viewBox="25 25 50 50"
+      width="16"
+    >
+      <circle
+        class="path"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="20"
+        stroke="black"
+        stroke-miterlimit="10"
+        stroke-width="4"
+      />
+    </svg>
+    <span
+      class="ms-1"
+    >
+      Loading...
+    </span>
+  </div>
 </div>
 `;

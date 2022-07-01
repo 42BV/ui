@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import PasswordStrength from '../PasswordStrength';
 
@@ -13,7 +13,7 @@ describe('Hook: useRules', () => {
       .mockReturnValueOnce([{ lowercase: false }, setCompliantSpy]);
     jest.spyOn(React, 'useState').mockReturnValue([0, jest.fn()]);
 
-    shallow(
+    render(
       <PasswordStrength
         rules={[
           'lowercase',

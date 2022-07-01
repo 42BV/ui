@@ -59,12 +59,21 @@ export function cropToAvatarEditorConfig(
 export function calculateScale(scale: number, delta: number): number {
   const zoomFactor = Math.max(Math.abs(delta) / 1000, 0.1);
   const nextScale = delta > 0 ? scale - zoomFactor : scale + zoomFactor;
-  const clamped = Math.min(10, Math.max(1, nextScale));
-
-  return clamped;
+  return Math.min(10, Math.max(1, nextScale));
 }
 
 // Replace any part after the last dot in the filename with .png
 export function replaceFileExtension(fileName: string): string {
   return fileName.replace(/\.[\w]+$/, '.png');
+}
+
+export function readFile(file: File, callback: (result: string) => void) {
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    /* istanbul ignore else */
+    if (typeof reader.result === 'string') {
+      callback(reader.result);
+    }
+  };
+  reader.readAsDataURL(file);
 }

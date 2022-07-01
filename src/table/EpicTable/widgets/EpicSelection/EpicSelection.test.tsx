@@ -1,59 +1,47 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { EpicSelection } from './EpicSelection';
-import { Input } from 'reactstrap';
 
 describe('Component: EpicSelection', () => {
   function setup({ checked }: { checked: boolean }) {
     const onChangeSpy = jest.fn();
 
-    const epicSelection = shallow(
+    const { container } = render(
       <EpicSelection onChange={onChangeSpy} checked={checked} />
     );
 
-    return { epicSelection, onChangeSpy };
+    return { container, onChangeSpy };
   }
 
   describe('ui', () => {
     test('is checked', () => {
-      const { epicSelection } = setup({ checked: true });
-
-      expect(toJson(epicSelection)).toMatchSnapshot();
+      const { container } = setup({ checked: true });
+      expect(container).toMatchSnapshot();
+      expect(screen.getByRole('checkbox')).toBeChecked();
     });
 
     test('is not checked', () => {
-      const { epicSelection } = setup({ checked: false });
-
-      expect(toJson(epicSelection)).toMatchSnapshot();
+      setup({ checked: false });
+      expect(screen.getByRole('checkbox')).not.toBeChecked();
     });
   });
 
   describe('events', () => {
     it('should call onChange with true when checkbox is clicked while not checked', () => {
-      const { epicSelection, onChangeSpy } = setup({ checked: false });
+      const { onChangeSpy } = setup({ checked: false });
 
-      // @ts-expect-error Test mock
-      epicSelection
-        .find(Input)
-        .props()
-        // @ts-expect-error Test mock
-        .onChange(new Event('click'));
+      fireEvent.click(screen.getByRole('checkbox'));
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith(true);
     });
 
     it('should call onChange with false when checkbox is clicked while checked', () => {
-      const { epicSelection, onChangeSpy } = setup({ checked: true });
+      const { onChangeSpy } = setup({ checked: true });
 
-      // @ts-expect-error Test mock
-      epicSelection
-        .find(Input)
-        .props()
-        // @ts-expect-error Test mock
-        .onChange(new Event('click'));
+      fireEvent.click(screen.getByRole('checkbox'));
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith(false);

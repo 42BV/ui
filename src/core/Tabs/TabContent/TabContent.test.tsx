@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import { TabContent } from './TabContent';
 import { HideInactiveTabsBy } from '../Tabs';
@@ -15,7 +14,7 @@ describe('Component: TabContent', () => {
     active: boolean;
     show?: () => boolean;
   }) {
-    const tabContent = shallow(
+    const { container } = render(
       <TabContent
         hideInactiveTabsBy={hideInactiveTabsBy}
         show={show}
@@ -25,57 +24,36 @@ describe('Component: TabContent', () => {
       </TabContent>
     );
 
-    return { tabContent };
+    return { container };
   }
 
-  describe('not active', () => {
-    it('should return null when show returns false', () => {
-      const { tabContent } = setup({
-        hideInactiveTabsBy: 'excluding-from-dom',
-        active: true,
-        show: () => false
-      });
-      expect(toJson(tabContent)).toBe('');
-    });
-
-    it('should return null when hide inactive tabs by removing from dom', () => {
-      const { tabContent } = setup({
-        hideInactiveTabsBy: 'excluding-from-dom',
-        active: false
-      });
-      expect(toJson(tabContent)).toBe('');
-    });
-
-    test('hide inactive tabs by CSS', () => {
-      const { tabContent } = setup({
-        hideInactiveTabsBy: 'CSS',
-        active: false
-      });
-
-      expect(toJson(tabContent)).toMatchSnapshot(
-        'Component: TabContent => inactive => hide inactive tabContent by CSS'
-      );
-    });
+  test('ui', () => {
+    const { container } = setup({ hideInactiveTabsBy: 'CSS', active: true });
+    expect(container).toMatchSnapshot();
   });
 
-  describe('active', () => {
-    test('hide inactive tabs by excluding from dom', () => {
-      const { tabContent } = setup({
-        hideInactiveTabsBy: 'excluding-from-dom',
-        active: true
-      });
+  it('should return null when show returns false', () => {
+    const { container } = setup({ hideInactiveTabsBy: 'excluding-from-dom', active: true, show: () => false });
+    expect(container.firstChild).toBeNull();
+  });
 
-      expect(toJson(tabContent)).toMatchSnapshot(
-        'Component: TabContent => active => hide inactive tabContent by excluding from dom'
-      );
-    });
+  it('should return null when hide inactive tabs by excluding from dom and inactive', () => {
+    const { container } = setup({ hideInactiveTabsBy: 'excluding-from-dom', active: false });
+    expect(container.firstChild).toBeNull();
+  });
 
-    test('hide inactive tabs by CSS', () => {
-      const { tabContent } = setup({ hideInactiveTabsBy: 'CSS', active: true });
+  test('should not return null when hide inactive tabs by CSS and inactive', () => {
+    const { container } = setup({ hideInactiveTabsBy: 'CSS', active: false });
+    expect(container.firstChild).not.toBeNull();
+  });
 
-      expect(toJson(tabContent)).toMatchSnapshot(
-        'Component: TabContent => active => hide inactive tabContent by CSS'
-      );
-    });
+  it('should not return null when hide inactive tabs by excluding from dom and active', () => {
+    const { container } = setup({ hideInactiveTabsBy: 'excluding-from-dom', active: true });
+    expect(container.firstChild).not.toBeNull();
+  });
+
+  it('should not return null when hide inactive tabs by CSS and active', () => {
+    const { container } = setup({ hideInactiveTabsBy: 'CSS', active: true });
+    expect(container.firstChild).not.toBeNull();
   });
 });

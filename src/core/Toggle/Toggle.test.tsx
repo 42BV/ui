@@ -1,15 +1,11 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import Toggle from './Toggle';
 import Tooltip from '../Tooltip/Tooltip';
 
 describe('Component: Toggle', () => {
-  let toggle: ShallowWrapper;
-  let onChangeSpy: jest.Mock<any, any>;
-  let onBlurSpy: jest.Mock<any, any>;
-
   function setup({
     value,
     label
@@ -17,10 +13,10 @@ describe('Component: Toggle', () => {
     value?: boolean;
     label?: React.ReactNode;
   }) {
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
 
-    toggle = shallow(
+    const { container, rerender } = render(
       <Toggle
         id="toggle"
         color="primary"
@@ -30,93 +26,101 @@ describe('Component: Toggle', () => {
         label={label}
       />
     );
+    
+    return { container, rerender, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
-    test('without label', () => {
+    test('default', () => {
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
+    });
+
+    test('checked', () => {
       setup({ value: true });
-      expect(toJson(toggle)).toMatchSnapshot(
-        'Component: Toggle => ui => without label'
-      );
+      expect(screen.getByRole('checkbox')).toBeChecked();
     });
 
     test('with text label', () => {
-      setup({ value: false, label: 'test' });
-      expect(toJson(toggle)).toMatchSnapshot(
-        'Component: Toggle => ui => with text label'
-      );
+      const { container } = setup({ value: false, label: 'test' });
+      expect(screen.getByText('test')).toBeInTheDocument();
+      expect(screen.getByLabelText('test')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     test('with custom label', () => {
       const label = <Tooltip content="Is this a test?">test</Tooltip>;
-      setup({ value: false, label });
-      expect(toJson(toggle)).toMatchSnapshot(
-        'Component: Toggle => ui => with custom label'
-      );
+      const { container } = setup({ value: false, label });
+      expect(container).toMatchSnapshot();
     });
   });
 
   describe('events', () => {
-    test('onChange', () => {
-      setup({ value: false });
-      const input = toggle.find('input');
-      // @ts-expect-error Test mock
-      input.props().onChange({ target: { checked: true } });
+    describe('onChange', () => {
+      it('should call onChange with true when unchecked', () => {
+        const { onChangeSpy } = setup({ value: false });
 
-      expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith(true);
+        expect(screen.getByRole('checkbox')).not.toBeChecked();
 
-      // @ts-expect-error Test mock
-      input.props().onChange({ target: { checked: false } });
+        fireEvent.click(screen.getByRole('checkbox'));
 
-      expect(onChangeSpy).toHaveBeenCalledTimes(2);
-      expect(onChangeSpy).toHaveBeenCalledWith(false);
+        expect(onChangeSpy).toHaveBeenCalledTimes(1);
+        expect(onChangeSpy).toHaveBeenCalledWith(true);
+      });
+
+      it('should call onChange with false when checked', () => {
+        const { onChangeSpy } = setup({ value: true });
+
+        expect(screen.getByRole('checkbox')).toBeChecked();
+
+        fireEvent.click(screen.getByRole('checkbox'));
+
+        expect(onChangeSpy).toHaveBeenCalledTimes(1);
+        expect(onChangeSpy).toHaveBeenCalledWith(false);
+      });
     });
 
     test('onBlur', () => {
-      setup({ value: true });
-      const input = toggle.find('input');
+      const { onBlurSpy } = setup({});
 
-      // @ts-expect-error Test mock
-      input.props().onBlur();
+      fireEvent.blur(screen.getByRole('checkbox'));
+
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    test('click on label should call onChange', () => {
-      setup({ value: false, label: 'test' });
-      const label = toggle.find('span').last();
+    it('should call onChange when label is clicked', () => {
+      const { onChangeSpy } = setup({ label: 'Test' });
 
-      // @ts-expect-error Test mock
-      label.props().onClick();
+      fireEvent.click(screen.getByText('Test'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(true);
     });
   });
 
-  describe('checked changes', () => {
-    test('becomes empty', () => {
-      setup({ value: false });
+  test('value changes', () => {
+    const onChange = jest.fn();
 
-      let input = toggle.find('input');
-      expect(input.props().checked).toBe(false);
+    const { rerender } = render(
+      <Toggle
+        id="toggle"
+        color="primary"
+        value={false}
+        onChange={onChange}
+      />
+    );
 
-      toggle.setProps({ value: undefined });
+    expect(screen.getByRole('checkbox')).not.toBeChecked();
 
-      input = toggle.find('input');
-      expect(input.props().checked).toBe(false);
-    });
+    rerender(
+      <Toggle
+        id="toggle"
+        color="primary"
+        value={true}
+        onChange={onChange}
+      />
+    );
 
-    test('becomes filled', () => {
-      setup({ value: undefined });
-
-      let input = toggle.find('input');
-      expect(input.props().checked).toBe(false);
-
-      toggle.setProps({ value: true });
-
-      input = toggle.find('input');
-      expect(input.props().checked).toBe(true);
-    });
+    expect(screen.getByRole('checkbox')).toBeChecked();
   });
 });

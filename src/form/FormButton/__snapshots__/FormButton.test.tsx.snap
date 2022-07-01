@@ -1,9 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: FormButton ui 1`] = `
-<Button
-  icon="save"
-  onClick={[Function]}
-  type="submit"
-/>
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="submit"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <i
+          class="icon button-icon me-2 material-icons"
+        >
+          save
+        </i>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
 `;

@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: EpicResize ui 1`] = `
-<div
-  className="epic-table-header-resizeable"
-  onMouseDown={[Function]}
-/>
+<div>
+  <div
+    class="epic-table-header-resizeable"
+    data-testid="epic-table-header-resize"
+  />
+</div>
 `;

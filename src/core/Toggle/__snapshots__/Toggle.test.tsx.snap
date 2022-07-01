@@ -1,59 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Toggle ui with custom label: Component: Toggle => ui => with custom label 1`] = `
-<span
-  className="toggle-container toggle-primary"
->
+exports[`Component: Toggle ui default 1`] = `
+<div>
   <span
-    className="toggle-label me-2"
-    onClick={[Function]}
+    class="toggle-container toggle-primary"
   >
-    <Tooltip
-      content="Is this a test?"
+    <input
+      id="toggle"
+      type="checkbox"
+    />
+  </span>
+</div>
+`;
+
+exports[`Component: Toggle ui with custom label 1`] = `
+<div>
+  <span
+    class="toggle-container toggle-primary"
+  >
+    <label
+      class="d-inline-block toggle-label me-2"
+      for="toggle"
+    >
+      <span
+        style="outline: 0;"
+        tabindex="0"
+      >
+        test
+      </span>
+    </label>
+    <input
+      id="toggle"
+      type="checkbox"
+    />
+  </span>
+</div>
+`;
+
+exports[`Component: Toggle ui with text label 1`] = `
+<div>
+  <span
+    class="toggle-container toggle-primary"
+  >
+    <label
+      class="d-inline-block toggle-label me-2"
+      for="toggle"
     >
       test
-    </Tooltip>
+    </label>
+    <input
+      id="toggle"
+      type="checkbox"
+    />
   </span>
-  <input
-    checked={false}
-    id="toggle"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    type="checkbox"
-  />
-</span>
-`;
-
-exports[`Component: Toggle ui with text label: Component: Toggle => ui => with text label 1`] = `
-<span
-  className="toggle-container toggle-primary"
->
-  <span
-    className="toggle-label me-2"
-    onClick={[Function]}
-  >
-    test
-  </span>
-  <input
-    checked={false}
-    id="toggle"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    type="checkbox"
-  />
-</span>
-`;
-
-exports[`Component: Toggle ui without label: Component: Toggle => ui => without label 1`] = `
-<span
-  className="toggle-container toggle-primary"
->
-  <input
-    checked={true}
-    id="toggle"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    type="checkbox"
-  />
-</span>
+</div>
 `;

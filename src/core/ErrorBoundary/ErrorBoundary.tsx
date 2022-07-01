@@ -9,7 +9,8 @@ type ErrorState = {
 type Props = {
   text?: {
     error: string;
-  }
+  };
+  children: React.ReactNode;
 }
 
 export class ErrorBoundary extends React.Component<Props, ErrorState> {

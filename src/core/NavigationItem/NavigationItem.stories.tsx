@@ -36,16 +36,4 @@ storiesOf('core/NavigationItem', module)
         />
       </BrowserRouter>
     );
-  })
-  .add('with exact is false', () => {
-    return (
-      <BrowserRouter>
-        <NavigationItem
-          to="/dashboard"
-          icon="dashboard"
-          text="Dashboard"
-          exact={false}
-        />
-      </BrowserRouter>
-    );
   });

@@ -1,122 +1,120 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { FavoriteIcon } from './FavoriteIcon';
 import { Color } from '../types';
+import userEvent from '@testing-library/user-event';
 
 describe('Component: FavoriteIcon', () => {
   function setup({
     value,
     color,
     hoverColor,
+    activeColor,
     size
   }: {
     value: boolean;
     color?: Color;
     hoverColor?: Color;
+    activeColor?: Color;
     size?: number;
   }) {
     const onChangeSpy = jest.fn();
 
-    const favoriteIcon = shallow(
+    const { container } = render(
       <FavoriteIcon
         onChange={onChangeSpy}
         value={value}
         color={color}
         hoverColor={hoverColor}
         size={size}
+        activeColor={activeColor}
       />
     );
 
-    return { favoriteIcon, onChangeSpy };
+    return { container, onChangeSpy };
   }
 
   describe('ui', () => {
     test('favorite', () => {
-      const { favoriteIcon } = setup({ value: true });
+      const { container } = setup({ value: true });
 
-      expect(toJson(favoriteIcon)).toMatchSnapshot(
-        'Component: FavoriteIcon => ui => favorite'
-      );
+      expect(screen.queryByText('star')).toBeInTheDocument();
+      expect(screen.queryByText('star_border')).not.toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     test('not favorite', () => {
-      const { favoriteIcon } = setup({ value: false });
+      const { container } = setup({ value: false });
 
-      expect(toJson(favoriteIcon)).toMatchSnapshot(
-        'Component: FavoriteIcon => ui => not favorite'
-      );
+      expect(screen.queryByText('star')).not.toBeInTheDocument();
+      expect(screen.queryByText('star_border')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     test('size', () => {
-      const { favoriteIcon } = setup({ value: false, size: 10 });
+      const { container } = setup({ value: false, size: 10 });
 
-      expect(favoriteIcon.find('Icon').props().size).toBe(10);
+      expect(container.firstChild).toHaveStyle({fontSize: 10});
     });
 
     test('color', () => {
-      const { favoriteIcon } = setup({ value: false, color: 'primary' });
+      const { container } = setup({ value: false, color: 'primary' });
 
-      expect(favoriteIcon.find('Icon').props().color).toBe('primary');
+      expect(container.firstChild).toHaveClass('text-primary');
+    });
+
+    test('active color', () => {
+      const { container } = setup({ value: true, color: 'primary', activeColor: 'success' });
+
+      expect(container.firstChild).toHaveClass('text-success');
     });
 
     describe('hoverColor', () => {
-      it('should use hoverColor when hoverColor is defined', () => {
-        const { favoriteIcon } = setup({
+      it('should use hoverColor when hoverColor is defined', async () => {
+        expect.assertions(1);
+
+        const { container } = setup({
           value: true,
           color: 'secondary',
           hoverColor: 'success'
         });
 
-        // @ts-expect-error Mock test
-        expect(favoriteIcon.find('Icon').props().hoverColor).toBe('success');
+        await userEvent.hover(screen.getByText('star'));
+
+        expect(container.firstChild).toHaveClass('text-success');
       });
 
-      it('should use activeColor when hoverColor is not defined', () => {
-        const { favoriteIcon } = setup({ value: true });
+      it('should use activeColor when hoverColor is not defined', async () => {
+        expect.assertions(1);
 
-        // @ts-expect-error Mock test
-        expect(favoriteIcon.find('Icon').props().hoverColor).toBe('primary');
+        const { container } = setup({ value: true });
+
+        await userEvent.hover(screen.getByText('star'));
+
+        expect(container.firstChild).toHaveClass('text-primary');
       });
     });
   });
 
   describe('events', () => {
     it('should when value is false and the icon is clicked call onChange with true', () => {
-      const { favoriteIcon, onChangeSpy } = setup({ value: false });
+      const { onChangeSpy } = setup({ value: false });
 
-      const event = {
-        preventDefault: jest.fn()
-      };
-      favoriteIcon.find('Icon').simulate('click', event);
+      fireEvent.click(screen.getByText('star_border'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(true);
     });
 
     it('should when value is true and the icon is clicked call onChange with false', () => {
-      const { favoriteIcon, onChangeSpy } = setup({ value: true });
+      const { onChangeSpy } = setup({ value: true });
 
-      const event = {
-        preventDefault: jest.fn()
-      };
-      favoriteIcon.find('Icon').simulate('click', event);
+      fireEvent.click(screen.getByText('star'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(false);
-    });
-
-    it('should prevent click callbacks in parent components from being called', () => {
-
-      const { favoriteIcon } = setup({ value: true });
-
-      const event = {
-        preventDefault: jest.fn()
-      };
-      favoriteIcon.find('Icon').simulate('click', event);
-
-      expect(event.preventDefault).toHaveBeenCalledTimes(1);
     });
   });
 });

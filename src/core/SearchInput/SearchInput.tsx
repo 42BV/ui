@@ -186,7 +186,9 @@ export default function SearchInput(props: Props) {
     id: innerId,
     innerRef: inputRef,
     defaultValue,
-    onChange: (event) => handleChange.current(event.target.value),
+    onChange: (event) => {
+      handleChange.current(event.target.value)
+    },
     onKeyUp: handleKeyUp,
     placeholder: placeholder,
     type: 'search'

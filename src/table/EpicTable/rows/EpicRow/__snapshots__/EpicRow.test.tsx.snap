@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: EpicRow is header row 1`] = `
-<Fragment>
-  <Component />
-</Fragment>
+<div>
+  <h1>
+    children
+  </h1>
+</div>
 `;
-
-exports[`Component: EpicRow is regular row 1`] = `ShallowWrapper {}`;

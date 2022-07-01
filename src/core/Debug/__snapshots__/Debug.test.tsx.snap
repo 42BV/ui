@@ -1,13 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: Debug ui 1`] = `
-<CardOpenClose
-  header="DEBUG"
-  isOpen={true}
-  toggle={[Function]}
->
-  <Component />
-</CardOpenClose>
+<div>
+  <div
+    class="my-2 card"
+  >
+    <div
+      class="d-flex justify-content-between align-content-center clickable card-header"
+    >
+      DEBUG
+      <i
+        class="icon open-close is-open material-icons"
+      >
+        expand_more
+      </i>
+    </div>
+    <pre>
+      {
+  "property": "test"
+}
+    </pre>
+  </div>
+</div>
 `;
-
-exports[`Component: Debug ui 2`] = `undefined`;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import SubmitButton, { Props } from './SubmitButton';
 
@@ -8,25 +8,23 @@ import * as useScrollToClosestError from './useScrollToClosestError';
 
 describe('Component: SubmitButton', () => {
   function setup(
-    { hasOnClick = true }: { hasOnClick: boolean },
+    { hasOnClick = true, inProgress = false }: { hasOnClick: boolean; inProgress?: boolean },
     props?: Partial<Props>
   ) {
     const doScrollToClosestErrorSpy = jest.fn();
 
     jest
       .spyOn(useScrollToClosestError, 'useScrollToClosestError')
-      .mockImplementation(() => {
-        return {
-          doScrollToClosestError: doScrollToClosestErrorSpy
-        };
+      .mockReturnValue({
+        doScrollToClosestError: doScrollToClosestErrorSpy
       });
 
     const onClickSpy = jest.fn();
 
-    const submitButton = shallow(
+    const { container } = render(
       <SubmitButton
         onClick={hasOnClick ? onClickSpy : undefined}
-        inProgress={true}
+        inProgress={inProgress}
         {...props}
       >
         Submit
@@ -42,20 +40,18 @@ describe('Component: SubmitButton', () => {
       enabled
     });
 
-    return { submitButton, onClickSpy, doScrollToClosestErrorSpy };
+    return { container, onClickSpy, doScrollToClosestErrorSpy };
   }
 
   describe('ui', () => {
     test('with all required props', () => {
-      const { submitButton } = setup({ hasOnClick: true });
+      const { container } = setup({ hasOnClick: true });
 
-      expect(toJson(submitButton)).toMatchSnapshot(
-        'Component: SubmitButton => ui => with all required props'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('with all optional params', () => {
-      const { submitButton } = setup(
+      const { container } = setup(
         {
           hasOnClick: true
         },
@@ -66,58 +62,51 @@ describe('Component: SubmitButton', () => {
         }
       );
 
-      expect(toJson(submitButton)).toMatchSnapshot(
-        'Component: SubmitButton => ui => with all optional params'
-      );
+      expect(container.firstChild).toHaveClass('extra-css-class');
+      expect(screen.getByRole('button')).toHaveClass('btn-lg');
+      expect(screen.queryByText('360')).toBeInTheDocument();
+      expect(screen.queryByText('save')).not.toBeInTheDocument();
+    });
+
+    test('in progress', () => {
+      const { container } = setup({ hasOnClick: true, inProgress: true });
+
+      expect(container).toMatchSnapshot();
     });
   });
 
   describe('events', () => {
     it('should when the button is clicked call onClick and scroll to closest error', () => {
-      const { submitButton, onClickSpy, doScrollToClosestErrorSpy } = setup({
+      const { onClickSpy, doScrollToClosestErrorSpy } = setup({
         hasOnClick: true
       });
 
-      const event = new Event('click');
-
-      // @ts-expect-error Test mock
-      submitButton.find('Button').props().onClick(event);
+      fireEvent.click(screen.getByText('Submit'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
-      expect(onClickSpy).toHaveBeenCalledWith(event);
-
       expect(doScrollToClosestErrorSpy).toBeCalledTimes(1);
     });
 
     it('should when the button is clicked even when there is no onClick scroll to closest error', () => {
-      const { submitButton, onClickSpy, doScrollToClosestErrorSpy } = setup({
+      const { onClickSpy, doScrollToClosestErrorSpy } = setup({
         hasOnClick: false
       });
 
-      const event = new Event('click');
-
-      // @ts-expect-error Test mock
-      submitButton.find('Button').props().onClick(event);
+      fireEvent.click(screen.getByText('Submit'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(0);
-
       expect(doScrollToClosestErrorSpy).toBeCalledTimes(1);
     });
 
     it('should when the button is clicked always call doScrollToClosestErrorSpy even when scrollToClosestError is false', () => {
-      const { submitButton, onClickSpy, doScrollToClosestErrorSpy } = setup(
+      const { onClickSpy, doScrollToClosestErrorSpy } = setup(
         { hasOnClick: true },
         { scrollToClosestError: false }
       );
 
-      const event = new Event('click');
-
-      // @ts-expect-error Test mock
-      submitButton.find('Button').props().onClick(event);
+      fireEvent.click(screen.getByText('Submit'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
-      expect(onClickSpy).toHaveBeenCalledWith(event);
-
       expect(doScrollToClosestErrorSpy).toBeCalledTimes(1);
     });
   });

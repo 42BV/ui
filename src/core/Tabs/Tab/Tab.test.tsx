@@ -1,12 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Tab } from './Tab';
 
 describe('Component: Tab', () => {
   function setup({
-    active = true,
+    active = false,
     hasIcon,
     hasIconColor,
     show,
@@ -21,7 +21,7 @@ describe('Component: Tab', () => {
     const onClickSpy = jest.fn();
     const showSpy = jest.fn().mockReturnValue(show);
 
-    const tab = shallow(
+    const { container } = render(
       <Tab
         active={active}
         label="test"
@@ -35,59 +35,65 @@ describe('Component: Tab', () => {
       </Tab>
     );
 
-    return { tab, onClickSpy, showSpy };
+    return { container, onClickSpy, showSpy };
   }
 
   it('should return null when show returns false', () => {
-    const { tab, showSpy } = setup({ show: false });
+    const { container, showSpy } = setup({ show: false });
 
     expect(showSpy).toHaveBeenCalledTimes(1);
-    expect(toJson(tab)).toBe('');
+    expect(container.firstChild).toBeNull();
   });
 
   describe('ui', () => {
-    test('without icon', () => {
-      const { tab } = setup({});
+    test('default', () => {
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
+    });
 
-      expect(toJson(tab)).toMatchSnapshot(
-        'Component: Tab => ui => without icon'
-      );
+    test('without icon', () => {
+      setup({});
+      expect(screen.queryByText('close')).not.toBeInTheDocument();
     });
 
     test('with icon', () => {
-      const { tab } = setup({ hasIcon: true });
-
-      expect(toJson(tab)).toMatchSnapshot('Component: Tab => ui => with icon');
+      setup({ hasIcon: true });
+      expect(screen.queryByText('close')).toBeInTheDocument();
     });
 
     test('icon color', () => {
-      const { tab } = setup({ hasIcon: true, hasIconColor: true });
+      setup({ hasIcon: true, hasIconColor: true });
+      expect(screen.getByText('close')).toHaveClass('text-primary');
+    });
 
-      expect(tab.find('Icon').props().color).toBe('primary');
+    test('active', () => {
+      const { container } = setup({ active: true });
+      expect(container.firstChild?.firstChild).toHaveClass('active');
     });
 
     test('not active', () => {
-      const { tab } = setup({ active: false });
-
-      // @ts-expect-error Test mock
-      expect(tab.find('NavLink').props().active).toBe(false);
+      const { container } = setup({});
+      expect(container.firstChild?.firstChild).not.toHaveClass('active');
     });
 
-    test('not active', () => {
-      const { tab } = setup({ active: false, disabled: true });
+    test('disabled', () => {
+      const { container } = setup({ disabled: true });
+      expect(container.firstChild).toHaveClass('disabled');
+    });
 
-      expect(tab.find('NavLink').props().disabled).toBe(true);
+    test('not disabled', () => {
+      const { container } = setup({ disabled: false });
+      expect(container.firstChild).not.toHaveClass('disabled');
     });
   });
 
   describe('events', () => {
     it('should call onClick when NavLink is clicked', () => {
-      const { tab, onClickSpy } = setup({});
+      const { onClickSpy } = setup({});
 
       expect(onClickSpy).toHaveBeenCalledTimes(0);
 
-      // @ts-expect-error Test mock
-      tab.find('NavLink').props().onClick();
+      fireEvent.click(screen.getByText('test'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
     });

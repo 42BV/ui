@@ -1,27 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: SubmitButton ui with all optional params: Component: SubmitButton => ui => with all optional params 1`] = `
-<Button
-  className="extra-css-class"
-  color="primary"
-  icon="360"
-  inProgress={true}
-  onClick={[Function]}
-  size="lg"
-  type="submit"
->
-  Submit
-</Button>
+exports[`Component: SubmitButton ui in progress 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="submit"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <svg
+          class="spinner me-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke="white"
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+        Submit
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
-exports[`Component: SubmitButton ui with all required props: Component: SubmitButton => ui => with all required props 1`] = `
-<Button
-  color="primary"
-  icon="save"
-  inProgress={true}
-  onClick={[Function]}
-  type="submit"
->
-  Submit
-</Button>
+exports[`Component: SubmitButton ui with all required props 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="submit"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <i
+          class="icon button-icon me-2 material-icons"
+        >
+          save
+        </i>
+        Submit
+      </div>
+    </button>
+  </span>
+</div>
 `;

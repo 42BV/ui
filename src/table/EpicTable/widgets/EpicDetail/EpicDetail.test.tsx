@@ -1,46 +1,35 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import { EpicDetail } from './EpicDetail';
-import { Icon } from '../../../../core/Icon';
+import { fireEvent, screen } from '@testing-library/react';
 
 describe('Component: EpicDetail', () => {
   function setup() {
     const onCloseSpy = jest.fn();
 
-    function children() {
-      return <h1>children</h1>;
-    }
 
-    const epicDetail = shallow(
-      <EpicDetail onClose={onCloseSpy}>{children}</EpicDetail>
+    const { container } = render(
+      <EpicDetail onClose={onCloseSpy}>
+        <h1>children</h1>
+      </EpicDetail>
     );
 
-    return { epicDetail, onCloseSpy };
+    return { container, onCloseSpy };
   }
 
   test('ui', () => {
-    const { epicDetail } = setup();
-
-    expect(toJson(epicDetail)).toMatchSnapshot();
+    const { container } = setup();
+    expect(container).toMatchSnapshot();
   });
 
   describe('events', () => {
     it('should call the onClose callback when the close button is clicked', () => {
-      const { epicDetail, onCloseSpy } = setup();
+      const { onCloseSpy } = setup();
 
-      const event = new MouseEvent('click');
-
-      // @ts-expect-error Test mock
-      epicDetail
-        .find(Icon)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick(event);
+      fireEvent.click(screen.getByText('close'));
 
       expect(onCloseSpy).toBeCalledTimes(1);
-      expect(onCloseSpy).toBeCalledWith(event);
     });
   });
 });

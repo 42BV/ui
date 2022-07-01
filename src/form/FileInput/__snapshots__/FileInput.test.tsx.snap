@@ -1,199 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: FileInput ui empty value: Component: FileInput => ui => empty value 1`] = `
-<FormGroup
-  className="file-upload "
-  color="success"
-  tag="div"
->
-  <Label
-    for="file-upload-with-button"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: FileInput ui with value 1`] = `
+<div>
+  <div
+    class="file-upload  mb-3"
+    color="success"
   >
-    Upload a file here
-  </Label>
-  <input
-    accept="text/plain"
-    id="file-upload-with-button"
-    onChange={[Function]}
-    onClick={[Function]}
-    type="file"
-  />
-  <InputGroup
-    tag="div"
-  >
-    <Input
-      invalid={true}
-      onChange={[Function]}
-      placeholder="Upload a file here"
-      type="text"
-      value=""
-    />
-    <AddonButton
-      color="danger"
-      onClick={[Function]}
-      position="right"
+    <label
+      class="form-label"
+      for="file-upload-with-button"
     >
-      <Icon
-        className="d-block"
-        icon="cloud_upload"
-      />
-    </AddonButton>
-  </InputGroup>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: FileInput ui with value: Component: FileInput => ui => with value 1`] = `
-<FormGroup
-  className="file-upload "
-  color="success"
-  tag="div"
->
-  <Label
-    for="file-upload-with-button"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Upload a file here
-  </Label>
-  <input
-    accept="text/plain"
-    id="file-upload-with-button"
-    onChange={[Function]}
-    onClick={[Function]}
-    type="file"
-  />
-  <InputGroup
-    tag="div"
-  >
-    <Input
-      onChange={[Function]}
-      placeholder="Upload a file here"
-      type="text"
-      value="maarten.png"
+      Upload a file here
+    </label>
+    <input
+      accept="text/plain"
+      id="file-upload-with-button"
+      type="file"
     />
-    <AddonButton
-      color="danger"
-      onClick={[Function]}
-      position="right"
+    <div
+      class="input-group"
     >
-      <Icon
-        className="d-block"
-        icon="delete"
+      <input
+        class="form-control"
+        placeholder="Upload a file here"
+        type="text"
+        value="maarten.png"
       />
-    </AddonButton>
-  </InputGroup>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: FileInput ui without label: Component: FileInput => ui => without label 1`] = `
-<FormGroup
-  className="file-upload "
-  color="success"
-  tag="div"
->
-  <input
-    accept="text/plain"
-    id="1"
-    onChange={[Function]}
-    onClick={[Function]}
-    type="file"
-  />
-  <InputGroup
-    tag="div"
-  >
-    <Input
-      invalid={true}
-      onChange={[Function]}
-      placeholder="Upload a file here"
-      type="text"
-      value=""
-    />
-    <AddonButton
-      color="danger"
-      onClick={[Function]}
-      position="right"
-    >
-      <Icon
-        className="d-block"
-        icon="cloud_upload"
-      />
-    </AddonButton>
-  </InputGroup>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: FileInput ui without placeholder: Component: FileInput => ui => without placeholder 1`] = `
-<FormGroup
-  className="file-upload "
-  color="success"
-  tag="div"
->
-  <Label
-    for="file-upload-with-button"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Upload a file here
-  </Label>
-  <input
-    accept="text/plain"
-    id="file-upload-with-button"
-    onChange={[Function]}
-    onClick={[Function]}
-    type="file"
-  />
-  <InputGroup
-    tag="div"
-  >
-    <Input
-      invalid={true}
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-    <AddonButton
-      color="danger"
-      onClick={[Function]}
-      position="right"
-    >
-      <Icon
-        className="d-block"
-        icon="cloud_upload"
-      />
-    </AddonButton>
-  </InputGroup>
-  Some error
-</FormGroup>
+      <button
+        class="btn btn-danger"
+        tabindex="-1"
+        type="button"
+      >
+        <i
+          class="icon d-block material-icons"
+        >
+          delete
+        </i>
+      </button>
+    </div>
+    Some error
+  </div>
+</div>
 `;

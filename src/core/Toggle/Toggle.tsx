@@ -64,9 +64,9 @@ export default function Toggle({
   return (
     <span className={toggleClasses}>
       {label ? (
-        <span className="toggle-label me-2" onClick={() => onChange(!value)}>
+        <label className="d-inline-block toggle-label me-2" htmlFor={id}>
           {label}
-        </span>
+        </label>
       ) : null}
       <input
         id={id}

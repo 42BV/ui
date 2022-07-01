@@ -1,32 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: AvatarsStack ui: Component: AvatarsStack => ui 1`] = `
-<div
-  className="avatar-stack"
->
-  <Avatar
-    alt="Picture 1"
-    key="1"
-    size="xs"
-    src="http://lorempixel.com/200/200"
-  />
-  <Avatar
-    alt="Picture 2"
-    key="2"
-    size="sm"
-    src="http://lorempixel.com/200/200"
-  />
-  <Avatar
-    alt="Picture 3"
-    key="3"
-    size="md"
-    src="http://lorempixel.com/200/200"
-  />
-  <Avatar
-    alt="Picture 4"
-    key="4"
-    size="lg"
-    src="http://lorempixel.com/200/200"
-  />
+exports[`Component: AvatarsStack ui 1`] = `
+<div>
+  <div
+    class="avatar-stack"
+  >
+    <span
+      class="avatar avatar-xs"
+    >
+      <span
+        style="outline: 0;"
+        tabindex="0"
+      >
+        <span
+          class="img-placeholder"
+        >
+          <img
+            alt="Picture 1"
+            src="http://lorempixel.com/200/200"
+          />
+        </span>
+      </span>
+    </span>
+    <span
+      class="avatar avatar-sm"
+    >
+      <span
+        style="outline: 0;"
+        tabindex="0"
+      >
+        <span
+          class="img-placeholder"
+        >
+          <img
+            alt="Picture 2"
+            src="http://lorempixel.com/200/200"
+          />
+        </span>
+      </span>
+    </span>
+    <span
+      class="avatar avatar-md"
+    >
+      <span
+        style="outline: 0;"
+        tabindex="0"
+      >
+        <span
+          class="img-placeholder"
+        >
+          <img
+            alt="Picture 3"
+            src="http://lorempixel.com/200/200"
+          />
+        </span>
+      </span>
+    </span>
+    <span
+      class="avatar avatar-lg"
+    >
+      <span
+        style="outline: 0;"
+        tabindex="0"
+      >
+        <span
+          class="img-placeholder"
+        >
+          <img
+            alt="Picture 4"
+            src="http://lorempixel.com/200/200"
+          />
+        </span>
+      </span>
+    </span>
+  </div>
 </div>
 `;

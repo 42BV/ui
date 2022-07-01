@@ -1,124 +1,652 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: AsyncContent deprecated React Async when fulfilled when empty 1`] = `
-<ContentState
-  mode="empty"
-  title="No results found"
-/>
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state empty"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          laptop
+        </i>
+      </div>
+    </div>
+    <h4>
+      No results found
+    </h4>
+  </div>
+</div>
 `;
 
 exports[`Component: AsyncContent deprecated React Async when fulfilled when empty with custom empty  1`] = `
-<Fragment>
+<div>
   <h1>
     Custom renderer
   </h1>
-</Fragment>
+</div>
 `;
 
 exports[`Component: AsyncContent deprecated React Async when fulfilled when not empty 1`] = `
-<Fragment>
+<div>
   <h2>
     importantos data
   </h2>
-</Fragment>
+</div>
 `;
 
 exports[`Component: AsyncContent deprecated React Async when rejected should not render when showRetryButton is undefined 1`] = `
-<ContentState
-  mode="error"
-  title="Oops something went wrong!"
->
-  <Button
-    icon="refresh"
-    onClick={[Function]}
+<div>
+  <div
+    class="text-center"
   >
-    Retry
-  </Button>
-</ContentState>
+    <div
+      class="content-state error"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
+    </div>
+    <h4>
+      Oops something went wrong!
+    </h4>
+    <span
+      class="button d-inline-block primary"
+    >
+      <button
+        class="btn btn-primary btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          <i
+            class="icon button-icon me-2 material-icons"
+          >
+            refresh
+          </i>
+          Retry
+        </div>
+      </button>
+    </span>
+  </div>
+</div>
 `;
 
 exports[`Component: AsyncContent deprecated React Async when rejected with retry button 1`] = `
-<ContentState
-  mode="error"
-  title="Oops something went wrong!"
->
-  <Button
-    icon="refresh"
-    onClick={[Function]}
+<div>
+  <div
+    class="text-center"
   >
-    Retry
-  </Button>
-</ContentState>
+    <div
+      class="content-state error"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
+    </div>
+    <h4>
+      Oops something went wrong!
+    </h4>
+    <span
+      class="button d-inline-block primary"
+    >
+      <button
+        class="btn btn-primary btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          <i
+            class="icon button-icon me-2 material-icons"
+          >
+            refresh
+          </i>
+          Retry
+        </div>
+      </button>
+    </span>
+  </div>
+</div>
 `;
 
 exports[`Component: AsyncContent deprecated React Async when rejected without retry button 1`] = `
-<ContentState
-  mode="error"
-  title="Oops something went wrong!"
-/>
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state error"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
+    </div>
+    <h4>
+      Oops something went wrong!
+    </h4>
+  </div>
+</div>
 `;
 
 exports[`Component: AsyncContent when fulfilled when empty 1`] = `
-<ContentState
-  mode="empty"
-  title="No results found"
-/>
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state empty"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          laptop
+        </i>
+      </div>
+    </div>
+    <h4>
+      No results found
+    </h4>
+  </div>
+</div>
 `;
 
 exports[`Component: AsyncContent when fulfilled when empty with custom empty  1`] = `
-<Fragment>
+<div>
   <h1>
     Custom renderer
   </h1>
-</Fragment>
+</div>
 `;
 
 exports[`Component: AsyncContent when fulfilled when not empty 1`] = `
-<Fragment>
+<div>
   <h2>
     importantos data
   </h2>
-</Fragment>
+</div>
 `;
 
 exports[`Component: AsyncContent when loading 1`] = `
-<ContentState
-  mode="loading"
-  title="Loading..."
-/>
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state loading"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <svg
+          class="spinner mb-2"
+          height="75"
+          viewBox="25 25 50 50"
+          width="75"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke="#f0ad4e"
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+      </div>
+    </div>
+    <h4>
+      Loading...
+    </h4>
+  </div>
+</div>
 `;
 
 exports[`Component: AsyncContent when rejected should not render when showRetryButton is undefined 1`] = `
-<ContentState
-  mode="error"
-  title="Oops something went wrong!"
->
-  <Button
-    icon="refresh"
-    onClick={[Function]}
+<div>
+  <div
+    class="text-center"
   >
-    Retry
-  </Button>
-</ContentState>
+    <div
+      class="content-state error"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
+    </div>
+    <h4>
+      Oops something went wrong!
+    </h4>
+    <span
+      class="button d-inline-block primary"
+    >
+      <button
+        class="btn btn-primary btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          <i
+            class="icon button-icon me-2 material-icons"
+          >
+            refresh
+          </i>
+          Retry
+        </div>
+      </button>
+    </span>
+  </div>
+</div>
 `;
 
 exports[`Component: AsyncContent when rejected with retry button 1`] = `
-<ContentState
-  mode="error"
-  title="Oops something went wrong!"
->
-  <Button
-    icon="refresh"
-    onClick={[Function]}
+<div>
+  <div
+    class="text-center"
   >
-    Retry
-  </Button>
-</ContentState>
+    <div
+      class="content-state error"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
+    </div>
+    <h4>
+      Oops something went wrong!
+    </h4>
+    <span
+      class="button d-inline-block primary"
+    >
+      <button
+        class="btn btn-primary btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          <i
+            class="icon button-icon me-2 material-icons"
+          >
+            refresh
+          </i>
+          Retry
+        </div>
+      </button>
+    </span>
+  </div>
+</div>
 `;
 
 exports[`Component: AsyncContent when rejected without retry button 1`] = `
-<ContentState
-  mode="error"
-  title="Oops something went wrong!"
-/>
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state error"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          sentiment_very_dissatisfied
+        </i>
+      </div>
+    </div>
+    <h4>
+      Oops something went wrong!
+    </h4>
+  </div>
+</div>
 `;

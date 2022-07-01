@@ -1,37 +1,39 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { Debug } from './Debug';
 
 describe('Component: Debug', () => {
   function setup({ defaultOpen }: { defaultOpen?: boolean }) {
-    const debug = shallow(
+    const { container } = render(
       <Debug value={{ property: 'test' }} defaultOpen={defaultOpen} />
     );
-    return { debug };
+    return { container };
   }
 
   test('ui', () => {
-    const { debug } = setup({});
+    const { container } = setup({});
 
-    expect(toJson(debug)).toMatchSnapshot();
-    expect(toJson(debug.props().children())).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it('should start closed when open is false', () => {
-    const { debug } = setup({ defaultOpen: false });
-    expect(debug.props().isOpen).toBe(false);
+    setup({ defaultOpen: false });
+
+    expect(screen.queryByText('{ "property": "test" }')).not.toBeInTheDocument();
   });
 
   it('should start open when open is true', () => {
-    const { debug } = setup({ defaultOpen: true });
-    expect(debug.props().isOpen).toBe(true);
+    setup({ defaultOpen: true });
+
+    expect(screen.queryByText('{ "property": "test" }')).toBeInTheDocument();
   });
 
   it('should start open when open is undefined', () => {
-    const { debug } = setup({});
-    expect(debug.props().isOpen).toBe(true);
+    setup({});
+
+    expect(screen.queryByText('{ "property": "test" }')).toBeInTheDocument();
   });
 
   describe('events', () => {
@@ -39,9 +41,9 @@ describe('Component: Debug', () => {
       const setIsOpenSpy = jest.fn();
       jest.spyOn(React, 'useState').mockReturnValue([true, setIsOpenSpy]);
 
-      const { debug } = setup({});
+      setup({});
 
-      debug.props().toggle();
+      fireEvent.click(screen.getByText('expand_more'));
 
       expect(setIsOpenSpy).toHaveBeenCalledTimes(1);
       expect(setIsOpenSpy).toHaveBeenCalledWith(false);

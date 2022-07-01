@@ -612,6 +612,7 @@ storiesOf('table/CrudTable', module)
           ) : undefined}
           page={pageOfPersons}
           pageChanged={setPage}
+          onSearch={(value) => filterChanged('firstName', value)}
         >
           <EpicRow header>
             {Object.keys(columns).filter(column => column !== 'dateOfBirth').map(((column: keyof Person) => (
