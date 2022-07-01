@@ -1,454 +1,358 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ImageUpload ui edit as circle: Component: ImageUpload => ui => edit as circle 1`] = `
+exports[`Component: ImageUpload ui edit as circle 1`] = `
 <div>
-  <FormGroup
-    className="img-upload"
-    color="success"
-    tag="div"
-  >
-    <Label
-      for="image-uploader"
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      Profile photo
-    </Label>
+  <div>
     <div
-      className="d-flex justify-content-center"
+      class="img-upload mb-3"
+      color="success"
     >
-      <div
-        onWheel={[Function]}
+      <label
+        class="form-label"
+        for="image-uploader"
       >
-        <a
-          border={25}
-          borderRadius={9000000}
-          color={
-            Array [
-              0,
-              0,
-              0,
-              0.5,
-            ]
-          }
-          disableBoundaryChecks={false}
-          disableCanvasRotation={true}
-          disableHiDPIScaling={false}
-          height={250}
-          image="maarten.png"
-          onImageChange={[Function]}
-          onImageReady={[Function]}
-          onLoadFailure={[Function]}
-          onLoadSuccess={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
-          onPositionChange={[Function]}
-          rotate={0}
-          scale={1}
-          width={250}
+        Profile photo
+      </label>
+      <div
+        class="d-flex justify-content-center"
+      >
+        <div
+          data-testid="scroll-scale"
+        >
+          <canvas
+            height="300"
+            style="width: 300px; height: 300px; cursor: grab;"
+            width="300"
+          />
+        </div>
+      </div>
+      <div
+        class="d-flex justify-content-center mt-1 mb-3"
+      >
+        <span
+          class="button mt-2 secondary d-inline-block"
+        >
+          <i
+            class="icon material-icons text-secondary clickable"
+            style="font-size: 24px;"
+          >
+            rotate_left
+          </i>
+        </span>
+        <span
+          class="button ms-1 mt-2 secondary d-inline-block"
+        >
+          <i
+            class="icon material-icons text-secondary clickable"
+            style="font-size: 24px;"
+          >
+            rotate_right
+          </i>
+        </span>
+        <span
+          class="button d-inline-block ms-3 secondary"
+        >
+          <button
+            class="btn btn-secondary btn-md"
+            type="button"
+          >
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <i
+                class="icon button-icon me-2 material-icons"
+              >
+                cancel
+              </i>
+              Cancel
+            </div>
+          </button>
+        </span>
+        <span
+          class="button d-inline-block ms-1 primary"
+        >
+          <button
+            class="btn btn-primary btn-md"
+            type="button"
+          >
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <i
+                class="icon button-icon me-2 material-icons"
+              >
+                done
+              </i>
+              Done
+            </div>
+          </button>
+        </span>
+      </div>
+      Some error
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Component: ImageUpload ui edit as rect 1`] = `
+<div>
+  <div>
+    <div
+      class="img-upload mb-3"
+      color="success"
+    >
+      <label
+        class="form-label"
+        for="image-uploader"
+      >
+        Profile photo
+      </label>
+      <div
+        class="d-flex justify-content-center"
+      >
+        <div
+          data-testid="scroll-scale"
+        >
+          <canvas
+            height="550"
+            style="width: 550px; height: 550px; cursor: grab;"
+            width="550"
+          />
+        </div>
+      </div>
+      <div
+        class="d-flex justify-content-center mt-1 mb-3"
+      >
+        <span
+          class="button mt-2 secondary d-inline-block"
+        >
+          <i
+            class="icon material-icons text-secondary clickable"
+            style="font-size: 24px;"
+          >
+            rotate_left
+          </i>
+        </span>
+        <span
+          class="button ms-1 mt-2 secondary d-inline-block"
+        >
+          <i
+            class="icon material-icons text-secondary clickable"
+            style="font-size: 24px;"
+          >
+            rotate_right
+          </i>
+        </span>
+        <span
+          class="button d-inline-block ms-3 secondary"
+        >
+          <button
+            class="btn btn-secondary btn-md"
+            type="button"
+          >
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <i
+                class="icon button-icon me-2 material-icons"
+              >
+                cancel
+              </i>
+              Cancel
+            </div>
+          </button>
+        </span>
+        <span
+          class="button d-inline-block ms-1 primary"
+        >
+          <button
+            class="btn btn-primary btn-md"
+            type="button"
+          >
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <i
+                class="icon button-icon me-2 material-icons"
+              >
+                done
+              </i>
+              Done
+            </div>
+          </button>
+        </span>
+      </div>
+      Some error
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Component: ImageUpload ui file-selected as circle 1`] = `
+<div>
+  <div>
+    <div
+      class="img-upload mb-3"
+      color="success"
+    >
+      <label
+        class="form-label"
+        for="image-uploader"
+      >
+        Profile photo
+      </label>
+      <div
+        class="d-flex justify-content-center"
+      >
+        <img
+          alt="Profile photo"
+          class="img-fluid elevated-3"
+          src=""
+          style="border-radius: 50%;"
         />
       </div>
+      <div
+        class="text-center mt-1 mb-3"
+      >
+        <span
+          class="button d-inline-block primary"
+        >
+          <button
+            class="btn btn-primary btn-md"
+            type="button"
+          >
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <i
+                class="icon button-icon me-2 material-icons"
+              >
+                camera_roll
+              </i>
+              Change
+            </div>
+          </button>
+        </span>
+        <span
+          class="button d-inline-block ms-1 danger"
+        >
+          <button
+            class="btn btn-danger btn-md"
+            type="button"
+          >
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <i
+                class="icon button-icon me-2 material-icons"
+              >
+                delete
+              </i>
+              Remove
+            </div>
+          </button>
+        </span>
+      </div>
+      Some error
     </div>
-    <FormGroup
-      className="d-flex justify-content-center mt-1"
-      tag="div"
-    >
-      <Button
-        className="mt-2"
-        color="secondary"
-        icon="rotate_left"
-        onClick={[Function]}
-      />
-      <Button
-        className="ms-1 mt-2"
-        color="secondary"
-        icon="rotate_right"
-        onClick={[Function]}
-      />
-      <Button
-        className="ms-3"
-        color="secondary"
-        icon="cancel"
-        onClick={[Function]}
-      >
-        Cancel
-      </Button>
-      <Button
-        className="ms-1"
-        color="primary"
-        icon="done"
-        onClick={[Function]}
-      >
-        Done
-      </Button>
-    </FormGroup>
-    Some error
-  </FormGroup>
+  </div>
 </div>
 `;
 
-exports[`Component: ImageUpload ui edit as rect: Component: ImageUpload => ui => edit as rect 1`] = `
+exports[`Component: ImageUpload ui file-selected as rect 1`] = `
 <div>
-  <FormGroup
-    className="img-upload"
-    color="success"
-    tag="div"
-  >
-    <Label
-      for="image-uploader"
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      Profile photo
-    </Label>
+  <div>
     <div
-      className="d-flex justify-content-center"
+      class="img-upload mb-3"
+      color="success"
     >
       <div
-        onWheel={[Function]}
+        class="d-flex justify-content-center"
       >
-        <a
-          border={25}
-          borderRadius={0}
-          color={
-            Array [
-              0,
-              0,
-              0,
-              0.5,
-            ]
-          }
-          disableBoundaryChecks={false}
-          disableCanvasRotation={true}
-          disableHiDPIScaling={false}
-          height={500}
-          image="maarten.png"
-          onImageChange={[Function]}
-          onImageReady={[Function]}
-          onLoadFailure={[Function]}
-          onLoadSuccess={[Function]}
-          onMouseMove={[Function]}
-          onMouseUp={[Function]}
-          onPositionChange={[Function]}
-          rotate={0}
-          scale={1}
-          width={500}
+        <img
+          alt=""
+          class="img-fluid elevated-3"
+          src=""
+          style="border-radius: 0;"
         />
       </div>
+      <div
+        class="text-center mt-1 mb-3"
+      >
+        <span
+          class="button d-inline-block primary"
+        >
+          <button
+            class="btn btn-primary btn-md"
+            type="button"
+          >
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <i
+                class="icon button-icon me-2 material-icons"
+              >
+                camera_roll
+              </i>
+              Change
+            </div>
+          </button>
+        </span>
+        <span
+          class="button d-inline-block ms-1 danger"
+        >
+          <button
+            class="btn btn-danger btn-md"
+            type="button"
+          >
+            <div
+              class="d-flex justify-content-center align-items-center"
+            >
+              <i
+                class="icon button-icon me-2 material-icons"
+              >
+                delete
+              </i>
+              Remove
+            </div>
+          </button>
+        </span>
+      </div>
+      Some error
     </div>
-    <FormGroup
-      className="d-flex justify-content-center mt-1"
-      tag="div"
-    >
-      <Button
-        className="mt-2"
-        color="secondary"
-        icon="rotate_left"
-        onClick={[Function]}
-      />
-      <Button
-        className="ms-1 mt-2"
-        color="secondary"
-        icon="rotate_right"
-        onClick={[Function]}
-      />
-      <Button
-        className="ms-3"
-        color="secondary"
-        icon="cancel"
-        onClick={[Function]}
-      >
-        CANCEL
-      </Button>
-      <Button
-        className="ms-1"
-        color="primary"
-        icon="done"
-        onClick={[Function]}
-      >
-        DONE
-      </Button>
-    </FormGroup>
-    Some error
-  </FormGroup>
+  </div>
 </div>
 `;
 
-exports[`Component: ImageUpload ui file-selected as circle: Component: ImageUpload => ui => file-selected as circle 1`] = `
+exports[`Component: ImageUpload ui no-file 1`] = `
 <div>
-  <FormGroup
-    className="img-upload"
-    color="success"
-    tag="div"
-  >
-    <Label
-      for="image-uploader"
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      Profile photo
-    </Label>
+  <div>
     <div
-      className="d-flex justify-content-center"
+      class="img-upload mb-3"
+      color="success"
     >
-      <img
-        alt="Profile photo"
-        className="img-fluid elevated-3"
-        src="maarten.png"
-        style={
-          Object {
-            "borderRadius": "50%",
-          }
-        }
-      />
-    </div>
-    <FormGroup
-      className="text-center mt-1"
-      tag="div"
-    >
-      <Button
-        color="primary"
-        icon="camera_roll"
-        onClick={[Function]}
+      <label
+        class="form-label"
+        for="image-uploader"
       >
-        CHANGE
-      </Button>
-      <Button
-        className="ms-1"
-        color="danger"
-        icon="delete"
-        onClick={[Function]}
-      >
-        REMOVE
-      </Button>
-    </FormGroup>
-    Some error
-  </FormGroup>
-</div>
-`;
-
-exports[`Component: ImageUpload ui file-selected as rect without label: Component: ImageUpload => ui => file-selected as rect without label 1`] = `
-<div>
-  <FormGroup
-    className="img-upload"
-    color="success"
-    tag="div"
-  >
-    <div
-      className="d-flex justify-content-center"
-    >
-      <img
-        alt=""
-        className="img-fluid elevated-3"
-        src="maarten.png"
-        style={
-          Object {
-            "borderRadius": 0,
-          }
-        }
+        Profile photo
+      </label>
+      <input
+        accept="image/*"
+        id="image-uploader"
+        type="file"
       />
-    </div>
-    <FormGroup
-      className="text-center mt-1"
-      tag="div"
-    >
-      <Button
-        color="primary"
-        icon="camera_roll"
-        onClick={[Function]}
+      <div
+        class="img-upload-wrapper bg-faded text-muted"
       >
-        Change
-      </Button>
-      <Button
-        className="ms-1"
-        color="danger"
-        icon="delete"
-        onClick={[Function]}
-      >
-        Remove
-      </Button>
-    </FormGroup>
-    Some error
-  </FormGroup>
-</div>
-`;
-
-exports[`Component: ImageUpload ui file-selected as rect: Component: ImageUpload => ui => file-selected as rect 1`] = `
-<div>
-  <FormGroup
-    className="img-upload"
-    color="success"
-    tag="div"
-  >
-    <Label
-      for="image-uploader"
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      Profile photo
-    </Label>
-    <div
-      className="d-flex justify-content-center"
-    >
-      <img
-        alt="Profile photo"
-        className="img-fluid elevated-3"
-        src="maarten.png"
-        style={
-          Object {
-            "borderRadius": 0,
-          }
-        }
-      />
+        <i
+          class="icon material-icons"
+        >
+          add_a_photo
+        </i>
+      </div>
+      Some error
     </div>
-    <FormGroup
-      className="text-center mt-1"
-      tag="div"
-    >
-      <Button
-        color="primary"
-        icon="camera_roll"
-        onClick={[Function]}
-      >
-        Change
-      </Button>
-      <Button
-        className="ms-1"
-        color="danger"
-        icon="delete"
-        onClick={[Function]}
-      >
-        Remove
-      </Button>
-    </FormGroup>
-    Some error
-  </FormGroup>
-</div>
-`;
-
-exports[`Component: ImageUpload ui no-file: Component: ImageUpload => ui => no-file 1`] = `
-<div>
-  <FormGroup
-    className="img-upload"
-    color="success"
-    tag="div"
-  >
-    <Label
-      for="image-uploader"
-      tag="label"
-      widths={
-        Array [
-          "xs",
-          "sm",
-          "md",
-          "lg",
-          "xl",
-          "xxl",
-        ]
-      }
-    >
-      Profile photo
-    </Label>
-    <input
-      accept="image/*"
-      id="image-uploader"
-      onChange={[Function]}
-      type="file"
-    />
-    <div
-      className="img-upload-wrapper bg-faded text-muted"
-    >
-      <Icon
-        icon="add_a_photo"
-      />
-    </div>
-    Some error
-  </FormGroup>
-</div>
-`;
-
-exports[`Component: ImageUpload ui with empty label: Component: ImageUpload => ui => with empty label 1`] = `
-<div>
-  <FormGroup
-    className="img-upload"
-    color="success"
-    tag="div"
-  >
-    <input
-      accept="image/*"
-      id="image-uploader"
-      onChange={[Function]}
-      type="file"
-    />
-    <div
-      className="img-upload-wrapper bg-faded text-muted"
-    >
-      <Icon
-        icon="add_a_photo"
-      />
-    </div>
-    Some error
-  </FormGroup>
-</div>
-`;
-
-exports[`Component: ImageUpload ui without label: Component: ImageUpload => ui => without label 1`] = `
-<div>
-  <FormGroup
-    className="img-upload"
-    color="success"
-    tag="div"
-  >
-    <input
-      accept="image/*"
-      id="5"
-      onChange={[Function]}
-      type="file"
-    />
-    <div
-      className="img-upload-wrapper bg-faded text-muted"
-    >
-      <Icon
-        icon="add_a_photo"
-      />
-    </div>
-    Some error
-  </FormGroup>
+  </div>
 </div>
 `;

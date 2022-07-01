@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef } from 'react';
 import { get, noop, uniqueId } from 'lodash';
 import { FieldValidator } from 'final-form';
 
@@ -20,88 +20,88 @@ type Props = FieldCompatible<File, File | null> & {
   accept: string;
 };
 
-export default class FileInput extends Component<Props> {
-  /* istanbul ignore next */
-  innerId = this?.props?.id ?? uniqueId();
+export default function FileInput(props: Props) {
+  const {
+    id = uniqueId(),
+    label,
+    accept,
+    placeholder,
+    error,
+    color,
+    value,
+    valid,
+    className = '',
+    onBlur,
+    onFocus
+  } = props;
 
-  inputRef = React.createRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement|null>(null);
 
-  onChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
 
     /* istanbul ignore else */
     if (files) {
       const file = files.item(0);
 
-      this.props.onChange(file);
+      props.onChange(file);
 
-      doBlur(this.props.onBlur);
+      doBlur(onBlur);
     }
   }
 
-  onClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+  function onClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>) {
     // The 'delete' button is clicked in this case.
-    if (this.props.value) {
+    if (value) {
       event.preventDefault();
 
-      this.props.onChange(null);
-      doBlur(this.props.onBlur);
+      props.onChange(null);
+      doBlur(onBlur);
 
-      /* istanbul ignore else */
-      if (this.inputRef.current) {
-        this.inputRef.current.value = '';
+      if (inputRef.current) {
+        inputRef.current.value = '';
       }
     }
 
     // The input should now trigger the browsers file dialog
   }
 
-  render() {
-    const {
-      label,
-      accept,
-      placeholder,
-      error,
-      color,
-      value,
-      valid,
-      className = ''
-    } = this.props;
 
-    const name = get(value, 'name', '');
-    const inputProps = {
-      placeholder,
-      value: name,
-      invalid: valid === false ? true : undefined
-    };
+  const name = get(value, 'name', '');
+  const inputProps = {
+    placeholder,
+    value: name,
+    invalid: valid === false ? true : undefined,
+    onChange: () => console.error('The placeholder input of FileInput should not be changeable')
+  };
 
-    return (
-      <FormGroup className={`file-upload ${className}`} color={color}>
-        {label ? <Label for={this.innerId}>{label}</Label> : null}
-        <input
-          id={this.innerId}
-          accept={accept}
-          ref={this.inputRef}
-          type="file"
-          onClick={(event) => this.onClick(event)}
-          onChange={(event) => this.onChange(event)}
-        />
+  return (
+    <FormGroup className={`file-upload ${className}`} color={color}>
+      {label ? <Label for={id}>{label}</Label> : null}
+      <input
+        id={id}
+        accept={accept}
+        ref={inputRef}
+        type="file"
+        onClick={onClick}
+        onChange={onChange}
+        onFocus={onFocus}
+      />
 
-        <InputGroup>
-          <Input {...inputProps} onChange={() => undefined} />
-          <AddonButton
-            position="right"
-            color={value || valid === false ? 'danger' : 'primary'}
-            onClick={noop}
-          >
-            <Icon icon={value ? 'delete' : 'cloud_upload'} className="d-block" />
-          </AddonButton>
-        </InputGroup>
+      <InputGroup>
+        <Input {...inputProps} />
+        <AddonButton
+          position="right"
+          color={value || valid === false ? 'danger' : 'primary'}
+          onClick={noop}
+        >
+          <Icon icon={value ? 'delete' : 'cloud_upload'} className="d-block" />
+        </AddonButton>
+      </InputGroup>
 
-        {error}
-      </FormGroup>
-    );
-  }
+      {error}
+    </FormGroup>
+  );
 }
 
 /**

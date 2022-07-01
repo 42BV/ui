@@ -1,7 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: BooleanIcon ui value true: Component: BooleanIcon => ui => value true 1`] = `
-<Icon
-  icon="check_box"
-/>
+exports[`Component: BooleanIcon ui value false 1`] = `
+<div>
+  <i
+    class="icon material-icons"
+  >
+    check_box_outline_blank
+  </i>
+</div>
+`;
+
+exports[`Component: BooleanIcon ui value true 1`] = `
+<div>
+  <i
+    class="icon material-icons"
+  >
+    check_box
+  </i>
+</div>
 `;

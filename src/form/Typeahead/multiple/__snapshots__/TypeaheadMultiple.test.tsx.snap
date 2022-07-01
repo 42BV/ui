@@ -1,663 +1,520 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: TypeaheadMultiple renderToken ui: Component: TypeaheadMultiple => renderToken => ui 1`] = `
-<Tag
-  className="align-self-center"
-  key="1337"
-  onRemove={[Function]}
-  text="42"
-/>
+exports[`Component: TypeaheadMultiple ui async with a custom pageSize of 2 options in the dropdown 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
+  >
+    <div
+      class="showing-placeholder"
+    >
+      <div
+        class="rbt"
+        style="outline: none; position: relative;"
+        tabindex="-1"
+      >
+        <div
+          class="rbt-input-multi form-control rbt-input"
+          tabindex="-1"
+        >
+          <div
+            class="rbt-input-wrapper"
+          >
+            <div
+              style="display: flex; flex: 1; height: 100%; position: relative;"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
+                aria-owns="bestFriend"
+                autocomplete="off"
+                class="rbt-input-main form-control"
+                id="bestFriend"
+                style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
+                type="text"
+                value="42.nl"
+              />
+              <input
+                aria-hidden="true"
+                class="rbt-input-hint"
+                readonly=""
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 0px 0px 0px 0px; line-height: normal; padding: 0px 0px 0px 0px;"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          aria-label="menu-options"
+          class="rbt-menu dropdown-menu show"
+          id="bestFriend"
+          role="listbox"
+          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+        >
+          <a
+            aria-label="admin@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-0"
+            role="option"
+          >
+            admin@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+          <a
+            aria-label="coordinator@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-1"
+            role="option"
+          >
+            coordinator@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+        </div>
+      </div>
+    </div>
+    Some error
+  </div>
+</DocumentFragment>
 `;
 
-exports[`Component: TypeaheadMultiple ui async with a custom pageSize of 2 options in the dropdown: Component: TypeaheadMultiple => ui => async with a custom pageSize of 2 options in the dropdown 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Best friend
-  </Label>
+exports[`Component: TypeaheadMultiple ui async with the default pageSize of 10 options in the dropdown 1`] = `
+<DocumentFragment>
   <div
-    className="showing-placeholder"
+    class="mb-3"
   >
-    <withAsync(Component)
-      delay={200}
-      filterBy={[Function]}
-      id="bestFriend"
-      inputProps={
-        Object {
-          "className": "form-control",
-          "value": undefined,
-        }
-      }
-      isLoading={false}
-      minLength={2}
-      multiple={true}
-      onChange={[Function]}
-      onSearch={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "admin@42.nl",
-            "value": Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          },
-          Object {
-            "label": "coordinator@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "coordinator@42.nl",
-              "firstName": "Cordelia",
-              "id": 777,
-              "lastName": "Coordinator",
-              "roles": Array [
-                "ADMIN",
-                "USER",
-              ],
-            },
-          },
-        ]
-      }
-      paginationText="Display additional results..."
-      placeholder="Please provide your best friend"
-      promptText="Type to search..."
-      renderToken={[Function]}
-      searchText="Searching..."
-      selected={Array []}
-      useCache={true}
-    />
+    <div
+      class="showing-placeholder"
+    >
+      <div
+        class="rbt"
+        style="outline: none; position: relative;"
+        tabindex="-1"
+      >
+        <div
+          class="rbt-input-multi form-control rbt-input"
+          tabindex="-1"
+        >
+          <div
+            class="rbt-input-wrapper"
+          >
+            <div
+              style="display: flex; flex: 1; height: 100%; position: relative;"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
+                aria-owns="bestFriend"
+                autocomplete="off"
+                class="rbt-input-main form-control"
+                id="bestFriend"
+                style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
+                type="text"
+                value="42.nl"
+              />
+              <input
+                aria-hidden="true"
+                class="rbt-input-hint"
+                readonly=""
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 0px 0px 0px 0px; line-height: normal; padding: 0px 0px 0px 0px;"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          aria-label="menu-options"
+          class="rbt-menu dropdown-menu show"
+          id="bestFriend"
+          role="listbox"
+          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+        >
+          <a
+            aria-label="admin@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-0"
+            role="option"
+          >
+            admin@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+          <a
+            aria-label="coordinator@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-1"
+            role="option"
+          >
+            coordinator@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+          <a
+            aria-label="user@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-2"
+            role="option"
+          >
+            user@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+        </div>
+      </div>
+    </div>
+    Some error
   </div>
-  Some error
-</FormGroup>
+</DocumentFragment>
 `;
 
-exports[`Component: TypeaheadMultiple ui async with the default pageSize of 10 options in the dropdown: Component: TypeaheadMultiple => ui => async with the default pageSize of 10 options in the dropdown 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Best friend
-  </Label>
+exports[`Component: TypeaheadMultiple ui default 1`] = `
+<div>
   <div
-    className="showing-placeholder"
+    class="mb-3"
   >
-    <withAsync(Component)
-      delay={200}
-      filterBy={[Function]}
-      id="bestFriend"
-      inputProps={
-        Object {
-          "className": "form-control",
-          "value": undefined,
-        }
-      }
-      isLoading={false}
-      minLength={2}
-      multiple={true}
-      onChange={[Function]}
-      onSearch={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "admin@42.nl",
-            "value": Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          },
-          Object {
-            "label": "coordinator@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "coordinator@42.nl",
-              "firstName": "Cordelia",
-              "id": 777,
-              "lastName": "Coordinator",
-              "roles": Array [
-                "ADMIN",
-                "USER",
-              ],
-            },
-          },
-          Object {
-            "label": "user@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "user@42.nl",
-              "firstName": "Ulysses",
-              "id": 1337,
-              "lastName": "User",
-              "roles": Array [
-                "USER",
-              ],
-            },
-          },
-        ]
-      }
-      paginationText="Display additional results..."
-      placeholder="Please provide your best friend"
-      promptText="Type to search..."
-      renderToken={[Function]}
-      searchText="Searching..."
-      selected={Array []}
-      useCache={true}
-    />
+    <div
+      class="showing-placeholder"
+    >
+      <div
+        class="rbt"
+        style="outline: none; position: relative;"
+        tabindex="-1"
+      >
+        <div
+          class="rbt-input-multi form-control rbt-input"
+          tabindex="-1"
+        >
+          <div
+            class="rbt-input-wrapper"
+          >
+            <div
+              style="display: flex; flex: 1; height: 100%; position: relative;"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="rbt-input-main form-control"
+                id="bestFriend"
+                style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
+                type="text"
+                value=""
+              />
+              <input
+                aria-hidden="true"
+                class="rbt-input-hint"
+                readonly=""
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    Some error
   </div>
-  Some error
-</FormGroup>
+</div>
 `;
 
-exports[`Component: TypeaheadMultiple ui with a custom pagination text: Component: TypeaheadMultiple => ui => with a custom pagination text 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Best friend
-  </Label>
+exports[`Component: TypeaheadMultiple ui loading 1`] = `
+<div>
   <div
-    className="showing-placeholder"
+    class="mb-3"
   >
-    <ForwardRef
-      filterBy={[Function]}
-      id="bestFriend"
-      inputProps={
-        Object {
-          "className": "form-control",
-          "value": undefined,
-        }
-      }
-      multiple={true}
-      onChange={[Function]}
-      onInputChange={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "admin@42.nl",
-            "value": Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          },
-          Object {
-            "label": "coordinator@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "coordinator@42.nl",
-              "firstName": "Cordelia",
-              "id": 777,
-              "lastName": "Coordinator",
-              "roles": Array [
-                "ADMIN",
-                "USER",
-              ],
-            },
-          },
-          Object {
-            "label": "user@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "user@42.nl",
-              "firstName": "Ulysses",
-              "id": 1337,
-              "lastName": "User",
-              "roles": Array [
-                "USER",
-              ],
-            },
-          },
-        ]
-      }
-      paginationText="Show more"
-      placeholder="Please provide your best friend"
-      renderToken={[Function]}
-      selected={Array []}
-    />
+    <div
+      class="showing-placeholder"
+    >
+      <div
+        class="rbt has-aux"
+        style="outline: none; position: relative;"
+        tabindex="-1"
+      >
+        <div
+          class="rbt-input-multi form-control rbt-input"
+          tabindex="-1"
+        >
+          <div
+            class="rbt-input-wrapper"
+          >
+            <div
+              style="display: flex; flex: 1; height: 100%; position: relative;"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="rbt-input-main form-control"
+                id="bestFriend"
+                style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
+                type="text"
+                value=""
+              />
+              <input
+                aria-hidden="true"
+                class="rbt-input-hint"
+                readonly=""
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="rbt-aux"
+        >
+          <div
+            class="rbt-loader spinner-border spinner-border-sm"
+            role="status"
+          >
+            <span
+              class="sr-only visually-hidden"
+            >
+              Loading...
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    Some error
   </div>
-  Some error
-</FormGroup>
+</div>
 `;
 
-exports[`Component: TypeaheadMultiple ui with the default pagination text: Component: TypeaheadMultiple => ui => with the default pagination text 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Best friend
-  </Label>
+exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
+<DocumentFragment>
   <div
-    className="showing-placeholder"
+    class="mb-3"
   >
-    <ForwardRef
-      filterBy={[Function]}
-      id="bestFriend"
-      inputProps={
-        Object {
-          "className": "form-control",
-          "value": undefined,
-        }
-      }
-      multiple={true}
-      onChange={[Function]}
-      onInputChange={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "admin@42.nl",
-            "value": Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          },
-          Object {
-            "label": "coordinator@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "coordinator@42.nl",
-              "firstName": "Cordelia",
-              "id": 777,
-              "lastName": "Coordinator",
-              "roles": Array [
-                "ADMIN",
-                "USER",
-              ],
-            },
-          },
-          Object {
-            "label": "user@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "user@42.nl",
-              "firstName": "Ulysses",
-              "id": 1337,
-              "lastName": "User",
-              "roles": Array [
-                "USER",
-              ],
-            },
-          },
-        ]
-      }
-      paginationText="Display additional results..."
-      placeholder="Please provide your best friend"
-      renderToken={[Function]}
-      selected={Array []}
-    />
+    <div
+      class="showing-placeholder"
+    >
+      <div
+        class="rbt"
+        style="outline: none; position: relative;"
+        tabindex="-1"
+      >
+        <div
+          class="rbt-input-multi form-control rbt-input"
+          tabindex="-1"
+        >
+          <div
+            class="rbt-input-wrapper"
+          >
+            <div
+              style="display: flex; flex: 1; height: 100%; position: relative;"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
+                aria-owns="bestFriend"
+                autocomplete="off"
+                class="rbt-input-main form-control"
+                id="bestFriend"
+                style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
+                type="text"
+                value="42.nl"
+              />
+              <input
+                aria-hidden="true"
+                class="rbt-input-hint"
+                readonly=""
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 0px 0px 0px 0px; line-height: normal; padding: 0px 0px 0px 0px;"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          aria-label="menu-options"
+          class="rbt-menu dropdown-menu show"
+          id="bestFriend"
+          role="listbox"
+          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+        >
+          <a
+            aria-label="admin@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-0"
+            role="option"
+          >
+            admin@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+          <a
+            aria-label="coordinator@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-1"
+            role="option"
+          >
+            coordinator@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+          <div
+            class="dropdown-divider"
+            role="separator"
+          />
+          <a
+            aria-label="Show more"
+            aria-selected="false"
+            class="dropdown-item rbt-menu-pagination-option"
+            href="#"
+            id="bestFriend-item-2"
+            role="option"
+          >
+            Show more
+          </a>
+        </div>
+      </div>
+    </div>
+    Some error
   </div>
-  Some error
-</FormGroup>
+</DocumentFragment>
 `;
 
-exports[`Component: TypeaheadMultiple ui with value: Component: TypeaheadMultiple => ui => with value 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Best friend
-  </Label>
+exports[`Component: TypeaheadMultiple ui with the default pagination text 1`] = `
+<DocumentFragment>
   <div
-    className=""
+    class="mb-3"
   >
-    <ForwardRef
-      filterBy={[Function]}
-      id="bestFriend"
-      inputProps={
-        Object {
-          "className": "form-control",
-          "value": Array [
-            Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          ],
-        }
-      }
-      multiple={true}
-      onChange={[Function]}
-      onInputChange={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "coordinator@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "coordinator@42.nl",
-              "firstName": "Cordelia",
-              "id": 777,
-              "lastName": "Coordinator",
-              "roles": Array [
-                "ADMIN",
-                "USER",
-              ],
-            },
-          },
-          Object {
-            "label": "user@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "user@42.nl",
-              "firstName": "Ulysses",
-              "id": 1337,
-              "lastName": "User",
-              "roles": Array [
-                "USER",
-              ],
-            },
-          },
-        ]
-      }
-      paginationText="Display additional results..."
-      placeholder="Please provide your best friend"
-      renderToken={[Function]}
-      selected={
-        Array [
-          Object {
-            "label": "admin@42.nl",
-            "value": Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          },
-        ]
-      }
-    />
+    <div
+      class="showing-placeholder"
+    >
+      <div
+        class="rbt"
+        style="outline: none; position: relative;"
+        tabindex="-1"
+      >
+        <div
+          class="rbt-input-multi form-control rbt-input"
+          tabindex="-1"
+        >
+          <div
+            class="rbt-input-wrapper"
+          >
+            <div
+              style="display: flex; flex: 1; height: 100%; position: relative;"
+            >
+              <input
+                aria-autocomplete="list"
+                aria-haspopup="listbox"
+                aria-owns="bestFriend"
+                autocomplete="off"
+                class="rbt-input-main form-control"
+                id="bestFriend"
+                style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
+                type="text"
+                value="42.nl"
+              />
+              <input
+                aria-hidden="true"
+                class="rbt-input-hint"
+                readonly=""
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 0px 0px 0px 0px; line-height: normal; padding: 0px 0px 0px 0px;"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          aria-label="menu-options"
+          class="rbt-menu dropdown-menu show"
+          id="bestFriend"
+          role="listbox"
+          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+        >
+          <a
+            aria-label="admin@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-0"
+            role="option"
+          >
+            admin@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+          <a
+            aria-label="coordinator@42.nl"
+            aria-selected="false"
+            class="dropdown-item"
+            href="#"
+            id="bestFriend-item-1"
+            role="option"
+          >
+            coordinator@
+            <mark
+              class="rbt-highlight-text"
+            >
+              42.nl
+            </mark>
+          </a>
+          <div
+            class="dropdown-divider"
+            role="separator"
+          />
+          <a
+            aria-label="Display additional results..."
+            aria-selected="false"
+            class="dropdown-item rbt-menu-pagination-option"
+            href="#"
+            id="bestFriend-item-2"
+            role="option"
+          >
+            Display additional results...
+          </a>
+        </div>
+      </div>
+    </div>
+    Some error
   </div>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: TypeaheadMultiple ui without label: Component: TypeaheadMultiple => ui => without label 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <div
-    className=""
-  >
-    <ForwardRef
-      filterBy={[Function]}
-      inputProps={
-        Object {
-          "className": "form-control",
-          "value": Array [
-            Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          ],
-        }
-      }
-      multiple={true}
-      onChange={[Function]}
-      onInputChange={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "coordinator@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "coordinator@42.nl",
-              "firstName": "Cordelia",
-              "id": 777,
-              "lastName": "Coordinator",
-              "roles": Array [
-                "ADMIN",
-                "USER",
-              ],
-            },
-          },
-          Object {
-            "label": "user@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "user@42.nl",
-              "firstName": "Ulysses",
-              "id": 1337,
-              "lastName": "User",
-              "roles": Array [
-                "USER",
-              ],
-            },
-          },
-        ]
-      }
-      paginationText="Display additional results..."
-      placeholder="Please provide your best friend"
-      renderToken={[Function]}
-      selected={
-        Array [
-          Object {
-            "label": "admin@42.nl",
-            "value": Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          },
-        ]
-      }
-    />
-  </div>
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: TypeaheadMultiple ui without placeholder: Component: TypeaheadMultiple => ui => without placeholder 1`] = `
-<FormGroup
-  className=""
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Best friend
-  </Label>
-  <div
-    className=""
-  >
-    <ForwardRef
-      filterBy={[Function]}
-      id="bestFriend"
-      inputProps={
-        Object {
-          "className": "form-control",
-          "value": Array [
-            Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          ],
-        }
-      }
-      multiple={true}
-      onChange={[Function]}
-      onInputChange={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "coordinator@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "coordinator@42.nl",
-              "firstName": "Cordelia",
-              "id": 777,
-              "lastName": "Coordinator",
-              "roles": Array [
-                "ADMIN",
-                "USER",
-              ],
-            },
-          },
-          Object {
-            "label": "user@42.nl",
-            "value": Object {
-              "active": false,
-              "email": "user@42.nl",
-              "firstName": "Ulysses",
-              "id": 1337,
-              "lastName": "User",
-              "roles": Array [
-                "USER",
-              ],
-            },
-          },
-        ]
-      }
-      paginationText="Display additional results..."
-      renderToken={[Function]}
-      selected={
-        Array [
-          Object {
-            "label": "admin@42.nl",
-            "value": Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-          },
-        ]
-      }
-    />
-  </div>
-  Some error
-</FormGroup>
+</DocumentFragment>
 `;

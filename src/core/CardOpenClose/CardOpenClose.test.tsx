@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { CardOpenClose } from './CardOpenClose';
 
@@ -8,7 +7,7 @@ describe('Component: CardOpenClose', () => {
   function setup({ isOpen }: { isOpen: boolean }) {
     const toggleSpy = jest.fn();
 
-    const cardOpenClose = shallow(
+    const { container } = render(
       <CardOpenClose header="click this" isOpen={isOpen} toggle={toggleSpy}>
         {() => (
           <p>
@@ -19,37 +18,28 @@ describe('Component: CardOpenClose', () => {
       </CardOpenClose>
     );
 
-    return { cardOpenClose, toggleSpy };
+    return { container, toggleSpy };
   }
 
   describe('ui', () => {
     test('open', () => {
-      const { cardOpenClose } = setup({ isOpen: true });
+      const { container } = setup({ isOpen: true });
 
-      expect(toJson(cardOpenClose)).toMatchSnapshot(
-        'Component: CardOpenClose => ui => open'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('closed', () => {
-      const { cardOpenClose } = setup({ isOpen: false });
+      const { container } = setup({ isOpen: false });
 
-      expect(toJson(cardOpenClose)).toMatchSnapshot(
-        'Component: CardOpenClose => ui => closed'
-      );
+      expect(container).toMatchSnapshot();
     });
   });
 
   describe('events', () => {
     it('should call toggle when the header is clicked', () => {
-      const { cardOpenClose, toggleSpy } = setup({ isOpen: false });
+      const { toggleSpy } = setup({ isOpen: false });
 
-      // @ts-expect-error Test mock
-      cardOpenClose
-        .find('CardHeader')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('click this'));
 
       expect(toggleSpy).toHaveBeenCalledTimes(1);
     });
@@ -57,7 +47,7 @@ describe('Component: CardOpenClose', () => {
 
   describe('deprecated: content', () => {
     function setup({ isOpen }: { isOpen: boolean }) {
-      const cardOpenClose = shallow(
+      const { container } = render(
         <CardOpenClose
           header="click this"
           isOpen={isOpen}
@@ -70,23 +60,19 @@ describe('Component: CardOpenClose', () => {
           )}
         />
       );
-      return { cardOpenClose };
+      return { container };
     }
 
     test('open', () => {
-      const { cardOpenClose } = setup({ isOpen: true });
+      const { container } = setup({ isOpen: true });
 
-      expect(toJson(cardOpenClose)).toMatchSnapshot(
-        'Component: CardOpenClose => deprecated: content => open'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('closed', () => {
-      const { cardOpenClose } = setup({ isOpen: false });
+      const { container } = setup({ isOpen: false });
 
-      expect(toJson(cardOpenClose)).toMatchSnapshot(
-        'Component: CardOpenClose => deprecated: content => closed'
-      );
+      expect(container).toMatchSnapshot();
     });
   });
 });

@@ -1,13 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import CheckboxMultipleSelect, { Text } from './CheckboxMultipleSelect';
 import { User } from '../../test/types';
 import {
   adminUser,
   coordinatorUser,
-  listOfUsers,
+  listOfUsers, pageOfUsers, pageOfUsersFetcher,
   userUser
 } from '../../test/fixtures';
 
@@ -24,11 +24,13 @@ describe('Component: CheckboxMultipleSelect', () => {
     value,
     isOptionEnabled,
     text,
-    hasPlaceholder = true,
-    hasLabel = true,
+    hasPlaceholder,
+    hasLabel,
     horizontal,
-    loading = false,
-    optionsShouldAlwaysContainValueConfig
+    loading,
+    optionsShouldAlwaysContainValueConfig,
+    isAsync,
+    expectedSize = 3
   }: {
     value?: User[];
     isOptionEnabled?: IsOptionEnabled<User>;
@@ -40,6 +42,8 @@ describe('Component: CheckboxMultipleSelect', () => {
     hasIsOptionEqual?: boolean;
     loading?: boolean;
     optionsShouldAlwaysContainValueConfig?: boolean;
+    isAsync?: boolean;
+    expectedSize?: number;
   }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
@@ -48,13 +52,13 @@ describe('Component: CheckboxMultipleSelect', () => {
     useOptions.mockImplementation(
       ({ options, pageNumber, size, optionsShouldAlwaysContainValue }) => {
         expect(pageNumber).toBe(1);
-        expect(size).toBe(3);
+        expect(size).toBe(expectedSize);
         expect(optionsShouldAlwaysContainValue).toBe(
           optionsShouldAlwaysContainValueConfig ?? true
         );
 
         return {
-          page: pageOf(options, pageNumber, size),
+          page: isAsync ? pageOfUsers() : pageOf(options, pageNumber, size),
           loading
         };
       }
@@ -64,76 +68,73 @@ describe('Component: CheckboxMultipleSelect', () => {
       placeholder: hasPlaceholder ? 'Please select your provinces' : undefined,
       text,
       isOptionEnabled,
-      options: listOfUsers(),
+      options: isAsync ? () => pageOfUsersFetcher() : listOfUsers(),
       labelForOption: (user: User) => user.email,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
       horizontal,
-      optionsShouldAlwaysContainValue: optionsShouldAlwaysContainValueConfig
+      optionsShouldAlwaysContainValue: optionsShouldAlwaysContainValueConfig,
+      id: hasLabel ? 'subject' : undefined,
+      label: hasLabel ? 'Subject' : undefined
     };
 
-    const labelProps = hasLabel ? { id: 'subject', label: 'Subject' } : {};
-
-    const checkboxMultipleSelect = shallow(
-      <CheckboxMultipleSelect {...props} {...labelProps} />
+    const { container, rerender } = render(
+      <CheckboxMultipleSelect {...props} />
     );
 
-    return { checkboxMultipleSelect, onChangeSpy, onBlurSpy };
+    return { container, props, rerender, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
-    test('with value', () => {
-      const { checkboxMultipleSelect } = setup({ value: [adminUser()] });
+    test('default', () => {
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
+    });
 
-      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
-        'Component: CheckboxMultipleSelect => ui => with value'
-      );
+    test('with value', () => {
+      setup({ value: [adminUser()] });
+      expect(screen.getByLabelText('admin@42.nl')).toBeChecked();
+    });
+
+    test('with placeholder', () => {
+      setup({ hasPlaceholder: true });
+      expect(screen.queryByText('Please select your provinces')).toBeInTheDocument();
     });
 
     test('without placeholder', () => {
-      const { checkboxMultipleSelect } = setup({
-        value: [adminUser()],
-        hasPlaceholder: false
-      });
+      setup({});
+      expect(screen.queryByText('Please select your provinces')).not.toBeInTheDocument();
+    });
 
-      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
-        'Component: CheckboxMultipleSelect => ui => without placeholder'
-      );
+    test('with label', () => {
+      setup({ hasLabel: true });
+      expect(screen.queryByText('Subject')).toBeInTheDocument();
     });
 
     test('without label', () => {
-      const { checkboxMultipleSelect } = setup({
-        value: [adminUser()],
-        hasLabel: false
-      });
-
-      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
-        'Component: CheckboxMultipleSelect => ui => without label'
-      );
+      setup({});
+      expect(screen.queryByText('Subject')).not.toBeInTheDocument();
     });
 
     test('horizontal', () => {
-      const { checkboxMultipleSelect } = setup({
-        value: [adminUser()],
-        horizontal: true
+      setup({ horizontal: true });
+      screen.getAllByRole('checkbox').forEach((checkbox) => {
+        expect(checkbox.parentNode?.parentNode).toHaveClass('form-check-inline');
       });
-
-      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
-        'Component: CheckboxMultipleSelect => ui => horizontal'
-      );
     });
 
     test('loading', () => {
-      const { checkboxMultipleSelect } = setup({
-        loading: true
-      });
-
-      expect(toJson(checkboxMultipleSelect)).toMatchSnapshot(
-        'Component: CheckboxMultipleSelect => ui => loading'
-      );
+      const { container } = setup({ loading: true });
+      expect(screen.queryByText('Loading...')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
+  });
+
+  test('async options', () => {
+    setup({ isAsync: true, expectedSize: 100 });
+    // Expects are done in the setup, useOptions implementation mocking
   });
 
   describe('events', () => {
@@ -142,9 +143,9 @@ describe('Component: CheckboxMultipleSelect', () => {
       const coordinator = coordinatorUser();
       const user = userUser();
 
-      let value: User[] | undefined = undefined;
+      const value: User[] | undefined = undefined;
 
-      const { checkboxMultipleSelect, onChangeSpy, onBlurSpy } = setup({
+      const { props, rerender, onChangeSpy, onBlurSpy } = setup({
         value,
         isOptionEnabled: undefined,
         hasIsOptionEqual: false,
@@ -152,9 +153,7 @@ describe('Component: CheckboxMultipleSelect', () => {
       });
 
       // First lets click on the admin it should be added
-      let checkbox = checkboxMultipleSelect.find('Input').at(0);
-      // @ts-expect-error Test mock
-      checkbox.props().onChange();
+      fireEvent.click(screen.getByLabelText('admin@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith([admin]);
@@ -164,15 +163,18 @@ describe('Component: CheckboxMultipleSelect', () => {
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
 
+      let newProps = {
+        ...props,
+        value: [admin]
+      };
+
       // Manually set the value since it is external
-      value = [admin];
-      checkboxMultipleSelect.setProps({ value });
+      rerender(
+        <CheckboxMultipleSelect {...newProps} />
+      );
 
       // Now lets click on the coordinator it should be added
-      checkbox = checkboxMultipleSelect.find('Input').at(1);
-
-      // @ts-expect-error Test mock
-      checkbox.props().onChange();
+      fireEvent.click(screen.getByLabelText('coordinator@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(2);
       expect(onChangeSpy).toHaveBeenCalledWith([admin, coordinator]);
@@ -182,15 +184,18 @@ describe('Component: CheckboxMultipleSelect', () => {
 
       expect(onBlurSpy).toHaveBeenCalledTimes(2);
 
+      newProps = {
+        ...props,
+        value: [admin, coordinator]
+      };
+
       // Manually set the value since it is external
-      value = [admin, coordinator];
-      checkboxMultipleSelect.setProps({ value });
+      rerender(
+        <CheckboxMultipleSelect {...newProps} />
+      );
 
       // Now lets click on the admin again it should be removed
-      checkbox = checkboxMultipleSelect.find('Input').at(0);
-
-      // @ts-expect-error Test mock
-      checkbox.props().onChange();
+      fireEvent.click(screen.getByLabelText('admin@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(3);
       expect(onChangeSpy).toHaveBeenCalledWith([coordinator]);
@@ -203,17 +208,17 @@ describe('Component: CheckboxMultipleSelect', () => {
 
     describe('isOptionEnabled', () => {
       it('should when "isOptionEnabled" is not defined always be true', () => {
-        const { checkboxMultipleSelect } = setup({
+        setup({
           value: [adminUser()],
           isOptionEnabled: undefined
         });
 
-        const checkboxes = checkboxMultipleSelect.find('Input');
+        const checkboxes = screen.getAllByRole('checkbox');
         expect(checkboxes.length).toBe(3);
 
-        expect(checkboxes.at(0).props().disabled).toBe(false);
-        expect(checkboxes.at(1).props().disabled).toBe(false);
-        expect(checkboxes.at(2).props().disabled).toBe(false);
+        expect(checkboxes[0]).not.toBeDisabled();
+        expect(checkboxes[1]).not.toBeDisabled();
+        expect(checkboxes[2]).not.toBeDisabled();
       });
 
       it('should when "isOptionEnabled" is defined use that to determine if the option is enabled', () => {
@@ -222,17 +227,17 @@ describe('Component: CheckboxMultipleSelect', () => {
         // Disabled all option now
         isOptionEnabledSpy.mockReturnValue(false);
 
-        const { checkboxMultipleSelect } = setup({
+        setup({
           value: undefined,
           isOptionEnabled: isOptionEnabledSpy
         });
 
-        const checkboxes = checkboxMultipleSelect.find('Input');
+        const checkboxes = screen.getAllByRole('checkbox');
         expect(checkboxes.length).toBe(3);
 
-        expect(checkboxes.at(0).props().disabled).toBe(true);
-        expect(checkboxes.at(1).props().disabled).toBe(true);
-        expect(checkboxes.at(2).props().disabled).toBe(true);
+        expect(checkboxes[0]).toBeDisabled();
+        expect(checkboxes[1]).toBeDisabled();
+        expect(checkboxes[2]).toBeDisabled();
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
@@ -246,33 +251,47 @@ describe('Component: CheckboxMultipleSelect', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      const { checkboxMultipleSelect } = setup({
+      const { props, rerender } = setup({
         value: [userUser()],
         isOptionEnabled: undefined
       });
 
-      let checkbox = checkboxMultipleSelect.find('Input').at(2);
-      expect(checkbox.props().checked).toBe(true);
+      let checkbox = screen.getAllByRole('checkbox')[2];
+      expect(checkbox).toBeChecked();
 
-      checkboxMultipleSelect.setProps({ value: undefined });
+      const newProps = {
+        ...props,
+        value: undefined
+      };
 
-      checkbox = checkboxMultipleSelect.find('Input').at(2);
-      expect(checkbox.props().checked).toBe(false);
+      rerender(
+        <CheckboxMultipleSelect {...newProps} />
+      );
+
+      checkbox = screen.getAllByRole('checkbox')[2];
+      expect(checkbox).not.toBeChecked();
     });
 
     test('becomes filled', () => {
-      const { checkboxMultipleSelect } = setup({
+      const { props, rerender } = setup({
         value: undefined,
         isOptionEnabled: undefined
       });
 
-      let checkbox = checkboxMultipleSelect.find('Input').at(1);
-      expect(checkbox.props().checked).toBe(false);
+      let checkbox = screen.getAllByRole('checkbox')[1];
+      expect(checkbox).not.toBeChecked();
 
-      checkboxMultipleSelect.setProps({ value: [coordinatorUser()] });
+      const newProps = {
+        ...props,
+        value: [coordinatorUser()]
+      };
 
-      checkbox = checkboxMultipleSelect.find('Input').at(1);
-      expect(checkbox.props().checked).toBe(true);
+      rerender(
+        <CheckboxMultipleSelect {...newProps} />
+      );
+
+      checkbox = screen.getAllByRole('checkbox')[1];
+      expect(checkbox).toBeChecked();
     });
   });
 

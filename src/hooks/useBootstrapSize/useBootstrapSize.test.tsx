@@ -1,5 +1,5 @@
 import { useBootstrapSize } from './useBootstrapSize';
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 
 describe('useBootstrapSize', () => {
   it('should return xs and mobile true when window width less than 576 pixels', () => {

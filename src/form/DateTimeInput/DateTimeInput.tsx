@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 import Datetime from 'react-datetime';
 import { constant, get, isEmpty } from 'lodash';
@@ -14,10 +14,7 @@ import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
 import classNames from 'classnames';
-import { useHasFormatError } from './hooks/useHasFormatError';
-import { useIsModalOpen } from './hooks/useIsModalOpen';
 import { AddonButton } from '../addons/AddonButton/AddonButton';
-import { useSetLastStringValue } from './hooks/useSetLastStringValue';
 import { FieldCompatible } from '../types';
 
 /**
@@ -100,11 +97,11 @@ export default function DateTimeInput(props: Props) {
     the value when the value is not a date. This way the user's input
     is not lost when he enters an invalid date.
   */
-  const [lastStringValue, setLastStringValue] = useSetLastStringValue();
+  const [lastStringValue, setLastStringValue] = useState('');
 
-  const [hasFormatError, setHasFormatError] = useHasFormatError();
+  const [hasFormatError, setHasFormatError] = useState(false);
 
-  const [isModalOpen, setIsModalOpen] = useIsModalOpen();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     id,
@@ -137,30 +134,19 @@ export default function DateTimeInput(props: Props) {
   function onChange(value: string | Moment) {
     const { onChange, onBlur } = props;
 
-    if (typeof value === 'string') {
-      if (isDate(value, dateFormat, timeFormat)) {
-        setLastStringValue(value);
+    if (!isDate(value, dateFormat, timeFormat)) {
+      setLastStringValue(value as string);
 
-        const date = moment(
-          value.trim(), // value includes an empty char at the back for some reason.
-          combineFormat(dateFormat, timeFormat)
-        );
-        onChange(date.toDate());
-        setHasFormatError(false);
-      } else {
-        setLastStringValue(value);
+      onChange(undefined);
 
-        onChange(undefined);
-
-        setHasFormatError(!isEmpty(value));
-      }
+      setHasFormatError(!isEmpty(value));
     } else {
-      const valueAsString = moment(value.toDate()).format(
+      const valueAsString = moment(value).format(
         combineFormat(dateFormat, timeFormat)
       );
       setLastStringValue(valueAsString);
 
-      onChange(value.toDate());
+      onChange((value as Moment).toDate());
       doBlur(onBlur);
       setHasFormatError(false);
     }

@@ -1,15 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { FormButton } from './FormButton';
 
 describe('Component: FormButton', () => {
   function setup() {
-    return shallow(<FormButton formId="test" type="submit" icon="save" />);
+    const { container } = render(
+      <FormButton formId="test" type="submit" icon="save">
+        Save
+      </FormButton>
+    );
+    
+    return { container };
   }
+  
   test('ui', () => {
-    const formButton = setup();
-    expect(toJson(formButton)).toMatchSnapshot();
+    const { container } = setup();
+    expect(container).toMatchSnapshot();
   });
 
   describe('events', () => {
@@ -20,14 +26,9 @@ describe('Component: FormButton', () => {
         .spyOn(document, 'getElementById')
         .mockReturnValue(element);
 
-      const formButton = setup();
+      setup();
 
-      // @ts-expect-error Test mock
-      formButton
-        .find('Button')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByRole('button'));
 
       expect(getElementByIdSpy).toBeCalledTimes(1);
       expect(getElementByIdSpy).toBeCalledWith('test');
@@ -43,14 +44,9 @@ describe('Component: FormButton', () => {
       element.dispatchEvent = jest.fn();
       const getElementByIdSpy = jest.spyOn(document, 'getElementById');
 
-      const formButton = setup();
+      setup();
 
-      // @ts-expect-error Test mock
-      formButton
-        .find('Button')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByRole('button'));
 
       expect(getElementByIdSpy).toBeCalledTimes(1);
       expect(getElementByIdSpy).toBeCalledWith('test');

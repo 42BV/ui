@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 
 import { AsyncActionButton } from './AsyncActionButton';
 import { rejectablePromise, resolvablePromise } from '../../test/utils';
@@ -14,66 +13,47 @@ describe('Component: AsyncActionButton', () => {
       children: 'Resend confirmation'
     };
 
-    const asyncActionButton = shallow(
+    const { container } = render(
       <AsyncActionButton {...props}>Resend confirmation</AsyncActionButton>
     );
 
-    return { asyncActionButton, actionSpy };
+    return { container, actionSpy };
   }
 
   describe('ui', () => {
     test('not in progress', () => {
       const { promise } = resolvablePromise();
-      const { asyncActionButton } = setup({ promise });
+      const { container } = setup({ promise });
 
-      expect(toJson(asyncActionButton)).toMatchSnapshot(
-        'Component: AsyncActionButton => ui => not in progess'
-      );
+      expect(container).toMatchSnapshot();
     });
 
     test('in progress', () => {
       const { promise } = resolvablePromise();
-      const { asyncActionButton } = setup({ promise });
+      const { container } = setup({ promise });
 
-      // @ts-expect-error Test mock
-      asyncActionButton
-        .find('Button')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Resend confirmation'));
 
-      expect(toJson(asyncActionButton)).toMatchSnapshot(
-        'Component: AsyncActionButton => ui => in progress'
-      );
+      expect(container).toMatchSnapshot();
     });
   });
 
   describe('events', () => {
     it('should be in progress when the AsyncActionButton button is clicked', () => {
+      expect.assertions(1);
       const { promise } = resolvablePromise();
-      const { asyncActionButton } = setup({ promise });
+      const { container } = setup({ promise });
 
-      // @ts-expect-error Test mock
-      asyncActionButton
-        .find('Button')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Resend confirmation'));
 
-      // @ts-expect-error Test mock
-      expect(asyncActionButton.find('Button').props().inProgress).toBe(true);
+      expect(container).toMatchSnapshot();
     });
 
     it('should trigger action when the AsyncActionButton button is clicked', () => {
       const { promise } = resolvablePromise();
-      const { asyncActionButton, actionSpy } = setup({ promise });
+      const { actionSpy } = setup({ promise });
 
-      // @ts-expect-error Test mock
-      asyncActionButton
-        .find('Button')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Resend confirmation'));
 
       expect(actionSpy).toHaveBeenCalledTimes(1);
     });
@@ -82,43 +62,30 @@ describe('Component: AsyncActionButton', () => {
       expect.assertions(1);
 
       const { promise, resolve } = resolvablePromise();
-      const { asyncActionButton } = setup({ promise });
+      const { container } = setup({ promise });
 
-      // @ts-expect-error Test mock
-      asyncActionButton
-        .find('Button')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Resend confirmation'));
 
-     
+      await act(async () => {
         await resolve();
+      });
 
-        // @ts-expect-error Test mock
-        expect(asyncActionButton.find('Button').props().inProgress).toBe(false);
-
-     
+      expect(container).toMatchSnapshot();
     });
 
     it('should call onError and set inProgress to false when promise is rejected', async () => {
       expect.assertions(1);
 
       const { promise, reject } = rejectablePromise();
-      const { asyncActionButton } = setup({ promise });
+      const { container } = setup({ promise });
 
-      // @ts-expect-error Test mock
-      asyncActionButton
-        .find('Button')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Resend confirmation'));
 
-     
+      await act(async () => {
         await reject('test rejection reason');
+      });
 
-        // @ts-expect-error Test mock
-        expect(asyncActionButton.find('Button').props().inProgress).toBe(false);
-
+      expect(container).toMatchSnapshot();
     });
   });
 });

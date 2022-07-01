@@ -1,79 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Pager ui first: Component: Pager => first 1`] = `
-<div
-  className="pager"
->
-  <Button
-    className="me-1"
-    disabled={true}
-    icon="arrow_back"
-    onClick={[Function]}
-    outline={true}
+exports[`Component: Pager ui normal 1`] = `
+<div>
+  <div
+    class="pager"
   >
-    Previous
-  </Button>
-  <Button
-    className="pager-next"
-    disabled={false}
-    icon="arrow_forward"
-    iconPosition="right"
-    onClick={[Function]}
-    outline={true}
-  >
-    Next
-  </Button>
-</div>
-`;
-
-exports[`Component: Pager ui last: Component: Pager => last 1`] = `
-<div
-  className="pager"
->
-  <Button
-    className="me-1"
-    disabled={false}
-    icon="arrow_back"
-    onClick={[Function]}
-    outline={true}
-  >
-    Previous
-  </Button>
-  <Button
-    className="pager-next"
-    disabled={true}
-    icon="arrow_forward"
-    iconPosition="right"
-    onClick={[Function]}
-    outline={true}
-  >
-    Next
-  </Button>
-</div>
-`;
-
-exports[`Component: Pager ui normal: Component: Pager => normal 1`] = `
-<div
-  className="pager"
->
-  <Button
-    className="me-1"
-    disabled={false}
-    icon="arrow_back"
-    onClick={[Function]}
-    outline={true}
-  >
-    Previous
-  </Button>
-  <Button
-    className="pager-next"
-    disabled={false}
-    icon="arrow_forward"
-    iconPosition="right"
-    onClick={[Function]}
-    outline={true}
-  >
-    Next
-  </Button>
+    <span
+      class="button d-inline-block me-1 primary"
+    >
+      <button
+        class="btn btn-outline-primary btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          <i
+            class="icon button-icon me-2 material-icons"
+          >
+            arrow_back
+          </i>
+          Previous
+        </div>
+      </button>
+    </span>
+    <span
+      class="button d-inline-block pager-next primary"
+    >
+      <button
+        class="btn btn-outline-primary btn-md"
+        type="button"
+      >
+        <div
+          class="d-flex justify-content-center align-items-center"
+        >
+          Next
+          <i
+            class="icon button-icon ms-2 material-icons"
+          >
+            arrow_forward
+          </i>
+        </div>
+      </button>
+    </span>
+  </div>
 </div>
 `;

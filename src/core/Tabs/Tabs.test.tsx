@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { HideInactiveTabsBy, Tabs } from './Tabs';
 import { Tab } from './Tab/Tab';
@@ -12,40 +12,41 @@ describe('Component: Tabs', () => {
   }: {
     hideInactiveTabsBy?: HideInactiveTabsBy;
   }) {
-    const tabs = shallow(
+    const { container } = render(
       <Tabs hideInactiveTabsBy={hideInactiveTabsBy}>
-        <Tab active={true} label="test active true" onClick={jest.fn()}>
+        <Tab active={true} label="active tab" onClick={jest.fn()}>
           {() => <p>test active true</p>}
         </Tab>
-        <Tab active={false} label="test active false" onClick={jest.fn()}>
+        <Tab active={false} label="not active tab" onClick={jest.fn()}>
           {() => <p>test active false</p>}
         </Tab>
       </Tabs>
     );
 
-    return { tabs };
+    return { container };
   }
 
   describe('ui', () => {
     test('hide inactive tabs by removing from dom', () => {
-      const { tabs } = setup({});
-
-      expect(toJson(tabs)).toMatchSnapshot(
-        'Component: Tabs => ui => hide inactive tabs by removing from dom'
-      );
+      const { container } = setup({});
+      expect(screen.queryByText('test active true')).toBeInTheDocument();
+      expect(screen.queryByText('test active false')).not.toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     test('hide inactive tabs by CSS', () => {
-      const { tabs } = setup({ hideInactiveTabsBy: 'CSS' });
-
-      expect(toJson(tabs)).toMatchSnapshot(
-        'Component: Tabs => ui => hide inactive tabs by CSS'
-      );
+      const { container } = setup({ hideInactiveTabsBy: 'CSS' });
+      expect(screen.queryByText('test active true')).toBeInTheDocument();
+      expect(screen.queryByText('test active false')).toBeInTheDocument();
+      expect(screen.getByText('test active true').parentNode).toHaveClass('active');
+      expect(screen.getByText('test active false').parentNode).not.toHaveClass('active');
+      expect(container).toMatchSnapshot();
     });
 
     it('should throw an exception if any child is not a Tab component', () => {
+      jest.spyOn(console, 'error').mockImplementation(() => undefined);
       expect(() =>
-        shallow(
+        render(
           // @ts-expect-error Test mock
           <Tabs>
             <Icon icon="close" />

@@ -172,8 +172,8 @@ export default function ModalPicker<T>(props: Props<T>) {
   const shouldRenderPagination = !(page.first && page.last);
 
   return (
-    <Modal isOpen={isOpen} toggle={() => closeModal()}>
-      <ModalHeader toggle={() => closeModal()}>{placeholder}</ModalHeader>
+    <Modal isOpen={isOpen} toggle={closeModal}>
+      <ModalHeader toggle={closeModal}>{placeholder}</ModalHeader>
       <ModalBody>
         {canSearch ? (
           <Row>
@@ -282,7 +282,7 @@ export default function ModalPicker<T>(props: Props<T>) {
         option,
         isSelected,
         enabled,
-        toggle: () => (enabled ? onChange(option, isSelected) : undefined)
+        toggle: enabled ? () => onChange(option, isSelected) : () => undefined
       };
     });
   }

@@ -1,12 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import { Button } from 'reactstrap';
-import { SketchPicker } from 'react-color';
-import Popover from '../../core/Popover/Popover';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import ColorPicker from './ColorPicker';
-import TextButton from '../../core/TextButton/TextButton';
+import { Color } from '../../core/types';
+import { IconType } from '../../core/Icon';
 
 describe('Component: ColorPicker', () => {
   function setup({ value, hasIcon, canClear }: { value?: string; hasIcon?: boolean; canClear?: boolean }) {
@@ -18,185 +16,150 @@ describe('Component: ColorPicker', () => {
       name: 'bestFriend',
       label: 'Best Friend',
       placeholder: 'Select your best friend',
-      icon: hasIcon ? 'face' : undefined,
+      icon: hasIcon ? 'face' as IconType : undefined,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
       error: 'Some error',
-      color: 'success',
+      color: 'success' as Color,
       canClear
     };
 
-    // @ts-expect-error Test mock
-    const colorPicker = shallow(<ColorPicker {...props} />);
+    const { container, asFragment, rerender } = render(
+      <ColorPicker {...props} />
+    );
 
-    return {
-      colorPicker,
-      onBlurSpy,
-      onChangeSpy
-    };
+    return { container, props, rerender, asFragment, onBlurSpy, onChangeSpy };
   }
 
   describe('ui', () => {
-    test('with selected value', () => {
-      const { colorPicker } = setup({ value: '#cdcdcd' });
-
-      expect(toJson(colorPicker)).toMatchSnapshot();
+    test('default', () => {
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
-    test('without selected value', () => {
-      const { colorPicker } = setup({ value: undefined });
+    test('open', () => {
+      const { asFragment } = setup({});
 
-      expect(toJson(colorPicker)).toMatchSnapshot();
+      fireEvent.click(screen.getByText('Select your best friend'));
+
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    test('with selected value', () => {
+      const { container } = setup({ value: '#cdcdcd' });
+      expect(container).toMatchSnapshot();
     });
 
     test('with icon', () => {
-      const { colorPicker } = setup({ hasIcon: true });
+      setup({ hasIcon: true });
+      expect(screen.queryByText('face')).toBeInTheDocument();
+    });
 
-      const button = shallow(
-        // @ts-expect-error Test mock
-        colorPicker.find('Popover').props().target
-      );
-      expect(button.find('Icon').exists()).toBe(true);
+    test('without icon', () => {
+      setup({ hasIcon: false });
+      expect(screen.queryByText('face')).not.toBeInTheDocument();
+    });
+
+    test('with clear button', () => {
+      setup({ value: '#cdcdcd', canClear: true });
+      expect(screen.queryByText('Clear')).toBeInTheDocument();
     });
 
     test('without clear button', () => {
-      const { colorPicker } = setup({ value: '#cdcdcd', canClear: false });
-
-      expect(colorPicker.find(TextButton).exists()).toBe(false);
+      setup({ value: '#cdcdcd', canClear: false });
+      expect(screen.queryByText('Clear')).not.toBeInTheDocument();
     });
   });
 
   describe('events', () => {
+    function expectPopoverOpen(open: boolean) {
+      if (open) {
+        expect(screen.queryByText('Cancel')).toBeInTheDocument();
+        expect(screen.queryByText('Select')).toBeInTheDocument();
+        expect(screen.queryByLabelText('hex')).toBeInTheDocument();
+        expect(screen.queryByLabelText('r')).toBeInTheDocument();
+        expect(screen.queryByLabelText('g')).toBeInTheDocument();
+        expect(screen.queryByLabelText('b')).toBeInTheDocument();
+        expect(screen.queryByLabelText('a')).toBeInTheDocument();
+      } else {
+        expect(screen.queryByText('Cancel')).not.toBeInTheDocument();
+        expect(screen.queryByText('Select')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('hex')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('r')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('g')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('b')).not.toBeInTheDocument();
+        expect(screen.queryByLabelText('a')).not.toBeInTheDocument();
+      }
+    }
+
     it('should open the popover when the select button is clicked', () => {
-      const { colorPicker } = setup({
+      setup({
         value: undefined
       });
 
-      const popover = colorPicker.find(Popover);
+      expectPopoverOpen(false);
 
-      expect(popover.props().isOpen).toBe(false);
+      fireEvent.click(screen.getByText('Select your best friend'));
 
-      // @ts-expect-error Test mock
-      popover
-        // @ts-expect-error Test mock
-        .shallow('target')
-        .find(Button)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
-
-      expect(colorPicker.find(Popover).props().isOpen).toBe(true);
+      expectPopoverOpen(true);
     });
 
-    it('should when the user selects a color close the popover and call onChange', () => {
-      const { colorPicker, onChangeSpy, onBlurSpy } = setup({
-        value: undefined
+    it('should call onChange when the user selects a color', () => {
+      const { onChangeSpy, onBlurSpy } = setup({
+        value: '#cdcdcd'
       });
 
-      // @ts-expect-error Test mock
-      colorPicker
-        .find(SketchPicker)
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .onChange({ hex: '#424242' });
+      fireEvent.click(screen.getByText('Select your best friend'));
 
-      // @ts-expect-error Test mock
-      colorPicker
-        .find(Button)
-        .at(1)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      // @ts-expect-error saturation-black will always return element
+      fireEvent.touchStart(document.querySelector('.saturation-black'), { touches: [ { pageX: 20, pageY: 20 } ] });
+      // @ts-expect-error saturation-black will always return element
+      fireEvent.touchEnd(document.querySelector('.saturation-black'), { touches: [ { pageX: 20, pageY: 20 } ] });
 
-      expect(colorPicker.find(Popover).props().isOpen).toBe(false);
+      fireEvent.click(screen.getByText('Select'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith('#424242');
+      expect(onChangeSpy).toHaveBeenCalledWith('#000000');
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
-
-      const color = colorPicker.find(SketchPicker).at(0).props().color;
-
-      expect(color).toBe('#424242');
     });
 
     describe('cancel behavior', () => {
-      it('should when cancelled when a previous value has een selected: close the popover, not call onChange, and reset to the old value', () => {
-        const { colorPicker, onChangeSpy, onBlurSpy } = setup({
+      it('should not call onChange when cancelled when a previous value has been selected', () => {
+        const { onChangeSpy, onBlurSpy } = setup({
           value: '#cdcdcd'
         });
 
-        // @ts-expect-error Test mock
-        colorPicker
-          .find(SketchPicker)
-          .at(0)
-          .props()
-          // @ts-expect-error Test mock
-          .onChange({ hex: '#424242' });
+        fireEvent.click(screen.getByText('Select your best friend'));
 
-        // @ts-expect-error Test mock
-        colorPicker
-          .find(Button)
-          .at(0)
-          .props()
-          // @ts-expect-error Test mock
-          .onClick();
+        expectPopoverOpen(true);
 
-        expect(colorPicker.find(Popover).props().isOpen).toBe(false);
+        fireEvent.click(screen.getByText('Cancel'));
 
         expect(onChangeSpy).toHaveBeenCalledTimes(0);
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
-
-        const color = colorPicker.find(SketchPicker).at(0).props().color;
-
-        expect(color).toBe('#cdcdcd');
       });
 
-      it('should when cancelled when a previous value was not selected: close the popover, not call onChange, and reset to white', () => {
-        const { colorPicker, onChangeSpy, onBlurSpy } = setup({
+      it('should not call onChange when cancelled when a previous value was not selected', () => {
+        const { onChangeSpy, onBlurSpy } = setup({
           value: undefined
         });
 
-        // @ts-expect-error Test mock
-        colorPicker
-          .find(SketchPicker)
-          .at(0)
-          .props()
-          // @ts-expect-error Test mock
-          .onChange({ hex: '#424242' });
-
-        // @ts-expect-error Test mock
-        colorPicker
-          .find(Button)
-          .at(0)
-          .props()
-          // @ts-expect-error Test mock
-          .onClick();
-
-        expect(colorPicker.find(Popover).props().isOpen).toBe(false);
+        fireEvent.click(screen.getByText('Select your best friend'));
+        fireEvent.click(screen.getByText('Cancel'));
 
         expect(onChangeSpy).toHaveBeenCalledTimes(0);
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
-
-        const color = colorPicker.find(SketchPicker).at(0).props().color;
-
-        expect(color).toBe('#ffffff');
       });
     });
 
     it('should when the user clicks "clear" reset the color', () => {
-      const { colorPicker, onBlurSpy, onChangeSpy } = setup({
+      const { onBlurSpy, onChangeSpy } = setup({
         value: '#cdcdcd'
       });
 
-      // @ts-expect-error Test mock
-      colorPicker
-        .find('TextButton')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick();
+      fireEvent.click(screen.getByText('Clear'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(undefined);
@@ -207,33 +170,41 @@ describe('Component: ColorPicker', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      const { colorPicker } = setup({
+      const { container, props, rerender, asFragment } = setup({
         value: '#cdcdcd'
       });
 
-      const value = colorPicker.find('#color-picker-value').props().style
-        ?.backgroundColor;
-      expect(value).toBe('#cdcdcd');
+      expect(container).toMatchSnapshot('with value');
 
-      colorPicker.setProps({ value: undefined });
+      const newProps = {
+        ...props,
+        value: undefined
+      };
 
-      expect(colorPicker.find('#color-picker-value').exists()).toBe(false);
+      rerender(
+        <ColorPicker {...newProps} />
+      );
+
+      expect(asFragment()).toMatchSnapshot('without value');
     });
 
     test('becomes filled', () => {
-      const { colorPicker } = setup({
+      const { container, props, rerender, asFragment } = setup({
         value: undefined
       });
 
-      expect(colorPicker.find('#color-picker-value').exists()).toBe(false);
+      expect(container).toMatchSnapshot('without value');
 
-      colorPicker.setProps({
-        value: '#cdcdcd'
-      });
+      const newProps = {
+        ...props,
+        value: '#424242'
+      };
 
-      const value = colorPicker.find('#color-picker-value').props().style
-        ?.backgroundColor;
-      expect(value).toBe('#cdcdcd');
+      rerender(
+        <ColorPicker {...newProps} />
+      );
+
+      expect(asFragment()).toMatchSnapshot('with value');
     });
   });
 });

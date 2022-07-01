@@ -1,31 +1,33 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { OpenClose } from './OpenClose';
 
 describe('Component: OpenClose', () => {
-  function setup({ isOpen = false }: { isOpen?: boolean }) {
-    const openClose = shallow(<OpenClose open={isOpen} />);
+  function setup({ isOpen = false, className }: { isOpen?: boolean; className?: string; }) {
+    const { container } = render(
+      <OpenClose open={isOpen} className={className} />
+    );
 
-    return { openClose };
+    return { container };
   }
 
   describe('ui', () => {
     test('open', () => {
-      const { openClose } = setup({ isOpen: true });
-
-      expect(toJson(openClose)).toMatchSnapshot(
-        'Component: OpenClose => ui => open'
-      );
+      const { container } = setup({ isOpen: true });
+      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toHaveClass('is-open');
     });
 
     test('closed', () => {
-      const { openClose } = setup({ isOpen: false });
+      const { container } = setup({ isOpen: false });
+      expect(container.firstChild).toHaveClass('is-closed');
+    });
 
-      expect(toJson(openClose)).toMatchSnapshot(
-        'Component: OpenClose => ui => closed'
-      );
+    test('extra class', () => {
+      const { container } = setup({ isOpen: true, className: 'extra-class' });
+      expect(container.firstChild).toHaveClass('extra-class');
     });
   });
 });

@@ -1,13 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import Popover from './Popover';
 
 describe('Component: Popover', () => {
   describe('ui', () => {
     test('default', () => {
-      const popover = shallow(
+      const { container } = render(
         <Popover
           target={
             <div>The popover should be wrapped around this div, in a span</div>
@@ -16,33 +16,43 @@ describe('Component: Popover', () => {
           Popover content
         </Popover>
       );
-      expect(toJson(popover)).toMatchSnapshot(
-        'Component: Popover => ui => default'
+      expect(container).toMatchSnapshot();
+    });
+
+    test('open', () => {
+      const { container } = render(
+        <Popover
+          isOpen={true}
+          target={
+            <div>The popover should be wrapped around this div, in a span</div>
+          }
+        >
+          Popover content
+        </Popover>
       );
+      expect(container).toMatchSnapshot();
     });
 
     test('with custom tag', () => {
-      const popover = shallow(
+      render(
         <Popover tag="div" target="target">
           Popover content
         </Popover>
       );
-      expect(toJson(popover)).toMatchSnapshot(
-        'Component: Popover => ui => with tag'
-      );
+      expect(screen.getByText('target').tagName).toBe('DIV');
     });
 
     test('with class', () => {
-      const popover = shallow(
+      render(
         <Popover className="extra-classnames" target="target">
           Popover content
         </Popover>
       );
-      expect(popover.find('span').props().className).toBe('extra-classnames');
+      expect(screen.getByText('target')).toHaveClass('extra-classnames');
     });
 
     test('with optional properties', () => {
-      const popover = shallow(
+      const { container } = render(
         <Popover
           style={{ marginTop: 5, padding: 10 }}
           isOpen={true}
@@ -57,9 +67,7 @@ describe('Component: Popover', () => {
         </Popover>
       );
 
-      expect(toJson(popover)).toMatchSnapshot(
-        'Component: Popover => ui => with optional properties'
-      );
+      expect(container).toMatchSnapshot();
     });
   });
 });

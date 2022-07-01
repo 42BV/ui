@@ -1,16 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import TypeaheadSingle from './TypeaheadSingle';
 
-import {
-  adminUser,
-  coordinatorUser,
-  listOfUsers,
-  pageOfUsersFetcher,
-  userUser
-} from '../../../test/fixtures';
+import { adminUser, coordinatorUser, listOfUsers, pageOfUsersFetcher, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
 import { pageOf } from '../../../utilities/page/page';
@@ -27,12 +21,13 @@ jest.mock('./useAutoSelectOptionWhenQueryMatchesExactly');
 describe('Component: TypeaheadSingle', () => {
   function setup({
     value,
-    hasPlaceholder = true,
-    hasLabel = true,
+    hasPlaceholder,
+    hasLabel,
     loading = false,
     isOptionEnabled,
-    isAsync = false,
+    isAsync,
     pageSize,
+    maxResults,
     text
   }: {
     value?: User;
@@ -42,6 +37,7 @@ describe('Component: TypeaheadSingle', () => {
     isOptionEnabled?: IsOptionEnabled<User>;
     isAsync?: boolean;
     pageSize?: number;
+    maxResults?: number;
     text?: {
       paginationText?: string;
     };
@@ -53,7 +49,7 @@ describe('Component: TypeaheadSingle', () => {
     useOptions.mockImplementation(
       ({ pageNumber, size, optionsShouldAlwaysContainValue }) => {
         expect(pageNumber).toBe(1);
-        expect(size).toBe(!isAsync ? listOfUsers().length : pageSize ?? 10);
+        expect(size).toBe(!isAsync ? 3 : pageSize ?? 10);
         expect(optionsShouldAlwaysContainValue).toBe(false);
 
         return {
@@ -75,31 +71,56 @@ describe('Component: TypeaheadSingle', () => {
       onBlur: onBlurSpy,
       error: 'Some error',
       pageSize,
-      text
+      maxResults,
+      text,
+      id: 'bestFriend',
+      label: hasLabel ? 'Best friend' : undefined
     };
 
-    const labelProps = hasLabel
-      ? { id: 'bestFriend', label: 'Best friend' }
-      : {};
-
-    const typeaheadSingle = shallow(
-      <TypeaheadSingle {...props} {...labelProps} />
+    const { container, rerender, asFragment } = render(
+      <TypeaheadSingle {...props} />
     );
 
-    return { typeaheadSingle, onBlurSpy, onChangeSpy };
+    return { container, props, rerender, asFragment, onBlurSpy, onChangeSpy };
   }
 
   describe('ui', () => {
-    test('with value', () => {
-      const { typeaheadSingle } = setup({ value: adminUser() });
-
-      expect(toJson(typeaheadSingle)).toMatchSnapshot(
-        'Component: TypeaheadSingle => ui => with value'
-      );
+    test('default', () => {
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
-    test('async with a custom pageSize of 2 options in the dropdown', () => {
-      const { typeaheadSingle } = setup({
+    test('with value', () => {
+      setup({ value: adminUser() });
+      expect(screen.getByRole('combobox')).toHaveValue('admin@42.nl');
+    });
+
+    test('with placeholder', () => {
+      setup({ hasPlaceholder: true });
+      expect(screen.queryByPlaceholderText('Please provide your best friend')).toBeInTheDocument();
+    });
+
+    test('without placeholder', () => {
+      setup({ hasPlaceholder: false });
+      expect(screen.queryByPlaceholderText('Please provide your best friend')).not.toBeInTheDocument();
+    });
+
+    test('with label', () => {
+      setup({ hasLabel: true });
+      expect(screen.queryByText('Best friend')).toBeInTheDocument();
+      expect(screen.queryByLabelText('Best friend')).toBeInTheDocument();
+    });
+
+    test('without label', () => {
+      setup({ hasLabel: false });
+      expect(screen.queryByText('Best friend')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Best friend')).not.toBeInTheDocument();
+    });
+
+    test('async with a custom pageSize of 2 options in the dropdown', async () => {
+      expect.assertions(7);
+
+      const { asFragment } = setup({
         isAsync: true,
         pageSize: 2
       });
@@ -107,145 +128,104 @@ describe('Component: TypeaheadSingle', () => {
       expect(useOptions).toBeCalledTimes(1);
       expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 2 }));
 
-      expect(toJson(typeaheadSingle)).toMatchSnapshot(
-        'Component: TypeaheadSingle => ui => async with a custom pageSize of 2 options in the dropdown'
-      );
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: '42.nl' } });
+
+      await waitFor(() => {
+        expect(screen.queryAllByText('42.nl').length).toBe(2);
+      });
+      expect(asFragment()).toMatchSnapshot();
     });
 
-    test('async with the default pageSize of 10 options in the dropdown', () => {
-      const { typeaheadSingle } = setup({
+    test('async with the default pageSize of 10 options in the dropdown', async () => {
+      expect.assertions(7);
+
+      const { asFragment } = setup({
         isAsync: true
       });
 
       expect(useOptions).toBeCalledTimes(1);
       expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 10 }));
 
-      expect(toJson(typeaheadSingle)).toMatchSnapshot(
-        'Component: TypeaheadSingle => ui => async with the default pageSize of 10 options in the dropdown'
-      );
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: '42.nl' } });
+
+      await waitFor(() => {
+        expect(screen.queryAllByText('42.nl').length).toBe(3);
+      });
+      expect(asFragment()).toMatchSnapshot();
     });
 
-    test('without placeholder', () => {
-      const { typeaheadSingle } = setup({
-        value: adminUser(),
-        hasPlaceholder: false
+    test('with the default pagination text', async () => {
+      expect.assertions(5);
+
+      const { asFragment } = setup({
+        isAsync: true,
+        maxResults: 2
       });
 
-      expect(toJson(typeaheadSingle)).toMatchSnapshot(
-        'Component: TypeaheadSingle => ui => without placeholder'
-      );
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: '42.nl' } });
+
+      await waitFor(() => {
+        expect(screen.queryByText('Display additional results...')).toBeInTheDocument();
+      });
+      expect(asFragment()).toMatchSnapshot();
+
     });
 
-    test('with the default pagination text', () => {
-      const { typeaheadSingle } = setup({});
+    test('with a custom pagination text', async () => {
+      expect.assertions(12);
 
-      expect(toJson(typeaheadSingle)).toMatchSnapshot(
-        'Component: TypeaheadSingle => ui => with the default pagination text'
-      );
-
-      const reactstrapTypeahead = typeaheadSingle
-        .find('div')
-        .children()
-        .first();
-      expect(reactstrapTypeahead.props().paginationText).toBe(
-        'Display additional results...'
-      );
-    });
-
-    test('with a custom pagination text', () => {
-      const { typeaheadSingle } = setup({
+      const { asFragment } = setup({
+        maxResults: 2,
         text: {
           paginationText: 'Show more'
         }
       });
 
-      expect(toJson(typeaheadSingle)).toMatchSnapshot(
-        'Component: TypeaheadSingle => ui => with a custom pagination text'
-      );
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: '42.nl' } });
 
-      const reactstrapTypeahead = typeaheadSingle
-        .find('div')
-        .children()
-        .first();
-      expect(reactstrapTypeahead.props().paginationText).toBe('Show more');
-    });
-
-    test('without label', () => {
-      const { typeaheadSingle } = setup({
-        value: adminUser(),
-        hasLabel: false
+      await waitFor(() => {
+        expect(screen.queryByText('Display additional results...')).not.toBeInTheDocument();
+        expect(screen.queryByText('Show more')).toBeInTheDocument();
       });
-
-      expect(toJson(typeaheadSingle)).toMatchSnapshot(
-        'Component: TypeaheadSingle => ui => without label'
-      );
+      expect(asFragment()).toMatchSnapshot();
     });
 
     test('loading', () => {
-      const { typeaheadSingle } = setup({
-        isAsync: true,
-        loading: true
-      });
-
-      const asyncTypeahead = typeaheadSingle.find('div').children().first();
-      expect(asyncTypeahead.props().isLoading).toBe(true);
+      const { container } = setup({ isAsync: true, loading: true });
+      expect(screen.queryByText('Loading...')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
-    test('async delay', () => {
-      const { typeaheadSingle } = setup({
-        isAsync: true
-      });
-
-      const asyncTypeahead = typeaheadSingle.find('div').children().first();
-      expect(asyncTypeahead.props().delay).toBe(200);
-    });
-
-    test('sync', () => {
-      const { typeaheadSingle } = setup({
-        isAsync: false
-      });
-
-      const asyncTypeahead = typeaheadSingle.find('div').children().first();
-      expect(asyncTypeahead.props().delay).toBeUndefined();
-      expect(asyncTypeahead.props().onSearch).toBeUndefined();
-      expect(asyncTypeahead.props().isLoading).toBeUndefined();
-    });
   });
 
   describe('events', () => {
-    describe('onChange', () => {
-      test('nothing selected', () => {
-        const { typeaheadSingle, onChangeSpy } = setup({ value: undefined });
-
-        const asyncTypeahead = typeaheadSingle.find('div').children().first();
-
-        asyncTypeahead.props().onChange([]);
-
-        expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(undefined);
+    test('onChange', () => {
+      const { onChangeSpy, onBlurSpy } = setup({
+        value: undefined
       });
 
-      test('value selected', () => {
-        const { typeaheadSingle, onChangeSpy, onBlurSpy } = setup({
-          value: undefined
-        });
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'admin' } });
+      fireEvent.click(screen.getByLabelText('admin@42.nl'));
 
-        const asyncTypeahead = typeaheadSingle.find('div').children().first();
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(adminUser());
 
-        const value = adminUser();
+      expect(onBlurSpy).toHaveBeenCalledTimes(1);
+    });
 
-        asyncTypeahead.props().onChange([
-          {
-            label: 'Maarten',
-            value
-          }
-        ]);
-
-        expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(value);
-
-        expect(onBlurSpy).toHaveBeenCalledTimes(1);
+    it('should call onChange with undefined when value is removed', () => {
+      const { onChangeSpy, onBlurSpy } = setup({
+        value: adminUser()
       });
+
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: '' } });
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(undefined);
+
+      expect(onBlurSpy).toHaveBeenCalledTimes(1);
+
+      fireEvent.click(screen.getByLabelText('admin@42.nl'));
     });
 
     it('should automatically select an option when the query matches it exactly', () => {
@@ -265,82 +245,74 @@ describe('Component: TypeaheadSingle', () => {
       });
     });
 
-    it('should set the query when the user starts typing in the input field', () => {
-      const { typeaheadSingle } = setup({
+    it('should set the query when the user starts typing in the input field', async () => {
+      expect.assertions(15);
+
+      setup({
         value: undefined,
         isAsync: true
       });
 
-      const asyncTypeahead = typeaheadSingle.find('div').children().first();
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'admin' } });
 
-      asyncTypeahead.props().onSearch('admin');
-
-      expect(useOptions).toBeCalledTimes(2);
-      expect(useOptions).toBeCalledWith(
-        expect.objectContaining({ query: 'admin' })
-      );
+      await waitFor(() => {
+        expect(useOptions).toBeCalledTimes(2);
+        expect(useOptions).toHaveBeenLastCalledWith(
+          expect.objectContaining({ query: 'admin' })
+        );
+      });
     });
 
-    it('should filter out disabled options from the typeahead options', () => {
-      const { typeaheadSingle } = setup({
+    it('should filter out disabled options from the typeahead options', async () => {
+      expect.assertions(6);
+
+      setup({
         value: adminUser(),
         isOptionEnabled: (user) => user.id !== userUser().id // Also disable the userUser
       });
 
-      const asyncTypeahead = typeaheadSingle.find('div').children().first();
+      fireEvent.focus(screen.getByRole('combobox'));
 
-      const options = asyncTypeahead.props().options;
-
-      expect(options).toEqual([
-        { label: 'admin@42.nl', value: adminUser() },
-        { label: 'coordinator@42.nl', value: coordinatorUser() }
-      ]);
+      await waitFor(() => {
+        expect(screen.queryByLabelText('admin@42.nl')).toBeInTheDocument();
+        expect(screen.queryByLabelText('coordinator@42.nl')).toBeInTheDocument();
+        expect(screen.queryByLabelText('user@42.nl')).not.toBeInTheDocument();
+      });
     });
 
     describe('value changes', () => {
       test('becomes empty', () => {
-        const value = adminUser();
+        const { props, rerender } = setup({ value: adminUser() });
 
-        const { typeaheadSingle } = setup({ value: adminUser() });
+        expect(screen.getByRole('combobox')).toHaveValue('admin@42.nl');
 
-        let asyncTypeahead = typeaheadSingle.find('div').children().first();
+        const newProps = {
+          ...props,
+          value: undefined
+        };
 
-        expect(asyncTypeahead.props().selected).toEqual([
-          {
-            label: 'admin@42.nl',
-            value
-          }
-        ]);
+        rerender(
+          <TypeaheadSingle {...newProps} />
+        );
 
-        typeaheadSingle.setProps({ value: undefined });
-
-        asyncTypeahead = typeaheadSingle.find('div').children().first();
-        expect(asyncTypeahead.props().selected).toEqual([]);
-
-        expect(typeaheadSingle.find('.showing-placeholder').length).toBe(1);
+        expect(screen.getByRole('combobox')).toHaveValue('');
       });
 
       test('becomes filled', () => {
-        const { typeaheadSingle } = setup({ value: undefined });
+        const { props, rerender } = setup({});
 
-        let asyncTypeahead = typeaheadSingle.find('div').children().first();
-        expect(asyncTypeahead.props().selected).toEqual([]);
+        expect(screen.getByRole('combobox')).toHaveValue('');
 
-        const value = adminUser();
+        const newProps = {
+          ...props,
+          value: adminUser()
+        };
 
-        typeaheadSingle.setProps({
-          value
-        });
+        rerender(
+          <TypeaheadSingle {...newProps} />
+        );
 
-        asyncTypeahead = typeaheadSingle.find('div').children().first();
-        expect(asyncTypeahead.props().selected).toEqual([
-          {
-            label: 'admin@42.nl',
-            value
-          }
-        ]);
-
-        expect(typeaheadSingle.find('.showing-placeholder').length).toBe(0);
+        expect(screen.getByRole('combobox')).toHaveValue('admin@42.nl');
       });
     });
   });

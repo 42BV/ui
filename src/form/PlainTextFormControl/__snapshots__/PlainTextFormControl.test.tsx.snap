@@ -1,40 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: PlainTextFormControl ui default: Component: PlainTextFormControl => ui => default 1`] = `
-<FormGroup
-  tag="div"
->
-  <Label
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    name
-  </Label>
+exports[`Component: PlainTextFormControl ui default 1`] = `
+<div>
   <div
-    className="form-control-plaintext"
+    class="mb-3"
   >
-    This is your name
+    <div
+      class="form-control-plaintext"
+    >
+      This is your name
+    </div>
   </div>
-</FormGroup>
-`;
-
-exports[`Component: PlainTextFormControl ui without label: Component: PlainTextFormControl => ui => without label 1`] = `
-<FormGroup
-  tag="div"
->
-  <div
-    className="form-control-plaintext"
-  >
-    This is your name
-  </div>
-</FormGroup>
+</div>
 `;

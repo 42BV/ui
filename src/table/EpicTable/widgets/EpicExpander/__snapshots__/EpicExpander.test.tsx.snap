@@ -1,17 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: EpicExpander ui is closed 1`] = `
-<Button
-  color="dark"
-  icon="expand_more"
-  onClick={[Function]}
-/>
-`;
-
 exports[`Component: EpicExpander ui is open 1`] = `
-<Button
-  color="dark"
-  icon="expand_less"
-  onClick={[Function]}
-/>
+<div>
+  <span
+    class="button dark d-inline-block"
+  >
+    <i
+      class="icon material-icons text-dark clickable"
+      style="font-size: 24px;"
+    >
+      expand_less
+    </i>
+  </span>
+</div>
 `;

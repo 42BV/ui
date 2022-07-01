@@ -1,53 +1,40 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import TextButton from './TextButton';
 
 describe('component: TextButton', () => {
   function setup({ className }: { className?: string }) {
     const onClickSpy = jest.fn();
-    const textButton = shallow(
+    const { container } = render(
       <TextButton onClick={onClickSpy} className={className}>
         Clear
       </TextButton>
     );
 
-    return {
-      textButton,
-      onClickSpy
-    };
+    return { container, onClickSpy };
   }
 
   describe('ui', () => {
     test('standard', () => {
-      const { textButton } = setup({});
-
-      expect(toJson(textButton)).toMatchSnapshot();
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
     test('with custom classname', () => {
-      const { textButton } = setup({ className: 'yolo' });
-
-      expect(toJson(textButton)).toMatchSnapshot();
+      const { container } = setup({ className: 'yolo' });
+      expect(container.firstChild).toHaveClass('yolo');
     });
   });
 
   describe('events', () => {
     it('should when clicked call the onClick callback prop', () => {
-      const { textButton, onClickSpy } = setup({});
+      const { onClickSpy } = setup({});
 
-      const event = new Event('click');
-
-      // @ts-expect-error Test mock
-      textButton
-        .find('u')
-        .props()
-        // @ts-expect-error Test mock
-        .onClick(event);
+      fireEvent.click(screen.getByRole('button'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
-      expect(onClickSpy).toHaveBeenCalledWith(event);
     });
   });
 });

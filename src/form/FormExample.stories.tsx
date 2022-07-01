@@ -177,6 +177,7 @@ export function TotalForm({
           placeholder="Please enter your first name"
           validators={firstNameValidators}
           asyncValidators={firstNameAsyncValidators}
+          errorMode="tooltip"
         />
 
         <JarbInput

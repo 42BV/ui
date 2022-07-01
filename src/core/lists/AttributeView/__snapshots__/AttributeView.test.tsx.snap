@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: AttributeView ui 1`] = `
-<ListGroupItem
-  className="pl-0"
-  tag="li"
->
-  <ListGroupItemHeading
-    className="small text-primary"
-    tag="h5"
+<div>
+  <li
+    class="pl-0 list-group-item"
   >
-    Name
-  </ListGroupItemHeading>
-  42 BV
-</ListGroupItem>
+    <h5
+      class="small text-primary list-group-item-heading"
+    >
+      Name
+    </h5>
+    42 BV
+  </li>
+</div>
 `;

@@ -117,10 +117,10 @@ export function CrudHeader<T = string>({
             <Input
               // @ts-expect-error Default value type is a string
               value={searchValue}
-              onChange={(value) => {
-                // @ts-expect-error Default value type is a string
-                onSearch(value);
-              }} />
+              // @ts-expect-error Default value type is a string
+              onChange={onSearch}
+              type="search"
+            />
           )}
         </EpicCellLayout>
       </EpicHeader>

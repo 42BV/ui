@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import * as MeterWidth from './useMeterWidth/useMeterWidth';
 import * as Rules from './useRules/useRules';
@@ -15,7 +15,7 @@ describe('Component: PasswordStrength', () => {
     password?: string;
     showMeter?: boolean;
   }) {
-    const passwordStrength = shallow(
+    const { container } = render(
       <PasswordStrength
         password={password}
         rules={['lowercase', 'minimumLength']}
@@ -23,22 +23,18 @@ describe('Component: PasswordStrength', () => {
       />
     );
 
-    return { passwordStrength };
+    return { container };
   }
 
   describe('ui', () => {
     it('default', () => {
-      const { passwordStrength } = setup({});
-      expect(toJson(passwordStrength)).toMatchSnapshot(
-        'Component: PasswordStrength => ui => default'
-      );
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
     it('without meter', () => {
-      const { passwordStrength } = setup({ showMeter: false });
-      expect(toJson(passwordStrength)).toMatchSnapshot(
-        'Component: PasswordStrength => ui => without meter'
-      );
+      setup({ showMeter: false });
+      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
     });
   });
 
@@ -46,45 +42,33 @@ describe('Component: PasswordStrength', () => {
     it('should display the progress bar in color warning when password strength 75%', () => {
       jest.spyOn(MeterWidth, 'useMeterWidth').mockReturnValue(75);
 
-      const { passwordStrength } = setup({});
+      setup({});
 
-      expect(passwordStrength.find('Progress').props().color).toBe('warning');
+      expect(screen.getByRole('progressbar')).toHaveClass('bg-warning');
     });
 
     it('should display the progress bar in color warning when password strength 100%', () => {
       jest.spyOn(MeterWidth, 'useMeterWidth').mockReturnValue(100);
 
-      const { passwordStrength } = setup({});
+      setup({});
 
-      expect(passwordStrength.find('Progress').props().color).toBe('success');
+      expect(screen.getByRole('progressbar')).toHaveClass('bg-success');
     });
 
     it('should display the rule with a red cross', () => {
-      const { passwordStrength } = setup({});
+      setup({});
 
-      expect(
-        passwordStrength
-          .find('Icon')
-          .at(0)
-          // @ts-expect-error Test mock
-          .props().icon
-      ).toBe('cancel');
-      expect(passwordStrength.find('Icon').at(0).props().color).toBe('danger');
+      expect(screen.queryAllByText('cancel').length).toBe(2);
+      expect(screen.getAllByText('cancel')[0]).toHaveClass('text-danger');
     });
 
     it('should display the rule with a green checkmark', () => {
       jest.spyOn(Rules, 'useRules').mockReturnValue({ lowercase: true });
 
-      const { passwordStrength } = setup({});
+      setup({});
 
-      expect(
-        passwordStrength
-          .find('Icon')
-          .at(0)
-          // @ts-expect-error Test mock
-          .props().icon
-      ).toBe('check_circle');
-      expect(passwordStrength.find('Icon').at(0).props().color).toBe('success');
+      expect(screen.queryByText('check_circle')).toBeInTheDocument();
+      expect(screen.getByText('check_circle')).toHaveClass('text-success');
     });
   });
 });

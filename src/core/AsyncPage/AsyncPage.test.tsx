@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import AsyncPage, { isEmpty } from './AsyncPage';
 
@@ -16,7 +15,7 @@ type State = {
 
 describe('Component: AsyncPage', () => {
   function setup({ state }: { state: State }) {
-    const asyncPage = shallow(
+    const { container } = render(
       <AsyncPage
         // @ts-expect-error Test mock
         state={state}
@@ -33,7 +32,7 @@ describe('Component: AsyncPage', () => {
       </AsyncPage>
     );
 
-    return { asyncPage };
+    return { container };
   }
 
   test('ui', () => {
@@ -43,9 +42,9 @@ describe('Component: AsyncPage', () => {
       data: pageOfUsers()
     };
 
-    const { asyncPage } = setup({ state });
+    const { container } = setup({ state });
 
-    expect(toJson(asyncPage)).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });
 

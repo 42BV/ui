@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Addon ui: Component: Addon 1`] = `
-<Fragment>
+exports[`Component: Addon ui 1`] = `
+<div>
   42
-</Fragment>
+</div>
 `;

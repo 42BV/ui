@@ -1,1248 +1,267 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ValuePicker multiple when CheckboxMultipleSelect should render a \`CheckboxMultipleSelect\` component async page \`totalElements\` is less than 11 1`] = `
-<ValuePicker
-  canSearch={true}
-  icon="face"
-  id="bestFriend"
-  label="Best friend"
-  labelForOption={[Function]}
-  multiple={true}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  options={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 1,
-          },
-        ],
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 100,
-          },
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-      ],
-    }
-  }
-  placeholder="Select your best friend"
->
-  <CheckboxMultipleSelect
-    canSearch={true}
-    icon="face"
-    id="bestFriend"
-    label="Best friend"
-    labelForOption={[Function]}
-    onBlur={[MockFunction]}
-    onChange={[MockFunction]}
-    options={
-      [MockFunction] {
-        "calls": Array [
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 1,
-            },
-          ],
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 100,
-            },
-          ],
-        ],
-        "results": Array [
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-        ],
-      }
-    }
-    placeholder="Select your best friend"
+exports[`Component: ValuePicker multiple CheckboxMultipleSelect should render a \`CheckboxMultipleSelect\` component when async page \`totalElements\` is less than 11 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
   >
-    <FormGroup
-      className=""
-      tag="div"
+    <label
+      class="form-label"
+      for="bestFriend"
+    >
+      Best friend
+    </label>
+    <p
+      class="text-muted"
+    >
+      <em>
+        Select your best friend
+      </em>
+    </p>
+    <div
+      class="d-flex flex-wrap"
     >
       <div
-        className="mb-3"
+        class="pe-3"
+        style="flex-basis: 300px;"
       >
-        <Label
-          for="bestFriend"
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
+        <div
+          class="form-check"
         >
           <label
-            className="form-label"
-            htmlFor="bestFriend"
+            class="form-check-label"
           >
-            Best friend
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="0"
+            />
+             admin@42.nl
           </label>
-        </Label>
-        <p
-          className="text-muted"
-        >
-          <em>
-            Select your best friend
-          </em>
-        </p>
+        </div>
         <div
-          className="d-flex flex-wrap"
+          class="form-check"
         >
-          <div
-            className="pe-3"
-            key="0"
-            style={
-              Object {
-                "flexBasis": "300px",
-              }
-            }
+          <label
+            class="form-check-label"
           >
-            <FormGroup
-              check={true}
-              inline={false}
-              key="42"
-              tag="div"
-            >
-              <div
-                className="form-check"
-              >
-                <Label
-                  check={true}
-                  tag="label"
-                  widths={
-                    Array [
-                      "xs",
-                      "sm",
-                      "md",
-                      "lg",
-                      "xl",
-                      "xxl",
-                    ]
-                  }
-                >
-                  <label
-                    className="form-check-label"
-                  >
-                    <Input
-                      checked={false}
-                      disabled={false}
-                      onChange={[Function]}
-                      type="checkbox"
-                      value={0}
-                    >
-                      <input
-                        checked={false}
-                        className="form-check-input"
-                        disabled={false}
-                        onChange={[Function]}
-                        type="checkbox"
-                        value={0}
-                      />
-                    </Input>
-                     
-                    admin@42.nl
-                  </label>
-                </Label>
-              </div>
-            </FormGroup>
-            <FormGroup
-              check={true}
-              inline={false}
-              key="777"
-              tag="div"
-            >
-              <div
-                className="form-check"
-              >
-                <Label
-                  check={true}
-                  tag="label"
-                  widths={
-                    Array [
-                      "xs",
-                      "sm",
-                      "md",
-                      "lg",
-                      "xl",
-                      "xxl",
-                    ]
-                  }
-                >
-                  <label
-                    className="form-check-label"
-                  >
-                    <Input
-                      checked={false}
-                      disabled={false}
-                      onChange={[Function]}
-                      type="checkbox"
-                      value={1}
-                    >
-                      <input
-                        checked={false}
-                        className="form-check-input"
-                        disabled={false}
-                        onChange={[Function]}
-                        type="checkbox"
-                        value={1}
-                      />
-                    </Input>
-                     
-                    coordinator@42.nl
-                  </label>
-                </Label>
-              </div>
-            </FormGroup>
-            <FormGroup
-              check={true}
-              inline={false}
-              key="1337"
-              tag="div"
-            >
-              <div
-                className="form-check"
-              >
-                <Label
-                  check={true}
-                  tag="label"
-                  widths={
-                    Array [
-                      "xs",
-                      "sm",
-                      "md",
-                      "lg",
-                      "xl",
-                      "xxl",
-                    ]
-                  }
-                >
-                  <label
-                    className="form-check-label"
-                  >
-                    <Input
-                      checked={false}
-                      disabled={false}
-                      onChange={[Function]}
-                      type="checkbox"
-                      value={2}
-                    >
-                      <input
-                        checked={false}
-                        className="form-check-input"
-                        disabled={false}
-                        onChange={[Function]}
-                        type="checkbox"
-                        value={2}
-                      />
-                    </Input>
-                     
-                    user@42.nl
-                  </label>
-                </Label>
-              </div>
-            </FormGroup>
-          </div>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="1"
+            />
+             coordinator@42.nl
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="2"
+            />
+             user@42.nl
+          </label>
         </div>
       </div>
-    </FormGroup>
-  </CheckboxMultipleSelect>
-</ValuePicker>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
-exports[`Component: ValuePicker multiple when ModalPickerMultiple should render a \`ModalPickerMultiple\` async page \`totalElements\` is more than 10 1`] = `
-<ValuePicker
-  canSearch={true}
-  icon="face"
-  id="bestFriend"
-  label="Best friend"
-  labelForOption={[Function]}
-  multiple={true}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  options={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 1,
-          },
-        ],
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 10,
-          },
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-      ],
-    }
-  }
-  placeholder="Select your best friend"
->
-  <ModalPickerMultiple
-    canSearch={true}
-    icon="face"
-    id="bestFriend"
-    label="Best friend"
-    labelForOption={[Function]}
-    onBlur={[MockFunction]}
-    onChange={[MockFunction]}
-    options={
-      [MockFunction] {
-        "calls": Array [
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 1,
-            },
-          ],
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 10,
-            },
-          ],
-        ],
-        "results": Array [
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-        ],
-      }
-    }
-    placeholder="Select your best friend"
+exports[`Component: ValuePicker multiple ModalPickerMultiple should render a \`ModalPickerMultiple\` when async page \`totalElements\` is more than 10 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
   >
-    <FormGroup
-      className=""
-      tag="div"
+    <label
+      class="form-label"
+      for="bestFriend"
     >
-      <div
-        className="mb-3"
+      Best friend
+    </label>
+    <div
+      class="d-flex align-items-center"
+    >
+      <button
+        class="flex-grow-0 flex-shrink-0 btn btn-primary"
+        type="button"
       >
-        <Label
-          for="bestFriend"
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
+        <i
+          class="icon me-2 align-bottom material-icons"
         >
-          <label
-            className="form-label"
-            htmlFor="bestFriend"
-          >
-            Best friend
-          </label>
-        </Label>
-        <ModalPickerOpener
-          icon="face"
-          label="Select your best friend"
-          onClear={[Function]}
-          openModal={[Function]}
-          renderValue={[Function]}
-        >
-          <div
-            className="d-flex align-items-center"
-          >
-            <ModalPickerValueTruncator
-              labelForOption={[Function]}
-            />
-            <Button
-              className="flex-grow-0 flex-shrink-0"
-              color="primary"
-              onClick={[Function]}
-              tag="button"
-            >
-              <button
-                className="flex-grow-0 flex-shrink-0 btn btn-primary"
-                onClick={[Function]}
-                type="button"
-              >
-                <Icon
-                  className="me-2 align-bottom"
-                  icon="face"
-                >
-                  <i
-                    className="icon me-2 align-bottom material-icons"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onMouseLeave={[Function]}
-                  >
-                    face
-                  </i>
-                </Icon>
-                Select your best friend
-              </button>
-            </Button>
-          </div>
-        </ModalPickerOpener>
-        <ModalPicker
-          canSearch={true}
-          canSearchSync={false}
-          closeModal={[Function]}
-          isOpen={false}
-          loading={false}
-          modalSaved={[Function]}
-          page={
-            Object {
-              "content": Array [
-                Object {
-                  "active": true,
-                  "email": "admin@42.nl",
-                  "firstName": "Addie",
-                  "id": 42,
-                  "lastName": "Admin",
-                  "roles": Array [
-                    "ADMIN",
-                  ],
-                },
-                Object {
-                  "active": false,
-                  "email": "coordinator@42.nl",
-                  "firstName": "Cordelia",
-                  "id": 777,
-                  "lastName": "Coordinator",
-                  "roles": Array [
-                    "ADMIN",
-                    "USER",
-                  ],
-                },
-                Object {
-                  "active": false,
-                  "email": "user@42.nl",
-                  "firstName": "Ulysses",
-                  "id": 1337,
-                  "lastName": "User",
-                  "roles": Array [
-                    "USER",
-                  ],
-                },
-              ],
-              "first": true,
-              "last": false,
-              "number": 1,
-              "numberOfElements": 3,
-              "size": 3,
-              "totalElements": 100,
-              "totalPages": 10,
-            }
-          }
-          pageChanged={[Function]}
-          placeholder="Select your best friend"
-          query=""
-          queryChanged={[Function]}
-          selected={Array []}
-          userHasSearched={false}
-        >
-          <Modal
-            autoFocus={true}
-            backdrop={true}
-            backdropTransition={
-              Object {
-                "mountOnEnter": true,
-                "timeout": 150,
-              }
-            }
-            centered={false}
-            container="body"
-            fade={true}
-            isOpen={false}
-            keyboard={true}
-            modalTransition={
-              Object {
-                "timeout": 300,
-              }
-            }
-            onClosed={[Function]}
-            onOpened={[Function]}
-            returnFocusAfterClose={true}
-            role="dialog"
-            scrollable={false}
-            toggle={[Function]}
-            trapFocus={false}
-            unmountOnClose={true}
-            zIndex={1050}
-          />
-        </ModalPicker>
-      </div>
-    </FormGroup>
-  </ModalPickerMultiple>
-</ValuePicker>
+          face
+        </i>
+        Select your best friend
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Component: ValuePicker should when booting render a loading spinner and request an initial page 1`] = `
-<ValuePicker
-  canSearch={true}
-  icon="face"
-  id="bestFriend"
-  label="Best friend"
-  labelForOption={[Function]}
-  multiple={false}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  options={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 1,
-          },
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-      ],
-    }
-  }
-  placeholder="Select your best friend"
->
+<div>
   <div>
-    <Spinner
-      color="black"
-      size={16}
+    <svg
+      class="spinner"
+      height="16"
+      viewBox="25 25 50 50"
+      width="16"
     >
-      <svg
-        className="spinner"
-        height={16}
-        viewBox="25 25 50 50"
-        width={16}
-      >
-        <circle
-          className="path"
-          cx="50"
-          cy="50"
-          fill="none"
-          r="20"
-          stroke="black"
-          strokeMiterlimit="10"
-          strokeWidth="4"
-        />
-      </svg>
-    </Spinner>
+      <circle
+        class="path"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="20"
+        stroke="black"
+        stroke-miterlimit="10"
+        stroke-width="4"
+      />
+    </svg>
      
     <span>
       Loading...
     </span>
   </div>
-</ValuePicker>
+</div>
 `;
 
-exports[`Component: ValuePicker single when ModalPickerSingle should render a \`ModalPickerSingle\` when async page \`totalElements\` is more than than 10 1`] = `
-<ValuePicker
-  canSearch={true}
-  icon="face"
-  id="bestFriend"
-  label="Best friend"
-  labelForOption={[Function]}
-  multiple={false}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  options={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 1,
-          },
-        ],
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 10,
-          },
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-      ],
-    }
-  }
-  placeholder="Select your best friend"
->
-  <ModalPickerSingle
-    canSearch={true}
-    icon="face"
-    id="bestFriend"
-    label="Best friend"
-    labelForOption={[Function]}
-    onBlur={[MockFunction]}
-    onChange={[MockFunction]}
-    options={
-      [MockFunction] {
-        "calls": Array [
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 1,
-            },
-          ],
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 10,
-            },
-          ],
-        ],
-        "results": Array [
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-        ],
-      }
-    }
-    placeholder="Select your best friend"
+exports[`Component: ValuePicker single ModalPickerSingle should render a \`ModalPickerSingle\` when async page \`totalElements\` is more than than 10 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
   >
-    <FormGroup
-      className=""
-      tag="div"
+    <label
+      class="form-label"
+      for="bestFriend"
     >
-      <div
-        className="mb-3"
+      Best friend
+    </label>
+    <div
+      class="d-flex align-items-center"
+    >
+      <button
+        class="flex-grow-0 flex-shrink-0 btn btn-primary"
+        type="button"
       >
-        <Label
-          for="bestFriend"
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
+        <i
+          class="icon me-2 align-bottom material-icons"
         >
-          <label
-            className="form-label"
-            htmlFor="bestFriend"
-          >
-            Best friend
-          </label>
-        </Label>
-        <ModalPickerOpener
-          icon="face"
-          label="Select your best friend"
-          onClear={[Function]}
-          openModal={[Function]}
-          renderValue={[Function]}
-        >
-          <div
-            className="d-flex align-items-center"
-          >
-            <ModalPickerValueTruncator
-              labelForOption={[Function]}
-            />
-            <Button
-              className="flex-grow-0 flex-shrink-0"
-              color="primary"
-              onClick={[Function]}
-              tag="button"
-            >
-              <button
-                className="flex-grow-0 flex-shrink-0 btn btn-primary"
-                onClick={[Function]}
-                type="button"
-              >
-                <Icon
-                  className="me-2 align-bottom"
-                  icon="face"
-                >
-                  <i
-                    className="icon me-2 align-bottom material-icons"
-                    onClick={[Function]}
-                    onMouseEnter={[Function]}
-                    onMouseLeave={[Function]}
-                  >
-                    face
-                  </i>
-                </Icon>
-                Select your best friend
-              </button>
-            </Button>
-          </div>
-        </ModalPickerOpener>
-        <ModalPicker
-          canSearch={true}
-          canSearchSync={false}
-          closeModal={[Function]}
-          isOpen={false}
-          loading={false}
-          modalSaved={[Function]}
-          page={
-            Object {
-              "content": Array [
-                Object {
-                  "active": true,
-                  "email": "admin@42.nl",
-                  "firstName": "Addie",
-                  "id": 42,
-                  "lastName": "Admin",
-                  "roles": Array [
-                    "ADMIN",
-                  ],
-                },
-                Object {
-                  "active": false,
-                  "email": "coordinator@42.nl",
-                  "firstName": "Cordelia",
-                  "id": 777,
-                  "lastName": "Coordinator",
-                  "roles": Array [
-                    "ADMIN",
-                    "USER",
-                  ],
-                },
-                Object {
-                  "active": false,
-                  "email": "user@42.nl",
-                  "firstName": "Ulysses",
-                  "id": 1337,
-                  "lastName": "User",
-                  "roles": Array [
-                    "USER",
-                  ],
-                },
-              ],
-              "first": true,
-              "last": false,
-              "number": 1,
-              "numberOfElements": 3,
-              "size": 3,
-              "totalElements": 100,
-              "totalPages": 10,
-            }
-          }
-          pageChanged={[Function]}
-          placeholder="Select your best friend"
-          query=""
-          queryChanged={[Function]}
-          userHasSearched={false}
-        >
-          <Modal
-            autoFocus={true}
-            backdrop={true}
-            backdropTransition={
-              Object {
-                "mountOnEnter": true,
-                "timeout": 150,
-              }
-            }
-            centered={false}
-            container="body"
-            fade={true}
-            isOpen={false}
-            keyboard={true}
-            modalTransition={
-              Object {
-                "timeout": 300,
-              }
-            }
-            onClosed={[Function]}
-            onOpened={[Function]}
-            returnFocusAfterClose={true}
-            role="dialog"
-            scrollable={false}
-            toggle={[Function]}
-            trapFocus={false}
-            unmountOnClose={true}
-            zIndex={1050}
-          />
-        </ModalPicker>
-      </div>
-    </FormGroup>
-  </ModalPickerSingle>
-</ValuePicker>
+          face
+        </i>
+        Select your best friend
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
-exports[`Component: ValuePicker single when RadioGroup should render a \`RadioGroup\` component when async page \`totalElements\` is less than 4 1`] = `
-<ValuePicker
-  canSearch={true}
-  icon="face"
-  id="bestFriend"
-  label="Best friend"
-  labelForOption={[Function]}
-  multiple={false}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  options={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 1,
-          },
-        ],
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 100,
-          },
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-      ],
-    }
-  }
-  placeholder="Select your best friend"
->
-  <RadioGroup
-    canSearch={true}
-    icon="face"
-    id="bestFriend"
-    label="Best friend"
-    labelForOption={[Function]}
-    onBlur={[MockFunction]}
-    onChange={[MockFunction]}
-    options={
-      [MockFunction] {
-        "calls": Array [
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 1,
-            },
-          ],
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 100,
-            },
-          ],
-        ],
-        "results": Array [
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-        ],
-      }
-    }
-    placeholder="Select your best friend"
+exports[`Component: ValuePicker single RadioGroup should render a \`RadioGroup\` component when async page \`totalElements\` is less than 4 1`] = `
+<DocumentFragment>
+  <fieldset
+    class="radio-group  mb-3"
   >
-    <FormGroup
-      className="radio-group "
-      tag="fieldset"
+    <legend>
+      Best friend
+    </legend>
+    <p
+      class="text-muted"
     >
-      <fieldset
-        className="radio-group  mb-3"
+      <em>
+        Select your best friend
+      </em>
+    </p>
+    <div
+      class="form-check"
+    >
+      <label
+        class="form-check-label"
       >
-        <legend>
-          Best friend
-        </legend>
-        <p
-          className="text-muted"
-        >
-          <em>
-            Select your best friend
-          </em>
-        </p>
-        <FormGroup
-          check={true}
-          inline={false}
-          key="42"
-          tag="div"
-        >
-          <div
-            className="form-check"
-          >
-            <Label
-              check={true}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                  "xxl",
-                ]
-              }
-            >
-              <label
-                className="form-check-label"
-              >
-                <Input
-                  checked={false}
-                  disabled={false}
-                  onChange={[Function]}
-                  type="radio"
-                  value="admin@42.nl"
-                >
-                  <input
-                    checked={false}
-                    className="form-check-input"
-                    disabled={false}
-                    onChange={[Function]}
-                    type="radio"
-                    value="admin@42.nl"
-                  />
-                </Input>
-                 
-                admin@42.nl
-              </label>
-            </Label>
-          </div>
-        </FormGroup>
-        <FormGroup
-          check={true}
-          inline={false}
-          key="777"
-          tag="div"
-        >
-          <div
-            className="form-check"
-          >
-            <Label
-              check={true}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                  "xxl",
-                ]
-              }
-            >
-              <label
-                className="form-check-label"
-              >
-                <Input
-                  checked={false}
-                  disabled={false}
-                  onChange={[Function]}
-                  type="radio"
-                  value="coordinator@42.nl"
-                >
-                  <input
-                    checked={false}
-                    className="form-check-input"
-                    disabled={false}
-                    onChange={[Function]}
-                    type="radio"
-                    value="coordinator@42.nl"
-                  />
-                </Input>
-                 
-                coordinator@42.nl
-              </label>
-            </Label>
-          </div>
-        </FormGroup>
-        <FormGroup
-          check={true}
-          inline={false}
-          key="1337"
-          tag="div"
-        >
-          <div
-            className="form-check"
-          >
-            <Label
-              check={true}
-              tag="label"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                  "xxl",
-                ]
-              }
-            >
-              <label
-                className="form-check-label"
-              >
-                <Input
-                  checked={false}
-                  disabled={false}
-                  onChange={[Function]}
-                  type="radio"
-                  value="user@42.nl"
-                >
-                  <input
-                    checked={false}
-                    className="form-check-input"
-                    disabled={false}
-                    onChange={[Function]}
-                    type="radio"
-                    value="user@42.nl"
-                  />
-                </Input>
-                 
-                user@42.nl
-              </label>
-            </Label>
-          </div>
-        </FormGroup>
-      </fieldset>
-    </FormGroup>
-  </RadioGroup>
-</ValuePicker>
+        <input
+          class="form-check-input"
+          type="radio"
+          value="admin@42.nl"
+        />
+         admin@42.nl
+      </label>
+    </div>
+    <div
+      class="form-check"
+    >
+      <label
+        class="form-check-label"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          value="coordinator@42.nl"
+        />
+         coordinator@42.nl
+      </label>
+    </div>
+    <div
+      class="form-check"
+    >
+      <label
+        class="form-check-label"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          value="user@42.nl"
+        />
+         user@42.nl
+      </label>
+    </div>
+  </fieldset>
+</DocumentFragment>
 `;
 
-exports[`Component: ValuePicker single when Select should render a \`Select\` component when async page \`totalElements\` is less than 11 but more than 3 1`] = `
-<ValuePicker
-  canSearch={true}
-  icon="face"
-  id="bestFriend"
-  label="Best friend"
-  labelForOption={[Function]}
-  multiple={false}
-  onBlur={[MockFunction]}
-  onChange={[MockFunction]}
-  options={
-    [MockFunction] {
-      "calls": Array [
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 1,
-          },
-        ],
-        Array [
-          Object {
-            "page": 1,
-            "query": "",
-            "size": 100,
-          },
-        ],
-      ],
-      "results": Array [
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-        Object {
-          "type": "return",
-          "value": Promise {},
-        },
-      ],
-    }
-  }
-  placeholder="Select your best friend"
->
-  <Select
-    canSearch={true}
-    icon="face"
-    id="bestFriend"
-    label="Best friend"
-    labelForOption={[Function]}
-    onBlur={[MockFunction]}
-    onChange={[MockFunction]}
-    options={
-      [MockFunction] {
-        "calls": Array [
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 1,
-            },
-          ],
-          Array [
-            Object {
-              "page": 1,
-              "query": "",
-              "size": 100,
-            },
-          ],
-        ],
-        "results": Array [
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-          Object {
-            "type": "return",
-            "value": Promise {},
-          },
-        ],
-      }
-    }
-    placeholder="Select your best friend"
+exports[`Component: ValuePicker single Select should render a \`Select\` component when async page \`totalElements\` is less than 11 but more than 3 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
   >
-    <FormGroup
-      className=""
-      tag="div"
+    <label
+      class="form-label"
+      for="bestFriend"
     >
-      <div
-        className="mb-3"
+      Best friend
+    </label>
+    <select
+      class="showing-placeholder form-select"
+      id="bestFriend"
+      placeholder="Select your best friend"
+    >
+      <option>
+        Select your best friend
+      </option>
+      <option
+        value="0"
       >
-        <Label
-          for="bestFriend"
-          tag="label"
-          widths={
-            Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-              "xxl",
-            ]
-          }
-        >
-          <label
-            className="form-label"
-            htmlFor="bestFriend"
-          >
-            Best friend
-          </label>
-        </Label>
-        <Input
-          className="showing-placeholder"
-          id="bestFriend"
-          onBlur={[MockFunction]}
-          onChange={[Function]}
-          placeholder="Select your best friend"
-          type="select"
-        >
-          <select
-            className="showing-placeholder form-select"
-            id="bestFriend"
-            onBlur={[MockFunction]}
-            onChange={[Function]}
-            placeholder="Select your best friend"
-          >
-            <option>
-              Select your best friend
-            </option>
-            <option
-              disabled={false}
-              key="42"
-              value={0}
-            >
-              admin@42.nl
-            </option>
-            <option
-              disabled={false}
-              key="777"
-              value={1}
-            >
-              coordinator@42.nl
-            </option>
-            <option
-              disabled={false}
-              key="1337"
-              value={2}
-            >
-              user@42.nl
-            </option>
-            <option
-              disabled={false}
-              key="999"
-              value={3}
-            >
-              nobody@42.nl
-            </option>
-          </select>
-        </Input>
-      </div>
-    </FormGroup>
-  </Select>
-</ValuePicker>
+        admin@42.nl
+      </option>
+      <option
+        value="1"
+      >
+        coordinator@42.nl
+      </option>
+      <option
+        value="2"
+      >
+        user@42.nl
+      </option>
+      <option
+        value="3"
+      >
+        nobody@42.nl
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
 `;

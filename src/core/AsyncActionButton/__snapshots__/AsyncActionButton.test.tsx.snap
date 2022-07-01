@@ -1,19 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: AsyncActionButton ui in progress: Component: AsyncActionButton => ui => in progress 1`] = `
-<Button
-  inProgress={true}
-  onClick={[Function]}
->
-  Resend confirmation
-</Button>
+exports[`Component: AsyncActionButton events should be in progress when the AsyncActionButton button is clicked 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Resend confirmation
+      </div>
+    </button>
+  </span>
+</div>
 `;
 
-exports[`Component: AsyncActionButton ui not in progress: Component: AsyncActionButton => ui => not in progess 1`] = `
-<Button
-  inProgress={false}
-  onClick={[Function]}
->
-  Resend confirmation
-</Button>
+exports[`Component: AsyncActionButton events should call onError and set inProgress to false when promise is rejected 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Resend confirmation
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: AsyncActionButton events should set inProgress to false when promise is resolved 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Resend confirmation
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: AsyncActionButton ui in progress 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Resend confirmation
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: AsyncActionButton ui not in progress 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Resend confirmation
+      </div>
+    </button>
+  </span>
+</div>
 `;

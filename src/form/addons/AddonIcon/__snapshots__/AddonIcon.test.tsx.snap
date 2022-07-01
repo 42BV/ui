@@ -1,16 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: AddonIcon ui: Component: AddonIcon 1`] = `
-<Addon
-  position="right"
->
-  <InputGroupText
-    tag="span"
+exports[`Component: AddonIcon ui 1`] = `
+<div>
+  <span
+    class="input-group-text"
   >
-    <Icon
-      className="custom-class"
-      icon="360"
-    />
-  </InputGroupText>
-</Addon>
+    <i
+      class="icon material-icons"
+    >
+      360
+    </i>
+  </span>
+</div>
 `;

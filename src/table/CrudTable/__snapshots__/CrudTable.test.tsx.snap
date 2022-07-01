@@ -1,165 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: CrudTable ui default 1`] = `
-<Fragment>
+<div>
   <div
-    className="d-flex justify-content-end mb-2"
+    class="d-flex justify-content-end mb-2"
   />
-  <SearchInput
-    className="mb-4"
-    defaultValue=""
-    onChange={[MockFunction]}
-  />
-  <EpicTable
-    minHeight={400}
-  >
-    crud table content
-  </EpicTable>
-</Fragment>
-`;
-
-exports[`Component: CrudTable ui with buttons 1`] = `
-<Fragment>
   <div
-    className="d-flex justify-content-end mb-2"
+    class="search-input"
   >
-    <Button
-      onClick={[MockFunction]}
+    <div
+      class="mb-4 input-group"
     >
-      test
-    </Button>
+      <span
+        class="input-group-text"
+      >
+        <i
+          class="icon material-icons"
+        >
+          search
+        </i>
+      </span>
+      <input
+        class="form-control"
+        id="1"
+        type="search"
+        value=""
+      />
+    </div>
   </div>
-  <SearchInput
-    className="mb-4"
-    defaultValue=""
-    onChange={[MockFunction]}
-  />
-  <EpicTable
-    minHeight={400}
-  >
-    crud table content
-  </EpicTable>
-</Fragment>
-`;
-
-exports[`Component: CrudTable ui with pagination 1`] = `
-<Fragment>
   <div
-    className="d-flex justify-content-end mb-2"
-  />
-  <SearchInput
-    className="mb-4"
-    defaultValue=""
-    onChange={[MockFunction]}
-  />
-  <EpicTable
-    minHeight={400}
+    class="epic-table epic-table--striped invisible"
+    style="min-height: 400px;"
   >
-    crud table content
-  </EpicTable>
-  <div
-    className="d-flex justify-content-center"
-  >
-    <Pagination
-      className="my-3"
-      onChange={[MockFunction]}
-      page={
-        Object {
-          "content": Array [
-            Object {
-              "active": true,
-              "email": "admin@42.nl",
-              "firstName": "Addie",
-              "id": 42,
-              "lastName": "Admin",
-              "roles": Array [
-                "ADMIN",
-              ],
-            },
-            Object {
-              "active": false,
-              "email": "coordinator@42.nl",
-              "firstName": "Cordelia",
-              "id": 777,
-              "lastName": "Coordinator",
-              "roles": Array [
-                "ADMIN",
-                "USER",
-              ],
-            },
-            Object {
-              "active": false,
-              "email": "user@42.nl",
-              "firstName": "Ulysses",
-              "id": 1337,
-              "lastName": "User",
-              "roles": Array [
-                "USER",
-              ],
-            },
-          ],
-          "first": false,
-          "last": false,
-          "number": 2,
-          "numberOfElements": 3,
-          "size": 3,
-          "totalElements": 9,
-          "totalPages": 3,
-        }
-      }
-    />
+    <div
+      class="epic-table-container "
+    >
+      <div
+        class="epic-table-fixed-header"
+      />
+      <div
+        class="d-flex"
+      >
+        <div
+          class=""
+          style="min-height: 400px;"
+        >
+          <div />
+          <div
+            class="epic-table-cell border-bottom p-1 epic-table-cell--odd"
+            style="min-width: 100px; width: 100px; height: 44px;"
+          >
+            test
+          </div>
+        </div>
+        <div
+          class="invisible"
+        />
+      </div>
+    </div>
   </div>
-</Fragment>
-`;
-
-exports[`Component: CrudTable ui with search value 1`] = `
-<Fragment>
-  <div
-    className="d-flex justify-content-end mb-2"
-  />
-  <SearchInput
-    className="mb-4"
-    defaultValue="test"
-    onChange={[MockFunction]}
-  />
-  <EpicTable
-    minHeight={400}
-  >
-    crud table content
-  </EpicTable>
-</Fragment>
-`;
-
-exports[`Component: CrudTable ui with selection 1`] = `
-<Fragment>
-  <div
-    className="d-flex justify-content-end mb-2"
-  />
-  <SearchInput
-    className="mb-4"
-    defaultValue=""
-    onChange={[MockFunction]}
-  />
-  <Tag
-    text="selected item"
-  />
-  <EpicTable
-    minHeight={400}
-  >
-    crud table content
-  </EpicTable>
-</Fragment>
-`;
-
-exports[`Component: CrudTable ui without search 1`] = `
-<Fragment>
-  <div
-    className="d-flex justify-content-end mb-2"
-  />
-  <EpicTable
-    minHeight={400}
-  >
-    crud table content
-  </EpicTable>
-</Fragment>
+</div>
 `;

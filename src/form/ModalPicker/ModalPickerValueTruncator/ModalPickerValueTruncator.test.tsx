@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { ModalPickerValueTruncator } from './ModalPickerValueTruncator';
 import { adminUser, userUser } from '../../../test/fixtures';
 import * as ComponentOverflow from './useComponentOverflow/useComponentOverflow';
@@ -21,46 +21,38 @@ describe('Component: ModalPickerValueTruncator', () => {
       ? [adminUser(), userUser()]
       : undefined;
 
-    const modalPickerValueTruncator = shallow(
+    const { container } = render(
       <ModalPickerValueTruncator
         value={value}
         labelForOption={labelForOptionSpy}
       />
     );
 
-    return { modalPickerValueTruncator, labelForOptionSpy };
+    return { container, labelForOptionSpy };
   }
 
   describe('ui', () => {
     test('no value', () => {
-      const { modalPickerValueTruncator } = setup({});
-      expect(toJson(modalPickerValueTruncator)).toMatchSnapshot(
-        'Component: ModalPickerValueTruncator => ui => no value'
-      );
+      const { container } = setup({});
+      expect(container.firstChild).toBeNull();
     });
 
     test('single value', () => {
-      const { modalPickerValueTruncator } = setup({ hasSingleValue: true });
-      expect(toJson(modalPickerValueTruncator)).toMatchSnapshot(
-        'Component: ModalPickerValueTruncator => ui => single value'
-      );
+      const { container } = setup({ hasSingleValue: true });
+      expect(container).toMatchSnapshot();
     });
 
     test('mutliple values', () => {
-      const { modalPickerValueTruncator } = setup({ hasMultipleValues: true });
-      expect(toJson(modalPickerValueTruncator)).toMatchSnapshot(
-        'Component: ModalPickerValueTruncator => ui => multiple values'
-      );
+      setup({ hasMultipleValues: true });
+      expect(screen.getByText('admin@42.nl, user@42.nl')).toBeInTheDocument();
     });
 
     test('overflowing', () => {
       jest
         .spyOn(ComponentOverflow, 'useComponentOverflow')
         .mockReturnValue(true);
-      const { modalPickerValueTruncator } = setup({ hasMultipleValues: true });
-      expect(toJson(modalPickerValueTruncator)).toMatchSnapshot(
-        'Component: ModalPickerValueTruncator => ui => overflowing'
-      );
+      const { container } = setup({ hasMultipleValues: true });
+      expect(container).toMatchSnapshot();
     });
   });
 });

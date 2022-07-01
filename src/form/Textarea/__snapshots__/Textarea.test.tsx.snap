@@ -1,89 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Textarea ui with value: Component: textarea => ui => with value 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: Textarea ui default 1`] = `
+<div>
+  <div
+    class="mb-3"
+    color="success"
   >
-    First name
-  </Label>
-  <ForwardRef(TextareaAutosize)
-    className="form-control"
-    id="firstName"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder="Please enter your first name"
-    value="Maarten"
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Textarea ui without label: Component: textarea => ui => without label 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <ForwardRef(TextareaAutosize)
-    className="form-control"
-    id="1"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    placeholder="Please enter your first name"
-    value="Maarten"
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: Textarea ui without placeholder: Component: textarea => ui => without placeholder 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="firstName"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    First name
-  </Label>
-  <ForwardRef(TextareaAutosize)
-    className="form-control"
-    id="firstName"
-    onBlur={[MockFunction]}
-    onChange={[Function]}
-    onFocus={[MockFunction]}
-    value="Maarten"
-  />
-  Some error
-</FormGroup>
+    <textarea
+      class="form-control"
+      id="1"
+    />
+    Some error
+  </div>
+</div>
 `;

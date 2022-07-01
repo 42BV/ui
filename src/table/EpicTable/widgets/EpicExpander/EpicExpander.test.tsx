@@ -1,59 +1,49 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { EpicExpander } from './EpicExpander';
-import Button from '../../../../core/Button/Button';
 
 describe('Component: EpicExpander', () => {
   function setup({ open }: { open: boolean }) {
     const onChangeSpy = jest.fn();
 
-    const epicExpander = shallow(
+    const { container } = render(
       <EpicExpander onChange={onChangeSpy} open={open} />
     );
 
-    return { epicExpander, onChangeSpy };
+    return { container, onChangeSpy };
   }
 
   describe('ui', () => {
     test('is open', () => {
-      const { epicExpander } = setup({ open: true });
-
-      expect(toJson(epicExpander)).toMatchSnapshot();
+      const { container } = setup({ open: true });
+      expect(container).toMatchSnapshot();
+      expect(screen.queryByText('expand_less')).toBeInTheDocument();
+      expect(screen.queryByText('expand_more')).not.toBeInTheDocument();
     });
 
     test('is closed', () => {
-      const { epicExpander } = setup({ open: false });
-
-      expect(toJson(epicExpander)).toMatchSnapshot();
+      setup({ open: false });
+      expect(screen.queryByText('expand_less')).not.toBeInTheDocument();
+      expect(screen.queryByText('expand_more')).toBeInTheDocument();
     });
   });
 
   describe('events', () => {
-    it('should open the expander when it is clicked when it is closed', () => {
-      const { epicExpander, onChangeSpy } = setup({ open: false });
+    it('should open the expander on click when it is closed', () => {
+      const { onChangeSpy } = setup({ open: false });
 
-      // @ts-expect-error Test mock
-      epicExpander
-        .find(Button)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick(new Event('click'));
+      fireEvent.click(screen.getByText('expand_more'));
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith(true);
     });
 
     it('should close the expander when it is clicked when it is open', () => {
-      const { epicExpander, onChangeSpy } = setup({ open: true });
+      const { onChangeSpy } = setup({ open: true });
 
-      // @ts-expect-error Test mock
-      epicExpander
-        .find(Button)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick(new Event('click'));
+      fireEvent.click(screen.getByText('expand_less'));
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith(false);

@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import classNames from 'classnames';
 
 type Props = {
   /**
@@ -26,8 +27,7 @@ export default function TextButton({ onClick, children, className }: Props) {
   return (
     <u
       role="button"
-      className={`align-self-center clickable fw-lighter ${className ??
-        ''}`}
+      className={classNames('align-self-center clickable fw-lighter', className)}
       onClick={onClick}
     >
       {children}

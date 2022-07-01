@@ -1,42 +1,38 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import FlashMessage from './FlashMessage';
 
 describe('Component: FlashMessage', () => {
   describe('ui', () => {
     test('normal', () => {
-      const flashMessage = shallow(
+      const { container } = render(
         <FlashMessage color="danger">Danger commander</FlashMessage>
       );
 
-      expect(toJson(flashMessage)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('with extra css class', () => {
-      const flashMessage = shallow(
+      const { container } = render(
         <FlashMessage className="extra-css-class" color="danger">
           Danger commander
         </FlashMessage>
       );
 
-      expect(flashMessage.find('.extra-css-class').exists()).toBe(true);
+      expect(container.firstChild).toHaveClass('extra-css-class');
     });
   });
 
   test('onClose', () => {
     const onCloseSpy = jest.fn();
 
-    const flashMessage = shallow(
+    render(
       <FlashMessage onClose={onCloseSpy}>Warning commander</FlashMessage>
     );
 
-    flashMessage
-      .find('Alert')
-      .props()
-      // @ts-expect-error Test mock
-      .toggle();
+    fireEvent.click(screen.getByLabelText('Close'));
 
     expect(onCloseSpy).toHaveBeenCalledTimes(1);
   });

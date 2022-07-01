@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 
 import { useScrollToClosestError } from './useScrollToClosestError';
 
@@ -7,8 +7,15 @@ describe('useScrollToClosestError', () => {
     jest.useFakeTimers();
   });
 
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
+  });
+
   describe('when enabled', () => {
-    it('should not scroll on initialization, after initialization it should scroll with a debounce', () => {
+    it('should not scroll on initialization, after initialization it should scroll with a debounce', async () => {
+      expect.assertions(16);
+
       const scrollIntoViewSpy = jest.fn();
 
       // @ts-expect-error Mock test
@@ -31,51 +38,45 @@ describe('useScrollToClosestError', () => {
       expect(scrollIntoViewSpy).toBeCalledTimes(0);
 
       // Even after 200 seconds it should not be called
-      act(() => {
-        jest.advanceTimersByTime(200);
-      });
+      jest.advanceTimersByTime(200);
       expect(document.querySelector).toBeCalledTimes(0);
       expect(scrollIntoViewSpy).toBeCalledTimes(0);
 
       // Now call doScrollToClosestError for the second time.
-      // But only after 199 seconds it should be called due to the debounce
-      act(() => {
+      // But only after 200  milliseconds it should be called due to the debounce
+      await act(() => {
         result.current.doScrollToClosestError();
-        jest.advanceTimersByTime(199);
       });
+      jest.advanceTimersByTime(199);
       expect(document.querySelector).toBeCalledTimes(0);
       expect(scrollIntoViewSpy).toBeCalledTimes(0);
 
       // It should be called after 200 milliseconds
-      act(() => {
-        jest.advanceTimersByTime(1);
-      });
+      jest.advanceTimersByTime(1);
       expect(document.querySelector).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledWith({ behavior: 'smooth' });
 
       // Lets test if the debounce works properly
-      act(() => {
+      await act(() => {
         result.current.doScrollToClosestError();
-        jest.advanceTimersByTime(199);
       });
+      jest.advanceTimersByTime(199);
       expect(document.querySelector).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledTimes(1);
 
       // Now quickly call again within the 200 seconds
       // and cross the debounce threshold.
-      act(() => {
+      await act(() => {
         result.current.doScrollToClosestError();
-        jest.advanceTimersByTime(1);
       });
+      jest.advanceTimersByTime(1);
       // The scroll should not be called due to the debounce
       expect(document.querySelector).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledTimes(1);
 
       // Now it should trigger the debounced scroll
-      act(() => {
-        jest.advanceTimersByTime(199);
-      });
+      jest.advanceTimersByTime(199);
       expect(document.querySelector).toBeCalledTimes(2);
       expect(scrollIntoViewSpy).toBeCalledTimes(2);
       expect(scrollIntoViewSpy).toBeCalledWith({ behavior: 'smooth' });

@@ -1,15 +1,12 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import RadioGroup from '../../form/RadioGroup/RadioGroup';
 
 import { Modal } from './Modal';
 
 describe('Component: Modal', () => {
-  let modal: ShallowWrapper;
-  let onCloseSpy: jest.Mock;
-
   function setup({
     hasHeader = true,
     hasFooter = true,
@@ -19,7 +16,7 @@ describe('Component: Modal', () => {
     hasFooter?: boolean;
     stickyFooter?: boolean;
   }) {
-    onCloseSpy = jest.fn();
+    const onCloseSpy = jest.fn();
 
     const props = {
       stickyFooter,
@@ -35,67 +32,47 @@ describe('Component: Modal', () => {
         labelForOption={(v) => v}
       />
     );
-
-    modal = shallow(<Modal {...props}>{children}</Modal>);
+    
+    const { container } = render(
+      <Modal {...props}>{children}</Modal>
+    );
+    
+    return { container, onCloseSpy };
   }
 
   describe('ui', () => {
     test('with header and footer', () => {
       setup({});
 
-      expect(toJson(modal)).toMatchSnapshot(
-        'Component: Modal => ui => with header and footer'
-      );
+      expect(document.body.lastChild).toMatchSnapshot();
     });
 
     test('without header', () => {
       setup({ hasHeader: false });
 
-      expect(toJson(modal)).toMatchSnapshot(
-        'Component: Modal => ui => without header'
-      );
+      expect(screen.queryByText('Header text')).not.toBeInTheDocument();
+      expect(document.body.lastChild).toMatchSnapshot();
     });
 
     test('without footer', () => {
       setup({ hasFooter: false });
 
-      expect(toJson(modal)).toMatchSnapshot(
-        'Component: Modal => ui => without footer'
-      );
+      expect(screen.queryByText('Footer text')).not.toBeInTheDocument();
+      expect(document.body.lastChild).toMatchSnapshot();
     });
 
     test('sans sticky footer', () => {
       setup({ stickyFooter: false });
 
-      expect(toJson(modal)).toMatchSnapshot(
-        'Component: Modal => ui => sans sticky'
-      );
+      expect(document.body.lastChild?.firstChild).not.toHaveClass('sticky-modal');
     });
   });
 
   describe('events', () => {
-    it('should call onClose when clicked outside modal', () => {
-      setup({});
-
-      modal
-        .find('Modal')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .toggle();
-
-      expect(onCloseSpy).toBeCalledTimes(1);
-    });
-
     it('should call onClose when close button clicked', () => {
-      setup({});
+      const { onCloseSpy } = setup({});
 
-      modal
-        .find('ModalHeader')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .toggle();
+      fireEvent.click(screen.getByLabelText('Close'));
 
       expect(onCloseSpy).toBeCalledTimes(1);
     });

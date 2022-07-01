@@ -1,11 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import { AutoSave } from './AutoSave';
 import * as Active from './useActive';
 import * as PendingPromise from './usePromise';
 import { resolvablePromise } from '../../test/utils';
+import * as FinalForm from 'react-final-form';
+import { FormState } from 'final-form';
+
+type TestFormValues = {
+  test: string;
+  friends?: string;
+};
 
 describe('Component: AutoSave', () => {
   function setup({
@@ -13,39 +19,54 @@ describe('Component: AutoSave', () => {
     initialValues
   }: {
     activeField?: string;
-    initialValues?: { [id: string]: string };
+    initialValues?: TestFormValues;
   }) {
     const resolvable = resolvablePromise();
+    let onChangeTrigger: (formState: FormState<TestFormValues>) => void;
+
+    jest.spyOn(FinalForm, 'FormSpy').mockImplementation((props) => {
+      // @ts-expect-error onChange must be defined in AutoSave for the component to work
+      onChangeTrigger = props.onChange;
+      return <></>;
+    });
 
     const onSaveSpy = jest.fn((_values) => resolvable.promise);
+    const onSubmitSpy = jest.fn((_values) => resolvable.promise);
 
     const setActiveSpy = jest.fn();
     jest
       .spyOn(Active, 'useActive')
       .mockImplementation(() => [activeField, setActiveSpy]);
 
-    const autoSave = shallow(
-      <AutoSave onSave={onSaveSpy} initialValues={initialValues} />
+    const { container } = render(
+      <FinalForm.Form onSubmit={onSubmitSpy}>
+        {() => (
+          <AutoSave onSave={onSaveSpy} initialValues={initialValues} />
+        )}
+      </FinalForm.Form>
     );
 
-    return { autoSave, onSaveSpy, setActiveSpy };
+    // @ts-expect-error onChangeTrigger is assigned a value
+    return { container, onChangeTrigger, onSaveSpy, setActiveSpy };
   }
 
   test('ui', () => {
-    const autoSave = shallow(<AutoSave onSave={jest.fn()} />);
-    expect(toJson(autoSave)).toMatchSnapshot();
+    const { container } = render(
+      <FinalForm.Form onSubmit={jest.fn()}>
+        {() => (
+          <AutoSave onSave={jest.fn()} />
+        )}
+      </FinalForm.Form>
+    );
+    expect(container.firstChild).toBeNull();
   });
 
   describe('events', () => {
     it('should not save on first time field active', () => {
-      const { autoSave, onSaveSpy, setActiveSpy } = setup({});
+      const { onChangeTrigger, onSaveSpy, setActiveSpy } = setup({});
 
-      // @ts-expect-error Test mock
-      autoSave
-        .find('FormSpy')
-        .props()
-        // @ts-expect-error Test mock
-        .onChange({ active: 'test' });
+      // @ts-expect-error We only need the active property for this test
+      onChangeTrigger({ active: 'test' });
 
       expect(setActiveSpy).toBeCalledTimes(1);
       expect(setActiveSpy).toBeCalledWith('test');
@@ -54,33 +75,25 @@ describe('Component: AutoSave', () => {
     });
 
     it('should not save when same field changes', () => {
-      const { autoSave, onSaveSpy, setActiveSpy } = setup({
+      const { onChangeTrigger, onSaveSpy, setActiveSpy } = setup({
         activeField: 'test'
       });
 
-      // @ts-expect-error Test mock
-      autoSave
-        .find('FormSpy')
-        .props()
-        // @ts-expect-error Test mock
-        .onChange({ active: 'test' });
+      // @ts-expect-error We only need the active property for this test
+      onChangeTrigger({ active: 'test' });
 
       expect(setActiveSpy).toBeCalledTimes(0);
       expect(onSaveSpy).toBeCalledTimes(0);
     });
 
     it('should not save when values do not change', () => {
-      const { autoSave, onSaveSpy, setActiveSpy } = setup({
+      const { onChangeTrigger, onSaveSpy, setActiveSpy } = setup({
         activeField: 'test',
         initialValues: { test: 'test' }
       });
 
-      // @ts-expect-error Test mock
-      autoSave
-        .find('FormSpy')
-        .props()
-        // @ts-expect-error Test mock
-        .onChange({ active: 'friends', values: { test: 'test' } });
+      // @ts-expect-error We only need the active and values properties for this test
+      onChangeTrigger({ active: 'friends', values: { test: 'test' } });
 
       expect(setActiveSpy).toBeCalledTimes(1);
       expect(setActiveSpy).toBeCalledWith('friends');
@@ -88,7 +101,7 @@ describe('Component: AutoSave', () => {
       expect(onSaveSpy).toBeCalledTimes(0);
     });
 
-    it('should wait until saving again until the previous save has finished', async () => {
+    it('should wait with saving again until the previous save has finished', async () => {
       expect.assertions(5);
 
       const { promise, resolve } = resolvablePromise();
@@ -97,17 +110,13 @@ describe('Component: AutoSave', () => {
         .spyOn(PendingPromise, 'usePromise')
         .mockReturnValue({ current: promise });
 
-      const { autoSave, onSaveSpy, setActiveSpy } = setup({
+      const { onChangeTrigger, onSaveSpy, setActiveSpy } = setup({
         activeField: 'test',
         initialValues: { test: 'test' }
       });
 
-      // @ts-expect-error Test mock
-      autoSave
-        .find('FormSpy')
-        .props()
-        // @ts-expect-error Test mock
-        .onChange({ active: 'friends', values: { test: 'testing' } });
+      // @ts-expect-error We only need the active and values properties for this test
+      onChangeTrigger({ active: 'friends', values: { test: 'testing' } });
 
       expect(setActiveSpy).toBeCalledTimes(1);
       expect(setActiveSpy).toBeCalledWith('friends');
@@ -121,16 +130,12 @@ describe('Component: AutoSave', () => {
     });
 
     it('should save when another field changes', () => {
-      const { autoSave, onSaveSpy, setActiveSpy } = setup({
+      const { onChangeTrigger, onSaveSpy, setActiveSpy } = setup({
         activeField: 'test'
       });
 
-      // @ts-expect-error Test mock
-      autoSave
-        .find('FormSpy')
-        .props()
-        // @ts-expect-error Test mock
-        .onChange({ active: 'friends', values: { test: 'test' } });
+      // @ts-expect-error We only need the active and values properties for this test
+      onChangeTrigger({ active: 'friends', values: { test: 'test' } });
 
       expect(setActiveSpy).toBeCalledTimes(1);
       expect(setActiveSpy).toBeCalledWith('friends');

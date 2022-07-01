@@ -109,6 +109,7 @@ export function EpicResize({ width, onResize }: Props) {
     <div
       className="epic-table-header-resizeable"
       onMouseDown={(e) => resizeStart(e, width)}
+      data-testid="epic-table-header-resize"
     />
   );
 }

@@ -1,17 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: EpicCellLayout horizontal 1`] = `
-<div
-  className="d-flex w-100 justify-content-between align-items-center"
->
-  horizontal
+<div>
+  <div
+    class="d-flex w-100 justify-content-between align-items-center"
+  >
+    horizontal
+  </div>
 </div>
 `;
 
 exports[`Component: EpicCellLayout vertical 1`] = `
-<div
-  className="d-flex flex-column w-100 h-100 justify-content-around"
->
-  vertical
+<div>
+  <div
+    class="d-flex flex-column w-100 h-100 justify-content-around"
+  >
+    vertical
+  </div>
 </div>
 `;

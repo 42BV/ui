@@ -1,17 +1,129 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: EmptyModal mode: empty: Component: EmptyModal => mode: empty 1`] = `
-<ContentState
-  mode="empty"
-  subTitle="There is nothing here yet, the collection is empty."
-  title="Empty"
-/>
+exports[`Component: EmptyModal mode: empty 1`] = `
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state empty"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          laptop
+        </i>
+      </div>
+    </div>
+    <h4>
+      Empty
+    </h4>
+    <h6
+      class="text-muted mb-3"
+    >
+      There is nothing here yet, the collection is empty.
+    </h6>
+  </div>
+</div>
 `;
 
-exports[`Component: EmptyModal mode: no-results: Component: EmptyModal => mode: no-results 1`] = `
-<ContentState
-  mode="no-results"
-  subTitle="No results were found please try again with a different query."
-  title="Empty"
-/>
+exports[`Component: EmptyModal mode: no-results 1`] = `
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state no-results"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <i
+          class="icon material-icons"
+        >
+          search
+        </i>
+      </div>
+    </div>
+    <h4>
+      Empty
+    </h4>
+    <h6
+      class="text-muted mb-3"
+    >
+      No results were found please try again with a different query.
+    </h6>
+  </div>
+</div>
 `;

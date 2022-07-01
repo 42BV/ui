@@ -1,14 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { CrudTable } from './CrudTable';
 import { Page } from '@42.nl/spring-connect';
 import Tag from '../../core/Tag/Tag';
-import SearchInput from '../../core/SearchInput/SearchInput';
 import Button from '../../core/Button/Button';
 import { pageOfUsers } from '../../test/fixtures';
-import Pagination from '../../core/Pagination/Pagination';
+import { EpicRow } from '../EpicTable/rows/EpicRow/EpicRow';
+import { EpicCell } from '../EpicTable/cells/EpicCell/EpicCell';
+import lodash from 'lodash';
 
 describe('Component: CrudTable', () => {
   function setup({
@@ -27,7 +28,7 @@ describe('Component: CrudTable', () => {
     const onSearchSpy = jest.fn();
     const pageChangedSpy = jest.fn();
 
-    const crudTable = shallow(
+    const { container } = render(
       <CrudTable
         renderSelection={renderSelection}
         buttons={buttons}
@@ -37,85 +38,80 @@ describe('Component: CrudTable', () => {
         page={page}
         pageChanged={pageChangedSpy}
       >
-        crud table content
+        <EpicRow>
+          <EpicCell width={100} height={44}>test</EpicCell>
+        </EpicRow>
       </CrudTable>
     );
 
-    return { crudTable, onSearchSpy, pageChangedSpy };
+    return { container, onSearchSpy, pageChangedSpy };
   }
 
   describe('ui', () => {
     test('default', () => {
-      const { crudTable } = setup({});
-
-      expect(toJson(crudTable)).toMatchSnapshot();
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
     test('with buttons', () => {
-      const { crudTable } = setup({
-        buttons: () => <Button onClick={jest.fn()}>test</Button>
+      setup({
+        buttons: () => <Button onClick={jest.fn()}>click this button</Button>
       });
-
-      expect(toJson(crudTable)).toMatchSnapshot();
+      expect(screen.queryByText('click this button')).toBeInTheDocument();
     });
 
     test('with selection', () => {
-      const { crudTable } = setup({
+      setup({
         renderSelection: () => <Tag text="selected item" />
       });
-
-      expect(toJson(crudTable)).toMatchSnapshot();
+      expect(screen.queryByText('selected item')).toBeInTheDocument();
     });
 
     test('without search', () => {
-      const { crudTable } = setup({
+      setup({
         canSearch: () => false
       });
-
-      expect(toJson(crudTable)).toMatchSnapshot();
+      expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
     });
 
     test('with search value', () => {
-      const { crudTable } = setup({
+      setup({
         searchValue: 'test'
       });
-
-      expect(toJson(crudTable)).toMatchSnapshot();
+      expect(screen.queryByRole('searchbox')).toBeInTheDocument();
+      expect(screen.queryByRole('searchbox')).toHaveValue('test');
     });
 
     test('with pagination', () => {
-      const { crudTable } = setup({
+      setup({
         page: pageOfUsers()
       });
-
-      expect(toJson(crudTable)).toMatchSnapshot();
+      expect(screen.queryByText('arrow_forward')).toBeInTheDocument();
     });
   });
 
   describe('events', () => {
     it('should call onSearch when the user types in the search field', () => {
-      const { crudTable, onSearchSpy } = setup({});
+      // @ts-expect-error Test mock
+      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+        return fn;
+      });
 
-      crudTable
-        .find(SearchInput)
-        .props()
-        .onChange('test');
+      const { onSearchSpy } = setup({});
+
+      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
 
       expect(onSearchSpy).toBeCalledTimes(1);
       expect(onSearchSpy).toBeCalledWith('test');
     });
 
     it('should call pageChanged when the user clicks a page number', () => {
-      const { crudTable, pageChangedSpy } = setup({page: pageOfUsers()});
+      const { pageChangedSpy } = setup({page: pageOfUsers()});
 
-      // @ts-expect-error Mock test
-      crudTable
-        .find(Pagination)
-        .props()
-        .onChange(2);
+      fireEvent.click(screen.getByText('arrow_forward'));
 
       expect(pageChangedSpy).toBeCalledTimes(1);
-      expect(pageChangedSpy).toBeCalledWith(2);
+      expect(pageChangedSpy).toBeCalledWith(3);
     });
   });
 });

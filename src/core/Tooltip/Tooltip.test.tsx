@@ -1,68 +1,77 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 import Tooltip from './Tooltip';
+import userEvent from '@testing-library/user-event';
 
 describe('Component: Tooltip', () => {
   describe('ui', () => {
-    test('default', () => {
-      const tooltip = shallow(
-        <Tooltip content={<> Tooltip Content </>}>
-          <div>The tooltip should be wrapped around this div, in a span</div>
+    test('default', async () => {
+      expect.assertions(1);
+
+      const { container } = render(
+        <Tooltip content="Tooltip Content">
+          The tooltip should be wrapped around this
         </Tooltip>
       );
-      expect(toJson(tooltip)).toMatchSnapshot(
-        'Component: Tooltip => ui => default'
-      );
+
+      await userEvent.hover(screen.getByText('The tooltip should be wrapped around this'));
+
+      expect(container).toMatchSnapshot();
     });
 
     test('with custom tag', () => {
-      const tooltip = shallow(
+      const { container } = render(
         <Tooltip tag="div" content="Tooltip content">
-          <div>The tooltip should be wrapped around this div, in a div</div>
+          The tooltip should be wrapped around this
         </Tooltip>
       );
-      expect(toJson(tooltip)).toMatchSnapshot(
-        'Component: Tooltip => ui => with tag'
+      expect(container.firstChild?.nodeName).toBe('DIV');
+    });
+
+    test('with custom content', async () => {
+      expect.assertions(1);
+
+      render(
+        <Tooltip content={<span>Tooltip content</span>}>
+          The tooltip should be wrapped around this
+        </Tooltip>
       );
+
+      await userEvent.hover(screen.getByText('The tooltip should be wrapped around this'));
+
+      expect(screen.getByText('Tooltip content').nodeName).toBe('SPAN');
     });
 
     test('with class', () => {
-      const tooltip = shallow(
-        <Tooltip className="extra-classnames" content={<> Tooltip content </>}>
-          <div>The tooltip should be wrapped around this div, in a div</div>
+      const { container } = render(
+        <Tooltip className="extra-classnames" content="Tooltip content">
+          The tooltip should be wrapped around this
         </Tooltip>
       );
-      expect(tooltip.find('span').props().className).toBe('extra-classnames');
+      expect(container.firstChild).toHaveClass('extra-classnames');
     });
 
     test('with style', () => {
-      const tooltip = mount(
+      const { container } = render(
         <Tooltip
           style={{ marginTop: 5, padding: 10 }}
-          content={<> Tooltip content </>}
+          content="Tooltip content"
         >
-          <div>The tooltip should be wrapped around this div, in a div</div>
+          The tooltip should be wrapped around this
         </Tooltip>
       );
-
-      //Test is the concat of the 'outline:0' css property goes well with additional provided css properties.
-      expect(tooltip.find('span').props().style).toEqual({
-        outline: 0,
-        marginTop: 5,
-        padding: 10
-      });
+      expect(container.firstChild).toHaveStyle({ marginTop: '5px', padding: '10px', outline: 0 });
     });
-  });
 
-  test('with style, override outline', () => {
-    const tooltip = mount(
-      <Tooltip style={{ outline: 20 }} content={<> Tooltip content </>}>
-        <div>The tooltip should be wrapped around this div, in a div</div>
-      </Tooltip>
-    );
-
-    //Test if the outline is overridden when specified
-    expect(tooltip.find('span').props().style).toEqual({ outline: 20 });
+    test('with style, override outline', () => {
+      const { container } = render(
+        <Tooltip style={{ outline: 20 }} content="Tooltip content">
+          The tooltip should be wrapped around this
+        </Tooltip>
+      );
+      expect(container.firstChild).toHaveStyle({ outline: '20px' });
+    });
   });
 });

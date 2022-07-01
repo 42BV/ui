@@ -1,12 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { PlainTextFormControl } from './PlainTextFormControl';
 
 describe('Component: PlainTextFormControl', () => {
   function setup({
-    label = 'name',
+    label,
     labelClassName,
     valueClassName
   }: {
@@ -19,45 +19,38 @@ describe('Component: PlainTextFormControl', () => {
       labelClassName,
       valueClassName
     };
-    const plainTextFormControl = shallow(
+    const { container } = render(
       <PlainTextFormControl {...props}>This is your name</PlainTextFormControl>
     );
-    return { plainTextFormControl };
+    return { container };
   }
 
   describe('ui', () => {
     test('default', () => {
-      const { plainTextFormControl } = setup({});
-      expect(toJson(plainTextFormControl)).toMatchSnapshot(
-        'Component: PlainTextFormControl => ui => default'
-      );
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
-    test('without label', () => {
-      const { plainTextFormControl } = setup({
-        label: ''
+    test('with label', () => {
+      setup({
+        label: 'Test'
       });
-      expect(toJson(plainTextFormControl)).toMatchSnapshot(
-        'Component: PlainTextFormControl => ui => without label'
-      );
+      expect(screen.queryByText('Test')).toBeInTheDocument();
     });
 
     test('with label class name', () => {
-      const { plainTextFormControl } = setup({
+      setup({
+        label: 'Test',
         labelClassName: 'label-class-name'
       });
-      expect(plainTextFormControl.find('Label').props().className).toBe(
-        'label-class-name'
-      );
+      expect(screen.getByText('Test')).toHaveClass('label-class-name');
     });
 
     test('with value class name', () => {
-      const { plainTextFormControl } = setup({
+      setup({
         valueClassName: 'value-class-name'
       });
-      expect(plainTextFormControl.find('div').props().className).toBe(
-        'form-control-plaintext value-class-name'
-      );
+      expect(screen.getByText('This is your name')).toHaveClass('value-class-name');
     });
   });
 });

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, MutableRefObject, useEffect, useRef, useState, WheelEventHandler } from 'react';
 import { FieldValidator } from 'final-form';
 import { FormGroup, Label } from 'reactstrap';
 import AvatarEditor from 'react-avatar-editor';
@@ -9,13 +9,7 @@ import withJarb from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import { Translation } from '../../utilities/translation/translator';
-import {
-  calculateScale,
-  cropToAvatarEditorConfig,
-  dataUrlToFile,
-  getPicaInstance,
-  replaceFileExtension
-} from './utils';
+import { calculateScale, cropToAvatarEditorConfig, dataUrlToFile, getPicaInstance, readFile, replaceFileExtension } from './utils';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
 
@@ -63,10 +57,8 @@ export type ImageUploadCrop = ImageUploadCropRect | ImageUploadCropCircle;
 type Value = File | string;
 type ChangeValue = File | null;
 
-export type Props = Omit<
-  FieldCompatible<Value, ChangeValue>,
-  'placeholder' | 'valid'
-> & {
+export type Props = Omit<FieldCompatible<Value, ChangeValue>,
+  'placeholder' | 'valid'> & {
   /**
    * Whether to crop as a circle or as a rectangle.
    */
@@ -104,85 +96,79 @@ export type Props = Omit<
   using this component in an update form, the mode will become 
   'file-selected'.
 */
-type Mode = 'no-file' | 'edit' | 'file-selected';
+export type Mode = 'no-file' | 'edit' | 'file-selected';
 
-type State = {
-  mode: Mode;
-  imageSrc: string;
+export type ImageState = {
+  src: string;
   fileName: string;
   rotate: number;
   scale: number;
 };
 
-const reader = new FileReader();
+export default function ImageUpload(props: Props) {
+  const {
+    crop,
+    text,
+    keepOriginalFileExtension = false,
+    id = uniqueId(),
+    value,
+    onChange,
+    onBlur,
+    className,
+    error,
+    color,
+    label
+  } = props;
 
-export default class ImageUpload extends Component<Props, State> {
-  /* istanbul ignore next */
-  innerId = this?.props?.id ?? uniqueId();
+  const [ mode, setMode ] = useState<Mode>('no-file');
+  const [ image, setImage ] = useState<ImageState>();
 
-  state: State = {
-    mode: 'no-file',
-    imageSrc: '',
-    fileName: '',
-    rotate: 0,
-    scale: 1
-  };
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const editorRef = useRef<AvatarEditor | null>(null);
 
-  inputRef = React.createRef<HTMLInputElement>();
-  editorRef = React.createRef<AvatarEditor>();
-
-  componentDidMount() {
-    const imageSrc = this.props.value;
-
-    if (typeof imageSrc === 'string' && imageSrc !== '') {
-      this.setState({
-        mode: 'file-selected',
-        imageSrc
-      });
-    } else if (imageSrc) {
-      this.readFile(imageSrc, (result: string) =>
-        this.setState({
-          mode: 'file-selected',
-          imageSrc: result,
-          fileName: imageSrc.name
-        })
-      );
-    }
-  }
-
-  readFile(file: File, callback: (result: string) => void) {
-    reader.onloadend = () => {
-      /* istanbul ignore else */
-      if (typeof reader.result === 'string') {
-        callback(reader.result);
+  useEffect(() => {
+    if (value && !image) {
+      if (typeof value === 'string') {
+        setImage({
+          src: value,
+          fileName: value.replace(/^.*[\\\/]/, ''),
+          rotate: 0,
+          scale: 1
+        });
+        setMode('file-selected');
+      } else {
+        readFile(value, (result: string) => {
+          setImage({
+            src: result,
+            fileName: value.name,
+            rotate: 0,
+            scale: 1
+          });
+          setMode('file-selected');
+        });
       }
-    };
-    reader.readAsDataURL(file);
-  }
+    }
+  }, [ value, image ]);
 
-  imgSelected({ target: { files } }: React.ChangeEvent<HTMLInputElement>) {
-    /* istanbul ignore else */
+  function imgSelected({ target: { files } }: React.ChangeEvent<HTMLInputElement>) {
     if (files) {
       const file = files[0];
 
-      this.readFile(file, (result: string) =>
-        this.setState({
-          imageSrc: result,
-          mode: 'edit',
+      readFile(file, (result: string) => {
+        setImage({
+          src: result,
           fileName: file.name,
           rotate: 0,
           scale: 1
         })
-      );
+        setMode('edit');
+      });
     }
   }
 
-  async onCrop() {
-    /* istanbul ignore else */
-    if (this.editorRef.current) {
-      const { crop, keepOriginalFileExtension = false } = this.props;
-
-      const canvas = this.editorRef.current.getImage();
+  async function onCrop() {
+    if (image && editorRef.current) {
+      const canvas = editorRef.current.getImage();
       const config = cropToAvatarEditorConfig(crop);
 
       const offScreenCanvas = document.createElement('canvas');
@@ -200,239 +186,230 @@ export default class ImageUpload extends Component<Props, State> {
       );
 
       const dataUrl = picaCanvas.toDataURL('image/png', 1.0);
-      const fileName = keepOriginalFileExtension
-        ? this.state.fileName
-        : replaceFileExtension(this.state.fileName);
-      const file = dataUrlToFile(dataUrl, fileName);
+      const newFileName = keepOriginalFileExtension ? image.fileName : replaceFileExtension(image.fileName);
+      const file = dataUrlToFile(dataUrl, image.fileName);
 
-      this.props.onChange(file);
-      doBlur(this.props.onBlur);
+      onChange(file);
+      doBlur(onBlur);
 
-      this.setState({ mode: 'file-selected', imageSrc: dataUrl, fileName });
+      setMode('file-selected');
+      setImage({
+        src: dataUrl,
+        fileName: newFileName,
+        rotate: 0,
+        scale: 1
+      });
     }
   }
 
-  rotateLeft() {
-    this.setState({ rotate: this.state.rotate - 90 });
+  function rotateLeft() {
+    if (image) {
+      setImage({ ...image, rotate: image.rotate - 90 });
+    }
   }
 
-  rotateRight() {
-    this.setState({ rotate: this.state.rotate + 90 });
+  function rotateRight() {
+    if (image) {
+      setImage({ ...image, rotate: image.rotate + 90 });
+    }
   }
 
-  changeScale(event: React.WheelEvent<HTMLDivElement>) {
+  function changeScale(event: React.WheelEvent<HTMLDivElement>) {
     event.preventDefault();
-
-    const scale = calculateScale(this.state.scale, event.deltaY);
-
-    this.setState({ scale });
-  }
-
-  resetFileInput() {
-    this.setState({ imageSrc: '', mode: 'no-file', rotate: 0, scale: 1 });
-
-    this.props.onChange(null);
-    doBlur(this.props.onBlur);
-
-    if (this.inputRef.current) {
-      this.inputRef.current.value = '';
+    if (image) {
+      setImage({ ...image, scale: calculateScale(image.scale, event.deltaY) });
     }
   }
 
-  triggerFileInput() {
-    this.resetFileInput();
+  function resetFileInput() {
+    setImage(undefined);
+
+    onChange(null);
+    doBlur(onBlur);
+
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }
+
+  function triggerFileInput() {
+    resetFileInput();
 
     // Wait for the input to re-appear and click it
     setTimeout(() => {
       /* istanbul ignore else */
-      if (this.inputRef.current) {
-        this.inputRef.current.click();
+      if (inputRef.current) {
+        inputRef.current.click();
       }
     }, 200);
   }
 
-  render() {
-    const { className, error, color, label } = this.props;
+  return (
+    <div className={className}>
+      <FormGroup color={color} className="img-upload">
+        {label ? <Label for={id}>{label}</Label> : null}
+        {mode === 'file-selected' && image ? (
+          <>
+            <div className="d-flex justify-content-center">
+              <img
+                style={{ borderRadius: crop.type === 'rect' ? 0 : '50%' }}
+                className="img-fluid elevated-3"
+                alt={label && typeof label === 'string' ? label : ''}
+                src={image.src}
+              />
+            </div>
+            <FileSelectedButtons text={text} triggerFileInput={triggerFileInput} resetFileInput={resetFileInput} />
+          </>
+        ) : mode === 'edit' && image ? (
+          <>
+            <Editor crop={crop} editorRef={editorRef} image={image} changeScale={changeScale} />
+            <EditButtons rotateLeft={rotateLeft} rotateRight={rotateRight} resetFileInput={resetFileInput} onCrop={onCrop} />
+          </>
+        ) : (
+          <Fragment>
+            <input
+              id={id}
+              onChange={imgSelected}
+              type="file"
+              accept="image/*"
+              ref={inputRef}
+            />
 
-    return (
-      <div className={className}>
-        <FormGroup color={color} className="img-upload">
-          {label ? <Label for={this.innerId}>{label}</Label> : null}
-          {this.renderMode()}
-          {this.renderButtons()}
-          {error}
-        </FormGroup>
-      </div>
-    );
-  }
-
-  renderMode() {
-    switch (this.state.mode) {
-      case 'file-selected':
-        return this.renderFileSelected();
-
-      case 'edit':
-        return this.renderEdit();
-
-      default:
-        return this.renderNoFile();
-    }
-  }
-
-  renderNoFile() {
-    return (
-      <Fragment>
-        <input
-          id={this.innerId}
-          onChange={(event) => this.imgSelected(event)}
-          type="file"
-          accept="image/*"
-          ref={this.inputRef}
-        />
-
-        <div className="img-upload-wrapper bg-faded text-muted">
-          <Icon icon="add_a_photo" />
-        </div>
-      </Fragment>
-    );
-  }
-
-  renderEdit() {
-    const { crop } = this.props;
-    const { imageSrc, rotate, scale } = this.state;
-
-    const config = cropToAvatarEditorConfig(crop);
-
-    return (
-      <div className="d-flex justify-content-center">
-        <div onWheel={(event) => this.changeScale(event)}>
-          <AvatarEditor
-            ref={this.editorRef}
-            image={imageSrc}
-            width={config.width}
-            height={config.height}
-            borderRadius={config.borderRadius}
-            rotate={rotate}
-            scale={scale}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  renderFileSelected() {
-    const { imageSrc } = this.state;
-    const { crop, ...props } = this.props;
-
-    let alt = '';
-    if (props.label && typeof props.label === 'string') {
-      alt = props.label;
-    }
-
-    return (
-      <div className="d-flex justify-content-center">
-        <img
-          style={{ borderRadius: crop.type === 'rect' ? 0 : '50%' }}
-          className="img-fluid elevated-3"
-          alt={alt}
-          src={imageSrc}
-        />
-      </div>
-    );
-  }
-
-  renderButtons() {
-    switch (this.state.mode) {
-      case 'file-selected':
-        return this.renderFileSelectedButtons();
-
-      case 'edit':
-        return this.renderEditButtons();
-
-      default:
-        return null;
-    }
-  }
-
-  renderFileSelectedButtons() {
-    const { text = {} } = this.props;
-
-    return (
-      <FormGroup className="text-center mt-1">
-        <Button
-          onClick={() => this.triggerFileInput()}
-          color="primary"
-          icon="camera_roll"
-        >
-          {t({
-            key: 'ImageUpload.CHANGE',
-            fallback: 'Change',
-            overrideText: text.change
-          })}
-        </Button>
-        <Button
-          className="ms-1"
-          onClick={() => this.resetFileInput()}
-          color="danger"
-          icon="delete"
-        >
-          {t({
-            key: 'ImageUpload.REMOVE',
-            fallback: 'Remove',
-            overrideText: text.remove
-          })}
-        </Button>
+            <div className="img-upload-wrapper bg-faded text-muted">
+              <Icon icon="add_a_photo" />
+            </div>
+          </Fragment>
+        )}
+        {error}
       </FormGroup>
-    );
-  }
+    </div>
+  );
+}
 
-  renderEditButtons() {
-    const { text = {} } = this.props;
+function Editor({
+  crop,
+  editorRef,
+  image,
+  changeScale
+}: {
+  crop: ImageUploadCrop;
+  editorRef: MutableRefObject<AvatarEditor|null>;
+  image: ImageState;
+  changeScale: WheelEventHandler<HTMLDivElement>;
+}) {
+  const config = cropToAvatarEditorConfig(crop);
 
-    return (
-      <FormGroup className="d-flex justify-content-center mt-1">
-        <Button
-          className="mt-2"
-          onClick={() => this.rotateLeft()}
-          color="secondary"
-          icon="rotate_left"
+  return (
+    <div className="d-flex justify-content-center">
+      <div data-testid="scroll-scale" onWheel={changeScale}>
+        <AvatarEditor
+          ref={editorRef}
+          image={image.src}
+          width={config.width}
+          height={config.height}
+          borderRadius={config.borderRadius}
+          rotate={image.rotate}
+          scale={image.scale}
         />
+      </div>
+    </div>
+  );
+}
 
-        <Button
-          className="ms-1 mt-2"
-          onClick={() => this.rotateRight()}
-          color="secondary"
-          icon="rotate_right"
-        />
+function FileSelectedButtons({
+  text = {},
+  triggerFileInput,
+  resetFileInput
+}: {
+  text?: Text;
+  triggerFileInput: () => void;
+  resetFileInput: () => void;
+}) {
+  return (
+    <FormGroup className="text-center mt-1">
+      <Button
+        onClick={triggerFileInput}
+        color="primary"
+        icon="camera_roll"
+      >
+        {t({
+          key: 'ImageUpload.CHANGE',
+          fallback: 'Change',
+          overrideText: text.change
+        })}
+      </Button>
+      <Button
+        className="ms-1"
+        onClick={resetFileInput}
+        color="danger"
+        icon="delete"
+      >
+        {t({
+          key: 'ImageUpload.REMOVE',
+          fallback: 'Remove',
+          overrideText: text.remove
+        })}
+      </Button>
+    </FormGroup>
+  );
+}
 
-        <Button
-          className="ms-3"
-          onClick={() => this.resetFileInput()}
-          color="secondary"
-          icon="cancel"
-        >
-          {t({
-            key: 'ImageUpload.CANCEL',
-            fallback: 'Cancel',
-            overrideText: text.cancel
-          })}
-        </Button>
+function EditButtons({
+  text = {},
+  rotateLeft,
+  rotateRight,
+  resetFileInput,
+  onCrop
+}: {
+  text?: Text;
+  rotateLeft: () => void;
+  rotateRight: () => void;
+  resetFileInput: () => void;
+  onCrop: () => void;
+}) {
+  return (
+    <FormGroup className="d-flex justify-content-center mt-1">
+      <Button
+        className="mt-2"
+        onClick={rotateLeft}
+        color="secondary"
+        icon="rotate_left"
+      />
 
-        <Button
-          className="ms-1"
-          onClick={() => this.onCrop()}
-          color="primary"
-          icon="done"
-        >
-          {t({
-            key: 'ImageUpload.DONE',
-            fallback: 'Done',
-            overrideText: text.done
-          })}
-        </Button>
-      </FormGroup>
-    );
-  }
+      <Button
+        className="ms-1 mt-2"
+        onClick={rotateRight}
+        color="secondary"
+        icon="rotate_right"
+      />
+
+      <Button
+        className="ms-3"
+        onClick={resetFileInput}
+        color="secondary"
+        icon="cancel"
+      >
+        {t({
+          key: 'ImageUpload.CANCEL',
+          fallback: 'Cancel',
+          overrideText: text.cancel
+        })}
+      </Button>
+
+      <Button
+        className="ms-1"
+        onClick={onCrop}
+        color="primary"
+        icon="done"
+      >
+        {t({
+          key: 'ImageUpload.DONE',
+          fallback: 'Done',
+          overrideText: text.done
+        })}
+      </Button>
+    </FormGroup>
+  );
 }
 
 export const JarbImageUpload = withJarb<Value, ChangeValue, Props>(ImageUpload);

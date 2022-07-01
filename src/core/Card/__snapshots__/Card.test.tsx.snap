@@ -1,209 +1,349 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Card deprecated: modalBodyClassName: Component: Card => deprecated: modalBodyClassName 1`] = `
-<Card
-  tag="div"
->
-  <CardBody
-    className="deprecated classes"
-    tag="div"
+exports[`Component: Card deprecated: modalBodyClassName 1`] = `
+<div>
+  <div
+    class="card"
   >
-    <Suspense
-      fallback={<Loading />}
+    <div
+      class="deprecated classes card-body"
     >
-      <ErrorBoundary>
-        This is the content
-      </ErrorBoundary>
-    </Suspense>
-  </CardBody>
-</Card>
+      This is the content
+    </div>
+  </div>
+</div>
 `;
 
-exports[`Component: Card deprecated: modalFooterClassName: Component: Card => deprecated: modalFooterClassName 1`] = `
-<Card
-  tag="div"
->
-  <CardBody
-    tag="div"
+exports[`Component: Card deprecated: modalFooterClassName 1`] = `
+<div>
+  <div
+    class="card"
   >
-    <Suspense
-      fallback={<Loading />}
+    <div
+      class="card-body"
     >
-      <ErrorBoundary>
-        This is the content
-      </ErrorBoundary>
-    </Suspense>
-  </CardBody>
-  <CardFooter
-    className="deprecated classes"
-    tag="div"
-  >
-    <Suspense
-      fallback={<Loading />}
+      This is the content
+    </div>
+    <div
+      class="deprecated classes card-footer"
     >
       test
-    </Suspense>
-  </CardFooter>
-</Card>
+    </div>
+  </div>
+</div>
 `;
 
-exports[`Component: Card deprecated: modalHeaderClassName: Component: Card => deprecated: modalHeaderClassName 1`] = `
-<Card
-  tag="div"
->
-  <CardHeader
-    className="deprecated classes"
-    tag="div"
+exports[`Component: Card deprecated: modalHeaderClassName 1`] = `
+<div>
+  <div
+    class="card"
   >
-    <Suspense
-      fallback={<Loading />}
+    <div
+      class="deprecated classes card-header"
     >
       test
-    </Suspense>
-  </CardHeader>
-  <CardBody
-    tag="div"
-  >
-    <Suspense
-      fallback={<Loading />}
+    </div>
+    <div
+      class="card-body"
     >
-      <ErrorBoundary>
-        This is the content
-      </ErrorBoundary>
-    </Suspense>
-  </CardBody>
-</Card>
+      This is the content
+    </div>
+  </div>
+</div>
 `;
 
 exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
-<Card
-  tag="div"
->
-  <CardHeader
-    className="card-header"
-    tag="div"
+<div>
+  <div
+    class="card"
   >
-    <Suspense
-      fallback={<Loading />}
+    <div
+      class="card-header card-header"
     >
       A simple header
-    </Suspense>
-  </CardHeader>
-  <CardBody
-    className="card-body"
-    tag="div"
-  >
-    <Suspense
-      fallback={<Loading />}
+    </div>
+    <div
+      class="card-body card-body"
     >
-      <ErrorBoundary>
-        <RadioGroup
-          labelForOption={[Function]}
-          onChange={[MockFunction]}
-          options={
-            Array [
-              "local",
-              "development",
-              "test",
-              "acceptation",
-              "production",
-            ]
-          }
-        />
-      </ErrorBoundary>
-    </Suspense>
-  </CardBody>
-  <CardFooter
-    className="card-footer"
-    tag="div"
-  >
-    <Suspense
-      fallback={<Loading />}
+      <fieldset
+        class="radio-group  mb-3"
+      >
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="local"
+            />
+             
+            local
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="development"
+            />
+             
+            development
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="test"
+            />
+             
+            test
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="acceptation"
+            />
+             
+            acceptation
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="production"
+            />
+             
+            production
+          </label>
+        </div>
+      </fieldset>
+    </div>
+    <div
+      class="card-footer card-footer"
     >
       A simple footer
-    </Suspense>
-  </CardFooter>
-</Card>
+    </div>
+  </div>
+</div>
 `;
 
-exports[`Component: Card ui without footer: Component: Card => ui => without footer 1`] = `
-<Card
-  tag="div"
->
-  <CardHeader
-    className="card-header"
-    tag="div"
+exports[`Component: Card ui without footer 1`] = `
+<div>
+  <div
+    class="card"
   >
-    <Suspense
-      fallback={<Loading />}
+    <div
+      class="card-header card-header"
     >
       A simple header
-    </Suspense>
-  </CardHeader>
-  <CardBody
-    className="card-body"
-    tag="div"
-  >
-    <Suspense
-      fallback={<Loading />}
+    </div>
+    <div
+      class="card-body card-body"
     >
-      <ErrorBoundary>
-        <RadioGroup
-          labelForOption={[Function]}
-          onChange={[MockFunction]}
-          options={
-            Array [
-              "local",
-              "development",
-              "test",
-              "acceptation",
-              "production",
-            ]
-          }
-        />
-      </ErrorBoundary>
-    </Suspense>
-  </CardBody>
-</Card>
+      <fieldset
+        class="radio-group  mb-3"
+      >
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="local"
+            />
+             
+            local
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="development"
+            />
+             
+            development
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="test"
+            />
+             
+            test
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="acceptation"
+            />
+             
+            acceptation
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="production"
+            />
+             
+            production
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
 `;
 
-exports[`Component: Card ui without header: Component: Card => ui => without header 1`] = `
-<Card
-  tag="div"
->
-  <CardBody
-    className="card-body"
-    tag="div"
+exports[`Component: Card ui without header 1`] = `
+<div>
+  <div
+    class="card"
   >
-    <Suspense
-      fallback={<Loading />}
+    <div
+      class="card-body card-body"
     >
-      <ErrorBoundary>
-        <RadioGroup
-          labelForOption={[Function]}
-          onChange={[MockFunction]}
-          options={
-            Array [
-              "local",
-              "development",
-              "test",
-              "acceptation",
-              "production",
-            ]
-          }
-        />
-      </ErrorBoundary>
-    </Suspense>
-  </CardBody>
-  <CardFooter
-    className="card-footer"
-    tag="div"
-  >
-    <Suspense
-      fallback={<Loading />}
+      <fieldset
+        class="radio-group  mb-3"
+      >
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="local"
+            />
+             
+            local
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="development"
+            />
+             
+            development
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="test"
+            />
+             
+            test
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="acceptation"
+            />
+             
+            acceptation
+          </label>
+        </div>
+        <div
+          class="form-check"
+        >
+          <label
+            class="form-check-label"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              value="production"
+            />
+             
+            production
+          </label>
+        </div>
+      </fieldset>
+    </div>
+    <div
+      class="card-footer card-footer"
     >
       A simple footer
-    </Suspense>
-  </CardFooter>
-</Card>
+    </div>
+  </div>
+</div>
 `;

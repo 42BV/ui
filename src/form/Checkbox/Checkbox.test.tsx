@@ -1,13 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 
 import Checkbox from './Checkbox';
 
 describe('Component: Checkbox', () => {
   function setup({
     value,
-    placeholder = true,
+    placeholder,
     allowIndeterminate = false
   }: {
     value?: boolean | '';
@@ -17,11 +17,11 @@ describe('Component: Checkbox', () => {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
-    const checkbox = shallow(
+    const { container, rerender, asFragment } = render(
       <Checkbox
         id="agree"
         label="Agree"
-        placeholder={placeholder ? 'Do you agree' : ''}
+        placeholder={placeholder ? 'Do you agree' : undefined}
         // @ts-expect-error Test mock
         value={value}
         valid={value === true}
@@ -32,98 +32,52 @@ describe('Component: Checkbox', () => {
       />
     );
 
-    return { checkbox, onBlurSpy, onChangeSpy };
+    return { container, rerender, asFragment, onBlurSpy, onChangeSpy };
   }
 
   describe('ui', () => {
-    test('with placeholder', () => {
-      const { checkbox } = setup({ value: true, placeholder: true });
-
-      expect(toJson(checkbox)).toMatchSnapshot(
-        'Component: Checkbox => ui => with placeholder'
-      );
+    test('default', () => {
+      const { container } = setup({ value: false });
+      expect(container).toMatchSnapshot();
     });
 
-    test('without placeholder', () => {
-      const { checkbox } = setup({ value: false, placeholder: false });
-
-      expect(toJson(checkbox)).toMatchSnapshot(
-        'Component: Checkbox => ui => without placeholder'
-      );
+    test('with placeholder', () => {
+      const { container } = setup({ value: true, placeholder: true });
+      expect(container).toMatchSnapshot();
     });
   });
 
   describe('allowIndeterminate is true', () => {
-    function setupAllowIndeterminate({
-      value
-    }: {
-      value: boolean | undefined | '';
-    }) {
-      const { checkbox } = setup({
-        value,
-        allowIndeterminate: true
-      });
-
-      const fakeElement = { indeterminate: undefined };
-
-      checkbox
-        .find('Input')
-        .props()
-        // @ts-expect-error Test mock
-        .innerRef(fakeElement);
-
-      return fakeElement.indeterminate;
-    }
-
     it('should set indeterminate to false when value is true', () => {
-      const indeterminate = setupAllowIndeterminate({ value: true });
-
-      expect(indeterminate).toBe(false);
+      setup({ value: true, allowIndeterminate: true });
+      expect(screen.getByRole('checkbox')).not.toBePartiallyChecked();
+      expect(screen.getByRole('checkbox')).toBeChecked();
     });
 
     it('should set indeterminate to false when value is false', () => {
-      const indeterminate = setupAllowIndeterminate({ value: false });
-
-      expect(indeterminate).toBe(false);
+      setup({ value: false, allowIndeterminate: true });
+      expect(screen.getByRole('checkbox')).not.toBePartiallyChecked();
+      expect(screen.getByRole('checkbox')).not.toBeChecked();
     });
 
     it('should set indeterminate to true when value is undefined', () => {
-      const indeterminate = setupAllowIndeterminate({ value: undefined });
-
-      expect(indeterminate).toBe(true);
+      setup({ value: undefined, allowIndeterminate: true });
+      expect(screen.getByRole('checkbox')).toBePartiallyChecked();
+      expect(screen.getByRole('checkbox')).not.toBeChecked();
     });
 
     it('should set indeterminate to true when value is empty string from final-form compat', () => {
-      const indeterminate = setupAllowIndeterminate({ value: '' });
-
-      expect(indeterminate).toBe(true);
+      setup({ value: '', allowIndeterminate: true });
+      expect(screen.getByRole('checkbox')).toBePartiallyChecked();
+      expect(screen.getByRole('checkbox')).not.toBeChecked();
     });
-  });
-
-  test('when innerRef has no element that the check for indeterminate is ignored', () => {
-    const { checkbox } = setup({
-      value: true,
-      allowIndeterminate: true
-    });
-
-    // Nothing to check here really
-    checkbox
-      .find('Input')
-      .props()
-      // @ts-expect-error Test mock
-      .innerRef(null);
   });
 
   describe('events', () => {
     test('onChange', () => {
-      const { checkbox, onBlurSpy, onChangeSpy } = setup({ value: true });
+      const { onBlurSpy, onChangeSpy } = setup({ value: true });
 
-      // @ts-expect-error Test mock
-      checkbox
-        .find('Input')
-        .props()
-        // @ts-expect-error Test mock
-        .onChange();
+      fireEvent.click(screen.getByLabelText('Agree'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(false);
@@ -134,39 +88,63 @@ describe('Component: Checkbox', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      const { checkbox } = setup({ value: true });
+      const { rerender, onBlurSpy, onChangeSpy } = setup({ value: true });
 
-      let input = checkbox.find('Input');
-      expect(input.props().checked).toBe(true);
+      expect(screen.getByRole('checkbox')).toBeChecked();
 
-      checkbox.setProps({ value: undefined });
+      rerender(
+        <Checkbox
+          id="agree"
+          label="Agree"
+          value={undefined}
+          valid={true}
+          onChange={onChangeSpy}
+          onBlur={onBlurSpy}
+          error="Some error"
+        />
+      );
 
-      input = checkbox.find('Input');
-      expect(input.props().checked).toBe(false);
+      expect(screen.getByRole('checkbox')).not.toBeChecked();
     });
 
     test('becomes filled from false', () => {
-      const { checkbox } = setup({ value: false });
+      const { rerender, onChangeSpy, onBlurSpy } = setup({ value: false });
 
-      let input = checkbox.find('Input');
-      expect(input.props().checked).toBe(false);
+      expect(screen.getByRole('checkbox')).not.toBeChecked();
 
-      checkbox.setProps({ value: true });
+      rerender(
+        <Checkbox
+          id="agree"
+          label="Agree"
+          value={true}
+          valid={true}
+          onChange={onChangeSpy}
+          onBlur={onBlurSpy}
+          error="Some error"
+        />
+      );
 
-      input = checkbox.find('Input');
-      expect(input.props().checked).toBe(true);
+      expect(screen.getByRole('checkbox')).toBeChecked();
     });
 
     test('becomes filled from undefined', () => {
-      const { checkbox } = setup({ value: undefined });
+      const { rerender, onBlurSpy, onChangeSpy } = setup({ value: undefined });
 
-      let input = checkbox.find('Input');
-      expect(input.props().checked).toBe(false);
+      expect(screen.getByRole('checkbox')).not.toBeChecked();
 
-      checkbox.setProps({ value: true });
+      rerender(
+        <Checkbox
+          id="agree"
+          label="Agree"
+          value={true}
+          valid={true}
+          onChange={onChangeSpy}
+          onBlur={onBlurSpy}
+          error="Some error"
+        />
+      );
 
-      input = checkbox.find('Input');
-      expect(input.props().checked).toBe(true);
+      expect(screen.getByRole('checkbox')).toBeChecked();
     });
   });
 });

@@ -1,25 +1,126 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Avatar ui default size: Component: Avatar => ui => default size 1`] = `
-<span
-  className="avatar red"
->
-  <Tooltip
-    content="A picture of a tomato"
-    distance={7}
-    placement="top"
+exports[`Component: Avatar ui default size 1`] = `
+<div>
+  <span
+    class="avatar red"
   >
     <span
-      className="img-placeholder"
+      style="outline: 0;"
+      tabindex="0"
     >
-      <img
-        alt="A picture of a tomato"
-        src="http://lorempixel.com/200/200/"
-      />
+      <span
+        class="img-placeholder"
+      >
+        <img
+          alt="A picture of a tomato"
+          src="http://lorempixel.com/200/200/"
+        />
+      </span>
+      <h1>
+        Children
+      </h1>
     </span>
-    <h1>
-      Children
-    </h1>
-  </Tooltip>
-</span>
+  </span>
+</div>
+`;
+
+exports[`Component: Avatar ui lg size 1`] = `
+<div>
+  <span
+    class="avatar avatar-lg red"
+  >
+    <span
+      style="outline: 0;"
+      tabindex="0"
+    >
+      <span
+        class="img-placeholder"
+      >
+        <img
+          alt="A picture of a tomato"
+          src="http://lorempixel.com/200/200/"
+        />
+      </span>
+      <h1>
+        Children
+      </h1>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Component: Avatar ui md size 1`] = `
+<div>
+  <span
+    class="avatar avatar-md red"
+  >
+    <span
+      style="outline: 0;"
+      tabindex="0"
+    >
+      <span
+        class="img-placeholder"
+      >
+        <img
+          alt="A picture of a tomato"
+          src="http://lorempixel.com/200/200/"
+        />
+      </span>
+      <h1>
+        Children
+      </h1>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Component: Avatar ui sm size 1`] = `
+<div>
+  <span
+    class="avatar avatar-sm red"
+  >
+    <span
+      style="outline: 0;"
+      tabindex="0"
+    >
+      <span
+        class="img-placeholder"
+      >
+        <img
+          alt="A picture of a tomato"
+          src="http://lorempixel.com/200/200/"
+        />
+      </span>
+      <h1>
+        Children
+      </h1>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`Component: Avatar ui xs size 1`] = `
+<div>
+  <span
+    class="avatar avatar-xs red"
+  >
+    <span
+      style="outline: 0;"
+      tabindex="0"
+    >
+      <span
+        class="img-placeholder"
+      >
+        <img
+          alt="A picture of a tomato"
+          src="http://lorempixel.com/200/200/"
+        />
+      </span>
+      <h1>
+        Children
+      </h1>
+    </span>
+  </span>
+</div>
 `;

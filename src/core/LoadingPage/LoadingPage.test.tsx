@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import * as ShowAfter from '../../hooks/useShowAfter/useShowAfter';
 
@@ -10,26 +10,30 @@ describe('Component: LoadingPage', () => {
   function setup({ show, height }: { show: boolean; height?: number }) {
     jest.spyOn(ShowAfter, 'useShowAfter').mockReturnValue(show);
 
-    return shallow(<LoadingPage height={height} />);
+    const { container } = render(
+      <LoadingPage height={height} />
+    );
+    
+    return { container };
   }
 
   describe('ui', () => {
     test('default', () => {
-      const loadingPage = setup({ show: true });
+      const { container } = setup({ show: true });
 
-      expect(toJson(loadingPage)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
 
     test('with no spinner because it is not after the timeout', () => {
-      const loadingPage = setup({ show: false });
+      setup({ show: false });
 
-      expect(toJson(loadingPage)).toMatchSnapshot();
+      expect(screen.queryByRole('graphics-document')).not.toBeInTheDocument();
     });
 
     test('with custom height', () => {
-      const loadingPage = setup({ show: true, height: 200 });
+      const { container } = setup({ show: true, height: 200 });
 
-      expect(toJson(loadingPage)).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
     });
   });
 });

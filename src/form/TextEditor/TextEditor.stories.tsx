@@ -36,6 +36,7 @@ storiesOf('Form/TextEditor', module)
           label="Description"
           placeholder="Please add a description"
           onChange={(value) => action(`onChange: ${value}`)}
+          onBlur={() => console.log('onblur')}
         />
         {disclaimer}
       </Card>

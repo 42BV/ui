@@ -1,458 +1,1472 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: DateTimeInput ui InputGroup: Component: DateTimeInput => ui => InputGroup 1`] = `
+exports[`Component: DateTimeInput ui with date picker in modal 1`] = `
 <div
-  className="input-group"
+  style="position: relative; z-index: 1050; display: block;"
+  tabindex="-1"
 >
-  <t
-    id={10}
-    render={[Function]}
-  />
-  <AddonButton
-    onClick={[Function]}
+  <div
+    class=""
   >
-    <Icon
-      className="d-block"
-      icon="calendar_today"
+    <div
+      class="modal fade"
+      role="dialog"
+      style="display: block;"
+      tabindex="-1"
+    >
+      <div
+        class="modal-dialog date-time-modal modal-sm"
+        role="document"
+      >
+        <div
+          class="modal-content"
+        >
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
+            >
+              Please enter your date of birth
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <div
+              class="rdt rdtStatic rdtOpen"
+            >
+              <div
+                class="rdtPicker"
+              >
+                <div
+                  class="rdtDays"
+                >
+                  <table>
+                    <thead>
+                      <tr>
+                        <th
+                          class="rdtPrev"
+                        >
+                          <span>
+                            ‹
+                          </span>
+                        </th>
+                        <th
+                          class="rdtSwitch"
+                          colspan="5"
+                          data-value="0"
+                        >
+                          January 2000
+                        </th>
+                        <th
+                          class="rdtNext"
+                        >
+                          <span>
+                            ›
+                          </span>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th
+                          class="dow"
+                        >
+                          Su
+                        </th>
+                        <th
+                          class="dow"
+                        >
+                          Mo
+                        </th>
+                        <th
+                          class="dow"
+                        >
+                          Tu
+                        </th>
+                        <th
+                          class="dow"
+                        >
+                          We
+                        </th>
+                        <th
+                          class="dow"
+                        >
+                          Th
+                        </th>
+                        <th
+                          class="dow"
+                        >
+                          Fr
+                        </th>
+                        <th
+                          class="dow"
+                        >
+                          Sa
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td
+                          class="rdtDay rdtOld"
+                          data-month="11"
+                          data-value="26"
+                          data-year="1999"
+                        >
+                          26
+                        </td>
+                        <td
+                          class="rdtDay rdtOld"
+                          data-month="11"
+                          data-value="27"
+                          data-year="1999"
+                        >
+                          27
+                        </td>
+                        <td
+                          class="rdtDay rdtOld"
+                          data-month="11"
+                          data-value="28"
+                          data-year="1999"
+                        >
+                          28
+                        </td>
+                        <td
+                          class="rdtDay rdtOld"
+                          data-month="11"
+                          data-value="29"
+                          data-year="1999"
+                        >
+                          29
+                        </td>
+                        <td
+                          class="rdtDay rdtOld"
+                          data-month="11"
+                          data-value="30"
+                          data-year="1999"
+                        >
+                          30
+                        </td>
+                        <td
+                          class="rdtDay rdtOld"
+                          data-month="11"
+                          data-value="31"
+                          data-year="1999"
+                        >
+                          31
+                        </td>
+                        <td
+                          class="rdtDay rdtActive"
+                          data-month="0"
+                          data-value="1"
+                          data-year="2000"
+                        >
+                          1
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="2"
+                          data-year="2000"
+                        >
+                          2
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="3"
+                          data-year="2000"
+                        >
+                          3
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="4"
+                          data-year="2000"
+                        >
+                          4
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="5"
+                          data-year="2000"
+                        >
+                          5
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="6"
+                          data-year="2000"
+                        >
+                          6
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="7"
+                          data-year="2000"
+                        >
+                          7
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="8"
+                          data-year="2000"
+                        >
+                          8
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="9"
+                          data-year="2000"
+                        >
+                          9
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="10"
+                          data-year="2000"
+                        >
+                          10
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="11"
+                          data-year="2000"
+                        >
+                          11
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="12"
+                          data-year="2000"
+                        >
+                          12
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="13"
+                          data-year="2000"
+                        >
+                          13
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="14"
+                          data-year="2000"
+                        >
+                          14
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="15"
+                          data-year="2000"
+                        >
+                          15
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="16"
+                          data-year="2000"
+                        >
+                          16
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="17"
+                          data-year="2000"
+                        >
+                          17
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="18"
+                          data-year="2000"
+                        >
+                          18
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="19"
+                          data-year="2000"
+                        >
+                          19
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="20"
+                          data-year="2000"
+                        >
+                          20
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="21"
+                          data-year="2000"
+                        >
+                          21
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="22"
+                          data-year="2000"
+                        >
+                          22
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="23"
+                          data-year="2000"
+                        >
+                          23
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="24"
+                          data-year="2000"
+                        >
+                          24
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="25"
+                          data-year="2000"
+                        >
+                          25
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="26"
+                          data-year="2000"
+                        >
+                          26
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="27"
+                          data-year="2000"
+                        >
+                          27
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="28"
+                          data-year="2000"
+                        >
+                          28
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="29"
+                          data-year="2000"
+                        >
+                          29
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="30"
+                          data-year="2000"
+                        >
+                          30
+                        </td>
+                        <td
+                          class="rdtDay"
+                          data-month="0"
+                          data-value="31"
+                          data-year="2000"
+                        >
+                          31
+                        </td>
+                        <td
+                          class="rdtDay rdtNew"
+                          data-month="1"
+                          data-value="1"
+                          data-year="2000"
+                        >
+                          1
+                        </td>
+                        <td
+                          class="rdtDay rdtNew"
+                          data-month="1"
+                          data-value="2"
+                          data-year="2000"
+                        >
+                          2
+                        </td>
+                        <td
+                          class="rdtDay rdtNew"
+                          data-month="1"
+                          data-value="3"
+                          data-year="2000"
+                        >
+                          3
+                        </td>
+                        <td
+                          class="rdtDay rdtNew"
+                          data-month="1"
+                          data-value="4"
+                          data-year="2000"
+                        >
+                          4
+                        </td>
+                        <td
+                          class="rdtDay rdtNew"
+                          data-month="1"
+                          data-value="5"
+                          data-year="2000"
+                        >
+                          5
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td
+                          class="rdtTimeToggle"
+                          colspan="7"
+                        >
+                          12:30:40
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="modal-footer"
+          >
+            <span
+              class="button d-inline-block ms-1 secondary"
+            >
+              <button
+                class="btn btn-secondary btn-md"
+                type="button"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    cancel
+                  </i>
+                  Cancel
+                </div>
+              </button>
+            </span>
+            <span
+              class="button d-inline-block ms-1 primary"
+            >
+              <button
+                class="btn btn-primary btn-md"
+                type="submit"
+              >
+                <div
+                  class="d-flex justify-content-center align-items-center"
+                >
+                  <i
+                    class="icon button-icon me-2 material-icons"
+                  >
+                    save
+                  </i>
+                  Select
+                </div>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-backdrop fade"
     />
-  </AddonButton>
+  </div>
 </div>
 `;
 
-exports[`Component: DateTimeInput ui MaskedInput: Component: DateTimeInput => ui => MaskedInput 1`] = `
-<Input
-  id={10}
-  innerRef={[Function]}
-  onBlur={[Function]}
-  onChange={[Function]}
-  type="text"
-/>
-`;
-
-exports[`Component: DateTimeInput ui with date picker in modal: Component: DateTimeInput => ui => with date picker in modal => not open 1`] = `
-<FormGroup
-  className="date-time-input with-modal"
-  color="success"
-  tag="div"
->
-  <Label
-    for="dateOfBirth"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: DateTimeInput ui with format error 1`] = `
+<div>
+  <div
+    class="date-time-input mb-3"
+    color="success"
   >
-    Date of birth
-     
-    <span
-      className="date-time-input-format text-muted"
+    <label
+      class="form-label"
+      for="dateOfBirth"
     >
-      (
-      YYYY-MM-DD HH:mm:ss
-      )
-    </span>
-  </Label>
-  <n
-    className=""
-    closeOnClickOutside={true}
-    closeOnSelect={true}
-    closeOnTab={true}
-    dateFormat="YYYY-MM-DD"
-    input={true}
-    inputProps={
-      Object {
-        "autoComplete": "off",
-        "id": "dateOfBirth",
-        "invalid": false,
-        "mask": Array [
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          " ",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-        ],
-        "placeholder": "Please enter your date of birth",
-      }
-    }
-    isValidDate={[Function]}
-    onBeforeNavigate={[Function]}
-    onCalendarClose={[Function]}
-    onCalendarOpen={[Function]}
-    onChange={[Function]}
-    onClose={[Function]}
-    onNavigate={[Function]}
-    onNavigateBack={[Function]}
-    onNavigateForward={[Function]}
-    onOpen={[MockFunction]}
-    open={false}
-    renderInput={[Function]}
-    renderView={[Function]}
-    strictParsing={true}
-    timeConstraints={Object {}}
-    timeFormat="HH:mm:ss"
-    utc={true}
-    value=""
-  />
-  Some error
-</FormGroup>
+      Date of birth
+       
+      <span
+        class="date-time-input-format text-danger"
+      >
+        (
+        YYYY-MM-DD HH:mm:ss
+        )
+      </span>
+    </label>
+    <div
+      class="rdt"
+    >
+      <div>
+        <input
+          aria-invalid="true"
+          autocomplete="off"
+          class="form-control is-invalid form-control"
+          id="dateOfBirth"
+          placeholder="Please enter your date of birth"
+          type="text"
+          value="2000-01-01 12:30:40"
+        />
+      </div>
+      <div
+        class="rdtPicker"
+      >
+        <div
+          class="rdtDays"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th
+                  class="rdtPrev"
+                >
+                  <span>
+                    ‹
+                  </span>
+                </th>
+                <th
+                  class="rdtSwitch"
+                  colspan="5"
+                  data-value="0"
+                >
+                  January 2000
+                </th>
+                <th
+                  class="rdtNext"
+                >
+                  <span>
+                    ›
+                  </span>
+                </th>
+              </tr>
+              <tr>
+                <th
+                  class="dow"
+                >
+                  Su
+                </th>
+                <th
+                  class="dow"
+                >
+                  Mo
+                </th>
+                <th
+                  class="dow"
+                >
+                  Tu
+                </th>
+                <th
+                  class="dow"
+                >
+                  We
+                </th>
+                <th
+                  class="dow"
+                >
+                  Th
+                </th>
+                <th
+                  class="dow"
+                >
+                  Fr
+                </th>
+                <th
+                  class="dow"
+                >
+                  Sa
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="26"
+                  data-year="1999"
+                >
+                  26
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="27"
+                  data-year="1999"
+                >
+                  27
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="28"
+                  data-year="1999"
+                >
+                  28
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="29"
+                  data-year="1999"
+                >
+                  29
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="30"
+                  data-year="1999"
+                >
+                  30
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="31"
+                  data-year="1999"
+                >
+                  31
+                </td>
+                <td
+                  class="rdtDay rdtActive"
+                  data-month="0"
+                  data-value="1"
+                  data-year="2000"
+                >
+                  1
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="2"
+                  data-year="2000"
+                >
+                  2
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="3"
+                  data-year="2000"
+                >
+                  3
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="4"
+                  data-year="2000"
+                >
+                  4
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="5"
+                  data-year="2000"
+                >
+                  5
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="6"
+                  data-year="2000"
+                >
+                  6
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="7"
+                  data-year="2000"
+                >
+                  7
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="8"
+                  data-year="2000"
+                >
+                  8
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="9"
+                  data-year="2000"
+                >
+                  9
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="10"
+                  data-year="2000"
+                >
+                  10
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="11"
+                  data-year="2000"
+                >
+                  11
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="12"
+                  data-year="2000"
+                >
+                  12
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="13"
+                  data-year="2000"
+                >
+                  13
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="14"
+                  data-year="2000"
+                >
+                  14
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="15"
+                  data-year="2000"
+                >
+                  15
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="16"
+                  data-year="2000"
+                >
+                  16
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="17"
+                  data-year="2000"
+                >
+                  17
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="18"
+                  data-year="2000"
+                >
+                  18
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="19"
+                  data-year="2000"
+                >
+                  19
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="20"
+                  data-year="2000"
+                >
+                  20
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="21"
+                  data-year="2000"
+                >
+                  21
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="22"
+                  data-year="2000"
+                >
+                  22
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="23"
+                  data-year="2000"
+                >
+                  23
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="24"
+                  data-year="2000"
+                >
+                  24
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="25"
+                  data-year="2000"
+                >
+                  25
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="26"
+                  data-year="2000"
+                >
+                  26
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="27"
+                  data-year="2000"
+                >
+                  27
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="28"
+                  data-year="2000"
+                >
+                  28
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="29"
+                  data-year="2000"
+                >
+                  29
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="30"
+                  data-year="2000"
+                >
+                  30
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="31"
+                  data-year="2000"
+                >
+                  31
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="1"
+                  data-year="2000"
+                >
+                  1
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="2"
+                  data-year="2000"
+                >
+                  2
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="3"
+                  data-year="2000"
+                >
+                  3
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="4"
+                  data-year="2000"
+                >
+                  4
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="5"
+                  data-year="2000"
+                >
+                  5
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td
+                  class="rdtTimeToggle"
+                  colspan="7"
+                >
+                  12:30:40
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    Some error
+  </div>
+</div>
 `;
 
-exports[`Component: DateTimeInput ui with date picker in modal: Component: DateTimeInput => ui => with date picker in modal => open 1`] = `
-<FormGroup
-  className="date-time-input with-modal"
-  color="success"
-  tag="div"
->
-  <Label
-    for="dateOfBirth"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: DateTimeInput ui with label 1`] = `
+<div>
+  <div
+    class="date-time-input mb-3"
+    color="success"
   >
-    Date of birth
-     
-    <span
-      className="date-time-input-format text-muted"
+    <label
+      class="form-label"
+      for="dateOfBirth"
     >
-      (
-      YYYY-MM-DD HH:mm:ss
-      )
-    </span>
-  </Label>
-  <n
-    className=""
-    closeOnClickOutside={true}
-    closeOnSelect={true}
-    closeOnTab={true}
-    dateFormat="YYYY-MM-DD"
-    input={true}
-    inputProps={
-      Object {
-        "autoComplete": "off",
-        "id": "dateOfBirth",
-        "invalid": false,
-        "mask": Array [
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          " ",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-        ],
-        "placeholder": "Please enter your date of birth",
-      }
-    }
-    isValidDate={[Function]}
-    onBeforeNavigate={[Function]}
-    onCalendarClose={[Function]}
-    onCalendarOpen={[Function]}
-    onChange={[Function]}
-    onClose={[Function]}
-    onNavigate={[Function]}
-    onNavigateBack={[Function]}
-    onNavigateForward={[Function]}
-    onOpen={[MockFunction]}
-    open={false}
-    renderInput={[Function]}
-    renderView={[Function]}
-    strictParsing={true}
-    timeConstraints={Object {}}
-    timeFormat="HH:mm:ss"
-    utc={true}
-    value=""
-  />
-  Some error
-  <DateTimeModal
-    dateFormat="YYYY-MM-DD"
-    isDateAllowed={[Function]}
-    isOpen={true}
-    label="Please enter your date of birth"
-    onClose={[Function]}
-    onSave={[Function]}
-    timeFormat="HH:mm:ss"
-    utc={true}
-  />
-</FormGroup>
-`;
-
-exports[`Component: DateTimeInput ui with format error: Component: DateTimeInput => ui => with format error 1`] = `
-<FormGroup
-  className="date-time-input"
-  color="success"
-  tag="div"
->
-  <Label
-    for="dateOfBirth"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Date of birth
-     
-    <span
-      className="date-time-input-format text-danger"
+      Date of birth
+       
+      <span
+        class="date-time-input-format text-muted"
+      >
+        (
+        YYYY-MM-DD HH:mm:ss
+        )
+      </span>
+    </label>
+    <div
+      class="rdt"
     >
-      (
-      YYYY-MM-DD HH:mm:ss
-      )
-    </span>
-  </Label>
-  <n
-    className=""
-    closeOnClickOutside={true}
-    closeOnSelect={true}
-    closeOnTab={true}
-    dateFormat="YYYY-MM-DD"
-    input={true}
-    inputProps={
-      Object {
-        "autoComplete": "off",
-        "id": "dateOfBirth",
-        "invalid": true,
-        "mask": Array [
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          " ",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-        ],
-        "placeholder": "Please enter your date of birth",
-      }
-    }
-    isValidDate={[Function]}
-    onBeforeNavigate={[Function]}
-    onCalendarClose={[Function]}
-    onCalendarOpen={[Function]}
-    onChange={[Function]}
-    onClose={[Function]}
-    onNavigate={[Function]}
-    onNavigateBack={[Function]}
-    onNavigateForward={[Function]}
-    onOpen={[MockFunction]}
-    renderInput={[Function]}
-    renderView={[Function]}
-    strictParsing={true}
-    timeConstraints={Object {}}
-    timeFormat="HH:mm:ss"
-    utc={true}
-    value={2000-01-01T11:30:40.000Z}
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: DateTimeInput ui with label: Component: DateTimeInput => ui => with label 1`] = `
-<FormGroup
-  className="date-time-input"
-  color="success"
-  tag="div"
->
-  <Label
-    for="dateOfBirth"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Date of birth
-     
-    <span
-      className="date-time-input-format text-muted"
-    >
-      (
-      YYYY-MM-DD HH:mm:ss
-      )
-    </span>
-  </Label>
-  <n
-    className=""
-    closeOnClickOutside={true}
-    closeOnSelect={true}
-    closeOnTab={true}
-    dateFormat="YYYY-MM-DD"
-    input={true}
-    inputProps={
-      Object {
-        "autoComplete": "off",
-        "id": "dateOfBirth",
-        "invalid": false,
-        "mask": Array [
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          " ",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-        ],
-        "placeholder": "Please enter your date of birth",
-      }
-    }
-    isValidDate={[Function]}
-    onBeforeNavigate={[Function]}
-    onCalendarClose={[Function]}
-    onCalendarOpen={[Function]}
-    onChange={[Function]}
-    onClose={[Function]}
-    onNavigate={[Function]}
-    onNavigateBack={[Function]}
-    onNavigateForward={[Function]}
-    onOpen={[MockFunction]}
-    renderInput={[Function]}
-    renderView={[Function]}
-    strictParsing={true}
-    timeConstraints={Object {}}
-    timeFormat="HH:mm:ss"
-    utc={true}
-    value={2000-01-01T11:30:40.000Z}
-  />
-  Some error
-</FormGroup>
-`;
-
-exports[`Component: DateTimeInput ui without label: Component: DateTimeInput => ui => without label 1`] = `
-<FormGroup
-  className="date-time-input"
-  color="success"
-  tag="div"
->
-  <n
-    className=""
-    closeOnClickOutside={true}
-    closeOnSelect={true}
-    closeOnTab={true}
-    dateFormat="YYYY-MM-DD"
-    input={true}
-    inputProps={
-      Object {
-        "autoComplete": "off",
-        "id": "dateOfBirth",
-        "invalid": false,
-        "mask": Array [
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          "-",
-          /\\\\d/,
-          /\\\\d/,
-          " ",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-          ":",
-          /\\\\d/,
-          /\\\\d/,
-        ],
-        "placeholder": "Please enter your date of birth",
-      }
-    }
-    isValidDate={[Function]}
-    onBeforeNavigate={[Function]}
-    onCalendarClose={[Function]}
-    onCalendarOpen={[Function]}
-    onChange={[Function]}
-    onClose={[Function]}
-    onNavigate={[Function]}
-    onNavigateBack={[Function]}
-    onNavigateForward={[Function]}
-    onOpen={[MockFunction]}
-    renderInput={[Function]}
-    renderView={[Function]}
-    strictParsing={true}
-    timeConstraints={Object {}}
-    timeFormat="HH:mm:ss"
-    utc={true}
-    value={2000-01-01T11:30:40.000Z}
-  />
-  Some error
-</FormGroup>
+      <div>
+        <input
+          aria-invalid="false"
+          autocomplete="off"
+          class="form-control form-control"
+          id="dateOfBirth"
+          placeholder="Please enter your date of birth"
+          type="text"
+          value="2000-01-01 12:30:40"
+        />
+      </div>
+      <div
+        class="rdtPicker"
+      >
+        <div
+          class="rdtDays"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th
+                  class="rdtPrev"
+                >
+                  <span>
+                    ‹
+                  </span>
+                </th>
+                <th
+                  class="rdtSwitch"
+                  colspan="5"
+                  data-value="0"
+                >
+                  January 2000
+                </th>
+                <th
+                  class="rdtNext"
+                >
+                  <span>
+                    ›
+                  </span>
+                </th>
+              </tr>
+              <tr>
+                <th
+                  class="dow"
+                >
+                  Su
+                </th>
+                <th
+                  class="dow"
+                >
+                  Mo
+                </th>
+                <th
+                  class="dow"
+                >
+                  Tu
+                </th>
+                <th
+                  class="dow"
+                >
+                  We
+                </th>
+                <th
+                  class="dow"
+                >
+                  Th
+                </th>
+                <th
+                  class="dow"
+                >
+                  Fr
+                </th>
+                <th
+                  class="dow"
+                >
+                  Sa
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="26"
+                  data-year="1999"
+                >
+                  26
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="27"
+                  data-year="1999"
+                >
+                  27
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="28"
+                  data-year="1999"
+                >
+                  28
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="29"
+                  data-year="1999"
+                >
+                  29
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="30"
+                  data-year="1999"
+                >
+                  30
+                </td>
+                <td
+                  class="rdtDay rdtOld"
+                  data-month="11"
+                  data-value="31"
+                  data-year="1999"
+                >
+                  31
+                </td>
+                <td
+                  class="rdtDay rdtActive"
+                  data-month="0"
+                  data-value="1"
+                  data-year="2000"
+                >
+                  1
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="2"
+                  data-year="2000"
+                >
+                  2
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="3"
+                  data-year="2000"
+                >
+                  3
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="4"
+                  data-year="2000"
+                >
+                  4
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="5"
+                  data-year="2000"
+                >
+                  5
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="6"
+                  data-year="2000"
+                >
+                  6
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="7"
+                  data-year="2000"
+                >
+                  7
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="8"
+                  data-year="2000"
+                >
+                  8
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="9"
+                  data-year="2000"
+                >
+                  9
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="10"
+                  data-year="2000"
+                >
+                  10
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="11"
+                  data-year="2000"
+                >
+                  11
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="12"
+                  data-year="2000"
+                >
+                  12
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="13"
+                  data-year="2000"
+                >
+                  13
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="14"
+                  data-year="2000"
+                >
+                  14
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="15"
+                  data-year="2000"
+                >
+                  15
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="16"
+                  data-year="2000"
+                >
+                  16
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="17"
+                  data-year="2000"
+                >
+                  17
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="18"
+                  data-year="2000"
+                >
+                  18
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="19"
+                  data-year="2000"
+                >
+                  19
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="20"
+                  data-year="2000"
+                >
+                  20
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="21"
+                  data-year="2000"
+                >
+                  21
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="22"
+                  data-year="2000"
+                >
+                  22
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="23"
+                  data-year="2000"
+                >
+                  23
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="24"
+                  data-year="2000"
+                >
+                  24
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="25"
+                  data-year="2000"
+                >
+                  25
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="26"
+                  data-year="2000"
+                >
+                  26
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="27"
+                  data-year="2000"
+                >
+                  27
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="28"
+                  data-year="2000"
+                >
+                  28
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="29"
+                  data-year="2000"
+                >
+                  29
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="30"
+                  data-year="2000"
+                >
+                  30
+                </td>
+                <td
+                  class="rdtDay"
+                  data-month="0"
+                  data-value="31"
+                  data-year="2000"
+                >
+                  31
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="1"
+                  data-year="2000"
+                >
+                  1
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="2"
+                  data-year="2000"
+                >
+                  2
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="3"
+                  data-year="2000"
+                >
+                  3
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="4"
+                  data-year="2000"
+                >
+                  4
+                </td>
+                <td
+                  class="rdtDay rdtNew"
+                  data-month="1"
+                  data-value="5"
+                  data-year="2000"
+                >
+                  5
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td
+                  class="rdtTimeToggle"
+                  colspan="7"
+                >
+                  12:30:40
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    Some error
+  </div>
+</div>
 `;

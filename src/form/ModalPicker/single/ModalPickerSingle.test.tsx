@@ -1,28 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import ModalPickerSingle from './ModalPickerSingle';
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
-import {
-  adminUser,
-  coordinatorUser,
-  listOfUsers,
-  pageOfUsersFetcher,
-  randomUser,
-  userUser
-} from '../../../test/fixtures';
-import { ModalPickerButtonAlignment } from '../types';
+import { adminUser, listOfUsers, pageOfUsersFetcher, randomUser } from '../../../test/fixtures';
+import { ModalPickerAddButtonOptions, ModalPickerButtonAlignment } from '../types';
 
 import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { Color } from '../../../core/types';
 import { IsOptionEnabled } from '../../option';
 import { icons } from '../../../core/Icon';
-import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
-import TextButton from '../../../core/TextButton/TextButton';
+import lodash from 'lodash';
 
 jest.mock('../../useOptions', () => {
   return { useOptions: jest.fn() };
@@ -31,19 +23,20 @@ jest.mock('../../useOptions', () => {
 describe('Component: ModalPickerSingle', () => {
   function setup({
     value,
-    showAddButton = false,
-    canSearch = undefined,
-    hasLabel = true,
+    showAddButton,
+    canSearch,
+    hasLabel,
     alignButton,
-    hasRenderValue = false,
-    hasRenderOptions = false,
-    loading = false,
-    empty = false,
-    reUsePage = false,
+    hasRenderValue,
+    hasRenderOptions,
+    loading,
+    empty,
+    reUsePage,
     isOptionEnabled,
-    isAsync = false,
+    isAsync,
     canClear,
-    pageSize = 10
+    pageSize = 10,
+    addButtonCallbackSpy
   }: {
     value?: User;
     showAddButton?: boolean;
@@ -59,10 +52,9 @@ describe('Component: ModalPickerSingle', () => {
     isAsync?: boolean;
     canClear?: boolean;
     pageSize?: number;
+    addButtonCallbackSpy?: jest.Mock;
   }) {
     const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
-    const addButtonCallbackSpy = jest.fn();
 
     // We might reuse the page so it can be unshifted by `addButtonClicked`
     let page: Page<User> | undefined = undefined;
@@ -90,7 +82,8 @@ describe('Component: ModalPickerSingle', () => {
       }
     );
 
-    const addButton = showAddButton
+    // @ts-expect-error Test mock
+    const addButton: ModalPickerAddButtonOptions<User> = showAddButton
       ? { label: 'Add color', onClick: addButtonCallbackSpy }
       : undefined;
 
@@ -105,7 +98,6 @@ describe('Component: ModalPickerSingle', () => {
       addButton,
       value,
       onChange: onChangeSpy,
-      onBlur: onBlurSpy,
       error: 'Some error',
       alignButton,
       renderValue: hasRenderValue
@@ -116,585 +108,319 @@ describe('Component: ModalPickerSingle', () => {
         : undefined,
       color: 'success' as Color,
       canClear,
-      pageSize
+      pageSize,
+      id: hasLabel ? 'bestFriend' : undefined,
+      label: hasLabel ? 'Best Friend' : undefined
     };
 
-    const labelProps = hasLabel
-      ? { id: 'bestFriend', label: 'Best Friend' }
-      : {};
-
-    const modalPickerSingle = shallow(
-      <ModalPickerSingle {...props} {...labelProps} />
+    const { container, rerender } = render(
+      <ModalPickerSingle {...props} />
     );
 
     return {
-      modalPickerSingle,
+      container,
+      props,
+      rerender,
       onChangeSpy,
-      onBlurSpy,
       addButtonCallbackSpy,
       page
     };
   }
 
   describe('ui', () => {
-    it('should render', () => {
-      const { modalPickerSingle } = setup({
-        value: adminUser()
-      });
-      expect(toJson(modalPickerSingle)).toMatchSnapshot(
-        'Component: ModalPickerSingle => ui => should render'
-      );
+    test('default', () => {
+      const { container } = setup({});
+      fireEvent.click(screen.getByText('Select your best friend'));
+      expect(container).toMatchSnapshot();
+      expect(document.body.lastChild).toMatchSnapshot('modal');
     });
 
-    it('should not render search canSearch is false', () => {
-      const { modalPickerSingle } = setup({
-        value: adminUser(),
+    test('with search', () => {
+      setup({
+        canSearch: true
+      });
+      fireEvent.click(screen.getByText('Select your best friend'));
+      expect(screen.queryByRole('searchbox')).toBeInTheDocument();
+    });
+
+    test('without search', () => {
+      setup({
         canSearch: false
       });
-
-      // @ts-expect-error Test mock
-      expect(modalPickerSingle.find('ModalPicker').props().canSearch).toBe(
-        false
-      );
+      fireEvent.click(screen.getByText('Select your best friend'));
+      expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
     });
 
-    it('should render a label with the selected value when the value is not empty', () => {
-      const value = adminUser();
-      const { modalPickerSingle } = setup({ value });
-      expect(modalPickerSingle.find('ModalPickerOpener').props().value).toEqual(
-        value
-      );
-    });
-
-    it('should not render a label when the value is empty', () => {
-      const { modalPickerSingle } = setup({
-        value: undefined
-      });
-      expect(
-        // @ts-expect-error Test mock
-        modalPickerSingle.find('ModalPickerOpener').props.value
-      ).toBeUndefined();
-    });
-
-    it('should render without label', () => {
-      const { modalPickerSingle } = setup({
-        value: adminUser(),
-        hasLabel: false
-      });
-      expect(toJson(modalPickerSingle)).toMatchSnapshot(
-        'Component: ModalPickerSingle => ui => should render without label'
-      );
-    });
-
-    it('should render the options with the correct checked state', () => {
-      const { modalPickerSingle } = setup({
+    test('with value', () => {
+      setup({
         value: adminUser()
       });
+      fireEvent.click(screen.getByText('Select your best friend'));
+      expect(screen.getAllByRole('radio')[0]).toBeChecked();
+      expect(screen.getAllByRole('radio')[1]).not.toBeChecked();
+      expect(screen.getAllByRole('radio')[2]).not.toBeChecked();
+    });
 
-      // Open the modal
-      modalPickerSingle
-        .find('ModalPickerOpener')
-        .props()
-        // @ts-expect-error Test mock
-        .openModal();
+    test('without value', () => {
+      const { container } = setup({});
+      fireEvent.click(screen.getByText('Select your best friend'));
+      expect(container).toMatchSnapshot();
+      expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
+      expect(screen.getAllByRole('radio')[1]).not.toBeChecked();
+      expect(screen.getAllByRole('radio')[2]).not.toBeChecked();
+    });
 
-      const admin = modalPickerSingle.find('Input').at(0);
-      const coordinator = modalPickerSingle.find('Input').at(1);
-      const user = modalPickerSingle.find('Input').at(2);
+    test('with label', () => {
+      setup({
+        hasLabel: true
+      });
+      expect(screen.queryByText('Best Friend')).toBeInTheDocument();
+    });
 
-      expect(admin.props().checked).toBe(true);
-      expect(coordinator.props().checked).toBe(false);
-      expect(user.props().checked).toBe(false);
+    test('without label', () => {
+      setup({
+        hasLabel: false
+      });
+      expect(screen.queryByText('Best Friend')).not.toBeInTheDocument();
     });
 
     it('should disable options when isOptionEnabled is false', () => {
-      const { modalPickerSingle } = setup({
+      setup({
         isOptionEnabled: (user) => user.email === 'admin@42.nl'
       });
 
-      // Open the modal
-      modalPickerSingle
-        .find('ModalPickerOpener')
-        .props()
-        // @ts-expect-error Test mock
-        .openModal();
+      fireEvent.click(screen.getByText('Select your best friend'));
 
-      expect(modalPickerSingle.find('Input')).toHaveLength(3);
-      const admin = modalPickerSingle.find('Input').at(0);
-      const coordinator = modalPickerSingle.find('Input').at(1);
-      const user = modalPickerSingle.find('Input').at(2);
-
-      expect(admin.props().disabled).toBe(false);
-      expect(coordinator.props().disabled).toBe(true);
-      expect(user.props().disabled).toBe(true);
+      expect(screen.getAllByRole('radio')[0]).not.toBeDisabled();
+      expect(screen.getAllByRole('radio')[1]).toBeDisabled();
+      expect(screen.getAllByRole('radio')[2]).toBeDisabled();
     });
 
     it('should only render 2 options when pageSize is set to 2', () => {
-      const { modalPickerSingle } = setup({
-        value: adminUser(),
+      setup({
         pageSize: 2
       });
 
-      // Open the modal
-      modalPickerSingle
-        .find('ModalPickerOpener')
-        .props()
-        // @ts-expect-error Test mock
-        .openModal();
+      fireEvent.click(screen.getByText('Select your best friend'));
 
-      expect(modalPickerSingle.find('Input')).toHaveLength(2);
-      const admin = modalPickerSingle.find('Input').at(0);
-      const coordinator = modalPickerSingle.find('Input').at(1);
-
-      expect(admin.props().checked).toBe(true);
-      expect(coordinator.props().checked).toBe(false);
+      expect(screen.getAllByRole('radio').length).toBe(2);
     });
 
     it('should render button left', () => {
-      const { modalPickerSingle } = setup({
+      setup({
         value: adminUser(),
         alignButton: 'left'
       });
-      expect(toJson(modalPickerSingle)).toMatchSnapshot(
-        'Component: ModalPickerSingle => ui => should render button left'
-      );
+
+      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center flex-row-reverse justify-content-end');
     });
 
     it('should render button right without value', () => {
-      const { modalPickerSingle } = setup({
-        value: undefined,
+      setup({
         alignButton: 'right'
       });
-      expect(toJson(modalPickerSingle)).toMatchSnapshot(
-        'Component: ModalPickerSingle => ui => should render button right without value'
-      );
+      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-end');
+      expect(screen.getByText('Select your best friend').parentNode).not.toHaveClass('flex-row-reverse');
     });
 
     it('should render button right with value', () => {
-      const { modalPickerSingle } = setup({
+      setup({
         value: adminUser(),
         alignButton: 'right'
       });
-      expect(toJson(modalPickerSingle)).toMatchSnapshot(
-        'Component: ModalPickerSingle => ui => should render button right with value'
-      );
+      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-between');
+      expect(screen.getByText('Select your best friend').parentNode).not.toHaveClass('flex-row-reverse');
     });
 
     it('should render without clear button', () => {
-      const { modalPickerSingle } = setup({
+      setup({
         value: adminUser(),
         canClear: false
       });
-      expect(
-        modalPickerSingle.find(ModalPickerOpener).find(TextButton).exists()
-      ).toBe(false);
+
+      expect(screen.queryByText('Clear')).not.toBeInTheDocument();
     });
 
     describe('renderValue', () => {
       it('should be able to use custom function to render values', () => {
-        const { modalPickerSingle } = setup({
-          value: adminUser(),
+        setup({
           hasRenderValue: true
         });
-
-        expect(toJson(modalPickerSingle)).toMatchSnapshot(
-          'Component: ModalPickerSingle => ui => should be able to use custom function to render values'
-        );
+        expect(screen.queryByText('none selected')).toBeInTheDocument();
       });
 
       it('should use the default ModalPickerValueTruncator to render values', () => {
-        const { modalPickerSingle } = setup({
+        setup({
           value: adminUser(),
           hasRenderValue: false
         });
-
-        const renderValue = modalPickerSingle
-          .find('ModalPickerOpener')
-          // @ts-expect-error Test mock
-          .renderProp('renderValue');
-
-        expect(toJson(renderValue(adminUser()))).toMatchSnapshot(
-          'Component: ModalPickerSingle => ui => should use the default ModalPickerValueTruncator to render values'
-        );
-
-        const modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-        // @ts-expect-error Mock test
-        expect(modalPicker.renderOptionsConfig).toBe(undefined);
+        expect(screen.getByText('admin@42.nl')).toHaveClass('text-truncate');
       });
     });
 
     it('should be able to use custom function to render options', () => {
-      const { modalPickerSingle } = setup({
+      setup({
         value: adminUser(),
         hasRenderOptions: true
       });
 
-      const modalPicker = modalPickerSingle.find('ModalPicker').props();
+      fireEvent.click(screen.getByText('Select your best friend'));
 
-      // @ts-expect-error Mock test
-      expect(modalPicker.renderOptionsConfig).toMatchInlineSnapshot(`
-        Object {
-          "isOptionEnabled": [Function],
-          "isOptionEqual": undefined,
-          "keyForOption": undefined,
-          "labelForOption": [Function],
-          "onChange": [Function],
-          "renderOptions": [Function],
-        }
-      `);
+      expect(screen.queryByText('RenderOptions')).toBeInTheDocument();
     });
 
     test('loading', () => {
-      const { modalPickerSingle } = setup({
+      setup({
         loading: true
       });
-
-      const modalPicker = modalPickerSingle.find('ModalPicker').at(0).props();
-
-      // @ts-expect-error Test mock
-      expect(modalPicker.loading).toBe(true);
-    });
-
-    test('async debounce', () => {
-      const { modalPickerSingle } = setup({
-        isAsync: true
-      });
-
-      const modalPicker = modalPickerSingle.find('ModalPicker').at(0).props();
-      // @ts-expect-error Test mock
-      expect(modalPicker.canSearchSync).toBe(false);
-    });
-
-    test('sync debounce', () => {
-      const { modalPickerSingle } = setup({
-        isAsync: false
-      });
-
-      const modalPicker = modalPickerSingle.find('ModalPicker').at(0).props();
-      // @ts-expect-error Test mock
-      expect(modalPicker.canSearchSync).toBe(true);
+      fireEvent.click(screen.getByText('Select your best friend'));
+      expect(document.body.lastChild).toMatchSnapshot();
     });
   });
 
   describe('events', () => {
     it('should open the modal when the select button is clicked', () => {
-      const { modalPickerSingle } = setup({
+      setup({
         value: adminUser()
       });
 
-      // Open the modal
-      modalPickerSingle
-        .find('ModalPickerOpener')
-        .props()
-        // @ts-expect-error Test mock
-        .openModal();
+      fireEvent.click(screen.getByText('Select your best friend'));
 
-      // Now expect only the admin to be selected which is the first option
-      const inputs = modalPickerSingle.find('Input');
-      expect(inputs.at(0).props().checked).toBe(true);
-      expect(inputs.at(1).props().checked).toBe(false);
-      expect(inputs.at(2).props().checked).toBe(false);
-
-      const modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-      // Expect the modal to open
-      // @ts-expect-error Test mock
-      expect(modalPicker.isOpen).toBe(true);
-
-      // Expect the query to be reset
-      // @ts-expect-error Test mock
-      expect(modalPicker.query).toBe('');
-
-      // Expect the page to be reset
-      // @ts-expect-error Test mock
-      expect(modalPicker.page.number).toBe(1);
-
-      // Expect userHasSearched to be reset to false
-      // @ts-expect-error Test mock
-      expect(modalPicker.userHasSearched).toBe(false);
+      expect(screen.queryAllByRole('radio').length).toBe(3);
     });
 
     it('should fetch options when the user searches', () => {
-      const { modalPickerSingle } = setup({
+      // @ts-expect-error Test mock
+      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+        return fn;
+      });
+
+      setup({
         value: undefined
       });
 
-      let modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-      // @ts-expect-error Test mock
-      modalPicker.queryChanged('tes');
+      fireEvent.click(screen.getByText('Select your best friend'));
+      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
 
       expect(useOptions).toHaveBeenLastCalledWith(
-        expect.objectContaining({ query: 'tes', pageNumber: 1 })
+        expect.objectContaining({ query: 'test', pageNumber: 1 })
       );
-
-      modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-      // Expect the query to be reset
-      // @ts-expect-error Test mock
-      expect(modalPicker.query).toBe('tes');
-
-      // Expect the page to be reset
-      // @ts-expect-error Test mock
-      expect(modalPicker.page.number).toBe(1);
-
-      // Expect userHasSearched to be true
-      // @ts-expect-error Test mock
-      expect(modalPicker.userHasSearched).toBe(true);
     });
 
-    it('should when the user moves to another page load the new page', () => {
-      const { modalPickerSingle } = setup({
-        value: undefined
+    it('should load the new page when the user moves to another page', () => {
+      setup({
+        value: undefined,
+        pageSize: 2
       });
 
-      let modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-      // @ts-expect-error Test mock
-      modalPicker.pageChanged(2);
+      fireEvent.click(screen.getByText('Select your best friend'));
+      fireEvent.click(screen.getByText('arrow_forward'));
 
       expect(useOptions).toHaveBeenLastCalledWith(
         expect.objectContaining({ pageNumber: 2 })
       );
-
-      modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-      // Expect the page to be reset
-      // @ts-expect-error Test mock
-      expect(modalPicker.page.number).toBe(2);
     });
 
-    it('should when the user closes the modal the modal close the modal without calling onChange', () => {
-      const { modalPickerSingle, onChangeSpy } = setup({
+    it('should not call onChange when the user clicks cancel', () => {
+      const { onChangeSpy } = setup({
         value: undefined
       });
 
-      // Open the modal
-      modalPickerSingle
-        .find('ModalPickerOpener')
-        .props()
-        // @ts-expect-error Test mock
-        .openModal();
+      fireEvent.click(screen.getByText('Select your best friend'));
+      fireEvent.click(screen.getByText('Cancel'));
 
-      modalPickerSingle
-        .find('ModalPicker')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .closeModal();
-
-      const modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-      // Expect the modal to be closed
-      // @ts-expect-error Test mock
-      expect(modalPicker.isOpen).toBe(false);
-
-      // Nothing should have been selected
       expect(onChangeSpy).toHaveBeenCalledTimes(0);
     });
 
-    it('should when the user clicks save it should close the modal and select the value', () => {
-      const { modalPickerSingle, onChangeSpy } = setup({
+    it('should call onChange when the user clicks select', () => {
+      const { onChangeSpy } = setup({
         value: undefined
       });
 
-      // Open the modal
-      modalPickerSingle
-        .find('ModalPickerOpener')
-        .props()
-        // @ts-expect-error Test mock
-        .openModal();
-
-      // Check that the first input is not selected yet
-      const input = modalPickerSingle.find('Input').at(0).props();
-      expect(input.checked).toBe(false);
-
-      // Now select the admin
-      // @ts-expect-error Test mock
-      input.onChange();
-
-      modalPickerSingle
-        .find('ModalPicker')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .modalSaved();
-
-      const modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-      // Expect the modal to be closed
-      // @ts-expect-error Test mock
-      expect(modalPicker.isOpen).toBe(false);
+      fireEvent.click(screen.getByText('Select your best friend'));
+      fireEvent.click(screen.getAllByRole('radio')[0]);
+      fireEvent.click(screen.getByText('Select'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(adminUser());
     });
 
-    it('should when the user clicks the clear button clear the value', () => {
-      const { modalPickerSingle, onChangeSpy } = setup({ value: adminUser() });
+    it('should clear the value when the user clicks the clear button', () => {
+      const { onChangeSpy } = setup({ value: adminUser() });
 
-      // Open the modal
-      modalPickerSingle
-        .find('ModalPickerOpener')
-        .props()
-        // @ts-expect-error Test mock
-        .openModal();
-
-      modalPickerSingle
-        .find('ModalPickerOpener')
-        .props()
-        // @ts-expect-error Test mock
-        .onClear();
+      fireEvent.click(screen.getByText('Clear'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(undefined);
     });
 
-    it('should when the user selects an option store the value but do not call onChange', () => {
-      const { modalPickerSingle } = setup({
+    it('should change checked state but not call onChange when the user selects another option', () => {
+      const { onChangeSpy } = setup({
         value: adminUser()
       });
 
-      // @ts-expect-error Test mock
-      modalPickerSingle
-        .find('Input')
-        .at(1)
-        .props()
-        // @ts-expect-error Test mock
-        .onChange();
+      fireEvent.click(screen.getByText('Select your best friend'));
+      fireEvent.click(screen.getAllByRole('radio')[1]);
 
-      let modalPicker = modalPickerSingle.find('ModalPicker').props();
-      expect(modalPicker.selected).toEqual(coordinatorUser());
+      expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
+      expect(screen.getAllByRole('radio')[1]).toBeChecked();
 
-      // @ts-expect-error Test mock
-      modalPickerSingle
-        .find('Input')
-        .at(2)
-        .props()
-        // @ts-expect-error Test mock
-        .onChange();
-
-      modalPicker = modalPickerSingle.find('ModalPicker').props();
-      expect(modalPicker.selected).toEqual(userUser());
-
-      // @ts-expect-error Test mock
-      modalPickerSingle
-        .find('Input')
-        .at(0)
-        .props()
-        // @ts-expect-error Test mock
-        .onChange();
-
-      modalPicker = modalPickerSingle.find('ModalPicker').props();
-      expect(modalPicker.selected).toEqual(adminUser());
+      expect(onChangeSpy).toBeCalledTimes(0);
     });
 
     describe('addButton', () => {
       it('should add an item on the first position, when the promise resolves', async () => {
         expect.assertions(9);
 
-        const { modalPickerSingle, addButtonCallbackSpy, page } = setup({
+        const { promise, resolve } = testUtils.resolvablePromise();
+        const addButtonCallbackSpy = jest.fn().mockReturnValueOnce(promise);
+
+        setup({
           value: undefined,
           showAddButton: true,
-          reUsePage: true
+          reUsePage: true,
+          addButtonCallbackSpy
         });
 
-        // Open the modal
-        modalPickerSingle
-          .find('ModalPickerOpener')
-          .props()
-          // @ts-expect-error Test mock
-          .openModal();
-
-        const { promise, resolve } = testUtils.resolvablePromise();
-        addButtonCallbackSpy.mockReturnValueOnce(promise);
-
-        modalPickerSingle
-          .find('ModalPicker')
-          .at(0)
-          .props()
-          // @ts-expect-error Test mock
-          .addButton.onClick();
-
-        // Expect the modal to be closed
-        const modalPicker = modalPickerSingle.find('ModalPicker').props();
-        // @ts-expect-error Test mock
-        expect(modalPicker.isOpen).toBe(false);
+        fireEvent.click(screen.getByText('Select your best friend'));
+        fireEvent.click(screen.getByText('Add color'));
 
         expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
 
         const addedUser = randomUser();
-        resolve(addedUser);
+        await act(async () => {
+          resolve(addedUser);
+          await expect(promise).resolves.toEqual(addedUser);
+        });
 
-          await promise;
-
-          await testUtils.waitForUI(() => {
-            const modalPicker = modalPickerSingle.find('ModalPicker').props();
-
-            // @ts-expect-error Test mock
-            expect(modalPicker.isOpen).toBe(true);
-
-            if (page) {
-              // Test that the new user is prepended
-              // @ts-expect-error Test mock
-              expect(page.content).toEqual([
-                addedUser,
-                adminUser(),
-                coordinatorUser(),
-                userUser()
-              ]);
-            }
-
-            // Test that the user is selected
-            expect(modalPicker.selected).toEqual(addedUser);
-          });
+        expect(screen.queryByText(addedUser.email)).toBeInTheDocument();
+        expect(screen.queryAllByRole('radio').length).toBe(4);
+        expect(screen.getAllByRole('radio')[0]).toBeChecked();
       });
 
       it('should hide when the promise is rejected', async () => {
         expect.assertions(7);
 
-        const { modalPickerSingle, addButtonCallbackSpy } = setup({
+        const { promise, reject } = testUtils.rejectablePromise();
+        const addButtonCallbackSpy = jest.fn().mockReturnValueOnce(promise);
+
+        setup({
           value: undefined,
-          showAddButton: true
+          showAddButton: true,
+          addButtonCallbackSpy
         });
 
-        // Open the modal
-        modalPickerSingle
-          .find('ModalPickerOpener')
-          .props()
-          // @ts-expect-error Test mock
-          .openModal();
-
-        const { promise, reject } = testUtils.rejectablePromise();
-        addButtonCallbackSpy.mockReturnValueOnce(promise);
-
-        modalPickerSingle
-          .find('ModalPicker')
-          .at(0)
-          .props()
-          // @ts-expect-error Test mock
-          .addButton.onClick();
-
-        // Expect the modal to be closed
-        const modalPicker = modalPickerSingle.find('ModalPicker').props();
-        // @ts-expect-error Test mock
-        expect(modalPicker.isOpen).toBe(false);
+        fireEvent.click(screen.getByRole('button'));
+        fireEvent.click(screen.getByText('Add color'));
 
         expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
 
-        reject();
+        await act(async () => {
+          reject('error');
+          await expect(promise).rejects.toEqual('error');
+        });
 
-        try {
-          await promise;
-        } catch (error) {
-          await testUtils.waitForUI(() => {
-            // Expect the modal to be opened
-            const modalPicker = modalPickerSingle.find('ModalPicker').props();
-            // @ts-expect-error Test mock
-            expect(modalPicker.isOpen).toBe(true);
-          });
-        }
+        expect(screen.queryAllByRole('radio').length).toBe(3);
       });
     });
   });
@@ -703,37 +429,37 @@ describe('Component: ModalPickerSingle', () => {
     test('becomes empty', () => {
       const value = adminUser();
 
-      const { modalPickerSingle } = setup({ value });
+      const { props, rerender } = setup({ value });
 
-      expect(modalPickerSingle.find('ModalPickerOpener').props().value).toEqual(
-        value
+      expect(screen.queryByText('admin@42.nl')).toBeInTheDocument();
+
+      const newProps = {
+        ...props,
+        value: undefined
+      };
+
+      rerender(
+        <ModalPickerSingle {...newProps} />
       );
 
-      modalPickerSingle.setProps({ value: undefined });
-
-      expect(
-        modalPickerSingle.find('ModalPickerOpener').props().value
-      ).toBeUndefined();
+      expect(screen.queryByText('admin@42.nl')).not.toBeInTheDocument();
     });
 
     test('becomes filled', () => {
-      const { modalPickerSingle } = setup({
-        value: undefined
-      });
+      const { props, rerender } = setup({});
 
-      expect(
-        modalPickerSingle.find('ModalPickerOpener').props().value
-      ).toBeUndefined();
+      expect(screen.queryByText('admin@42.nl')).not.toBeInTheDocument();
 
-      const value = adminUser();
+      const newProps = {
+        ...props,
+        value: [adminUser()]
+      };
 
-      modalPickerSingle.setProps({
-        value
-      });
-
-      expect(modalPickerSingle.find('ModalPickerOpener').props().value).toEqual(
-        value
+      rerender(
+        <ModalPickerSingle {...newProps} />
       );
+
+      expect(screen.queryByText('admin@42.nl')).toBeInTheDocument();
     });
   });
 });

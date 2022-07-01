@@ -32,64 +32,81 @@ describe('HoC: useComponentOverflow', () => {
     expect(setComponentOverflowSpy).toBeCalledWith(false);
   });
 
-  test('layoutEffect', () => {
+  describe('layoutEffect', () => {
     const ref = { current: null } as { current: HTMLElement | null };
     const handleResizeSpy = jest.fn();
-
-    useComponentOverflow.layoutEffect(ref, handleResizeSpy, undefined)();
-
-    expect(handleResizeSpy).toBeCalledTimes(0);
-    handleResizeSpy.mockReset();
-
     const addEventListenerSpy = jest.fn();
     const removeEventListenerSpy = jest.fn();
-    ref.current = Object.assign(
-      {
-        addEventListener: addEventListenerSpy,
-        removeEventListener: removeEventListenerSpy
-      },
-      document.createElement('div')
-    );
 
-    const eventListenerResult = useComponentOverflow.layoutEffect(
-      ref,
-      handleResizeSpy,
-      undefined
-    )();
+    afterEach(() => {
+      handleResizeSpy.mockReset();
+      addEventListenerSpy.mockReset();
+      removeEventListenerSpy.mockReset();
+    })
 
-    expect(handleResizeSpy).toBeCalledTimes(1);
-    expect(addEventListenerSpy).toBeCalledTimes(1);
-    expect(addEventListenerSpy).toBeCalledWith('resize', handleResizeSpy, {
-      passive: true
+    it('should not call handleResize when ref is empty', () => {
+      useComponentOverflow.layoutEffect(ref, handleResizeSpy, undefined)();
+      expect(handleResizeSpy).toBeCalledTimes(0);
     });
-    handleResizeSpy.mockReset();
-    addEventListenerSpy.mockReset();
 
-    // @ts-expect-error Test mock
-    eventListenerResult();
+    it('should call addEventListener and removeEventListener when resizeObserver is not defined', () => {
+      ref.current = Object.assign(
+        {
+          addEventListener: addEventListenerSpy,
+          removeEventListener: removeEventListenerSpy
+        },
+        document.createElement('div')
+      );
 
-    expect(removeEventListenerSpy).toBeCalledTimes(1);
-    expect(removeEventListenerSpy).toBeCalledWith('resize', handleResizeSpy);
-    removeEventListenerSpy.mockReset();
+      const eventListenerResult = useComponentOverflow.layoutEffect(
+        ref,
+        handleResizeSpy,
+        undefined
+      )();
 
-    const observeSpy = jest.fn();
-    const unobserveSpy = jest.fn();
-    const resizeObserverResult = useComponentOverflow.layoutEffect(
-      ref,
-      handleResizeSpy,
-      { observe: observeSpy, unobserve: unobserveSpy }
-    )();
+      expect(handleResizeSpy).toBeCalledTimes(1);
+      expect(addEventListenerSpy).toBeCalledTimes(1);
+      expect(addEventListenerSpy).toBeCalledWith('resize', handleResizeSpy, {
+        passive: true
+      });
 
-    expect(handleResizeSpy).toBeCalledTimes(1);
-    expect(observeSpy).toBeCalledTimes(1);
-    expect(observeSpy).toBeCalledWith(ref.current);
-    expect(addEventListenerSpy).toBeCalledTimes(0);
+      // @ts-expect-error Test mock
+      eventListenerResult();
 
-    // @ts-expect-error Test mock
-    resizeObserverResult();
+      expect(removeEventListenerSpy).toBeCalledTimes(1);
+      expect(removeEventListenerSpy).toBeCalledWith('resize', handleResizeSpy);
+      removeEventListenerSpy.mockReset();
+    });
 
-    expect(unobserveSpy).toBeCalledTimes(1);
-    expect(unobserveSpy).toBeCalledWith(ref.current);
-    expect(removeEventListenerSpy).toBeCalledTimes(0);
+    it('should use resizeObserver when defined', () => {
+      ref.current = Object.assign(
+        {
+          addEventListener: addEventListenerSpy,
+          removeEventListener: removeEventListenerSpy
+        },
+        document.createElement('div')
+      );
+
+      const observeSpy = jest.fn();
+      const unobserveSpy = jest.fn();
+
+      const resizeObserverResult = useComponentOverflow.layoutEffect(
+        ref,
+        handleResizeSpy,
+        { observe: observeSpy, unobserve: unobserveSpy }
+      )();
+
+      expect(handleResizeSpy).toBeCalledTimes(1);
+      expect(observeSpy).toBeCalledTimes(1);
+      expect(observeSpy).toBeCalledWith(ref.current);
+      expect(addEventListenerSpy).toBeCalledTimes(0);
+
+      // @ts-expect-error Test mock
+      resizeObserverResult();
+
+      expect(unobserveSpy).toBeCalledTimes(1);
+      expect(unobserveSpy).toBeCalledWith(ref.current);
+      expect(removeEventListenerSpy).toBeCalledTimes(0);
+    });
   });
 });

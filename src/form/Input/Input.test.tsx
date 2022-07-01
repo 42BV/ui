@@ -1,8 +1,8 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-import Input, { reactStrapInput, InputMask, InputType } from './Input';
+import Input, { InputMask, InputType, reactStrapInput } from './Input';
 
 import { Addon } from '../addons/Addon/Addon';
 
@@ -24,20 +24,14 @@ const mask: InputMask = [
 ];
 
 describe('Component: Input', () => {
-  let input: ShallowWrapper;
-
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-  let onFocusSpy: jest.Mock;
-
   function setup({
     value,
     type,
     mask,
     addon,
     valid,
-    hasPlaceholder = true,
-    hasLabel = true
+    hasPlaceholder,
+    hasLabel
   }: {
     value?: string;
     type?: InputType;
@@ -47,9 +41,9 @@ describe('Component: Input', () => {
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
   }) {
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
-    onFocusSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
+    const onFocusSpy = jest.fn();
 
     const props = {
       name: "firstName",
@@ -62,127 +56,107 @@ describe('Component: Input', () => {
       error: 'Some error',
       valid,
       mask,
-      addon
+      addon,
+      id: hasLabel ? 'firstName' : undefined,
+      label: hasLabel ? 'First name' : undefined
     };
 
-    if (hasLabel) {
-      input = shallow(
-        <Input id="firstName" label="First name" color="success" {...props} />
-      );
-    } else {
-      input = shallow(<Input color="success" {...props} />);
-    }
+    const { container, rerender, asFragment } = render(
+      <Input color="success" {...props} />
+    );
+
+    return { container, props, asFragment, rerender, onChangeSpy, onBlurSpy, onFocusSpy };
   }
 
   describe('ui', () => {
+    test('default', () => {
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
+    });
+
     test('type email', () => {
-      setup({ value: 'Maarten', type: 'email' });
-
-      expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => ui => type email'
-      );
+      setup({ type: 'email' });
+      expect(screen.getByRole('textbox')).toHaveAttribute('type', 'email');
     });
 
-    test('defaults to text', () => {
-      setup({ value: 'Maarten', type: undefined });
-
-      expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => ui => defaults to text'
-      );
-    });
-
-    test('with mask', () => {
-      setup({ value: 'Maarten', mask });
-
-      expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => ui => with mask'
-      );
+    test('with placeholder', () => {
+      setup({ hasPlaceholder: true });
+      expect(screen.queryByPlaceholderText('Please enter your first name')).toBeInTheDocument();
     });
 
     test('without placeholder', () => {
-      setup({ value: 'Maarten', hasPlaceholder: false });
+      setup({ hasPlaceholder: false });
+      expect(screen.queryByPlaceholderText('Please enter your first name')).not.toBeInTheDocument();
+    });
 
-      expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => ui => without placeholder'
-      );
+    test('with label', () => {
+      const { container } = setup({ hasLabel: true });
+      expect(screen.queryByText('First name')).toBeInTheDocument();
+      expect(screen.queryByLabelText('First name')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     test('without label', () => {
-      setup({ value: 'Maarten', hasLabel: false });
-
-      expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => ui => without label'
-      );
+      setup({ hasLabel: false });
+      expect(screen.queryByText('First name')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('First name')).not.toBeInTheDocument();
     });
 
     test('addon default', () => {
-      setup({ addon: <Addon>Default on the left</Addon> });
-
-      expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => addon position default'
-      );
+      const { container } = setup({ addon: <Addon>Default on the left</Addon> });
+      expect(container).toMatchSnapshot();
     });
 
     test('addon left', () => {
-      setup({ addon: <Addon position="left">Left</Addon> });
-
-      expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => addon position left'
-      );
+      setup({ addon: <Addon position="left"><span>Left</span></Addon> });
+      const addon = screen.getByText('Left');
+      expect(addon.parentNode?.childNodes.item(0)).toBe(addon);
     });
 
     test('addon right', () => {
-      setup({ addon: <Addon position="right">Right</Addon> });
-
-      expect(toJson(input)).toMatchSnapshot(
-        'Component: Input => addon position right'
-      );
+      setup({ addon: <Addon position="right"><span>Right</span></Addon> });
+      const addon = screen.getByText('Right');
+      expect(addon.parentNode?.childNodes.item(1)).toBe(addon);
     });
 
     test('is valid', () => {
       setup({ valid: true });
-
-      expect(toJson(input)).toMatchSnapshot('Component: Input => is valid');
+      expect(screen.getByRole('textbox')).toHaveClass('is-valid');
     });
 
     test('is invalid', () => {
       setup({ valid: false });
-
-      expect(toJson(input)).toMatchSnapshot('Component: Input => is invalid');
+      expect(screen.getByRole('textbox')).toHaveClass('is-invalid');
     });
+  });
+
+  test('masked', () => {
+    const { container } = setup({ mask });
+    expect(container).toMatchSnapshot();
   });
 
   describe('events', () => {
     test('onChange', () => {
-      setup({ value: undefined, type: 'text' });
+      const { onChangeSpy } = setup({ value: undefined, type: 'text' });
 
-      const rsInput = input.find('Input');
-
-      // @ts-expect-error Test mock
-      rsInput.props().onChange({ target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Maarten' } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('Maarten');
     });
 
     test('onBlur', () => {
-      setup({ value: undefined, type: 'text' });
+      const { onBlurSpy } = setup({ value: undefined, type: 'text' });
 
-      const rsInput = input.find('Input');
-
-      // @ts-expect-error Test mock
-      rsInput.props().onBlur();
+      fireEvent.blur(screen.getByRole('textbox'));
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
     test('onFocus', () => {
-      setup({ value: undefined, type: 'text' });
+      const { onFocusSpy } = setup({ value: undefined, type: 'text' });
 
-      const rsInput = input.find('Input');
-
-      // @ts-expect-error Test mock
-      rsInput.props().onFocus();
+      fireEvent.focus(screen.getByRole('textbox'));
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });
@@ -190,33 +164,42 @@ describe('Component: Input', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      setup({ value: 'Maarten', type: 'text' });
+      const { props, rerender } = setup({ value: 'Maarten', type: 'text' });
 
-      let rsInput = input.find('Input');
-      expect(rsInput.props().value).toBe('Maarten');
+      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
 
-      input.setProps({ value: undefined });
+      const newProps = {
+        ...props,
+        value: ''
+      };
 
-      rsInput = input.find('Input');
-      expect(rsInput.props().value).toBe(undefined);
+      rerender(
+        <Input color="success" {...newProps} />
+      );
+
+      expect(screen.getByRole('textbox')).toHaveValue('');
     });
 
     test('becomes filled', () => {
-      setup({ value: undefined, type: 'text' });
+      const { props, rerender } = setup({ value: '', type: 'text' });
 
-      let rsInput = input.find('Input');
-      expect(rsInput.props().value).toBe(undefined);
+      expect(screen.getByRole('textbox')).toHaveValue('');
 
-      input.setProps({ value: 'Maarten' });
+      const newProps = {
+        ...props,
+        value: 'Maarten'
+      };
 
-      rsInput = input.find('Input');
-      expect(rsInput.props().value).toBe('Maarten');
+      rerender(
+        <Input color="success" {...newProps} />
+      );
+
+      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
     });
   });
 });
 
 test('reactStrapInput', () => {
-  const input = shallow(reactStrapInput(jest.fn(), { id: 10 }));
-
-  expect(toJson(input)).toMatchSnapshot('reactStrapInput');
+  const { container } = render(reactStrapInput(jest.fn(), { id: 10 }));
+  expect(container).toMatchSnapshot();
 });

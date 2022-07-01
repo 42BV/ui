@@ -1,76 +1,69 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import { FormApi } from 'final-form';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { EpicForm } from './EpicForm';
 import { JarbInput } from '../../../../form/Input/Input';
+import userEvent from '@testing-library/user-event';
+import { setConstraints } from '@42.nl/jarb-final-form';
 
 describe('Component: EpicForm', () => {
   function setup({ submitOnChange }: { submitOnChange?: boolean }) {
-    const cancelSpy = jest.fn();
-    const resetSpy = jest.fn();
+    setConstraints({
+      Test: {
+        test: {
+          javaType: 'String',
+          name: 'test'
+        }
+      }
+    });
 
-    const epicForm = shallow(
+    const onSubmitSpy = jest.fn();
+
+    const { container } = render(
       <EpicForm
         id="test"
         width={1950}
         height={52}
         initialValues={{}}
-        onSubmit={jest.fn()}
+        onSubmit={onSubmitSpy}
         submitOnChange={submitOnChange}
       >
         <JarbInput
           id="testField"
           name="testField"
+          label="test"
           jarb={{ validator: 'Test.test', label: 'Test' }}
         />
       </EpicForm>
     );
 
-    const handleSubmitSpy = jest.fn();
-
-    const formContent = shallow(
-      epicForm
-        .props()
-        .children({
-          handleSubmit: handleSubmitSpy,
-          form: ({ reset: resetSpy } as unknown) as FormApi
-        })
-    );
-
-    return { epicForm, formContent, handleSubmitSpy, cancelSpy, resetSpy };
+    return { container, onSubmitSpy };
   }
 
-  describe('ui', () => {
-    test('default', () => {
-      const { epicForm, formContent } = setup({});
-
-      expect(toJson(epicForm)).toMatchSnapshot(
-        'Component: EpicForm => ui => epicForm'
-      );
-      expect(toJson(formContent)).toMatchSnapshot(
-        'Component: EpicForm => ui => formContent'
-      );
-    });
-
-    test('submitOnChange', () => {
-      const { formContent } = setup({ submitOnChange: true });
-
-      expect(toJson(formContent)).toMatchSnapshot(
-        'Component: EpicForm => ui => submitOnChange'
-      );
-    });
+  test('ui', () => {
+    const { container } = setup({});
+    expect(container).toMatchSnapshot();
   });
 
   describe('events', () => {
-    it('should when resetting the form call reset on the the react-final-form Form', () => {
-      const { formContent, resetSpy } = setup({});
+    it('should call submit on changes when submitOnChange is true', () => {
+      const { onSubmitSpy } = setup({ submitOnChange: true });
+      fireEvent.focus(screen.getByRole('textbox'));
+      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'test' } });
+      fireEvent.blur(screen.getByRole('textbox'));
+      expect(onSubmitSpy).toHaveBeenCalledTimes(1);
+    });
 
-      // @ts-expect-error Test mock
-      formContent.find('form').props().onReset();
+    it('should when resetting the form call reset on the the react-final-form Form', async () => {
+      expect.assertions(1);
 
-      expect(resetSpy).toBeCalledTimes(1);
+      setup({});
+
+      await userEvent.type(screen.getByLabelText('test'), 'test');
+      fireEvent.reset(screen.getByTestId('epicform-form'));
+
+      expect(screen.getByLabelText('test')).toHaveValue('');
     });
   });
 });

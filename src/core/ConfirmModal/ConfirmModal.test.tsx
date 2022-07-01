@@ -1,13 +1,13 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import ConfirmModal from './ConfirmModal';
 
 describe('Component: ConfirmModal', () => {
   describe('ui', () => {
     test('default texts', () => {
-      const confirmAction = shallow(
+      render(
         <ConfirmModal
           isOpen={true}
           onClose={() => undefined}
@@ -20,13 +20,11 @@ describe('Component: ConfirmModal', () => {
         />
       );
 
-      expect(toJson(confirmAction)).toMatchSnapshot(
-        'Component: ConfirmModal => ui => default texts'
-      );
+      expect(document.body.lastChild).toMatchSnapshot();
     });
 
     test('custom texts', () => {
-      const confirmAction = shallow(
+      render(
         <ConfirmModal
           isOpen={true}
           onClose={() => undefined}
@@ -43,75 +41,78 @@ describe('Component: ConfirmModal', () => {
         />
       );
 
-      expect(toJson(confirmAction)).toMatchSnapshot(
-        'Component: ConfirmModal => ui => custom texts'
-      );
+      expect(screen.queryByText('Confirmation')).not.toBeInTheDocument();
+      expect(screen.queryByText('Perform dangerous action')).toBeInTheDocument();
+      expect(screen.getAllByRole('button')[1]).toHaveTextContent('cancelNO');
+      expect(screen.getAllByRole('button')[2]).toHaveTextContent('saveYES');
+      expect(document.body.lastChild).toMatchSnapshot();
     });
   });
 
-  describe('events - onClose and onSave', () => {
-    let confirmModal: ShallowWrapper;
-    let onCloseSpy: jest.Mock;
-    let onSaveSpy: jest.Mock;
+  describe('events', () => {
+    type Props = { text: string; isOpen?: boolean };
 
-    type Props = { text: string };
-
-    function setup({ text }: Props) {
-      onCloseSpy = jest.fn();
-      onSaveSpy = jest.fn();
+    function setup({ text, isOpen }: Props) {
+      const onCloseSpy = jest.fn();
+      const onSaveSpy = jest.fn();
 
       const props = {
-        isOpen: false,
+        isOpen: isOpen ?? false,
         onClose: onCloseSpy,
         onSave: onSaveSpy,
         label: 'Are you sure you want a ConfirmAction?',
         modalText: text
       };
 
-      confirmModal = shallow(<ConfirmModal {...props} />);
-    }
+      const { container } = render(
+        <ConfirmModal {...props} />
+      );
 
-    function openModal() {
-      confirmModal = confirmModal.setProps({ isOpen: true });
-
-      // @ts-expect-error Test mock
-      expect(confirmModal.find('OpenCloseModal').props().isOpen).toBe(true);
+      return { container, onCloseSpy, onSaveSpy };
     }
 
     it('should open the OpenCloseModal when the ConfirmModal is opened', () => {
       setup({
-        text: 'Delete all data in the database?'
+        text: 'Delete all data in the database?',
+        isOpen: true
       });
 
-      confirmModal = confirmModal.setProps({ isOpen: true });
-
-      // @ts-expect-error Test mock
-      expect(confirmModal.find('OpenCloseModal').props().isOpen).toBe(true);
+      expect(screen.queryByText('Delete all data in the database?')).toBeInTheDocument();
     });
 
     it('should call onClose when the Modal is closed', () => {
-      setup({
-        text: 'Delete this user and all his data?'
+      const { onCloseSpy, onSaveSpy } = setup({
+        text: 'Delete this user and all his data?',
+        isOpen: true
       });
 
-      openModal();
-
-      // @ts-expect-error Test mock
-      confirmModal.find('OpenCloseModal').prop('onClose')();
+      fireEvent.click(screen.getByLabelText('Close'));
 
       expect(onCloseSpy).toHaveBeenCalledTimes(1);
+      expect(onSaveSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('should call onClose when the cancel button is clicked', () => {
+      const { onCloseSpy, onSaveSpy } = setup({
+        text: 'Delete this user and all his data?',
+        isOpen: true
+      });
+
+      fireEvent.click(screen.getByText('cancel'));
+
+      expect(onCloseSpy).toHaveBeenCalledTimes(1);
+      expect(onSaveSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should call onSave when the Modal is confirmed', () => {
-      setup({
-        text: 'Delete this note?'
+      const { onCloseSpy, onSaveSpy } = setup({
+        text: 'Delete this user and all his data?',
+        isOpen: true
       });
 
-      openModal();
+      fireEvent.click(screen.getByText('save'));
 
-      // @ts-expect-error Test mock
-      confirmModal.find('OpenCloseModal').prop('onSave')();
-
+      expect(onCloseSpy).toHaveBeenCalledTimes(0);
       expect(onSaveSpy).toHaveBeenCalledTimes(1);
     });
   });

@@ -1,15 +1,11 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { Page } from '@42.nl/spring-connect';
 
 import Pagination, { pagesFor } from './Pagination';
-import { Icon } from '../Icon';
 
 describe('Component: Pagination', () => {
-  let pagination: ShallowWrapper;
-  let onChangeSpy: jest.Mock;
-
   function setup({
     number,
     totalPages,
@@ -30,7 +26,7 @@ describe('Component: Pagination', () => {
       numberOfElements: 10
     };
 
-    onChangeSpy = jest.fn();
+    const onChangeSpy = jest.fn();
 
     const props = {
       page,
@@ -38,105 +34,82 @@ describe('Component: Pagination', () => {
       showPreviousAndNextButtons
     };
 
-    pagination = shallow(<Pagination {...props} />);
+    const { container } = render(
+      <Pagination {...props} />
+    );
+    
+    return { container, onChangeSpy };
   }
 
   describe('ui', () => {
     test('empty', () => {
-      setup({ number: 1, totalPages: 1 });
+      const { container } = setup({ number: 1, totalPages: 1 });
+      expect(container.firstChild).toBeNull();
+    });
 
-      expect(pagination.isEmptyRender()).toBe(true);
+    test('first page', () => {
+      const { container } = setup({ number: 1, totalPages: 10 });
+      expect(container).toMatchSnapshot();
     });
 
     test('middle', () => {
-      setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: false });
-
-      expect(toJson(pagination)).toMatchSnapshot(
-        'Component: Pagination => ui => middle'
-      );
+      const { container } = setup({ number: 5, totalPages: 10 });
+      expect(container).toMatchSnapshot();
     });
 
-    test('no previous', () => {
+    test('last page', () => {
+      const { container } = setup({ number: 10, totalPages: 10 });
+      expect(container).toMatchSnapshot();
+    });
+
+    test('without previous and next buttons', () => {
       setup({ number: 1, totalPages: 10, showPreviousAndNextButtons: false });
-
-      expect(toJson(pagination)).toMatchSnapshot(
-        'Component: Pagination => ui => no previous'
-      );
-    });
-
-    test('no next', () => {
-      setup({ number: 10, totalPages: 10, showPreviousAndNextButtons: false });
-
-      expect(toJson(pagination)).toMatchSnapshot(
-        'Component: Pagination => ui => no next'
-      );
+      expect(screen.queryByText('arrow_back')).not.toBeInTheDocument();
+      expect(screen.queryByText('arrow_forward')).not.toBeInTheDocument();
     });
 
     test('with previous and next buttons', () => {
-      setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: true });
-
-      const items = pagination.find('PaginationItem');
-
-      const previousPaginationItem = items.at(0);
-      const nextPaginationItem = items.at(8);
-
-      expect(previousPaginationItem.props().disabled).toBe(false);
-      expect(previousPaginationItem.find(Icon).props().icon).toBe('arrow_back');
-
-      expect(nextPaginationItem.props().disabled).toBe(false);
-      expect(nextPaginationItem.find(Icon).props().icon).toBe('arrow_forward');
-
-      expect(toJson(pagination)).toMatchSnapshot(
-        'Component: Pagination => ui => with previous and next buttons'
-      );
+      setup({ number: 5, totalPages: 10 });
+      expect(screen.queryByText('arrow_back')).toBeInTheDocument();
+      expect(screen.queryByText('arrow_forward')).toBeInTheDocument();
     });
 
     it('should disable the previous button when on the first page', () => {
-      setup({ number: 1, totalPages: 3, showPreviousAndNextButtons: true });
-
-      const items = pagination.find('PaginationItem');
-
-      // Prev button
-      expect(items.at(0).props().disabled).toBe(true);
+      setup({ number: 1, totalPages: 3 });
+      expect(screen.getByText('arrow_back').parentNode?.parentNode).toHaveClass('disabled');
     });
 
     it('should disable the next button when on the last page', () => {
-      setup({ number: 3, totalPages: 3, showPreviousAndNextButtons: true });
-
-      const items = pagination.find('PaginationItem');
-
-      // Next button
-      expect(items.at(4).props().disabled).toBe(true);
+      setup({ number: 3, totalPages: 3 });
+      expect(screen.getByText('arrow_forward').parentNode?.parentNode).toHaveClass('disabled');
     });
   });
 
   describe('events', () => {
     it('should call onChange when pagination links are clicked', () => {
-      setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: false });
+      const { onChangeSpy } = setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: false });
 
-      const links = pagination.find('PaginationLink');
-
-      links.at(0).simulate('click');
+      fireEvent.click(screen.getByText('1'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(1);
 
-      links.at(2).simulate('click');
+      fireEvent.click(screen.getByText('4'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(2);
       expect(onChangeSpy).toHaveBeenCalledWith(4);
 
-      links.at(3).simulate('click');
+      fireEvent.click(screen.getByText('5'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(3);
       expect(onChangeSpy).toHaveBeenCalledWith(5);
 
-      links.at(4).simulate('click');
+      fireEvent.click(screen.getByText('6'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(4);
       expect(onChangeSpy).toHaveBeenCalledWith(6);
 
-      links.at(6).simulate('click');
+      fireEvent.click(screen.getByText('10'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(5);
       expect(onChangeSpy).toHaveBeenCalledWith(10);
@@ -144,18 +117,14 @@ describe('Component: Pagination', () => {
 
     describe('previous and next buttons', () => {
       it('should have previous and next buttons which move the page forward or backwards', () => {
-        setup({ number: 2, totalPages: 3, showPreviousAndNextButtons: true });
+        const { onChangeSpy } = setup({ number: 2, totalPages: 3 });
 
-        const links = pagination.find('PaginationLink');
-
-        // Previous button
-        links.at(0).simulate('click');
+        fireEvent.click(screen.getByText('arrow_back'));
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
         expect(onChangeSpy).toHaveBeenCalledWith(1);
 
-        // Next button
-        links.at(4).simulate('click');
+        fireEvent.click(screen.getByText('arrow_forward'));
 
         expect(onChangeSpy).toHaveBeenCalledTimes(2);
         expect(onChangeSpy).toHaveBeenCalledWith(3);

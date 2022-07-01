@@ -1,1110 +1,364 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ModalPickerSingle ui renderValue should be able to use custom function to render values: Component: ModalPickerSingle => ui => should be able to use custom function to render values 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: ModalPickerSingle ui default 1`] = `
+<div>
+  <div
+    class="mb-3"
+    color="success"
   >
-    Best Friend
-  </Label>
-  <ModalPickerOpener
-    label="Select your best friend"
-    onClear={[Function]}
-    openModal={[Function]}
-    renderValue={[Function]}
-    value={
-      Object {
-        "active": true,
-        "email": "admin@42.nl",
-        "firstName": "Addie",
-        "id": 42,
-        "lastName": "Admin",
-        "roles": Array [
-          "ADMIN",
-        ],
-      }
-    }
-  />
-  Some error
-  <ModalPicker
-    canSearch={true}
-    canSearchSync={true}
-    closeModal={[Function]}
-    isOpen={false}
-    loading={false}
-    modalSaved={[Function]}
-    page={
-      Object {
-        "content": Array [
-          Object {
-            "active": true,
-            "email": "admin@42.nl",
-            "firstName": "Addie",
-            "id": 42,
-            "lastName": "Admin",
-            "roles": Array [
-              "ADMIN",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "coordinator@42.nl",
-            "firstName": "Cordelia",
-            "id": 777,
-            "lastName": "Coordinator",
-            "roles": Array [
-              "ADMIN",
-              "USER",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "user@42.nl",
-            "firstName": "Ulysses",
-            "id": 1337,
-            "lastName": "User",
-            "roles": Array [
-              "USER",
-            ],
-          },
-        ],
-        "first": true,
-        "last": true,
-        "number": 1,
-        "numberOfElements": 3,
-        "size": 3,
-        "totalElements": 3,
-        "totalPages": 1,
-      }
-    }
-    pageChanged={[Function]}
-    placeholder="Select your best friend"
-    query=""
-    queryChanged={[Function]}
-    userHasSearched={false}
-  >
-    <FormGroup
-      check={true}
-      key="42"
-      tag="div"
+    <div
+      class="d-flex align-items-center"
     >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
+      <button
+        class="flex-grow-0 flex-shrink-0 btn btn-primary"
+        type="button"
       >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        admin@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="777"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        coordinator@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="1337"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        user@42.nl
-      </Label>
-    </FormGroup>
-  </ModalPicker>
-</FormGroup>
+        Select your best friend
+      </button>
+    </div>
+    Some error
+  </div>
+</div>
 `;
 
-exports[`Component: ModalPickerSingle ui renderValue should use the default ModalPickerValueTruncator to render values: Component: ModalPickerSingle => ui => should use the default ModalPickerValueTruncator to render values 1`] = `
-<ModalPickerValueTruncator
-  labelForOption={[Function]}
-  value={
-    Object {
-      "active": true,
-      "email": "admin@42.nl",
-      "firstName": "Addie",
-      "id": 42,
-      "lastName": "Admin",
-      "roles": Array [
-        "ADMIN",
-      ],
-    }
-  }
-/>
+exports[`Component: ModalPickerSingle ui default: modal 1`] = `
+<div
+  style="position: relative; z-index: 1050; display: block;"
+  tabindex="-1"
+>
+  <div
+    class=""
+  >
+    <div
+      class="modal fade"
+      role="dialog"
+      style="display: block;"
+      tabindex="-1"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
+        <div
+          class="modal-content"
+        >
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
+            >
+              Select your best friend
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="col"
+              >
+                <div
+                  class="search-input"
+                >
+                  <div
+                    class="input-group"
+                  >
+                    <span
+                      class="input-group-text"
+                    >
+                      <i
+                        class="icon material-icons"
+                      >
+                        search
+                      </i>
+                    </span>
+                    <input
+                      class="form-control"
+                      id="2"
+                      placeholder="Search..."
+                      type="search"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-3 row"
+            >
+              <div
+                class="col"
+              >
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                    />
+                    admin@42.nl
+                  </label>
+                </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                    />
+                    coordinator@42.nl
+                  </label>
+                </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                    />
+                    user@42.nl
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="d-flex flex-row justify-content-between modal-footer"
+          >
+            <div />
+            <div>
+              <button
+                class="ms-1 btn btn-secondary"
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                class="ms-1 btn btn-primary disabled"
+                disabled=""
+                type="button"
+              >
+                Select
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-backdrop fade"
+    />
+  </div>
+</div>
 `;
 
-exports[`Component: ModalPickerSingle ui should render button left: Component: ModalPickerSingle => ui => should render button left 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
+exports[`Component: ModalPickerSingle ui loading 1`] = `
+<div
+  style="position: relative; z-index: 1050; display: block;"
+  tabindex="-1"
 >
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+  <div
+    class=""
   >
-    Best Friend
-  </Label>
-  <ModalPickerOpener
-    alignButton="left"
-    label="Select your best friend"
-    onClear={[Function]}
-    openModal={[Function]}
-    renderValue={[Function]}
-    value={
-      Object {
-        "active": true,
-        "email": "admin@42.nl",
-        "firstName": "Addie",
-        "id": 42,
-        "lastName": "Admin",
-        "roles": Array [
-          "ADMIN",
-        ],
-      }
-    }
-  />
-  Some error
-  <ModalPicker
-    canSearch={true}
-    canSearchSync={true}
-    closeModal={[Function]}
-    isOpen={false}
-    loading={false}
-    modalSaved={[Function]}
-    page={
-      Object {
-        "content": Array [
-          Object {
-            "active": true,
-            "email": "admin@42.nl",
-            "firstName": "Addie",
-            "id": 42,
-            "lastName": "Admin",
-            "roles": Array [
-              "ADMIN",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "coordinator@42.nl",
-            "firstName": "Cordelia",
-            "id": 777,
-            "lastName": "Coordinator",
-            "roles": Array [
-              "ADMIN",
-              "USER",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "user@42.nl",
-            "firstName": "Ulysses",
-            "id": 1337,
-            "lastName": "User",
-            "roles": Array [
-              "USER",
-            ],
-          },
-        ],
-        "first": true,
-        "last": true,
-        "number": 1,
-        "numberOfElements": 3,
-        "size": 3,
-        "totalElements": 3,
-        "totalPages": 1,
-      }
-    }
-    pageChanged={[Function]}
-    placeholder="Select your best friend"
-    query=""
-    queryChanged={[Function]}
-    userHasSearched={false}
-  >
-    <FormGroup
-      check={true}
-      key="42"
-      tag="div"
+    <div
+      class="modal fade"
+      role="dialog"
+      style="display: block;"
+      tabindex="-1"
     >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
+      <div
+        class="modal-dialog"
+        role="document"
       >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        admin@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="777"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        coordinator@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="1337"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        user@42.nl
-      </Label>
-    </FormGroup>
-  </ModalPicker>
-</FormGroup>
+        <div
+          class="modal-content"
+        >
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
+            >
+              Select your best friend
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="col"
+              >
+                <div
+                  class="search-input"
+                >
+                  <div
+                    class="input-group"
+                  >
+                    <span
+                      class="input-group-text"
+                    >
+                      <i
+                        class="icon material-icons"
+                      >
+                        search
+                      </i>
+                    </span>
+                    <input
+                      class="form-control"
+                      id="24"
+                      placeholder="Search..."
+                      type="search"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-3 row"
+            >
+              <div
+                class="col"
+              >
+                <div
+                  class="text-center"
+                >
+                  <div
+                    class="content-state loading"
+                  >
+                    <div
+                      class="state-icons"
+                    >
+                      <i
+                        class="icon material-icons"
+                      >
+                        add
+                      </i>
+                      <i
+                        class="icon material-icons"
+                      >
+                        radio_button_unchecked
+                      </i>
+                      <i
+                        class="icon material-icons"
+                      >
+                        photo
+                      </i>
+                      <i
+                        class="icon material-icons"
+                      >
+                        folder_open
+                      </i>
+                      <i
+                        class="icon material-icons"
+                      >
+                        radio_button_unchecked
+                      </i>
+                      <i
+                        class="icon material-icons"
+                      >
+                        add
+                      </i>
+                    </div>
+                    <div
+                      class="state-content"
+                    >
+                      <svg
+                        class="spinner mb-2"
+                        height="75"
+                        viewBox="25 25 50 50"
+                        width="75"
+                      >
+                        <circle
+                          class="path"
+                          cx="50"
+                          cy="50"
+                          fill="none"
+                          r="20"
+                          stroke="#f0ad4e"
+                          stroke-miterlimit="10"
+                          stroke-width="4"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <h4 />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="d-flex flex-row justify-content-between modal-footer"
+          >
+            <div />
+            <div>
+              <button
+                class="ms-1 btn btn-secondary"
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                class="ms-1 btn btn-primary disabled"
+                disabled=""
+                type="button"
+              >
+                Select
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal-backdrop fade"
+    />
+  </div>
+</div>
 `;
 
-exports[`Component: ModalPickerSingle ui should render button right with value: Component: ModalPickerSingle => ui => should render button right with value 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
+exports[`Component: ModalPickerSingle ui without value 1`] = `
+<div>
+  <div
+    class="mb-3"
+    color="success"
   >
-    Best Friend
-  </Label>
-  <ModalPickerOpener
-    alignButton="right"
-    label="Select your best friend"
-    onClear={[Function]}
-    openModal={[Function]}
-    renderValue={[Function]}
-    value={
-      Object {
-        "active": true,
-        "email": "admin@42.nl",
-        "firstName": "Addie",
-        "id": 42,
-        "lastName": "Admin",
-        "roles": Array [
-          "ADMIN",
-        ],
-      }
-    }
-  />
-  Some error
-  <ModalPicker
-    canSearch={true}
-    canSearchSync={true}
-    closeModal={[Function]}
-    isOpen={false}
-    loading={false}
-    modalSaved={[Function]}
-    page={
-      Object {
-        "content": Array [
-          Object {
-            "active": true,
-            "email": "admin@42.nl",
-            "firstName": "Addie",
-            "id": 42,
-            "lastName": "Admin",
-            "roles": Array [
-              "ADMIN",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "coordinator@42.nl",
-            "firstName": "Cordelia",
-            "id": 777,
-            "lastName": "Coordinator",
-            "roles": Array [
-              "ADMIN",
-              "USER",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "user@42.nl",
-            "firstName": "Ulysses",
-            "id": 1337,
-            "lastName": "User",
-            "roles": Array [
-              "USER",
-            ],
-          },
-        ],
-        "first": true,
-        "last": true,
-        "number": 1,
-        "numberOfElements": 3,
-        "size": 3,
-        "totalElements": 3,
-        "totalPages": 1,
-      }
-    }
-    pageChanged={[Function]}
-    placeholder="Select your best friend"
-    query=""
-    queryChanged={[Function]}
-    userHasSearched={false}
-  >
-    <FormGroup
-      check={true}
-      key="42"
-      tag="div"
+    <div
+      class="d-flex align-items-center"
     >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
+      <button
+        class="flex-grow-0 flex-shrink-0 btn btn-primary"
+        type="button"
       >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        admin@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="777"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        coordinator@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="1337"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        user@42.nl
-      </Label>
-    </FormGroup>
-  </ModalPicker>
-</FormGroup>
-`;
-
-exports[`Component: ModalPickerSingle ui should render button right without value: Component: ModalPickerSingle => ui => should render button right without value 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Best Friend
-  </Label>
-  <ModalPickerOpener
-    alignButton="right"
-    label="Select your best friend"
-    onClear={[Function]}
-    openModal={[Function]}
-    renderValue={[Function]}
-  />
-  Some error
-  <ModalPicker
-    canSearch={true}
-    canSearchSync={true}
-    closeModal={[Function]}
-    isOpen={false}
-    loading={false}
-    modalSaved={[Function]}
-    page={
-      Object {
-        "content": Array [
-          Object {
-            "active": true,
-            "email": "admin@42.nl",
-            "firstName": "Addie",
-            "id": 42,
-            "lastName": "Admin",
-            "roles": Array [
-              "ADMIN",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "coordinator@42.nl",
-            "firstName": "Cordelia",
-            "id": 777,
-            "lastName": "Coordinator",
-            "roles": Array [
-              "ADMIN",
-              "USER",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "user@42.nl",
-            "firstName": "Ulysses",
-            "id": 1337,
-            "lastName": "User",
-            "roles": Array [
-              "USER",
-            ],
-          },
-        ],
-        "first": true,
-        "last": true,
-        "number": 1,
-        "numberOfElements": 3,
-        "size": 3,
-        "totalElements": 3,
-        "totalPages": 1,
-      }
-    }
-    pageChanged={[Function]}
-    placeholder="Select your best friend"
-    query=""
-    queryChanged={[Function]}
-    userHasSearched={false}
-  >
-    <FormGroup
-      check={true}
-      key="42"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        admin@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="777"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        coordinator@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="1337"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        user@42.nl
-      </Label>
-    </FormGroup>
-  </ModalPicker>
-</FormGroup>
-`;
-
-exports[`Component: ModalPickerSingle ui should render without label: Component: ModalPickerSingle => ui => should render without label 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <ModalPickerOpener
-    label="Select your best friend"
-    onClear={[Function]}
-    openModal={[Function]}
-    renderValue={[Function]}
-    value={
-      Object {
-        "active": true,
-        "email": "admin@42.nl",
-        "firstName": "Addie",
-        "id": 42,
-        "lastName": "Admin",
-        "roles": Array [
-          "ADMIN",
-        ],
-      }
-    }
-  />
-  Some error
-  <ModalPicker
-    canSearch={true}
-    canSearchSync={true}
-    closeModal={[Function]}
-    isOpen={false}
-    loading={false}
-    modalSaved={[Function]}
-    page={
-      Object {
-        "content": Array [
-          Object {
-            "active": true,
-            "email": "admin@42.nl",
-            "firstName": "Addie",
-            "id": 42,
-            "lastName": "Admin",
-            "roles": Array [
-              "ADMIN",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "coordinator@42.nl",
-            "firstName": "Cordelia",
-            "id": 777,
-            "lastName": "Coordinator",
-            "roles": Array [
-              "ADMIN",
-              "USER",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "user@42.nl",
-            "firstName": "Ulysses",
-            "id": 1337,
-            "lastName": "User",
-            "roles": Array [
-              "USER",
-            ],
-          },
-        ],
-        "first": true,
-        "last": true,
-        "number": 1,
-        "numberOfElements": 3,
-        "size": 3,
-        "totalElements": 3,
-        "totalPages": 1,
-      }
-    }
-    pageChanged={[Function]}
-    placeholder="Select your best friend"
-    query=""
-    queryChanged={[Function]}
-    userHasSearched={false}
-  >
-    <FormGroup
-      check={true}
-      key="42"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        admin@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="777"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        coordinator@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="1337"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        user@42.nl
-      </Label>
-    </FormGroup>
-  </ModalPicker>
-</FormGroup>
-`;
-
-exports[`Component: ModalPickerSingle ui should render: Component: ModalPickerSingle => ui => should render 1`] = `
-<FormGroup
-  className=""
-  color="success"
-  tag="div"
->
-  <Label
-    for="bestFriend"
-    tag="label"
-    widths={
-      Array [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "xxl",
-      ]
-    }
-  >
-    Best Friend
-  </Label>
-  <ModalPickerOpener
-    label="Select your best friend"
-    onClear={[Function]}
-    openModal={[Function]}
-    renderValue={[Function]}
-    value={
-      Object {
-        "active": true,
-        "email": "admin@42.nl",
-        "firstName": "Addie",
-        "id": 42,
-        "lastName": "Admin",
-        "roles": Array [
-          "ADMIN",
-        ],
-      }
-    }
-  />
-  Some error
-  <ModalPicker
-    canSearch={true}
-    canSearchSync={true}
-    closeModal={[Function]}
-    isOpen={false}
-    loading={false}
-    modalSaved={[Function]}
-    page={
-      Object {
-        "content": Array [
-          Object {
-            "active": true,
-            "email": "admin@42.nl",
-            "firstName": "Addie",
-            "id": 42,
-            "lastName": "Admin",
-            "roles": Array [
-              "ADMIN",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "coordinator@42.nl",
-            "firstName": "Cordelia",
-            "id": 777,
-            "lastName": "Coordinator",
-            "roles": Array [
-              "ADMIN",
-              "USER",
-            ],
-          },
-          Object {
-            "active": false,
-            "email": "user@42.nl",
-            "firstName": "Ulysses",
-            "id": 1337,
-            "lastName": "User",
-            "roles": Array [
-              "USER",
-            ],
-          },
-        ],
-        "first": true,
-        "last": true,
-        "number": 1,
-        "numberOfElements": 3,
-        "size": 3,
-        "totalElements": 3,
-        "totalPages": 1,
-      }
-    }
-    pageChanged={[Function]}
-    placeholder="Select your best friend"
-    query=""
-    queryChanged={[Function]}
-    userHasSearched={false}
-  >
-    <FormGroup
-      check={true}
-      key="42"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        admin@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="777"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        coordinator@42.nl
-      </Label>
-    </FormGroup>
-    <FormGroup
-      check={true}
-      key="1337"
-      tag="div"
-    >
-      <Label
-        check={true}
-        tag="label"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-            "xxl",
-          ]
-        }
-      >
-        <Input
-          checked={false}
-          disabled={false}
-          onChange={[Function]}
-          type="radio"
-        />
-        user@42.nl
-      </Label>
-    </FormGroup>
-  </ModalPicker>
-</FormGroup>
+        Select your best friend
+      </button>
+    </div>
+    Some error
+  </div>
+</div>
 `;

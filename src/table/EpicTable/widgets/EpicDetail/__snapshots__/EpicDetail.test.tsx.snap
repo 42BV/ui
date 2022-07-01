@@ -1,27 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: EpicDetail ui 1`] = `
-<div
-  className="bg-white h-100 border-top border-end border-bottom py-1 shadow"
->
+<div>
   <div
-    className="d-flex align-items-center border-bottom"
+    class="bg-white h-100 border-top border-end border-bottom py-1 shadow"
   >
-    <Icon
-      className="text-muted py-2 px-1"
-      icon="close"
-      onClick={[MockFunction]}
-    />
-    <span
-      className="text-muted"
+    <div
+      class="d-flex align-items-center border-bottom"
     >
-      Close
-    </span>
-  </div>
-  <div
-    className="p-2"
-  >
-    <Component />
+      <i
+        class="icon text-muted py-2 px-1 material-icons clickable"
+      >
+        close
+      </i>
+      <span
+        class="text-muted"
+      >
+        Close
+      </span>
+    </div>
+    <div
+      class="p-2"
+    >
+      <h1>
+        children
+      </h1>
+    </div>
   </div>
 </div>
 `;

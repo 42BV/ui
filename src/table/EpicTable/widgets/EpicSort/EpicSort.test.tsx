@@ -1,9 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { EpicSort } from './EpicSort';
-import { Icon } from '../../../../core/Icon';
 import { EpicTableSortDirection } from '../../types';
 
 import * as utils from './utils';
@@ -14,43 +13,42 @@ describe('Component: EpicSort', () => {
 
     const onChangeSpy = jest.fn();
 
-    const epicSelection = shallow(
+    const { container } = render(
       <EpicSort onChange={onChangeSpy} direction={direction} />
     );
 
-    return { epicSelection, onChangeSpy };
+    return { container, onChangeSpy };
   }
 
   describe('ui', () => {
     test('is ASC', () => {
-      const { epicSelection } = setup({ direction: 'ASC' });
-
-      expect(toJson(epicSelection)).toMatchSnapshot();
+      const { container } = setup({ direction: 'ASC' });
+      expect(container).toMatchSnapshot();
+      expect(screen.queryByText('arrow_drop_up')).toBeInTheDocument();
+      expect(screen.queryByText('arrow_drop_down')).not.toBeInTheDocument();
+      expect(screen.queryByText('sort')).not.toBeInTheDocument();
     });
 
     test('is DESC', () => {
-      const { epicSelection } = setup({ direction: 'DESC' });
-
-      expect(toJson(epicSelection)).toMatchSnapshot();
+      setup({ direction: 'DESC' });
+      expect(screen.queryByText('arrow_drop_up')).not.toBeInTheDocument();
+      expect(screen.queryByText('arrow_drop_down')).toBeInTheDocument();
+      expect(screen.queryByText('sort')).not.toBeInTheDocument();
     });
 
     test('is NONE', () => {
-      const { epicSelection } = setup({ direction: 'NONE' });
-
-      expect(toJson(epicSelection)).toMatchSnapshot();
+      setup({ direction: 'NONE' });
+      expect(screen.queryByText('arrow_drop_up')).not.toBeInTheDocument();
+      expect(screen.queryByText('arrow_drop_down')).not.toBeInTheDocument();
+      expect(screen.queryByText('sort')).toBeInTheDocument();
     });
   });
 
   describe('events', () => {
     it('should call onChange with true when checkbox is clicked while not checked', () => {
-      const { epicSelection, onChangeSpy } = setup({ direction: 'DESC' });
+      const { onChangeSpy } = setup({ direction: 'DESC' });
 
-      // @ts-expect-error Test mock
-      epicSelection
-        .find(Icon)
-        .props()
-        // @ts-expect-error Test mock
-        .onClick(new Event('click'));
+      fireEvent.click(screen.getByText('arrow_drop_down'));
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith('ASC');

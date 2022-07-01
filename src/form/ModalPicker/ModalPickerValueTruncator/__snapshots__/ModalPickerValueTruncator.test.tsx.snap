@@ -1,38 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: ModalPickerValueTruncator ui mutliple values: Component: ModalPickerValueTruncator => ui => multiple values 1`] = `
-<span
-  className="text-truncate position-relative"
->
-  admin@42.nl, user@42.nl
-</span>
-`;
-
-exports[`Component: ModalPickerValueTruncator ui no value: Component: ModalPickerValueTruncator => ui => no value 1`] = `""`;
-
-exports[`Component: ModalPickerValueTruncator ui overflowing: Component: ModalPickerValueTruncator => ui => overflowing 1`] = `
-<span
-  className="text-truncate position-relative"
->
-  <Tooltip
-    className="w-100 h-100 position-absolute"
-    content={
-      <React.Fragment>
-        admin@42.nl, user@42.nl
-      </React.Fragment>
-    }
-    tag="div"
+exports[`Component: ModalPickerValueTruncator ui overflowing 1`] = `
+<div>
+  <span
+    class="text-truncate position-relative"
   >
-     
-  </Tooltip>
-  admin@42.nl, user@42.nl
-</span>
+    <div
+      class="w-100 h-100 position-absolute"
+      style="outline: 0;"
+      tabindex="0"
+    >
+       
+    </div>
+    admin@42.nl, user@42.nl
+  </span>
+</div>
 `;
 
-exports[`Component: ModalPickerValueTruncator ui single value: Component: ModalPickerValueTruncator => ui => single value 1`] = `
-<span
-  className="text-truncate position-relative"
->
-  user@42.nl
-</span>
+exports[`Component: ModalPickerValueTruncator ui single value 1`] = `
+<div>
+  <span
+    class="text-truncate position-relative"
+  >
+    user@42.nl
+  </span>
+</div>
 `;

@@ -1,9 +1,10 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 
 import { useOptions } from './useOptions';
 import { pageOf } from '../utilities/page/page';
 import { range } from 'lodash';
-import { emptyPage } from '@42.nl/spring-connect';
+import { emptyPage, Page } from '@42.nl/spring-connect';
+import { resolvablePromise } from '../test/utils';
 
 type Option = {
   id: number;
@@ -89,7 +90,7 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [{ id: 1, label: 'Nederland' }]
+          content: [ { id: 1, label: 'Nederland' } ]
         },
         loading: false
       });
@@ -101,7 +102,7 @@ describe('useOptions', () => {
           const options = generateOptions();
 
           return useOptions({
-            options: reloadOptions === 'all' ? options : [options[0]],
+            options: reloadOptions === 'all' ? options : [ options[0] ],
             value: undefined,
             labelForOption: (option: Option) => option.label,
             isOptionEqual: (a, b) => a.id === b.id,
@@ -148,7 +149,7 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [{ id: 1, label: '1' }]
+          content: [ { id: 1, label: '1' } ]
         },
         loading: false
       });
@@ -207,7 +208,7 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [{ id: 1, label: '1' }]
+          content: [ { id: 1, label: '1' } ]
         },
         loading: false
       });
@@ -592,8 +593,11 @@ describe('useOptions', () => {
     it('it should fetch the options and set the loading state correctly', async () => {
       expect.assertions(4);
 
+      const { promise, resolve } = resolvablePromise<Page<Option>>();
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const fetcher = jest.fn(({ size, page }) => {
-        return Promise.resolve(pageOf(generateOptions(), page, size));
+        return promise;
       });
 
       const config = {
@@ -607,7 +611,7 @@ describe('useOptions', () => {
         optionsShouldAlwaysContainValue: false
       };
 
-      const { result, waitForNextUpdate } = renderHook(() =>
+      const { result } = renderHook(() =>
         useOptions(config)
       );
 
@@ -617,7 +621,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve(pageOf(generateOptions(), 1, 2));
+      });
 
       // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
@@ -644,13 +650,15 @@ describe('useOptions', () => {
     it('should when the reloadOptions changes re-fetch the options and go back in loading state', async () => {
       expect.assertions(8);
 
-      const fetcher = jest.fn(({ size, page }) => {
-        const options = generateOptions();
+      const options = generateOptions();
+      const { promise, resolve } = resolvablePromise<Page<Option>>();
 
-        return Promise.resolve(pageOf(options, page, size));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const fetcher = jest.fn(({ size, page }) => {
+        return promise;
       });
 
-      const { result, rerender, waitForNextUpdate } = renderHook(
+      const { result, rerender } = renderHook(
         ({ reloadOptions }) => {
           return useOptions({
             options: fetcher,
@@ -677,7 +685,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve(pageOf(options, 1, 2));
+      });
 
       // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
@@ -720,7 +730,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve(pageOf(options, 1, 2));
+      });
 
       // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
@@ -747,13 +759,15 @@ describe('useOptions', () => {
     it('should when the query changes re-fetch the options and go back in loading state', async () => {
       expect.assertions(8);
 
-      const fetcher = jest.fn(({ size, page }) => {
-        const options = generateOptions();
+      const options = generateOptions();
+      const { promise, resolve } = resolvablePromise<Page<Option>>();
 
-        return Promise.resolve(pageOf(options, page, size));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const fetcher = jest.fn(({ size, page }) => {
+        return promise;
       });
 
-      const { result, rerender, waitForNextUpdate } = renderHook(
+      const { result, rerender } = renderHook(
         ({ query }) => {
           return useOptions({
             options: fetcher,
@@ -780,7 +794,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve(pageOf(options, 1, 2));
+      });
 
       // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
@@ -823,7 +839,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve(pageOf(options, 1, 2));
+      });
 
       // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
@@ -854,13 +872,21 @@ describe('useOptions', () => {
     it('should when the pageNumber changes re-fetch the options and go back in loading state', async () => {
       expect.assertions(8);
 
-      const fetcher = jest.fn(({ size, page }) => {
-        const options = generateOptions();
+      const options = generateOptions();
+      const { promise: promise1, resolve: resolve1 } = resolvablePromise<Page<Option>>();
+      const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
 
-        return Promise.resolve(pageOf(options, page, size));
-      });
+      const fetcher = jest.fn()
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .mockImplementationOnce(({ size, page }) => {
+          return promise1;
+        })
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .mockImplementationOnce(({ size, page }) => {
+          return promise2;
+        });
 
-      const { result, rerender, waitForNextUpdate } = renderHook(
+      const { result, rerender } = renderHook(
         ({ pageNumber }) => {
           return useOptions({
             options: fetcher,
@@ -887,7 +913,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve1(pageOf(options, 1, 2));
+      });
 
       // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
@@ -930,7 +958,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve2(pageOf(options, 2, 2));
+      });
 
       // Check the next page is loaded
       expect(result.current).toEqual({
@@ -957,13 +987,21 @@ describe('useOptions', () => {
     it('should when the size changes re-fetch the options and go back in loading state', async () => {
       expect.assertions(8);
 
-      const fetcher = jest.fn(({ size, page }) => {
-        const options = generateOptions();
+      const options = generateOptions();
+      const { promise: promise1, resolve: resolve1 } = resolvablePromise<Page<Option>>();
+      const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
 
-        return Promise.resolve(pageOf(options, page, size));
-      });
+      const fetcher = jest.fn()
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .mockImplementationOnce(({ size, page }) => {
+          return promise1;
+        })
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        .mockImplementationOnce(({ size, page }) => {
+          return promise2;
+        });
 
-      const { result, rerender, waitForNextUpdate } = renderHook(
+      const { result, rerender } = renderHook(
         ({ size }) => {
           return useOptions({
             options: fetcher,
@@ -990,7 +1028,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve1(pageOf(options, 1, 2));
+      });
 
       // Check if the first page of 5 pages total is given.
       expect(result.current).toEqual({
@@ -1033,7 +1073,9 @@ describe('useOptions', () => {
         loading: true
       });
 
-      await waitForNextUpdate();
+      await act(async () => {
+        await resolve2(pageOf(options, 1, 3));
+      });
 
       // Request 1 more item this time.
       expect(result.current).toEqual({
@@ -1062,8 +1104,11 @@ describe('useOptions', () => {
       it('it should not prepend the value when optionsShouldAlwaysContainValue is false', async () => {
         expect.assertions(1);
 
+        const { promise, resolve } = resolvablePromise<Page<Option>>();
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const fetcher = jest.fn(({ size, page }) => {
-          return Promise.resolve(pageOf(generateOptions(), page, size));
+          return promise;
         });
 
         const config = {
@@ -1077,11 +1122,13 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: false
         };
 
-        const { result, waitForNextUpdate } = renderHook(() =>
+        const { result } = renderHook(() =>
           useOptions(config)
         );
 
-        await waitForNextUpdate();
+        await act(async () => {
+          await resolve(pageOf(generateOptions(), 1, 2));
+        });
 
         // Check if the first page of 5 pages total is given.
         expect(result.current).toEqual({
@@ -1105,8 +1152,11 @@ describe('useOptions', () => {
       it('it should not prepend the value when value is falsy', async () => {
         expect.assertions(1);
 
+        const { promise, resolve } = resolvablePromise<Page<Option>>();
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const fetcher = jest.fn(({ size, page }) => {
-          return Promise.resolve(pageOf(generateOptions(), page, size));
+          return promise;
         });
 
         const config = {
@@ -1120,11 +1170,13 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result, waitForNextUpdate } = renderHook(() =>
+        const { result } = renderHook(() =>
           useOptions(config)
         );
 
-        await waitForNextUpdate();
+        await act(async () => {
+          await resolve(pageOf(generateOptions(), 1, 2));
+        });
 
         // Check if the first page of 5 pages total is given.
         expect(result.current).toEqual({
@@ -1148,8 +1200,11 @@ describe('useOptions', () => {
       it('it should not prepend the value when value is already in the page', async () => {
         expect.assertions(1);
 
+        const { promise, resolve } = resolvablePromise<Page<Option>>();
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const fetcher = jest.fn(({ size, page }) => {
-          return Promise.resolve(pageOf(generateOptions(), page, size));
+          return promise;
         });
 
         const config = {
@@ -1163,11 +1218,13 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result, waitForNextUpdate } = renderHook(() =>
+        const { result } = renderHook(() =>
           useOptions(config)
         );
 
-        await waitForNextUpdate();
+        await act(async () => {
+          await resolve(pageOf(generateOptions(), 1, 2));
+        });
 
         // Check if the first page of 5 pages total is given.
         expect(result.current).toEqual({
@@ -1191,8 +1248,11 @@ describe('useOptions', () => {
       it('it should prepend the value when the options is a singular value', async () => {
         expect.assertions(1);
 
+        const { promise, resolve } = resolvablePromise<Page<Option>>();
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const fetcher = jest.fn(({ size, page }) => {
-          return Promise.resolve(pageOf(generateOptions(), page, size));
+          return promise;
         });
 
         const config = {
@@ -1206,11 +1266,13 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result, waitForNextUpdate } = renderHook(() =>
+        const { result } = renderHook(() =>
           useOptions(config)
         );
 
-        await waitForNextUpdate();
+        await act(async () => {
+          await resolve(pageOf(generateOptions(), 1, 2));
+        });
 
         // Check if the first page of 5 pages total is given.
         expect(result.current).toEqual({
@@ -1235,8 +1297,11 @@ describe('useOptions', () => {
       it('it should prepend all values not in the page when the options is an array', async () => {
         expect.assertions(1);
 
+        const { promise, resolve } = resolvablePromise<Page<Option>>();
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const fetcher = jest.fn(({ size, page }) => {
-          return Promise.resolve(pageOf(generateOptions(), page, size));
+          return promise;
         });
 
         const config = {
@@ -1255,11 +1320,13 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result, waitForNextUpdate } = renderHook(() =>
+        const { result } = renderHook(() =>
           useOptions(config)
         );
 
-        await waitForNextUpdate();
+        await act(async () => {
+          await resolve(pageOf(generateOptions(), 1, 2));
+        });
 
         expect(result.current).toEqual({
           page: {

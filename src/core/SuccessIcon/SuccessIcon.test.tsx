@@ -1,9 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { SuccessIcon } from './SuccessIcon';
 import { Color } from '../types';
+import userEvent from '@testing-library/user-event';
 
 describe('Component: SuccessIcon', () => {
   function setup({
@@ -21,7 +22,7 @@ describe('Component: SuccessIcon', () => {
   }) {
     const onChangeSpy = jest.fn();
 
-    const successIcon = shallow(
+    const { container } = render(
       <SuccessIcon
         value={value}
         color={color}
@@ -31,101 +32,98 @@ describe('Component: SuccessIcon', () => {
       />
     );
 
-    return { successIcon, onChangeSpy };
+    return { container, onChangeSpy };
   }
 
   describe('ui', () => {
     test('value true', () => {
-      const { successIcon } = setup({ value: true });
-
-      expect(toJson(successIcon)).toMatchSnapshot(
-        'Component: SuccessIcon => ui => value true'
-      );
+      const { container } = setup({ value: true });
+      expect(container).toMatchSnapshot();
     });
 
     test('value false', () => {
-      const { successIcon } = setup({ value: false });
-
-      expect(
-        // @ts-expect-error Test mock
-        successIcon.find('Icon').props().icon
-      ).toBe('clear');
+      const { container } = setup({ value: false });
+      expect(container.firstChild).toHaveTextContent('clear');
     });
 
     test('size', () => {
-      const { successIcon } = setup({ value: false, size: 10 });
-
-      expect(successIcon.find('Icon').props().size).toBe(10);
+      const { container } = setup({ value: false, size: 10 });
+      expect(container.firstChild).toHaveStyle({ fontSize: 10 });
     });
 
     test('color', () => {
-      const { successIcon } = setup({ value: false, color: 'primary' });
-
-      expect(successIcon.find('Icon').props().color).toBe('primary');
+      const { container } = setup({ value: false, color: 'primary' });
+      expect(container.firstChild).toHaveClass('text-primary');
     });
 
     describe('activeColor', () => {
       it('should not use activeColor when value is true if onChange is not defined', () => {
-        const { successIcon } = setup({
+        const { container } = setup({
           value: true,
           color: 'secondary',
           hasOnChangeSpy: false
         });
 
-        expect(successIcon.find('Icon').props().color).toBe('secondary');
+        expect(container.firstChild).toHaveClass('text-secondary');
       });
 
       it('should use activeColor when value is true if onChange is defined', () => {
-        const { successIcon } = setup({ value: true, hasOnChangeSpy: true });
+        const { container } = setup({ value: true, hasOnChangeSpy: true });
 
-        expect(successIcon.find('Icon').props().color).toBe('primary');
+        expect(container.firstChild).toHaveClass('text-primary');
       });
     });
 
     describe('hoverColor', () => {
-      it('should use hoverColor when onChange and hoverColor are defined', () => {
-        const { successIcon } = setup({
+      it('should use hoverColor when onChange and hoverColor are defined', async () => {
+        expect.assertions(1);
+
+        const { container } = setup({
           value: true,
           color: 'secondary',
           hoverColor: 'success',
           hasOnChangeSpy: true
         });
 
-        // @ts-expect-error Mock test
-        expect(successIcon.find('Icon').props().hoverColor).toBe('success');
+        await userEvent.hover(screen.getByText('done'));
+
+        expect(container.firstChild).toHaveClass('text-success');
       });
 
-      it('should not use activeColor when onChange and hoverColor are not defined', () => {
-        const { successIcon } = setup({
+      it('should not use activeColor when onChange and hoverColor are not defined', async () => {
+        expect.assertions(1);
+
+        const { container } = setup({
           value: true,
           color: 'secondary',
           hasOnChangeSpy: false
         });
 
-        // @ts-expect-error Mock test
-        expect(successIcon.find('Icon').props().hoverColor).toBe(undefined);
+        await userEvent.hover(screen.getByText('done'));
+
+        expect(container.firstChild).toHaveClass('text-secondary');
       });
 
-      it('should use activeColor when hoverColor is not defined and onChange is defined', () => {
-        const { successIcon } = setup({ value: true, hasOnChangeSpy: true });
+      it('should use activeColor when hoverColor is not defined and onChange is defined', async () => {
+        expect.assertions(1);
 
-        // @ts-expect-error Mock test
-        expect(successIcon.find('Icon').props().hoverColor).toBe('primary');
+        const { container } = setup({ value: true, hasOnChangeSpy: true });
+
+        await userEvent.hover(screen.getByText('done'));
+
+        expect(container.firstChild).toHaveClass('text-primary');
       });
     });
   });
 
   describe('events', () => {
     it('should call onChange when clicked', () => {
-      const { successIcon, onChangeSpy } = setup({
+      const { onChangeSpy } = setup({
         value: false,
         hasOnChangeSpy: true
       });
 
-      const event = {
-        preventDefault: jest.fn()
-      };
-      successIcon.find('Icon').simulate('click', event);
+      fireEvent.click(screen.getByText('clear'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
     });

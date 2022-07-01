@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { EpicCell } from './EpicCell';
 
@@ -9,7 +9,7 @@ describe('Component: EpicCell', () => {
     const onRowClickSpy = jest.fn();
     const onHoverChangedSpy = jest.fn();
 
-    const epicCell = shallow(
+    const { container } = render(
       <EpicCell
         width={300}
         height={height}
@@ -21,100 +21,42 @@ describe('Component: EpicCell', () => {
       </EpicCell>
     );
 
-    return { epicCell, onRowClickSpy, onHoverChangedSpy };
+    return { container, onRowClickSpy, onHoverChangedSpy };
   }
 
   describe('ui', () => {
     test('default', () => {
-      const { epicCell } = setup({});
-
-      expect(toJson(epicCell)).toMatchSnapshot();
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
     });
 
     test('with height', () => {
-      const { epicCell } = setup({ height: 50 });
-
-      expect(toJson(epicCell)).toMatchSnapshot();
+      const { container } = setup({ height: 50 });
+      expect(container.firstChild).toHaveStyle({ height: '50px' });
     });
   });
 
   describe('events', () => {
-    describe('onRowClick', () => {
-      test(`when onRowClick exists and when clicking the EpicCell's div it should call onRowClick with the event`, () => {
-        const { epicCell, onRowClickSpy } = setup({});
+    it('should call onRowClick when the div is clicked', () => {
+      const { onRowClickSpy } = setup({});
 
-        // Will match the useRef initial value of null
-        const fakeEvent = { target: null };
+      fireEvent.click(screen.getByText('epic cell'));
 
-        // @ts-expect-error Test mock
-        epicCell
-          .find('div')
-          .props()
-          // @ts-expect-error Test mock
-          .onClick(fakeEvent);
-
-        expect(onRowClickSpy).toBeCalledTimes(1);
-        expect(onRowClickSpy).toBeCalledWith(fakeEvent);
-      });
-
-      test(`when onRowClick exists and when not clicking the EpicCell's div it should not call onRowClick`, () => {
-        const { epicCell, onRowClickSpy } = setup({});
-
-        // Will not match the useRef initial value of null
-        const fakeEvent = { target: 42 };
-
-        // @ts-expect-error Test mock
-        epicCell
-          .find('div')
-          .props()
-          // @ts-expect-error Test mock
-          .onClick(fakeEvent);
-
-        expect(onRowClickSpy).toBeCalledTimes(0);
-      });
-
-      test(`when onRowClick does not exist and when clicking the EpicCell's div it should not call onRowClick`, () => {
-        const { epicCell } = setup({ hasOnRowClick: false });
-
-        const onClick = epicCell.find('div').props().onClick;
-
-        expect(onClick).toBe(undefined);
-      });
+      expect(onRowClickSpy).toBeCalledTimes(1);
     });
 
-    describe('hover behaviour', () => {
-      it('should when onRowClick exists call onHoverChanged when hovering over the div', () => {
-        const { epicCell, onHoverChangedSpy } = setup({});
+    it('should call onHoverChanged when hovering over the div', () => {
+      const { onHoverChangedSpy } = setup({});
 
-        // @ts-expect-error Test mock
-        epicCell
-          .find('div')
-          .props()
-          // @ts-expect-error Test mock
-          .onMouseEnter();
+      fireEvent.mouseEnter(screen.getByText('epic cell'));
 
-        expect(onHoverChangedSpy).toBeCalledTimes(1);
-        expect(onHoverChangedSpy).toBeCalledWith(true);
+      expect(onHoverChangedSpy).toBeCalledTimes(1);
+      expect(onHoverChangedSpy).toBeCalledWith(true);
 
-        // @ts-expect-error Test mock
-        epicCell
-          .find('div')
-          .props()
-          // @ts-expect-error Test mock
-          .onMouseLeave();
+      fireEvent.mouseLeave(screen.getByText('epic cell'));
 
-        expect(onHoverChangedSpy).toBeCalledTimes(2);
-        expect(onHoverChangedSpy).toBeCalledWith(false);
-      });
-
-      it('should when onRowClick does not exist not call onHoverChanged when hovering over the div', () => {
-        const { epicCell } = setup({ hasOnRowClick: false });
-
-        const { onMouseEnter, onMouseLeave } = epicCell.find('div').props();
-
-        expect(onMouseEnter).toBe(undefined);
-        expect(onMouseLeave).toBe(undefined);
-      });
+      expect(onHoverChangedSpy).toBeCalledTimes(2);
+      expect(onHoverChangedSpy).toBeCalledWith(false);
     });
   });
 });

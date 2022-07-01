@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import { EpicDetailRow } from './EpicDetailRow';
 
@@ -16,24 +15,22 @@ describe('Component: EpicDetailRow', () => {
       height: 100
     };
 
-    const epicDetailRow = shallow(
+    const { container } = render(
       <EpicDetailRow active={active} left={300} {...injected}>
         {children}
       </EpicDetailRow>
     );
 
-    return { epicDetailRow };
+    return { container };
   }
 
   test('is active', () => {
-    const { epicDetailRow } = setup({ active: true });
-
-    expect(toJson(epicDetailRow)).toMatchSnapshot();
+    const { container } = setup({ active: true });
+    expect(container).toMatchSnapshot();
   });
 
   test('is not active', () => {
-    const { epicDetailRow } = setup({ active: false });
-
-    expect(epicDetailRow.isEmptyRender()).toBe(true);
+    const { container } = setup({ active: false });
+    expect(container.firstChild).toBeNull();
   });
 });

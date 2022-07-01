@@ -1,21 +1,25 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { AddonIcon } from './AddonIcon';
 
 describe('Component: AddonIcon', () => {
-  function setup() {
-    const addonIcon = shallow(
-      <AddonIcon icon="360" position="right" className="custom-class" />
+  function setup({ className }: { className?: string }) {
+    const { container } = render(
+      <AddonIcon icon="360" position="right" className={className} />
     );
 
-    return { addonIcon };
+    return { container };
   }
 
   test('ui', () => {
-    const { addonIcon } = setup();
+    const { container } = setup({});
+    expect(container).toMatchSnapshot();
+  });
 
-    expect(toJson(addonIcon)).toMatchSnapshot('Component: AddonIcon');
+  test('custom class', () => {
+    setup({ className: 'extra-class' });
+    expect(screen.getByText('360')).toHaveClass('extra-class');
   });
 });

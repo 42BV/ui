@@ -1,12 +1,10 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import MoreOrLess from './MoreOrLess';
 
 describe('Component: MoreOrLess', () => {
-  let moreOrLess: ShallowWrapper;
-
   function setup({
     exceedsLimit,
     text
@@ -28,48 +26,33 @@ describe('Component: MoreOrLess', () => {
       content = [<h1 key={1}>1</h1>, <h1 key={2}>2</h1>, <h1 key={3}>3</h1>];
     }
 
-    moreOrLess = shallow(
+    const { container } = render(
       <MoreOrLess limit={3} content={content} text={text} />
     );
-  }
-
-  function open() {
-    moreOrLess.find('.more-or-less-link').simulate('click');
-
-    expect(
-      moreOrLess.find('.more-or-less').hasClass('more-or-less-opened')
-    ).toBe(true);
-  }
-
-  function close() {
-    moreOrLess.find('.more-or-less-link').simulate('click');
-
-    expect(
-      moreOrLess.find('.more-or-less').hasClass('more-or-less-closed')
-    ).toBe(true);
+    
+    return { container };
   }
 
   describe('ui', () => {
     test('open', () => {
-      setup({ exceedsLimit: true });
-      open();
-      expect(toJson(moreOrLess)).toMatchSnapshot(
-        'Component: MoreOrLess => ui => open'
-      );
+      const { container } = setup({ exceedsLimit: true });
+      fireEvent.click(screen.getByText('Show 3 more'));
+      expect(screen.queryByText('Show 3 more')).not.toBeInTheDocument();
+      expect(screen.queryByText('Show less')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
     test('closed', () => {
-      setup({ exceedsLimit: true });
-      expect(toJson(moreOrLess)).toMatchSnapshot(
-        'Component: MoreOrLess => ui => closed'
-      );
+      const { container } = setup({ exceedsLimit: true });
+      expect(screen.queryByText('Show 3 more')).toBeInTheDocument();
+      expect(screen.queryByText('Show less')).not.toBeInTheDocument();
+      expect(container).toMatchSnapshot();
     });
 
-    test('to few items', () => {
+    test('too few items', () => {
       setup({ exceedsLimit: false });
-      expect(toJson(moreOrLess)).toMatchSnapshot(
-        'Component: MoreOrLess => ui => to few items'
-      );
+      expect(screen.queryByText('Show 3 more')).not.toBeInTheDocument();
+      expect(screen.queryByText('Show less')).not.toBeInTheDocument();
     });
 
     test('with custom text', () => {
@@ -80,17 +63,26 @@ describe('Component: MoreOrLess', () => {
         }
       });
 
-      expect(moreOrLess.find('div[role="button"]').text()).toEqual(
-        'Load 3 more...'
-      );
+      expect(screen.queryByText('Load 3 more...')).toBeInTheDocument();
     });
   });
 
   test('toggle', () => {
-    setup({ exceedsLimit: true });
+    const { container } = setup({ exceedsLimit: true });
 
-    open();
-    close();
-    open();
+    expect(container).toMatchSnapshot('closed');
+    expect(screen.queryByText('Show 3 more')).toBeInTheDocument();
+    expect(screen.queryByText('Show less')).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Show 3 more'));
+
+    expect(screen.queryByText('Show 3 more')).not.toBeInTheDocument();
+    expect(screen.queryByText('Show less')).toBeInTheDocument();
+    expect(container).toMatchSnapshot('open');
+
+    fireEvent.click(screen.getByText('Show less'));
+
+    expect(screen.queryByText('Show 3 more')).toBeInTheDocument();
+    expect(screen.queryByText('Show less')).not.toBeInTheDocument();
   });
 });

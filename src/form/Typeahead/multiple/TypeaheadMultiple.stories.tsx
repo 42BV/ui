@@ -84,7 +84,7 @@ storiesOf('Form/Typeahead/JarbTypeaheadMultiple', module)
           labelForOption={(province) => province.label}
           value={value}
           onChange={setValue}
-          pageSize={5}
+          maxResults={2}
         />
 
         {value ? (

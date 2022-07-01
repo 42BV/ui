@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 
 import { useSettledErrors } from './useSettledErrors';
 import { Meta, MetaError } from '../types';
@@ -11,7 +11,7 @@ describe('useSettledErrors', () => {
   });
 
   function setup(config: Config) {
-    return renderHook<Config, MetaError[]>(
+    return renderHook<MetaError[], Config>(
       props => useSettledErrors(props.meta, props.value),
       {
         initialProps: config

@@ -1,28 +1,22 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import Textarea from './Textarea';
 
 describe('Component: Textarea', () => {
-  let textarea: ShallowWrapper;
-
-  let onChangeSpy: jest.Mock;
-  let onBlurSpy: jest.Mock;
-  let onFocusSpy: jest.Mock;
-
   function setup({
     value,
-    hasPlaceholder = true,
-    hasLabel = true
+    hasPlaceholder,
+    hasLabel
   }: {
     value?: string;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
   }) {
-    onChangeSpy = jest.fn();
-    onBlurSpy = jest.fn();
-    onFocusSpy = jest.fn();
+    const onChangeSpy = jest.fn();
+    const onBlurSpy = jest.fn();
+    const onFocusSpy = jest.fn();
 
     const props = {
       placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,
@@ -31,79 +25,74 @@ describe('Component: Textarea', () => {
       onBlur: onBlurSpy,
       onFocus: onFocusSpy,
       error: 'Some error',
-      valid: true
+      valid: true,
+      id: hasLabel ? 'firstName' : undefined,
+      label: hasLabel ? 'First name' : undefined
     };
 
-    if (hasLabel) {
-      textarea = shallow(
-        <Textarea
-          id="firstName"
-          label="First name"
-          color="success"
-          {...props}
-        />
-      );
-    } else {
-      textarea = shallow(<Textarea color="success" {...props} />);
-    }
+    const { container, rerender } = render(
+      <Textarea color="success" {...props} />
+    );
+    
+    return { container, props, rerender, onChangeSpy, onBlurSpy, onFocusSpy };
   }
 
   describe('ui', () => {
+    test('default', () => {
+      const { container } = setup({});
+      expect(container).toMatchSnapshot();
+    });
+
     test('with value', () => {
       setup({ value: 'Maarten' });
-
-      expect(toJson(textarea)).toMatchSnapshot(
-        'Component: textarea => ui => with value'
-      );
+      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
     });
-    test('without placeholder', () => {
-      setup({ value: 'Maarten', hasPlaceholder: false });
 
-      expect(toJson(textarea)).toMatchSnapshot(
-        'Component: textarea => ui => without placeholder'
-      );
+    test('with placeholder', () => {
+      setup({ hasPlaceholder: true });
+      expect(screen.queryByPlaceholderText('Please enter your first name')).toBeInTheDocument();
+    });
+
+    test('without placeholder', () => {
+      setup({ hasPlaceholder: false });
+      expect(screen.queryByPlaceholderText('Please enter your first name')).not.toBeInTheDocument();
+    });
+
+    test('with label', () => {
+      setup({ hasLabel: true });
+      expect(screen.queryByText('First name')).toBeInTheDocument();
+      expect(screen.queryByLabelText('First name')).toBeInTheDocument();
     });
 
     test('without label', () => {
-      setup({ value: 'Maarten', hasLabel: false });
-
-      expect(toJson(textarea)).toMatchSnapshot(
-        'Component: textarea => ui => without label'
-      );
+      setup({ hasLabel: false });
+      expect(screen.queryByText('First name')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('First name')).not.toBeInTheDocument();
     });
   });
 
   describe('events', () => {
     test('onChange', () => {
-      setup({ value: undefined });
+      const { onChangeSpy } = setup({ value: undefined });
 
-      const textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
-
-      // @ts-expect-error Test mock
-      textareaAutosize.props().onChange({ target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Maarten' } });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('Maarten');
     });
 
     test('onBlur', () => {
-      setup({ value: undefined });
+      const { onBlurSpy } = setup({ value: undefined });
 
-      const textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
-
-      // @ts-expect-error Test mock
-      textareaAutosize.props().onBlur();
+      fireEvent.blur(screen.getByRole('textbox'));
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
     test('onFocus', () => {
-      setup({ value: undefined });
+      const { onFocusSpy } = setup({ value: undefined });
 
-      const textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
-
-      // @ts-expect-error Test mock
-      textareaAutosize.props().onFocus();
+      fireEvent.focus(screen.getByRole('textbox'));
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });
@@ -111,27 +100,37 @@ describe('Component: Textarea', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      setup({ value: 'Maarten' });
+      const { props, rerender } = setup({ value: 'Maarten' });
 
-      let textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
-      expect(textareaAutosize.props().value).toBe('Maarten');
+      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
 
-      textarea.setProps({ value: undefined });
+      const newProps = {
+        ...props,
+        value: ''
+      };
 
-      textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
-      expect(textareaAutosize.props().value).toBe(undefined);
+      rerender(
+        <Textarea {...newProps} />
+      );
+
+      expect(screen.getByRole('textbox')).toHaveValue('');
     });
 
     test('becomes filled', () => {
-      setup({ value: undefined });
+      const { props, rerender } = setup({ value: undefined });
 
-      let textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
-      expect(textareaAutosize.props().value).toBe(undefined);
+      expect(screen.getByRole('textbox')).toHaveValue('');
 
-      textarea.setProps({ value: 'Maarten' });
+      const newProps = {
+        ...props,
+        value: 'Maarten'
+      };
 
-      textareaAutosize = textarea.find('ForwardRef(TextareaAutosize)');
-      expect(textareaAutosize.props().value).toBe('Maarten');
+      rerender(
+        <Textarea {...newProps} />
+      );
+
+      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
     });
   });
 });

@@ -1,38 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component: FlashMessage ui normal 1`] = `
-<div
-  className="flash-message"
->
-  <Alert
-    closeAriaLabel="Close"
-    color="danger"
-    fade={true}
-    isOpen={true}
-    open={true}
-    tag="div"
-    transition={
-      Object {
-        "appear": true,
-        "baseClass": "fade",
-        "baseClassActive": "show",
-        "enter": true,
-        "exit": true,
-        "in": true,
-        "mountOnEnter": false,
-        "onEnter": [Function],
-        "onEntered": [Function],
-        "onEntering": [Function],
-        "onExit": [Function],
-        "onExited": [Function],
-        "onExiting": [Function],
-        "tag": "div",
-        "timeout": 150,
-        "unmountOnExit": true,
-      }
-    }
+<div>
+  <div
+    class="flash-message"
   >
-    Danger commander
-  </Alert>
+    <div
+      class="alert alert-danger fade"
+      open=""
+      role="alert"
+    >
+      Danger commander
+    </div>
+  </div>
 </div>
 `;

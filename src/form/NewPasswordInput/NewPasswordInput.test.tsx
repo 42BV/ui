@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import NewPasswordInput, { isStrongPassword } from './NewPasswordInput';
 
@@ -14,104 +14,55 @@ describe('Component: NewPasswordInput', () => {
     minimumLength?: number;
     noSpace?: boolean;
   }) {
-    const newPasswordInput = shallow(
+    const { container } = render(
       <NewPasswordInput onChange={jest.fn()} {...props} />
     );
-    return { newPasswordInput };
+    return { container };
   }
 
   test('ui', () => {
-    const { newPasswordInput } = setup({ value: 'test' });
-    expect(toJson(newPasswordInput)).toMatchSnapshot(
-      'Component: NewPasswordInput => ui => default'
-    );
+    const { container } = setup({ value: 'test' });
+    expect(container).toMatchSnapshot();
   });
 
   test('default all rules enabled', () => {
-    const { newPasswordInput } = setup({});
-    expect(
-      // @ts-expect-error Test mock
-      newPasswordInput.find('PasswordStrength').props().rules
-    ).toEqual([
-      'lowercase',
-      'uppercase',
-      'number',
-      'specialChar',
-      'minimumLength',
-      'noSpace'
-    ]);
+    setup({});
+    expect(screen.queryByText('Must contain at least one lowercase letter')).toBeInTheDocument();
+    expect(screen.queryByText('Must contain at least one uppercase letter')).toBeInTheDocument();
+    expect(screen.queryByText('Must contain at least one number')).toBeInTheDocument();
+    expect(screen.queryByText('Must contain at least one special character (@#$%^&+=.,?!)')).toBeInTheDocument();
+    expect(screen.queryByText('Must contain at least 10 characters')).toBeInTheDocument();
+    expect(screen.queryByText('Must not contain any space')).toBeInTheDocument();
   });
 
   test('disable lowercase check', () => {
-    const { newPasswordInput } = setup({ lowercase: false });
-    expect(
-      // @ts-expect-error Test mock
-      newPasswordInput.find('PasswordStrength').props().rules
-    ).toEqual([
-      'uppercase',
-      'number',
-      'specialChar',
-      'minimumLength',
-      'noSpace'
-    ]);
+    setup({ lowercase: false });
+    expect(screen.queryByText('Must contain at least one lowercase letter')).not.toBeInTheDocument();
   });
 
   test('disable uppercase check', () => {
-    const { newPasswordInput } = setup({ uppercase: false });
-    expect(
-      // @ts-expect-error Test mock
-      newPasswordInput.find('PasswordStrength').props().rules
-    ).toEqual([
-      'lowercase',
-      'number',
-      'specialChar',
-      'minimumLength',
-      'noSpace'
-    ]);
+    setup({ uppercase: false });
+    expect(screen.queryByText('Must contain at least one uppercase letter')).not.toBeInTheDocument();
   });
 
   test('disable number check', () => {
-    const { newPasswordInput } = setup({ number: false });
-    expect(
-      // @ts-expect-error Test mock
-      newPasswordInput.find('PasswordStrength').props().rules
-    ).toEqual([
-      'lowercase',
-      'uppercase',
-      'specialChar',
-      'minimumLength',
-      'noSpace'
-    ]);
+    setup({ number: false });
+    expect(screen.queryByText('Must contain at least one number')).not.toBeInTheDocument();
   });
 
   test('disable special character check', () => {
-    const { newPasswordInput } = setup({ specialCharacter: false });
-    expect(
-      // @ts-expect-error Test mock
-      newPasswordInput.find('PasswordStrength').props().rules
-    ).toEqual(['lowercase', 'uppercase', 'number', 'minimumLength', 'noSpace']);
+    setup({ specialCharacter: false });
+    expect(screen.queryByText('Must contain at least one special character (@#$%^&+=.,?!)')).not.toBeInTheDocument();
   });
 
   test('disable minimum length check', () => {
-    const { newPasswordInput } = setup({ minimumLength: 0 });
-    expect(
-      // @ts-expect-error Test mock
-      newPasswordInput.find('PasswordStrength').props().rules
-    ).toEqual(['lowercase', 'uppercase', 'number', 'specialChar', 'noSpace']);
+    setup({ minimumLength: 0 });
+    expect(screen.queryByText('Must contain at least 10 characters')).not.toBeInTheDocument();
   });
 
   test('disable no space check', () => {
-    const { newPasswordInput } = setup({ noSpace: false });
-    expect(
-      // @ts-expect-error Test mock
-      newPasswordInput.find('PasswordStrength').props().rules
-    ).toEqual([
-      'lowercase',
-      'uppercase',
-      'number',
-      'specialChar',
-      'minimumLength'
-    ]);
+    setup({ noSpace: false });
+    expect(screen.queryByText('Must not contain any space')).not.toBeInTheDocument();
   });
 
   describe('isStrongPassword', () => {

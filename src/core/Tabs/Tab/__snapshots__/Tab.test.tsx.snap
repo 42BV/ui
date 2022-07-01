@@ -1,43 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Tab ui with icon: Component: Tab => ui => with icon 1`] = `
-<NavItem
-  className=""
-  tag="li"
->
-  <NavLink
-    active={true}
-    onClick={[MockFunction]}
-    tag="a"
+exports[`Component: Tab ui default 1`] = `
+<div>
+  <li
+    class="nav-item"
   >
-    <div
-      className="d-flex p-2 justify-content-center"
+    <a
+      class="nav-link"
     >
-      <Icon
-        className="me-1"
-        icon="close"
-      />
-      test
-    </div>
-  </NavLink>
-</NavItem>
-`;
-
-exports[`Component: Tab ui without icon: Component: Tab => ui => without icon 1`] = `
-<NavItem
-  className=""
-  tag="li"
->
-  <NavLink
-    active={true}
-    onClick={[MockFunction]}
-    tag="a"
-  >
-    <div
-      className="d-flex p-2 justify-content-center"
-    >
-      test
-    </div>
-  </NavLink>
-</NavItem>
+      <div
+        class="d-flex p-2 justify-content-center"
+      >
+        test
+      </div>
+    </a>
+  </li>
+</div>
 `;

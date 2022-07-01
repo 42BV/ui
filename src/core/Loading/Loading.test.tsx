@@ -1,29 +1,28 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import Loading from './Loading';
 
 describe('Component: Loading', () => {
   describe('ui', () => {
     test('without children', () => {
-      const loading = shallow(<Loading />);
-
-      expect(toJson(loading)).toMatchSnapshot(
-        'Component: Loading => ui => without children'
+      const { container } = render(
+        <Loading />
       );
+
+      expect(container).toMatchSnapshot();
     });
 
     test('with children', () => {
-      const loading = shallow(
+      render(
         <Loading>
-          We are <b>loading</b> the world!
+          <b>We are loading the world!</b>
         </Loading>
       );
 
-      expect(toJson(loading)).toMatchSnapshot(
-        'Component: Loading => ui => with children'
-      );
+      expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
+      expect(screen.queryByText('We are loading the world!')).toBeInTheDocument();
     });
   });
 });
