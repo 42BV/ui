@@ -8,6 +8,7 @@ export { ConfirmButton } from './core/ConfirmButton/ConfirmButton';
 export { ConfirmModal } from './core/ConfirmModal/ConfirmModal';
 export { ContentState } from './core/ContentState/ContentState';
 export type { ContentStateMode } from './core/ContentState/ContentState';
+export { CopyToClipboard } from './core/CopyToClipboard/CopyToClipboard';
 export { FlashMessage } from './core/FlashMessage/FlashMessage';
 export { Icon } from './core/Icon';
 export type { IconType } from './core/Icon';
