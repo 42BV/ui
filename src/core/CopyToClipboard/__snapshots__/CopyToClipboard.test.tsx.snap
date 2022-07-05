@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: CopyToClipboard ui default 1`] = `
+<div>
+  <div
+    class="d-flex nowrap bg-dark text-white py-1 ps-3 pe-1"
+  >
+    <pre
+      class="flex-grow-1 flex-shrink-1 me-3 mb-0"
+    >
+      <code
+        id="1"
+      >
+        This is a very long text that should hide behind the copy button at the end of the line. It should be horizontally scrollable so you should be able to see the entire line of text, but it should not be wrapped to multiple lines, it still has to be one long line of text.
+      </code>
+    </pre>
+    <span
+      class="button flex-grow-0 flex-shrink-0 text-white primary d-inline-block"
+    >
+      <i
+        class="icon material-icons text-primary clickable"
+        style="font-size: 24px;"
+      >
+        content_copy
+      </i>
+    </span>
+  </div>
+</div>
+`;

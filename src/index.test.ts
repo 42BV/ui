@@ -26,6 +26,7 @@ describe('index', () => {
         "ConfirmButton": [Function],
         "ConfirmModal": [Function],
         "ContentState": [Function],
+        "CopyToClipboard": [Function],
         "CrudHeader": [Function],
         "CrudTable": [Function],
         "DateTimeInput": [Function],

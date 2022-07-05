@@ -204,6 +204,9 @@ Here is a JSON notation containing all keys and default translations:
     "ERROR": {
       "TITLE": "Oops something went wrong!"
     }
+  },
+  "CopyToClipboard": {
+    "COPIED": "Copied!"
   }
 }
 ```
