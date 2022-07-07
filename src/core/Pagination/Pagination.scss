@@ -1,5 +1,11 @@
 .pagination {
   margin-bottom: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include media-breakpoint-up(sm) {
+    flex-wrap: nowrap;
+  }
 
   .page-item {
     .page-link {
@@ -17,6 +23,18 @@
       .page-link {
         overflow: hidden;
       }
+    }
+  }
+
+  .pagination__select-size .form-select {
+    border-color: var(--bs-pagination-border-color);
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    min-width: 77px;
+    margin-top: 0.5rem;
+
+    @include media-breakpoint-up(sm) {
+      margin-top: 0;
     }
   }
 }

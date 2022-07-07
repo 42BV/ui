@@ -9,6 +9,7 @@ import {
 
 import { Icon } from '../Icon';
 import { range } from 'lodash';
+import { Select } from '../../form/Select/Select';
 
 type Props<T> = {
   /**
@@ -20,6 +21,18 @@ type Props<T> = {
    * Called when navigation to a certain page number.
    */
   onChange: (pageNumber: number) => void;
+
+  /**
+   * Optional callback to change the page's size using a dropdown.
+   * Only if this property is provided, the dropdown will be displayed.
+   */
+  onPageSizeChange?: (size: number) => void;
+
+  /**
+   * Optional list of page sizes used for the page size dropdown.
+   * Defaults to `[5, 10, 20, 50, 100]`.
+   */
+  allowedPageSizes?: number[];
 
   /**
    * Whether or not to show the previous and next buttons.
@@ -49,18 +62,18 @@ type Props<T> = {
 export function Pagination<T>({
   page,
   onChange,
+  onPageSizeChange,
+  allowedPageSizes = [5, 10, 20, 50, 100],
   className,
   showPreviousAndNextButtons = true
 }: Props<T>) {
-  const { first, last, totalPages } = page;
+  const { first, last, totalPages, totalElements, size, number: current } = page;
+  const content = pagesFor(current, totalPages);
 
   // Don't bother to render if there is nothing to paginate.
-  if (first && last) {
+  if (first && last && (!onPageSizeChange || allowedPageSizes && allowedPageSizes[0] >= totalElements)) {
     return null;
   }
-
-  const current = page.number;
-  const content = pagesFor(current, totalPages);
 
   return (
     <RPagination className={className}>
@@ -91,6 +104,15 @@ export function Pagination<T>({
           </PaginationLink>
         </PaginationItem>
       ) : null}
+      {onPageSizeChange && allowedPageSizes ? (
+        <Select<number>
+          onChange={onPageSizeChange}
+          options={allowedPageSizes}
+          labelForOption={(pageSize) => `${pageSize}`}
+          value={size}
+          className="ms-3 pagination__select-size"
+        />
+      ) : null}
     </RPagination>
   );
 }
@@ -116,7 +138,7 @@ export function pagesFor(
     const tillEllipsis = range(1, Math.max(4, currentPage + 2));
     const fromEllipsis = range(totalPages - (5 - tillEllipsis.length), totalPages + 1)
 
-    return [ ...tillEllipsis, ellipsis, ...fromEllipsis ];
+    return [...tillEllipsis, ellipsis, ...fromEllipsis];
   }
 
   if (currentPage > totalPages - 4) {
@@ -127,7 +149,7 @@ export function pagesFor(
     const fromEllipsis = range(Math.min(totalPages - 2, currentPage - 1), totalPages + 1);
     const tillEllipsis = range(1, 7 - fromEllipsis.length);
 
-    return [ ...tillEllipsis, ellipsis, ...fromEllipsis ];
+    return [...tillEllipsis, ellipsis, ...fromEllipsis];
   }
 
   return [1, ellipsis, ...range(currentPage - 1, currentPage + 2), ellipsis, totalPages];
