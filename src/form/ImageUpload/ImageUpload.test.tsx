@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import * as imgUploadUtils from './utils';
@@ -27,6 +27,7 @@ describe('Component: ImageUpload', () => {
     keepOriginalFileExtension,
     mode,
     image = { src: '', fileName: 'maarten.png', rotate: 0, scale: 1 },
+    imageSize = { width: 1000, height: 1000 },
     file = new File([''], 'maarten.png')
   }: {
     value?: File | string;
@@ -36,7 +37,8 @@ describe('Component: ImageUpload', () => {
     emptyLabel?: boolean;
     keepOriginalFileExtension?: boolean;
     mode?: Mode;
-    image?: ImageState;
+    image?: ImageState | null;
+    imageSize?: { width: number; height: number };
     file?: File;
   }) {
     const onChangeSpy = jest.fn();
@@ -44,7 +46,7 @@ describe('Component: ImageUpload', () => {
 
     jest.spyOn(AvatarEditor.prototype, 'getImage')
       // @ts-expect-error Test mock
-      .mockReturnValue('fakeCanvas');
+      .mockReturnValue(imageSize);
 
     const { promise, resolve } = testUtils.resolvablePromise();
 
@@ -100,26 +102,41 @@ describe('Component: ImageUpload', () => {
     return { container, asFragment, onChangeSpy, onBlurSpy, resizeSpy, resolve, promise, setModeSpy, setImageSpy };
   }
 
-  describe('componentDidMount', () => {
-    it('should not show the image when the value is undefined', () => {
-      setup({});
-      expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  it('should not show the image when the value is undefined', () => {
+    setup({});
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  });
+
+  it('should not show the image when the value is empty string', () => {
+    setup({ value: '' });
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  });
+
+  it('should show the image when the value is a non empty string', () => {
+    setup({ value: 'maarten.png' });
+    expect(screen.queryByRole('img')).toBeInTheDocument();
+  });
+
+  it('should set image and set mode to file-selected when the value is a File', async () => {
+    expect.assertions(5);
+
+    const { setModeSpy, setImageSpy } = setup({
+      mode: 'no-file',
+      value: new File(['base64code'], 'gido.png'),
+      image: null
     });
 
-    it('should not show the image when the value is empty string', () => {
-      setup({ value: '' });
-      expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(setImageSpy).toHaveBeenCalledTimes(1);
     });
 
-    test('it should show the image when the value is a non empty string', () => {
-      setup({ value: 'maarten.png' });
-      expect(screen.queryByRole('img')).toBeInTheDocument();
-    });
-
-    test('it should show the image when the value is a File', () => {
-      setup({ value: new File([''], 'maarten.png') });
-      expect(screen.queryByRole('img')).not.toBeInTheDocument();
-    });
+    expect(setImageSpy).toHaveBeenCalledWith(expect.objectContaining({
+      fileName: 'gido.png',
+      rotate: 0,
+      scale: 1
+    }));
+    expect(setModeSpy).toHaveBeenCalledTimes(1);
+    expect(setModeSpy).toHaveBeenCalledWith('file-selected');
   });
 
   describe('ui', () => {
@@ -164,8 +181,8 @@ describe('Component: ImageUpload', () => {
     });
   });
 
-  describe('mode: no-file events', () => {
-    it('should when file is selected transition to edit mode', () => {
+  describe('events', () => {
+    it('should set mode to edit when file is selected', () => {
       const readFileSpy = jest.spyOn(imgUploadUtils, 'readFile').mockImplementation((file, callback) => callback(''));
 
       const { setModeSpy, setImageSpy } = setup({
@@ -187,9 +204,7 @@ describe('Component: ImageUpload', () => {
         scale: 1
       });
     });
-  });
 
-  describe('mode: edit events', () => {
     it('should rotate left when rotate left rotation button is clicked', () => {
       const { setImageSpy } = setup({
         mode: 'edit'
@@ -234,8 +249,8 @@ describe('Component: ImageUpload', () => {
       );
     });
 
-    it('should reset the file input when cancel button is clicked and move to state no-file', () => {
-      const { setImageSpy, onChangeSpy, onBlurSpy } = setup({
+    it('should reset the file input, clear the image and set mode to no-file when cancel button is clicked', () => {
+      const { setImageSpy, setModeSpy, onChangeSpy, onBlurSpy } = setup({
         mode: 'edit'
       });
 
@@ -244,13 +259,16 @@ describe('Component: ImageUpload', () => {
       expect(setImageSpy).toHaveBeenCalledTimes(1);
       expect(setImageSpy).toHaveBeenCalledWith(undefined);
 
+      expect(setModeSpy).toHaveBeenCalledTimes(1);
+      expect(setModeSpy).toHaveBeenCalledWith('no-file');
+
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(null);
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should set the final image when done button is clicked and move to state file-selected', async () => {
+    it('should set the final image and set mode to file-selected when done button is clicked', async () => {
       expect.assertions(13);
 
       const file = new File([''], 'maarten.png');
@@ -271,7 +289,7 @@ describe('Component: ImageUpload', () => {
 
       expect(resizeSpy).toHaveBeenCalledTimes(1);
       // @ts-expect-error Test mock
-      expect(resizeSpy.mock.calls[0][0]).toBe('fakeCanvas');
+      expect(resizeSpy.mock.calls[0][0]).toEqual({ width: 1000, height: 1000 });
       // @ts-expect-error Test mock
       expect(resizeSpy.mock.calls[0][2]).toEqual({ alpha: true });
 
@@ -364,11 +382,9 @@ describe('Component: ImageUpload', () => {
         scale: 1
       });
     });
-  });
 
-  describe('mode: file-selected events', () => {
-    it('should reset to no-file when clicking the remove button ', () => {
-      const { setImageSpy, onChangeSpy, onBlurSpy } = setup({
+    it('should clear the image and set mode to no-file when clicking the remove button', () => {
+      const { setImageSpy, setModeSpy, onChangeSpy, onBlurSpy } = setup({
         mode: 'file-selected'
       });
 
@@ -377,13 +393,16 @@ describe('Component: ImageUpload', () => {
       expect(setImageSpy).toHaveBeenCalledTimes(1);
       expect(setImageSpy).toHaveBeenCalledWith(undefined);
 
+      expect(setModeSpy).toHaveBeenCalledTimes(1);
+      expect(setModeSpy).toHaveBeenCalledWith('no-file');
+
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith(null);
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should reset to no file and trigger the file input so user can select a new image', () => {
+    it('should clear the image, set mode to no-file and trigger the file input so user can select a new image when change button is clicked', () => {
       jest.useFakeTimers();
 
       const clickSpy = jest.fn();
@@ -393,7 +412,7 @@ describe('Component: ImageUpload', () => {
         }
       });
 
-      const { setImageSpy } = setup({
+      const { setImageSpy, setModeSpy } = setup({
         mode: 'file-selected'
       });
 
@@ -401,11 +420,78 @@ describe('Component: ImageUpload', () => {
 
       expect(setImageSpy).toHaveBeenCalledTimes(1);
       expect(setImageSpy).toHaveBeenCalledWith(undefined);
+
+      expect(setModeSpy).toHaveBeenCalledTimes(1);
+      expect(setModeSpy).toHaveBeenCalledWith('no-file');
+
       expect(clickSpy).toHaveBeenCalledTimes(0);
 
       jest.runAllTimers();
 
       expect(clickSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call onChange with initial image when selected image starts edit mode', async () => {
+      expect.assertions(2);
+
+      jest.useFakeTimers();
+      const { onChangeSpy, resolve, promise } = setup({
+        mode: 'edit',
+      });
+
+      await act(() => {
+        jest.runAllTimers();
+      });
+
+      await act(async () => {
+        resolve({
+          toDataURL: jest.fn(() => 'Some base 64 string')
+        });
+        await expect(promise).resolves.toBeDefined();
+      });
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not call onChange with initial image when selected image is not readable', async () => {
+      expect.assertions(1);
+
+      jest.useFakeTimers();
+      const { onChangeSpy } = setup({
+        mode: 'edit',
+        image: null
+      });
+
+      await act(() => {
+        jest.runAllTimers();
+      });
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(0);
+    });
+
+    it('should set mode to file-selected when selected image is too small for cropping', async () => {
+      expect.assertions(3);
+
+      jest.useFakeTimers();
+
+      const { setModeSpy, resolve, promise } = setup({
+        mode: 'edit',
+        imageSize: { width: 200, height: 200 }
+      });
+
+      await act(() => {
+        jest.runAllTimers();
+      });
+
+      await act(async () => {
+        resolve({
+          toDataURL: jest.fn(() => 'Some base 64 string')
+        });
+        await expect(promise).resolves.toBeDefined();
+      });
+
+      expect(setModeSpy).toHaveBeenCalledTimes(1);
+      expect(setModeSpy).toHaveBeenCalledWith('file-selected');
     });
   });
 });

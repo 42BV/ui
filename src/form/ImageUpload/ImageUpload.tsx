@@ -1,4 +1,4 @@
-import React, { Fragment, MutableRefObject, useEffect, useRef, useState, WheelEventHandler } from 'react';
+import React, { Fragment, MutableRefObject, useCallback, useEffect, useRef, useState, WheelEventHandler } from 'react';
 import { FieldValidator } from 'final-form';
 import { FormGroup, Label } from 'reactstrap';
 import AvatarEditor from 'react-avatar-editor';
@@ -93,7 +93,7 @@ export type Props = Omit<FieldCompatible<Value, ChangeValue>,
   'change' or 'remove' buttons.
 
   If the imageSrc is not empty at the start, which is true when
-  using this component in an update form, the mode will become 
+  using this component in an update form, the mode will become
   'file-selected'.
 */
 export type Mode = 'no-file' | 'edit' | 'file-selected';
@@ -160,47 +160,88 @@ export function ImageUpload(props: Props) {
           fileName: file.name,
           rotate: 0,
           scale: 1
-        })
+        });
         setMode('edit');
       });
     }
   }
 
+  const cropStep = useCallback(async () => {
+    /* istanbul ignore if */
+    if (!editorRef.current) {
+      return;
+    }
+
+    const canvas = editorRef.current.getImage();
+    const config = cropToAvatarEditorConfig(crop);
+
+    const offScreenCanvas = document.createElement('canvas');
+    offScreenCanvas.width = config.width < canvas.width ? config.width : canvas.width;
+    offScreenCanvas.height = config.height < canvas.height ? config.height : canvas.height;
+
+    // Let pica generate the cropped image as pica uses a far
+    // better compression algorithm than the browsers do by default!
+    return getPicaInstance().resize(canvas, offScreenCanvas, {
+      alpha: true
+    });
+  }, [ crop ]);
+
   async function onCrop() {
-    if (image && editorRef.current) {
+    const data = await cropImage();
+    if (data) {
+      afterCrop(data);
+    }
+  }
+
+  const cropImage = useCallback(async () => {
+    if (!image) {
+      return undefined;
+    }
+
+    const picaCanvas = await cropStep();
+    const dataUrl = picaCanvas.toDataURL('image/png', 1.0);
+    const newFileName = keepOriginalFileExtension ? image.fileName : replaceFileExtension(image.fileName);
+    const file = dataUrlToFile(dataUrl, newFileName);
+
+    onChange(file);
+    doBlur(onBlur);
+
+    return { src: dataUrl, fileName: newFileName };
+  }, [ image, onChange, onBlur, cropStep, keepOriginalFileExtension ]);
+
+  function afterCrop({ src, fileName }: { src: string; fileName: string }) {
+    setMode('file-selected');
+    setImage({
+      src,
+      fileName,
+      rotate: 0,
+      scale: 1
+    });
+  }
+
+  useEffect(() => {
+    async function imgSelectCrop() {
+      const data = await cropImage();
+
+      if (!data || !editorRef.current) {
+        return;
+      }
+
       const canvas = editorRef.current.getImage();
       const config = cropToAvatarEditorConfig(crop);
 
-      const offScreenCanvas = document.createElement('canvas');
-      offScreenCanvas.width = config.width;
-      offScreenCanvas.height = config.height;
-
-      // Let pica generate the cropped image as pica uses a far
-      // better compression algorithm than the browsers do by default!
-      const picaCanvas = await getPicaInstance().resize(
-        canvas,
-        offScreenCanvas,
-        {
-          alpha: true
-        }
-      );
-
-      const dataUrl = picaCanvas.toDataURL('image/png', 1.0);
-      const newFileName = keepOriginalFileExtension ? image.fileName : replaceFileExtension(image.fileName);
-      const file = dataUrlToFile(dataUrl, image.fileName);
-
-      onChange(file);
-      doBlur(onBlur);
-
-      setMode('file-selected');
-      setImage({
-        src: dataUrl,
-        fileName: newFileName,
-        rotate: 0,
-        scale: 1
-      });
+      if (config.width >= canvas.width && config.height >= canvas.height) {
+        afterCrop(data);
+      }
     }
-  }
+
+    if (mode === 'edit') {
+      const timeout = setTimeout(() => {
+        imgSelectCrop().catch(console.error);
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
+  }, [ mode, crop, cropImage ]);
 
   function rotateLeft() {
     if (image) {
@@ -223,6 +264,7 @@ export function ImageUpload(props: Props) {
 
   function resetFileInput() {
     setImage(undefined);
+    setMode('no-file');
 
     onChange(null);
     doBlur(onBlur);
@@ -293,7 +335,7 @@ function Editor({
   changeScale
 }: {
   crop: ImageUploadCrop;
-  editorRef: MutableRefObject<AvatarEditor|null>;
+  editorRef: MutableRefObject<AvatarEditor | null>;
   image: ImageState;
   changeScale: WheelEventHandler<HTMLDivElement>;
 }) {
