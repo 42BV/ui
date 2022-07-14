@@ -238,11 +238,11 @@ export default function DateTimeInput(props: Props) {
  */
 export const JarbDateTimeInput = withJarb<Date, Date, Props>(DateTimeInput);
 
-export function maskedInput(props: unknown) {
+export function maskedInput(props: object) {
   return <MaskedInput {...props} render={reactStrapInput} />;
 }
 
-export function maskedInputGroup(props: unknown, onClick: () => void) {
+export function maskedInputGroup(props: object, onClick: () => void) {
   return (
     <InputGroup>
       <MaskedInput {...props} render={reactStrapInput} />
