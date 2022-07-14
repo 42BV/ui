@@ -14,13 +14,13 @@ object-assign
  * OverlayScrollbars
  * https://github.com/KingSora/OverlayScrollbars
  *
- * Version: 1.13.0
+ * Version: 1.13.2
  *
  * Copyright KingSora | Rene Haas.
  * https://github.com/KingSora
  *
  * Released under the MIT license.
- * Date: 02.08.2020
+ * Date: 01.06.2022
  */
 
 /*!
@@ -101,7 +101,7 @@ and limitations under the License.
  */
 
 /**
- * React Router DOM v6.2.1
+ * React Router DOM v6.3.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -112,7 +112,7 @@ and limitations under the License.
  */
 
 /**
- * React Router v6.2.1
+ * React Router v6.3.0
  *
  * Copyright (c) Remix Software Inc.
  *
