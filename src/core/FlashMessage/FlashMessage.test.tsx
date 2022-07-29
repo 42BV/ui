@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import FlashMessage from './FlashMessage';
+import { FlashMessage } from './FlashMessage';
 
 describe('Component: FlashMessage', () => {
   describe('ui', () => {

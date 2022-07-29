@@ -1,6 +1,6 @@
 import React from 'react';
-import { Icon } from '../../core/Icon';
-import Tooltip from '../../core/Tooltip/Tooltip';
+import { Icon } from '../Icon';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 type Props = {
   /**

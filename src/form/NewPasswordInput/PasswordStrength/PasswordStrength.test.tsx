@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import * as MeterWidth from './useMeterWidth/useMeterWidth';
 import * as Rules from './useRules/useRules';
 
-import PasswordStrength from './PasswordStrength';
+import { PasswordStrength } from './PasswordStrength';
 
 describe('Component: PasswordStrength', () => {
   function setup({

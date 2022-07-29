@@ -1,6 +1,7 @@
 import React from 'react';
 
-import AsyncContent, {
+import {
+  AsyncContent,
   Props as AsyncContentProps, ReactAsyncState, ReactQueryState
 } from '../AsyncContent/AsyncContent';
 
@@ -19,6 +20,6 @@ export function isEmpty<T>(list: T[]): boolean {
  * standard `isEmpty` function which checks if the array has the
  * `length` zero.
  */
-export default function AsyncList<T>(props: Props<T[]>) {
+export function AsyncList<T>(props: Props<T[]>) {
   return <AsyncContent {...props} isEmpty={isEmpty} />;
 }

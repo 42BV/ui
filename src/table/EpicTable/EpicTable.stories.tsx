@@ -18,17 +18,14 @@ import { EpicSelection } from './widgets/EpicSelection/EpicSelection';
 import { EpicSort } from './widgets/EpicSort/EpicSort';
 
 import { EpicTableSortDirection } from './types';
-import {
-  Button,
-  ContentState,
-  ContentStateMode,
-  DateTimeInput,
-  pageOf,
-  Pagination,
-  Tag
-} from '../..';
 import moment from 'moment';
-import MoreOrLess from '../../core/MoreOrLess/MoreOrLess';
+import { MoreOrLess } from '../../core/MoreOrLess/MoreOrLess';
+import { pageOf } from '../../utilities/page/page';
+import { Tag } from '../../core/Tag/Tag';
+import { ContentState, ContentStateMode } from '../../core/ContentState/ContentState';
+import { DateTimeInput } from '../../form/DateTimeInput/DateTimeInput';
+import { Button } from '../../core/Button/Button';
+import { Pagination } from '../../core/Pagination/Pagination';
 
 storiesOf('table/EpicTable', module)
   .addParameters({ component: EpicTable })

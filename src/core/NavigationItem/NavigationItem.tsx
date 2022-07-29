@@ -48,7 +48,7 @@ type Props = {
  * https://reacttraining.com/react-router/web/api/Route/exact-bool.
  * But you can set it to `false` via the props.
  */
-export default function NavigationItem({
+export function NavigationItem({
   to,
   icon,
   text,

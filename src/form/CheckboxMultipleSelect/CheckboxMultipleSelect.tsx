@@ -1,7 +1,7 @@
 import { chunk } from 'lodash';
 import React from 'react';
 import { FormGroup, Input as RSInput, Label } from 'reactstrap';
-import { Loading } from '../..';
+import { Loading } from '../../core/Loading/Loading';
 import { useId } from '../../hooks/useId/useId';
 import { t } from '../../utilities/translation/translation';
 import {
@@ -12,7 +12,7 @@ import {
 import { FieldCompatible } from '../types';
 import { useOptions } from '../useOptions';
 import { alwaysTrue, doBlur } from '../utils';
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 
 export type Text = {
   /**
@@ -78,7 +78,7 @@ export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
  * If you want to display more than 100 options,
  * you should use the ModalPickerMultiple instead.
  */
-export default function CheckboxMultipleSelect<T>(props: Props<T>) {
+export function CheckboxMultipleSelect<T>(props: Props<T>) {
   const {
     id,
     label,

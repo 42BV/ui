@@ -2,8 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { useBootstrapSize } from './useBootstrapSize';
 import { Card } from 'reactstrap';
-import Button from '../../core/Button/Button';
-import Avatar from '../../core/Avatar/Avatar';
+import { Button } from '../../core/Button/Button';
+import { Avatar } from '../../core/Avatar/Avatar';
 
 storiesOf('hooks/useBootstrapSize', module)
   .add('basic', () => {

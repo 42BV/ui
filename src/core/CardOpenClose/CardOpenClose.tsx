@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { OpenClose } from '../OpenClose/OpenClose';
 import { Card, CardHeader } from 'reactstrap';
 import classNames from 'classnames';
-import Loading from '../Loading/Loading';
+import { Loading } from '../Loading/Loading';
 
 type Props = {
   /**

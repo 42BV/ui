@@ -4,8 +4,8 @@ import '@testing-library/jest-dom';
 
 import { CrudTable } from './CrudTable';
 import { Page } from '@42.nl/spring-connect';
-import Tag from '../../core/Tag/Tag';
-import Button from '../../core/Button/Button';
+import { Tag } from '../../core/Tag/Tag';
+import { Button } from '../../core/Button/Button';
 import { pageOfUsers } from '../../test/fixtures';
 import { EpicRow } from '../EpicTable/rows/EpicRow/EpicRow';
 import { EpicCell } from '../EpicTable/cells/EpicCell/EpicCell';

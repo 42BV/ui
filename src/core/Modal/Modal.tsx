@@ -6,7 +6,7 @@ import {
   ModalHeader
 } from 'reactstrap';
 import { BootstrapSize } from '../types';
-import Loading from '../Loading/Loading';
+import { Loading } from '../Loading/Loading';
 
 type Props = {
   /**

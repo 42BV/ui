@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import ConfirmModal from './ConfirmModal';
+import { ConfirmModal } from './ConfirmModal';
 
 describe('Component: ConfirmModal', () => {
   describe('ui', () => {

@@ -4,11 +4,11 @@ import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-quer
 import { Alert, Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
-import AsyncPage from './AsyncPage';
+import { AsyncPage } from './AsyncPage';
 
 import { pageOfUsers } from '../../test/fixtures';
 import { User } from '../../test/types';
-import { ContentState } from '../..';
+import { ContentState } from '../ContentState/ContentState';
 import { action } from '@storybook/addon-actions';
 
 function loadData(): Promise<Page<User>> {
@@ -28,7 +28,7 @@ function emptyData(): Promise<Page<User>> {
 }
 
 function rejectData(): Promise<Page<User>> {
-  return new Promise((resolve, reject) => {
+  return new Promise((_, reject) => {
     setTimeout(() => {
       reject('could not load');
     }, 1000);

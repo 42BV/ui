@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import Button, { getIconSize, getSpinnerSize } from './Button';
-import useShowSpinner from './useShowSpinner';
+import { Button, getIconSize, getSpinnerSize } from './Button';
+import { useShowSpinner } from './useShowSpinner';
 
 describe('Component: Button', () => {
   describe('ui', () => {

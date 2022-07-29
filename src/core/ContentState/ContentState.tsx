@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import Icon from '../Icon/Icon';
-import Spinner from '../Spinner/Spinner';
+import { Icon } from '../Icon';
+import { Spinner } from '../Spinner/Spinner';
 
 export type ContentStateMode = 'empty' | 'no-results' | 'error' | 'loading';
 
@@ -54,7 +54,7 @@ type Props = {
  * did not go as planned / expected. Use this component whenever you
  * would otherwise display 'nothing'.
  */
-export default function ContentState({
+export function ContentState({
   mode,
   title,
   subTitle,

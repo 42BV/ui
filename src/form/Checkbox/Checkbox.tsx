@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 
-import withJarb from '../withJarb/withJarb';
-import { Color } from '../..';
+import { withJarb } from '../withJarb/withJarb';
+import { Color } from '../../core/types';
 import { doBlur } from '../utils';
 
 type Props = {
@@ -73,7 +73,7 @@ type Props = {
 /**
  * Checkbox is a form element for when the value is a boolean.
  */
-export default function Checkbox(props: Props) {
+export function Checkbox(props: Props) {
   const {
     id,
     onChange,

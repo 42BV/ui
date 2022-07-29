@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentState from '../../core/ContentState/ContentState';
+import { ContentState } from '../../core/ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
  * message saying that there is no result for the current
  * search query when the user has searched.
  */
-export default function EmptyModal(props: Props) {
+export function EmptyModal(props: Props) {
   const { userHasSearched, title, subTitle } = props;
   if (userHasSearched) {
     return (

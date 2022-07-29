@@ -5,9 +5,9 @@ import getDisplayName from 'react-display-name';
 import { clearErrorsForValidator } from '@42.nl/react-error-store';
 import { omit, pick } from 'lodash';
 
-import FormError from '../FormError/FormError';
+import { FormError } from '../FormError/FormError';
 import { getState } from '../utils';
-import Tooltip from '../../core/Tooltip/Tooltip';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { useHasErrors } from './useHasErrors/useHasErrors';
 import { useMarkedAsRequiredLabel } from './useMarkedAsRequiredLabel/useMarkedAsRequiredLabel';
 import { FieldCompatible } from '../types';
@@ -50,7 +50,7 @@ export type JarbFieldCompatible<Value, ChangeValue> = FieldCompatible<
  *
  * @param Wrapper The Component which is `JarbFieldCompatible`.
  */
-export default function withJarb<
+export function withJarb<
   Value,
   ChangeValue,
   P extends JarbFieldCompatible<Value, ChangeValue>

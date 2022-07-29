@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Avatar from './Avatar';
+import { Avatar } from './Avatar';
 import { BootstrapSize } from '../types';
 
 describe('Component: Avatar', () => {

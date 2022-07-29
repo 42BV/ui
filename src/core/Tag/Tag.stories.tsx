@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import Tag from './Tag';
+import { Tag } from './Tag';
 
 storiesOf('core/Tag', module)
   .addParameters({ component: Tag })

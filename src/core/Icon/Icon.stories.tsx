@@ -2,8 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import Icon from './Icon';
-import Button from '../Button/Button';
+import { Icon } from './Icon';
+import { Button } from '../Button/Button';
 
 storiesOf('core/Icons', module)
   .addParameters({ component: Icon })

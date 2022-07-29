@@ -1,11 +1,11 @@
 import React from 'react';
 import { EpicCellLayout } from '../../../EpicTable/cells/EpicCellLayout/EpicCellLayout';
 import { EpicSort } from '../../../EpicTable/widgets/EpicSort/EpicSort';
-import Input from '../../../../form/Input/Input';
+import { Input } from '../../../../form/Input/Input';
 import { EpicTableSortDirection } from '../../../EpicTable/types';
 import { LabelForOption } from '../../../../form/option';
 import { EpicHeader } from '../../../EpicTable/cells/EpicHeader/EpicHeader';
-import Select from '../../../../form/Select/Select';
+import { Select } from '../../../../form/Select/Select';
 
 type Props<T> = {
   /**

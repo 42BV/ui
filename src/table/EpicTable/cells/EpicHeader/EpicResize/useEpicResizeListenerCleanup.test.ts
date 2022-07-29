@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 
-import { listenerConfig } from './EpicResize';
 import { useEpicResizeListenerCleanup } from './useEpicResizeListenerCleanup';
+import { listenerConfig } from './ListenerConfig';
 
 describe('useEpicResizeListenerCleanup', () => {
   test('that the event listeners are destroyed', () => {

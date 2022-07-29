@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
 import {
   FieldCompatibleWithPredeterminedOptions,
@@ -9,9 +9,9 @@ import {
   getKeyForOption
 } from '../option';
 import { alwaysTrue, doBlur } from '../utils';
-import Loading from '../../core/Loading/Loading';
+import { Loading } from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
-import TextButton from '../../core/TextButton/TextButton';
+import { TextButton } from '../../core/TextButton/TextButton';
 import { FieldCompatible } from '../types';
 
 export type Text = {
@@ -59,7 +59,7 @@ export type Props<T> = FieldCompatible<T, T | undefined> &
  * If you want to display more than 100 options,
  * you should use the ModalPickerSingle instead.
  */
-export default function RadioGroup<T>(props: Props<T>) {
+export function RadioGroup<T>(props: Props<T>) {
   const {
     label,
     value,

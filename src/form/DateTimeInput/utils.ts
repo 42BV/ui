@@ -1,4 +1,4 @@
-import moment, { isMoment, Moment } from 'moment';
+import moment, { Moment } from 'moment';
 import { InputMask } from '../Input/Input';
 import { DateFormat, TimeFormat } from './types';
 
@@ -78,7 +78,7 @@ export function isDate(
   dateFormat: DateFormat,
   timeFormat: TimeFormat
 ): boolean {
-  if (isMoment(value)) {
+  if (moment.isMoment(value)) {
     return true;
   }
 

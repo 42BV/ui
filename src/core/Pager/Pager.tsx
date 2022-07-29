@@ -3,7 +3,7 @@ import { Page } from '@42.nl/spring-connect';
 import classNames from 'classnames';
 
 import { t } from '../../utilities/translation/translation';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 
 type Text = {
   /**
@@ -50,7 +50,7 @@ type Props<T> = {
  *
  * It supports working with a `Page` from `@42.nl/spring-connect`.
  */
-export default function Pager<T>({
+export function Pager<T>({
   page,
   onChange,
   className,

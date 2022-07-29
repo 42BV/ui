@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Button, { Props as ButtonProps } from '../Button/Button';
+import { Button, Props as ButtonProps } from '../Button/Button';
 
 export type Props = Omit<ButtonProps, 'onClick' | 'inProgress'> & {
   /**

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import Button, { Props as ButtonProps } from '../Button/Button';
-import ConfirmModal from '../ConfirmModal/ConfirmModal';
+import { Button, Props as ButtonProps } from '../Button/Button';
+import { ConfirmModal } from '../ConfirmModal/ConfirmModal';
 
 type Text = {
   /**
@@ -54,7 +54,7 @@ type Props = ButtonProps & {
  * The obvious use case is a delete button which asks the user if
  * he is sure he wants to delete something.
  */
-export default function ConfirmButton({
+export function ConfirmButton({
   icon,
   children,
   fullWidth,

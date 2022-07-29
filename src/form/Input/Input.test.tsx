@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Input, { InputMask, InputType, reactStrapInput } from './Input';
+import { Input, InputMask, InputType, reactStrapInput } from './Input';
 
 import { Addon } from '../addons/Addon/Addon';
 

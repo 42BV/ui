@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import MoreOrLess from './MoreOrLess';
+import { MoreOrLess } from './MoreOrLess';
 
 describe('Component: MoreOrLess', () => {
   function setup({

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import NewPasswordInput, {
-  isStrongPassword,
-  JarbNewPasswordInput
-} from './NewPasswordInput';
-import { Addon, Icon, Tooltip, Card } from '../..';
+import { NewPasswordInput, isStrongPassword, JarbNewPasswordInput } from './NewPasswordInput';
 import { Alert } from 'reactstrap';
+import { Card } from '../../core/Card/Card';
+import { Addon } from '../addons/Addon/Addon';
+import { Icon } from '../../core/Icon';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
 
 storiesOf('Form/NewPasswordInput', module)
   .addParameters({ component: NewPasswordInput })

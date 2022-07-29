@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Avatar from './Avatar';
-import AvatarStack from './AvatarStack';
+import { Avatar } from './Avatar';
+import { AvatarStack } from './AvatarStack';
 
 storiesOf('core/Avatar', module)
   .addParameters({ component: Avatar })

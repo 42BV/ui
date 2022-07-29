@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import EmptyModal from './EmptyModal';
+import { EmptyModal } from './EmptyModal';
 
 describe('Component: EmptyModal', () => {
   test('mode: empty', () => {

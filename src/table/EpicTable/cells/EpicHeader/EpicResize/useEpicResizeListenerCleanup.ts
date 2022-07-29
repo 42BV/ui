@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { listenerConfig } from './EpicResize';
+import { listenerConfig } from './ListenerConfig';
 
 export function useEpicResizeListenerCleanup(
   resize: (event: MouseEvent) => void,

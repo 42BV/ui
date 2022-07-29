@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import ConfirmButton from './ConfirmButton';
+import { ConfirmButton } from './ConfirmButton';
 
 storiesOf('core/buttons/ConfirmButton', module)
   .addParameters({ component: ConfirmButton })

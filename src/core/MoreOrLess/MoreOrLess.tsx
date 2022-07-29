@@ -43,7 +43,7 @@ type Props = {
 /**
  * MoreOrLess is a component which truncates a collection of elements and shows a button to toggle this behavior.
  */
-export default function MoreOrLess({
+export function MoreOrLess({
   limit,
   content,
   className,

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { Alert } from 'reactstrap';
 
-import Checkbox, { JarbCheckbox } from './Checkbox';
+import { Checkbox, JarbCheckbox } from './Checkbox';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 
 import { Icon } from '../../core/Icon';
-import Tooltip from '../../core/Tooltip/Tooltip';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { Card } from '../../core/Card/Card';
 
 function isSClass(value?: boolean) {

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import SearchInput from './SearchInput';
+import { SearchInput } from './SearchInput';
 
 import { Alert, Card } from 'reactstrap';
-import { Button, Icon, Select, Tooltip } from '../..';
+import { Icon } from '../Icon';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { Button } from '../Button/Button';
+import { Select } from '../../form/Select/Select';
 
 storiesOf('core/SearchInput', module)
   .addParameters({ component: SearchInput })

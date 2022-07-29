@@ -10,9 +10,7 @@ import {
 } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
-import ModalPickerMultiple, {
-  JarbModalPickerMultiple
-} from './ModalPickerMultiple';
+import { ModalPickerMultiple, JarbModalPickerMultiple } from './ModalPickerMultiple';
 
 import {
   FinalForm,
@@ -27,7 +25,7 @@ import {
 } from '../../story-utils';
 import { Icon, Toggle, Tooltip, Card } from '../../..';
 import { Alert, ListGroup, ListGroupItem } from 'reactstrap';
-import Avatar from '../../../core/Avatar/Avatar';
+import { Avatar } from '../../../core/Avatar/Avatar';
 import classNames from 'classnames';
 
 storiesOf('Form/ModalPicker/ModalPickerMultiple', module)

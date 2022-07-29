@@ -5,8 +5,8 @@ import { Form } from 'react-final-form';
 import { Card } from 'reactstrap';
 
 import { OpenCloseModal } from './OpenCloseModal';
-import Button from '../Button/Button';
-import RadioGroup from '../../form/RadioGroup/RadioGroup';
+import { Button } from '../Button/Button';
+import { RadioGroup } from '../../form/RadioGroup/RadioGroup';
 import { TotalForm } from '../../form/FormExample.stories';
 import { range } from 'lodash';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '../..';
+import { Color } from '../types';
 
 type Props = {
   /**
@@ -35,7 +35,7 @@ type Props = {
  * example is someone' hobby's on a profile page, each hobby could
  * be a `Tag`.
  */
-export default function Tag({ text, color, onRemove, className }: Props) {
+export function Tag({ text, color, onRemove, className }: Props) {
   const canClose = onRemove !== undefined;
   const classes = classNames('tag', className, {
     [`tag-${color}`]: color

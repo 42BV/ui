@@ -23,7 +23,7 @@ type Props = {
  * The TextButton component is a special type of button which shows
  * like a styled text.
  */
-export default function TextButton({ onClick, children, className }: Props) {
+export function TextButton({ onClick, children, className }: Props) {
   return (
     <u
       role="button"

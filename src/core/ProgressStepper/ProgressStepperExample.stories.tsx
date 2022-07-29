@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import ProgressStepper from './ProgressStepper';
+import { ProgressStepper } from './ProgressStepper';
 
 type Step = 'Billing' | 'Coupon' | 'Finished';
 

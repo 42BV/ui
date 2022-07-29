@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import RadioGroup, { Text } from './RadioGroup';
+import { RadioGroup, Text } from './RadioGroup';
 import { User } from '../../test/types';
 import {
   adminUser,

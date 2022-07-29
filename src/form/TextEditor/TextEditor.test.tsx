@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import TextEditor from './TextEditor';
+import { TextEditor } from './TextEditor';
 import userEvent from '@testing-library/user-event';
 
 describe('Component: TextEditor', () => {

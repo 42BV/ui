@@ -13,11 +13,11 @@ import {
   Row
 } from 'reactstrap';
 
-import Popover from './Popover';
-import Tag from '../Tag/Tag';
+import { Popover } from './Popover';
+import { Tag } from '../Tag/Tag';
 
-import ConfirmButton from '../ConfirmButton/ConfirmButton';
-import Button from '../Button/Button';
+import { ConfirmButton } from '../ConfirmButton/ConfirmButton';
+import { Button } from '../Button/Button';
 import { OpenCloseModal } from '../OpenCloseModal/OpenCloseModal';
 
 storiesOf('core/Popover', module)

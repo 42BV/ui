@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 import { ModalPickerButtonAlignment } from '../types';
 import classNames from 'classnames';
 import { t } from '../../../utilities/translation/translation';
-import TextButton from '../../../core/TextButton/TextButton';
+import { TextButton } from '../../../core/TextButton/TextButton';
 import { ModalPickerSingleRenderValue } from '../single/ModalPickerSingle';
 import { ModalPickerMultipleRenderValues } from '../multiple/ModalPickerMultiple';
 import { Icon, IconType } from '../../../core/Icon';

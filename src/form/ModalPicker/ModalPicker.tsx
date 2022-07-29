@@ -10,11 +10,11 @@ import {
   Row
 } from 'reactstrap';
 
-import Pagination from '../../core/Pagination/Pagination';
+import { Pagination } from '../../core/Pagination/Pagination';
 import { t } from '../../utilities/translation/translation';
-import SearchInput from '../../core/SearchInput/SearchInput';
-import ContentState from '../../core/ContentState/ContentState';
-import EmptyModal from './EmptyModal';
+import { SearchInput } from '../../core/SearchInput/SearchInput';
+import { ContentState } from '../../core/ContentState/ContentState';
+import { EmptyModal } from './EmptyModal';
 import {
   ModalPickerRenderOptions,
   ModalPickerRenderOptionsOption
@@ -147,7 +147,7 @@ export type RenderOptionsConfig<T> = Omit<
  *
  * It supports working with a `Page` from `@42.nl/spring-connect`.
  */
-export default function ModalPicker<T>(props: Props<T>) {
+export function ModalPicker<T>(props: Props<T>) {
   const {
     placeholder,
     isOpen,

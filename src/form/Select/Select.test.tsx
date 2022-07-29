@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Select, { Text } from './Select';
+import { Select, Text } from './Select';
 import { User } from '../../test/types';
 import {
   adminUser,

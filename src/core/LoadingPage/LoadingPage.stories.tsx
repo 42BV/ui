@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import LoadingPage from './LoadingPage';
+import { LoadingPage } from './LoadingPage';
 
 storiesOf('core/LoadingPage', module)
   .addParameters({ component: LoadingPage })

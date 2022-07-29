@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import AsyncContent from './AsyncContent';
+import { AsyncContent } from './AsyncContent';
 
 type State = {
   isLoading: boolean;

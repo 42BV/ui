@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Card as ReactstrapCard, CardBody, CardFooter, CardHeader } from 'reactstrap';
-import Loading from '../Loading/Loading';
+import { Loading } from '../Loading/Loading';
 import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
 
 export type Props = {

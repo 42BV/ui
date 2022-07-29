@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Input as RSInput, Label } from 'reactstrap';
 
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
 import {
   FieldCompatibleWithPredeterminedOptions,
@@ -9,7 +9,7 @@ import {
   getKeyForOption
 } from '../option';
 import { useOptions } from '../useOptions';
-import Loading from '../../core/Loading/Loading';
+import { Loading } from '../../core/Loading/Loading';
 import { useId } from '../../hooks/useId/useId';
 import { FieldCompatible } from '../types';
 import { alwaysTrue } from '../utils';
@@ -41,7 +41,7 @@ export type Props<T> = FieldCompatible<T, T> &
  * If you want to display more than 100 options,
  * you should use the ModalPickerSingle instead.
  */
-export default function Select<T>(props: Props<T>) {
+export function Select<T>(props: Props<T>) {
   const {
     id,
     label,

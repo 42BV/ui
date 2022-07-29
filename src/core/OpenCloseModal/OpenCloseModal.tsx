@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../Button/Button';
-import SubmitButton from '../SubmitButton/SubmitButton';
+import { Button } from '../Button/Button';
+import { SubmitButton } from '../SubmitButton/SubmitButton';
 import { t } from '../../utilities/translation/translation';
 import { BootstrapSize } from '../types';
 import { IconType } from '../Icon';

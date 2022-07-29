@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '../..';
+import { Color } from '../types';
 
 type Props = {
   /**
@@ -46,7 +46,7 @@ type Props = {
  * instead of a checkbox, when you want the changes to take effect
  * immediately.
  */
-export default function Toggle({
+export function Toggle({
   className,
   color,
   id,

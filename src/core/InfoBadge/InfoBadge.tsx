@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
 import classNames from 'classnames';
-import { Color } from '../..';
+import { Color } from '../types';
 
 type Props = {
   /**
@@ -32,7 +32,7 @@ type Props = {
  * Use it when you want to show a notification / message count above
  * an element.
  */
-export default function InfoBadge({
+export function InfoBadge({
   color,
   value,
   children,

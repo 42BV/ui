@@ -2,9 +2,9 @@ import React from 'react';
 import { AsyncState } from 'react-async';
 import { UseQueryResult } from '@tanstack/react-query';
 
-import ContentState from '../ContentState/ContentState';
+import { ContentState } from '../ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 
 type Text = {
   /**
@@ -105,7 +105,7 @@ export type Props<T> = {
  * With these behaviors you ensure that you always handle the error and
  * loading state when using `useQuery` or `useAsync`.
  */
-export default function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQueryState<T>)) {
+export function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQueryState<T>)) {
   const {
     state,
     text = {},

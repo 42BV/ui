@@ -4,13 +4,13 @@ import Datetime from 'react-datetime';
 import { constant, get, isEmpty } from 'lodash';
 import moment, { Moment } from 'moment';
 import MaskedInput from 'react-text-mask';
-import { Icon } from '../..';
+import { Icon } from '../../core/Icon';
 
 import { DateFormat, TimeFormat } from './types';
 
 import { combineFormat, formatToMask, isDate } from './utils';
 
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
 import classNames from 'classnames';
@@ -86,7 +86,7 @@ export type Props = FieldCompatible<Date, Date | undefined> & {
  * DateTimeInput is a form element which allows the user to select:
  * date and times, times, and dates.
  */
-export default function DateTimeInput(props: Props) {
+export function DateTimeInput(props: Props) {
   /*
     When the user enter an invalid string. We call `onChange(null)` 
     to indicate that the value is no longer a valid date. This will

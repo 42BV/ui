@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 
-import NavigationItem from './NavigationItem';
+import { NavigationItem } from './NavigationItem';
 import { Alert } from 'reactstrap';
 
 storiesOf('core/NavigationItem', module)

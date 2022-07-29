@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import Spinner from '../Spinner/Spinner';
+import { Spinner } from '../Spinner/Spinner';
 
 import { t } from '../../utilities/translation/translation';
 
@@ -31,7 +31,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export default function Loading({ children, className, text = {} }: Props) {
+export function Loading({ children, className, text = {} }: Props) {
   const classes = classNames('d-flex', className);
 
   return (

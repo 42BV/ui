@@ -3,7 +3,7 @@ import { render, act, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Page } from '@42.nl/spring-connect';
 
-import ValuePicker from './ValuePicker';
+import { ValuePicker } from './ValuePicker';
 import { Options } from '../option';
 
 import { User } from '../../test/types';

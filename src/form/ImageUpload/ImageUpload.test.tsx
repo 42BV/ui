@@ -4,7 +4,8 @@ import '@testing-library/jest-dom';
 
 import * as imgUploadUtils from './utils';
 
-import ImageUpload, {
+import {
+  ImageUpload,
   ImageState,
   ImageUploadCrop,
   limitImageSize,

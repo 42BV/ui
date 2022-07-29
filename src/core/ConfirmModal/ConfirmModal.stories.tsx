@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import ConfirmModal from './ConfirmModal';
+import { ConfirmModal } from './ConfirmModal';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Progress } from 'reactstrap';
 
 import { t } from '../../../utilities/translation/translation';
-import Icon from '../../../core/Icon/Icon';
+import { Icon } from '../../../core/Icon';
 import { useMeterWidth } from './useMeterWidth/useMeterWidth';
 import { useRules } from './useRules/useRules';
 import { NewPasswordInputRule } from '../types';
@@ -32,7 +32,7 @@ type Props = {
   showMeter?: boolean;
 };
 
-export default function PasswordStrength(props: Props) {
+export function PasswordStrength(props: Props) {
   const { password, rules, minimumLength = 10, showMeter = true } = props;
 
   const compliant = useRules(rules, password, minimumLength);

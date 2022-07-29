@@ -1,5 +1,5 @@
 import React from 'react';
-import Button, { Props as ButtonProps } from '../../core/Button/Button';
+import { Button, Props as ButtonProps } from '../../core/Button/Button';
 
 type Props = {
   /**

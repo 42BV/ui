@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Spinner from './Spinner';
+import { Spinner } from './Spinner';
 
 storiesOf('core/Spinner', module)
   .addParameters({ component: Spinner })

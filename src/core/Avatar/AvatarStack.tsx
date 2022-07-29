@@ -18,7 +18,7 @@ type Props = {
  * AvatarStack is a component which shows a row of overlapped avatars.
  * Use it for instance when you want to show multiple thumbnails of users in an organized way.
  */
-export default function AvatarStack({ children, className }: Props) {
+export function AvatarStack({ children, className }: Props) {
   return (
     <div className={classNames('avatar-stack', className)}>{children}</div>
   );

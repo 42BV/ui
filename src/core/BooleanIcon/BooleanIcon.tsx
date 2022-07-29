@@ -1,5 +1,5 @@
 import React from 'react';
-import { default as Icon, Props as IconProps } from '../Icon/Icon';
+import { Icon, Props as IconProps } from '../Icon/Icon';
 import { Color } from '../types';
 
 type Props = {

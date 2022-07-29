@@ -11,7 +11,7 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../../story-utils';
-import TypeaheadSingle, { JarbTypeaheadSingle } from './TypeaheadSingle';
+import { TypeaheadSingle, JarbTypeaheadSingle } from './TypeaheadSingle';
 import { Alert } from 'reactstrap';
 
 storiesOf('Form/Typeahead/TypeaheadSingle', module)

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
  *
  * @param show
  */
-export default function useShowSpinner(show: boolean): boolean {
+export function useShowSpinner(show: boolean): boolean {
   const [showSpinner, setShowSpinner] = useState(show);
 
   useEffect(() => {

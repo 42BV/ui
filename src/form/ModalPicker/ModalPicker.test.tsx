@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
-import ModalPicker, { RenderOptionsConfig } from './ModalPicker';
+import { ModalPicker, RenderOptionsConfig } from './ModalPicker';
 import { User } from '../../test/types';
 import { adminUser, coordinatorUser, pageOfUsers, userUser } from '../../test/fixtures';
 import { ModalPickerRenderOptionsOption } from './types';

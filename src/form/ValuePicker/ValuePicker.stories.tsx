@@ -5,12 +5,14 @@ import { pageWithContentAndExactSize, pageWithContent } from '../../test/utils';
 import { userUser, adminUser, randomUser } from '../../test/fixtures';
 import { User } from '../../test/types';
 
-import ValuePicker, { JarbValuePicker } from './ValuePicker';
+import { ValuePicker, JarbValuePicker } from './ValuePicker';
 
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import Button from '../../core/Button/Button';
-import { Tooltip, Icon, Card } from '../..';
+import { Button } from '../../core/Button/Button';
 import { Alert } from 'reactstrap';
+import { Card } from '../../core/Card/Card';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { Icon } from '../../core/Icon';
 
 /*
   Storing users here instead of calling the fixtures again so

@@ -3,7 +3,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
-import ModalPickerSingle from './ModalPickerSingle';
+import { ModalPickerSingle } from './ModalPickerSingle';
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
 import { adminUser, listOfUsers, pageOfUsersFetcher, randomUser } from '../../../test/fixtures';

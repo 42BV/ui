@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Tooltip from '../../../core/Tooltip/Tooltip';
+import { Tooltip } from '../../../core/Tooltip/Tooltip';
 import { LabelForOption } from '../../option';
 import { useComponentOverflow } from './useComponentOverflow/useComponentOverflow';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import SubmitButton from './SubmitButton';
+import { SubmitButton } from './SubmitButton';
 
 storiesOf('core/buttons/SubmitButton', module)
   .addParameters({ component: SubmitButton })

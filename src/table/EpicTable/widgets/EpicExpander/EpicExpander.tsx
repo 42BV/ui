@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../../../../core/Button/Button';
+import { Button } from '../../../../core/Button/Button';
 
 export type Props = {
   /**

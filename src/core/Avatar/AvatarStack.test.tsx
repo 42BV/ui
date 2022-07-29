@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Avatar from './Avatar';
-import AvatarStack from './AvatarStack';
+import { Avatar } from './Avatar';
+import { AvatarStack } from './AvatarStack';
 
 describe('Component: AvatarsStack', () => {
   test('ui', () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import TextButton from './TextButton';
+import { TextButton } from './TextButton';
 
 describe('component: TextButton', () => {
   function setup({ className }: { className?: string }) {

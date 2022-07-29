@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 
-import withJarb from '../../withJarb/withJarb';
+import { withJarb } from '../../withJarb/withJarb';
 import { alwaysTrue, doBlur } from '../../utils';
-import Tag from '../../../core/Tag/Tag';
-import ModalPicker, { Text } from '../ModalPicker';
+import { Tag } from '../../../core/Tag/Tag';
+import { ModalPicker, Text } from '../ModalPicker';
 import {
   ModalPickerAddButtonCallback,
   ModalPickerAddButtonOptions,
@@ -119,7 +119,7 @@ export type Props<T> = Omit<
  * can type in the selections quicker than he can select it from
  * the modal.
  */
-export default function ModalPickerMultiple<T>(props: Props<T>) {
+export function ModalPickerMultiple<T>(props: Props<T>) {
   const {
     id,
     label,

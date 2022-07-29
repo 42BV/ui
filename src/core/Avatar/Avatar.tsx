@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import { BootstrapSize } from '../types';
-import Tooltip from '../Tooltip/Tooltip';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 type Props = {
   /**
@@ -37,7 +37,7 @@ type Props = {
  * Avatar is a component which shows a circular image with any element underneath.
  * Use it for instance for showing the profile image of a logged-in user.
  */
-export default function Avatar({ size, className, alt, src, children }: Props) {
+export function Avatar({ size, className, alt, src, children }: Props) {
   const sizeClass = size ? `avatar-${size}` : null;
   const classes = classNames('avatar', sizeClass, className);
 

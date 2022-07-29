@@ -2,8 +2,8 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import ConfirmButton from './ConfirmButton';
-import IconType from '../Icon/types';
+import { ConfirmButton } from './ConfirmButton';
+import { IconType } from '../Icon';
 
 describe('Component: ConfirmButton', () => {
   describe('ui', () => {

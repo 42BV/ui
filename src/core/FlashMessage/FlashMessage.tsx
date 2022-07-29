@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'reactstrap';
 import classNames from 'classnames';
 
-import { Color } from '../..';
+import { Color } from '../types';
 
 type Props = {
   /**
@@ -32,7 +32,7 @@ type Props = {
  *
  * Use it when you want to globally show a notification / message.
  */
-export default function FlashMessage({
+export function FlashMessage({
   className,
   onClose,
   color,

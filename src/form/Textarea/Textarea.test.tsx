@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Textarea from './Textarea';
+import { Textarea } from './Textarea';
 
 describe('Component: Textarea', () => {
   function setup({

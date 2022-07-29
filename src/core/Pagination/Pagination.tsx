@@ -46,7 +46,7 @@ type Props<T> = {
  * a fixed layout for the number of pages, indicating that multiple pages
  * exist for the min and max ranges (e.g. 1 ... 4 5 6 ... 10).
  */
-export default function Pagination<T>({
+export function Pagination<T>({
   page,
   onChange,
   className,

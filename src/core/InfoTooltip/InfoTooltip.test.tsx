@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { InfoTooltip } from './InfoTooltip';
-import Spinner from '../Spinner/Spinner';
+import { Spinner } from '../Spinner/Spinner';
 
 describe('Component: InfoTooltip', () => {
   function setup({

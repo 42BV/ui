@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import AsyncList, { isEmpty } from './AsyncList';
+import { AsyncList, isEmpty } from './AsyncList';
 
 import { User } from '../../test/types';
 import { pageOfUsers } from '../../test/fixtures';

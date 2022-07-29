@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Page } from '@42.nl/spring-connect';
 
-import Pager from './Pager';
+import { Pager } from './Pager';
 
 describe('Component: Pager', () => {
   function setup({

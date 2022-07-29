@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Select, { JarbSelect } from './Select';
+import { Select, JarbSelect } from './Select';
 import {
   FinalForm,
   IsOptionEqualInfo, JarbFormElementDependencies,
@@ -13,7 +13,10 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../story-utils';
-import { Icon, pageOf, Tooltip, Card } from '../..';
+import { Card } from '../../core/Card/Card';
+import { pageOf } from '../../utilities/page/page';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { Icon } from '../../core/Icon';
 
 storiesOf('Form/Select', module)
   .addParameters({ component: Select })

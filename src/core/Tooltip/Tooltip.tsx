@@ -68,7 +68,7 @@ type Props = {
 /**
  * Bootstrap-like Tooltip component based on the Tippy.js library.
  */
-export default function Tooltip({
+export function Tooltip({
   children,
   placement = 'top',
   content,

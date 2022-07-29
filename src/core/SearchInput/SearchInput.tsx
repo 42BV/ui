@@ -133,7 +133,7 @@ export type Props = ModifiedInputProps & {
  *
  * For the debounce logic it uses lodash.
  */
-export default function SearchInput(props: Props) {
+export function SearchInput(props: Props) {
   const {
     id,
     label,

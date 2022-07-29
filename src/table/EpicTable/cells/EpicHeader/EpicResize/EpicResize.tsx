@@ -1,12 +1,8 @@
-import React, {
-  useRef,
-  MouseEvent as RMouseEvent,
-  useCallback,
-  useEffect
-} from 'react';
+import React, { MouseEvent as RMouseEvent, useCallback, useEffect, useRef } from 'react';
 import { throttle } from 'lodash';
 
 import { useEpicResizeListenerCleanup } from './useEpicResizeListenerCleanup';
+import { listenerConfig } from './ListenerConfig';
 
 type Props = {
   /**
@@ -18,11 +14,6 @@ type Props = {
    * Callback which gives the EpicHeader the new width
    */
   onResize: (width: number) => void;
-};
-
-export const listenerConfig = {
-  capture: true,
-  passive: false
 };
 
 /**

@@ -87,8 +87,7 @@ module.exports = {
       ]
     }),
     typescript({
-      typescript: require('typescript'),
-      objectHashIgnoreUnknownHack: true
+      typescript: require('typescript')
     })
   ]
 };

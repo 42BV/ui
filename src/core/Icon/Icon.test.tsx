@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import Icon from './Icon';
+import { Icon } from './Icon';
 import * as components from './index';
 
 describe('index', () => {

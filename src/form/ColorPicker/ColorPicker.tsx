@@ -3,13 +3,13 @@ import { Button, FormGroup, Label, Card } from 'reactstrap';
 import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 
-import withJarb from '../withJarb/withJarb';
-import { Color, Icon } from '../..';
+import { withJarb } from '../withJarb/withJarb';
+import { Color } from '../../core/types';
+import { Icon, IconType } from '../../core/Icon';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
-import Popover from '../../core/Popover/Popover';
-import TextButton from '../../core/TextButton/TextButton';
-import { IconType } from '../../core/Icon';
+import { Popover } from '../../core/Popover/Popover';
+import { TextButton } from '../../core/TextButton/TextButton';
 
 type Text = {
   /**
@@ -103,7 +103,7 @@ type Props = {
  * ColorPicker is a form element which allows the user to select a
  * color from a color picker. The color's format is in hex.
  */
-export default function ColorPicker(props: Props) {
+export function ColorPicker(props: Props) {
   const {
     id,
     label,
@@ -147,7 +147,7 @@ export default function ColorPicker(props: Props) {
             </div>
             {canClear ? (
               <TextButton
-                onClick={() => onColorSelected(undefined)}
+                onClick={() => onColorSelected()}
                 className="me-3"
               >
                 {t({

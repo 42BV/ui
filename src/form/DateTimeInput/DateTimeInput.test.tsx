@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import DateTimeInput, { DateTimeInputIsDateAllowed, DateTimeInputMode } from './DateTimeInput';
+import { DateTimeInput, DateTimeInputIsDateAllowed, DateTimeInputMode } from './DateTimeInput';
 
 jest.setTimeout(100000);
 

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import ImageUpload, { JarbImageUpload, requireImage } from './ImageUpload';
+import { ImageUpload, JarbImageUpload, requireImage } from './ImageUpload';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import { Tooltip, Icon, Card } from '../..';
-import FileInput from '../FileInput/FileInput';
+import { FileInput } from '../FileInput/FileInput';
 import { Alert } from 'reactstrap';
+import { Card } from '../../core/Card/Card';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { Icon } from '../../core/Icon';
 
 storiesOf('Form/ImageUpload', module)
   .addParameters({ component: ImageUpload })

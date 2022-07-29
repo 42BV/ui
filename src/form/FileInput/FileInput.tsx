@@ -4,12 +4,12 @@ import { FieldValidator } from 'final-form';
 
 import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { Translation } from '../../utilities/translation/translator';
 import { AddonButton } from '../addons/AddonButton/AddonButton';
 import { FieldCompatible } from '../types';
-import { Icon } from '../..';
+import { Icon } from '../../core/Icon';
 
 type Props = FieldCompatible<File, File | null> & {
   /**
@@ -20,7 +20,7 @@ type Props = FieldCompatible<File, File | null> & {
   accept: string;
 };
 
-export default function FileInput(props: Props) {
+export function FileInput(props: Props) {
   const {
     id = uniqueId(),
     label,

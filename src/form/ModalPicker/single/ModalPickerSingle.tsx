@@ -9,8 +9,8 @@ import {
 import { FieldCompatible } from '../../types';
 import { useOptions } from '../../useOptions';
 import { alwaysTrue } from '../../utils';
-import withJarb from '../../withJarb/withJarb';
-import ModalPicker, { Text } from '../ModalPicker';
+import { withJarb } from '../../withJarb/withJarb';
+import { ModalPicker, Text } from '../ModalPicker';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import {
@@ -114,7 +114,7 @@ type Props<T> = Omit<
  * can type in the selection quicker than he can select it from the
  * modal.
  */
-export default function ModalPickerSingle<T>(props: Props<T>) {
+export function ModalPickerSingle<T>(props: Props<T>) {
   const {
     id,
     label,

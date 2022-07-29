@@ -2,10 +2,15 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import Input, { JarbInput } from './Input';
+import { Input, JarbInput } from './Input';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import { Tooltip, Icon, Addon, AddonIcon, AddonButton, Card } from '../..';
 import { Alert } from 'reactstrap';
+import { Card } from '../../core/Card/Card';
+import { AddonIcon } from '../addons/AddonIcon/AddonIcon';
+import { Addon } from '../addons/Addon/Addon';
+import { AddonButton } from '../addons/AddonButton/AddonButton';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { Icon } from '../../core/Icon';
 
 function isSuperman(value: string) {
   return value === 'superman' ? undefined : 'Not "superman"';

@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 
 import * as ShowAfter from '../../hooks/useShowAfter/useShowAfter';
 
-import LoadingPage from './LoadingPage';
+import { LoadingPage } from './LoadingPage';
 
 describe('Component: LoadingPage', () => {
   function setup({ show, height }: { show: boolean; height?: number }) {

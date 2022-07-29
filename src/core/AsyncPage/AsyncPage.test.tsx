@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import AsyncPage, { isEmpty } from './AsyncPage';
+import { AsyncPage, isEmpty } from './AsyncPage';
 
 import { Page, emptyPage } from '@42.nl/spring-connect';
 import { User } from '../../test/types';

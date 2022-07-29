@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Loading from './Loading';
+import { Loading } from './Loading';
 
 describe('Component: Loading', () => {
   describe('ui', () => {

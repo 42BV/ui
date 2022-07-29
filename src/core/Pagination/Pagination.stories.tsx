@@ -4,7 +4,7 @@ import { range } from 'lodash';
 
 import { pageOf } from '../../utilities/page/page';
 
-import Pagination from './Pagination';
+import { Pagination } from './Pagination';
 import { Alert } from 'reactstrap';
 
 storiesOf('core/Pagination', module)

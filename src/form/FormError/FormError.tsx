@@ -46,7 +46,7 @@ type Props = {
  *
  * To retrieve back-end errors, we use `@42.nl/react-error-store`.
  */
-export default function FormError(props: Props) {
+export function FormError(props: Props) {
   const { value, meta, validator, onChange, className } = props;
   const backEndErrors = useErrorsForValidator(validator);
   const frontEndErrors = useSettledErrors(meta, value);

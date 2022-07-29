@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { FieldCompatibleWithPredeterminedOptions } from '../option';
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 
-import ModalPickerMultiple from '../ModalPicker/multiple/ModalPickerMultiple';
-import CheckboxMultipleSelect from '../CheckboxMultipleSelect/CheckboxMultipleSelect';
+import { ModalPickerMultiple } from '../ModalPicker/multiple/ModalPickerMultiple';
+import { CheckboxMultipleSelect } from '../CheckboxMultipleSelect/CheckboxMultipleSelect';
 
-import RadioGroup from '../RadioGroup/RadioGroup';
-import Select from '../Select/Select';
-import ModalPickerSingle from '../ModalPicker/single/ModalPickerSingle';
+import { RadioGroup } from '../RadioGroup/RadioGroup';
+import { Select } from '../Select/Select';
+import { ModalPickerSingle } from '../ModalPicker/single/ModalPickerSingle';
 
-import Spinner from '../../core/Spinner/Spinner';
+import { Spinner } from '../../core/Spinner/Spinner';
 import { t } from '../../utilities/translation/translation';
 import { FieldCompatible } from '../types';
 import { IconType } from '../../core/Icon';
@@ -117,7 +117,7 @@ type Props<T> = SingleValuePicker<T> | MultipleValuePicker<T>;
  * During the booting state it will call `FetchOptionsCallback` and ask
  * for a `Page` of size `1` so it can get the `totalElements`.
  */
-export default function ValuePicker<T>(props: Props<T>) {
+export function ValuePicker<T>(props: Props<T>) {
   const { text = {}, options, canClear = true } = props;
 
   const [booting, setBooting] = useState(true);

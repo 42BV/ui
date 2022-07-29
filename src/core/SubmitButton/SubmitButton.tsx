@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button, { ButtonSize } from '../Button/Button';
+import { Button, ButtonSize } from '../Button/Button';
 import { IconType } from '../Icon';
 import { useScrollToClosestError } from './useScrollToClosestError';
 
@@ -54,7 +54,7 @@ export type Props = {
  * of type "submit". It will scroll to the closest error when
  * `scrollToClosestError` is `true` which it is by default.
  */
-export default function SubmitButton({
+export function SubmitButton({
   children,
   inProgress,
   size,

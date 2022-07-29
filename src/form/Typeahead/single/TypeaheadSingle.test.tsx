@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import TypeaheadSingle from './TypeaheadSingle';
+import { TypeaheadSingle } from './TypeaheadSingle';
 
 import { adminUser, coordinatorUser, listOfUsers, pageOfUsersFetcher, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';

@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import SubmitButton, { Props } from './SubmitButton';
+import { SubmitButton, Props } from './SubmitButton';
 
 import * as useScrollToClosestError from './useScrollToClosestError';
 

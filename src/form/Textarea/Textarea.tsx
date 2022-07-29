@@ -3,7 +3,7 @@ import { FormGroup, Label } from 'reactstrap';
 import TextareaAutosize from 'react-textarea-autosize';
 import classNames from 'classnames';
 
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 import { FieldCompatible } from '../types';
 import { useId } from '../../hooks/useId/useId';
 
@@ -13,7 +13,7 @@ type Props = FieldCompatible<string, string>;
  * Textarea is a basic form element which allows the user to enter large
  * texts, autogrows when the user enters a lot of text.
  */
-export default function Textarea(props: Props) {
+export function Textarea(props: Props) {
   const {
     id,
     label,

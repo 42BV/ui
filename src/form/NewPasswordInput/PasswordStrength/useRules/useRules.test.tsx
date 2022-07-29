@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import PasswordStrength from '../PasswordStrength';
+import { PasswordStrength } from '../PasswordStrength';
 
 describe('Hook: useRules', () => {
   it('should set compliant for each rule based on password', () => {

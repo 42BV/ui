@@ -1,6 +1,7 @@
 import React from 'react';
 
-import AsyncContent, {
+import {
+  AsyncContent,
   Props as AsyncContentProps, ReactAsyncState, ReactQueryState
 } from '../AsyncContent/AsyncContent';
 import { Page } from '@42.nl/spring-connect';
@@ -21,6 +22,6 @@ export function isEmpty<T>(page: Page<T>): boolean {
  * standard `isEmpty` function which checks if the `totalElements`
  * of the `Page` is zero.
  */
-export default function AsyncPage<T>(props: Props<Page<T>>) {
+export function AsyncPage<T>(props: Props<Page<T>>) {
   return <AsyncContent {...props} isEmpty={isEmpty} />;
 }

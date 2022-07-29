@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import NavigationItem from './NavigationItem';
+import { NavigationItem } from './NavigationItem';
 import { Navigator, Router } from 'react-router-dom';
 
 describe('Component: NavigationItem', () => {

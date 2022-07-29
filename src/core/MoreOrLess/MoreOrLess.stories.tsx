@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import MoreOrLess from './MoreOrLess';
+import { MoreOrLess } from './MoreOrLess';
 import { Alert } from 'reactstrap';
 
 storiesOf('core/MoreOrLess', module)

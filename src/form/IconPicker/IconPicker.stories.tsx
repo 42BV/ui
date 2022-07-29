@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import IconPicker, { JarbIconPicker } from './IconPicker';
+import { IconPicker, JarbIconPicker } from './IconPicker';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { IconType, Tooltip, Icon, Card } from '../../';
 

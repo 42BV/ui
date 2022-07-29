@@ -70,7 +70,7 @@ type Props = {
 /**
  * Bootstrap-like Popover component based on the Tippy.js library.
  */
-export default function Popover({
+export function Popover({
   children,
   placement = 'top',
   target,

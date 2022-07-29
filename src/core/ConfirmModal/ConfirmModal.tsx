@@ -1,5 +1,6 @@
 import React from 'react';
-import { OpenCloseModal, t } from '../..';
+import { OpenCloseModal } from '../OpenCloseModal/OpenCloseModal';
+import { t } from '../../utilities/translation/translation';
 
 type Props = {
   /**
@@ -55,7 +56,7 @@ type Props = {
  * However, if it is not possible to trigger the action through a button,
  * such as when using a ButtonDropdown, you can use this component directly instead.
  */
-export default function ConfirmModal({
+export function ConfirmModal({
   onClose,
   onSave,
   label,

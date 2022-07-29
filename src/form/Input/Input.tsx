@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import RTMaskedInput from 'react-text-mask';
 import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 
 export type InputMask = (string | RegExp)[];
 
@@ -70,7 +70,7 @@ export type Props = FieldCompatible<string, string> & {
  *
  * Supports addons and masks.
  */
-export default function Input(props: Props) {
+export function Input(props: Props) {
   const {
     id,
     label,

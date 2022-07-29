@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
 
-import useShowSpinner from './useShowSpinner';
+import { useShowSpinner } from './useShowSpinner';
 
 describe('useShowSpinner', () => {
   beforeEach(() => {

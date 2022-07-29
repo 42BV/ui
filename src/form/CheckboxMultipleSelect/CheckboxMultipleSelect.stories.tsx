@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import CheckboxMultipleSelect, {
+import {
+  CheckboxMultipleSelect,
   JarbCheckboxMultipleSelect
 } from './CheckboxMultipleSelect';
 import {
@@ -14,8 +15,11 @@ import {
   provinces,
   ReloadOptionsInfo
 } from '../story-utils';
-import { Card, Icon, Toggle, Tooltip } from '../..';
 import { Alert } from 'reactstrap';
+import { Card } from '../../core/Card/Card';
+import { Toggle } from '../../core/Toggle/Toggle';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { Icon } from '../../core/Icon';
 
 storiesOf('Form/CheckboxMultipleSelect', module)
   .addParameters({ component: CheckboxMultipleSelect })

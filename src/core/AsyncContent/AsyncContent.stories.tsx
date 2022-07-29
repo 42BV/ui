@@ -1,11 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import AsyncContent from './AsyncContent';
+import { AsyncContent } from './AsyncContent';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { action } from '@storybook/addon-actions';
-import { ContentState, Button } from '../..';
 import { Alert } from 'reactstrap';
+import { ContentState } from '../ContentState/ContentState';
+import { Button } from '../Button/Button';
 
 function loadData() {
   return new Promise((resolve) => {
@@ -16,7 +17,7 @@ function loadData() {
 }
 
 function rejectData() {
-  return new Promise((resolve, reject) => {
+  return new Promise((_, reject) => {
     setTimeout(() => {
       reject('could not load');
     }, 1000);

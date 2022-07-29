@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, IconType } from '../../..';
+import { Icon, IconType } from '../../../core/Icon';
 
 import { Addon, Props as AddonProps } from '../Addon/Addon';
 import { InputGroupText } from 'reactstrap';

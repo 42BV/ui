@@ -7,7 +7,7 @@ import {
   TypeaheadProps
 } from 'react-bootstrap-typeahead';
 import { TypeaheadOption } from '../types';
-import withJarb from '../../withJarb/withJarb';
+import { withJarb } from '../../withJarb/withJarb';
 import { doBlur, alwaysTrue } from '../../utils';
 import { optionToTypeaheadOption } from '../utils';
 import {
@@ -15,7 +15,7 @@ import {
   isOptionSelected
 } from '../../option';
 import classNames from 'classnames';
-import Tag from '../../../core/Tag/Tag';
+import { Tag } from '../../../core/Tag/Tag';
 import { FieldCompatible } from '../../types';
 import { useId } from '../../../hooks/useId/useId';
 import { useOptions } from '../../useOptions';
@@ -95,7 +95,7 @@ type Props<T> = FieldCompatible<T[], T[] | undefined> &
  * because the user can type in faster than the can select from a
  * ModalPickerMultiple.
  */
-export default function TypeaheadMultiple<T>(props: Props<T>) {
+export function TypeaheadMultiple<T>(props: Props<T>) {
   const {
     id,
     label,

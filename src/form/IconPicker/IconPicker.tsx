@@ -9,17 +9,17 @@ import {
 } from 'reactstrap';
 import classNames from 'classnames';
 
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 import { Icon, icons, IconType } from '../../core/Icon';
-import Pager from '../../core/Pager/Pager';
+import { Pager } from '../../core/Pager/Pager';
 import { doBlur } from '../utils';
-import SearchInput from '../../core/SearchInput/SearchInput';
+import { SearchInput } from '../../core/SearchInput/SearchInput';
 import { pageOf } from '../../utilities/page/page';
-import ContentState from '../../core/ContentState/ContentState';
+import { ContentState } from '../../core/ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
-import Tooltip from '../../core/Tooltip/Tooltip';
-import Popover from '../../core/Popover/Popover';
-import TextButton from '../../core/TextButton/TextButton';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { Popover } from '../../core/Popover/Popover';
+import { TextButton } from '../../core/TextButton/TextButton';
 import { FieldCompatible } from '../types';
 
 type Text = {
@@ -66,7 +66,7 @@ type Props = FieldCompatible<IconType, IconType | undefined> & {
  * of the material design icons. It is a popover which shows all
  * the icons and lets the user select one.
  */
-export default function IconPicker(props: Props) {
+export function IconPicker(props: Props) {
   const {
     label,
     icon,
@@ -122,7 +122,7 @@ export default function IconPicker(props: Props) {
                 />
                 {canClear ? (
                   <TextButton
-                    onClick={() => onIconSelected(undefined)}
+                    onClick={() => onIconSelected()}
                     className="me-3"
                   >
                     {t({

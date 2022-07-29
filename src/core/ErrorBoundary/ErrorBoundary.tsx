@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentState from '../ContentState/ContentState';
+import { ContentState } from '../ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
 
 type ErrorState = {

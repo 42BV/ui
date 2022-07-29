@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 
 import lodash from 'lodash';
 
-import SearchInput, { Props } from './SearchInput';
+import { SearchInput, Props } from './SearchInput';
 
 describe('Component: SearchInput', () => {
   function setup({

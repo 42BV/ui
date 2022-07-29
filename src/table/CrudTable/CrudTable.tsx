@@ -1,7 +1,7 @@
 import React from 'react';
-import SearchInput from '../../core/SearchInput/SearchInput';
+import { SearchInput } from '../../core/SearchInput/SearchInput';
 import { EpicTable } from '../EpicTable/EpicTable';
-import Pagination from '../../core/Pagination/Pagination';
+import { Pagination } from '../../core/Pagination/Pagination';
 import { Page } from '@42.nl/spring-connect';
 
 type Props = {

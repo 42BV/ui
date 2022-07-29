@@ -11,7 +11,7 @@ import { FieldCompatibleWithPredeterminedOptions } from '../../option';
 import { FieldCompatible } from '../../types';
 import { useOptions } from '../../useOptions';
 import { doBlur, alwaysTrue } from '../../utils';
-import withJarb from '../../withJarb/withJarb';
+import { withJarb } from '../../withJarb/withJarb';
 import { TypeaheadOption } from '../types';
 import { optionToTypeaheadOption } from '../utils';
 import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
@@ -91,7 +91,7 @@ type Props<T> = FieldCompatible<T, T | undefined> &
  * because the user can type in faster than the can select from a
  * ModalPickerSingle.
  */
-export default function TypeaheadSingle<T>(props: Props<T>) {
+export function TypeaheadSingle<T>(props: Props<T>) {
   const {
     id,
     label,

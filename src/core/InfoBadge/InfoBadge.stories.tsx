@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button } from 'reactstrap';
-import Icon from '../Icon/Icon';
+import { Icon } from '../Icon';
 
-import InfoBadge from './InfoBadge';
+import { InfoBadge } from './InfoBadge';
 
 storiesOf('core/InfoBadge', module)
   .addParameters({ component: InfoBadge })

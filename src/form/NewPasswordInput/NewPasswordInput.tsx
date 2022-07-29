@@ -3,9 +3,9 @@ import { omit, pick } from 'lodash';
 import { FieldValidator } from 'final-form';
 
 import { Translation } from '../../utilities/translation/translator';
-import Input, { Props as InputProps } from '../Input/Input';
-import withJarb from '../withJarb/withJarb';
-import PasswordStrength from './PasswordStrength/PasswordStrength';
+import { Input, Props as InputProps } from '../Input/Input';
+import { withJarb } from '../withJarb/withJarb';
+import { PasswordStrength } from './PasswordStrength/PasswordStrength';
 import {
   hasLowercase,
   hasMinimumLength,
@@ -76,7 +76,7 @@ type PasswordProps = {
 
 export type Props = Omit<InputProps, 'type'> & PasswordProps;
 
-export default function NewPasswordInput(props: Props) {
+export function NewPasswordInput(props: Props) {
   const rules = getRulesFromProps(props);
   const inputProps = omit(props, [
     'lowercase',

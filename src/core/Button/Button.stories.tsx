@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Row, Col } from 'reactstrap';
 
-import Button from './Button';
+import { Button } from './Button';
 
 storiesOf('core/buttons/Button', module)
   .addParameters({ component: Button })

@@ -2,11 +2,13 @@ import React, { useEffect, useMemo } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import TextEditor, { JarbTextEditor } from './TextEditor';
+import { TextEditor, JarbTextEditor } from './TextEditor';
 
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import { Icon, Tooltip, Card } from '../..';
 import { Alert } from 'reactstrap';
+import { Card } from '../../core/Card/Card';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { Icon } from '../../core/Icon';
 
 storiesOf('Form/TextEditor', module)
   .addParameters({ component: TextEditor })

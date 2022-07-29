@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
-import Spinner from '../Spinner/Spinner';
+import { Spinner } from '../Spinner/Spinner';
 import { useShowAfter } from '../../hooks/useShowAfter/useShowAfter';
 
 type Props = {
@@ -28,7 +28,7 @@ type Props = {
  *
  * Use this for showing a loading indicator when navigating to pages that fetch data.
  */
-export default function LoadingPage({ className, style, height }: Props) {
+export function LoadingPage({ className, style, height }: Props) {
   const size = 150;
 
   const showSpinner = useShowAfter(200);

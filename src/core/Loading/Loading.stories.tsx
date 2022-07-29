@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Loading from './Loading';
+import { Loading } from './Loading';
 
 storiesOf('core/Loading', module)
   .addParameters({ component: Loading })

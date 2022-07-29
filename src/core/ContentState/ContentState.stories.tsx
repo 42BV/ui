@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button } from 'reactstrap';
 
-import ContentState from './ContentState';
+import { ContentState } from './ContentState';
 
 storiesOf('core/ContentState', module)
   .addParameters({ component: ContentState })

@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import FileInput, { limitFileSize, requireFile } from './FileInput';
+import { FileInput, limitFileSize, requireFile } from './FileInput';
 
 describe('Component: FileInput', () => {
   function setup({

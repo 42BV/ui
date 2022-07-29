@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import ModalPickerSingle, { JarbModalPickerSingle } from './ModalPickerSingle';
+import { ModalPickerSingle, JarbModalPickerSingle } from './ModalPickerSingle';
 import {
   FinalForm,
   IsOptionEqualInfo, JarbFormElementDependencies,
@@ -16,7 +16,7 @@ import { pageWithContentAndExactSize } from '../../../test/utils';
 import { adminUser, coordinatorUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 import { Icon, pageOf, Tooltip, Card } from '../../..';
-import Avatar from '../../../core/Avatar/Avatar';
+import { Avatar } from '../../../core/Avatar/Avatar';
 import { Alert, ListGroup, ListGroupItem } from 'reactstrap';
 import classNames from 'classnames';
 

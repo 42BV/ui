@@ -5,7 +5,7 @@ import { Tabs } from './Tabs';
 
 import { Form } from 'react-final-form';
 import { Tab } from './Tab/Tab';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import { JarbInput } from '../../form/Input/Input';
 import { JarbTextarea } from '../../form/Textarea/Textarea';
 import { Card } from '../Card/Card';

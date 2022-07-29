@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Color, useHover } from '../..';
-import IconType from './types';
+import { IconType } from './types';
+import { Color } from '../types';
+import { useHover } from '../../hooks/useHover/useHover';
 
 export type Props = {
   /**
@@ -58,7 +59,7 @@ export type Props = {
  *
  * Useful for making sure your icon is typesafe via TypeScript.
  */
-export default function Icon({
+export function Icon({
   className,
   onClick,
   icon,

@@ -5,10 +5,10 @@ import { Form } from 'react-final-form';
 import { Card } from 'reactstrap';
 
 import { Modal } from './Modal';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import { TotalForm } from '../../form/FormExample.stories';
 import { range } from 'lodash';
-import SubmitButton from '../SubmitButton/SubmitButton';
+import { SubmitButton } from '../SubmitButton/SubmitButton';
 
 storiesOf('core/Modal', module)
   .addParameters({ component: Modal })

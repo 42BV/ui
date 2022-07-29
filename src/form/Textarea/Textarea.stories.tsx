@@ -2,10 +2,12 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import Textarea, { JarbTextarea } from './Textarea';
+import { Textarea, JarbTextarea } from './Textarea';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import { Tooltip, Icon, Card } from '../..';
 import { Alert } from 'reactstrap';
+import { Card } from '../../core/Card/Card';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { Icon } from '../../core/Icon';
 
 storiesOf('Form/Textarea', module)
   .addParameters({ component: Textarea })

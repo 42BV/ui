@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import RadioGroup from '../../form/RadioGroup/RadioGroup';
+import { RadioGroup } from '../../form/RadioGroup/RadioGroup';
 
 import { Modal } from './Modal';
 

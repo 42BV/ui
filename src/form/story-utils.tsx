@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Form as ReactFinalForm } from 'react-final-form';
 import { Alert, Col, Row } from 'reactstrap';
-import SubmitButton from '../core/SubmitButton/SubmitButton';
+import { SubmitButton } from '../core/SubmitButton/SubmitButton';
 import { action } from '@storybook/addon-actions';
 import { Page } from '@42.nl/spring-connect';
 import { FetchOptionsCallbackConfig } from './option';

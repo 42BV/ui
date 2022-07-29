@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '../..';
+import { Color } from '../types';
 
 type Props<T> = {
   /**
@@ -63,7 +63,7 @@ type Props<T> = {
 
 const alwaysFalse = () => false;
 
-export default function ProgressStepper<T>(props: Props<T>) {
+export function ProgressStepper<T>(props: Props<T>) {
   const {
     steps,
     onClick,

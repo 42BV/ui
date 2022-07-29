@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { AsyncActionButton } from './AsyncActionButton';
-import FlashMessage from '../FlashMessage/FlashMessage';
+import { FlashMessage } from '../FlashMessage/FlashMessage';
 
 storiesOf('core/buttons/AsyncActionButton', module)
   .addParameters({ component: AsyncActionButton })

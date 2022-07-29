@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 import classNames from 'classnames';
 import { StringMap } from 'quill';
 
-import withJarb from '../withJarb/withJarb';
+import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { formatsFromToolbarModule } from './utils';
 import { FieldCompatible } from '../types';
@@ -52,7 +52,7 @@ export type Props = FieldCompatible<string, string> & {
  * TextEditor generates. The sanitizer should be applied before sending
  * the content to the browser.
  */
-export default function TextEditor(props: Props) {
+export function TextEditor(props: Props) {
   const {
     id,
     label,

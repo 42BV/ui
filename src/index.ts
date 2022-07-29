@@ -1,42 +1,42 @@
 // Core
-export { default as Avatar } from './core/Avatar/Avatar';
-export { default as AvatarStack } from './core/Avatar/AvatarStack';
+export { Avatar } from './core/Avatar/Avatar';
+export { AvatarStack } from './core/Avatar/AvatarStack';
 export {
-  default as Button,
+  Button,
   ButtonIconPosition,
   ButtonSize
 } from './core/Button/Button';
-export { default as useShowSpinner } from './core/Button/useShowSpinner';
-export { default as ConfirmButton } from './core/ConfirmButton/ConfirmButton';
-export { default as ConfirmModal } from './core/ConfirmModal/ConfirmModal';
+export { useShowSpinner } from './core/Button/useShowSpinner';
+export { ConfirmButton } from './core/ConfirmButton/ConfirmButton';
+export { ConfirmModal } from './core/ConfirmModal/ConfirmModal';
 export {
-  default as ContentState,
+  ContentState,
   ContentStateMode
 } from './core/ContentState/ContentState';
-export { default as FlashMessage } from './core/FlashMessage/FlashMessage';
+export { FlashMessage } from './core/FlashMessage/FlashMessage';
 export { Icon, IconType } from './core/Icon/index';
-export { default as InfoBadge } from './core/InfoBadge/InfoBadge';
-export { default as LoadingPage } from './core/LoadingPage/LoadingPage';
-export { default as Loading } from './core/Loading/Loading';
-export { default as MoreOrLess } from './core/MoreOrLess/MoreOrLess';
-export { default as NavigationItem } from './core/NavigationItem/NavigationItem';
-export { default as Pagination } from './core/Pagination/Pagination';
-export { default as ProgressStepper } from './core/ProgressStepper/ProgressStepper';
-export { default as Spinner } from './core/Spinner/Spinner';
-export { default as SubmitButton } from './core/SubmitButton/SubmitButton';
-export { default as Tag } from './core/Tag/Tag';
-export { default as Tooltip } from './core/Tooltip/Tooltip';
-export { default as AsyncContent } from './core/AsyncContent/AsyncContent';
-export { default as AsyncPage } from './core/AsyncPage/AsyncPage';
-export { default as AsyncList } from './core/AsyncList/AsyncList';
+export { InfoBadge } from './core/InfoBadge/InfoBadge';
+export { LoadingPage } from './core/LoadingPage/LoadingPage';
+export { Loading } from './core/Loading/Loading';
+export { MoreOrLess } from './core/MoreOrLess/MoreOrLess';
+export { NavigationItem } from './core/NavigationItem/NavigationItem';
+export { Pagination } from './core/Pagination/Pagination';
+export { ProgressStepper } from './core/ProgressStepper/ProgressStepper';
+export { Spinner } from './core/Spinner/Spinner';
+export { SubmitButton } from './core/SubmitButton/SubmitButton';
+export { Tag } from './core/Tag/Tag';
+export { Tooltip } from './core/Tooltip/Tooltip';
+export { AsyncContent } from './core/AsyncContent/AsyncContent';
+export { AsyncPage } from './core/AsyncPage/AsyncPage';
+export { AsyncList } from './core/AsyncList/AsyncList';
 export {
-  default as SearchInput,
+  SearchInput,
   SearchInputApi
 } from './core/SearchInput/SearchInput';
-export { default as Pager } from './core/Pager/Pager';
+export { Pager } from './core/Pager/Pager';
 export { OpenCloseModal } from './core/OpenCloseModal/OpenCloseModal';
-export { default as Popover } from './core/Popover/Popover';
-export { default as TextButton } from './core/TextButton/TextButton';
+export { Popover } from './core/Popover/Popover';
+export { TextButton } from './core/TextButton/TextButton';
 export { InfoTooltip } from './core/InfoTooltip/InfoTooltip';
 export { BooleanIcon } from './core/BooleanIcon/BooleanIcon';
 export { SuccessIcon } from './core/SuccessIcon/SuccessIcon';
@@ -57,17 +57,17 @@ export { ErrorBoundary } from './core/ErrorBoundary/ErrorBoundary';
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';
 export {
-  default as withJarb,
+  withJarb,
   JarbFieldCompatible
 } from './form/withJarb/withJarb';
-export { default as Input, JarbInput, InputMask } from './form/Input/Input';
-export { default as Textarea, JarbTextarea } from './form/Textarea/Textarea';
+export { Input, JarbInput, InputMask } from './form/Input/Input';
+export { Textarea, JarbTextarea } from './form/Textarea/Textarea';
 export {
-  default as TextEditor,
+  TextEditor,
   JarbTextEditor
 } from './form/TextEditor/TextEditor';
 export {
-  default as DateTimeInput,
+  DateTimeInput,
   JarbDateTimeInput,
   DateTimeInputIsDateAllowed,
   DateTimeInputMode
@@ -84,14 +84,14 @@ export {
   isDateBeforeValidator,
   isDateBetweenValidator
 } from './form/DateTimeInput/validators';
-export { default as Select, JarbSelect } from './form/Select/Select';
+export { Select, JarbSelect } from './form/Select/Select';
 export {
-  default as ModalPickerSingle,
+  ModalPickerSingle,
   JarbModalPickerSingle,
   ModalPickerSingleRenderValue
 } from './form/ModalPicker/single/ModalPickerSingle';
 export {
-  default as ModalPickerMultiple,
+  ModalPickerMultiple,
   JarbModalPickerMultiple,
   ModalPickerMultipleRenderValues
 } from './form/ModalPicker/multiple/ModalPickerMultiple';
@@ -103,23 +103,23 @@ export {
   ModalPickerButtonAlignment
 } from './form/ModalPicker/types';
 export {
-  default as TypeaheadSingle,
+  TypeaheadSingle,
   JarbTypeaheadSingle
 } from './form/Typeahead/single/TypeaheadSingle';
 export {
-  default as TypeaheadMultiple,
+  TypeaheadMultiple,
   JarbTypeaheadMultiple
 } from './form/Typeahead/multiple/TypeaheadMultiple';
 export { TypeaheadOption } from './form/Typeahead/types';
 export {
-  default as FileInput,
+  FileInput,
   JarbFileInput,
   requireFile,
   limitFileSize,
   FileValidator
 } from './form/FileInput/FileInput';
 export {
-  default as ImageUpload,
+  ImageUpload,
   JarbImageUpload,
   requireImage,
   limitImageSize,
@@ -128,33 +128,33 @@ export {
   ImageUploadCropRect,
   ImageValidator
 } from './form/ImageUpload/ImageUpload';
-export { default as Toggle } from './core/Toggle/Toggle';
-export { default as FormError } from './form/FormError/FormError';
+export { Toggle } from './core/Toggle/Toggle';
+export { FormError } from './form/FormError/FormError';
 export { errorMessage } from './form/FormError/utils';
 export { FormErrorOnChange } from './form/FormError/types';
 export {
-  default as CheckboxMultipleSelect,
+  CheckboxMultipleSelect,
   JarbCheckboxMultipleSelect
 } from './form/CheckboxMultipleSelect/CheckboxMultipleSelect';
 export {
-  default as ValuePicker,
+  ValuePicker,
   JarbValuePicker
 } from './form/ValuePicker/ValuePicker';
 export {
-  default as IconPicker,
+  IconPicker,
   JarbIconPicker
 } from './form/IconPicker/IconPicker';
 export {
-  default as ColorPicker,
+  ColorPicker,
   JarbColorPicker
 } from './form/ColorPicker/ColorPicker';
-export { default as Checkbox, JarbCheckbox } from './form/Checkbox/Checkbox';
+export { Checkbox, JarbCheckbox } from './form/Checkbox/Checkbox';
 export {
-  default as RadioGroup,
+  RadioGroup,
   JarbRadioGroup
 } from './form/RadioGroup/RadioGroup';
 export {
-  default as NewPasswordInput,
+  NewPasswordInput,
   JarbNewPasswordInput,
   isStrongPassword
 } from './form/NewPasswordInput/NewPasswordInput';

@@ -11,9 +11,9 @@ import {
   nonExistingProvince, JarbFormElementDependencies
 } from '../../story-utils';
 
-import TypeaheadMultiple, { JarbTypeaheadMultiple } from './TypeaheadMultiple';
+import { TypeaheadMultiple, JarbTypeaheadMultiple } from './TypeaheadMultiple';
 import { Icon, Tooltip, Card } from '../../..';
-import Toggle from '../../../core/Toggle/Toggle';
+import { Toggle } from '../../../core/Toggle/Toggle';
 import { Alert } from 'reactstrap';
 
 storiesOf('Form/Typeahead/TypeaheadMultiple', module)

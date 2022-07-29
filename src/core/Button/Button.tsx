@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button as RSButton } from 'reactstrap';
 
-import Spinner from '../Spinner/Spinner';
+import { Spinner } from '../Spinner/Spinner';
 import { Icon, IconType } from '../Icon';
-import useShowSpinner from './useShowSpinner';
+import { useShowSpinner } from './useShowSpinner';
 
-import { Color } from '../..';
+import { Color } from '../types';
 import classNames from 'classnames';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -101,7 +101,7 @@ export type Props = {
  * than 200 milliseconds. Useful for showing that a button is indeed
  * clicked when performing some call to the back-end.
  */
-export default function Button({
+export function Button({
   type = 'button',
   color = 'primary',
   inProgress,

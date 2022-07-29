@@ -2013,6 +2013,4 @@ export const icons = [
 ] as const;
 
 // Turns the Icon array into a union type of icons
-type IconType = typeof icons[number];
-
-export default IconType;
+export type IconType = typeof icons[number];

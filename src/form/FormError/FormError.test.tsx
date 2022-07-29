@@ -6,7 +6,7 @@ import * as reactErrorStore from '@42.nl/react-error-store';
 import { validMeta } from '../../test/fixtures';
 import * as SettledErrors from './useSettledErrors';
 
-import FormError from './FormError';
+import { FormError } from './FormError';
 
 describe('Component: FormError', () => {
   function setup({

@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import ContentState from './ContentState';
+import { ContentState } from './ContentState';
 
 describe('Component: ContentStateIcon', () => {
   describe('ui', () => {

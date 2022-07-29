@@ -2,8 +2,8 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import Toggle from './Toggle';
-import Tooltip from '../Tooltip/Tooltip';
+import { Toggle } from './Toggle';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 describe('Component: Toggle', () => {
   function setup({

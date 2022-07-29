@@ -3,9 +3,9 @@ import { FieldValidator } from 'final-form';
 import { FormGroup, Label } from 'reactstrap';
 import AvatarEditor from 'react-avatar-editor';
 
-import Icon from '../../core/Icon/Icon';
-import Button from '../../core/Button/Button';
-import withJarb from '../withJarb/withJarb';
+import { Icon } from '../../core/Icon';
+import { Button } from '../../core/Button/Button';
+import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import { Translation } from '../../utilities/translation/translator';
@@ -105,7 +105,7 @@ export type ImageState = {
   scale: number;
 };
 
-export default function ImageUpload(props: Props) {
+export function ImageUpload(props: Props) {
   const {
     crop,
     text,

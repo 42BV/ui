@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { Card } from 'reactstrap';
 
 import { OpenClose } from './OpenClose';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 
 storiesOf('core/OpenClose', module)
   .addParameters({ component: OpenClose })

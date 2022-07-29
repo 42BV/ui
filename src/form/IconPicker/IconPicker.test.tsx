@@ -3,8 +3,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
-import IconPicker from './IconPicker';
-import { IconType } from '../..';
+import { IconPicker } from './IconPicker';
+import { IconType } from '../../core/Icon';
 
 describe('Component: IconPicker', () => {
   function setup({
