@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { isDateBefore, isDateAfter, isDateBetween } from './checkers';
+import { isDateBefore, isDateAfter, isDateBetween, isDate } from './checkers';
 
 describe('isDateBefore', () => {
   it('should when before is undefined allow every date', () => {
@@ -428,5 +428,46 @@ describe('isDateBetween', () => {
 
       expect(isBetween(undefined)).toBe(true);
     });
+  });
+});
+
+describe('isDate', () => {
+  test('date', () => {
+    const check = isDate({ dateFormat: 'YYYY-MM-DD', timeFormat: false });
+
+    expect(check(moment('2020-05-07'))).toBe(true);
+    expect(check('2020-05-07')).toBe(true);
+    expect(check(new Date(2020, 4, 7))).toBe(true);
+
+    expect(check('2042-42-42')).toBe(false);
+    expect(check('2022-__-__')).toBe(false);
+
+    expect(check(undefined)).toBe(false);
+  });
+
+  test('time', () => {
+    const check = isDate({ dateFormat: false, timeFormat: 'HH:mm:ss' });
+
+    expect(check(moment('2020-05-08 11:59:59'))).toBe(true);
+    expect(check('11:59:59')).toBe(true);
+
+    expect(check('42:__:__')).toBe(false);
+
+    expect(check(undefined)).toBe(false);
+  });
+
+  test('date and time', () => {
+    const check = isDate({ dateFormat: 'YYYY-MM-DD', timeFormat: 'HH:mm:ss' });
+
+    expect(check(moment('2020-05-08 11:59:59'))).toBe(true);
+    expect(check('2020-05-08 11:59:59')).toBe(true);
+    expect(check(new Date(2020, 4, 8, 11, 59, 59))).toBe(true);
+
+    expect(check('2020-42-42 11:59:59')).toBe(false);
+    expect(check('2020-05-08 42:42:42')).toBe(false);
+    expect(check('2020-05-08 __:__:__')).toBe(false);
+    expect(check('2020-__-__ 11:59:59')).toBe(false);
+
+    expect(check(undefined)).toBe(false);
   });
 });

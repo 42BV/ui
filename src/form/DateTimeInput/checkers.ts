@@ -1,5 +1,7 @@
 import moment, { MomentInput } from 'moment';
 import { alwaysTrue } from '../utils';
+import { DateFormat, TimeFormat } from './types';
+import { combineFormat } from './utils';
 
 /**
  * A date checker takes a MomentInput and decides if that date passes
@@ -10,7 +12,7 @@ export type DateChecker = (date?: MomentInput) => boolean;
 
 type IsDateBeforeConfig = {
   /**
-   * Whether or not the end date should be inclusive or not.
+   * Whether the end date should be inclusive or not.
    *
    * When `true` the date must be before or on the end date.
    * When `false` the date must be before the end date.
@@ -28,7 +30,7 @@ type IsDateBeforeConfig = {
  *
  * @param {MomentInput} end The end date to which the date must be before.
  * @param {IsDateBeforeConfig} config The configuration of the isDateBefore function.
- * @returns {DateValidator} A date validator function which checks if the date lies before the end date.
+ * @returns {DateChecker} A date validator function which checks if the date lies before the end date.
  */
 export function isDateBefore(
   end: MomentInput,
@@ -55,7 +57,7 @@ export function isDateBefore(
 
 type IsDateAfterConfig = {
   /**
-   * Whether or not the start date should be inclusive or not.
+   * Whether the start date should be inclusive or not.
    *
    * When `true` the date must be after or on the start date.
    * When `false` the date must be after the start date.
@@ -66,14 +68,14 @@ type IsDateAfterConfig = {
 };
 
 /**
- * Creates a function which accept a date and returns whether or not
+ * Creates a function which accept a date and returns whether
  * the date lies after the end date.
  *
  * Useful for the `DateTimeInput` components `isDateAllowed` prop.
  *
  * @param {MomentInput} start The start date to which the date must be after.
  * @param {IsDateAfterConfig} config The configuration of the isDateAfter function.
- * @returns {DateValidator} A date validator function which checks if the date lies after the start date.
+ * @returns {DateChecker} A date validator function which checks if the date lies after the start date.
  */
 export function isDateAfter(
   start: MomentInput,
@@ -122,14 +124,14 @@ export type IsDateBetweenConfig = {
 
 /**
  * Creates a function which accepts a start and end date and returns
- * whether or not the date lies between the start and end date.
+ * whether the date lies between the start and end date.
  *
  * Useful for the `DateTimeInput` components `isDateAllowed` prop.
  *
  * @param {MomentInput} start The start date to which the date must be before.
  * @param {MomentInput} end The end date to which the date must be after.
  * @param {IsDateBetweenConfig} config The configuration of the isDateBetween function.
- * @returns {DateValidator} A date validator function which checks if the date is between the start and end date
+ * @returns {DateChecker} A date validator function which checks if the date is between the start and end date
  */
 export function isDateBetween(
   start: MomentInput,
@@ -172,5 +174,42 @@ export function isDateBetween(
       undefined,
       `${startChar}${endChar}`
     );
+  };
+}
+
+type IsDateConfig = {
+  /**
+   * The date format the date should match.
+   */
+  dateFormat: DateFormat;
+
+  /**
+   * The time format the date should match.
+   */
+  timeFormat: TimeFormat;
+};
+
+/**
+ * Creates a function which returns whether the date is an actual date.
+ *
+ * Useful for the `DateTimeInput` component.
+ *
+ * @param {IsDateConfig} config The configuration of the isDateBetween function.
+ * @returns {DateChecker} A date validator function which checks if the date is an actual date
+ */
+export function isDate(
+  config: IsDateConfig
+): DateChecker {
+  return (date?: MomentInput) => {
+    if (!date) {
+      return false;
+    }
+
+    // _ indicates an input mask
+    if (typeof date === 'string' && date.includes('_')) {
+      return false;
+    }
+
+    return moment(date, combineFormat(config.dateFormat, config.timeFormat)).isValid();
   };
 }

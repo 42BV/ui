@@ -1,4 +1,4 @@
-import { combineFormat, formatToMask, isDate } from './utils';
+import { combineFormat, formatToMask} from './utils';
 
 test('combineFormat', () => {
   expect(combineFormat('YYYY-MM-DD', 'HH:mm:ss')).toBe('YYYY-MM-DD HH:mm:ss');
@@ -84,15 +84,4 @@ test('formatToMask', () => {
   expect(() => {
     formatToMask('hupbarbatruck', false);
   }).toThrowError('DateTimeInput: cannot extract separator from dateFormat');
-});
-
-test('isDate', () => {
-  // When there is a mask it should be false
-  expect(isDate('2000-01-01 13:00:0_', 'YYYY-MM-DD', 'HH:mm:ss')).toBe(false);
-
-  // When it is not a valid date it should be false
-  expect(isDate('2000-13-01 13:00:00', 'YYYY-MM-DD', 'HH:mm:ss')).toBe(false);
-
-  // When it is a valid date it should be true
-  expect(isDate('2000-01-01 13:00:00', 'YYYY-MM-DD', 'HH:mm:ss')).toBe(true);
 });

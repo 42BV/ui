@@ -1,4 +1,3 @@
-import moment, { Moment } from 'moment';
 import { InputMask } from '../Input/Input';
 import { DateFormat, TimeFormat } from './types';
 
@@ -71,26 +70,4 @@ function extractSeparator(dateFormat: string): string {
   }
 
   throw new Error('DateTimeInput: cannot extract separator from dateFormat');
-}
-
-export function isDate(
-  value: string | Moment,
-  dateFormat: DateFormat,
-  timeFormat: TimeFormat
-): boolean {
-  if (moment.isMoment(value)) {
-    return true;
-  }
-
-  // _ indicates a masks
-  if (value.includes('_')) {
-    return false;
-  }
-
-  const date = moment(
-    value.trim(), // value includes an empty char at the back for some reason.
-    combineFormat(dateFormat, timeFormat)
-  );
-
-  return date.isValid();
 }

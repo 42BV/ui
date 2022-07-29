@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 import Datetime from 'react-datetime';
-import { constant, get, isEmpty } from 'lodash';
+import { constant, get } from 'lodash';
 import moment, { Moment } from 'moment';
 import MaskedInput from 'react-text-mask';
 import { Icon } from '../../core/Icon';
 
 import { DateFormat, TimeFormat } from './types';
 
-import { combineFormat, formatToMask, isDate } from './utils';
+import { combineFormat, formatToMask} from './utils';
 
 import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
@@ -16,6 +16,8 @@ import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
 import classNames from 'classnames';
 import { AddonButton } from '../addons/AddonButton/AddonButton';
 import { FieldCompatible } from '../types';
+import { isDateValidator } from './validators';
+import { isDate } from './checkers';
 
 /**
  * Callback which returns whether a date is selectable.
@@ -27,7 +29,7 @@ export type DateTimeInputIsDateAllowed = (
 
 export type DateTimeInputMode = 'modal' | 'default';
 
-export type Props = FieldCompatible<Date, Date | undefined> & {
+export type Props = FieldCompatible<Date | string, Date | string | undefined> & {
   /**
    * The format for the date, follows Moment.js format.
    *
@@ -97,11 +99,9 @@ export function DateTimeInput(props: Props) {
     the value when the value is not a date. This way the user's input
     is not lost when he enters an invalid date.
   */
-  const [lastStringValue, setLastStringValue] = useState('');
+  const [ lastStringValue, setLastStringValue ] = useState('');
 
-  const [hasFormatError, setHasFormatError] = useState(false);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
 
   const {
     id,
@@ -109,6 +109,7 @@ export function DateTimeInput(props: Props) {
     placeholder,
     valid,
     onFocus,
+    onBlur,
     dateFormat,
     timeFormat,
     color,
@@ -129,26 +130,21 @@ export function DateTimeInput(props: Props) {
     );
   }
 
-  // Is either a valid MomentJS object when selected via picker,
-  // or a string when the user typed in a value manually.
-  function onChange(value: string | Moment) {
-    const { onChange, onBlur } = props;
-
-    if (!isDate(value, dateFormat, timeFormat)) {
-      setLastStringValue(value as string);
-
-      onChange(undefined);
-
-      setHasFormatError(!isEmpty(value));
-    } else {
-      const valueAsString = moment(value).format(
+  function onChange(newValue: string | Moment) {
+    // newValue is either a valid MomentJS object when selected via
+    // picker or the user typed in a valid date, or it is a string
+    // when the user typed in a partial or invalid date manually.
+    if (moment.isMoment(newValue)) {
+      const valueAsString = moment(newValue).format(
         combineFormat(dateFormat, timeFormat)
       );
       setLastStringValue(valueAsString);
 
-      onChange((value as Moment).toDate());
+      props.onChange((newValue).toDate());
       doBlur(onBlur);
-      setHasFormatError(false);
+    } else {
+      setLastStringValue(newValue);
+      props.onChange(newValue);
     }
 
     setIsModalOpen(false);
@@ -163,11 +159,7 @@ export function DateTimeInput(props: Props) {
       {label ? (
         <Label for={id}>
           {label}{' '}
-          <span
-            className={`date-time-input-format ${
-              value && hasFormatError ? 'text-danger' : 'text-muted'
-            }`}
-          >
+          <span className="date-time-input-format text-muted">
             ({combineFormat(dateFormat, timeFormat)})
           </span>
         </Label>
@@ -177,7 +169,7 @@ export function DateTimeInput(props: Props) {
           // @ts-expect-error Our input prop will have a mask because it is a `MaskedInput`.
           mask: formatToMask(dateFormat, timeFormat),
           placeholder,
-          invalid: valid === false || hasFormatError,
+          invalid: valid === false,
           id,
           autoComplete: 'off'
         }}
@@ -206,7 +198,7 @@ export function DateTimeInput(props: Props) {
           onSave={onChange}
           dateFormat={dateFormat}
           timeFormat={timeFormat}
-          defaultValue={value}
+          defaultValue={value instanceof Date || isDate({dateFormat, timeFormat})(value) ? value : undefined}
           isDateAllowed={isDateAllowed}
           label={placeholder}
           locale={locale}
@@ -217,11 +209,6 @@ export function DateTimeInput(props: Props) {
     </FormGroup>
   );
 }
-
-/**
- * Variant of the DateTimeInput which can be used in a Jarb context.
- */
-export const JarbDateTimeInput = withJarb<Date, Date, Props>(DateTimeInput);
 
 export function maskedInput(props: object) {
   return <MaskedInput {...props} render={reactStrapInput} />;
@@ -244,3 +231,11 @@ export function reactStrapInput(
 ) {
   return <Input innerRef={ref} {...props} />;
 }
+
+/**
+ * Variant of the DateTimeInput which can be used in a Jarb context.
+ */
+export const JarbDateTimeInput = withJarb<Date | string, Date | string, Props>(
+  DateTimeInput,
+  (props) => [ isDateValidator({ ...props, label: props.jarb.label }) ]
+);

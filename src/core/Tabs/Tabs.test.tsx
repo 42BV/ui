@@ -44,7 +44,7 @@ describe('Component: Tabs', () => {
     });
 
     it('should throw an exception if any child is not a Tab component', () => {
-      jest.spyOn(console, 'error').mockImplementation(() => undefined);
+      jest.spyOn(console, 'error').mockImplementation(jest.fn());
       expect(() =>
         render(
           // @ts-expect-error Test mock

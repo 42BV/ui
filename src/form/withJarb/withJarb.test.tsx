@@ -7,6 +7,8 @@ import * as useHasErrors from './useHasErrors/useHasErrors';
 import { Form } from 'react-final-form';
 import { setConstraints } from '@42.nl/jarb-final-form';
 import { JarbInput } from '../Input/Input';
+import { JarbDateTimeInput } from '../DateTimeInput/DateTimeInput';
+import * as Validators from '../DateTimeInput/validators';
 
 const isSuperman = (value: string) =>
   value === 'superman' ? undefined : 'not superman';
@@ -93,6 +95,43 @@ describe('HoC: withJarb', () => {
     });
     // Just ensure the tooltip div exists, because testing the tooltip is tested by itself
     expect(container).toMatchSnapshot();
+  });
+
+  test('defaultValidators', async () => {
+    expect.assertions(2);
+
+    const isDateValidatorSpy = jest.fn();
+    jest.spyOn(Validators, 'isDateValidator').mockReturnValue(isDateValidatorSpy);
+    jest.spyOn(console, 'warn').mockImplementation(jest.fn());
+    setConstraints({
+      Test: {
+        date: {
+          required: false,
+          javaType: 'String',
+          name: 'date'
+        }
+      }
+    });
+
+    render(
+      <Form onSubmit={jest.fn()}>
+        {() => (
+          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'test' }} name="test" dateFormat="YYYY-MM-DD" timeFormat={false} />
+        )}
+      </Form>
+    );
+
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '4242-42-42' } });
+    await act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(isDateValidatorSpy).toHaveBeenCalled();
+    expect(isDateValidatorSpy).toHaveBeenLastCalledWith(
+      '4242-42-42',
+      expect.objectContaining({test: '4242-42-42'}),
+      expect.objectContaining({active: false})
+    );
   });
 
   it('should throw an error when detecting illegal props', () => {
