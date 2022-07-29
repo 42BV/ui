@@ -1,6 +1,6 @@
 import React from 'react';
 import Datetime from 'react-datetime';
-import moment, { Moment } from 'moment';
+import moment, { Moment, MomentInput } from 'moment';
 import { constant, get } from 'lodash';
 
 import { DateTimeInputIsDateAllowed } from '../DateTimeInput';
@@ -33,7 +33,7 @@ type Props = {
   /**
    * The value that the form element currently has.
    */
-  defaultValue?: Date;
+  defaultValue?: MomentInput;
 
   /**
    * The format for the date, follows Moment.js format.
@@ -119,7 +119,7 @@ export function DateTimeModal(props: Props) {
         input={false}
         open={true}
         closeOnSelect={false}
-        onChange={(x) => setValue(x)}
+        onChange={setValue}
         value={value}
         dateFormat={dateFormat}
         timeFormat={timeFormat}

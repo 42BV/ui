@@ -3,11 +3,70 @@ import { get } from 'lodash';
 import { MomentInput } from 'moment';
 import { t } from '../../utilities/translation/translation';
 import {
+  isDate,
   isDateAfter,
   isDateBefore,
   isDateBetween,
   IsDateBetweenConfig
 } from './checkers';
+import { DateFormat, TimeFormat } from './types';
+import { combineFormat} from './utils';
+
+type IsDateValidatorConfig = {
+  /**
+   * The date format the date should match.
+   */
+  dateFormat: DateFormat;
+
+  /**
+   * The time format the date should match.
+   */
+  timeFormat: TimeFormat;
+
+  /**
+   * The label of the date which must be before the end date.
+   * Used in error messages.
+   */
+  label: string;
+
+  /**
+   * A custom error text which overrides the error message when
+   * provided.
+   *
+   * When `overrideErrorText` is used the end.label is not used and
+   * you can make end.label an empty string.
+   */
+  overrideErrorText?: string;
+};
+
+/**
+ * Creates a final form date validator function which validates if
+ * the date is an actual date that matches the provided format.
+ *
+ * Useful for the `JarbDateTimeInput` components `validators` prop.
+ *
+ * @param {IsDateValidatorConfig} config The configuration for the isDateBeforeValidator
+ * @returns {FieldValidator<Date | string>} A date validator function which checks if the date lies before the end date.
+ */
+export function isDateValidator(config: IsDateValidatorConfig): FieldValidator<Date | string> {
+  const { dateFormat, timeFormat, label } = config;
+
+  return (value?: string | Date): string | undefined => {
+    if (!value || isDate({dateFormat, timeFormat})(value)) {
+      return undefined;
+    }
+
+    return t({
+      key: 'DateTimeInput.INVALID_DATE',
+      fallback: `The "${label}" must match required format "${combineFormat(dateFormat, timeFormat)}"`,
+      data: {
+        format: combineFormat(dateFormat, timeFormat),
+        label
+      },
+      overrideText: config.overrideErrorText
+    });
+  };
+}
 
 type Start = {
   /**
@@ -108,7 +167,7 @@ type IsDateBeforeValidatorConfig = {
 
 /**
  * Creates a final form date validator function which validates if
- * the date lies before the end end.
+ * the date lies before the end date.
  *
  * Useful for the `JarbDateTimeInput` components `validators` prop.
  *
@@ -215,7 +274,7 @@ type IsDateBetweenValidatorConfig = IsDateBetweenConfig & {
  *
  * Useful for the `JarbDateTimeInput` components `validators` prop.
  *
- * @param {isDateBetweenValidatorConfig} config The configuration for the isDateBetweenValidatorConfig
+ * @param {IsDateBetweenValidatorConfig} config The configuration for the isDateBetweenValidatorConfig
  * @returns {FieldValidator<Date>} A date validator function which checks if the date lies after the start date, and before the end date.
  */
 export function isDateBetweenValidator(

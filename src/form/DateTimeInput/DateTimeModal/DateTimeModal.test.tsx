@@ -12,7 +12,7 @@ describe('Component: DateTimeModal', () => {
 
   afterEach(() => {
     global.console = console;
-  })
+  });
 
   function setup({ hasValue }: { hasValue?: boolean }) {
     const onCloseSpy = jest.fn();
@@ -57,10 +57,10 @@ describe('Component: DateTimeModal', () => {
   describe('events', () => {
     it('should update internal value when a date is selected', () => {
       const setValueSpy = jest.fn();
-      jest.spyOn(Value, 'useValue').mockReturnValue(['', setValueSpy]);
+      jest.spyOn(Value, 'useValue').mockReturnValue([ '', setValueSpy ]);
       setup({});
 
-      const value = moment('2022-07-01T00:00:00.000Z');
+      const value = moment(new Date).startOf('month');
 
       fireEvent.click(screen.getAllByText('1')[0]);
 
@@ -90,7 +90,7 @@ describe('Component: DateTimeModal', () => {
     it('should close modal with new value when clicking select button', () => {
       const { onCloseSpy, onSaveSpy } = setup({});
 
-      const value = moment('2022-07-01T00:00:00.000Z');
+      const value = moment(new Date).startOf('month');
 
       fireEvent.click(screen.getAllByText('1')[0]);
       fireEvent.click(screen.getByText('save'));

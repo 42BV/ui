@@ -24,7 +24,7 @@ describe('Component: TextEditor', () => {
     const onFocusSpy = jest.fn();
 
     // Ignore the warnings about deprecated functionality, we will replace Quill sometime in the future
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    jest.spyOn(console, 'warn').mockImplementation(jest.fn());
 
     const props = {
       placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,

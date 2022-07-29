@@ -28,7 +28,7 @@ storiesOf('Form/DateTimeInput', module)
     </>
   ))
   .add('date and time', () => {
-    const [value, setValue] = useState<Date | undefined>(undefined);
+    const [value, setValue] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -47,13 +47,13 @@ storiesOf('Form/DateTimeInput', module)
 
         <div>
           Date and time of birth is:
-          <pre>{value?.toISOString()}</pre>
+          <pre>{value instanceof Date ? value.toISOString() : value}</pre>
         </div>
       </Card>
     );
   })
   .add('date', () => {
-    const [value, setValue] = useState<Date | undefined>(undefined);
+    const [value, setValue] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -72,13 +72,13 @@ storiesOf('Form/DateTimeInput', module)
 
         <div>
           Date of birth is:
-          {value?.toISOString()}
+          {value instanceof Date ? value.toISOString() : value}
         </div>
       </Card>
     );
   })
   .add('time', () => {
-    const [value, setValue] = useState<Date | undefined>(undefined);
+    const [value, setValue] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -97,7 +97,7 @@ storiesOf('Form/DateTimeInput', module)
 
         <div>
           Start time is:
-          <pre>{value?.toISOString()}</pre>
+          <pre>{value instanceof Date ? value.toISOString() : value}</pre>
         </div>
 
         <p>Note: that a time will always come with a date</p>
@@ -105,7 +105,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('with custom label', () => {
-    const [value, setValue] = useState<Date | undefined>(undefined);
+    const [value, setValue] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -135,13 +135,13 @@ storiesOf('Form/DateTimeInput', module)
 
         <div>
           Date and time of birth is:
-          <pre>{value?.toISOString()}</pre>
+          <pre>{value instanceof Date ? value.toISOString() : value}</pre>
         </div>
       </Card>
     );
   })
   .add('open in modal', () => {
-    const [value, setValue] = useState<Date | undefined>();
+    const [value, setValue] = useState<Date | string | undefined>();
 
     return (
       <Card className="m2">
@@ -161,14 +161,14 @@ storiesOf('Form/DateTimeInput', module)
 
         <div>
           Date and time of birth is:
-          <pre>{value?.toISOString()}</pre>
+          <pre>{value instanceof Date ? value.toISOString() : value}</pre>
         </div>
       </Card>
     );
   })
   .add('range', () => {
-    const [start, setStart] = useState<Date | undefined>(undefined);
-    const [end, setEnd] = useState<Date | undefined>(undefined);
+    const [start, setStart] = useState<Date | string | undefined>(undefined);
+    const [end, setEnd] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -196,12 +196,12 @@ storiesOf('Form/DateTimeInput', module)
 
         <div>
           Start time:
-          <pre>{start?.toISOString()}</pre>
+          <pre>{start instanceof Date ? start.toISOString() : start}</pre>
         </div>
 
         <div>
           End time:
-          <pre>{end?.toISOString()}</pre>
+          <pre>{end instanceof Date ? end.toISOString() : end}</pre>
         </div>
 
         <p>
@@ -214,8 +214,8 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('range inclusive', () => {
-    const [start, setStart] = useState<Date | undefined>(undefined);
-    const [end, setEnd] = useState<Date | undefined>(undefined);
+    const [start, setStart] = useState<Date | string | undefined>(undefined);
+    const [end, setEnd] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -243,12 +243,12 @@ storiesOf('Form/DateTimeInput', module)
 
         <div>
           Start time:
-          <pre>{start?.toISOString()}</pre>
+          <pre>{start instanceof Date ? start.toISOString() : start}</pre>
         </div>
 
         <div>
           End time:
-          <pre>{end?.toISOString()}</pre>
+          <pre>{end instanceof Date ? end.toISOString() : end}</pre>
         </div>
 
         <p>

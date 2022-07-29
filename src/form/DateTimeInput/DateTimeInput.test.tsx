@@ -2,9 +2,10 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { DateTimeInput, DateTimeInputIsDateAllowed, DateTimeInputMode } from './DateTimeInput';
-
-jest.setTimeout(100000);
+import { DateTimeInput, DateTimeInputIsDateAllowed, DateTimeInputMode, JarbDateTimeInput } from './DateTimeInput';
+import * as Validators from './validators';
+import { Form } from 'react-final-form';
+import { setConstraints } from '@42.nl/jarb-final-form';
 
 describe('Component: DateTimeInput', () => {
   function setup({
@@ -13,7 +14,7 @@ describe('Component: DateTimeInput', () => {
     hasLabel,
     mode
   }: {
-    value?: Date;
+    value?: Date | string;
     isDateAllowed?: DateTimeInputIsDateAllowed;
     hasLabel?: boolean;
     mode?: DateTimeInputMode;
@@ -37,11 +38,11 @@ describe('Component: DateTimeInput', () => {
       mode,
       label: hasLabel ? 'Date of birth' : undefined
     };
-    
+
     const { container, rerender } = render(
       <DateTimeInput color="success" {...props} />
     );
-    
+
     return { container, props, rerender, onChangeSpy, onFocusSpy, onBlurSpy };
   }
 
@@ -62,27 +63,11 @@ describe('Component: DateTimeInput', () => {
       expect(screen.queryByLabelText('Date of birth')).not.toBeInTheDocument();
     });
 
-    test('with format error', () => {
-      jest
-        .spyOn(React, 'useState')
-        .mockReturnValueOnce(['', jest.fn()])
-        .mockReturnValueOnce([true, jest.fn()]);
-
-      const { container } = setup({
-        value: new Date(2000, 0, 1, 12, 30, 40),
-        hasLabel: true
-      });
-
-      expect(screen.getByText('(YYYY-MM-DD HH:mm:ss)')).toHaveClass('text-danger');
-      expect(container).toMatchSnapshot();
-    });
-
     test('with date picker in modal', () => {
       jest
         .spyOn(React, 'useState')
-        .mockReturnValueOnce(['', jest.fn()])
-        .mockReturnValueOnce([false, jest.fn()])
-        .mockReturnValueOnce([true, jest.fn()]);
+        .mockReturnValueOnce([ '', jest.fn() ])
+        .mockReturnValueOnce([ true, jest.fn() ]);
 
       setup({
         mode: 'modal',
@@ -127,7 +112,7 @@ describe('Component: DateTimeInput', () => {
     });
 
     it('should throw an error when dateFormat and timeFormat are both false', () => {
-      jest.spyOn(console, 'error').mockImplementation(() => undefined);
+      jest.spyOn(console, 'error').mockImplementation(jest.fn());
       expect(() => {
         render(
           <DateTimeInput
@@ -150,9 +135,8 @@ describe('Component: DateTimeInput', () => {
       beforeEach(() => {
         jest
           .spyOn(React, 'useState')
-          .mockReturnValueOnce(['', setLastStringValueSpy])
-          .mockReturnValueOnce([false, jest.fn()])
-          .mockReturnValueOnce([false, jest.fn()]);
+          .mockReturnValueOnce([ '', setLastStringValueSpy ])
+          .mockReturnValueOnce([ false, jest.fn() ]);
       });
 
       it('should when the value is a string which is a valid date set the value', () => {
@@ -174,13 +158,13 @@ describe('Component: DateTimeInput', () => {
         );
       });
 
-      it('should when the value is a string which is not a valid date call onChange with undefined', () => {
+      it('should when the value is a string which is not a valid date call onChange with invalid date string', () => {
         const { onChangeSpy, onBlurSpy } = setup({});
 
         fireEvent.change(screen.getByPlaceholderText('Please enter your date of birth'), { target: { value: '2000-42-42 42:42:42' } });
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(undefined);
+        expect(onChangeSpy).toHaveBeenCalledWith('2000-42-42 42:42:42');
 
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
 
@@ -191,13 +175,13 @@ describe('Component: DateTimeInput', () => {
         );
       });
 
-      it('should when the value is a string which is not a valid value call onChange with undefined', () => {
+      it('should when the value is a string which is not a valid value call onChange with invalid string value', () => {
         const { onChangeSpy, onBlurSpy } = setup({});
 
         fireEvent.change(screen.getByPlaceholderText('Please enter your date of birth'), { target: { value: '2000-__-__ __:__:__' } });
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        expect(onChangeSpy).toHaveBeenCalledWith(undefined);
+        expect(onChangeSpy).toHaveBeenCalledWith('2000-__-__ __:__:__');
 
         expect(onBlurSpy).toHaveBeenCalledTimes(0);
 
@@ -211,7 +195,7 @@ describe('Component: DateTimeInput', () => {
 
     test('onFocus', () => {
       const { onFocusSpy } = setup({});
-      fireEvent.focus(screen.getByPlaceholderText('Please enter your date of birth'))
+      fireEvent.focus(screen.getByPlaceholderText('Please enter your date of birth'));
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });
 
@@ -228,9 +212,8 @@ describe('Component: DateTimeInput', () => {
         const setIsModalOpenSpy = jest.fn();
         jest
           .spyOn(React, 'useState')
-          .mockReturnValueOnce(['', jest.fn()])
-          .mockReturnValueOnce([false, jest.fn()])
-          .mockReturnValueOnce([false, setIsModalOpenSpy]);
+          .mockReturnValueOnce([ '', jest.fn() ])
+          .mockReturnValueOnce([ false, setIsModalOpenSpy ]);
 
         setup({ mode: 'modal' });
 
@@ -244,9 +227,8 @@ describe('Component: DateTimeInput', () => {
         const setIsModalOpenSpy = jest.fn();
         jest
           .spyOn(React, 'useState')
-          .mockReturnValueOnce(['', jest.fn()])
-          .mockReturnValueOnce([false, jest.fn()])
-          .mockReturnValueOnce([true, setIsModalOpenSpy]);
+          .mockReturnValueOnce([ '', jest.fn() ])
+          .mockReturnValueOnce([ true, setIsModalOpenSpy ]);
 
         setup({ mode: 'modal' });
 
@@ -260,9 +242,8 @@ describe('Component: DateTimeInput', () => {
         const setIsModalOpenSpy = jest.fn();
         jest
           .spyOn(React, 'useState')
-          .mockReturnValueOnce(['', jest.fn()])
-          .mockReturnValueOnce([false, jest.fn()])
-          .mockReturnValueOnce([true, setIsModalOpenSpy]);
+          .mockReturnValueOnce([ '', jest.fn() ])
+          .mockReturnValueOnce([ true, setIsModalOpenSpy ]);
 
         setup({ mode: 'modal' });
 
@@ -271,6 +252,33 @@ describe('Component: DateTimeInput', () => {
         expect(setIsModalOpenSpy).toBeCalledTimes(1);
         expect(setIsModalOpenSpy).toBeCalledWith(false);
       });
+    });
+  });
+
+  describe('DateTimeModal default value', () => {
+    it('should open at value date when value is valid date object', () => {
+      const value = new Date(1989, 2, 21);
+      setup({ value, mode: 'modal' });
+      expect(screen.queryByText('March 1989')).toBeInTheDocument();
+      expect(screen.getAllByText('21').map((e) => e.className)).toContain('rdtDay rdtActive');
+    });
+
+    it('should open at value date when value is valid date string', () => {
+      setup({ value: '1989-03-21 13:00:00', mode: 'modal' });
+      expect(screen.queryByText('March 1989')).toBeInTheDocument();
+      expect(screen.getAllByText('21').map((e) => e.className)).toContain('rdtDay rdtActive');
+    });
+
+    it('should open at today when value is invalid date string', () => {
+      setup({ value: '2022-42-42 42:42:42', mode: 'modal' });
+      const today = new Date();
+      expect(screen.getAllByText(today.getDate()).map((e) => e.className)).toContain('rdtDay rdtToday');
+    });
+
+    it('should open at today when value is incomplete date string', () => {
+      setup({ value: '2022-01-__', mode: 'modal' });
+      const today = new Date();
+      expect(screen.getAllByText(today.getDate()).map((e) => e.className)).toContain('rdtDay rdtToday');
     });
   });
 
@@ -293,5 +301,30 @@ describe('Component: DateTimeInput', () => {
 
       expect(screen.getByPlaceholderText('Please enter your date of birth')).toHaveValue('1989-02-21 00:00:00');
     });
+  });
+});
+
+describe('Component: JarbDateTimeInput', () => {
+  it('should use default validator', () => {
+    const isDateValidatorSpy = jest.spyOn(Validators, 'isDateValidator').mockReturnValue(jest.fn());
+    setConstraints({
+      Test: {
+        date: {
+          required: false,
+          javaType: 'String',
+          name: 'date'
+        }
+      }
+    });
+
+    render(
+      <Form onSubmit={jest.fn()}>
+        {() => (
+          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'Test' }} name="test" dateFormat="YYYY-MM-DD" timeFormat={false} />
+        )}
+      </Form>
+    );
+
+    expect(isDateValidatorSpy).toHaveBeenCalled();
   });
 });

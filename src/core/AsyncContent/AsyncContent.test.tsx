@@ -110,7 +110,7 @@ describe('Component: AsyncContent', () => {
     test('with retry button', () => {
       const refetchSpy = jest.fn();
 
-      jest.spyOn(console, 'error').mockImplementation(() => undefined);
+      jest.spyOn(console, 'error').mockImplementation(jest.fn());
       const state = {
         isLoading: false,
         isError: true,
@@ -130,7 +130,7 @@ describe('Component: AsyncContent', () => {
     });
 
     test('without retry button', () => {
-      jest.spyOn(console, 'error').mockImplementation(() => undefined);
+      jest.spyOn(console, 'error').mockImplementation(jest.fn());
       const state = {
         isLoading: false,
         isError: true,
@@ -148,7 +148,7 @@ describe('Component: AsyncContent', () => {
     test('should not render when showRetryButton is undefined', () => {
       const refetchSpy = jest.fn();
 
-      jest.spyOn(console, 'error').mockImplementation(() => undefined);
+      jest.spyOn(console, 'error').mockImplementation(jest.fn());
       const state = {
         isLoading: false,
         isError: true,
@@ -222,7 +222,7 @@ describe('Component: AsyncContent', () => {
       test('with retry button', () => {
         const reloadSpy = jest.fn();
 
-        jest.spyOn(console, 'error').mockImplementation(() => undefined);
+        jest.spyOn(console, 'error').mockImplementation(jest.fn());
         const state = {
           isLoading: false,
           isFulfilled: false,
@@ -242,7 +242,7 @@ describe('Component: AsyncContent', () => {
       });
 
       test('without retry button', () => {
-        jest.spyOn(console, 'error').mockImplementation(() => undefined);
+        jest.spyOn(console, 'error').mockImplementation(jest.fn());
         const state = {
           isLoading: false,
           isFulfilled: false,
@@ -260,7 +260,7 @@ describe('Component: AsyncContent', () => {
       test('should not render when showRetryButton is undefined', () => {
         const reloadSpy = jest.fn();
 
-        jest.spyOn(console, 'error').mockImplementation(() => undefined);
+        jest.spyOn(console, 'error').mockImplementation(jest.fn());
         const state = {
           isLoading: false,
           isFulfilled: false,

@@ -21,7 +21,7 @@
   ],
   "license": "SEE LICENSE IN LICENSE.MD",
   "scripts": {
-    "start": "start-storybook -c storybook",
+    "start": "start-storybook -c storybook -p 3001",
     "clean": "rm -rf dist",
     "test": "npm run lint && npm run test:ts && npm run test:coverage",
     "test:ts": "tsc --version && tsc --noEmit",
