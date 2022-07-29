@@ -13,7 +13,6 @@ import {
 import Pagination from '../../core/Pagination/Pagination';
 import { t } from '../../utilities/translation/translation';
 import SearchInput from '../../core/SearchInput/SearchInput';
-import { useBodyFixOnModalClose } from '../../hooks/useBodyFixOnModalClose/useBodyFixOnModalClose';
 import ContentState from '../../core/ContentState/ContentState';
 import EmptyModal from './EmptyModal';
 import {
@@ -168,8 +167,6 @@ export default function ModalPicker<T>(props: Props<T>) {
     selected,
     text = {}
   } = props;
-
-  useBodyFixOnModalClose(isOpen);
 
   const shouldRenderPagination = !(page.first && page.last);
 

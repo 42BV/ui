@@ -66,16 +66,16 @@ export default function ConfirmButton({
   text = {},
   className
 }: Props) {
-  const [isOpen, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { modalHeader, confirm, cancel } = text;
 
   function openModal(event: React.MouseEvent<HTMLElement>) {
     event.stopPropagation();
-    setOpen(true);
+    setIsModalOpen(true);
   }
 
   function saveModal() {
-    setOpen(false);
+    setIsModalOpen(false);
     onConfirm();
   }
 
@@ -98,15 +98,16 @@ export default function ConfirmButton({
     >
       <Button {...buttonProps} />
 
-      <ConfirmModal
-        isOpen={isOpen}
-        onClose={() => setOpen(false)}
-        onSave={() => saveModal()}
-        label={modalHeader}
-        modalText={dialogText}
-        cancelText={cancel}
-        confirmText={confirm}
-      />
+      {isModalOpen ? (
+        <ConfirmModal
+          onClose={() => setIsModalOpen(false)}
+          onSave={() => saveModal()}
+          label={modalHeader}
+          modalText={dialogText}
+          cancelText={cancel}
+          confirmText={confirm}
+        />
+      ) : null}
     </div>
   );
 }

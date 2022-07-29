@@ -1,65 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: CardOpenClose deprecated: content closed 1`] = `
-<div>
-  <div
-    class="my-2 card"
-  >
-    <div
-      class="d-flex justify-content-between align-content-center clickable card-header"
-    >
-      click this
-      <i
-        class="icon open-close is-closed material-icons"
-      >
-        expand_more
-      </i>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Component: CardOpenClose deprecated: content open 1`] = `
-<div>
-  <div
-    class="my-2 card"
-  >
-    <div
-      class="d-flex justify-content-between align-content-center clickable card-header"
-    >
-      click this
-      <i
-        class="icon open-close is-open material-icons"
-      >
-        expand_more
-      </i>
-    </div>
-    <p>
-      This is collapsable content that should not be included in the HTML when isOpen is false
-    </p>
-  </div>
-</div>
-`;
-
-exports[`Component: CardOpenClose ui closed 1`] = `
-<div>
-  <div
-    class="my-2 card"
-  >
-    <div
-      class="d-flex justify-content-between align-content-center clickable card-header"
-    >
-      click this
-      <i
-        class="icon open-close is-closed material-icons"
-      >
-        expand_more
-      </i>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Component: CardOpenClose ui open 1`] = `
 <div>
   <div
@@ -76,7 +16,7 @@ exports[`Component: CardOpenClose ui open 1`] = `
       </i>
     </div>
     <p>
-      This is collapsable content that should not be included in the HTML when isOpen is false
+      This is collapsable content
     </p>
   </div>
 </div>

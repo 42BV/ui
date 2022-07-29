@@ -420,7 +420,6 @@ storiesOf('table/FormTable', module)
           />
           {newPage ? (
             <OpenCloseModal
-              isOpen={true}
               onClose={() => setNewPage(undefined)}
               onSave={() => {
                 setPage(newPage);
@@ -886,7 +885,6 @@ storiesOf('table/FormTable', module)
           />
           {newPage ? (
             <OpenCloseModal
-              isOpen={true}
               onClose={() => setNewPage(undefined)}
               onSave={() => {
                 setPage(newPage);
@@ -1740,7 +1738,6 @@ storiesOf('table/FormTable', module)
           />
           {newPage ? (
             <OpenCloseModal
-              isOpen={true}
               onClose={() => setNewPage(undefined)}
               onSave={() => {
                 setPage(newPage);

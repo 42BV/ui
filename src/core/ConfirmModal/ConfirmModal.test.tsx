@@ -9,7 +9,6 @@ describe('Component: ConfirmModal', () => {
     test('default texts', () => {
       render(
         <ConfirmModal
-          isOpen={true}
           onClose={() => undefined}
           onSave={() => undefined}
           modalText={
@@ -26,7 +25,6 @@ describe('Component: ConfirmModal', () => {
     test('custom texts', () => {
       render(
         <ConfirmModal
-          isOpen={true}
           onClose={() => undefined}
           onSave={() => undefined}
           modalText={

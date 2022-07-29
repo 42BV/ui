@@ -125,7 +125,6 @@ describe('index', () => {
         "requireImage": [Function],
         "setTranslator": [Function],
         "t": [Function],
-        "useBodyFixOnModalClose": [Function],
         "useBootstrapSize": [Function],
         "useHover": [Function],
         "useShowAfter": [Function],

@@ -55,25 +55,4 @@ describe('Component: Card', () => {
       expect(container).toMatchSnapshot();
     });
   });
-
-  test('deprecated: modalHeaderClassName', () => {
-    const { container } = render(
-      <Card header="test" modalHeaderClassName="deprecated classes">This is the content</Card>
-    );
-    expect(container).toMatchSnapshot();
-  });
-
-  test('deprecated: modalBodyClassName', () => {
-    const { container } = render(
-      <Card modalBodyClassName="deprecated classes">This is the content</Card>
-    );
-    expect(container).toMatchSnapshot();
-  });
-
-  test('deprecated: modalFooterClassName', () => {
-    const { container } = render(
-      <Card footer="test" modalFooterClassName="deprecated classes">This is the content</Card>
-    );
-    expect(container).toMatchSnapshot();
-  });
 });

@@ -31,15 +31,16 @@ storiesOf('core/ConfirmModal', module)
 
     return (
       <div className="text-center mt-3">
-        <ConfirmModal
-          isOpen={isConfirmModalOpen}
-          onClose={() => setConfirmModalOpen(false)}
-          onSave={() => {
-            setConfirmModalOpen(false);
-            action('confirm clicked')();
-          }}
-          modalText="Are you sure to delete this user? This operation cannot be undone!"
-        />
+        {isConfirmModalOpen ? (
+          <ConfirmModal
+            onClose={() => setConfirmModalOpen(false)}
+            onSave={() => {
+              setConfirmModalOpen(false);
+              action('confirm clicked')();
+            }}
+            modalText="Are you sure to delete this user? This operation cannot be undone!"
+          />
+        ) : null}
         <ButtonDropdown
           isOpen={isDropdownMenuOpen}
           toggle={() => setDropdownMenuOpen(!isDropdownMenuOpen)}
@@ -62,22 +63,23 @@ storiesOf('core/ConfirmModal', module)
 
     return (
       <div className="text-center mt-3">
-        <ConfirmModal
-          isOpen={isConfirmModalOpen}
-          onClose={() => setConfirmModalOpen(false)}
-          onSave={() => {
-            setConfirmModalOpen(false);
-            action('Confirm clicked')();
-          }}
-          label="PLEASE SAY YES"
-          modalText={
-            <p>
-              Are you sure you want to <strong>delete</strong> all users?
-            </p>
-          }
-          confirmText="YES"
-          cancelText="NO"
-        />
+        {isConfirmModalOpen ? (
+          <ConfirmModal
+            onClose={() => setConfirmModalOpen(false)}
+            onSave={() => {
+              setConfirmModalOpen(false);
+              action('Confirm clicked')();
+            }}
+            label="PLEASE SAY YES"
+            modalText={
+              <p>
+                Are you sure you want to <strong>delete</strong> all users?
+              </p>
+            }
+            confirmText="YES"
+            cancelText="NO"
+          />
+        ) : null}
         <ButtonDropdown
           isOpen={isDropdownMenuOpen}
           toggle={() => setDropdownMenuOpen(!isDropdownMenuOpen)}

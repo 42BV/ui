@@ -13,15 +13,6 @@ type Text = {
 
 type Props = {
   /**
-   * Whether or not the modal is open.
-   * @deprecated Please do not use the isOpen boolean to control whether
-   * or not the modal is opened. Instead always set isOpen to `true`
-   * and only render the OpenCloseModal when it should be rendered.
-   * In version 4.0.0 the isOpen property will be removed.
-   */
-  isOpen: boolean;
-
-  /**
    * Whether or not the save action you are performing is currently in
    * progress. If so a spinner is rendered inside of the button.
    * This behavior is optional and default to `false`.
@@ -115,7 +106,6 @@ type Props = {
  */
 export function OpenCloseModal(props: Props) {
   const {
-    isOpen,
     inProgress,
     onClose,
     onSave,
@@ -131,10 +121,6 @@ export function OpenCloseModal(props: Props) {
     modalBodyClassName,
     modalFooterClassName
   } = props;
-
-  if (!isOpen) {
-    return null;
-  }
 
   return (
     <Modal

@@ -199,7 +199,6 @@ export { pageOf } from './utilities/page/page';
 export { configure, Config } from './config/config';
 
 // Hooks
-export { useBodyFixOnModalClose } from './hooks/useBodyFixOnModalClose/useBodyFixOnModalClose';
 export { useShowAfter } from './hooks/useShowAfter/useShowAfter';
 export { useHover } from './hooks/useHover/useHover';
 export { useBootstrapSize } from './hooks/useBootstrapSize/useBootstrapSize';
