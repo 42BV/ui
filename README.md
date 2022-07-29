@@ -22,7 +22,40 @@
 
 ---
 
-## Optional dependencies
+## Migrate to v5
+
+The major reason we released a new major version of this library, is because we changed a lot of dependencies to become
+optional. We explain that more in detail below. We also changed the DateTimeInput to always send the value to onChange
+whether it is a valid date or not. This gives JarbDateTimeInput the ability to validate the date and display the correct
+error messages. It also gives you as a developer more control over the value. We also removed the mask option from the input
+as it is not required for the DateTimeInput anymore and the library doesn't support React v17+.
+
+Other than that, we also changed the label of form elements to be required and added a hiddenLabel property to visually
+hide the label. This was done together with other improvements to a lot of components to comply with the accessibility guidelines.
+We should now be [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/) compliant. If you find any problems with accessibility,
+please create an issue so we can work on it.
+
+We removed the Popover component as it was a replica of the Tooltip component with a different style. We encourage using the
+Modal with more complex content as the accessibility and user experience are better than navigable content in a popover.
+
+With the new release, we now support React Query v4. Be sure to check their
+[migration guide](https://tanstack.com/query/v4/docs/guides/migrating-to-react-query-4) to keep your project up-to-date.
+We still support React Query v3 and React Async, so if you don't have time to update your project, you don't have to worry
+about using v5 of this library.
+
+Bootstrap has also been updated to v5.2. Although it doesn't break your project, please check out their
+[migration guide](https://getbootstrap.com/docs/5.2/migration/) for changes and new features.
+
+We also introduced a new [CopyToClipboard](https://42bv.github.io/ui/storybook/?path=/story/core-copytoclipboard) component,
+the [EpicPagination](https://42bv.github.io/ui/storybook/?path=/story/core-epicpagination) component (different layout),
+added a dropdown to Pagination to allow the user to determine the page size, and fixed user experience issues with the
+ImageUpload component.
+
+Enzyme was last updated 3 years ago and only worked with React 16/17 using adapters. There is no adapter for React 18,
+so we had to replace it with [React Testing Library](https://testing-library.com/). We still support React 17, but for
+development we now use the most recent version of React. This also gave us the ability to update some other dependencies.
+
+### Optional dependencies
 
 We have a lot of dependencies making our dependency tree pretty big, while a lot of those dependencies are only used in
 a few or even only in a single component. If you don't use that component(s) in your project, this library would
@@ -53,8 +86,10 @@ In version 3.17 we added support for React Query. We still support React Async, 
 almost 2 years now, and React Query provides more features we would like to use.
 
 Replacing React Async with React Query in your project is done in a few simple steps:
-1. Install React Query by running `npm i -S react-query`
-2. In your index.tsx file, add the following:
+
+1.  Install React Query by running `npm i -S @tanstack/react-query`
+
+2.  In your index.tsx file, add the following:
     ```ts
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -67,13 +102,15 @@ Replacing React Async with React Query in your project is done in a few simple s
         }
     });
     ```
-3. In your index.tsx file, wrap the `<App/>` in the provider:
+    
+3.  In your index.tsx file, wrap the `<App/>` in the provider:
     ```tsx
     <QueryClientProvider client={queryClient}>
         <App/>
     </QueryClientProvider>
     ```
-4. Search for all occurrences of `useAsync(...)` in your project and replace them with `useQuery(...)`.
+    
+4.  Search for all occurrences of `useAsync(...)` in your project and replace them with `useQuery(...)`.
     
 `useQuery()` requires the first parameter to be a key. You have to provide a unique key for every useQuery. If you used
 the watch property in `useAsync`, you have to add the properties you watched to the key. The key is allowed to be an
@@ -83,7 +120,7 @@ allowed to pass an entire object to the array, so `useQuery(['users', queryParam
 There are multiple ways to pass parameters to the callback. Per default, an object containing the key is passed to the
 callback. The callback would look like this:
 ```ts
-import { QueryFunction } from 'react-query';
+import { QueryFunction } from '@tanstack/react-query';
 
 ...
 
