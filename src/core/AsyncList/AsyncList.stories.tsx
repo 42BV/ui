@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import { Alert, Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 
 import AsyncList from './AsyncList';
 
@@ -52,11 +52,15 @@ storiesOf('core/Async/AsyncList', module)
   .addParameters({ component: AsyncList })
   .addDecorator((Story) => (
     <QueryClientProvider client={client}>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use AsyncList, you have to add @tanstack/react-query to your dependencies:</p>
+        <code>npm install --save @tanstack/react-query</code>
+      </Alert>
       <Story />
     </QueryClientProvider>
   ))
   .add('when loaded', () => {
-    const state = useQuery('data', loadData);
+    const state = useQuery(['data'], loadData);
 
     return (
       <Card body>
@@ -74,7 +78,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('when error', () => {
-    const state = useQuery('data', rejectData);
+    const state = useQuery(['data'], rejectData);
 
     return (
       <Card body>
@@ -92,7 +96,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('when error with custom text', () => {
-    const state = useQuery('data', rejectData);
+    const state = useQuery(['data'], rejectData);
 
     return (
       <Card body>
@@ -113,7 +117,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('when error with no retry button', () => {
-    const state = useQuery('data', rejectData);
+    const state = useQuery(['data'], rejectData);
 
     return (
       <Card body>
@@ -131,7 +135,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('when loading', () => {
-    const state = useQuery('data', loadingData);
+    const state = useQuery(['data'], loadingData);
 
     return (
       <Card body>
@@ -149,7 +153,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('when loading with custom title', () => {
-    const state = useQuery('data', loadingData);
+    const state = useQuery(['data'], loadingData);
 
     return (
       <Card body>
@@ -167,7 +171,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('when empty', () => {
-    const state = useQuery('data', emptyData);
+    const state = useQuery(['data'], emptyData);
 
     return (
       <Card body>
@@ -185,7 +189,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('when empty with custom title', () => {
-    const state = useQuery('data', emptyData);
+    const state = useQuery(['data'], emptyData);
 
     return (
       <Card body>
@@ -206,7 +210,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('when empty with custom empty', () => {
-    const state = useQuery('data', emptyData);
+    const state = useQuery(['data'], emptyData);
 
     return (
       <Card body>

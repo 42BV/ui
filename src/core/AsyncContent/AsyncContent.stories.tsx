@@ -2,9 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import AsyncContent from './AsyncContent';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { action } from '@storybook/addon-actions';
 import { ContentState, Button } from '../..';
+import { Alert } from 'reactstrap';
 
 function loadData() {
   return new Promise((resolve) => {
@@ -40,11 +41,15 @@ storiesOf('core/async/AsyncContent', module)
   .addParameters({ component: AsyncContent })
   .addDecorator((Story) => (
     <QueryClientProvider client={client}>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use AsyncContent, you have to add @tanstack/react-query to your dependencies:</p>
+        <code>npm install --save @tanstack/react-query</code>
+      </Alert>
       <Story />
     </QueryClientProvider>
   ))
   .add('when loaded', () => {
-    const state = useQuery('data', loadData);
+    const state = useQuery(['data'], loadData);
 
     return (
       <div className="text-center">
@@ -56,7 +61,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when error', () => {
-    const state = useQuery('data', rejectData);
+    const state = useQuery(['data'], rejectData);
 
     return (
       <div className="text-center">
@@ -68,7 +73,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when error with custom text', () => {
-    const state = useQuery('data', rejectData);
+    const state = useQuery(['data'], rejectData);
 
     return (
       <div className="text-center">
@@ -83,7 +88,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when error with no retry button', () => {
-    const state = useQuery('data', rejectData);
+    const state = useQuery(['data'], rejectData);
 
     return (
       <div className="text-center">
@@ -95,7 +100,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when loading', () => {
-    const state = useQuery('data', loadingData);
+    const state = useQuery(['data'], loadingData);
 
     return (
       <div className="text-center">
@@ -107,7 +112,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when loading with custom title', () => {
-    const state = useQuery('data', loadingData);
+    const state = useQuery(['data'], loadingData);
 
     return (
       <div className="text-center">
@@ -119,7 +124,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when empty', () => {
-    const state = useQuery('data', loadData);
+    const state = useQuery(['data'], loadData);
 
     return (
       <div className="text-center">
@@ -134,7 +139,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when empty with title', () => {
-    const state = useQuery('data', loadData);
+    const state = useQuery(['data'], loadData);
 
     return (
       <div className="text-center">
@@ -150,7 +155,7 @@ storiesOf('core/async/AsyncContent', module)
   })
 
   .add('when empty with custom empty', () => {
-    const state = useQuery('data', loadData);
+    const state = useQuery(['data'], loadData);
 
     return (
       <div className="text-center">
