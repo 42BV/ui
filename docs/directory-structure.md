@@ -20,6 +20,7 @@ The top-level directory structure for `@42.nl/ui` looks like the following diagr
   ├─ hooks ···········Hooks
   ├─ form ··········· Form components
   ├─ styling ········ SCSS files
+  ├─ table ·········· Table components
   ├─ test ··········· Test fixtures and utilities
   ├─ utilities ······ Utility components and functions (such as translation)
   ├─ index.ts ······· Main export file
