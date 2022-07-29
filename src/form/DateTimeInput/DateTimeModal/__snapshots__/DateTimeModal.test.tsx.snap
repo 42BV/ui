@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: DateTimeModal ui open 1`] = `
+exports[`Component: DateTimeModal ui default 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"

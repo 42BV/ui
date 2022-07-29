@@ -42,36 +42,6 @@ export type Props = {
    * Useful for styling the component.
    */
   cardFooterClassName?: string;
-
-  /**
-   * Optional extra CSS class you want to add to the <CardHeader>.
-   * Useful for styling the component.
-   *
-   * @deprecated Please do not use the modalHeaderClassName property anymore.
-   * Instead use the cardHeaderClassName property.
-   * In version 4.0.0 the modalHeaderClassName property will be removed.
-   */
-  modalHeaderClassName?: string;
-
-  /**
-   * Optional extra CSS class you want to add to the <CardBody>.
-   * Useful for styling the component.
-   *
-   * @deprecated Please do not use the modalBodyClassName property anymore.
-   * Instead use the cardBodyClassName property.
-   * In version 4.0.0 the modalBodyClassName property will be removed.
-   */
-  modalBodyClassName?: string;
-
-  /**
-   * Optional extra CSS class you want to add to the <CardFooter>.
-   * Useful for styling the component.
-   *
-   * @deprecated Please do not use the modalFooterClassName property anymore.
-   * Instead use the cardFooterClassName property.
-   * In version 4.0.0 the modalFooterClassName property will be removed.
-   */
-  modalFooterClassName?: string;
 };
 
 /**
@@ -87,19 +57,16 @@ export function Card({
   className,
   cardHeaderClassName,
   cardBodyClassName,
-  cardFooterClassName,
-  modalHeaderClassName,
-  modalBodyClassName,
-  modalFooterClassName
+  cardFooterClassName
 }: Props) {
   return (
     <ReactstrapCard className={className}>
       {header ? (
-        <CardHeader className={cardHeaderClassName ? cardHeaderClassName : modalHeaderClassName}>
+        <CardHeader className={cardHeaderClassName}>
           <Suspense fallback={<Loading />}>{header}</Suspense>
         </CardHeader>
       ) : null}
-      <CardBody className={cardBodyClassName ? cardBodyClassName : modalBodyClassName}>
+      <CardBody className={cardBodyClassName}>
         <Suspense fallback={<Loading />}>
           <ErrorBoundary>
             {children}
@@ -107,7 +74,7 @@ export function Card({
         </Suspense>
       </CardBody>
       {footer ? (
-        <CardFooter className={cardFooterClassName ? cardFooterClassName : modalFooterClassName}>
+        <CardFooter className={cardFooterClassName}>
           <Suspense fallback={<Loading />}>{footer}</Suspense>
         </CardFooter>
       ) : null}

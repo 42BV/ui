@@ -36,24 +36,25 @@ storiesOf('core/OpenCloseModal', module)
     return (
       <Card body>
         <Button onClick={() => setIsOpen(true)}>Start inquiry</Button>
-        <OpenCloseModal
-          isOpen={isOpen}
-          inProgress={inProgress}
-          onClose={onClose}
-          onSave={onSave}
-          label="What are you doing?"
-        >
-          <RadioGroup
-            value={choice}
-            onChange={(value) => setChoice(value)}
-            options={[
-              'Watching a movie',
-              'I work at 42, the most awesome company in the world!',
-              'Nothing'
-            ]}
-            labelForOption={(option) => option}
-          />
-        </OpenCloseModal>
+        {isOpen ? (
+          <OpenCloseModal
+            inProgress={inProgress}
+            onClose={onClose}
+            onSave={onSave}
+            label="What are you doing?"
+          >
+            <RadioGroup
+              value={choice}
+              onChange={(value) => setChoice(value)}
+              options={[
+                'Watching a movie',
+                'I work at 42, the most awesome company in the world!',
+                'Nothing'
+              ]}
+              labelForOption={(option) => option}
+            />
+          </OpenCloseModal>
+        ) : null}
       </Card>
     );
   })
@@ -72,41 +73,43 @@ storiesOf('core/OpenCloseModal', module)
           <Button onClick={() => setIsOpenSansSticky(true)}>Sans sticky</Button>
         </p>
 
-        <OpenCloseModal
-          stickyFooter={true}
-          isOpen={isOpenSticky}
-          onSave={() => setIsOpenSticky(false)}
-          onClose={() => setIsOpenSticky(false)}
-          label="Sticky footer"
-          size="sm"
-        >
-          {range(0, 10).map((number) => (
-            <p key={number}>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
-              modi, facilis officia provident maiores voluptate minus officiis
-              tempora minima blanditiis. Distinctio rem iste omnis inventore
-              ratione facere voluptates quam suscipit!
-            </p>
-          ))}
-        </OpenCloseModal>
+        {isOpenSticky ? (
+          <OpenCloseModal
+            stickyFooter={true}
+            onSave={() => setIsOpenSticky(false)}
+            onClose={() => setIsOpenSticky(false)}
+            label="Sticky footer"
+            size="sm"
+          >
+            {range(0, 10).map((number) => (
+              <p key={number}>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
+                modi, facilis officia provident maiores voluptate minus officiis
+                tempora minima blanditiis. Distinctio rem iste omnis inventore
+                ratione facere voluptates quam suscipit!
+              </p>
+            ))}
+          </OpenCloseModal>
+        ) : null}
 
-        <OpenCloseModal
-          stickyFooter={false}
-          isOpen={isOpenSansSticky}
-          onSave={() => setIsOpenSansSticky(false)}
-          onClose={() => setIsOpenSansSticky(false)}
-          label="No sticky footer"
-          size="sm"
-        >
-          {range(0, 10).map((number) => (
-            <p key={number}>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
-              modi, facilis officia provident maiores voluptate minus officiis
-              tempora minima blanditiis. Distinctio rem iste omnis inventore
-              ratione facere voluptates quam suscipit!
-            </p>
-          ))}
-        </OpenCloseModal>
+        {isOpenSansSticky ? (
+          <OpenCloseModal
+            stickyFooter={false}
+            onSave={() => setIsOpenSansSticky(false)}
+            onClose={() => setIsOpenSansSticky(false)}
+            label="No sticky footer"
+            size="sm"
+          >
+            {range(0, 10).map((number) => (
+              <p key={number}>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis
+                modi, facilis officia provident maiores voluptate minus officiis
+                tempora minima blanditiis. Distinctio rem iste omnis inventore
+                ratione facere voluptates quam suscipit!
+              </p>
+            ))}
+          </OpenCloseModal>
+        ) : null}
       </Card>
     );
   })
@@ -116,17 +119,18 @@ storiesOf('core/OpenCloseModal', module)
     return (
       <Card body>
         <Button onClick={() => setIsOpen(true)}>Inspire me</Button>
-        <OpenCloseModal
-          isOpen={isOpen}
-          onSave={() => setIsOpen(false)}
-          onClose={() => setIsOpen(false)}
-          text={{ save: 'Yes', cancel: 'No' }}
-        >
-          <p>
-            You have to take a break once in a while. Did you go for a walk
-            outside to breathe some fresh air?
-          </p>
-        </OpenCloseModal>
+        {isOpen ? (
+          <OpenCloseModal
+            onSave={() => setIsOpen(false)}
+            onClose={() => setIsOpen(false)}
+            text={{ save: 'Yes', cancel: 'No' }}
+          >
+            <p>
+              You have to take a break once in a while. Did you go for a walk
+              outside to breathe some fresh air?
+            </p>
+          </OpenCloseModal>
+        ) : null}
       </Card>
     );
   })
@@ -140,16 +144,17 @@ storiesOf('core/OpenCloseModal', module)
     return (
       <Card body>
         <Button onClick={() => setIsOpen(true)}>What does Baymax say?</Button>
-        <OpenCloseModal
-          isOpen={isOpen}
-          onClose={onClose}
-          label="Your personal health companion"
-        >
-          <p>
-            You need to wash your hands if you want to prevent getting Corona
-            virus.
-          </p>
-        </OpenCloseModal>
+        {isOpen ? (
+          <OpenCloseModal
+            onClose={onClose}
+            label="Your personal health companion"
+          >
+            <p>
+              You need to wash your hands if you want to prevent getting Corona
+              virus.
+            </p>
+          </OpenCloseModal>
+        ) : null}
       </Card>
     );
   })
@@ -177,30 +182,31 @@ storiesOf('core/OpenCloseModal', module)
         <Button onClick={() => setIsOpen(true)}>
           Check what&apos;s inside
         </Button>
-        <OpenCloseModal
-          isOpen={isOpen}
-          onClose={onClose}
-          cancelIcon="360"
-          onSave={onSave}
-          saveIcon="attach_money"
-          modalBodyClassName="bg-warning"
-          label="It's a special gift!"
-          text={{
-            save: 'Confirm',
-            cancel: ''
-          }}
-        >
-          <p>Inside the box you find a diamond. What do you want to do?</p>
-          <RadioGroup
-            value={choice}
-            onChange={(value) => setChoice(value)}
-            options={[
-              { label: 'Sell it!', value: 'sell' },
-              { label: 'Put it in my pocket', value: 'store' }
-            ]}
-            labelForOption={(option) => option.label}
-          />
-        </OpenCloseModal>
+        {isOpen ? (
+          <OpenCloseModal
+            onClose={onClose}
+            cancelIcon="360"
+            onSave={onSave}
+            saveIcon="attach_money"
+            modalBodyClassName="bg-warning"
+            label="It's a special gift!"
+            text={{
+              save: 'Confirm',
+              cancel: ''
+            }}
+          >
+            <p>Inside the box you find a diamond. What do you want to do?</p>
+            <RadioGroup
+              value={choice}
+              onChange={(value) => setChoice(value)}
+              options={[
+                { label: 'Sell it!', value: 'sell' },
+                { label: 'Put it in my pocket', value: 'store' }
+              ]}
+              labelForOption={(option) => option.label}
+            />
+          </OpenCloseModal>
+        ) : null}
       </Card>
     );
   });
@@ -233,7 +239,6 @@ export function ModalForm() {
         <Form onSubmit={onSave}>
           {(formRenderProps) => (
             <OpenCloseModal
-              isOpen={true}
               inProgress={formRenderProps.submitting}
               onClose={onClose}
               onSave={formRenderProps.handleSubmit}

@@ -14,13 +14,7 @@ describe('Component: DateTimeModal', () => {
     global.console = console;
   })
 
-  function setup({
-    hasValue,
-    isOpen = true
-  }: {
-    hasValue?: boolean;
-    isOpen?: boolean;
-  }) {
+  function setup({ hasValue }: { hasValue?: boolean }) {
     const onCloseSpy = jest.fn();
     const onSaveSpy = jest.fn();
     const isDateAllowedSpy = jest.fn().mockReturnValue(true);
@@ -31,7 +25,6 @@ describe('Component: DateTimeModal', () => {
 
     const { container } = render(
       <DateTimeModal
-        isOpen={isOpen}
         onClose={onCloseSpy}
         onSave={onSaveSpy}
         dateFormat="YYYY-MM-DD"
@@ -44,13 +37,8 @@ describe('Component: DateTimeModal', () => {
   }
 
   describe('ui', () => {
-    test('not open', () => {
-      setup({ isOpen: false });
-      expect(document.body.lastChild?.firstChild).toBeNull();
-    });
-
-    test('open', () => {
-      setup({ isOpen: true, hasValue: true });
+    test('default', () => {
+      setup({ hasValue: true });
       expect(document.body.lastChild).toMatchSnapshot();
     });
 
@@ -118,7 +106,6 @@ describe('Component: DateTimeModal', () => {
 
       render(
         <DateTimeModal
-          isOpen={true}
           onClose={jest.fn()}
           onSave={jest.fn()}
           dateFormat="YYYY-MM-DD"

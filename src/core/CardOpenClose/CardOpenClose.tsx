@@ -4,7 +4,7 @@ import { Card, CardHeader } from 'reactstrap';
 import classNames from 'classnames';
 import Loading from '../Loading/Loading';
 
-type BaseProps = {
+type Props = {
   /**
    * The important details you always want to be displayed.
    */
@@ -26,27 +26,12 @@ type BaseProps = {
    * Useful for styling the component.
    */
   className?: string;
-};
 
-type PropsWithChildren = BaseProps & {
   /**
    * The content that might be hidden in the collapsable body.
    */
   children: () => React.ReactNode;
 };
-
-type DeprecatedPropsWithContent = BaseProps & {
-  /**
-   * The content that might be hidden in the collapsable body.
-   *
-   * @deprecated Please do not use the content property anymore.
-   * Instead use the children property.
-   * In version 4.0.0 the content property will be removed.
-   */
-  content: () => React.ReactNode;
-};
-
-type Props = PropsWithChildren | DeprecatedPropsWithContent;
 
 /**
  * CardOpenClose is a collapsable bootstrap card that you can use to only display
@@ -71,15 +56,9 @@ export function CardOpenClose(props: Props) {
         ? null
         : (
           <Suspense fallback={<Loading />}>
-            {propsHasChildren(props)
-              ? props.children()
-              : props.content()}
+            {props.children()}
           </Suspense>
         )}
     </Card>
   );
-}
-
-function propsHasChildren(props: Props): props is PropsWithChildren {
-  return (props as PropsWithChildren).children !== undefined;
 }

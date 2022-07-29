@@ -16,15 +16,6 @@ export type Text = {
 
 type Props = {
   /**
-   * Whether or not the modal is open.
-   * @deprecated Please do not use the isOpen boolean to control whether
-   * or not the modal is opened. Instead always set isOpen to `true`
-   * and only render the OpenCloseModal when it should be rendered.
-   * In version 4.0.0 the isOpen property will be removed.
-   */
-  isOpen: boolean;
-
-  /**
    * Callback for when the modal should close.
    */
   onClose: () => void;
@@ -94,7 +85,6 @@ type Props = {
 
 export function DateTimeModal(props: Props) {
   const {
-    isOpen,
     onClose,
     onSave,
     label,
@@ -115,13 +105,8 @@ export function DateTimeModal(props: Props) {
     props.defaultValue ? moment(props.defaultValue) : ''
   );
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
     <OpenCloseModal
-      isOpen={true}
       onClose={onClose}
       onSave={() => onSave(value)}
       label={label}

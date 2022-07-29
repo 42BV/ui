@@ -24,15 +24,6 @@ type Props = {
   confirmText?: string;
 
   /**
-   * Whether or not the modal is open.
-   * @deprecated Please do not use the isOpen boolean to control whether
-   * or not the modal is opened. Instead always set isOpen to `true`
-   * and only render the ConfirmModal when it should be rendered.
-   * In version 4.0.0 the isOpen property will be removed.
-   */
-  isOpen: boolean;
-
-  /**
    * Function that gets called when the modal is dismissed or closed via the close button
    *
    */
@@ -65,7 +56,6 @@ type Props = {
  * such as when using a ButtonDropdown, you can use this component directly instead.
  */
 export default function ConfirmModal({
-  isOpen,
   onClose,
   onSave,
   label,
@@ -76,7 +66,6 @@ export default function ConfirmModal({
 }: Props) {
   return (
     <OpenCloseModal
-      isOpen={isOpen}
       onClose={onClose}
       onSave={onSave}
       label={t({

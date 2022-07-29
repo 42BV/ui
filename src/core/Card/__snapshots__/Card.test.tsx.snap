@@ -1,57 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Card deprecated: modalBodyClassName 1`] = `
-<div>
-  <div
-    class="card"
-  >
-    <div
-      class="deprecated classes card-body"
-    >
-      This is the content
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Component: Card deprecated: modalFooterClassName 1`] = `
-<div>
-  <div
-    class="card"
-  >
-    <div
-      class="card-body"
-    >
-      This is the content
-    </div>
-    <div
-      class="deprecated classes card-footer"
-    >
-      test
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Component: Card deprecated: modalHeaderClassName 1`] = `
-<div>
-  <div
-    class="card"
-  >
-    <div
-      class="deprecated classes card-header"
-    >
-      test
-    </div>
-    <div
-      class="card-body"
-    >
-      This is the content
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
 <div>
   <div

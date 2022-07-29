@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 import { CardOpenClose } from './CardOpenClose';
 
@@ -11,8 +12,7 @@ describe('Component: CardOpenClose', () => {
       <CardOpenClose header="click this" isOpen={isOpen} toggle={toggleSpy}>
         {() => (
           <p>
-            This is collapsable content that should not be included in the HTML
-            when isOpen is false
+            This is collapsable content
           </p>
         )}
       </CardOpenClose>
@@ -24,14 +24,15 @@ describe('Component: CardOpenClose', () => {
   describe('ui', () => {
     test('open', () => {
       const { container } = setup({ isOpen: true });
-
       expect(container).toMatchSnapshot();
+      expect(screen.queryByText('This is collapsable content')).toBeInTheDocument();
+      expect(screen.getByText('expand_more')).toHaveClass('is-open');
     });
 
     test('closed', () => {
-      const { container } = setup({ isOpen: false });
-
-      expect(container).toMatchSnapshot();
+      setup({ isOpen: false });
+      expect(screen.queryByText('This is collapsable content')).not.toBeInTheDocument();
+      expect(screen.getByText('expand_more')).toHaveClass('is-closed');
     });
   });
 
@@ -42,37 +43,6 @@ describe('Component: CardOpenClose', () => {
       fireEvent.click(screen.getByText('click this'));
 
       expect(toggleSpy).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('deprecated: content', () => {
-    function setup({ isOpen }: { isOpen: boolean }) {
-      const { container } = render(
-        <CardOpenClose
-          header="click this"
-          isOpen={isOpen}
-          toggle={jest.fn()}
-          content={() => (
-            <p>
-              This is collapsable content that should not be included in the
-              HTML when isOpen is false
-            </p>
-          )}
-        />
-      );
-      return { container };
-    }
-
-    test('open', () => {
-      const { container } = setup({ isOpen: true });
-
-      expect(container).toMatchSnapshot();
-    });
-
-    test('closed', () => {
-      const { container } = setup({ isOpen: false });
-
-      expect(container).toMatchSnapshot();
     });
   });
 });
