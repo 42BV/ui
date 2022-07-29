@@ -13,8 +13,9 @@ export function isEmpty<T>(page: Page<T>): boolean {
 
 /**
  * The `AsyncPage` is a variant of `AsyncContent` which expects the
- * result of a call to `useQuery` from `react-query` or `useAsync`
- * from `react-async` to be a `Page` from `@42.nl/spring-connect`.
+ * result of a call to `useQuery` from `@tanstack/react-query` or
+ * `useAsync` from `react-async` to be a `Page` from
+ * `@42.nl/spring-connect`.
  *
  * It has all the behaviors of the `AsyncContent` but provides a
  * standard `isEmpty` function which checks if the `totalElements`

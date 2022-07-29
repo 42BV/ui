@@ -1,6 +1,6 @@
 import React from 'react';
 import { AsyncState } from 'react-async';
-import { UseQueryResult } from 'react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 
 import ContentState from '../ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
@@ -38,7 +38,7 @@ export type ReactAsyncState<T> = {
 
 export type ReactQueryState<T> = {
   /**
-   * Result from calling `useQuery` from `react-query`.
+   * Result from calling `useQuery` from `@tanstack/react-query`.
    */
   state: UseQueryResult<T>;
 }
@@ -58,8 +58,9 @@ export type Props<T> = {
   text?: Text;
 
   /**
-   * Optionally whether or not to show a retry button when the
-   * error state occurs. Defaults to `true`.
+   * Optionally whether to show a retry button when the error state
+   * occurs.
+   * Defaults to `true`.
    *
    * @default true
    */
@@ -81,9 +82,9 @@ export type Props<T> = {
 };
 
 /**
- * AsyncContent is a component which can be used to render the
- * result of a call to `useQuery` from `react-query` or `useAsync`
- * from `react-async`.
+ * AsyncContent is a component which can be used to render the result of a
+ * call to `useQuery` from `@tanstack/react-query` or `useAsync` from
+ * `react-async`.
  *
  * It has the following behaviors:
  *
