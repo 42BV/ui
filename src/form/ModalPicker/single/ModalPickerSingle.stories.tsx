@@ -26,8 +26,8 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use ModalPickerSingle, you have to add rc-tooltip to your dependencies:</p>
-        <code>npm install --save rc-tooltip</code>
+        <p>To be able to use ModalPickerSingle, you have to add rc-tooltip and lodash to your dependencies:</p>
+        <code>npm install --save rc-tooltip lodash</code>
         <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
         <code>@import &apos;rc-tooltip/assets/bootstrap.css&apos;;</code>
       </Alert>

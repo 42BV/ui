@@ -61,7 +61,7 @@ export type Props = ModifiedInputProps & {
   debounce?: number;
 
   /**
-   * Optionally the debounce settings. As defined by lodash
+   * Optional debounce settings as defined by lodash
    * https://lodash.com/docs/4.17.15#debounce.
    */
   debounceSettings?: DebounceSettings;

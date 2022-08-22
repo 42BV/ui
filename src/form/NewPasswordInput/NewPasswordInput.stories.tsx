@@ -13,8 +13,8 @@ storiesOf('Form/NewPasswordInput', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use NewPasswordInput, you have to add lodash and react-text-mask to your dependencies:</p>
-        <code>npm install --save lodash react-text-mask</code>
+        <p>To be able to use NewPasswordInput, you have to add lodash to your dependencies:</p>
+        <code>npm install --save lodash</code>
       </Alert>
       <Story />
     </>

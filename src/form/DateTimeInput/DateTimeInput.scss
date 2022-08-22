@@ -1,180 +1,47 @@
-.date-time-input {
-  &-format {
-    font-size: 0.7em;
-    font-style: italic;
+.react-datepicker {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
   }
 
-  &.with-modal > .rdt {
-    .input-group .material-icons:last-child {
-      margin-right: 0;
-    }
+  .react-datepicker__navigation-icon::before {
+    top: 13px;
+  }
 
-    > .rdtPicker {
-      display: none;
-    }
+  .react-datepicker__month-container {
+    max-width: calc((8 * 2.5rem) + 0.8rem);
+  }
+
+  .react-datepicker__month {
+    padding: 0.4rem;
+    margin: 0;
+  }
+
+  .react-datepicker__week-number,
+  .react-datepicker__day-name,
+  .react-datepicker__day {
+    margin: 0;
+    width: 2.5rem;
+    line-height: 2.5rem;
+  }
+
+  input.react-datepicker-time__input {
+    @extend .form-control;
   }
 }
 
-.date-time-modal .rdt .rdtPicker {
-  border: none;
-  float: none;
-  position: relative;
-}
-
-.rdt {
-  //@extend .dropdown-menu;
-  position: relative;
-
-  &.rdtOpen {
-    .rdtPicker {
-      display: block;
-    }
-
-    td.rdtDay.rdtDisabled,
-    td.rdtMonth.rdtDisabled,
-    td.rdtYear.rdtDisabled {
-      color: $gray-300;
-    }
-
-    td.rdtDay.rdtDisabled:hover,
-    td.rdtMonth.rdtDisabled:hover,
-    td.rdtYear.rdtDisabled:hover {
-      cursor: not-allowed;
-      background: none;
-    }
-
-    button,
-    td,
-    td.rdtDay:hover,
-    td.rdtHour:hover,
-    td.rdtMinute:hover,
-    td.rdtSecond:hover,
-    .rdtTimeToggle:hover {
-      cursor: pointer;
-    }
-
-    .rdtSwitch,
-    .rdtPrev,
-    .rdtNext {
-      @extend .rounded;
-
-      &:hover {
-        background: $gray-200;
-      }
-    }
-
-    .rdtCounters {
-      display: inline-block;
-
-      .rdtCounter {
-        width: 2.5rem;
-      }
-
-      > div {
-        float: left;
-      }
-    }
+.modal .date-time-modal {
+  .modal-body > div {
+    display: flex;
+    justify-content: center;
   }
 
-  .rdtPicker {
-    width: 271px;
-    padding: 0;
-    margin-top: 5px;
-    @extend .dropdown-menu;
+  .react-datepicker {
+    border-width: 0;
 
-    table {
-      @extend .table, .mb-0;
-      border-spacing: 5px;
-      border-collapse: separate;
-
-      thead > tr > th,
-      tbody > tr > td,
-      tfoot > tr > td {
-        text-align: center;
-        font-size: 0.85rem;
-        padding: 0.25rem;
-      }
-
-      thead {
-        > tr {
-          > th {
-            border: none;
-            font-weight: 400;
-
-            &.dow {
-              text-transform: uppercase;
-            }
-          }
-        }
-
-        &::after {
-          content: '';
-          position: absolute;
-          border-bottom: 1px solid $gray-200;
-          width: 100%;
-          left: 0;
-        }
-      }
-
-      tbody > tr > td {
-        border: 0;
-        padding: 0;
-        vertical-align: middle;
-        font-weight: 300;
-        color: $gray-600;
-
-        &.rdtOld,
-        &.rdtNew {
-          color: lighten($gray-600, 35%);
-        }
-      }
-    }
-
-    .rdtMonths,
-    .rdtYears,
-    .rdtDays {
-      table > tbody > tr > td {
-        &.rdtActive,
-        &.rdtActive:hover {
-          @extend .rounded-circle;
-          @include box-shadow(
-                          1px 1px 3px rgba(map-get($theme-colors, success), 0.24),
-                          0 1px 2px rgba(map-get($theme-colors, success), 0.48)
-          );
-          background: map-get($theme-colors, success);
-          color: white;
-          font-weight: 500;
-        }
-
-        &:hover {
-          @extend .rounded-circle;
-          background: $gray-200;
-        }
-      }
-    }
-
-    .rdtDays {
-      table > tbody > tr > td {
-        width: 33px;
-        height: 33px;
-      }
-    }
-
-    .rdtToday {
-      font-weight: bold;
-      color: map-get($theme-colors, success);
-    }
-
-    .rdtMonths,
-    .rdtYears {
-      table > tbody > tr > td {
-        width: 61px;
-        height: 61px;
-
-        &:hover {
-          background: $gray-200;
-        }
-      }
+    .react-datepicker__header {
+      border-width: 0;
     }
   }
 }

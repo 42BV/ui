@@ -11,460 +11,20 @@ exports[`Component: DateTimeInput ui visible label 1`] = `
       for="dateOfBirth"
     >
       Date of birth
-       
-      <span
-        class="date-time-input-format text-muted"
-      >
-        (
-        YYYY-MM-DD HH:mm:ss
-        )
-      </span>
     </label>
     <div
-      class="rdt"
+      class="react-datepicker-wrapper"
     >
-      <div>
+      <div
+        class="react-datepicker__input-container"
+      >
         <input
-          aria-invalid="false"
-          autocomplete="off"
           class="form-control form-control"
           id="dateOfBirth"
           placeholder="Please enter your date of birth"
           type="text"
           value="2000-01-01 12:30:40"
         />
-      </div>
-      <div
-        class="rdtPicker"
-      >
-        <div
-          class="rdtDays"
-        >
-          <table>
-            <thead>
-              <tr>
-                <th
-                  class="rdtPrev"
-                >
-                  <span>
-                    ‹
-                  </span>
-                </th>
-                <th
-                  class="rdtSwitch"
-                  colspan="5"
-                  data-value="0"
-                >
-                  January 2000
-                </th>
-                <th
-                  class="rdtNext"
-                >
-                  <span>
-                    ›
-                  </span>
-                </th>
-              </tr>
-              <tr>
-                <th
-                  class="dow"
-                >
-                  Su
-                </th>
-                <th
-                  class="dow"
-                >
-                  Mo
-                </th>
-                <th
-                  class="dow"
-                >
-                  Tu
-                </th>
-                <th
-                  class="dow"
-                >
-                  We
-                </th>
-                <th
-                  class="dow"
-                >
-                  Th
-                </th>
-                <th
-                  class="dow"
-                >
-                  Fr
-                </th>
-                <th
-                  class="dow"
-                >
-                  Sa
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  class="rdtDay rdtOld"
-                  data-month="11"
-                  data-value="26"
-                  data-year="1999"
-                >
-                  26
-                </td>
-                <td
-                  class="rdtDay rdtOld"
-                  data-month="11"
-                  data-value="27"
-                  data-year="1999"
-                >
-                  27
-                </td>
-                <td
-                  class="rdtDay rdtOld"
-                  data-month="11"
-                  data-value="28"
-                  data-year="1999"
-                >
-                  28
-                </td>
-                <td
-                  class="rdtDay rdtOld"
-                  data-month="11"
-                  data-value="29"
-                  data-year="1999"
-                >
-                  29
-                </td>
-                <td
-                  class="rdtDay rdtOld"
-                  data-month="11"
-                  data-value="30"
-                  data-year="1999"
-                >
-                  30
-                </td>
-                <td
-                  class="rdtDay rdtOld"
-                  data-month="11"
-                  data-value="31"
-                  data-year="1999"
-                >
-                  31
-                </td>
-                <td
-                  class="rdtDay rdtActive"
-                  data-month="0"
-                  data-value="1"
-                  data-year="2000"
-                >
-                  1
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="2"
-                  data-year="2000"
-                >
-                  2
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="3"
-                  data-year="2000"
-                >
-                  3
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="4"
-                  data-year="2000"
-                >
-                  4
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="5"
-                  data-year="2000"
-                >
-                  5
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="6"
-                  data-year="2000"
-                >
-                  6
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="7"
-                  data-year="2000"
-                >
-                  7
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="8"
-                  data-year="2000"
-                >
-                  8
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="9"
-                  data-year="2000"
-                >
-                  9
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="10"
-                  data-year="2000"
-                >
-                  10
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="11"
-                  data-year="2000"
-                >
-                  11
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="12"
-                  data-year="2000"
-                >
-                  12
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="13"
-                  data-year="2000"
-                >
-                  13
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="14"
-                  data-year="2000"
-                >
-                  14
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="15"
-                  data-year="2000"
-                >
-                  15
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="16"
-                  data-year="2000"
-                >
-                  16
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="17"
-                  data-year="2000"
-                >
-                  17
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="18"
-                  data-year="2000"
-                >
-                  18
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="19"
-                  data-year="2000"
-                >
-                  19
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="20"
-                  data-year="2000"
-                >
-                  20
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="21"
-                  data-year="2000"
-                >
-                  21
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="22"
-                  data-year="2000"
-                >
-                  22
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="23"
-                  data-year="2000"
-                >
-                  23
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="24"
-                  data-year="2000"
-                >
-                  24
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="25"
-                  data-year="2000"
-                >
-                  25
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="26"
-                  data-year="2000"
-                >
-                  26
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="27"
-                  data-year="2000"
-                >
-                  27
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="28"
-                  data-year="2000"
-                >
-                  28
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="29"
-                  data-year="2000"
-                >
-                  29
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="30"
-                  data-year="2000"
-                >
-                  30
-                </td>
-                <td
-                  class="rdtDay"
-                  data-month="0"
-                  data-value="31"
-                  data-year="2000"
-                >
-                  31
-                </td>
-                <td
-                  class="rdtDay rdtNew"
-                  data-month="1"
-                  data-value="1"
-                  data-year="2000"
-                >
-                  1
-                </td>
-                <td
-                  class="rdtDay rdtNew"
-                  data-month="1"
-                  data-value="2"
-                  data-year="2000"
-                >
-                  2
-                </td>
-                <td
-                  class="rdtDay rdtNew"
-                  data-month="1"
-                  data-value="3"
-                  data-year="2000"
-                >
-                  3
-                </td>
-                <td
-                  class="rdtDay rdtNew"
-                  data-month="1"
-                  data-value="4"
-                  data-year="2000"
-                >
-                  4
-                </td>
-                <td
-                  class="rdtDay rdtNew"
-                  data-month="1"
-                  data-value="5"
-                  data-year="2000"
-                >
-                  5
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td
-                  class="rdtTimeToggle"
-                  colspan="7"
-                >
-                  12:30:40
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
       </div>
     </div>
     Some error
@@ -487,7 +47,7 @@ exports[`Component: DateTimeInput ui with date picker in modal 1`] = `
       tabindex="-1"
     >
       <div
-        class="modal-dialog date-time-modal modal-sm"
+        class="modal-dialog date-time-modal modal-md"
         role="document"
       >
         <div
@@ -510,439 +70,669 @@ exports[`Component: DateTimeInput ui with date picker in modal 1`] = `
           <div
             class="modal-body"
           >
-            <div
-              class="rdt rdtStatic rdtOpen"
-            >
+            <div>
               <div
-                class="rdtPicker"
+                class="react-datepicker"
               >
                 <div
-                  class="rdtDays"
+                  class="react-datepicker__triangle"
+                />
+                <div
+                  class="react-datepicker__month-container"
                 >
-                  <table>
-                    <thead>
-                      <tr>
-                        <th
-                          class="rdtPrev"
+                  <div
+                    class="react-datepicker__header react-datepicker__header--custom"
+                  >
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <i
+                        class="icon mb-3 material-icons clickable"
+                      >
+                        chevron_left
+                      </i>
+                      <div
+                        class="d-flex flex-nowrap align-items-center"
+                      >
+                        <div
+                          class="me-1 mb-3"
                         >
-                          <span>
-                            ‹
-                          </span>
-                        </th>
-                        <th
-                          class="rdtSwitch"
-                          colspan="5"
-                          data-value="0"
+                          <select
+                            aria-label="Month"
+                            class="form-select"
+                            id="month"
+                          >
+                            <option
+                              value="0"
+                            >
+                              January
+                            </option>
+                            <option
+                              value="1"
+                            >
+                              February
+                            </option>
+                            <option
+                              value="2"
+                            >
+                              March
+                            </option>
+                            <option
+                              value="3"
+                            >
+                              April
+                            </option>
+                            <option
+                              value="4"
+                            >
+                              May
+                            </option>
+                            <option
+                              value="5"
+                            >
+                              June
+                            </option>
+                            <option
+                              value="6"
+                            >
+                              July
+                            </option>
+                            <option
+                              value="7"
+                            >
+                              August
+                            </option>
+                            <option
+                              value="8"
+                            >
+                              September
+                            </option>
+                            <option
+                              value="9"
+                            >
+                              October
+                            </option>
+                            <option
+                              value="10"
+                            >
+                              November
+                            </option>
+                          </select>
+                        </div>
+                        <div
+                          class="mb-3"
                         >
-                          January 2000
-                        </th>
-                        <th
-                          class="rdtNext"
-                        >
-                          <span>
-                            ›
-                          </span>
-                        </th>
-                      </tr>
-                      <tr>
-                        <th
-                          class="dow"
-                        >
-                          Su
-                        </th>
-                        <th
-                          class="dow"
-                        >
-                          Mo
-                        </th>
-                        <th
-                          class="dow"
-                        >
-                          Tu
-                        </th>
-                        <th
-                          class="dow"
-                        >
-                          We
-                        </th>
-                        <th
-                          class="dow"
-                        >
-                          Th
-                        </th>
-                        <th
-                          class="dow"
-                        >
-                          Fr
-                        </th>
-                        <th
-                          class="dow"
-                        >
-                          Sa
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td
-                          class="rdtDay rdtOld"
-                          data-month="11"
-                          data-value="26"
-                          data-year="1999"
-                        >
-                          26
-                        </td>
-                        <td
-                          class="rdtDay rdtOld"
-                          data-month="11"
-                          data-value="27"
-                          data-year="1999"
-                        >
-                          27
-                        </td>
-                        <td
-                          class="rdtDay rdtOld"
-                          data-month="11"
-                          data-value="28"
-                          data-year="1999"
-                        >
-                          28
-                        </td>
-                        <td
-                          class="rdtDay rdtOld"
-                          data-month="11"
-                          data-value="29"
-                          data-year="1999"
-                        >
-                          29
-                        </td>
-                        <td
-                          class="rdtDay rdtOld"
-                          data-month="11"
-                          data-value="30"
-                          data-year="1999"
-                        >
-                          30
-                        </td>
-                        <td
-                          class="rdtDay rdtOld"
-                          data-month="11"
-                          data-value="31"
-                          data-year="1999"
-                        >
-                          31
-                        </td>
-                        <td
-                          class="rdtDay rdtActive"
-                          data-month="0"
-                          data-value="1"
-                          data-year="2000"
-                        >
-                          1
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="2"
-                          data-year="2000"
-                        >
-                          2
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="3"
-                          data-year="2000"
-                        >
-                          3
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="4"
-                          data-year="2000"
-                        >
-                          4
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="5"
-                          data-year="2000"
-                        >
-                          5
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="6"
-                          data-year="2000"
-                        >
-                          6
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="7"
-                          data-year="2000"
-                        >
-                          7
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="8"
-                          data-year="2000"
-                        >
-                          8
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="9"
-                          data-year="2000"
-                        >
-                          9
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="10"
-                          data-year="2000"
-                        >
-                          10
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="11"
-                          data-year="2000"
-                        >
-                          11
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="12"
-                          data-year="2000"
-                        >
-                          12
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="13"
-                          data-year="2000"
-                        >
-                          13
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="14"
-                          data-year="2000"
-                        >
-                          14
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="15"
-                          data-year="2000"
-                        >
-                          15
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="16"
-                          data-year="2000"
-                        >
-                          16
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="17"
-                          data-year="2000"
-                        >
-                          17
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="18"
-                          data-year="2000"
-                        >
-                          18
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="19"
-                          data-year="2000"
-                        >
-                          19
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="20"
-                          data-year="2000"
-                        >
-                          20
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="21"
-                          data-year="2000"
-                        >
-                          21
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="22"
-                          data-year="2000"
-                        >
-                          22
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="23"
-                          data-year="2000"
-                        >
-                          23
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="24"
-                          data-year="2000"
-                        >
-                          24
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="25"
-                          data-year="2000"
-                        >
-                          25
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="26"
-                          data-year="2000"
-                        >
-                          26
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="27"
-                          data-year="2000"
-                        >
-                          27
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="28"
-                          data-year="2000"
-                        >
-                          28
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="29"
-                          data-year="2000"
-                        >
-                          29
-                        </td>
-                      </tr>
-                      <tr>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="30"
-                          data-year="2000"
-                        >
-                          30
-                        </td>
-                        <td
-                          class="rdtDay"
-                          data-month="0"
-                          data-value="31"
-                          data-year="2000"
-                        >
-                          31
-                        </td>
-                        <td
-                          class="rdtDay rdtNew"
-                          data-month="1"
-                          data-value="1"
-                          data-year="2000"
-                        >
-                          1
-                        </td>
-                        <td
-                          class="rdtDay rdtNew"
-                          data-month="1"
-                          data-value="2"
-                          data-year="2000"
-                        >
-                          2
-                        </td>
-                        <td
-                          class="rdtDay rdtNew"
-                          data-month="1"
-                          data-value="3"
-                          data-year="2000"
-                        >
-                          3
-                        </td>
-                        <td
-                          class="rdtDay rdtNew"
-                          data-month="1"
-                          data-value="4"
-                          data-year="2000"
-                        >
-                          4
-                        </td>
-                        <td
-                          class="rdtDay rdtNew"
-                          data-month="1"
-                          data-value="5"
-                          data-year="2000"
-                        >
-                          5
-                        </td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <td
-                          class="rdtTimeToggle"
-                          colspan="7"
-                        >
-                          12:30:40
-                        </td>
-                      </tr>
-                    </tfoot>
-                  </table>
+                          <input
+                            aria-label="Year"
+                            class="form-control"
+                            style="width: 90px;"
+                            type="number"
+                            value="2000"
+                          />
+                        </div>
+                      </div>
+                      <i
+                        class="icon mb-3 material-icons clickable"
+                      >
+                        chevron_right
+                      </i>
+                    </div>
+                    <div
+                      class="react-datepicker__day-names"
+                    >
+                      <div
+                        class="react-datepicker__day-name"
+                      >
+                        #
+                      </div>
+                      <div
+                        class="react-datepicker__day-name"
+                      >
+                        Su
+                      </div>
+                      <div
+                        class="react-datepicker__day-name"
+                      >
+                        Mo
+                      </div>
+                      <div
+                        class="react-datepicker__day-name"
+                      >
+                        Tu
+                      </div>
+                      <div
+                        class="react-datepicker__day-name"
+                      >
+                        We
+                      </div>
+                      <div
+                        class="react-datepicker__day-name"
+                      >
+                        Th
+                      </div>
+                      <div
+                        class="react-datepicker__day-name"
+                      >
+                        Fr
+                      </div>
+                      <div
+                        class="react-datepicker__day-name"
+                      >
+                        Sa
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    aria-label="month  2000-01"
+                    class="react-datepicker__month"
+                    role="listbox"
+                  >
+                    <div
+                      class="react-datepicker__week"
+                    >
+                      <div
+                        aria-label="week  51"
+                        class="react-datepicker__week-number"
+                      >
+                        51
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Sunday, December 26th, 1999"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--026 react-datepicker__day--weekend react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        26
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Monday, December 27th, 1999"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--027 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        27
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Tuesday, December 28th, 1999"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--028 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        28
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Wednesday, December 29th, 1999"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--029 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        29
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Thursday, December 30th, 1999"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--030 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        30
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Friday, December 31st, 1999"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--031 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        31
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Saturday, January 1st, 2000"
+                        aria-selected="true"
+                        class="react-datepicker__day react-datepicker__day--001 react-datepicker__day--selected react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="0"
+                      >
+                        1
+                      </div>
+                    </div>
+                    <div
+                      class="react-datepicker__week"
+                    >
+                      <div
+                        aria-label="week  52"
+                        class="react-datepicker__week-number"
+                      >
+                        52
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Sunday, January 2nd, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--002 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        2
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Monday, January 3rd, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--003"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        3
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Tuesday, January 4th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--004"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        4
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Wednesday, January 5th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--005"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        5
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Thursday, January 6th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--006"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        6
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Friday, January 7th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--007"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        7
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Saturday, January 8th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--008 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        8
+                      </div>
+                    </div>
+                    <div
+                      class="react-datepicker__week"
+                    >
+                      <div
+                        aria-label="week  1"
+                        class="react-datepicker__week-number"
+                      >
+                        1
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Sunday, January 9th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--009 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        9
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Monday, January 10th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--010"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        10
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Tuesday, January 11th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--011"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        11
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Wednesday, January 12th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--012"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        12
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Thursday, January 13th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--013"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        13
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Friday, January 14th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--014"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        14
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Saturday, January 15th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--015 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        15
+                      </div>
+                    </div>
+                    <div
+                      class="react-datepicker__week"
+                    >
+                      <div
+                        aria-label="week  2"
+                        class="react-datepicker__week-number"
+                      >
+                        2
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Sunday, January 16th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--016 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        16
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Monday, January 17th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--017"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        17
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Tuesday, January 18th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--018"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        18
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Wednesday, January 19th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--019"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        19
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Thursday, January 20th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--020"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        20
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Friday, January 21st, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--021"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        21
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Saturday, January 22nd, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--022 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        22
+                      </div>
+                    </div>
+                    <div
+                      class="react-datepicker__week"
+                    >
+                      <div
+                        aria-label="week  3"
+                        class="react-datepicker__week-number"
+                      >
+                        3
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Sunday, January 23rd, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--023 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        23
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Monday, January 24th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--024"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        24
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Tuesday, January 25th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--025"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        25
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Wednesday, January 26th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--026"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        26
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Thursday, January 27th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--027"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        27
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Friday, January 28th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--028"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        28
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Saturday, January 29th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--029 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        29
+                      </div>
+                    </div>
+                    <div
+                      class="react-datepicker__week"
+                    >
+                      <div
+                        aria-label="week  4"
+                        class="react-datepicker__week-number"
+                      >
+                        4
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Sunday, January 30th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--030 react-datepicker__day--weekend"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        30
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Monday, January 31st, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--031"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        31
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Tuesday, February 1st, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--001 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        1
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Wednesday, February 2nd, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--002 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        2
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Thursday, February 3rd, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--003 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        3
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Friday, February 4th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--004 react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        4
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        aria-label="Choose Saturday, February 5th, 2000"
+                        aria-selected="false"
+                        class="react-datepicker__day react-datepicker__day--005 react-datepicker__day--weekend react-datepicker__day--outside-month"
+                        role="option"
+                        tabindex="-1"
+                      >
+                        5
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="react-datepicker__input-time-container"
+                >
+                  <div
+                    class="react-datepicker-time__caption"
+                  >
+                    Time
+                  </div>
+                  <div
+                    class="react-datepicker-time__input-container"
+                  >
+                    <div
+                      class="react-datepicker-time__input"
+                    >
+                      <input
+                        class="react-datepicker-time__input"
+                        name="time-input"
+                        placeholder="Time"
+                        required=""
+                        type="time"
+                        value="12:30"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
