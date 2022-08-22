@@ -2,9 +2,21 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { InfoTooltip } from './InfoTooltip';
+import { Alert } from 'reactstrap';
 
 storiesOf('core/InfoTooltip', module)
   .addParameters({ component: InfoTooltip })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use IntoTooltip, you have to add rc-tooltip to your dependencies:</p>
+        <code>npm install --save rc-tooltip</code>
+        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <code>@import &apos;rc-tooltip/assets/bootstrap.css&apos;;</code>
+      </Alert>
+      <Story />
+    </>
+  ))
   .add('basic', () => {
     return (
       <div className="text-center">

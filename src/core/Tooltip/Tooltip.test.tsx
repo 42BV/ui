@@ -8,7 +8,7 @@ import userEvent from '@testing-library/user-event';
 describe('Component: Tooltip', () => {
   describe('ui', () => {
     test('default', async () => {
-      expect.assertions(1);
+      expect.assertions(2);
 
       const { container } = render(
         <Tooltip content="Tooltip Content">
@@ -19,6 +19,7 @@ describe('Component: Tooltip', () => {
       await userEvent.hover(screen.getByText('The tooltip should be wrapped around this'));
 
       expect(container).toMatchSnapshot();
+      expect(document.body.lastChild).toMatchSnapshot();
     });
 
     test('with custom tag', () => {
@@ -62,7 +63,7 @@ describe('Component: Tooltip', () => {
           The tooltip should be wrapped around this
         </Tooltip>
       );
-      expect(container.firstChild).toHaveStyle({ marginTop: '5px', padding: '10px', outline: 0 });
+      expect(container.firstChild).toHaveStyle({ marginTop: '5px', padding: '10px', outline: '0' });
     });
 
     test('with style, override outline', () => {

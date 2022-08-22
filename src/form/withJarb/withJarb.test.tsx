@@ -75,7 +75,7 @@ describe('HoC: withJarb', () => {
     test('with error', async () => {
       expect.assertions(2);
       const { asFragment } = setup({ hasErrors: true });
-      act(() => {
+      await act(() => {
         fireEvent.focus(screen.getByRole('textbox'));
         fireEvent.blur(screen.getByRole('textbox'));
         jest.runAllTimers();
