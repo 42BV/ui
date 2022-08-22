@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 
 import { DateTimeModal } from './DateTimeModal';
 
-import * as Value from './useValue';
 import moment from 'moment';
 
 describe('Component: DateTimeModal', () => {
@@ -27,10 +26,11 @@ describe('Component: DateTimeModal', () => {
       <DateTimeModal
         onClose={onCloseSpy}
         onSave={onSaveSpy}
-        dateFormat="YYYY-MM-DD"
-        timeFormat="HH:II:SS"
         isDateAllowed={isDateAllowedSpy}
         defaultValue={hasValue ? new Date(2020, 1, 1, 0, 0, 0) : undefined}
+        showDateSelect={true}
+        showTimeInput={true}
+        renderCustomHeader={jest.fn()}
       />
     );
     return { container, onCloseSpy, onSaveSpy, isDateAllowedSpy };
@@ -44,21 +44,24 @@ describe('Component: DateTimeModal', () => {
 
     test('with value', () => {
       setup({ hasValue: true });
-      expect(screen.getAllByText('1')[0]).toHaveClass('rdtActive');
+      expect(screen.getAllByText('1')[0]).toHaveClass('react-datepicker__day--selected');
     });
 
     test('without value', () => {
       setup({});
-      const today = new Date();
-      expect(screen.getAllByText(today.getDate()).map((e) => e.className)).toContain('rdtDay rdtToday');
+      const today = new Date;
+      expect(screen.getAllByText(today.getDate()).map((e) => e.className)).toContain(
+        `react-datepicker__day react-datepicker__day--0${today.getDate()} react-datepicker__day--keyboard-selected react-datepicker__day--today`
+      );
     });
   });
 
   describe('events', () => {
     it('should update internal value when a date is selected', () => {
       const setValueSpy = jest.fn();
-      jest.spyOn(Value, 'useValue').mockReturnValue([ '', setValueSpy ]);
+      jest.spyOn(React, 'useState').mockReturnValue([ '', setValueSpy ]);
       setup({});
+      setValueSpy.mockClear();
 
       const value = moment(new Date).startOf('month');
 
@@ -102,19 +105,8 @@ describe('Component: DateTimeModal', () => {
     });
 
     test('is date allowed', () => {
-      const isDateAllowedSpy = jest.fn().mockImplementation((date) => date.isBefore(new Date()));
-
-      render(
-        <DateTimeModal
-          onClose={jest.fn()}
-          onSave={jest.fn()}
-          dateFormat="YYYY-MM-DD"
-          timeFormat="HH:II:SS"
-          isDateAllowed={isDateAllowedSpy}
-        />
-      );
-
-      expect(isDateAllowedSpy).toBeCalledTimes(42);
+      const { isDateAllowedSpy } = setup({});
+      expect(isDateAllowedSpy).toHaveBeenCalled();
     });
   });
 });

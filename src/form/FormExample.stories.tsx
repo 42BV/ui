@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { random } from 'lodash';
-import { Moment } from 'moment';
 import { Form, FormRenderProps } from 'react-final-form';
 
 import { JarbInput } from './Input/Input';
@@ -270,8 +269,8 @@ export function TotalForm({
           placeholder="Please enter your date of birth"
           dateFormat="YYYY-MM-DD"
           timeFormat={false}
-          isDateAllowed={(date: Moment) => {
-            return date.isBefore(new Date());
+          isDateAllowed={(date: Date) => {
+            return date < new Date();
           }}
           validators={requiredValidator}
         />

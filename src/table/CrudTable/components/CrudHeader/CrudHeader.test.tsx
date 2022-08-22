@@ -1,10 +1,9 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 import { CrudHeader } from './CrudHeader';
-import * as UseId from '../../../../hooks/useId/useId';
-import userEvent from '@testing-library/user-event';
 
 describe('Component: CrudHeader', () => {
   function setup({
@@ -76,8 +75,6 @@ describe('Component: CrudHeader', () => {
     });
 
     test('with search options', () => {
-      jest.spyOn(UseId, 'useId').mockReturnValue('test');
-
       setup({ hasSearch: true, hasSearchOptions: true });
 
       expect(screen.queryByRole('combobox')).toBeInTheDocument();

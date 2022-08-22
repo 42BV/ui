@@ -5,6 +5,7 @@ import "./show-code-fix.scss";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import 'rc-tooltip/assets/bootstrap.css';
+import "react-datepicker/dist/react-datepicker.css";
 import '../src/main.scss';
 
 setConstraints({

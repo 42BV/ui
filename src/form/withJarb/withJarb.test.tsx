@@ -116,7 +116,7 @@ describe('HoC: withJarb', () => {
     render(
       <Form onSubmit={jest.fn()}>
         {() => (
-          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'test' }} name="test" dateFormat="YYYY-MM-DD" timeFormat={false} />
+          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'test' }} name="test" dateFormat="yyyy-MM-dd" timeFormat={false} />
         )}
       </Form>
     );

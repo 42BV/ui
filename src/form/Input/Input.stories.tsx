@@ -21,8 +21,8 @@ storiesOf('Form/Input', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use Input, you have to add react-text-mask to your dependencies:</p>
-        <code>npm install --save react-text-mask</code>
+        <p>To be able to use Input, you have to add lodash to your dependencies:</p>
+        <code>npm install --save lodash</code>
       </Alert>
       <Story />
     </>
@@ -89,26 +89,6 @@ storiesOf('Form/Input', module)
           label="First name"
           onChange={(value) => action(`You entered ${value}`)}
         />
-      </Card>
-    );
-  })
-  .add('mask', () => {
-    return (
-      <Card className="m2">
-        <Input
-          id="zipcode"
-          label="Zipcode"
-          placeholder="Please enter your zipcode"
-          onChange={(value) => action(`You entered ${value}`)}
-          mask={[ /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, ' ', /[A-z]/, /[A-z]/ ]}
-        />
-        <p>
-          Look
-          <a href="https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#mask">
-            here
-          </a>
-          for more example on how to use mask
-        </p>
       </Card>
     );
   })

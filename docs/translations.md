@@ -90,7 +90,13 @@ Here is a JSON notation containing all keys and default translations:
     "DATE_AFTER_ERROR": "The {{end}} must be after the {{start}}",
     "DATE_BEFORE_ERROR": "The {{start}} must be before the {{end}}",
     "DATE_BETWEEN_ERROR": "The {{label}} must be between the {{start}} and {{end}}",
-    "INVALID_DATE": "The {{label}} must match required format {{format}}"
+    "INVALID_DATE": "The {{label}} must match required format {{format}}",
+    "YEAR": "Year",
+    "MONTH": "Month",
+    "DAY": "Day",
+    "HOUR": "Hour",
+    "MINUTE": "Minute",
+    "SECOND": "Second"
   },
   "ImageUpload": {
     "CHANGE": "Change",

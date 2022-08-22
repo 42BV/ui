@@ -1,23 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Input masked 1`] = `
-<div>
-  <div
-    class="mb-3"
-    color="success"
-  >
-    <input
-      aria-label="First name"
-      class="form-control"
-      id="11"
-      type="text"
-      value=""
-    />
-    Some error
-  </div>
-</div>
-`;
-
 exports[`Component: Input ui addon default 1`] = `
 <div>
   <div

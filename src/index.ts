@@ -53,7 +53,6 @@ export { AutoSave } from './form/AutoSave/AutoSave';
 export { withJarb } from './form/withJarb/withJarb';
 export type { JarbFieldCompatible } from './form/withJarb/withJarb';
 export { Input, JarbInput } from './form/Input/Input';
-export type { InputMask } from './form/Input/Input';
 export { Textarea, JarbTextarea } from './form/Textarea/Textarea';
 export { TextEditor, JarbTextEditor } from './form/TextEditor/TextEditor';
 export { DateTimeInput, JarbDateTimeInput } from './form/DateTimeInput/DateTimeInput';
