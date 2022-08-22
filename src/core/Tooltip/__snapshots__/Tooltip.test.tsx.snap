@@ -3,12 +3,40 @@
 exports[`Component: Tooltip ui default 1`] = `
 <div>
   <span
-    aria-describedby="tippy-1"
+    aria-describedby="1"
     role="button"
     style="outline: 0;"
     tabindex="0"
   >
     The tooltip should be wrapped around this
   </span>
+</div>
+`;
+
+exports[`Component: Tooltip ui default 2`] = `
+<div
+  style="position: absolute; top: 0px; left: 0px; width: 100%;"
+>
+  <div>
+    <div
+      class="rc-tooltip"
+      style="opacity: 0; max-width: 350px;"
+    >
+      <div
+        class="rc-tooltip-content"
+      >
+        <div
+          class="rc-tooltip-arrow"
+        />
+        <div
+          class="rc-tooltip-inner"
+          id="1"
+          role="tooltip"
+        >
+          Tooltip Content
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;

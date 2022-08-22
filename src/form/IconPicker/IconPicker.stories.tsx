@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { IconPicker, JarbIconPicker } from './IconPicker';
 import { FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Card, Icon, IconType, Tooltip } from '../../';
+import { Alert } from 'reactstrap';
 
 function is3DRotation(value: IconType) {
   return value === '3d_rotation' ? undefined : 'Not "3d_rotation"';
@@ -11,6 +12,17 @@ function is3DRotation(value: IconType) {
 
 storiesOf('Form/IconPicker', module)
   .addParameters({ component: IconPicker })
+  .addDecorator((Story) => (
+    <>
+      <Alert color="warning" className="mb-4">
+        <p>To be able to use IconPicker, you have to add rc-tooltip to your dependencies:</p>
+        <code>npm install --save rc-tooltip</code>
+      </Alert>
+      <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+      <code>@import &apos;rc-tooltip/assets/bootstrap.css&apos;;</code>
+      <Story />
+    </>
+  ))
   .add('basic', () => {
     const [ value, setValue ] = useState<IconType | undefined>(undefined);
 

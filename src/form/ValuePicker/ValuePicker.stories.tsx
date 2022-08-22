@@ -71,6 +71,12 @@ storiesOf('Form/ValuePicker/multiple', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
+        <p>To be able to use ValuePicker, you have to add rc-tooltip to your dependencies:</p>
+        <code>npm install --save rc-tooltip</code>
+        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <code>@import &apos;rc-tooltip/assets/bootstrap.css&apos;;</code>
+      </Alert>
+      <Alert color="warning" className="mb-4">
         <p>To be able to use ValuePicker with Page, you have to add @42.nl/spring-connect to your dependencies:</p>
         <code>npm install --save @42.nl/spring-connect</code>
       </Alert>

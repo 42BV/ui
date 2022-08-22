@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef, useState } from 'react';
+import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import classNames from 'classnames';
 
@@ -13,8 +13,9 @@ import { t } from '../../utilities/translation/translation';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { TextButton } from '../../core/TextButton/TextButton';
 import { FieldCompatible } from '../types';
-import Tippy from '@tippyjs/react';
+import RCTooltip from 'rc-tooltip';
 import { Card } from '../../core/Card/Card';
+import { uniqueId } from 'lodash';
 
 type Text = {
   /**
@@ -58,7 +59,7 @@ type Props = FieldCompatible<IconType, IconType | undefined> & {
   icon?: IconType;
 
   /**
-   * Whether or not to show a "clear" button.
+   * Whether to show a "clear" button.
    *
    * Defaults to `true`
    */
@@ -72,6 +73,7 @@ type Props = FieldCompatible<IconType, IconType | undefined> & {
  */
 export function IconPicker(props: Props) {
   const {
+    id = uniqueId(),
     label,
     hiddenLabel,
     icon,
@@ -153,14 +155,14 @@ export function IconPicker(props: Props) {
                 ) : null}
               </div>
             ) : null}
-            <Tippy
-              visible={isOpen}
-              className="border-0 tippy-popover"
+            <RCTooltip
+              id={id}
               placement="bottom"
-              offset={[ 0, 7 ]}
-              interactive={true}
-              zIndex={1049} // One level below bootstrap's modal
-              content={(
+              align={{ offset: [ 0, 7 ] }}
+              destroyTooltipOnHide={true}
+              trigger={['click']}
+              visible={isOpen}
+              overlay={(
                 <Card
                   header={searchInput}
                   footer={iconsPage.totalPages > 1 ? (
@@ -201,7 +203,9 @@ export function IconPicker(props: Props) {
                 </Card>
               )}
             >
-              <IconPickerButtonRef
+              <button
+                type="button"
+                className="btn btn-primary"
                 onClick={() => {
                   if (isOpen) {
                     searchInputApi.setValue('');
@@ -209,42 +213,21 @@ export function IconPicker(props: Props) {
 
                   setIsOpen(!isOpen);
                 }}
-                icon={icon}
-                placeholder={placeholder}
-              />
-            </Tippy>
+                aria-describedby={id}
+              >
+                {icon ? (
+                  <Icon icon={icon} className="me-2 align-bottom" />
+                ) : null}
+                {placeholder}
+              </button>
+            </RCTooltip>
           </div>
-
           {error}
         </FormGroup>
       )}
     </SearchInput>
   );
 }
-
-type ButtonProps = {
-  onClick: () => void;
-  icon?: IconType;
-  placeholder?: string;
-};
-
-function IconPickerButton({ onClick, icon, placeholder }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
-  return (
-    <button
-      type="button"
-      className="btn btn-primary"
-      onClick={onClick}
-      ref={ref}
-    >
-      {icon ? (
-        <Icon icon={icon} className="me-2 align-bottom" />
-      ) : null}
-      {placeholder}
-    </button>
-  );
-}
-
-const IconPickerButtonRef = forwardRef(IconPickerButton);
 
 /**
  * Variant of the IconPicker which can be used in a Jarb context.

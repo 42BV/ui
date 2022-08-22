@@ -3,6 +3,7 @@
 exports[`HoC: withJarb errorMode: tooltip 1`] = `
 <div>
   <div
+    aria-describedby="3"
     class="w-100"
     role="button"
     style="outline: 0;"
@@ -89,7 +90,9 @@ exports[`HoC: withJarb ui with error 1`] = `
       type="text"
       value="yolo"
     />
-    <div>
+    <div
+      class="withjarb-below"
+    >
       <div
         class="invalid-feedback"
       >

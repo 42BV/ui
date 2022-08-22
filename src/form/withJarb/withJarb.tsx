@@ -138,7 +138,7 @@ export function withJarb<Value,
             meta={field.meta}
             validator={jarb.validator}
             onChange={setHasErrors}
-            className={errorMode === 'tooltip' ? 'withjarb-tooltip' : undefined}
+            className={`withjarb-${errorMode}`}
           />
         )}
       />

@@ -10,10 +10,10 @@ storiesOf('core/Tooltip', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use Tooltip, you have to add @tippyjs/react and tippy.js to your dependencies:</p>
-        <code>npm install --save @tippyjs/react tippy.js</code>
+        <p className="mb-0">To be able to use Tooltip, you have to add rc-tooltip to your dependencies:</p>
+        <code>npm install --save rc-tooltip</code>
         <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
-        <code>@import &apos;~tippy.js/dist/tippy.css&apos;;</code>
+        <code>@import &apos;rc-tooltip/assets/bootstrap.css&apos;;</code>
       </Alert>
       <Story />
     </>
@@ -39,7 +39,6 @@ storiesOf('core/Tooltip', module)
       </Row>
     </div>
   ))
-
   .add('alignment', () => (
     <>
       <span className="d-block fs-5">Alignment</span>
@@ -81,7 +80,6 @@ storiesOf('core/Tooltip', module)
       </Row>
     </>
   ))
-
   .add('width, distance and offset', () => (
     <>
       <span className="d-block fs-5">Max width</span>
@@ -142,14 +140,12 @@ storiesOf('core/Tooltip', module)
       </Row>
     </>
   ))
-
   .add('components as content', () => (
     <>
       <span className="d-block fs-5">Components</span>
       <Row className="mt-4">
         <Col className="d-flex justify-content-around">
           <Tooltip
-            interactive
             content={
               <div>
                 {' '}
@@ -160,34 +156,26 @@ storiesOf('core/Tooltip', module)
             <p color="orange">HTML</p>
           </Tooltip>
 
-          <Tooltip
-            interactive
-            content={<Button color="danger"> React components too!</Button>}
-          >
+          <Tooltip content={<Button color="danger"> React components too!</Button>}>
             <p>React</p>
           </Tooltip>
 
           <Tooltip
-            interactive
             placement="left"
             content={
               <Tooltip
-                interactive
                 placement="left"
                 content={
                   <Tooltip
-                    interactive
                     placement="left"
                     content={
                       <Tooltip
-                        interactive
                         placement="left"
                         content={
                           <Tooltip
-                            interactive
                             placement="left"
                             content={
-                              <Tooltip interactive content="Pretty cool right?">
+                              <Tooltip content="Pretty cool right?">
                                 <p>5</p>
                               </Tooltip>
                             }
@@ -212,23 +200,8 @@ storiesOf('core/Tooltip', module)
           </Tooltip>
         </Col>
       </Row>
-
-      <hr />
-      <span className="d-block fs-5">Interactive</span>
-
-      <Row className="mt-4">
-        <Col className="d-flex justify-content-around">
-          <Tooltip content="You cannot click my contents">
-            <Tag color="danger" text="I am not interactive" />
-          </Tooltip>
-          <Tooltip interactive content="You can click my content!">
-            <Tag color="success" text="I am interactive!" />
-          </Tooltip>
-        </Col>
-      </Row>
     </>
   ))
-
   .add('custom wrapper', () => (
     <>
       <span className="d-block fs-5">Custom wrapper</span>

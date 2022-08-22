@@ -22,7 +22,7 @@ describe('Component: IconPicker', () => {
     const onBlurSpy = jest.fn();
 
     const props = {
-      id: 'bestFriend',
+      id: hasLabel ? 'bestFriend' : undefined,
       name: 'bestFriend',
       label: 'Best Friend',
       hiddenLabel: !hasLabel,
