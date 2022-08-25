@@ -1,12 +1,13 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { DateTimeInput, DateTimeInputIsDateAllowed, DateTimeInputMode, JarbDateTimeInput } from './DateTimeInput';
+import { DateTimeInput, DateTimeInputIsDateAllowed, DateTimeInputMode, FieldDateTimeInput, JarbDateTimeInput } from './DateTimeInput';
 import * as Validators from './validators';
 import { Form } from 'react-final-form';
 import { setConstraints } from '@42.nl/jarb-final-form';
 import userEvent from '@testing-library/user-event';
+import { Tooltip } from '../../core/Tooltip/Tooltip';
 
 describe('Component: DateTimeInput', () => {
   function setup({
@@ -327,7 +328,9 @@ describe('Component: DateTimeInput', () => {
 });
 
 describe('Component: JarbDateTimeInput', () => {
-  it('should use default validator', () => {
+  it('should use default validator', async () => {
+    expect.assertions(1);
+
     const isDateValidatorSpy = jest.spyOn(Validators, 'isDateValidator').mockReturnValue(jest.fn());
     setConstraints({
       Test: {
@@ -339,13 +342,51 @@ describe('Component: JarbDateTimeInput', () => {
       }
     });
 
-    render(
-      <Form onSubmit={jest.fn()}>
-        {() => (
-          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'Test' }} name="test" dateFormat="yyyy-MM-dd" timeFormat={false} mode="inline" />
-        )}
-      </Form>
-    );
+    await act(() => {
+      render(
+        <Form onSubmit={jest.fn()}>
+          {() => (
+            <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'Test' }} name="test" dateFormat="yyyy-MM-dd" timeFormat={false} mode="inline" />
+          )}
+        </Form>
+      );
+    });
+
+    expect(isDateValidatorSpy).toHaveBeenCalled();
+  });
+});
+
+describe('Component: FieldDateTimeInput', () => {
+  it('should use default validator', async () => {
+    expect.assertions(1);
+
+    const isDateValidatorSpy = jest.spyOn(Validators, 'isDateValidator').mockReturnValue(jest.fn());
+    setConstraints({
+      Test: {
+        date: {
+          required: false,
+          javaType: 'String',
+          name: 'date'
+        }
+      }
+    });
+
+    await act(() => {
+      render(
+        <Form onSubmit={jest.fn()}>
+          {() => (
+            <FieldDateTimeInput
+              jarb={{ validator: 'Test.date', label: 'Test' }}
+              name="test"
+              dateFormat="yyyy-MM-dd"
+              timeFormat={false}
+              mode="inline"
+              label={<Tooltip content="test">Test</Tooltip>}
+            />
+          )}
+        </Form>
+      );
+    });
 
     expect(isDateValidatorSpy).toHaveBeenCalled();
   });

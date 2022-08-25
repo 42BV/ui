@@ -8,6 +8,7 @@ import { FieldCompatible } from '../types';
 import { useOptions } from '../useOptions';
 import { alwaysTrue, doBlur } from '../utils';
 import { withJarb } from '../withJarb/withJarb';
+import { withField } from '../withField/withField';
 
 export type Text = {
   /**
@@ -217,6 +218,9 @@ export function CheckboxMultipleSelect<T>(props: Props<T>) {
 /**
  * Variant of the CheckboxMultipleSelect which can be used in a Jarb context.
  */
-export const JarbCheckboxMultipleSelect = withJarb<any[],
-  any[] | null,
-  Props<any>>(CheckboxMultipleSelect);
+export const JarbCheckboxMultipleSelect = withJarb<any[], any[] | null, Props<any>>(CheckboxMultipleSelect);
+
+/**
+ * Variant of the CheckboxMultipleSelect which can be used in a final form.
+ */
+export const FieldCheckboxMultipleSelect = withField<any[], any[] | null, Props<any>>(CheckboxMultipleSelect);

@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
 import { Card, Icon, pageOf, Tooltip } from '../../..';
 import {
+  FieldFormElementDependencies,
   FinalForm,
   IsOptionEqualInfo,
   JarbFormElementDependencies,
@@ -12,7 +13,7 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../../story-utils';
-import { JarbTypeaheadSingle, TypeaheadSingle } from './TypeaheadSingle';
+import { FieldTypeaheadSingle, JarbTypeaheadSingle, TypeaheadSingle } from './TypeaheadSingle';
 import { Alert } from 'reactstrap';
 
 storiesOf('Form/Typeahead/TypeaheadSingle', module)
@@ -244,6 +245,23 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldTypeaheadSingle
+            id="province"
+            name="province"
+            label="Province"
+            placeholder="Please select your province"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -252,7 +270,6 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
           <JarbTypeaheadSingle
             id="province"
             name="province"
-            label="Province"
             placeholder="Please select your province"
             options={provinceFetcher}
             labelForOption={(province) => province.label}

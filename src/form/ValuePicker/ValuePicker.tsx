@@ -13,6 +13,7 @@ import { Spinner } from '../../core/Spinner/Spinner';
 import { t } from '../../utilities/translation/translation';
 import { FieldCompatible } from '../types';
 import { IconType } from '../../core/Icon';
+import { withField } from '../withField/withField';
 
 export type Text = {
   /**
@@ -174,6 +175,9 @@ export function ValuePicker<T>(props: Props<T>) {
 /**
  * Variant of the ValuePicker which can be used in a Jarb context.
  */
-export const JarbValuePicker = withJarb<any, any | null, Props<any>>(
-  ValuePicker
-);
+export const JarbValuePicker = withJarb<any, any | null, Props<any>>(ValuePicker);
+
+/**
+ * Variant of the ValuePicker which can be used in a final form.
+ */
+export const FieldValuePicker = withField<any, any | null, Props<any>>(ValuePicker);

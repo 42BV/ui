@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
-import { isStrongPassword, JarbNewPasswordInput, NewPasswordInput } from './NewPasswordInput';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldNewPasswordInput, isStrongPassword, JarbNewPasswordInput, NewPasswordInput } from './NewPasswordInput';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Addon } from '../addons/Addon/Addon';
@@ -124,6 +124,34 @@ storiesOf('Form/NewPasswordInput', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldNewPasswordInput
+            name="password"
+            id="password"
+            label="password"
+            placeholder="Please enter your password"
+            validators={[
+              isStrongPassword(
+                [
+                  'lowercase',
+                  'uppercase',
+                  'number',
+                  'specialChar',
+                  'minimumLength',
+                  'noSpace'
+                ],
+                10
+              )
+            ]}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -133,7 +161,6 @@ storiesOf('Form/NewPasswordInput', module)
             name="password"
             jarb={{ validator: 'User.password', label: 'Password' }}
             id="password"
-            label="password"
             placeholder="Please enter your password"
             validators={[
               isStrongPassword(

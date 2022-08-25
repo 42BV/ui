@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { ImageUpload, JarbImageUpload, requireImage } from './ImageUpload';
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldImageUpload, ImageUpload, JarbImageUpload, requireImage } from './ImageUpload';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { FileInput } from '../FileInput/FileInput';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
@@ -122,6 +122,26 @@ storiesOf('Form/ImageUpload', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldImageUpload
+            id="image-uploader"
+            name="profile"
+            label="Profile photo"
+            validators={[ requireImage('Profile photo') ]}
+            crop={{
+              type: 'rect',
+              width: 500,
+              height: 400
+            }}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -130,7 +150,6 @@ storiesOf('Form/ImageUpload', module)
           <JarbImageUpload
             id="image-uploader"
             name="profile"
-            label="Profile photo"
             validators={[ requireImage('Profile photo') ]}
             crop={{
               type: 'rect',

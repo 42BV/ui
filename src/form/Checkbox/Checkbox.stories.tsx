@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { Alert } from 'reactstrap';
 
-import { Checkbox, JarbCheckbox } from './Checkbox';
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { Checkbox, FieldCheckbox, JarbCheckbox } from './Checkbox';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 
 import { Icon } from '../../core/Icon';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -117,6 +117,39 @@ storiesOf('Form/Checkbox', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldCheckbox
+            id="isSClass"
+            name="isSClass"
+            label="Is S class hero"
+            placeholder="Whether or not the hero is S class"
+            validators={[ isSClass ]}
+          />
+        </FinalForm>
+      </>
+    );
+  })
+  .add('field with indeterminate', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldCheckbox
+            id="isSClass"
+            name="isSClass"
+            label="Is S class hero"
+            placeholder="Whether or not the hero is S class"
+            validators={[ isSClass ]}
+            allowIndeterminate={true}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -125,12 +158,11 @@ storiesOf('Form/Checkbox', module)
           <JarbCheckbox
             id="isSClass"
             name="isSClass"
-            label="Is S class hero"
             placeholder="Whether or not the hero is S class"
             validators={[ isSClass ]}
             jarb={{
               validator: 'Hero.isSClass',
-              label: 'Description'
+              label: 'Is S class hero'
             }}
           />
         </FinalForm>
@@ -145,12 +177,11 @@ storiesOf('Form/Checkbox', module)
           <JarbCheckbox
             id="isSClass"
             name="isSClass"
-            label="Is S class hero"
             placeholder="Whether or not the hero is S class"
             validators={[ isSClass ]}
             jarb={{
               validator: 'Hero.isSClass',
-              label: 'Description'
+              label: 'Is S class hero'
             }}
             allowIndeterminate={true}
           />

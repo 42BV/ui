@@ -2,9 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { FileInput, JarbFileInput, requireFile } from './FileInput';
+import { FieldFileInput, FileInput, JarbFileInput, requireFile } from './FileInput';
 
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -84,6 +84,23 @@ storiesOf('Form/FileInput', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldFileInput
+            id="file-upload-with-button"
+            name="upload"
+            placeholder="Upload a file here"
+            label="Upload a file here"
+            accept="text/plain"
+            validators={[ requireFile('Profile photo') ]}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -93,7 +110,6 @@ storiesOf('Form/FileInput', module)
             id="file-upload-with-button"
             name="upload"
             placeholder="Upload a file here"
-            label="Upload a file here"
             accept="text/plain"
             validators={[ requireFile('Profile photo') ]}
             jarb={{

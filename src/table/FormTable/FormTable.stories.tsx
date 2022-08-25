@@ -400,7 +400,7 @@ storiesOf('table/FormTable', module)
                     label="Birth date"
                     hiddenLabel={true}
                     placeholder="Enter birth date"
-                    dateFormat="YYYY-MM-DD"
+                    dateFormat="yyyy-MM-dd"
                     timeFormat={false}
                     jarb={{
                       validator: 'Person.birthDate',
@@ -804,7 +804,7 @@ storiesOf('table/FormTable', module)
                       label="Birth date"
                       hiddenLabel={true}
                       placeholder="Enter birth date"
-                      dateFormat="YYYY-MM-DD"
+                      dateFormat="yyyy-MM-dd"
                       timeFormat={false}
                       jarb={{
                         validator: 'Person.birthDate',
@@ -1270,7 +1270,7 @@ storiesOf('table/FormTable', module)
                     label="Birth date"
                     hiddenLabel={true}
                     placeholder="Enter birth date"
-                    dateFormat="YYYY-MM-DD"
+                    dateFormat="yyyy-MM-dd"
                     timeFormat={false}
                     jarb={{
                       validator: 'Person.birthDate',
@@ -1784,7 +1784,7 @@ storiesOf('table/FormTable', module)
                     label="Birth date"
                     hiddenLabel={true}
                     placeholder="Enter birth date"
-                    dateFormat="YYYY-MM-DD"
+                    dateFormat="yyyy-MM-dd"
                     timeFormat={false}
                     jarb={{
                       validator: 'Person.birthDate',

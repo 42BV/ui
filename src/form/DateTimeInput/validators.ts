@@ -18,17 +18,17 @@ type IsDateValidatorConfig = {
   timeFormat: TimeFormat;
 
   /**
-   * The label of the date which must be before the end date.
+   * The label of the date that is being validated.
    * Used in error messages.
    */
-  label: string;
+  label?: string;
 
   /**
    * A custom error text which overrides the error message when
    * provided.
    *
-   * When `overrideErrorText` is used the end.label is not used and
-   * you can make end.label an empty string.
+   * When `overrideErrorText` is used the label is not used,
+   * you can make label an empty string.
    */
   overrideErrorText?: string;
 };
@@ -52,7 +52,7 @@ export function isDateValidator(config: IsDateValidatorConfig): FieldValidator<D
 
     return t({
       key: 'DateTimeInput.INVALID_DATE',
-      fallback: `The "${label}" must match required format "${combineFormat(dateFormat, timeFormat)}"`,
+      fallback: `Must match required format "${combineFormat(dateFormat, timeFormat)}"`,
       data: {
         format: combineFormat(dateFormat, timeFormat),
         label

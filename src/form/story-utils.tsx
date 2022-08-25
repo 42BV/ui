@@ -115,12 +115,26 @@ export function ReloadOptionsInfo() {
   );
 }
 
+export function FieldFormElementDependencies() {
+  return (
+    <Alert color="warning" className="mb-4">
+      <p>
+        To be able to use field variants of form elements, you have to add @42.nl/final-form-field-validation, final-form,
+        react-final-form and react-display-name to your dependencies:
+      </p>
+      <code>npm install --save @42.nl/final-form-field-validation final-form react-final-form react-display-name</code>
+    </Alert>
+  );
+}
+
 export function JarbFormElementDependencies() {
   return (
     <Alert color="warning" className="mb-4">
-      <p>To be able to use jarb variants of form elements, you have to add @42.nl/jarb-final-form, @42.nl/react-error-store, final-form, react-final-form and
-        react-display-name to your dependencies:</p>
-      <code>npm install --save @42.nl/spring-connect @42.nl/react-error-store final-form react-final-form react-display-name</code>
+      <p>
+        To be able to use jarb variants of form elements, you have to add @42.nl/jarb-final-form, @42.nl/final-form-field-validation,
+        @42.nl/spring-connect, @42.nl/react-error-store, final-form, react-final-form and react-display-name to your dependencies:
+      </p>
+      <code>npm install --save @42.nl/jarb-final-form @42.nl/final-form-field-validation @42.nl/spring-connect @42.nl/react-error-store final-form react-final-form react-display-name</code>
     </Alert>
   );
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Input, JarbInput } from './Input';
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldInput, Input, JarbInput } from './Input';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { AddonIcon } from '../addons/AddonIcon/AddonIcon';
@@ -126,6 +126,23 @@ storiesOf('Form/Input', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldInput
+            name="firstName"
+            jarb={{ validator: 'Hero.name', label: 'First name' }}
+            validators={[ isSuperman ]}
+            id="firstName"
+            label="First name"
+            placeholder="Please enter your first name"
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -136,7 +153,6 @@ storiesOf('Form/Input', module)
             jarb={{ validator: 'Hero.name', label: 'First name' }}
             validators={[ isSuperman ]}
             id="firstName"
-            label="First name"
             placeholder="Please enter your first name"
           />
         </FinalForm>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import {
+  FieldFormElementDependencies,
   FinalForm,
   IsOptionEqualInfo,
   JarbFormElementDependencies,
@@ -12,7 +13,7 @@ import {
   ReloadOptionsInfo
 } from '../../story-utils';
 
-import { JarbTypeaheadMultiple, TypeaheadMultiple } from './TypeaheadMultiple';
+import { FieldTypeaheadMultiple, JarbTypeaheadMultiple, TypeaheadMultiple } from './TypeaheadMultiple';
 import { Card, Icon, Tooltip } from '../../..';
 import { Toggle } from '../../../core/Toggle/Toggle';
 import { Alert } from 'reactstrap';
@@ -278,6 +279,23 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldTypeaheadMultiple
+            id="provinces"
+            name="provinces"
+            label="Provinces"
+            placeholder="Please select your provinces"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -286,7 +304,6 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
           <JarbTypeaheadMultiple
             id="provinces"
             name="provinces"
-            label="Provinces"
             placeholder="Please select your provinces"
             options={provinceFetcher}
             labelForOption={(province) => province.label}

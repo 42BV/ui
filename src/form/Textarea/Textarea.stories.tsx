@@ -2,8 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { JarbTextarea, Textarea } from './Textarea';
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldTextarea, JarbTextarea, Textarea } from './Textarea';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -78,6 +78,21 @@ storiesOf('Form/Textarea', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldTextarea
+            id="description"
+            name="description"
+            label="Description"
+            placeholder="Please add a description"
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -86,7 +101,6 @@ storiesOf('Form/Textarea', module)
           <JarbTextarea
             id="description"
             name="description"
-            label="Description"
             placeholder="Please add a description"
             jarb={{
               validator: 'Hero.description',

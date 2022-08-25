@@ -9,6 +9,7 @@ import { doBlur } from '../utils';
 import { formatsFromToolbarModule } from './utils';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
+import { withField } from '../withField/withField';
 
 export type Props = FieldCompatible<string, string> & {
   /**
@@ -97,3 +98,8 @@ export function TextEditor(props: Props) {
  * Variant of the TextEditor which can be used in a Jarb context.
  */
 export const JarbTextEditor = withJarb<string, string, Props>(TextEditor);
+
+/**
+ * Variant of the TextEditor which can be used in a final form.
+ */
+export const FieldTextEditor = withField<string, string, Props>(TextEditor);

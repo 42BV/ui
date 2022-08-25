@@ -16,6 +16,7 @@ import { isDateValidator } from './validators';
 import { isDate } from './checkers';
 import { combineFormat } from './utils';
 import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
+import { withField } from '../withField/withField';
 
 /**
  * Callback which returns whether a date is selectable.
@@ -284,4 +285,12 @@ function dateTimeInputHeader({
 export const JarbDateTimeInput = withJarb<Date | string, Date | string, Props>(
   DateTimeInput,
   (props) => [ isDateValidator({ ...props, label: props.jarb.label }) ]
+);
+
+/**
+ * Variant of the DateTimeInput which can be used in a final form.
+ */
+export const FieldDateTimeInput = withField<Date | string, Date | string, Props>(
+  DateTimeInput,
+  (props) => [ isDateValidator({ ...props, label: typeof props.label === 'string' ? props.label : undefined }) ]
 );

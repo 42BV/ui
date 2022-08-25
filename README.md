@@ -33,7 +33,12 @@ as it is not required for the DateTimeInput anymore and the library doesn't supp
 Other than that, we also changed the label of form elements to be required and added a hiddenLabel property to visually
 hide the label. This was done together with other improvements to a lot of components to comply with the accessibility guidelines.
 We should now be [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/) compliant. If you find any problems with accessibility,
-please create an issue so we can work on it.
+please create an issue, so we can work on it.
+
+For forms, we also added Field components like the Jarb components, but without JaRB. This simplifies usage of form elements
+in forms for fields that don't have a JaRB validator or in projects that don't supply JaRB validation. In addition to that,
+we changed the label for Jarb components to default to the value from `jarb.label` so you only have to specify the label once.
+If you want a custom label or a if you want to use a React component as label, you can still use the label property.
 
 We removed the Popover component as it was a replica of the Tooltip component with a different style. We encourage using the
 Modal with more complex content as the accessibility and user experience are better than navigable content in a popover.

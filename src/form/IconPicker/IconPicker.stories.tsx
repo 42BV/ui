@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { IconPicker, JarbIconPicker } from './IconPicker';
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldIconPicker, IconPicker, JarbIconPicker } from './IconPicker';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Card, Icon, IconType, Tooltip } from '../../';
 import { Alert } from 'reactstrap';
 
@@ -119,6 +119,22 @@ storiesOf('Form/IconPicker', module)
       </div>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldIconPicker
+            id="icon"
+            name="icon"
+            label="Icon"
+            placeholder="Please select your icon"
+            validators={[ is3DRotation ]}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -127,7 +143,6 @@ storiesOf('Form/IconPicker', module)
           <JarbIconPicker
             id="icon"
             name="icon"
-            label="Icon"
             placeholder="Please select your icon"
             validators={[ is3DRotation ]}
             jarb={{

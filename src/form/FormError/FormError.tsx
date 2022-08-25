@@ -20,9 +20,9 @@ type Props = {
   meta: Meta;
 
   /**
-   * The validator for which the FormError should render the errors.
+   * The validator for which the FormError should render back-end errors.
    */
-  validator: string;
+  validator?: string;
 
   /**
    * Optionally: callback which is called when there are errors or
@@ -48,7 +48,7 @@ type Props = {
  */
 export function FormError(props: Props) {
   const { value, meta, validator, onChange, className } = props;
-  const backEndErrors = useErrorsForValidator(validator);
+  const backEndErrors = useErrorsForValidator(validator ?? '');
   const frontEndErrors = useSettledErrors(meta, value);
 
   const hasErrors = backEndErrors.length > 0 || frontEndErrors.length > 0;

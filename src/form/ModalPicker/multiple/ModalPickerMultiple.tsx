@@ -13,6 +13,7 @@ import { FieldCompatible } from '../../types';
 import { useOptions } from '../../useOptions';
 import { IconType } from '../../../core/Icon';
 import { t } from '../../../utilities/translation/translation';
+import { withField } from '../../withField/withField';
 
 export type ModalPickerMultipleRenderValues<T> = (
   value?: T[]
@@ -367,6 +368,9 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
 /**
  * Variant of the ModalPickerMultiple which can be used in a Jarb context.
  */
-export const JarbModalPickerMultiple = withJarb<any[],
-  any[] | null | undefined,
-  Props<any>>(ModalPickerMultiple);
+export const JarbModalPickerMultiple = withJarb<any[], any[] | null | undefined, Props<any>>(ModalPickerMultiple);
+
+/**
+ * Variant of the ModalPickerMultiple which can be used in a final form.
+ */
+export const FieldModalPickerMultiple = withField<any[], any[] | null | undefined, Props<any>>(ModalPickerMultiple);

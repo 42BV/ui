@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { ColorPicker, JarbColorPicker } from './ColorPicker';
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { ColorPicker, FieldColorPicker, JarbColorPicker } from './ColorPicker';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -138,6 +138,22 @@ storiesOf('Form/ColorPicker', module)
       </div>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldColorPicker
+            id="color"
+            name="color"
+            label="Color"
+            placeholder="Please select your favorite color"
+            validators={[ isToDark ]}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -146,7 +162,6 @@ storiesOf('Form/ColorPicker', module)
           <JarbColorPicker
             id="color"
             name="color"
-            label="Color"
             placeholder="Please select your favorite color"
             validators={[ isToDark ]}
             jarb={{

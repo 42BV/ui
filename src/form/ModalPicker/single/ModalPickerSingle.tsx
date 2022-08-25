@@ -10,6 +10,7 @@ import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import { ModalPickerAddButtonCallback, ModalPickerAddButtonOptions, ModalPickerButtonAlignment, ModalPickerRenderOptions } from '../types';
 import { IconType } from '../../../core/Icon';
+import { withField } from '../../withField/withField';
 
 export type ModalPickerSingleRenderValue<T> = (value?: T) => React.ReactNode;
 
@@ -293,6 +294,9 @@ export function ModalPickerSingle<T>(props: Props<T>) {
 /**
  * Variant of the ModalPickerSingle which can be used in a Jarb context.
  */
-export const JarbModalPickerSingle = withJarb<any, any | null, Props<any>>(
-  ModalPickerSingle
-);
+export const JarbModalPickerSingle = withJarb<any, any | null, Props<any>>(ModalPickerSingle);
+
+/**
+ * Variant of the ModalPickerSingle which can be used in a final form.
+ */
+export const FieldModalPickerSingle = withField<any, any | null, Props<any>>(ModalPickerSingle);
