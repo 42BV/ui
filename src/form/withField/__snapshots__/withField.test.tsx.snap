@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HoC: withJarb errorMode: tooltip 1`] = `
+exports[`HoC: withField errorMode: tooltip 1`] = `
 <div>
   <div
     aria-describedby="3"
@@ -31,9 +31,9 @@ exports[`HoC: withJarb errorMode: tooltip 1`] = `
 </div>
 `;
 
-exports[`HoC: withJarb should throw an error when detecting illegal props 1`] = `
+exports[`HoC: withField should throw an error when detecting illegal props 1`] = `
 "
-        withJarb: illegal props detected on \\"JarbInput\\".
+        withField: illegal props detected on \\"FieldInput\\".
         
         The following illegal props were detected: 'onChange' and 'value'.
         
@@ -41,13 +41,13 @@ exports[`HoC: withJarb should throw an error when detecting illegal props 1`] = 
         managed props: 'onChange', 'onBlur', 'onFocus', 'value', 'color', 'valid' or 'error' manually. 
         
         You should never provide these props manually instead you should
-        trust that \\"withJarb\\" will manage these props for you.
+        trust that \\"withField\\" will manage these props for you.
 
         Remove the following illegal props: 'onChange' and 'value'.
       "
 `;
 
-exports[`HoC: withJarb ui default 1`] = `
+exports[`HoC: withField ui default 1`] = `
 <div>
   <div
     class="mb-3"
@@ -70,7 +70,7 @@ exports[`HoC: withJarb ui default 1`] = `
 </div>
 `;
 
-exports[`HoC: withJarb ui with error 1`] = `
+exports[`HoC: withField ui with error 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"

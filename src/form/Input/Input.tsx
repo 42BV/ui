@@ -3,6 +3,7 @@ import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
 import { withJarb } from '../withJarb/withJarb';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
+import { withField } from '../withField/withField';
 
 export type InputType =
   | 'text'
@@ -136,3 +137,8 @@ export function reactStrapInput(
  * Variant of the Input which can be used in a Jarb context.
  */
 export const JarbInput = withJarb<string, string, Props>(Input);
+
+/**
+ * Variant of the Input which can be used in a final form.
+ */
+export const FieldInput = withField<string, string, Props>(Input);

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { JarbModalPickerSingle, ModalPickerSingle } from './ModalPickerSingle';
+import { FieldModalPickerSingle, JarbModalPickerSingle, ModalPickerSingle } from './ModalPickerSingle';
 import {
+  FieldFormElementDependencies,
   FinalForm,
   IsOptionEqualInfo,
   JarbFormElementDependencies,
@@ -510,6 +511,27 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldModalPickerSingle
+            id="province"
+            name="province"
+            label="Province"
+            placeholder="Please select your province"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+            jarb={{
+              validator: 'User.province',
+              label: 'Province'
+            }}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -518,7 +540,6 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           <JarbModalPickerSingle
             id="province"
             name="province"
-            label="Province"
             placeholder="Please select your province"
             options={provinceFetcher}
             labelForOption={(province) => province.label}

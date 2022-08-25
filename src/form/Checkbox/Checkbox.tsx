@@ -5,6 +5,7 @@ import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { uniqueId } from 'lodash';
 import { FieldCompatible } from '../types';
+import { withField } from '../withField/withField';
 
 type Props = FieldCompatible<boolean | undefined, boolean> & {
   /**
@@ -82,3 +83,8 @@ export function Checkbox(props: Props) {
  * Variant of the Checkbox which can be used in a Jarb context.
  */
 export const JarbCheckbox = withJarb<boolean, boolean | null, Props>(Checkbox);
+
+/**
+ * Variant of the Checkbox which can be used in a final form.
+ */
+export const FieldCheckbox = withField<boolean, boolean | null, Props>(Checkbox);

@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { withJarb } from '../withJarb/withJarb';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
+import { withField } from '../withField/withField';
 
 type Props = FieldCompatible<string, string>;
 
@@ -55,3 +56,8 @@ export function Textarea(props: Props) {
  * Variant of the Textarea which can be used in a Jarb context.
  */
 export const JarbTextarea = withJarb<string, string, Props>(Textarea);
+
+/**
+ * Variant of the Textarea which can be used in a final form.
+ */
+export const FieldTextarea = withField<string, string, Props>(Textarea);

@@ -2,9 +2,9 @@ import React, { useEffect, useMemo } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { JarbTextEditor, TextEditor } from './TextEditor';
+import { FieldTextEditor, JarbTextEditor, TextEditor } from './TextEditor';
 
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -259,6 +259,21 @@ storiesOf('Form/TextEditor', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldTextEditor
+            id="description"
+            name="description"
+            label="Description"
+            placeholder="Please add a description"
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -267,7 +282,6 @@ storiesOf('Form/TextEditor', module)
           <JarbTextEditor
             id="description"
             name="description"
-            label="Description"
             placeholder="Please add a description"
             jarb={{
               validator: 'Hero.description',

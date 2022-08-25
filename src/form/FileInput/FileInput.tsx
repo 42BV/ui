@@ -10,6 +10,7 @@ import { Translation } from '../../utilities/translation/translator';
 import { AddonButton } from '../addons/AddonButton/AddonButton';
 import { FieldCompatible } from '../types';
 import { Icon } from '../../core/Icon';
+import { withField } from '../withField/withField';
 
 type Props = FieldCompatible<File, File | null> & {
   /**
@@ -112,6 +113,11 @@ export function FileInput(props: Props) {
  * Variant of the FileInput which can be used in a Jarb context.
  */
 export const JarbFileInput = withJarb<File, File | null, Props>(FileInput);
+
+/**
+ * Variant of the FileInput which can be used in a final form.
+ */
+export const FieldFileInput = withField<File, File | null, Props>(FileInput);
 
 /**
  * A FileValidator is a FieldValidator which checks if the `File`

@@ -12,6 +12,7 @@ import Tooltip from 'rc-tooltip';
 import { Card } from '../../core/Card/Card';
 import { uniqueId } from 'lodash';
 import { FieldCompatible } from '../types';
+import { withField } from '../withField/withField';
 
 type Text = {
   /**
@@ -173,3 +174,8 @@ export function ColorPicker(props: Props) {
  * Variant of the ColorPicker which can be used in a Jarb context.
  */
 export const JarbColorPicker = withJarb<string, string, Props>(ColorPicker);
+
+/**
+ * Variant of the ColorPicker which can be used in a final form.
+ */
+export const FieldColorPicker = withField<string, string, Props>(ColorPicker);

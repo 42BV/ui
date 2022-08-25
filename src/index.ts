@@ -52,10 +52,10 @@ export { ErrorBoundary } from './core/ErrorBoundary/ErrorBoundary';
 export { AutoSave } from './form/AutoSave/AutoSave';
 export { withJarb } from './form/withJarb/withJarb';
 export type { JarbFieldCompatible } from './form/withJarb/withJarb';
-export { Input, JarbInput } from './form/Input/Input';
-export { Textarea, JarbTextarea } from './form/Textarea/Textarea';
-export { TextEditor, JarbTextEditor } from './form/TextEditor/TextEditor';
-export { DateTimeInput, JarbDateTimeInput } from './form/DateTimeInput/DateTimeInput';
+export { Input, JarbInput, FieldInput } from './form/Input/Input';
+export { Textarea, JarbTextarea, FieldTextarea } from './form/Textarea/Textarea';
+export { TextEditor, JarbTextEditor, FieldTextEditor } from './form/TextEditor/TextEditor';
+export { DateTimeInput, JarbDateTimeInput, FieldDateTimeInput } from './form/DateTimeInput/DateTimeInput';
 export type { DateTimeInputIsDateAllowed, DateTimeInputMode } from './form/DateTimeInput/DateTimeInput';
 export type { DateFormat, TimeFormat } from './form/DateTimeInput/types';
 export {
@@ -71,10 +71,10 @@ export {
   isDateBeforeValidator,
   isDateBetweenValidator
 } from './form/DateTimeInput/validators';
-export { Select, JarbSelect } from './form/Select/Select';
-export { ModalPickerSingle, JarbModalPickerSingle } from './form/ModalPicker/single/ModalPickerSingle';
+export { Select, JarbSelect, FieldSelect } from './form/Select/Select';
+export { ModalPickerSingle, JarbModalPickerSingle, FieldModalPickerSingle } from './form/ModalPicker/single/ModalPickerSingle';
 export type { ModalPickerSingleRenderValue } from './form/ModalPicker/single/ModalPickerSingle';
-export { ModalPickerMultiple, JarbModalPickerMultiple } from './form/ModalPicker/multiple/ModalPickerMultiple';
+export { ModalPickerMultiple, JarbModalPickerMultiple, FieldModalPickerMultiple } from './form/ModalPicker/multiple/ModalPickerMultiple';
 export type { ModalPickerMultipleRenderValues } from './form/ModalPicker/multiple/ModalPickerMultiple';
 export type {
   ModalPickerAddButtonCallback,
@@ -83,11 +83,12 @@ export type {
   ModalPickerRenderOptionsOption,
   ModalPickerButtonAlignment
 } from './form/ModalPicker/types';
-export { TypeaheadSingle, JarbTypeaheadSingle } from './form/Typeahead/single/TypeaheadSingle';
-export { TypeaheadMultiple, JarbTypeaheadMultiple } from './form/Typeahead/multiple/TypeaheadMultiple';
+export { TypeaheadSingle, JarbTypeaheadSingle, FieldTypeaheadSingle } from './form/Typeahead/single/TypeaheadSingle';
+export { TypeaheadMultiple, JarbTypeaheadMultiple, FieldTypeaheadMultiple } from './form/Typeahead/multiple/TypeaheadMultiple';
 export type { TypeaheadOption } from './form/Typeahead/types';
 export {
   FileInput,
+  FieldFileInput,
   JarbFileInput,
   requireFile,
   limitFileSize
@@ -95,6 +96,7 @@ export {
 export type { FileValidator } from './form/FileInput/FileInput';
 export {
   ImageUpload,
+  FieldImageUpload,
   JarbImageUpload,
   requireImage,
   limitImageSize
@@ -111,27 +113,33 @@ export { errorMessage } from './form/FormError/utils';
 export type { FormErrorOnChange } from './form/FormError/types';
 export {
   CheckboxMultipleSelect,
+  FieldCheckboxMultipleSelect,
   JarbCheckboxMultipleSelect
 } from './form/CheckboxMultipleSelect/CheckboxMultipleSelect';
 export {
   ValuePicker,
+  FieldValuePicker,
   JarbValuePicker
 } from './form/ValuePicker/ValuePicker';
 export {
   IconPicker,
+  FieldIconPicker,
   JarbIconPicker
 } from './form/IconPicker/IconPicker';
 export {
   ColorPicker,
+  FieldColorPicker,
   JarbColorPicker
 } from './form/ColorPicker/ColorPicker';
-export { Checkbox, JarbCheckbox } from './form/Checkbox/Checkbox';
+export { Checkbox, FieldCheckbox, JarbCheckbox } from './form/Checkbox/Checkbox';
 export {
   RadioGroup,
+  FieldRadioGroup,
   JarbRadioGroup
 } from './form/RadioGroup/RadioGroup';
 export {
   NewPasswordInput,
+  FieldNewPasswordInput,
   JarbNewPasswordInput,
   isStrongPassword
 } from './form/NewPasswordInput/NewPasswordInput';

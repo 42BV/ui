@@ -16,6 +16,7 @@ import { FieldCompatible } from '../types';
 import RCTooltip from 'rc-tooltip';
 import { Card } from '../../core/Card/Card';
 import { uniqueId } from 'lodash';
+import { withField } from '../withField/withField';
 
 type Text = {
   /**
@@ -233,3 +234,8 @@ export function IconPicker(props: Props) {
  * Variant of the IconPicker which can be used in a Jarb context.
  */
 export const JarbIconPicker = withJarb<IconType, IconType, Props>(IconPicker);
+
+/**
+ * Variant of the IconPicker which can be used in a final form.
+ */
+export const FieldIconPicker = withField<IconType, IconType, Props>(IconPicker);

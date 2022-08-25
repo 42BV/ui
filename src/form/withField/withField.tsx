@@ -1,23 +1,21 @@
-import React, { ReactNode } from 'react';
-import { FieldRenderProps } from 'react-final-form';
-import { JarbField, JarbFieldProps } from '@42.nl/jarb-final-form';
+import React from 'react';
+import { Field, FieldProps as FieldValidationProps } from '@42.nl/final-form-field-validation';
 import getDisplayName from 'react-display-name';
-import { clearErrorsForValidator } from '@42.nl/react-error-store';
 import { merge, omit, pick } from 'lodash';
 
 import { getState, illegalPropsDetected } from '../utils';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { useHasErrors } from '../../hooks/useHasErrors/useHasErrors';
-import { useMarkedAsRequiredLabel } from './useMarkedAsRequiredLabel/useMarkedAsRequiredLabel';
 import { FieldCompatible } from '../types';
 import { FieldValidator } from 'final-form';
+import { FieldRenderProps } from 'react-final-form';
 import { ErrorMode, FieldError } from '../FormError/FieldError';
 
-// This is a list of props that `withJarb` will pass to the `final-form`
+// This is a list of props that `withField` will pass to the `final-form`
 // Field, but not the wrapper.
 const passedFieldProps = [ 'initialValue', 'format', 'formatOnBlur', 'parse' ];
 
-// These are the props that are managed by `withJarb` and should not
+// These are the props that are managed by `withField` and should not
 // be set manually by the user.
 const managedProps = [
   'onChange',
@@ -29,21 +27,12 @@ const managedProps = [
   'error'
 ];
 
-export type JarbFieldCompatible<Value, ChangeValue> = Omit<FieldCompatible<Value, ChangeValue>, 'label'> & {
-  /**
-   * The label of the form element.
-   * Defaults to the value from `jarb.label`.
-   */
-  label?: ReactNode;
-
-  /**
-   * Whether the errors should be displayed in a tooltip or
-   * below the form element.
-   */
+export type FieldProps<Value, ChangeValue> = FieldCompatible<Value,
+  ChangeValue> & {
   errorMode?: ErrorMode;
 };
 
-export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
+export type WithFieldProps<Value, P> = FieldValidationProps<Value, any> &
   Omit<P,
     | 'onFocus'
     | 'onBlur'
@@ -51,37 +40,36 @@ export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
     | 'value'
     | 'color'
     | 'valid'
-    | 'error'
-    | 'label'>;
+    | 'error'>;
 
 /**
- * withJarb is a Higher Order Component which takes an input element
- * which is `JarbFieldCompatible` as defined by the interface, and turns
- * it into a Component which uses `JarbField` so it can be used in
+ * withField is a Higher Order Component which takes an input element
+ * which is `FieldCompatible` as defined by the interface, and turns
+ * it into a Component which uses `Field` so it can be used in
  * a final-form form.
  *
- * Basically all props needed in `JarbFieldCompatible` are plugged into the
+ * Basically all props needed in `FieldCompatible` are plugged into the
  * Wrapper, by taking the `input` and `meta` from `final-form` and assigning
  * them into the correct slots.
  *
  * It also automatically adds the `FormError` component as the error
- * slot so errors are rendered, and `label` defaults to the value from `jarb.label`.
+ * slot so errors are rendered.
  *
- * @param Wrapper The Component which is `JarbFieldCompatible`.
+ * @param Wrapper The Component which is `FieldCompatible`.
  * @param defaultValidators Optional validators the field should use by default
  */
-export function withJarb<Value,
+export function withField<Value,
   ChangeValue,
-  P extends JarbFieldCompatible<Value, ChangeValue>>(Wrapper: React.ComponentType<P>, defaultValidators?: (props: WithJarbProps<Value, P>) => FieldValidator<Value>[]) {
-  const displayName = `Jarb${getDisplayName(Wrapper)}`;
+  P extends FieldProps<Value, ChangeValue>>(Wrapper: React.ComponentType<P>, defaultValidators?: (props: WithFieldProps<Value, P>) => FieldValidator<Value>[]) {
+  const displayName = `Field${getDisplayName(Wrapper)}`;
 
-  WithJarb.displayName = displayName;
+  WithField.displayName = displayName;
 
-  function WithJarb(props: WithJarbProps<Value, P>) {
+  function WithField(props: WithFieldProps<Value, P>) {
     const illegalProps = managedProps.filter((p) => props[p] !== undefined);
 
     if (illegalProps.length > 0) {
-      illegalPropsDetected('withJarb', displayName, illegalProps, managedProps);
+      illegalPropsDetected('withField', displayName, illegalProps, managedProps);
     }
 
     const [ hasErrors, setHasErrors ] = useHasErrors();
@@ -89,7 +77,6 @@ export function withJarb<Value,
     const {
       errorMode = 'below',
       name,
-      jarb,
       validators,
       asyncValidators,
       asyncValidatorsDebounce,
@@ -101,11 +88,6 @@ export function withJarb<Value,
     // props as the Props to the wrapped component.
     const wrapperProps = (omit(rest, passedFieldProps) as unknown) as P;
 
-    wrapperProps.label = useMarkedAsRequiredLabel({
-      label: wrapperProps.label ?? jarb.label,
-      validator: jarb.validator
-    });
-
     const fieldProps = pick(rest, [
       'initialValue',
       'format',
@@ -116,7 +98,6 @@ export function withJarb<Value,
     const error = (
       <FieldError
         name={name}
-        validator={jarb.validator}
         setHasErrors={setHasErrors}
         errorMode={errorMode}
       />
@@ -131,9 +112,8 @@ export function withJarb<Value,
     };
 
     return (
-      <JarbField<Value, any>
+      <Field<Value, any>
         name={name}
-        jarb={jarb}
         validators={defaultValidators ? merge(defaultValidators(props), validators) : validators}
         asyncValidators={asyncValidators}
         asyncValidatorsDebounce={asyncValidatorsDebounce}
@@ -148,13 +128,13 @@ export function withJarb<Value,
             >
               <Wrapper
                 {...wrapperProps}
-                {...mapFieldRenderProps(field, jarb.validator, hasErrors)}
+                {...mapFieldRenderProps(field, hasErrors)}
               />
             </Tooltip>
           ) : (
             <Wrapper
               {...wrapperProps}
-              {...mapFieldRenderProps(field, jarb.validator, hasErrors)}
+              {...mapFieldRenderProps(field, hasErrors)}
               error={error}
             />
           );
@@ -164,12 +144,11 @@ export function withJarb<Value,
     );
   }
 
-  return WithJarb;
+  return WithField;
 }
 
 function mapFieldRenderProps<T>(
   props: FieldRenderProps<T, any>,
-  validator: string,
   hasErrors: boolean
 ) {
   const { input, meta } = props;
@@ -178,12 +157,7 @@ function mapFieldRenderProps<T>(
 
   return {
     ...state,
-    onChange: (value: T) => {
-      input.onChange(value);
-
-      // Remove any back-end errors now that the value has changed
-      clearErrorsForValidator(validator);
-    },
+    onChange: input.onChange,
     name: input.name,
     onFocus: input.onFocus,
     onBlur: input.onBlur,

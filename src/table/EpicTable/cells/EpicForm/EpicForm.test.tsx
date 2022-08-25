@@ -1,9 +1,9 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { EpicForm } from './EpicForm';
-import { JarbInput } from '../../../../form/Input/Input';
+import { FieldInput } from '../../../../form/Input/Input';
 import userEvent from '@testing-library/user-event';
 import { setConstraints } from '@42.nl/jarb-final-form';
 
@@ -13,7 +13,8 @@ describe('Component: EpicForm', () => {
       Test: {
         test: {
           javaType: 'String',
-          name: 'test'
+          name: 'test',
+          required: true
         }
       }
     });
@@ -29,11 +30,10 @@ describe('Component: EpicForm', () => {
         onSubmit={onSubmitSpy}
         submitOnChange={submitOnChange}
       >
-        <JarbInput
+        <FieldInput
           id="testField"
           name="testField"
-          label="test"
-          jarb={{ validator: 'Test.test', label: 'Test' }}
+          label="Test"
         />
       </EpicForm>
     );
@@ -41,18 +41,28 @@ describe('Component: EpicForm', () => {
     return { container, onSubmitSpy };
   }
 
-  test('ui', () => {
+  test('ui', async () => {
+    expect.assertions(1);
     const { container } = setup({});
+    await act(() => {
+      fireEvent.focus(screen.getByRole('textbox'));
+    });
     expect(container).toMatchSnapshot();
   });
 
   describe('events', () => {
-    it('should call submit on changes when submitOnChange is true', () => {
+    it('should call submit on changes when submitOnChange is true', async () => {
+      expect.assertions(2);
+
       const { onSubmitSpy } = setup({ submitOnChange: true });
+
       fireEvent.focus(screen.getByRole('textbox'));
       fireEvent.change(screen.getByRole('textbox'), { target: { value: 'test' } });
       fireEvent.blur(screen.getByRole('textbox'));
-      expect(onSubmitSpy).toHaveBeenCalledTimes(1);
+
+      await waitFor(() => {
+        expect(onSubmitSpy).toHaveBeenCalledTimes(1);
+      });
     });
 
     it('should when resetting the form call reset on the the react-final-form Form', async () => {
@@ -60,10 +70,12 @@ describe('Component: EpicForm', () => {
 
       setup({});
 
-      await userEvent.type(screen.getByLabelText('test'), 'test');
-      fireEvent.reset(screen.getByTestId('epicform-form'));
+      await userEvent.type(screen.getByLabelText('Test'), 'test');
+      await act(() => {
+        fireEvent.reset(screen.getByTestId('epicform-form'));
+      });
 
-      expect(screen.getByLabelText('test')).toHaveValue('');
+      expect(screen.getByLabelText('Test')).toHaveValue('');
     });
   });
 });

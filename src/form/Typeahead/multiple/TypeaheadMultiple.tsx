@@ -12,6 +12,7 @@ import { FieldCompatible } from '../../types';
 import { useOptions } from '../../useOptions';
 import { t } from '../../../utilities/translation/translation';
 import { uniqueId } from 'lodash';
+import { withField } from '../../withField/withField';
 
 type Text = {
   /**
@@ -232,6 +233,9 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
 /**
  * Variant of the TypeaheadMultiple which can be used in a Jarb context.
  */
-export const JarbTypeaheadMultiple = withJarb<any[],
-  any[] | undefined,
-  Props<any>>(TypeaheadMultiple);
+export const JarbTypeaheadMultiple = withJarb<any[], any[] | undefined, Props<any>>(TypeaheadMultiple);
+
+/**
+ * Variant of the TypeaheadMultiple which can be used in a final form.
+ */
+export const FieldTypeaheadMultiple = withField<any[], any[] | undefined, Props<any>>(TypeaheadMultiple);

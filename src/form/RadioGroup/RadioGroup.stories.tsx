@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { JarbRadioGroup, RadioGroup } from './RadioGroup';
+import { FieldRadioGroup, JarbRadioGroup, RadioGroup } from './RadioGroup';
 import {
+  FieldFormElementDependencies,
   FinalForm,
   IsOptionEqualInfo,
   JarbFormElementDependencies,
@@ -315,7 +316,23 @@ storiesOf('Form/RadioGroup', module)
       </Card>
     );
   })
-
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldRadioGroup
+            id="province"
+            name="province"
+            label="Province"
+            placeholder="Please select your province"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -324,7 +341,6 @@ storiesOf('Form/RadioGroup', module)
           <JarbRadioGroup
             id="province"
             name="province"
-            label="Province"
             placeholder="Please select your province"
             options={provinceFetcher}
             labelForOption={(province) => province.label}

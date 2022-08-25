@@ -5,9 +5,9 @@ import { pageWithContent, pageWithContentAndExactSize } from '../../test/utils';
 import { adminUser, randomUser, userUser } from '../../test/fixtures';
 import { User } from '../../test/types';
 
-import { JarbValuePicker, ValuePicker } from './ValuePicker';
+import { FieldValuePicker, JarbValuePicker, ValuePicker } from './ValuePicker';
 
-import { FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
 import { Button } from '../../core/Button/Button';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
@@ -261,6 +261,35 @@ storiesOf('Form/ValuePicker/multiple', module)
       </Card>
     );
   })
+  .add('field', () => {
+    const [ size, setSize ] = useState('small');
+
+    const promise = sizes[size];
+
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldValuePicker
+            multiple={true}
+            id="bestFriend"
+            name="bestFriend"
+            label="Best friend"
+            placeholder="Select your best friend"
+            canSearch={true}
+            labelForOption={(user: User) => user.email}
+            options={() => promise}
+          />
+
+          <p>Use these buttons to trigger a morph</p>
+          <Button className="mx-2" onClick={() => setSize('small')}>
+            Small
+          </Button>
+          <Button onClick={() => setSize('large')}>Large</Button>
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     const [ size, setSize ] = useState('small');
 
@@ -274,7 +303,6 @@ storiesOf('Form/ValuePicker/multiple', module)
             multiple={true}
             id="bestFriend"
             name="bestFriend"
-            label="Best friend"
             placeholder="Select your best friend"
             canSearch={true}
             labelForOption={(user: User) => user.email}
@@ -496,6 +524,37 @@ storiesOf('Form/ValuePicker/single', module)
       </Card>
     );
   })
+  .add('field', () => {
+    const [ size, setSize ] = useState('small');
+
+    const promise = sizes[size];
+
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldValuePicker
+            multiple={false}
+            id="bestFriend"
+            name="bestFriend"
+            label="Best friend"
+            placeholder="Select your best friend"
+            canSearch={true}
+            options={() => promise}
+            labelForOption={(user: User) => user.email}
+          />
+          <p>Use these buttons to trigger a morph</p>
+          <Button className="me-1" onClick={() => setSize('small')}>
+            Small
+          </Button>
+          <Button className="me-1" onClick={() => setSize('medium')}>
+            Medium
+          </Button>
+          <Button onClick={() => setSize('large')}>Large</Button>
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     const [ size, setSize ] = useState('small');
 
@@ -509,7 +568,6 @@ storiesOf('Form/ValuePicker/single', module)
             multiple={false}
             id="bestFriend"
             name="bestFriend"
-            label="Best friend"
             placeholder="Select your best friend"
             canSearch={true}
             options={() => promise}

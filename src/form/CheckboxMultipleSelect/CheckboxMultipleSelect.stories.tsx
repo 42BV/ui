@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { CheckboxMultipleSelect, JarbCheckboxMultipleSelect } from './CheckboxMultipleSelect';
+import { CheckboxMultipleSelect, FieldCheckboxMultipleSelect, JarbCheckboxMultipleSelect } from './CheckboxMultipleSelect';
 import {
+  FieldFormElementDependencies,
   FinalForm,
   IsOptionEqualInfo,
   JarbFormElementDependencies,
@@ -440,6 +441,23 @@ storiesOf('Form/CheckboxMultipleSelect', module)
       </div>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldCheckboxMultipleSelect
+            id="provinces"
+            name="provinces"
+            label="Provinces"
+            placeholder="Please select your provinces"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -448,7 +466,6 @@ storiesOf('Form/CheckboxMultipleSelect', module)
           <JarbCheckboxMultipleSelect
             id="provinces"
             name="provinces"
-            label="Provinces"
             placeholder="Please select your provinces"
             options={provinceFetcher}
             labelForOption={(province) => province.label}

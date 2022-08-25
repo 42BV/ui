@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { JarbSelect, Select } from './Select';
+import { FieldSelect, JarbSelect, Select } from './Select';
 import {
+  FieldFormElementDependencies,
   FinalForm,
   IsOptionEqualInfo,
   JarbFormElementDependencies,
@@ -238,6 +239,23 @@ storiesOf('Form/Select', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldSelect
+            id="province"
+            name="province"
+            label="Province"
+            placeholder="Please select your province"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -246,7 +264,6 @@ storiesOf('Form/Select', module)
           <JarbSelect
             id="province"
             name="province"
-            label="Province"
             placeholder="Please select your province"
             options={provinceFetcher}
             labelForOption={(province) => province.label}

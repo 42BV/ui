@@ -1,39 +1,28 @@
 import React from 'react';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import * as reactErrorStore from '@42.nl/react-error-store';
 
 import * as useHasErrors from '../../hooks/useHasErrors/useHasErrors';
 import { Form } from 'react-final-form';
 import { setConstraints } from '@42.nl/jarb-final-form';
-import { JarbInput } from '../Input/Input';
-import { JarbDateTimeInput } from '../DateTimeInput/DateTimeInput';
+import { FieldInput } from '../Input/Input';
+import { FieldDateTimeInput } from '../DateTimeInput/DateTimeInput';
 import * as Validators from '../DateTimeInput/validators';
 
 const isSuperman = (value: string) =>
   value === 'superman' ? undefined : 'not superman';
 
-describe('HoC: withJarb', () => {
+describe('HoC: withField', () => {
   function setup({ hasErrors = false, errorMode }: { hasErrors?: boolean; errorMode?: 'tooltip' | 'below' }) {
     jest
       .spyOn(useHasErrors, 'useHasErrors')
       .mockImplementation(() => [ hasErrors, jest.fn() ]);
 
-    setConstraints({
-      User: {
-        firstName: {
-          javaType: 'String',
-          name: 'firstName'
-        }
-      }
-    });
-
     const { container, asFragment } = render(
       <Form onSubmit={jest.fn()}>
         {() => (
-          <JarbInput
+          <FieldInput
             name="firstName"
-            jarb={{ validator: 'User.firstName', label: 'First name' }}
             validators={[ isSuperman ]}
             asyncValidators={[ isSuperman ]}
             asyncValidatorsDebounce={100}
@@ -116,7 +105,7 @@ describe('HoC: withJarb', () => {
     render(
       <Form onSubmit={jest.fn()}>
         {() => (
-          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'test' }} name="test" dateFormat="yyyy-MM-dd" timeFormat={false} />
+          <FieldDateTimeInput label="Test" name="test" dateFormat="yyyy-MM-dd" timeFormat={false} />
         )}
       </Form>
     );
@@ -138,26 +127,7 @@ describe('HoC: withJarb', () => {
     jest.spyOn(console, 'error').mockImplementation(jest.fn());
     expect(() =>
       // @ts-expect-error Test mock
-      render(<JarbInput value="test" onChange={() => undefined} />)
+      render(<FieldInput value="test" onChange={() => undefined} />)
     ).toThrowErrorMatchingSnapshot();
-  });
-
-  describe('events', () => {
-    test('onChange: remove back-end errors', async () => {
-      expect.assertions(2);
-
-      setup({});
-
-      jest.spyOn(reactErrorStore, 'clearErrorsForValidator');
-
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: '42' } });
-
-      await act(() => {
-        jest.runAllTimers();
-      });
-
-      expect(reactErrorStore.clearErrorsForValidator).toHaveBeenCalledTimes(1);
-      expect(reactErrorStore.clearErrorsForValidator).toHaveBeenCalledWith('User.firstName');
-    });
   });
 });

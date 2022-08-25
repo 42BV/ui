@@ -12,6 +12,7 @@ import { Translation } from '../../utilities/translation/translator';
 import { calculateScale, cropToAvatarEditorConfig, dataUrlToFile, getPicaInstance, readFile, replaceFileExtension } from './utils';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
+import { withField } from '../withField/withField';
 
 export type Text = {
   cancel?: string;
@@ -456,7 +457,15 @@ function EditButtons({
   );
 }
 
+/**
+ * Variant of the ImageUpload which can be used in a Jarb context.
+ */
 export const JarbImageUpload = withJarb<Value, ChangeValue, Props>(ImageUpload);
+
+/**
+ * Variant of the ImageUpload which can be used in a final form.
+ */
+export const FieldImageUpload = withField<Value, ChangeValue, Props>(ImageUpload);
 
 /**
  * An ImageValidator is a FieldValidator which checks if the image

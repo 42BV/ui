@@ -9,6 +9,7 @@ import { Loading } from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
 import { TextButton } from '../../core/TextButton/TextButton';
 import { FieldCompatible } from '../types';
+import { withField } from '../withField/withField';
 
 export type Text = {
   /**
@@ -172,3 +173,8 @@ export function RadioGroup<T>(props: Props<T>) {
  * Variant of the RadioGroup which can be used in a Jarb context.
  */
 export const JarbRadioGroup = withJarb<any, any, Props<any>>(RadioGroup);
+
+/**
+ * Variant of the RadioGroup which can be used in a final form.
+ */
+export const FieldRadioGroup = withField<any, any, Props<any>>(RadioGroup);

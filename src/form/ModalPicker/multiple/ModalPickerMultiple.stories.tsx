@@ -5,9 +5,10 @@ import { pageWithContentAndExactSize } from '../../../test/utils';
 import { adminUser, coordinatorUser, pageOfUsers, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
-import { JarbModalPickerMultiple, ModalPickerMultiple } from './ModalPickerMultiple';
+import { FieldModalPickerMultiple, JarbModalPickerMultiple, ModalPickerMultiple } from './ModalPickerMultiple';
 
 import {
+  FieldFormElementDependencies,
   FinalForm,
   IsOptionEqualInfo,
   JarbFormElementDependencies,
@@ -625,6 +626,23 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
       </Card>
     );
   })
+  .add('field', () => {
+    return (
+      <>
+        <FieldFormElementDependencies />
+        <FinalForm>
+          <FieldModalPickerMultiple
+            id="provinces"
+            name="provinces"
+            label="Provinces"
+            placeholder="Please select your provinces"
+            options={provinceFetcher}
+            labelForOption={(province) => province.label}
+          />
+        </FinalForm>
+      </>
+    );
+  })
   .add('jarb', () => {
     return (
       <>
@@ -633,7 +651,6 @@ storiesOf('Form/ModalPicker/ModalPickerMultiple', module)
           <JarbModalPickerMultiple
             id="provinces"
             name="provinces"
-            label="Provinces"
             placeholder="Please select your provinces"
             options={provinceFetcher}
             labelForOption={(province) => province.label}

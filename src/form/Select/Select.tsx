@@ -10,6 +10,7 @@ import { FieldCompatible } from '../types';
 import { alwaysTrue } from '../utils';
 import { InputType } from '../Input/Input';
 import { uniqueId } from 'lodash';
+import { withField } from '../withField/withField';
 
 export type Text = {
   /**
@@ -156,3 +157,8 @@ export function Select<T>(props: Props<T>) {
  * Variant of the Select which can be used in a Jarb context.
  */
 export const JarbSelect = withJarb<any, any, Props<any>>(Select);
+
+/**
+ * Variant of the Select which can be used in a final form.
+ */
+export const FieldSelect = withField<any, any, Props<any>>(Select);

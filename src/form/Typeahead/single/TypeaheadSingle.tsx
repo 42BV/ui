@@ -12,6 +12,7 @@ import { optionToTypeaheadOption } from '../utils';
 import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
 import { t } from '../../../utilities/translation/translation';
 import { uniqueId } from 'lodash';
+import { withField } from '../../withField/withField';
 
 type Text = {
   /**
@@ -212,6 +213,9 @@ export function TypeaheadSingle<T>(props: Props<T>) {
 /**
  * Variant of the TypeaheadSingle which can be used in a Jarb context.
  */
-export const JarbTypeaheadSingle = withJarb<any, any | null, Props<any>>(
-  TypeaheadSingle
-);
+export const JarbTypeaheadSingle = withJarb<any, any | null, Props<any>>(TypeaheadSingle);
+
+/**
+ * Variant of the TypeaheadSingle which can be used in a final form.
+ */
+export const FieldTypeaheadSingle = withField<any, any | null, Props<any>>(TypeaheadSingle);
