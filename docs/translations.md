@@ -3,7 +3,7 @@ layout: default
 title: Translations
 description: 'Translations within @42.nl/ui.'
 permalink: /translations
-nav_order: 4
+nav_order: 3
 ---
 
 ## Translations

@@ -3,7 +3,7 @@ layout: default
 title: Migration guide
 description: 'Migration guide for @42.nl/ui.'
 permalink: /migration-guide
-nav_order: 5
+nav_order: 4
 ---
 
 ## Migrate to v5
