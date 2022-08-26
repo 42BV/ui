@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import { AsyncTypeahead, TokenProps, Typeahead, TypeaheadProps } from 'react-bootstrap-typeahead';
-import { TypeaheadOption } from '../types';
+import { TypeaheadCustomOption, TypeaheadOption } from '../types';
 import { withJarb } from '../../withJarb/withJarb';
 import { alwaysTrue, doBlur } from '../../utils';
-import { optionToTypeaheadOption } from '../utils';
+import { isTypeaheadCustomOption, optionToTypeaheadOption } from '../utils';
 import { FieldCompatibleWithPredeterminedOptions, isOptionSelected } from '../../option';
 import classNames from 'classnames';
 import { Tag } from '../../../core/Tag/Tag';
@@ -25,8 +25,7 @@ type Text = {
   paginationText?: string;
 };
 
-type Props<T> = FieldCompatible<T[], T[] | undefined> &
-  FieldCompatibleWithPredeterminedOptions<T> & {
+type BaseProps<T> = FieldCompatibleWithPredeterminedOptions<T> & {
   /**
    * Optionally specify the number of suggestions to fetch for the
    * dropdown.
@@ -72,6 +71,20 @@ type Props<T> = FieldCompatible<T[], T[] | undefined> &
   text?: Text;
 };
 
+type PropsWithCustomOption<T> = FieldCompatible<T[], (T | TypeaheadCustomOption)[] | undefined> & BaseProps<T> & {
+  /**
+   * Optionally whether it should be allowed to add new items by typing
+   * in the field and hitting enter or clicking the new option in the list.
+   */
+  allowNew: true;
+};
+
+type PropsWithoutCustomOption<T> = FieldCompatible<T[], T[] | undefined> & BaseProps<T> & {
+  allowNew?: never;
+};
+
+type Props<T> = PropsWithCustomOption<T> | PropsWithoutCustomOption<T>;
+
 /**
  * The TypeaheadMultiple is a form element which allows the user
  * to select multiple options by searching for them and selecting
@@ -109,8 +122,9 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
     reloadOptions,
     isOptionEnabled = alwaysTrue,
     pageSize = 10,
-    text = {},
-    maxResults = 100
+    maxResults = 100,
+    allowNew,
+    text = {}
   } = props;
 
   const [ query, setQuery ] = useState('');
@@ -142,11 +156,12 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
     )
     .map((option) => optionToTypeaheadOption(option, labelForOption));
 
-  function doOnChange(values: TypeaheadOption<T>[]): void {
+  function doOnChange(values: (TypeaheadOption<T> | TypeaheadCustomOption)[]): void {
     if (values.length === 0) {
       onChange(undefined);
     } else {
-      onChange(values.map((option) => option.value));
+      // @ts-expect-error Custom options are only available when allowNew is true, which causes the type of onChange param to match correctly
+      onChange(values.map((option) => isTypeaheadCustomOption(option) ? option : option.value));
     }
 
     // Due this: https://github.com/ericgio/react-bootstrap-typeahead/issues/224
@@ -207,6 +222,7 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
     },
     renderToken,
     maxResults,
+    allowNew,
     paginate: true
   };
 

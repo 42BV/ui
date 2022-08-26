@@ -29,6 +29,7 @@ describe('Component: TypeaheadSingle', () => {
     isAsync,
     pageSize,
     maxResults,
+    allowNew,
     text
   }: {
     value?: User;
@@ -40,6 +41,7 @@ describe('Component: TypeaheadSingle', () => {
     isAsync?: boolean;
     pageSize?: number;
     maxResults?: number;
+    allowNew?: true;
     text?: {
       paginationText?: string;
     };
@@ -74,6 +76,7 @@ describe('Component: TypeaheadSingle', () => {
       error: 'Some error',
       pageSize,
       maxResults,
+      allowNew,
       text,
       id: hasId ? 'bestFriend' : undefined,
       label: 'Best friend',
@@ -286,6 +289,25 @@ describe('Component: TypeaheadSingle', () => {
         expect(screen.queryByLabelText('coordinator@42.nl')).toBeInTheDocument();
         expect(screen.queryByLabelText('user@42.nl')).not.toBeInTheDocument();
       });
+    });
+
+    it('should call onChange with custom typeahead option when allowNew is true and option does not exist', async () => {
+      expect.assertions(9);
+
+      const { onChangeSpy } = setup({
+        allowNew: true
+      });
+
+      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Test' } });
+
+      await waitFor(() => {
+        expect(screen.queryByLabelText('Test')).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByLabelText('Test'));
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy.mock.calls[0][0]).toMatchObject({ label: 'Test', customOption: true });
     });
 
     describe('value changes', () => {

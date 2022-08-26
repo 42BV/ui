@@ -27,6 +27,7 @@ describe('Component: TypeaheadMultiple', () => {
     isAsync,
     pageSize,
     maxResults,
+    allowNew,
     text
   }: {
     value?: User[];
@@ -38,6 +39,7 @@ describe('Component: TypeaheadMultiple', () => {
     isAsync?: boolean;
     pageSize?: number;
     maxResults?: number;
+    allowNew?: true;
     text?: {
       paginationText?: string;
     };
@@ -69,6 +71,7 @@ describe('Component: TypeaheadMultiple', () => {
       onBlur: onBlurSpy,
       pageSize,
       maxResults,
+      allowNew,
       text,
       error: 'Some error',
       id: hasId ? 'bestFriend' : undefined,
@@ -262,6 +265,25 @@ describe('Component: TypeaheadMultiple', () => {
         expect(screen.queryByLabelText('coordinator@42.nl')).toBeInTheDocument();
         expect(screen.queryByLabelText('user@42.nl')).not.toBeInTheDocument();
       });
+    });
+
+    it('should call onChange with custom typeahead option when allowNew is true and option does not exist', async () => {
+      expect.assertions(9);
+
+      const { onChangeSpy } = setup({
+        allowNew: true
+      });
+
+      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Test' } });
+
+      await waitFor(() => {
+        expect(screen.queryByLabelText('Test')).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByLabelText('Test'));
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy.mock.calls[0][0]).toMatchObject([{ label: 'Test', customOption: true }]);
     });
 
     describe('value changes', () => {

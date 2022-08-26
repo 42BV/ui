@@ -1,5 +1,5 @@
 import { LabelForOption } from '../option';
-import { TypeaheadOption } from './types';
+import { TypeaheadCustomOption, TypeaheadOption } from './types';
 
 export function optionToTypeaheadOption<T>(
   option: T,
@@ -8,4 +8,8 @@ export function optionToTypeaheadOption<T>(
   const label = labelForOption(option);
 
   return { label, value: option };
+}
+
+export function isTypeaheadCustomOption(option: any): option is TypeaheadCustomOption {
+  return (option as TypeaheadCustomOption).customOption;
 }

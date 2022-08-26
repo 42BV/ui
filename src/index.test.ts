@@ -138,6 +138,7 @@ describe('index', () => {
         "isDateBetweenValidator": [Function],
         "isDateValidator": [Function],
         "isStrongPassword": [Function],
+        "isTypeaheadCustomOption": [Function],
         "limitFileSize": [Function],
         "limitImageSize": [Function],
         "pageOf": [Function],
