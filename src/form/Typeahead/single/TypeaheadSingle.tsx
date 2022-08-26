@@ -7,8 +7,8 @@ import { FieldCompatible } from '../../types';
 import { useOptions } from '../../useOptions';
 import { alwaysTrue, doBlur } from '../../utils';
 import { withJarb } from '../../withJarb/withJarb';
-import { TypeaheadOption } from '../types';
-import { optionToTypeaheadOption } from '../utils';
+import { TypeaheadCustomOption, TypeaheadOption } from '../types';
+import { isTypeaheadCustomOption, optionToTypeaheadOption } from '../utils';
 import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
 import { t } from '../../../utilities/translation/translation';
 import { uniqueId } from 'lodash';
@@ -25,8 +25,7 @@ type Text = {
   paginationText?: string;
 };
 
-type Props<T> = FieldCompatible<T, T | undefined> &
-  FieldCompatibleWithPredeterminedOptions<T> & {
+type BaseProps<T> = FieldCompatibleWithPredeterminedOptions<T> & {
   /**
    * Optionally specify the number of suggestions fetch for the
    * dropdown.
@@ -72,6 +71,21 @@ type Props<T> = FieldCompatible<T, T | undefined> &
   text?: Text;
 };
 
+type PropsWithCustomOption<T> = FieldCompatible<T, T | TypeaheadCustomOption | undefined> & BaseProps<T> & {
+  /**
+   * Optionally whether it should be allowed to add new items by typing
+   * in the field and hitting enter or clicking the new option in the list.
+   */
+  allowNew: true;
+};
+
+type PropsWithoutCustomOption<T> = FieldCompatible<T, T | undefined> & BaseProps<T> & {
+  allowNew?: never;
+};
+
+type Props<T> = PropsWithCustomOption<T> | PropsWithoutCustomOption<T>;
+
+
 /**
  * The TypeaheadSingle is a form element which allows the user
  * to select an option by searching for them and selecting
@@ -110,6 +124,7 @@ export function TypeaheadSingle<T>(props: Props<T>) {
     isOptionEnabled = alwaysTrue,
     pageSize = 10,
     maxResults = 100,
+    allowNew,
     text = {}
   } = props;
 
@@ -132,13 +147,14 @@ export function TypeaheadSingle<T>(props: Props<T>) {
     .filter((option) => isOptionEnabled(option))
     .map((option) => optionToTypeaheadOption(option, labelForOption));
 
-  function doOnChange(values: TypeaheadOption<T>[]) {
+  function doOnChange(values: (TypeaheadOption<T> | TypeaheadCustomOption)[]) {
     if (values.length === 0) {
       onChange(undefined);
     } else {
       const selectedOption = values[0];
 
-      onChange(selectedOption.value);
+      // @ts-expect-error Custom options are only available when allowNew is true, which causes the type of onChange param to match correctly
+      onChange(isTypeaheadCustomOption(selectedOption) ? selectedOption : selectedOption.value);
     }
 
     // Due this: https://github.com/ericgio/react-bootstrap-typeahead/issues/224
@@ -187,6 +203,7 @@ export function TypeaheadSingle<T>(props: Props<T>) {
       'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
     },
     maxResults,
+    allowNew,
     paginate: true
   };
 

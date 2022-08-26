@@ -14,7 +14,7 @@ import {
 } from '../../story-utils';
 
 import { FieldTypeaheadMultiple, JarbTypeaheadMultiple, TypeaheadMultiple } from './TypeaheadMultiple';
-import { Card, Icon, Tooltip } from '../../..';
+import { Card, Icon, isTypeaheadCustomOption, Tooltip } from '../../..';
 import { Toggle } from '../../../core/Toggle/Toggle';
 import { Alert } from 'reactstrap';
 
@@ -211,6 +211,43 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
         ) : null}
 
         <ReloadOptionsInfo />
+      </Card>
+    );
+  })
+  .add('allow new', () => {
+    const [ value, setValue ] = useState<Province[] | undefined>([]);
+
+    return (
+      <Card className="m-2">
+        <TypeaheadMultiple
+          id="provinces"
+          label="Provinces"
+          placeholder="Please select your provinces"
+          options={provinces()}
+          labelForOption={(option) => option.label}
+          value={value}
+          onChange={(selectedProvinces) => {
+            setValue(
+              selectedProvinces
+                ? selectedProvinces.map(p => isTypeaheadCustomOption(p) ? {id: -1, label: p.label, value: p.label, north: false} : p)
+                : undefined
+            );
+          }}
+          allowNew={true}
+        />
+
+        {value ? (
+          <p>
+            Your chosen provinces are:{' '}
+            {value.map((province) => province.label).join(',')}
+          </p>
+        ) : null}
+
+        <p>
+          Whenever <code>allowNew</code> is <code>true</code>, the value you
+          get in onChange might contain a TypeaheadCustomOption. You have to
+          convert this option to a type you can work with yourself.
+        </p>
       </Card>
     );
   })

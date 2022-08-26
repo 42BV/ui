@@ -85,7 +85,8 @@ export type {
 } from './form/ModalPicker/types';
 export { TypeaheadSingle, JarbTypeaheadSingle, FieldTypeaheadSingle } from './form/Typeahead/single/TypeaheadSingle';
 export { TypeaheadMultiple, JarbTypeaheadMultiple, FieldTypeaheadMultiple } from './form/Typeahead/multiple/TypeaheadMultiple';
-export type { TypeaheadOption } from './form/Typeahead/types';
+export { isTypeaheadCustomOption } from './form/Typeahead/utils';
+export type { TypeaheadOption, TypeaheadCustomOption } from './form/Typeahead/types';
 export {
   FileInput,
   FieldFileInput,

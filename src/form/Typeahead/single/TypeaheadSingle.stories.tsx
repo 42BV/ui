@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
-import { Card, Icon, pageOf, Tooltip } from '../../..';
+import { Card, Icon, isTypeaheadCustomOption, pageOf, Tooltip } from '../../..';
 import {
   FieldFormElementDependencies,
   FinalForm,
@@ -183,6 +183,31 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
         {model ? <p>Your chosen model is: {model}</p> : null}
 
         <ReloadOptionsInfo />
+      </Card>
+    );
+  })
+  .add('allow new', () => {
+    const [ brand, setBrand ] = useState<string>();
+
+    const brands = ['Audi', 'BMW', 'Mercedes', 'Tesla'];
+
+    return (
+      <Card className="m-2">
+        <TypeaheadSingle<string>
+          id="brand"
+          label="Brand"
+          placeholder="Please select your brand or add a new one"
+          options={() => resolveAfter(pageOf(brands, 1))}
+          labelForOption={(option) => option}
+          onChange={(chosenBrand) =>
+            setBrand(chosenBrand && isTypeaheadCustomOption(chosenBrand) ? chosenBrand.label : chosenBrand)
+          }
+          value={brand}
+          allowNew={true}
+        />
+
+        {brand ? <p>Your chosen brand is: {brand}</p> : null}
+        <p>Available brands are: {brands.join(', ')}</p>
       </Card>
     );
   })
