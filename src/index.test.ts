@@ -98,6 +98,7 @@ describe('index', () => {
         "Loading": [Function],
         "LoadingPage": [Function],
         "Modal": [Function],
+        "ModalPicker": [Function],
         "ModalPickerMultiple": [Function],
         "ModalPickerSingle": [Function],
         "MoreOrLess": [Function],
