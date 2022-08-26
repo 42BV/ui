@@ -76,6 +76,7 @@ export { ModalPickerSingle, JarbModalPickerSingle, FieldModalPickerSingle } from
 export type { ModalPickerSingleRenderValue } from './form/ModalPicker/single/ModalPickerSingle';
 export { ModalPickerMultiple, JarbModalPickerMultiple, FieldModalPickerMultiple } from './form/ModalPicker/multiple/ModalPickerMultiple';
 export type { ModalPickerMultipleRenderValues } from './form/ModalPicker/multiple/ModalPickerMultiple';
+export { ModalPicker } from './form/ModalPicker/ModalPicker';
 export type {
   ModalPickerAddButtonCallback,
   ModalPickerAddButtonOptions,
