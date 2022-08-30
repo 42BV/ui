@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ForwardedRef, forwardRef, useState } from 'react';
 import { Button, FormGroup, Label } from 'reactstrap';
 import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ import { Icon, IconType } from '../../core/Icon';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import { TextButton } from '../../core/TextButton/TextButton';
-import Tooltip from 'rc-tooltip';
+import Tippy from '@tippyjs/react';
 import { Card } from '../../core/Card/Card';
 import { uniqueId } from 'lodash';
 import { FieldCompatible } from '../types';
@@ -86,7 +86,7 @@ export function ColorPicker(props: Props) {
 
   return (
     <FormGroup className={classes} color={color}>
-      {!hiddenLabel || typeof label !== 'string' ? <Label>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
 
       <div className="d-flex">
         {value ? (
@@ -112,14 +112,14 @@ export function ColorPicker(props: Props) {
             ) : null}
           </div>
         ) : null}
-        <Tooltip
-          id={id}
-          placement="bottom"
-          align={{ offset: [ 0, 7 ] }}
-          destroyTooltipOnHide={true}
-          trigger={[ 'click' ]}
+        <Tippy
           visible={isOpen}
-          overlay={(
+          className="border-0 tippy-popover"
+          placement="bottom"
+          offset={[ 0, 7 ]}
+          interactive={true}
+          zIndex={1049} // One level below bootstrap's modal
+          content={(
             <Card
               cardBodyClassName="p-0"
               footer={(
@@ -148,7 +148,8 @@ export function ColorPicker(props: Props) {
                       overrideText: text.select
                     })}
                   </Button>
-                </div>)}
+                </div>
+              )}
             >
               <SketchPicker
                 color={colorValue}
@@ -157,21 +158,35 @@ export function ColorPicker(props: Props) {
             </Card>
           )}
         >
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-describedby={id}
-          >
-            {icon ? <Icon icon={icon} className="me-2 align-bottom" /> : null}
-            {placeholder}
-          </button>
-        </Tooltip>
+          <ColorPickerButtonRef onClick={() => setIsOpen(!isOpen)} icon={icon} placeholder={placeholder} />
+        </Tippy>
       </div>
       {error}
     </FormGroup>
   );
 }
+
+type ButtonProps = {
+  onClick: () => void;
+  icon?: IconType;
+  placeholder?: string;
+};
+
+function ColorPickerButton({ onClick, icon, placeholder }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
+  return (
+    <button
+      type="button"
+      className="btn btn-primary"
+      onClick={onClick}
+      ref={ref}
+    >
+      {icon ? <Icon icon={icon} className="me-2 align-bottom" /> : null}
+      {placeholder}
+    </button>
+  )
+}
+
+const ColorPickerButtonRef = forwardRef(ColorPickerButton);
 
 /**
  * Variant of the ColorPicker which can be used in a Jarb context.

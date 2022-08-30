@@ -9,7 +9,6 @@ exports[`Component: AvatarsStack ui 1`] = `
       class="avatar avatar-xs"
     >
       <span
-        aria-describedby="1"
         role="button"
         style="outline: 0;"
         tabindex="0"
@@ -28,7 +27,6 @@ exports[`Component: AvatarsStack ui 1`] = `
       class="avatar avatar-sm"
     >
       <span
-        aria-describedby="2"
         role="button"
         style="outline: 0;"
         tabindex="0"
@@ -47,7 +45,6 @@ exports[`Component: AvatarsStack ui 1`] = `
       class="avatar avatar-md"
     >
       <span
-        aria-describedby="3"
         role="button"
         style="outline: 0;"
         tabindex="0"
@@ -66,7 +63,6 @@ exports[`Component: AvatarsStack ui 1`] = `
       class="avatar avatar-lg"
     >
       <span
-        aria-describedby="4"
         role="button"
         style="outline: 0;"
         tabindex="0"

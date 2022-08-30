@@ -6,7 +6,6 @@ exports[`Component: ModalPickerValueTruncator ui overflowing 1`] = `
     class="text-truncate position-relative"
   >
     <div
-      aria-describedby="1"
       class="w-100 h-100 position-absolute"
       role="button"
       style="outline: 0;"

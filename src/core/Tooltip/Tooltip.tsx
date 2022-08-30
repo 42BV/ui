@@ -1,16 +1,8 @@
 import React, { CSSProperties } from 'react';
 import * as Popper from 'popper.js';
-import RCTooltip from 'rc-tooltip';
-import { uniqueId } from 'lodash';
+import Tippy from '@tippyjs/react';
 
-/*** Tooltip component based on the rc-tooltip Library ***/
 type Props = {
-  /**
-   * Optionally the id of the tooltip content. Used for accessibility purposes.
-   * Will be automatically filled in when not provided.
-   */
-  id?: string;
-
   /**
    * Target component that, when hovered, will trigger the tooltip to show up.
    * The target(children) of the tooltip are wrapped into a div.
@@ -39,6 +31,13 @@ type Props = {
   distance?: number;
 
   /**
+   * Optional value that allows you to interact with the Tooltip. This is useful for when
+   * you have a clickable component inside your Tooltip.
+   * When set to true, the Tooltip will no longer disappear when clicked
+   */
+  interactive?: boolean;
+
+  /**
    * Optional that allows you to override the default max width of the tooltip
    * Possible values: number (px), string (with units "rem") or string 'none'.
    */
@@ -48,7 +47,7 @@ type Props = {
    * Optionally the tag wrapping the children.
    * Default value is a span.
    */
-  tag?: 'span' | 'div';
+  tag?: 'span' | 'div' | 'button';
 
   /**
    * Optional className that is added to the Wrapper component
@@ -66,15 +65,15 @@ type Props = {
 };
 
 /**
- * Bootstrap-like Tooltip component based on the rc-tooltip library.
+ * Bootstrap-like Tooltip component based on the Tippy.js library.
  */
 export function Tooltip({
-  id = uniqueId(),
   children,
   placement = 'top',
   content,
   offset = 0,
   distance = 7,
+  interactive,
   maxWidth = 350,
   tag = 'span',
   className,
@@ -83,18 +82,17 @@ export function Tooltip({
   const Tag = tag;
 
   return (
-    <RCTooltip
-      id={id}
-      overlay={content}
+    <Tippy
+      className="border-0"
+      content={content}
       placement={placement}
-      align={{ offset: [ offset, distance ] }}
-      overlayStyle={{ maxWidth }}
-      destroyTooltipOnHide={true}
-      overlayInnerStyle={{ padding: typeof content === 'string' ? undefined : 0 }}
+      offset={[ offset, distance ]}
+      interactive={interactive}
+      maxWidth={maxWidth}
     >
-      <Tag className={className} style={{ outline: 0, ...style }} tabIndex={0} role="button" aria-describedby={id}>
+      <Tag className={className} style={{ outline: 0, ...style }} tabIndex={0} role="button">
         {children}
       </Tag>
-    </RCTooltip>
+    </Tippy>
   );
 }

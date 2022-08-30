@@ -30,6 +30,7 @@ export { SearchInput } from './core/SearchInput/SearchInput';
 export type { SearchInputApi } from './core/SearchInput/SearchInput';
 export { Pager } from './core/Pager/Pager';
 export { OpenCloseModal } from './core/OpenCloseModal/OpenCloseModal';
+export { Popover } from './core/Popover/Popover';
 export { TextButton } from './core/TextButton/TextButton';
 export { InfoTooltip } from './core/InfoTooltip/InfoTooltip';
 export { BooleanIcon } from './core/BooleanIcon/BooleanIcon';

@@ -3,7 +3,6 @@
 exports[`HoC: withField errorMode: tooltip 1`] = `
 <div>
   <div
-    aria-describedby="3"
     class="w-100"
     role="button"
     style="outline: 0;"

@@ -24,7 +24,6 @@ exports[`Component: Toggle ui with custom label 1`] = `
       for="3"
     >
       <span
-        aria-describedby="4"
         role="button"
         style="outline: 0;"
         tabindex="0"
