@@ -63,6 +63,7 @@ export function ConfirmButton({
   color = 'danger',
   onConfirm,
   inProgress,
+  disabled,
   text = {},
   className
 }: Props) {
@@ -86,7 +87,8 @@ export function ConfirmButton({
     icon,
     children,
     fullWidth,
-    size
+    size,
+    disabled
   };
 
   return (
