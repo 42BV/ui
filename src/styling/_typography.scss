@@ -5,7 +5,7 @@ body {
   optgroup,
   select,
   textarea {
-    font-family: $font-family-sans-serif;
+    font-family: var(--bs-font-sans-serif);
   }
 }
 

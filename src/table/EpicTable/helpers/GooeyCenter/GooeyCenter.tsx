@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 // The EpicTable is really large and difficult to test via unit tests.
-// Therefore there are a ton of stories for e2e testing instead. So
+// Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -16,7 +16,7 @@ type Props = {
 
   /**
    * The GooeyCenter a scrollbar will appear for the center when
-   * it is to large to render on the screen.
+   * it is too large to render on the screen.
    */
   center?: React.ReactNode;
 
@@ -32,8 +32,8 @@ type Props = {
   onScroll?: (scrollLeft: number) => void;
 
   /**
-   * Whether or not to show a scrollbar. The FixedHeader renders
-   * a GooeyCenter without a scrollbar.
+   * Whether to show a scrollbar. The FixedHeader renders a GooeyCenter
+   * without a scrollbar.
    */
   showScrollbar?: boolean;
 
@@ -45,8 +45,8 @@ type Props = {
   onCenterWidthChanged?: (centerWidth: number) => void;
 
   /**
-   * Whether or not the center is always visible. Need for the
-   * FixedHeader to prevent it from flashing.
+   * Whether the center is always visible. Need for the FixedHeader to
+   * prevent it from flashing.
    */
   forceCenterAlwaysVisible?: boolean;
 };
@@ -58,7 +58,7 @@ type Props = {
  * the left and right are always visible.
  *
  * The center gets a horizontal scrollbar for when the content
- * is to large to fit in the center.
+ * is too large to fit in the center.
  *
  * GooeyCenter is not meant for consumers of the library and is
  * a private component.
@@ -122,7 +122,7 @@ export function GooeyCenter({
       ref={centerEl}
       // Making it invisible when not fully calculated, prevents
       // the content from instantly resizing and flickering.
-      // Also the width must be undefined for this to work.
+      // Also, the width must be undefined for this to work.
       className={
         centerWidth === 0 && !forceCenterAlwaysVisible ? 'invisible' : ''
       }

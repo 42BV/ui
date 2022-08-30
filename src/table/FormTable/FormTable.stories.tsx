@@ -25,7 +25,7 @@ import { FlashMessage } from '../../core/FlashMessage/FlashMessage';
 import { OpenCloseModal, Pagination } from '../../index';
 import { emptyPage, Page } from '@42.nl/spring-connect/lib';
 import { FormSpy } from 'react-final-form';
-import { sleep } from '../../form/story-utils';
+import { Movie, Person, persons, sleep } from '../../story-utils';
 
 storiesOf('table/FormTable', module)
   .addParameters({ component: EpicForm })
@@ -54,7 +54,7 @@ storiesOf('table/FormTable', module)
       jobTitle: '',
       favoriteMovie: undefined,
       favoriteFood: '',
-      birthDate: undefined,
+      dateOfBirth: undefined,
       sex: ''
     });
 
@@ -395,15 +395,15 @@ storiesOf('table/FormTable', module)
 
                 <EpicFormCell width={300} height={52}>
                   <JarbDateTimeInput
-                    id={`birthDate-${person.id}`}
-                    name="birthDate"
+                    id={`dateOfBirth-${person.id}`}
+                    name="dateOfBirth"
                     label="Birth date"
                     hiddenLabel={true}
                     placeholder="Enter birth date"
                     dateFormat="yyyy-MM-dd"
                     timeFormat={false}
                     jarb={{
-                      validator: 'Person.birthDate',
+                      validator: 'Person.dateOfBirth',
                       label: 'Birthdate'
                     }}
                     errorMode="tooltip"
@@ -471,7 +471,7 @@ storiesOf('table/FormTable', module)
       jobTitle: '',
       favoriteMovie: undefined,
       favoriteFood: '',
-      birthDate: undefined,
+      dateOfBirth: undefined,
       sex: ''
     });
 
@@ -799,15 +799,15 @@ storiesOf('table/FormTable', module)
 
                   <EpicFormCell width={300} height={52}>
                     <JarbDateTimeInput
-                      id={`birthDate-${person.id}`}
-                      name="birthDate"
+                      id={`dateOfBirth-${person.id}`}
+                      name="dateOfBirth"
                       label="Birth date"
                       hiddenLabel={true}
                       placeholder="Enter birth date"
                       dateFormat="yyyy-MM-dd"
                       timeFormat={false}
                       jarb={{
-                        validator: 'Person.birthDate',
+                        validator: 'Person.dateOfBirth',
                         label: 'Birthdate'
                       }}
                       errorMode="tooltip"
@@ -910,7 +910,7 @@ storiesOf('table/FormTable', module)
                 </EpicCell>
 
                 <EpicCell width={300} height={52}>
-                  {person.birthDate?.toLocaleDateString()}
+                  {person.dateOfBirth?.toLocaleDateString()}
                 </EpicCell>
 
                 <EpicCell width={200} height={52}>
@@ -957,7 +957,7 @@ storiesOf('table/FormTable', module)
       jobTitle: '',
       favoriteMovie: undefined,
       favoriteFood: '',
-      birthDate: undefined,
+      dateOfBirth: undefined,
       sex: ''
     });
 
@@ -1265,15 +1265,15 @@ storiesOf('table/FormTable', module)
 
                 <EpicFormCell width={300} height={52}>
                   <JarbDateTimeInput
-                    id={`birthDate-${person.id}`}
-                    name="birthDate"
+                    id={`dateOfBirth-${person.id}`}
+                    name="dateOfBirth"
                     label="Birth date"
                     hiddenLabel={true}
                     placeholder="Enter birth date"
                     dateFormat="yyyy-MM-dd"
                     timeFormat={false}
                     jarb={{
-                      validator: 'Person.birthDate',
+                      validator: 'Person.dateOfBirth',
                       label: 'Birthdate'
                     }}
                     errorMode="tooltip"
@@ -1326,7 +1326,7 @@ storiesOf('table/FormTable', module)
       jobTitle: '',
       favoriteMovie: undefined,
       favoriteFood: '',
-      birthDate: undefined,
+      dateOfBirth: undefined,
       sex: ''
     });
 
@@ -1450,7 +1450,7 @@ storiesOf('table/FormTable', module)
             case 'favoriteMovie':
               person[key] = { name: value };
               break;
-            case 'birthDate':
+            case 'dateOfBirth':
               person[key] = Date.parse(value);
               break;
             default:
@@ -1779,15 +1779,15 @@ storiesOf('table/FormTable', module)
 
                 <EpicFormCell width={300} height={52}>
                   <JarbDateTimeInput
-                    id={`birthDate-${person.id}`}
-                    name="birthDate"
+                    id={`dateOfBirth-${person.id}`}
+                    name="dateOfBirth"
                     label="Birth date"
                     hiddenLabel={true}
                     placeholder="Enter birth date"
                     dateFormat="yyyy-MM-dd"
                     timeFormat={false}
                     jarb={{
-                      validator: 'Person.birthDate',
+                      validator: 'Person.dateOfBirth',
                       label: 'Birthdate'
                     }}
                     errorMode="tooltip"
@@ -1843,21 +1843,6 @@ storiesOf('table/FormTable', module)
     );
   });
 
-type Person = {
-  id: number;
-  firstName: string;
-  lastName: string;
-  age: number;
-  eyeColor: string;
-  height: number;
-  weight: number;
-  jobTitle: string;
-  favoriteMovie?: { name: string };
-  favoriteFood: string;
-  birthDate?: Date;
-  sex: string;
-};
-
 const personKeys: (keyof Person)[] = [
   'id',
   'firstName',
@@ -1869,367 +1854,9 @@ const personKeys: (keyof Person)[] = [
   'jobTitle',
   'favoriteMovie',
   'favoriteFood',
-  'birthDate',
+  'dateOfBirth',
   'sex'
 ];
-
-const persons: Person[] = [
-  {
-    id: Math.random(),
-    firstName: 'Fitzpatrick',
-    lastName: 'Lyons',
-    age: 20,
-    eyeColor: 'brown',
-    height: 10,
-    weight: 3,
-    jobTitle: 'Senior CodeMonkey',
-    favoriteMovie: { name: 'The Matrix' },
-    favoriteFood: 'Hamburgers',
-    birthDate: new Date('2014-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Berry',
-    lastName: 'McNab',
-    age: 41,
-    eyeColor: 'blue',
-    height: 13,
-    weight: 55,
-    jobTitle: 'Business Manager',
-    favoriteMovie: { name: 'Fear and loathing in Las Vegas' },
-    favoriteFood: 'Spaghetti',
-    birthDate: new Date('2000-09-24'),
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Neville',
-    lastName: 'Brooks',
-    age: 25,
-    eyeColor: 'green',
-    height: 12,
-    weight: 32,
-    jobTitle: 'Senior CodeMonkey',
-    favoriteMovie: { name: 'Lord of the Rings' },
-    favoriteFood: 'French Fries',
-    birthDate: new Date('2014-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Leonard',
-    lastName: 'Nemoy',
-    age: 50,
-    eyeColor: 'brown',
-    height: 10,
-    weight: 3,
-    jobTitle: 'Thespian',
-    favoriteMovie: { name: 'Star Trek' },
-    favoriteFood: 'Kosher',
-    birthDate: new Date('1900-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Levi',
-    lastName: 'Smith',
-    age: 30,
-    eyeColor: 'brown',
-    height: 10,
-    weight: 3,
-    jobTitle: 'Taxi driver',
-    favoriteMovie: { name: 'Taxi' },
-    favoriteFood:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, at nam alias ad culpa quae deleniti. Autem eveniet mollitia veritatis reprehenderit ea, tempora vero voluptatem. Dolore repudiandae voluptate quam quidem.,',
-    birthDate: new Date('2014-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Celine',
-    lastName: 'Ferdinand',
-    age: 80,
-    eyeColor: 'green',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Retired',
-    favoriteMovie: { name: 'Driving miss Daisy' },
-    favoriteFood: 'Prunes',
-    birthDate: new Date('1940-09-24'),
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Bonald',
-    lastName: 'Ferdinand',
-    age: 82,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Retired',
-    favoriteMovie: { name: 'Driving miss Daisy' },
-    favoriteFood: 'Prunes',
-    birthDate: new Date('1938-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Zechs',
-    lastName: 'Merquise',
-    age: 42,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Ace pilot',
-    favoriteMovie: { name: 'Gundam wing' },
-    favoriteFood: 'Applepie',
-    birthDate: new Date('2010-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'David',
-    lastName: 'Hayter',
-    age: 55,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Voice actor',
-    favoriteMovie: { name: 'Guyver' },
-    favoriteFood: 'Snakes',
-    birthDate: new Date('1960-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'James',
-    lastName: 'Kirk',
-    age: 50,
-    eyeColor: 'brown',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Captian',
-    favoriteMovie: { name: 'Star Trek' },
-    favoriteFood: 'Replicated',
-    birthDate: new Date('2100-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Bert',
-    lastName: 'Kelly',
-    age: 30,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Blacksmith',
-    favoriteMovie: { name: 'Not without my daughter' },
-    favoriteFood: 'Pears',
-    birthDate: new Date('1989-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'John',
-    lastName: 'Goodall',
-    age: 68,
-    eyeColor: 'green',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Gardner',
-    favoriteMovie: { name: 'The Gardner' },
-    favoriteFood: 'Cauliflower',
-    birthDate: new Date('2019-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Rick',
-    lastName: 'Xander',
-    age: 14,
-    eyeColor: 'brown',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Baker',
-    favoriteMovie: { name: 'Halloween' },
-    favoriteFood: 'Cake',
-    birthDate: new Date('1980-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Jessica',
-    lastName: 'Bernard',
-    age: 36,
-    eyeColor: 'green',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Student',
-    favoriteMovie: { name: 'Highlander' },
-    favoriteFood: 'Icecream',
-    birthDate: new Date('1980-09-24'),
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Benjamin',
-    lastName: 'Sisko',
-    age: 55,
-    eyeColor: 'brown',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Commander',
-    favoriteMovie: { name: 'Search for Spock' },
-    favoriteFood: 'Jamba',
-    birthDate: new Date('2200-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Kathyrn',
-    lastName: 'Janeway',
-    age: 55,
-    eyeColor: 'brown',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Captain',
-    favoriteMovie: { name: 'Wrath of Khan' },
-    favoriteFood: 'Coffee',
-    birthDate: new Date('2240-09-24'),
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Jean-Luc',
-    lastName: 'Picard',
-    age: 66,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Captain',
-    favoriteMovie: { name: 'Next generation' },
-    favoriteFood: 'Tea Earl Grey Hot',
-    birthDate: new Date('2200-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Peter',
-    lastName: 'Parker',
-    age: 30,
-    eyeColor: 'blue',
-    height: 55,
-    weight: 14,
-    jobTitle: 'Spider-man',
-    favoriteMovie: { name: 'Spider-man' },
-    favoriteFood: 'Webs',
-    birthDate: new Date('1990-09-24'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Clark',
-    lastName: 'Kent',
-    age: 40,
-    eyeColor: 'blue',
-    height: 80,
-    weight: 33,
-    jobTitle: 'Journalist',
-    favoriteMovie: { name: 'Superman returns' },
-    favoriteFood: 'Kryptonite',
-    birthDate: new Date('1960-01-01'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Bruce',
-    lastName: 'Wayne',
-    age: 55,
-    eyeColor: 'blue',
-    height: 70,
-    weight: 33,
-    jobTitle: 'CEO',
-    favoriteMovie: { name: 'Batman begins' },
-    favoriteFood: 'Bats',
-    birthDate: new Date('1955-01-01'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Diana',
-    lastName: 'Prince',
-    age: 28,
-    eyeColor: 'green',
-    height: 90,
-    weight: 19,
-    jobTitle: 'Curator',
-    favoriteMovie: { name: 'Wonderwoman' },
-    favoriteFood: 'Greek',
-    birthDate: new Date('1990-01-01'),
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Tony',
-    lastName: 'Stark',
-    age: 40,
-    eyeColor: 'brown',
-    height: 70,
-    weight: 33,
-    jobTitle: 'CEO',
-    favoriteMovie: { name: 'Ironman' },
-    favoriteFood: 'Shoarma',
-    birthDate: new Date('1980-01-01'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Steve',
-    lastName: 'Rogers',
-    age: 100,
-    eyeColor: 'blue',
-    height: 44,
-    weight: 55,
-    jobTitle: 'Captain',
-    favoriteMovie: { name: 'Winter soldier' },
-    favoriteFood: 'Applepie',
-    birthDate: new Date('1920-01-01'),
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Natasha',
-    lastName: 'Romanov',
-    age: 30,
-    eyeColor: 'green',
-    height: 77,
-    weight: 66,
-    jobTitle: 'Black widow',
-    favoriteMovie: { name: 'Avengers' },
-    favoriteFood: 'Stroganov',
-    birthDate: new Date('1995-01-01'),
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Bruce',
-    lastName: 'Banner',
-    age: 42,
-    eyeColor: 'brown',
-    height: 89,
-    weight: 99,
-    jobTitle: 'Smasher',
-    favoriteMovie: { name: 'The Incredible Hulk' },
-    favoriteFood: 'Gammarays',
-    birthDate: new Date('1975-01-01'),
-    sex: 'male'
-  }
-];
-
-type Movie = {
-  name: string;
-};
 
 const movies: Movie[] = uniq(
   persons

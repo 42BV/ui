@@ -4,7 +4,7 @@ import { t } from '../../utilities/translation/translation';
 
 type Props = {
   /**
-   * Whether or not the user performed a search.
+   * Whether the user performed a search.
    */
   userHasSearched: boolean;
   title?: string;

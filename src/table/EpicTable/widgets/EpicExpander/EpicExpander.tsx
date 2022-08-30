@@ -4,7 +4,7 @@ import { Button } from '../../../../core/Button/Button';
 
 export type Props = {
   /**
-   * Whether or not the expander is currently open.
+   * Whether the expander is currently open.
    */
   open: boolean;
 

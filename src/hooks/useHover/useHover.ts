@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 type UseHoverResult = [
   /**
-   * Whether or not the element is hovered
+   * Whether the element is hovered
    */
   boolean,
 
@@ -18,7 +18,7 @@ type UseHoverResult = [
 ];
 
 /**
- * Returns whether or not the element is hovered.
+ * Returns whether the element is hovered.
  *
  * @example
  *

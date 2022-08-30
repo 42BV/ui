@@ -68,7 +68,7 @@ describe('Component: IconPicker', () => {
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
-      await userEvent.type(screen.getByRole('searchbox'), 'asdlfjalsdjflajsdlf');
+      await userEvent.type(screen.getByRole('searchbox'), 'we are testing');
 
       expect(screen.queryByText('No icons found')).toBeInTheDocument();
     });

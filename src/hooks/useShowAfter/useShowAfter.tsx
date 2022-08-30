@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
  * to not show a loading spinner to soon, only
  * after it takes a while.
  *
- * @param number after The amount of time in milliseconds after which the return value should become `true`.
+ * @param after The amount of time in milliseconds after which the return value should become `true`.
  */
 export function useShowAfter(after: number): boolean {
   const [ show, setShow ] = useState(false);

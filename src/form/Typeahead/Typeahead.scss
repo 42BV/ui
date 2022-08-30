@@ -28,7 +28,7 @@
   // Remove border shadow on focus like we do for all inputs
   &.focus {
     box-shadow: none !important;
-    border-color: $gray-400 !important;
+    border-color: var(--bs-gray-400) !important;
   }
 }
 
@@ -37,14 +37,14 @@
 // single variant
 .is-invalid {
   .rbt-input-multi {
-    border-color: $danger;
+    border-color: var(--bs-danger);
   }
 }
 
 .rbt {
   .form-control {
     .is-invalid {
-      border-color: $danger;
+      border-color: var(--bs-danger);
     }
   }
 

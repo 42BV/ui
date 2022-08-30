@@ -27,13 +27,13 @@ type Props = {
 };
 
 /**
- * Tag is a component which shows a piece of text inside of a colored
+ * Tag is a component which shows a piece of text inside a colored
  * background. Under the hood the Tag component is a bootstrap badge
  * with the option to show a close button.
  *
  * An example of a good use case for using a `Tag` is for blog post
  * which belong in a category, each category could be a `Tag`. Another
- * example is someone' hobby's on a profile page, each hobby could
+ * example is someone's hobby's on a profile page, each hobby could
  * be a `Tag`.
  */
 export function Tag({ text, color = 'primary', onRemove, className }: Props) {

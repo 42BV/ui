@@ -25,14 +25,14 @@ interface Props<FormValues> extends FormProps<FormValues> {
   height: number;
 
   /**
-   * Optionally whether or not the form should be submitted on blur automatically.
+   * Optionally whether the form should be submitted on blur automatically.
    */
   submitOnChange?: boolean;
 }
 
 /**
  * The EpicForm is a wrapper around react-final-form's `Form` to
- * allow forms to be used inside of an EpicRow.
+ * allow forms to be used inside an EpicRow.
  */
 export function EpicForm<FormValues>(props: Props<FormValues>) {
   const { id, children, width, height, submitOnChange, odd, ...formProps } = props;
@@ -54,7 +54,6 @@ export function EpicForm<FormValues>(props: Props<FormValues>) {
             width,
             height
           }}
-          data-testid="epicform-form"
         >
           {submitOnChange ? (
             <AutoSave

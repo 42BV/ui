@@ -51,10 +51,10 @@ export function CopyToClipboard({ id = uniqueId(), className, text, buttonColor,
     }
   }, [ copied ]);
 
-  function copyContent() {
+  async function copyContent() {
     const foundElement = document.getElementById(id);
     if (foundElement !== null) {
-      navigator.clipboard.writeText(foundElement.innerText);
+      await navigator.clipboard.writeText(foundElement.innerText);
       setCopied(true);
     }
   }

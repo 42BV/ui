@@ -33,7 +33,7 @@ export type Props<T> = Omit<FieldCompatible<T[], T[] | undefined>,
   icon?: IconType;
 
   /**
-   * Optionally whether or not the user can search.
+   * Optionally whether the user can search.
    * Defaults to `true`.
    */
   canSearch?: boolean;
@@ -67,7 +67,7 @@ export type Props<T> = Omit<FieldCompatible<T[], T[] | undefined>,
 
   /**
    * Optionally the position the button should be aligned to
-   * within it's container.
+   * within its container.
    */
   alignButton?: ModalPickerButtonAlignment;
 
@@ -82,7 +82,7 @@ export type Props<T> = Omit<FieldCompatible<T[], T[] | undefined>,
   renderOptions?: ModalPickerRenderOptions<T>;
 
   /**
-   * Whether or not to show a "clear" button.
+   * Whether to show a "clear" button.
    *
    * Defaults to `true`
    */
@@ -103,7 +103,7 @@ export type Props<T> = Omit<FieldCompatible<T[], T[] | undefined>,
  * in a simple Select you can use the ModalPickerMultiple.
  *
  * Use the ModalPickerMultiple when the user does not precisely know
- * which options he / she is going to select. Otherwise use the
+ * which options he / she is going to select. Otherwise, use the
  * TypeaheadMultiple which is useful when the user is an expert and
  * can type in the selections quicker than he can select it from
  * the modal.
@@ -167,7 +167,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
 
   function openModal() {
     // Always copy the `value` so the `selected` is a fresh array.
-    // Otherwise the selection will be the same as the value, which
+    // Otherwise, the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
     const newSelected = Array.isArray(value) ? [ ...value ] : [];
@@ -181,7 +181,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
 
   function optionClicked(option: T, isSelected: boolean) {
     // Always copy the `value` so the `selected` is a fresh array.
-    // Otherwise the selection will be the same as the value, which
+    // Otherwise, the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
     let newSelected = [ ...selected ];
@@ -258,9 +258,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     const addButtonOptions = addButton
       ? {
         label: addButton.label,
-        onClick: () => {
-          addButtonClicked(addButton.onClick);
-        }
+        onClick: () => addButtonClicked(addButton.onClick)
       }
       : undefined;
 

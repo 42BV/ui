@@ -18,7 +18,7 @@ type Props = {
 };
 
 /**
- * The EpicFormCell is used inside of a EpicForm to render form inputs in.
+ * The EpicFormCell is used inside a EpicForm to render form inputs in.
  * It can be seen as the EpicForm's variant of the `<td>` element.
  */
 export function EpicFormCell({ children, width, height }: Props) {

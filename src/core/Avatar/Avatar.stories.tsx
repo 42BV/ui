@@ -33,22 +33,22 @@ storiesOf('core/Avatar', module)
     <div className="text-center">
       <AvatarStack>
         <Avatar
-          alt="Avatar numbero 1"
+          alt="Avatar number 1"
           size="xs"
           src="https://www.placecage.com/100/100"
         />
         <Avatar
-          alt="Avatar numbero 2"
+          alt="Avatar number 2"
           size="xs"
           src="https://www.placecage.com/100/100"
         />
         <Avatar
-          alt="Avatar numbero 3"
+          alt="Avatar number 3"
           size="xs"
           src="https://www.placecage.com/100/100"
         />
         <Avatar
-          alt="Avatar numbero 4"
+          alt="Avatar number 4"
           size="xs"
           src="https://www.placecage.com/100/100"
         />

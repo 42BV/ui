@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
 import { FieldNewPasswordInput, isStrongPassword, JarbNewPasswordInput, NewPasswordInput } from './NewPasswordInput';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';

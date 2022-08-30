@@ -56,7 +56,7 @@ describe('Component: ModalPickerMultiple', () => {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
-    // We might reuse the page so it can be unshifted by `addButtonClicked`
+    // We might reuse the page, so it can be unshifted by `addButtonClicked`
     let page: Page<User> | undefined = undefined;
 
     let doInitialCheck = true;

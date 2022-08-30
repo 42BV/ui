@@ -13,7 +13,7 @@ export type Props = {
   children: React.ReactNode;
 
   /**
-   * Whether or not this EpicRow is a header.
+   * Whether this EpicRow is a header.
    */
   header?: boolean;
 
@@ -26,13 +26,13 @@ export type Props = {
 };
 
 /**
- * The EpicRow is the EpicTable's version of a <tr>. It has no inherent
+ * The EpicRow is the EpicTable's version of a `<tr>`. It has no inherent
  * behavior / UI of its own but is used to by the EpicTable to divide
  * the table into rows.
  *
  * When the row is a header the EpicTable will collect al subsequent
  * EpicRow's which are not headers underneath the header, until it
- * finds another EpicRow which is a header. This creates so called
+ * finds another EpicRow which is a header. This creates so-called
  * sections.
  */
 export function EpicRow({ tabIndex, children }: Props) {

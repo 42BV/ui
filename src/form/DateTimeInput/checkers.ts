@@ -23,7 +23,7 @@ type IsDateBeforeConfig = {
 };
 
 /**
- * Creates a function which accept a date and returns whether or not
+ * Creates a function which accept a date and returns whether
  * the date lies before the end date.
  *
  * Useful for the `DateTimeInput` components `isDateAllowed` prop.
@@ -102,7 +102,7 @@ export function isDateAfter(
 
 export type IsDateBetweenConfig = {
   /**
-   * Whether or not the date should be inclusive or not.
+   * Whether the date should be inclusive or not.
    *
    * When `true` the date must be after or on the start date.
    * When `false` the date must be after the start date.
@@ -112,7 +112,7 @@ export type IsDateBetweenConfig = {
   startInclusive?: boolean;
 
   /**
-   * Whether or not the date should be inclusive or not.
+   * Whether the date should be inclusive or not.
    *
    * When `true` the date must be before or on the end date.
    * When `false` the date must be before the end date.

@@ -26,6 +26,7 @@ import { ContentState, ContentStateMode } from '../../core/ContentState/ContentS
 import { DateTimeInput } from '../../form/DateTimeInput/DateTimeInput';
 import { Button } from '../../core/Button/Button';
 import { Pagination } from '../../core/Pagination/Pagination';
+import { Person, persons } from '../../story-utils';
 
 storiesOf('table/EpicTable', module)
   .addParameters({ component: EpicTable })
@@ -487,13 +488,13 @@ storiesOf('table/EpicTable', module)
                   {person.jobTitle}
                 </EpicCell>
                 <EpicCell width={widths.favoriteMovie} height={44}>
-                  {person.favoriteMovie}
+                  {person.favoriteMovie?.name}
                 </EpicCell>
                 <EpicCell width={widths.favoriteFood} height={44}>
                   {person.favoriteFood}
                 </EpicCell>
                 <EpicCell width={widths.dateOfBirth} height={44}>
-                  {person.dateOfBirth}
+                  {person.dateOfBirth?.toLocaleDateString()}
                 </EpicCell>
                 <EpicCell width={widths.sex} height={44}>
                   {person.sex}
@@ -525,7 +526,7 @@ storiesOf('table/EpicTable', module)
                         Date of birth
                       </Col>
                       <Col tag="dd" sm={9}>
-                        {person.dateOfBirth}
+                        {person.dateOfBirth?.toLocaleDateString()}
                       </Col>
 
                       <Col tag="dt" sm={3}>
@@ -574,7 +575,7 @@ storiesOf('table/EpicTable', module)
                         Favorite movie
                       </Col>
                       <Col tag="dd" sm={9}>
-                        {person.favoriteMovie}
+                        {person.favoriteMovie?.name}
                       </Col>
 
                       <Col>
@@ -665,13 +666,13 @@ storiesOf('table/EpicTable', module)
                 {person.jobTitle}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                {person.favoriteMovie}
+                {person.favoriteMovie?.name}
               </EpicCell>
               <EpicCell width={150} height={44}>
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.dateOfBirth}
+                {person.dateOfBirth?.toLocaleDateString()}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -757,13 +758,13 @@ storiesOf('table/EpicTable', module)
                 {person.jobTitle}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                {person.favoriteMovie}
+                {person.favoriteMovie?.name}
               </EpicCell>
               <EpicCell width={150} height={44}>
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.dateOfBirth}
+                {person.dateOfBirth?.toLocaleDateString()}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -845,13 +846,13 @@ storiesOf('table/EpicTable', module)
                 {person.jobTitle}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                {person.favoriteMovie}
+                {person.favoriteMovie?.name}
               </EpicCell>
               <EpicCell width={150} height={44}>
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.dateOfBirth}
+                {person.dateOfBirth?.toLocaleDateString()}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -995,13 +996,13 @@ storiesOf('table/EpicTable', module)
                 {person.jobTitle}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                {person.favoriteMovie}
+                {person.favoriteMovie?.name}
               </EpicCell>
               <EpicCell width={150} height={44}>
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.dateOfBirth}
+                {person.dateOfBirth?.toLocaleDateString()}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -1183,13 +1184,13 @@ storiesOf('table/EpicTable', module)
                 {person.jobTitle}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                {person.favoriteMovie}
+                {person.favoriteMovie?.name}
               </EpicCell>
               <EpicCell width={150} height={44}>
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.dateOfBirth}
+                {person.dateOfBirth?.toLocaleDateString()}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -1349,13 +1350,13 @@ storiesOf('table/EpicTable', module)
                     {person.jobTitle}
                   </EpicCell>
                   <EpicCell width={300} height={44}>
-                    {person.favoriteMovie}
+                    {person.favoriteMovie?.name}
                   </EpicCell>
                   <EpicCell width={150} height={44}>
                     {person.favoriteFood}
                   </EpicCell>
                   <EpicCell width={100} height={44}>
-                    {person.dateOfBirth}
+                    {person.dateOfBirth?.toLocaleDateString()}
                   </EpicCell>
                   <EpicCell width={100} height={44}>
                     {person.sex}
@@ -1477,13 +1478,13 @@ storiesOf('table/EpicTable', module)
                 {person.jobTitle}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                {person.favoriteMovie}
+                {person.favoriteMovie?.name}
               </EpicCell>
               <EpicCell width={150} height={44}>
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.dateOfBirth}
+                {person.dateOfBirth?.toLocaleDateString()}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -1583,13 +1584,13 @@ storiesOf('table/EpicTable', module)
                   {person.jobTitle}
                 </EpicCell>
                 <EpicCell width={300} height={44}>
-                  {person.favoriteMovie}
+                  {person.favoriteMovie?.name}
                 </EpicCell>
                 <EpicCell width={150} height={44}>
                   {person.favoriteFood}
                 </EpicCell>
                 <EpicCell width={100} height={44}>
-                  {person.dateOfBirth}
+                  {person.dateOfBirth?.toLocaleDateString()}
                 </EpicCell>
                 <EpicCell width={100} height={44}>
                   {person.sex}
@@ -1692,13 +1693,13 @@ storiesOf('table/EpicTable', module)
                     {person.jobTitle}
                   </EpicCell>
                   <EpicCell width={300} height={44}>
-                    {person.favoriteMovie}
+                    {person.favoriteMovie?.name}
                   </EpicCell>
                   <EpicCell width={150} height={44}>
                     {person.favoriteFood}
                   </EpicCell>
                   <EpicCell width={100} height={44}>
-                    {person.dateOfBirth}
+                    {person.dateOfBirth?.toLocaleDateString()}
                   </EpicCell>
                   <EpicCell width={100} height={44}>
                     {person.sex}
@@ -1730,7 +1731,7 @@ storiesOf('table/EpicTable', module)
                           Date of birth
                         </Col>
                         <Col tag="dd" sm={9}>
-                          {person.dateOfBirth}
+                          {person.dateOfBirth?.toLocaleDateString()}
                         </Col>
 
                         <Col tag="dt" sm={3}>
@@ -1779,7 +1780,7 @@ storiesOf('table/EpicTable', module)
                           Favorite movie
                         </Col>
                         <Col tag="dd" sm={9}>
-                          {person.favoriteMovie}
+                          {person.favoriteMovie?.name}
                         </Col>
 
                         <p className="p-5">
@@ -2015,13 +2016,13 @@ storiesOf('table/EpicTable', module)
                 {person.jobTitle}
               </EpicCell>
               <EpicCell width={300} height={44}>
-                {person.favoriteMovie}
+                {person.favoriteMovie?.name}
               </EpicCell>
               <EpicCell width={150} height={44}>
                 {person.favoriteFood}
               </EpicCell>
               <EpicCell width={100} height={44}>
-                {person.dateOfBirth}
+                {person.dateOfBirth?.toLocaleDateString()}
               </EpicCell>
               <EpicCell width={100} height={44}>
                 {person.sex}
@@ -2045,371 +2046,3 @@ storiesOf('table/EpicTable', module)
     );
   });
 
-type Person = {
-  id: number;
-  firstName: string;
-  lastName: string;
-  age: number;
-  eyeColor: string;
-  height: number;
-  weight: number;
-  jobTitle: string;
-  favoriteMovie: string;
-  favoriteFood: string;
-  dateOfBirth: string;
-  sex: string;
-};
-
-const persons: Person[] = [
-  {
-    id: Math.random(),
-    firstName: 'Fitzpatrick',
-    lastName: 'Lyons',
-    age: 20,
-    eyeColor: 'brown',
-    height: 10,
-    weight: 3,
-    jobTitle: 'Senior CodeMonkey',
-    favoriteMovie: 'The Matrix',
-    favoriteFood: 'Hamburgers',
-    dateOfBirth: '2014-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Berry',
-    lastName: 'McNab',
-    age: 41,
-    eyeColor: 'blue',
-    height: 13,
-    weight: 55,
-    jobTitle: 'Business Manager',
-    favoriteMovie: 'Fear and loathing in Las Vegas',
-    favoriteFood: 'Spaghetti',
-    dateOfBirth: '2000-09-24',
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Neville',
-    lastName: 'Brooks',
-    age: 25,
-    eyeColor: 'green',
-    height: 12,
-    weight: 32,
-    jobTitle: 'Senior CodeMonkey',
-    favoriteMovie: 'Lord of the Rings',
-    favoriteFood: 'French Fries',
-    dateOfBirth: '2014-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Leonard',
-    lastName: 'Nemoy',
-    age: 50,
-    eyeColor: 'brown',
-    height: 10,
-    weight: 3,
-    jobTitle: 'Thespian',
-    favoriteMovie: 'Star Trek',
-    favoriteFood: 'Kosher',
-    dateOfBirth: '1900-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Levi',
-    lastName: 'Smith',
-    age: 30,
-    eyeColor: 'brown',
-    height: 10,
-    weight: 3,
-    jobTitle: 'Taxi driver',
-    favoriteMovie: 'Taxi',
-    favoriteFood:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, at nam alias ad culpa quae deleniti. Autem eveniet mollitia veritatis reprehenderit ea, tempora vero voluptatem. Dolore repudiandae voluptate quam quidem.,',
-    dateOfBirth: '2014-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Celine',
-    lastName: 'Ferdinand',
-    age: 80,
-    eyeColor: 'green',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Retired',
-    favoriteMovie: 'Driving miss Daisy',
-    favoriteFood: 'Prunes',
-    dateOfBirth: '1940-09-24',
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Bonald',
-    lastName: 'Ferdinand',
-    age: 82,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Retired',
-    favoriteMovie: 'Driving miss Daisy',
-    favoriteFood: 'Prunes',
-    dateOfBirth: '1938-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Zechs',
-    lastName: 'Merquise',
-    age: 42,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Ace pilot',
-    favoriteMovie: 'Gundam wing',
-    favoriteFood: 'Apple pie',
-    dateOfBirth: '2010-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'David',
-    lastName: 'Hayter',
-    age: 55,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Voice actor',
-    favoriteMovie: 'Guyver',
-    favoriteFood: 'Snakes',
-    dateOfBirth: '1960-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'James',
-    lastName: 'Kirk',
-    age: 50,
-    eyeColor: 'brown',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Captain',
-    favoriteMovie: 'Star Trek',
-    favoriteFood: 'Replicated',
-    dateOfBirth: '2100-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Bert',
-    lastName: 'Kelly',
-    age: 30,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Blacksmith',
-    favoriteMovie: 'Not without my daughter',
-    favoriteFood: 'Pears',
-    dateOfBirth: '1989-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'John',
-    lastName: 'Goodall',
-    age: 68,
-    eyeColor: 'green',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Gardner',
-    favoriteMovie: 'The Gardner',
-    favoriteFood: 'Cauliflower',
-    dateOfBirth: '2019-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Rick',
-    lastName: 'Xander',
-    age: 14,
-    eyeColor: 'brown',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Baker',
-    favoriteMovie: 'Halloween',
-    favoriteFood: 'Cake',
-    dateOfBirth: '1980-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Jessica',
-    lastName: 'Bernard',
-    age: 36,
-    eyeColor: 'green',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Student',
-    favoriteMovie: 'Highlander',
-    favoriteFood: 'Ice cream',
-    dateOfBirth: '1980-09-24',
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Benjamin',
-    lastName: 'Sisko',
-    age: 55,
-    eyeColor: 'brown',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Commander',
-    favoriteMovie: 'Search for Spock',
-    favoriteFood: 'Jamba',
-    dateOfBirth: '2200-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Kathyrn',
-    lastName: 'Janeway',
-    age: 55,
-    eyeColor: 'brown',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Captain',
-    favoriteMovie: 'Wrath of Khan',
-    favoriteFood: 'Coffee',
-    dateOfBirth: '2240-09-24',
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Jean-Luc',
-    lastName: 'Picard',
-    age: 66,
-    eyeColor: 'blue',
-    height: 3,
-    weight: 5,
-    jobTitle: 'Captain',
-    favoriteMovie: 'Next generation',
-    favoriteFood: 'Tea Earl Grey Hot',
-    dateOfBirth: '2200-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Peter',
-    lastName: 'Parker',
-    age: 30,
-    eyeColor: 'blue',
-    height: 55,
-    weight: 14,
-    jobTitle: 'Spider-man',
-    favoriteMovie: 'Spider-man',
-    favoriteFood: 'Webs',
-    dateOfBirth: '1990-09-24',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Clark',
-    lastName: 'Kent',
-    age: 40,
-    eyeColor: 'blue',
-    height: 80,
-    weight: 33,
-    jobTitle: 'Journalist',
-    favoriteMovie: 'Superman returns',
-    favoriteFood: 'Kryptonite',
-    dateOfBirth: '1960-01-01',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Bruce',
-    lastName: 'Wayne',
-    age: 55,
-    eyeColor: 'blue',
-    height: 70,
-    weight: 33,
-    jobTitle: 'CEO',
-    favoriteMovie: 'Batman begins',
-    favoriteFood: 'Bats',
-    dateOfBirth: '1955-01-01',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Diana',
-    lastName: 'Prince',
-    age: 28,
-    eyeColor: 'green',
-    height: 90,
-    weight: 19,
-    jobTitle: 'Curator',
-    favoriteMovie: 'Wonderwoman',
-    favoriteFood: 'Greek',
-    dateOfBirth: '1990-01-01',
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Tony',
-    lastName: 'Stark',
-    age: 40,
-    eyeColor: 'brown',
-    height: 70,
-    weight: 33,
-    jobTitle: 'CEO',
-    favoriteMovie: 'Ironman',
-    favoriteFood: 'Shoarma',
-    dateOfBirth: '1980-01-01',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Steve',
-    lastName: 'Rogers',
-    age: 100,
-    eyeColor: 'blue',
-    height: 44,
-    weight: 55,
-    jobTitle: 'Captain',
-    favoriteMovie: 'Winter soldier',
-    favoriteFood: 'Apple pie',
-    dateOfBirth: '1920-01-01',
-    sex: 'male'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Natasha',
-    lastName: 'Romanov',
-    age: 30,
-    eyeColor: 'green',
-    height: 77,
-    weight: 66,
-    jobTitle: 'Black widow',
-    favoriteMovie: 'Avengers',
-    favoriteFood: 'Stroganov',
-    dateOfBirth: '1995-01-01',
-    sex: 'female'
-  },
-  {
-    id: Math.random(),
-    firstName: 'Bruce',
-    lastName: 'Banner',
-    age: 42,
-    eyeColor: 'brown',
-    height: 89,
-    weight: 99,
-    jobTitle: 'Smasher',
-    favoriteMovie: 'The Incredible Hulk',
-    favoriteFood: 'Gammarays',
-    dateOfBirth: '1975-01-01',
-    sex: 'male'
-  }
-];

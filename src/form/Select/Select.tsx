@@ -33,7 +33,7 @@ export type Props<T> = FieldCompatible<T, T> &
  * Select is a form element for which the value can be selected
  * from a limited range.
  *
- * If you pass a callback to the options property, be aware
+ * If you pass a callback to the `options` property, be aware
  * that only 100 options will be displayed without pagination.
  * If you want to display more than 100 options,
  * you should use the ModalPickerSingle instead.

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 // The EpicTable is really large and difficult to test via unit tests.
-// Therefore there are a ton of stories for e2e testing instead. So
+// Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
 import { useEffect, useState } from 'react';
@@ -22,7 +22,7 @@ type CalculateActualHeightConfig = {
  * EpicTable. So we increase the height of the EpicTable in that
  * case to be the height of the EpicDetailRow.
  *
- * Also the minHeight can be lower than the totalDesiredHeight. In
+ * Also, the minHeight can be lower than the totalDesiredHeight. In
  * that case the totalDesiredHeight should be used instead. As the
  * minHeight is merely a suggestion.
  */

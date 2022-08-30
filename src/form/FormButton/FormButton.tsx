@@ -17,8 +17,8 @@ type Props = {
 
 /**
  * The FormButton component is used to submit forms from a distance.
- * Distance meaning that the FormButton is not rendered inside of
- * a <form>. Sometimes this happens when doing more advanced layouts.
+ * Distance meaning that the FormButton is not rendered inside a <form>.
+ * Sometimes this happens when doing more advanced layouts.
  *
  * The FormButton will when clicked search for the <form> with the
  * `formId` prop and will submit that form.

@@ -55,23 +55,3 @@ export function pageWithContentAndExactSize<T>(content: Array<T>): Page<T> {
     numberOfElements: content.length
   };
 }
-
-// Get a reference to setTimeout since jest can alter it when mocking timers.
-const setTimeoutRef = window.setTimeout;
-
-export function waitForUI(
-  assertions: () => void,
-  timeout?: number
-): Promise<void> {
-  return new Promise((resolve) => {
-    // Waiting one tick should be enough so the UI is updated.
-    setTimeoutRef(() => {
-      try {
-        assertions();
-        resolve();
-      } catch (error) {
-        console.error(error);
-      }
-    }, timeout || 1);
-  });
-}

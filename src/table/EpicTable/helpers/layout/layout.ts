@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 // The EpicTable is really large and difficult to test via unit tests.
-// Therefore there are a ton of stories for e2e testing instead. So
+// Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
 import React, { Children, cloneElement, createElement, ReactElement } from 'react';
@@ -71,10 +71,10 @@ type EpicTableLayoutConfig = {
   /**
    * The current rect of the epic table
    */
-  epicTableRect: DOMRect | ClientRect | null;
+  epicTableRect: DOMRect | null;
 
   /**
-   * Whether or not the epic-table has a sticky right.
+   * Whether the epic-table has a sticky right.
    */
   hasRight: boolean;
 
@@ -82,10 +82,10 @@ type EpicTableLayoutConfig = {
    * Callback which receives active detail row.
    *
    * A detail row takes up the center and right when displayed and
-   * the EpicTable needs to know this so it can determine if it
+   * the EpicTable needs to know this, so it can determine if it
    * needs to render shadows.
    *
-   * Also when the detail row is larger than the EpicTable the table
+   * Also, when the detail row is larger than the EpicTable the table
    * needs to become the height of the detail row.
    */
   activeDetailRowChanged: (detailRowRef: HTMLDivElement) => void;
@@ -314,7 +314,7 @@ export function epicTableLayout(
       } else {
         // In this case the cell is an EpicDetailRow or
         // an EpicExpander spacer. We ignore these heights for now.
-        // In case of the expander this is tricky but you should
+        // In case of the expander this is tricky, but you should
         // not use expanders and details as the same time for now.
         return cellsHeight;
       }
@@ -437,7 +437,7 @@ export function epicTableLayout(
   }
 
   // Impure helper function for handling EpicDetailRow's
-  function handleEpicDetailRow(row: any, rect: DOMRect | ClientRect) {
+  function handleEpicDetailRow(row: any, rect: DOMRect) {
     // Clone the element because we are injecting extra props.
     const clone = cloneElement(row, {
       width: rect.width - row.props.left,
@@ -449,14 +449,14 @@ export function epicTableLayout(
 
     // Now add the detail row on the left section. Even thought it
     // is only added on the left, it will actually not be displayed
-    // on the left but instead it will cover the entire EpicTable
+    // on the left, but instead it will cover the entire EpicTable
     // sans the `left` property of the `EpicDetailRow`
     // It needs to be added somewhere :P so why not on the left
     leftSection.contents.push([ clone ]);
   }
 
   // Impure helper function for handling ExpanderRow's
-  function handleExpanderRow(row: any, rect: DOMRect | ClientRect) {
+  function handleExpanderRow(row: any, rect: DOMRect) {
     // Clone the element because we are injecting extra props.
     const clone = cloneElement(row, { width: rect.width, key: 1337 });
 
@@ -470,7 +470,7 @@ export function epicTableLayout(
     if (row.props.active) {
       // Whenever the ExpanderRow is active, we need to add a fake
       // row which pushes all other rows down. This is achieved by
-      // pushing in div's with the same height as the ExpanderRow.
+      // pushing in `div`'s with the same height as the ExpanderRow.
       // If we do not add the spacer, it will overlap existing rows
       // and the user cannot see them anymore.
       const spacer = createElement('div', {
@@ -484,7 +484,7 @@ export function epicTableLayout(
   }
 }
 
-// Function which gathers all Row's inside of the EpicTable.
+// Function which gathers all Row's inside the EpicTable.
 // Also unpacks fragments at one level deep to help the user map
 // over array's
 export function getRows(children: any): ReactElement[] {

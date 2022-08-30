@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import { FieldFileInput, FileInput, JarbFileInput, requireFile } from './FileInput';
 
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';

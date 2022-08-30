@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 // The EpicTable is really large and difficult to test via unit tests.
-// Therefore there are a ton of stories for e2e testing instead. So
+// Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
 import React, { Fragment, useRef, useState } from 'react';
@@ -17,9 +17,9 @@ import { useCalculateActualHeight } from './helpers/useCalculateActualHeight';
 import { useAdjustHeightOfActiveDetailRow } from './helpers/useAdjustHeightOfActiveDetailRow';
 
 type Props = {
-  // What I really want to express here is is that children only
-  // accepts rows or `Fragments` containing rows But I cannot express
-  // this properly so it is unfortunately of type 'any'.
+  // What I really want to express here, is that children only
+  // accepts rows or `Fragments` containing rows, but I cannot express
+  // this properly, so it is unfortunately of type 'any'.
 
   /**
    * The rows of the EpicTable. Or Fragments on one level deep
@@ -36,7 +36,7 @@ type Props = {
   minHeight?: number;
 
   /**
-   * Whether or not to render a fixed right column.
+   * Whether to render a fixed right column.
    *
    * Defaults to true.
    */
@@ -50,7 +50,7 @@ type Props = {
   overlay?: React.ReactNode;
 
   /**
-   * Whether or not to add zebra stripes to the table.
+   * Whether to add zebra stripes to the table.
    *
    * Defaults to true.
    */
@@ -68,7 +68,7 @@ type Props = {
  *   2. A fixed left column which follows the user.
  *   3. Optionally a fixed right column which follows the user.
  *   4. Expanding rows which can contain extra data.
- *   5. Click to go to details inside of the table.
+ *   5. Click to go to details inside the table.
  *   6. Selection of rows, and a select all.
  *   7. Filtering per column.
  *   8. Resizing of columns.
@@ -79,8 +79,8 @@ type Props = {
  *
  * That said there are a couple of rules:
  *
- *   1. Do not render anything inside of the EpicTable which is not
- *      one of the row's. The EpicTable will not understand those and
+ *   1. Do not render anything inside the EpicTable which is not
+ *      one of the row's. The EpicTable will not understand those, and
  *      it will error.
  *
  *   2. The EpicTable can contain fragments, and will unpack those, but

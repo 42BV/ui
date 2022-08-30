@@ -4,7 +4,7 @@ import { random } from 'lodash';
 import { Form, FormRenderProps } from 'react-final-form';
 
 import { FieldInput, JarbInput } from './Input/Input';
-import { provinceFetcher, resolveAfter, sleep } from './story-utils';
+import { provinceFetcher, resolveAfter, sleep } from '../story-utils';
 import {
   Card,
   InfoTooltip,

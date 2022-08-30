@@ -510,7 +510,7 @@ export function limitImageSize(size: number, label: string): ImageValidator {
       return undefined;
     }
 
-    // Older browsers will not support this so we skip the check.
+    // Older browsers will not support this, so we skip the check.
     /* istanbul ignore if */
     if (value.size === undefined) {
       return undefined;

@@ -15,10 +15,10 @@ type Props = {
    * - excluding the inactive tabs from the DOM
    * - hiding the inactive tabs using CSS
    *
-   * The benefits of excluding inactive tabs from the DOM is that less elements appear on
+   * The benefits of excluding inactive tabs from the DOM is that fewer elements appear on
    * the page. This gives better performance when the tabs contain more elements, because
-   * React has fewer things to do, and the browser will be faster because there are less
-   * elements in the DOM and probably less requests.
+   * React has fewer things to do, and the browser will be faster because there are fewer
+   * elements in the DOM and probably fewer requests.
    *
    * The benefits from hiding inactive tabs using CSS is that the content can appear faster
    * when clicking to the next tab, because only the CSS is changed. So when the content of

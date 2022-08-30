@@ -80,7 +80,7 @@ describe('useOptions', () => {
         });
       });
 
-      // should return the country by searching case insensitive
+      // should return the country by searching case-insensitive
       expect(result.current).toEqual({
         page: {
           first: true,
@@ -877,14 +877,8 @@ describe('useOptions', () => {
       const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
 
       const fetcher = jest.fn()
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        .mockImplementationOnce(({ size, page }) => {
-          return promise1;
-        })
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        .mockImplementationOnce(({ size, page }) => {
-          return promise2;
-        });
+        .mockImplementationOnce(() => promise1)
+        .mockImplementationOnce(() => promise2);
 
       const { result, rerender } = renderHook(
         ({ pageNumber }) => {
@@ -992,14 +986,8 @@ describe('useOptions', () => {
       const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
 
       const fetcher = jest.fn()
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        .mockImplementationOnce(({ size, page }) => {
-          return promise1;
-        })
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        .mockImplementationOnce(({ size, page }) => {
-          return promise2;
-        });
+        .mockImplementationOnce(() => promise1)
+        .mockImplementationOnce(() => promise2);
 
       const { result, rerender } = renderHook(
         ({ size }) => {

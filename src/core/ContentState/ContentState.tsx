@@ -47,7 +47,7 @@ type Props = {
 };
 
 /**
- * ContentState is a component which handles various non happy flow
+ * ContentState is a component which handles various non-happy flow
  * states. The states it handles are: 'empty', 'no-results' and 'error'.
  *
  * It will display whimsical component which tells the user that things

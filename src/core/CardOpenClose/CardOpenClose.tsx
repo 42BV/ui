@@ -11,7 +11,7 @@ type Props = {
   header: React.ReactNode;
 
   /**
-   * Whether or not the collapsable body is opened.
+   * Whether the collapsable body is opened.
    */
   isOpen: boolean;
 

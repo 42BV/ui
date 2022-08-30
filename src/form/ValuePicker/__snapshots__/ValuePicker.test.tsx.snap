@@ -101,9 +101,11 @@ exports[`Component: ValuePicker multiple ModalPickerMultiple should render a \`M
 
 exports[`Component: ValuePicker should when booting render a loading spinner and request an initial page 1`] = `
 <div>
-  <div>
+  <div
+    class="d-flex"
+  >
     <svg
-      class="spinner"
+      class="spinner align-self-center"
       height="16"
       viewBox="25 25 50 50"
       width="16"
@@ -119,8 +121,9 @@ exports[`Component: ValuePicker should when booting render a loading spinner and
         stroke-width="4"
       />
     </svg>
-     
-    <span>
+    <span
+      class="ms-1"
+    >
       Loading...
     </span>
   </div>

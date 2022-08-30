@@ -4,7 +4,7 @@ import { Page } from '@42.nl/spring-connect';
  * Takes an array of content and turns that array into a
  * Page object from spring.
  *
- * @param content The content you want to become Page'd
+ * @param content The content you want to become `Page`'d
  * @param page The current page you want to see
  * @param size The size of the page defaults to `10`
  */

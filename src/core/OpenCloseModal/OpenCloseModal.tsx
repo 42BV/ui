@@ -13,8 +13,8 @@ type Text = {
 
 type Props = {
   /**
-   * Whether or not the save action you are performing is currently in
-   * progress. If so a spinner is rendered inside of the button.
+   * Whether the save action you are performing is currently in
+   * progress. If so a spinner is rendered inside the button.
    * This behavior is optional and default to `false`.
    */
   inProgress?: boolean;

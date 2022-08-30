@@ -19,7 +19,7 @@ import {
   provinces,
   ReloadOptionsInfo,
   resolveAfter
-} from '../../story-utils';
+} from '../../../story-utils';
 import { Card, Icon, Toggle, Tooltip } from '../../..';
 import { Alert, ListGroup, ListGroupItem } from 'reactstrap';
 import { Avatar } from '../../../core/Avatar/Avatar';

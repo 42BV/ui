@@ -14,7 +14,7 @@ import {
   provinces,
   ReloadOptionsInfo,
   resolveAfter
-} from '../story-utils';
+} from '../../story-utils';
 import { Card } from '../../core/Card/Card';
 import { pageOf } from '../../utilities/page/page';
 import { Tooltip } from '../../core/Tooltip/Tooltip';

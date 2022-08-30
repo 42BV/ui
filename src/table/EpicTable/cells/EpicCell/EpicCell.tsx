@@ -22,7 +22,7 @@ type Props = {
 // Props that will be injected by the EpicTable.
 type InjectedProps = {
   /**
-   *  Whether or not the cell is an odd cell. For the zebra stripes
+   *  Whether the cell is an odd cell. For the zebra stripes
    */
   odd: boolean;
 
@@ -34,7 +34,7 @@ type InjectedProps = {
   onRowClick?: (event: React.MouseEvent<HTMLDivElement>) => any;
 
   /**
-   * Whether or not this cell should render with a hover background.
+   * Whether this cell should render with a hover background.
    * For the row click behavior, when hovering over one cell the
    * other cells in the row should be hovered as well. They need
    * to act as one.
@@ -51,7 +51,7 @@ type InjectedProps = {
 };
 
 /**
- * The EpicCell is used inside of a EpicRow to render content in.
+ * The EpicCell is used inside a EpicRow to render content in.
  * It can be seen as the EpicTable's variant of the `<td>` element.
  */
 export function EpicCell({ children, width, height = 44, ...rest }: Props) {

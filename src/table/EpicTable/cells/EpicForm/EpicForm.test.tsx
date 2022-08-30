@@ -35,6 +35,7 @@ describe('Component: EpicForm', () => {
           name="testField"
           label="Test"
         />
+        <button type="reset">Reset</button>
       </EpicForm>
     );
 
@@ -72,7 +73,7 @@ describe('Component: EpicForm', () => {
 
       await userEvent.type(screen.getByLabelText('Test'), 'test');
       await act(() => {
-        fireEvent.reset(screen.getByTestId('epicform-form'));
+        fireEvent.click(screen.getByText('Reset'));
       });
 
       expect(screen.getByLabelText('Test')).toHaveValue('');

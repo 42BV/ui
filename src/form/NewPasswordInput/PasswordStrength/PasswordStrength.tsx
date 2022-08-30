@@ -37,7 +37,7 @@ type Props = {
   minimumLength?: number;
 
   /**
-   * Whether or not to display a meter or only a list of rules.
+   * Whether to display a meter or only a list of rules.
    * Defaults to true.
    *
    * @default true

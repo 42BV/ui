@@ -23,10 +23,8 @@ describe('getState', () => {
 });
 
 test('doBlur', () => {
-  expect(doBlur()).toBe(undefined);
-
   const onBlur = jest.fn();
-  expect(doBlur(onBlur)).toBe(undefined);
+  doBlur(onBlur);
   expect(onBlur).toBeCalledTimes(1);
 });
 

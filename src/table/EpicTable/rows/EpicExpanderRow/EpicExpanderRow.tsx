@@ -7,7 +7,7 @@ export type Props = {
   children: () => React.ReactNode;
 
   /**
-   * Whether or not the children should be rendered.
+   * Whether the children should be rendered.
    */
   active: boolean;
 
@@ -23,7 +23,7 @@ type InjectedProps = {
 };
 
 /**
- * The EpicExpanderRow is a row inside of an EpicTable which can be used
+ * The EpicExpanderRow is a row inside an EpicTable which can be used
  * to show details whenever a row is clicked. It displays itself over
  * under the cell which is expanded.
  *

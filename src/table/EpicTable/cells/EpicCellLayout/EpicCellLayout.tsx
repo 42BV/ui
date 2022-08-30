@@ -18,7 +18,7 @@ type Props = {
 };
 
 /**
- * The EpicCellLayout is used inside of a EpicHeader or EpicCell to
+ * The EpicCellLayout is used inside a EpicHeader or EpicCell to
  * define the layout of that cell.
  *
  * It currently supports two modes: `vertical` and `horizontal`.
@@ -28,9 +28,9 @@ type Props = {
  * and bottom.
  *
  * The `horizontal` mode will take the full width and positions the
- * the children horizontally and places the maximum space in between
+ * children horizontally and places the maximum space in between
  * the children. This means that when two children are present one
- * will be on the atmost left and the other on the atmost right.
+ * will be on the utmost left and the other on the utmost right.
  *
  * Basically a small wrapper around the `d-flex` utilities of bootstrap.
  */

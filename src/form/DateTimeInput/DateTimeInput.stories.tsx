@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import React, { Fragment, useState } from 'react';
 import { Form as ReactFinalForm } from 'react-final-form';
 import { Alert, Col, Row } from 'reactstrap';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
 import { isDateAfter, isDateBefore, isDateBetween } from './checkers';
 import { DateTimeInput, FieldDateTimeInput, JarbDateTimeInput } from './DateTimeInput';
 import { isDateAfterValidator, isDateBeforeValidator, isDateBetweenValidator } from './validators';

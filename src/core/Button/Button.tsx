@@ -31,9 +31,9 @@ export type Props = {
   onClick?: (event: React.MouseEvent<HTMLElement>) => any;
 
   /**
-   * Whether or not the action you are performing is currently in
-   * progress. If so a spinner is rendered inside of the button.
-   * This behavior is optional and default to `false`.
+   * Whether the action you are performing is currently in progress.
+   * If so, a spinner is rendered inside the button.
+   * This behavior is optional and defaults to `false`.
    *
    * @default false
    */
@@ -66,7 +66,7 @@ export type Props = {
   iconPosition?: ButtonIconPosition;
 
   /**
-   * Optionally whether or not to show the button only as an outline.
+   * Optionally whether to show the button only as an outline.
    */
   outline?: boolean;
 
@@ -79,8 +79,7 @@ export type Props = {
   size?: ButtonSize;
 
   /**
-   * Optionally whether or not the button should take the full width
-   * available.
+   * Optionally whether the button should take the full width available.
    *
    * Defaults to `false`
    */
@@ -226,7 +225,7 @@ export function getIconSize(size: ButtonSize): number {
   }
 }
 
-// Based on the sizes in px's of a button with text but without an icon
+// Based on the sizes in pixels of a button with text but without an icon
 export function getSpinnerSize(size: ButtonSize): number {
   switch (size) {
     case 'lg':

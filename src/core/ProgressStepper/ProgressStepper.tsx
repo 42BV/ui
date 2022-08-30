@@ -43,7 +43,7 @@ type Props<T> = {
   titleForStep(step: T, index: number): string;
 
   /**
-   * Optional callback to determine whether or not the step is clickable.
+   * Optional callback to determine whether the step is clickable.
    *
    * When the step is clickable the cursor will be a pointer, and
    * calls to `onClick` are let through.

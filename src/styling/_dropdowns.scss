@@ -1,17 +1,13 @@
-.dropdown,
-.rdt {
-  .dropdown-menu,
-  .rdtPicker {
+.dropdown {
+  .dropdown-menu {
     display: block;
     opacity: 0;
     visibility: hidden;
     margin-top: 0.625rem;
   }
 
-  &.show,
-  &.rdtOpen {
-    .dropdown-menu,
-    .rdtPicker {
+  &.show {
+    .dropdown-menu {
       opacity: 1;
       visibility: visible;
       margin-top: 0;

@@ -68,7 +68,7 @@
       height: 14px;
       border-radius: 14px;
       border: none;
-      background: darken($gray-200, 10%);
+      background: var(--bs-gray-400);
     }
   }
 }

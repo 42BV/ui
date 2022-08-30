@@ -12,7 +12,7 @@ import {
   provinces,
   ReloadOptionsInfo,
   resolveAfter
-} from '../../story-utils';
+} from '../../../story-utils';
 import { FieldTypeaheadSingle, JarbTypeaheadSingle, TypeaheadSingle } from './TypeaheadSingle';
 import { Alert } from 'reactstrap';
 

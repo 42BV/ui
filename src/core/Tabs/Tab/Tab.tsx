@@ -25,7 +25,7 @@ export type Props = {
   children: () => React.ReactNode;
 
   /**
-   * Whether or not the tab content should be displayed.
+   * Whether the tab content should be displayed.
    */
   active: boolean;
 
