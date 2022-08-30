@@ -23,9 +23,6 @@ in forms for fields that don't have a JaRB validator or in projects that don't s
 we changed the label for Jarb components to default to the value from `jarb.label` so you only have to specify the label once.
 If you want a custom label or a if you want to use a React component as label, you can still use the label property.
 
-We removed the Popover component as it was a replica of the Tooltip component with a different style. We encourage using the
-Modal with more complex content as the accessibility and user experience are better than navigable content in a popover.
-
 The Typeahead components now accept a new property `allowNew`, which adds the ability for the user to create a new option
 for the query they typed. If `allowNew` is `true`, the value sent to onChange might contain a TypeaheadCustomOption. We
 added a `isTypeaheadCustomOption` function to make this check easier for you.
