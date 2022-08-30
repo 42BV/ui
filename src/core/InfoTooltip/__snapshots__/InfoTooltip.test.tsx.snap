@@ -3,7 +3,6 @@
 exports[`Component: InfoTooltip ui custom content 1`] = `
 <div>
   <span
-    aria-describedby="2"
     role="button"
     style="outline: 0;"
     tabindex="0"
@@ -21,7 +20,6 @@ exports[`Component: InfoTooltip ui custom content 1`] = `
 exports[`Component: InfoTooltip ui default 1`] = `
 <div>
   <span
-    aria-describedby="1"
     role="button"
     style="outline: 0;"
     tabindex="0"

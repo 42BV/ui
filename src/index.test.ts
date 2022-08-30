@@ -110,6 +110,7 @@ describe('index', () => {
         "Pager": [Function],
         "Pagination": [Function],
         "PlainTextFormControl": [Function],
+        "Popover": [Function],
         "ProgressStepper": [Function],
         "RadioGroup": [Function],
         "SearchInput": [Function],

@@ -18,7 +18,7 @@ exports[`Component: IconPicker ui with label 1`] = `
         class="d-flex"
       >
         <button
-          aria-describedby="bestFriend"
+          aria-expanded="false"
           class="btn btn-primary"
           type="button"
         >
@@ -60,7 +60,7 @@ exports[`Component: IconPicker ui with selected value 1`] = `
           </u>
         </div>
         <button
-          aria-describedby="1"
+          aria-expanded="false"
           class="btn btn-primary"
           type="button"
         >
@@ -86,7 +86,7 @@ exports[`Component: IconPicker ui without selected value 1`] = `
         class="d-flex"
       >
         <button
-          aria-describedby="3"
+          aria-expanded="false"
           class="btn btn-primary"
           type="button"
         >

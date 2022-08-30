@@ -6,7 +6,6 @@ exports[`Component: Avatar ui default size 1`] = `
     class="avatar red"
   >
     <span
-      aria-describedby="1"
       role="button"
       style="outline: 0;"
       tabindex="0"
@@ -33,7 +32,6 @@ exports[`Component: Avatar ui lg size 1`] = `
     class="avatar avatar-lg red"
   >
     <span
-      aria-describedby="5"
       role="button"
       style="outline: 0;"
       tabindex="0"
@@ -60,7 +58,6 @@ exports[`Component: Avatar ui md size 1`] = `
     class="avatar avatar-md red"
   >
     <span
-      aria-describedby="4"
       role="button"
       style="outline: 0;"
       tabindex="0"
@@ -87,7 +84,6 @@ exports[`Component: Avatar ui sm size 1`] = `
     class="avatar avatar-sm red"
   >
     <span
-      aria-describedby="3"
       role="button"
       style="outline: 0;"
       tabindex="0"
@@ -114,7 +110,6 @@ exports[`Component: Avatar ui xs size 1`] = `
     class="avatar avatar-xs red"
   >
     <span
-      aria-describedby="2"
       role="button"
       style="outline: 0;"
       tabindex="0"
