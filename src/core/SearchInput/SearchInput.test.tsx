@@ -182,7 +182,7 @@ describe('Component: SearchInput', () => {
           showIcon={true}
         >
           {(searchInput, { setValue }) => {
-            // At this time the ref is null so it wont be called
+            // At this time the ref is null, so it won't be called
             setValue('not called');
 
             setTimeout(() => {

@@ -15,7 +15,7 @@
   &.is-invalid {
     .ql-toolbar,
     .ql-container {
-      border-color: $danger;
+      border-color: var(--bs-danger);
     }
   }
 }

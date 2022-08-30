@@ -25,7 +25,7 @@ export function useScrollToClosestError({
     const timeoutId = setTimeout(() => {
       const firstError = document.querySelector('.invalid-feedback');
 
-      // First get the FormErrors's outer div, then the parent which
+      // First get the FormError's outer div, then the parent which
       // should be a <FormGroup> and scroll to that point.
       firstError?.parentElement?.parentElement?.scrollIntoView({
         behavior: 'smooth'

@@ -56,7 +56,7 @@ export type FieldCompatible<Value, ChangeValue> = {
   onBlur?: () => void;
 
   /**
-   * Whether or not the form element is currently valid.
+   * Whether the form element is currently valid.
    */
   valid?: boolean;
 

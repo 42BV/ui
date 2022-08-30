@@ -12,7 +12,7 @@ import { withField } from '../withField/withField';
 
 type PasswordProps = {
   /**
-   * Whether or not the password should contain at least one lowercase letter.
+   * Whether the password should contain at least one lowercase letter.
    * Defaults to true.
    *
    * @default true
@@ -20,7 +20,7 @@ type PasswordProps = {
   lowercase?: boolean;
 
   /**
-   * Whether or not the password should contain at least one uppercase letter.
+   * Whether the password should contain at least one uppercase letter.
    * Defaults to true.
    *
    * @default true
@@ -28,7 +28,7 @@ type PasswordProps = {
   uppercase?: boolean;
 
   /**
-   * Whether or not the password should contain at least one number.
+   * Whether the password should contain at least one number.
    * Defaults to true.
    *
    * @default true
@@ -36,7 +36,7 @@ type PasswordProps = {
   number?: boolean;
 
   /**
-   * Whether or not the password should contain at least one special character.
+   * Whether the password should contain at least one special character.
    * Defaults to true.
    *
    * @default true
@@ -52,7 +52,7 @@ type PasswordProps = {
   minimumLength?: number;
 
   /**
-   * Whether or not the password should not contain any space.
+   * Whether the password should not contain any space.
    * Defaults to true.
    *
    * @default true
@@ -60,7 +60,7 @@ type PasswordProps = {
   noSpace?: boolean;
 
   /**
-   * Whether or not to display a meter or only a list of rules.
+   * Whether to display a meter or only a list of rules.
    * Defaults to true.
    *
    * @default true
@@ -146,7 +146,7 @@ function getRulesFromProps(props: PasswordProps): NewPasswordInputRule[] {
 type PasswordValidator = FieldValidator<string>;
 
 /**
- * Takes `rules` and a minimum length and returns a validator which can check if the
+ * Takes `rules` and a minimum length and returns a validator which can check if
  * the password complies to the rules.
  *
  * @export

@@ -24,7 +24,7 @@ type Props<T> = {
   placeholder: string;
 
   /**
-   * Whether or not the modal is open.
+   * Whether the modal is open.
    */
   isOpen: boolean;
 
@@ -45,15 +45,14 @@ type Props<T> = {
   query: string;
 
   /**
-   * Whether or not to show the search input.
+   * Whether to show the search input.
    */
   canSearch: boolean;
 
   /**
-   * Whether or not the search can happen synchronously. Used
-   * when the `options` for the ModalPickerSingle / ModalPickerMultiple
-   * is an array, in that case the query will be filtered locally
-   * so no debounce is needed.
+   * Whether the search can happen synchronously. Used when the `options`
+   * for the ModalPickerSingle / ModalPickerMultiple is an array, in that
+   * case the query will be filtered locally so no debounce is needed.
    */
   canSearchSync: boolean;
 
@@ -88,12 +87,12 @@ type Props<T> = {
   };
 
   /**
-   * Whether or not the ModelPicker is loading
+   * Whether the ModelPicker is loading
    */
   loading: boolean;
 
   /**
-   * Whether or not the user has searched.
+   * Whether the user has searched.
    */
   userHasSearched: boolean;
 

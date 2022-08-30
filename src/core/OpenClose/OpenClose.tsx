@@ -4,7 +4,7 @@ import { Icon } from '../Icon';
 
 type Props = {
   /**
-   * Whether or not the collapsable element is currently open.
+   * Whether the collapsable element is currently open.
    */
   open: boolean;
 

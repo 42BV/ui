@@ -1,5 +1,5 @@
 .epic-table {
-  background-color: $gray-100;
+  background-color: var(--bs-gray-100);
 
   &--striped {
     .epic-table-cell--odd {
@@ -83,7 +83,7 @@
   &-overlay {
     position: absolute;
     z-index: 3;
-    background-color: $white;
+    background-color: var(--bs-white);
   }
 }
 

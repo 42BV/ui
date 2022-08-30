@@ -35,7 +35,7 @@ type BaseProps = {
 
   /**
    * Optionally the position the button should be aligned to
-   * within it's container.
+   * within its container.
    */
   alignButton?: ModalPickerButtonAlignment;
 

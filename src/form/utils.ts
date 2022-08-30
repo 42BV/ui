@@ -15,6 +15,7 @@ export function getState(info: {
 }
 
 export function doBlur(onBlur?: () => void): void {
+  /* istanbul ignore else */
   if (onBlur) {
     onBlur();
   }

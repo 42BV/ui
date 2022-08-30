@@ -7,7 +7,7 @@ import { User } from '../../test/types';
 
 import { FieldValuePicker, JarbValuePicker, ValuePicker } from './ValuePicker';
 
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
 import { Button } from '../../core/Button/Button';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';

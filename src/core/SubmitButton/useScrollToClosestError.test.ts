@@ -43,7 +43,7 @@ describe('useScrollToClosestError', () => {
       expect(scrollIntoViewSpy).toBeCalledTimes(0);
 
       // Now call doScrollToClosestError for the second time.
-      // But only after 200  milliseconds it should be called due to the debounce
+      // But only after 200 milliseconds it should be run due to the debounce
       await act(() => {
         result.current.doScrollToClosestError();
       });
@@ -57,7 +57,7 @@ describe('useScrollToClosestError', () => {
       expect(scrollIntoViewSpy).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledWith({ behavior: 'smooth' });
 
-      // Lets test if the debounce works properly
+      // Let's test if the debounce works properly
       await act(() => {
         result.current.doScrollToClosestError();
       });
@@ -65,7 +65,7 @@ describe('useScrollToClosestError', () => {
       expect(document.querySelector).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledTimes(1);
 
-      // Now quickly call again within the 200 seconds
+      // Now quickly call again within the 200 milliseconds
       // and cross the debounce threshold.
       await act(() => {
         result.current.doScrollToClosestError();

@@ -25,7 +25,7 @@
     }
 
     &.active .page-link {
-      color: $body-color;
+      color: var(--bs-body-color);
     }
 
     .total-elements {

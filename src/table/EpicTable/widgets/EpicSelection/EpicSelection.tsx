@@ -9,7 +9,7 @@ export type Props = {
   children?: React.ReactNode;
 
   /**
-   * Whether or not the checkbox is checked.
+   * Whether the checkbox is checked.
    */
   checked: boolean;
 
@@ -21,7 +21,7 @@ export type Props = {
 
 /**
  * The EpicSelection is basically a checkbox for the EpicTable.
- * It can be used to select rows inside of the table or even cells.
+ * It can be used to select rows inside the table or even cells.
  */
 export function EpicSelection({ children, checked, onChange }: Props) {
   return (

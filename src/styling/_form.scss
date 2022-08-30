@@ -1,6 +1,6 @@
 .form-control:focus, .form-select:focus {
   box-shadow: none !important;
-  border-color: $gray-400 !important;
+  border-color: var(--bs-gray-400) !important;
 }
 
 .radio,
@@ -103,7 +103,7 @@ select.form-select {
   }
 
   &.is-valid {
-    border-bottom: 2px solid $green;
+    border-bottom: 2px solid var(--bs-green);
     box-shadow: none !important;
     outline: none;
   }

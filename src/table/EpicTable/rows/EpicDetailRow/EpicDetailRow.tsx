@@ -7,13 +7,13 @@ export type Props = {
   children: () => React.ReactNode;
 
   /**
-   * Whether or not the children should be rendered.
+   * Whether the children should be rendered.
    */
   active: boolean;
 
   /**
    * How much the EpicDetailRow should be placed to the left.
-   * Best to use the width of the first column so it aligns
+   * Best to use the width of the first column, so it aligns
    * just next to the first column.
    */
   left: number;
@@ -55,7 +55,7 @@ function epicDetailRow(
 }
 
 /**
- * The EpicDetailRow is a row inside of an EpicTable which can be used
+ * The EpicDetailRow is a row inside an EpicTable which can be used
  * to show details whenever a row is clicked. It displays itself over
  * the rest of the EpicTable on the left.
  *

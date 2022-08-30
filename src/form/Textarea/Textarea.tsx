@@ -12,7 +12,7 @@ type Props = FieldCompatible<string, string>;
 
 /**
  * Textarea is a basic form element which allows the user to enter large
- * texts, autogrows when the user enters a lot of text.
+ * texts, auto-grows when the user enters a lot of text.
  */
 export function Textarea(props: Props) {
   const {

@@ -72,7 +72,7 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when empt
 exports[`Component: AsyncContent deprecated React Async when fulfilled when not empty 1`] = `
 <div>
   <h2>
-    importantos data
+    important data
   </h2>
 </div>
 `;
@@ -370,7 +370,7 @@ exports[`Component: AsyncContent when fulfilled when empty with custom empty  1`
 exports[`Component: AsyncContent when fulfilled when not empty 1`] = `
 <div>
   <h2>
-    importantos data
+    important data
   </h2>
 </div>
 `;

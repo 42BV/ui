@@ -86,7 +86,7 @@ export function EpicResize({ width, onResize }: Props) {
       // You might think, why not do the onMouseMove and onMouseUp events
       // on the <div> itself. The reason is that the user will move
       // mouse faster than the elements width can grow. Plus if the
-      // user moves a little to much on the Y axis he no longer hovers
+      // user moves a little too much on the Y axis he no longer hovers
       // over the <div>. So we simply listen to mouse events on the
       // entire document instead until the mouse goes up. This way the
       // user doesn't have to have 100% accuracy to resize the element.

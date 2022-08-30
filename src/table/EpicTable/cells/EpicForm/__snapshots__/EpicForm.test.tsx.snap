@@ -4,7 +4,6 @@ exports[`Component: EpicForm ui 1`] = `
 <div>
   <form
     class="epic-table-form border-bottom p-1"
-    data-testid="epicform-form"
     id="test"
     style="min-width: 1950px; width: 1950px; height: 52px;"
   >
@@ -25,6 +24,11 @@ exports[`Component: EpicForm ui 1`] = `
         value=""
       />
     </div>
+    <button
+      type="reset"
+    >
+      Reset
+    </button>
   </form>
 </div>
 `;

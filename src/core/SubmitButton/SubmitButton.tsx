@@ -29,13 +29,13 @@ export type Props = {
   children?: React.ReactNode;
 
   /**
-   * Whether or not the action you are performing is currently in
-   * progress. If so a spinner is rendered inside of the button.
+   * Whether the action you are performing is currently in
+   * progress. If so a spinner is rendered inside the button.
    */
   inProgress: boolean;
 
   /**
-   * Optionally whether or not to scroll to the closest error message.
+   * Optionally whether to scroll to the closest error message.
    *
    * Defaults to `true`
    */

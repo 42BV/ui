@@ -3,7 +3,7 @@
 
   &:hover {
     .img-upload-wrapper {
-      background: darken($gray-200, 5%);
+      background: var(--bs-gray-300);
       cursor: pointer;
     }
   }
@@ -32,7 +32,7 @@
     @extend .text-center;
     padding-top: 3rem;
     padding-bottom: 3rem;
-    border: 0.625rem dashed darken($gray-200, 10%);
+    border: 0.625rem dashed var(--bs-gray-400);
 
     > i {
       font-size: 5rem;

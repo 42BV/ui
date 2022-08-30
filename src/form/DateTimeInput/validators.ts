@@ -91,7 +91,7 @@ type Start = {
   label: string;
 
   /**
-   * Whether or not the start date should be inclusive or not.
+   * Whether the start date should be inclusive or not.
    *
    * When `true` the date must be after or on the start date.
    * When `false` the date must be after the start date.
@@ -130,7 +130,7 @@ type End = {
   label: string;
 
   /**
-   * Whether or not the end date should be inclusive or not.
+   * Whether the end date should be inclusive or not.
    *
    * When `true` the date must be before or on the end date.
    * When `false` the date must be before the end date.
@@ -153,8 +153,8 @@ type IsDateBeforeValidatorConfig = {
    * A custom error text which overrides the error message when
    * provided.
    *
-   * When `overrideErrorText` is used the end.label is not used and
-   * you can make end.label an empty string.
+   * When `overrideErrorText` is used the `end.label` is not used, and
+   * you can make `end.label` an empty string.
    */
   overrideErrorText?: string;
 };
@@ -203,8 +203,8 @@ type IsDateAfterValidatorConfig = {
    * A custom error text which overrides the error message when
    * provided.
    *
-   * When `overrideErrorText` is used the start.label is not used and
-   * you can make start.label an empty string.
+   * When `overrideErrorText` is used, the `start.label` is not used, and
+   * you can make `start.label` an empty string.
    */
   overrideErrorText?: string;
 };
@@ -256,8 +256,8 @@ type IsDateBetweenValidatorConfig = IsDateBetweenConfig & {
    * A custom error text which overrides the error message when
    * provided.
    *
-   * When `overrideErrorText` is used the start.label and end.label are
-   * not used and you can make them empty strings.
+   * When `overrideErrorText` is used, the `start.label` and `end.label` are
+   * not used, and you can make them empty strings.
    */
   overrideErrorText?: string;
 };

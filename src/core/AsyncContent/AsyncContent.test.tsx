@@ -58,7 +58,7 @@ describe('Component: AsyncContent', () => {
       const state = {
         isLoading: false,
         isError: false,
-        data: 'importantos data',
+        data: 'important data',
         refetch: () => undefined
       };
 
@@ -72,7 +72,7 @@ describe('Component: AsyncContent', () => {
       const state = {
         isLoading: false,
         isError: false,
-        data: 'importantos data',
+        data: 'important data',
         refetch: () => undefined
       };
 
@@ -86,7 +86,7 @@ describe('Component: AsyncContent', () => {
       const state = {
         isLoading: false,
         isError: false,
-        data: 'importantos data',
+        data: 'important data',
         refetch: () => undefined
       };
 
@@ -95,7 +95,7 @@ describe('Component: AsyncContent', () => {
         isEmpty: () => true,
         // eslint-disable-next-line react/display-name
         emptyContent: (data) => {
-          expect(data).toBe('importantos data');
+          expect(data).toBe('important data');
 
           return <h1>Custom renderer</h1>;
         }
@@ -170,7 +170,7 @@ describe('Component: AsyncContent', () => {
         const state = {
           isLoading: false,
           isFulfilled: true,
-          data: 'importantos data',
+          data: 'important data',
           reload: () => undefined
         };
 
@@ -184,7 +184,7 @@ describe('Component: AsyncContent', () => {
         const state = {
           isLoading: false,
           isFulfilled: true,
-          data: 'importantos data',
+          data: 'important data',
           reload: () => undefined
         };
 
@@ -198,7 +198,7 @@ describe('Component: AsyncContent', () => {
         const state = {
           isLoading: false,
           isFulfilled: true,
-          data: 'importantos data',
+          data: 'important data',
           reload: () => undefined
         };
 
@@ -207,7 +207,7 @@ describe('Component: AsyncContent', () => {
           isEmpty: () => true,
           // eslint-disable-next-line react/display-name
           emptyContent: (data) => {
-            expect(data).toBe('importantos data');
+            expect(data).toBe('important data');
 
             return <h1>Custom renderer</h1>;
           }

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 
 export type Options<T> = FetchOptionsCallback<T> | T[];
@@ -19,7 +20,7 @@ export type FieldCompatibleWithPredeterminedOptions<T> = {
   options: Options<T>;
 
   /**
-   * Callback to convert an value of type T to an option to show
+   * Callback to convert a value of type T to an option to show
    * to the user.
    */
   labelForOption: LabelForOption<T>;
@@ -42,7 +43,7 @@ export type FieldCompatibleWithPredeterminedOptions<T> = {
 
   /**
    * Optional callback which is called for every option to determine
-   * if the option can be selected. By default all options can be
+   * if the option can be selected. By default, all options can be
    * selected.
    */
   isOptionEnabled?: IsOptionEnabled<T>;
@@ -115,7 +116,7 @@ export type FetchOptionsCallbackConfig = {
  *
  * 3. `size` A number telling you the size of the Page you must load.
  * Often components can only render so much options before becoming
- * unwieldy. They can tell you the size of options they an support
+ * unwieldy. They can tell you the size of options they support
  * through this parameter.
  */
 export type FetchOptionsCallback<T> = (
@@ -172,7 +173,7 @@ type IsOptionSelectedConfig<T> = {
  * Determines if is the option is selected given the value.
  *
  * Will prefer to use the `isOptionEqual` to check if the value is
- * selected, otherwise it will fallback to checking the key.
+ * selected, otherwise it will fall back to checking the key.
  *
  * Note: always pass along every argument even the optional ones.
  * so `isOptionSelected` can perform its function best.

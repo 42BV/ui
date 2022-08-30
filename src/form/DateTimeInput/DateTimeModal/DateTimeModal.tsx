@@ -39,7 +39,7 @@ type Props = {
 
   /**
    * Optional Callback which returns whether a date is selectable.
-   * Is ran for every date which is displayed. By default every
+   * Is ran for every date which is displayed. By default, every
    * date can be selected.
    */
   isDateAllowed?: DateTimeInputIsDateAllowed;

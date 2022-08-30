@@ -90,6 +90,7 @@ export function Tooltip({
       align={{ offset: [ offset, distance ] }}
       overlayStyle={{ maxWidth }}
       destroyTooltipOnHide={true}
+      overlayInnerStyle={{ padding: typeof content === 'string' ? undefined : 0 }}
     >
       <Tag className={className} style={{ outline: 0, ...style }} tabIndex={0} role="button" aria-describedby={id}>
         {children}

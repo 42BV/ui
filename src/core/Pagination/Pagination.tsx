@@ -36,7 +36,7 @@ type Props<T> = {
   allowedPageSizes?: number[];
 
   /**
-   * Whether or not to show the previous and next buttons.
+   * Whether to show the previous and next buttons.
    *
    * Defaults to `true`
    */

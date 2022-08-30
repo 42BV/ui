@@ -117,40 +117,43 @@ export function ColorPicker(props: Props) {
           placement="bottom"
           align={{ offset: [ 0, 7 ] }}
           destroyTooltipOnHide={true}
-          trigger={['click']}
+          trigger={[ 'click' ]}
           visible={isOpen}
           overlay={(
-            <Card cardBodyClassName="p-0">
+            <Card
+              cardBodyClassName="p-0"
+              footer={(
+                <div className="d-flex justify-content-between my-1 p-1">
+                  <Button
+                    color="secondary"
+                    onClick={() => {
+                      const resetColorValue = value ? value : '#ffffff';
+                      setColorValue(resetColorValue);
+                      setIsOpen(false);
+                    }}
+                  >
+                    {t({
+                      key: 'ColorPicker.CANCEL',
+                      fallback: 'Cancel',
+                      overrideText: text.cancel
+                    })}
+                  </Button>
+                  <Button
+                    color="primary"
+                    onClick={() => onColorSelected(colorValue)}
+                  >
+                    {t({
+                      key: 'ColorPicker.SELECT',
+                      fallback: 'Select',
+                      overrideText: text.select
+                    })}
+                  </Button>
+                </div>)}
+            >
               <SketchPicker
                 color={colorValue}
                 onChange={(result) => setColorValue(result.hex)}
               />
-              <div className="d-flex justify-content-between my-1 p-1">
-                <Button
-                  color="secondary"
-                  onClick={() => {
-                    const resetColorValue = value ? value : '#ffffff';
-                    setColorValue(resetColorValue);
-                    setIsOpen(false);
-                  }}
-                >
-                  {t({
-                    key: 'ColorPicker.CANCEL',
-                    fallback: 'Cancel',
-                    overrideText: text.cancel
-                  })}
-                </Button>
-                <Button
-                  color="primary"
-                  onClick={() => onColorSelected(colorValue)}
-                >
-                  {t({
-                    key: 'ColorPicker.SELECT',
-                    fallback: 'Select',
-                    overrideText: text.select
-                  })}
-                </Button>
-              </div>
             </Card>
           )}
         >

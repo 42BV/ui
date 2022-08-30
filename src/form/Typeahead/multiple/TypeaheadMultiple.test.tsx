@@ -254,7 +254,7 @@ describe('Component: TypeaheadMultiple', () => {
       expect.assertions(6);
 
       setup({
-        value: [ adminUser() ], // The admin user is select so it should be filtered out
+        value: [ adminUser() ], // The admin user is select, so it should be filtered out
         isOptionEnabled: (user) => user.id !== userUser().id // Also disable the userUser
       });
 

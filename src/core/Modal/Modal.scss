@@ -9,7 +9,7 @@
     }
 
     .modal-footer {
-      background-color: $modal-content-bg;
+      background-color: var(--bs-modal-bg);
       position: sticky;
       bottom: 0;
     }

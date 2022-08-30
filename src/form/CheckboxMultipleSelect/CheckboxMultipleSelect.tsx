@@ -27,14 +27,14 @@ export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
   text?: Text;
 
   /**
-   * Whether or not to show the CheckboxMultipleSelect horizontally.
+   * Whether to show the CheckboxMultipleSelect horizontally.
    *
    * Defaults to `false`
    */
   horizontal?: boolean;
 
   /**
-   * Whether or not the form element should always contain the value
+   * Whether the form element should always contain the value
    * which is selected.
    *
    * It should be `true` when using it in the following situation:
@@ -51,7 +51,7 @@ export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
    *    displayed.
    *
    * 2. The form element represents a sub selection of a larger
-   *    value. For example you have an array of permissions of what
+   *    value. For example, you have an array of permissions of what
    *    the user can do in the system, visually you display grouped
    *    by parts of the domain. This means giving the same `value`
    *    to various form element components to represent parts of the
@@ -69,7 +69,7 @@ export type Props<T> = Omit<FieldCompatible<T[], T[]>, 'valid'> &
  * be selected from a limited range. Is shown a grid of options as
  * checkboxes from which the user can select multiple values.
  *
- * If you pass a callback to the options property, be aware
+ * If you pass a callback to the `options` property, be aware
  * that only 100 options will be displayed without pagination.
  * If you want to display more than 100 options,
  * you should use the ModalPickerMultiple instead.
@@ -109,7 +109,7 @@ export function CheckboxMultipleSelect<T>(props: Props<T>) {
 
   function optionClicked(option: T, isSelected: boolean) {
     // Always copy the `value` so the `selected` is a fresh array.
-    // Otherwise the selection will be the same as the value, which
+    // Otherwise, the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
     // do anything.
     let selected = Array.isArray(value) ? [ ...value ] : [];

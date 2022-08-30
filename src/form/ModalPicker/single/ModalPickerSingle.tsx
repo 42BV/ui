@@ -28,7 +28,7 @@ type Props<T> = Omit<FieldCompatible<T, T | undefined>,
   icon?: IconType;
 
   /**
-   * Optionally whether or not the user can search.
+   * Optionally whether the user can search.
    * Defaults to `true`.
    */
   canSearch?: boolean;
@@ -62,7 +62,7 @@ type Props<T> = Omit<FieldCompatible<T, T | undefined>,
 
   /**
    * Optionally the position the button should be aligned to
-   * within it's container.
+   * within its container.
    */
   alignButton?: ModalPickerButtonAlignment;
 
@@ -77,7 +77,7 @@ type Props<T> = Omit<FieldCompatible<T, T | undefined>,
   renderOptions?: ModalPickerRenderOptions<T>;
 
   /**
-   * Whether or not to show a "clear" button.
+   * Whether to show a "clear" button.
    *
    * Defaults to `true`
    */
@@ -98,7 +98,7 @@ type Props<T> = Omit<FieldCompatible<T, T | undefined>,
  * in a simple Select you can use the ModalPickerSingle.
  *
  * Use the ModalPickerSingle when the user does not precisely know
- * which option he / she is going to select. Otherwise use the
+ * which option he / she is going to select. Otherwise, use the
  * TypeaheadSingle which is useful when the user is an expert and
  * can type in the selection quicker than he can select it from the
  * modal.
@@ -220,9 +220,7 @@ export function ModalPickerSingle<T>(props: Props<T>) {
     const addButtonOptions = addButton
       ? {
         label: addButton.label,
-        onClick: () => {
-          addButtonClicked(addButton.onClick);
-        }
+        onClick: () => addButtonClicked(addButton.onClick)
       }
       : undefined;
 

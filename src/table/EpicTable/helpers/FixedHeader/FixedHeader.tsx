@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 // The EpicTable is really large and difficult to test via unit tests.
-// Therefore there are a ton of stories for e2e testing instead. So
+// Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
 import React, { useEffect, useRef } from 'react';
@@ -14,7 +14,7 @@ import { HeaderRef } from '../../types';
 type Props = {
   /**
    * The width of the actual center so the FixedHeader can match
-   * the centers width.
+   * the center's width.
    */
   centerWidth: number;
 

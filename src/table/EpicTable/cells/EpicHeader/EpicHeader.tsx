@@ -33,7 +33,7 @@ export type Props = {
 };
 
 /**
- * The EpicHeader is used inside of a EpicRow to render headers with
+ * The EpicHeader is used inside a EpicRow to render headers with
  * It can be seen as the EpicTable's variant of the `<th>` element.
  *
  * It is resizable whenever the `onResize` callback is defined.

@@ -11,7 +11,7 @@ import {
   provinceFetcher,
   provinces,
   ReloadOptionsInfo
-} from '../../story-utils';
+} from '../../../story-utils';
 
 import { FieldTypeaheadMultiple, JarbTypeaheadMultiple, TypeaheadMultiple } from './TypeaheadMultiple';
 import { Card, Icon, isTypeaheadCustomOption, Tooltip } from '../../..';

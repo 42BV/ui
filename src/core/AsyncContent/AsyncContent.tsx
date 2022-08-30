@@ -91,11 +91,11 @@ export type Props<T> = {
  * 1. When the state is loading it shows a `ContentState` in the `loading` mode.
  *
  * 2. When an error occurs it shows a `ContentState` in the `error` mode.
- *    By default it will then show a `Retry` button allowing the user
+ *    By default, it will then show a `Retry` button allowing the user
  *    to try again.
  *
  * 3. When the state has loaded successfully, it will render the `children`
- *    render function and it provides the `state.data` for you to render.
+ *    render function, and it provides the `state.data` for you to render.
  *
  * 4. When the state has loaded successfully, it will ask via the `isEmpty`
  *    callback if you consider the `state.data` empty. It will then

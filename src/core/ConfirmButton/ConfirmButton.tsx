@@ -28,7 +28,7 @@ type Text = {
 
 type Props = ButtonProps & {
   /**
-   * The text you want to render inside of the dialog.
+   * The text you want to render inside the dialog.
    */
   dialogText: React.ReactNode;
 

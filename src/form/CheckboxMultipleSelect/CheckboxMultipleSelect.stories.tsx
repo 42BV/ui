@@ -13,7 +13,7 @@ import {
   provinceFetcher,
   provinces,
   ReloadOptionsInfo
-} from '../story-utils';
+} from '../../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Toggle } from '../../core/Toggle/Toggle';

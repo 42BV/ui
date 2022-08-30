@@ -44,7 +44,7 @@ type Props = {
  * Use it when you want to keep certain navigation items hidden
  * for specific user roles.
  *
- * By default the `NavigationItem` will render an `exact` link. See:
+ * By default, the `NavigationItem` will render an `exact` link. See:
  * https://reacttraining.com/react-router/web/api/Route/exact-bool.
  * But you can set it to `false` via the props.
  */

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 // The EpicTable is really large and difficult to test via unit tests.
-// Therefore there are a ton of stories for e2e testing instead. So
+// Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
 import { useEffect } from 'react';
@@ -12,7 +12,7 @@ type AdjustHeightOfActiveDetailRowConfig = {
 };
 
 /**
- * Changes the height of the detailRow so it always fills up the to
+ * Changes the height of the detailRow, so it always fills up to
  * the height of the EpicTable.
  */
 export function useAdjustHeightOfActiveDetailRow({

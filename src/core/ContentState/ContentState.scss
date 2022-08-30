@@ -15,7 +15,7 @@
 
     > i {
       opacity: 0.83;
-      color: $primary;
+      color: var(--bs-primary);
 
       // First add icon
       &:nth-of-type(1) {

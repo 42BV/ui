@@ -15,7 +15,7 @@ type Props = {
   value: any;
 
   /**
-   * The meta object to render the errors for.
+   * The meta-object to render the errors for.
    */
   meta: Meta;
 
@@ -25,7 +25,7 @@ type Props = {
   validator?: string;
 
   /**
-   * Optionally: callback which is called when there are errors or
+   * Optionally: callback which is called when there are errors, or
    * they are removed.
    */
   onChange?: FormErrorOnChange;

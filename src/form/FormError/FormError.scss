@@ -4,7 +4,7 @@
 }
 
 .error-tooltip .invalid-feedback {
-  color: $white;
+  color: var(--bs-white);
 
   &:first-child {
     margin-top: 0;

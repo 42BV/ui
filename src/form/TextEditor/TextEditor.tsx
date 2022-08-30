@@ -22,16 +22,16 @@ export type Props = FieldCompatible<string, string> & {
   /**
    * Optional configuration to determine which `Quill` formats are
    * allowed. A format in `Quill` is: bold text, headers, links,
-   * colors, etc etc. If something is not in the `formats` it is not
+   * colors, etc. If something is not in the `formats` it is not
    * allowed in the `TextEditor`.
    *
-   * In Quill it is possible to not show an item in the toolbar but
-   * allow it in the `formats`. For example you can remove the "bold"
+   * In Quill, it is possible to not show an item in the toolbar but
+   * allow it in the `formats`. For example, you can remove the "bold"
    * item from the toolbar but allow it in the `formats`. This way the
-   * user can still copy paste bold text into the `TextEditor`, or use
+   * user can still copy and paste bold text into the `TextEditor`, or use
    * the ctrl-b keyboard shortcut to make bold text.
    *
-   * By default the `formats` will be the same as the allowed `toolbar`
+   * By default, the `formats` will be the same as the allowed `toolbar`
    * items in the `modules` prop. This way you do not need to keep
    * `formats` and `modules.toolbar` in sync.
    *

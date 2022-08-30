@@ -8,8 +8,8 @@
 
       &.disabled {
         border-radius: 0;
-        background-color: $white;
-        color: $body-color;
+        background-color: var(--bs-white);
+        color: var(--bs-body-color);
       }
     }
 

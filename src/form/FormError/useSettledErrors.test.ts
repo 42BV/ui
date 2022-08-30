@@ -192,7 +192,7 @@ describe('useSettledErrors', () => {
       });
 
       // It should use the error from the cache, even though error
-      // was undefined. But set a a timer to clear it after
+      // was undefined. But set a timer to clear it after
       // 2000 milliseconds.
       act(() => {
         jest.advanceTimersByTime(100);

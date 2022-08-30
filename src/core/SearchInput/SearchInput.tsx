@@ -16,18 +16,18 @@ export type SearchInputApi = {
 };
 
 type ModifiedInputProps = Omit<InputProps,
-  // We are going to override onChange so it sends out strings.
+  // We are going to override onChange, so it sends out strings.
   | 'onChange'
   // We want to remove the value because we use defaultValue,
   // we do not want the user to accidentally use it.
   | 'value'
-  // defaultValue is only going to accept strings.
+  // `defaultValue` is only going to accept strings.
   | 'defaultValue'
   // We are going to override size to use it for icon size.
   | 'size'
-  // id is required when a label is specified.
+  // `id` is required when a label is specified.
   | 'id'
-  // children is going to accept a function instead of a ReactNode.
+  // `children` is going to accept a function instead of a ReactNode.
   | 'children'
   // We are going to override some properties to be able to provide docs.
   | 'placeholder'
@@ -89,7 +89,7 @@ export type Props = ModifiedInputProps & {
 
   /**
    * Optionally you can use the `children` prop to manipulate the
-   * value rendered inside of the `SearchInput`.
+   * value rendered inside the `SearchInput`.
    *
    * You will be called with the `searchInput`, which you must render, and
    * an API object, which you can use to manually alter the value.
@@ -98,8 +98,8 @@ export type Props = ModifiedInputProps & {
    *
    * This has to be done via this unconventional api because the
    * `SearchInput` has to use an uncontrolled <input> so it can
-   * debounce the value. If you would change the `props.value` from
-   * outside this component nothing would normally happen.
+   * debounce the value. If you change the `props.value` from
+   * outside this component, nothing would normally happen.
    */
   children?: (
     searchInput: React.ReactNode,
@@ -107,7 +107,7 @@ export type Props = ModifiedInputProps & {
   ) => React.ReactNode;
 
   /**
-   * Whether or not to show a magnifying glass icon.
+   * Whether to show a magnifying glass icon.
    *
    * Defaults to true.
    */
@@ -119,7 +119,7 @@ export type Props = ModifiedInputProps & {
   size?: BootstrapSize;
 
   /**
-   * Whether or not to show a "clear" button.
+   * Whether to show a "clear" button.
    *
    * Defaults to `true`
    */
@@ -173,13 +173,13 @@ export function SearchInput(props: Props) {
       inputRef.current.value = value;
       onChange(value);
       // if you change the value externally within the debounce time,
-      // the debounce should be cancelled to prevent an overwrite
+      // the debounced callback should be cancelled to prevent an override
       handleChange.current.cancel();
     }
   }
 
   // We use the defaultValue so this component is completely
-  // controlled by us. Otherwise the value of the <Input> will only
+  // controlled by us. Otherwise, the value of the <Input> will only
   // update after the onChange. Which would never work because it is
   // debounced.
   const inputProps: InputProps = {

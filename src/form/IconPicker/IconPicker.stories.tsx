@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { FieldIconPicker, IconPicker, JarbIconPicker } from './IconPicker';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
 import { Card, Icon, IconType, Tooltip } from '../../';
 import { Alert } from 'reactstrap';
 

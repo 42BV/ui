@@ -15,7 +15,7 @@ export function getPicaInstance() {
 }
 
 export function dataUrlToFile(dataUrl: string, fileName: string): File {
-  const byteString = atob(dataUrl.split(',')[1]);
+  const byteString = Buffer.from(dataUrl.split(',')[1], 'base64');
 
   // separate out the mime component
   const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
@@ -23,7 +23,7 @@ export function dataUrlToFile(dataUrl: string, fileName: string): File {
   // write the bytes of the string to a typed array
   const bytes = new Uint8Array(byteString.length);
   for (let i = 0; i < byteString.length; i++) {
-    bytes[i] = byteString.charCodeAt(i);
+    bytes[i] = byteString[i];
   }
 
   return new File([ bytes ], fileName, { type: mimeString });
@@ -65,7 +65,7 @@ export function calculateScale(scale: number, delta: number): number {
 
 // Replace any part after the last dot in the filename with .png
 export function replaceFileExtension(fileName: string): string {
-  return fileName.replace(/\.[\w]+$/, '.png');
+  return fileName.replace(/\.\w+$/, '.png');
 }
 
 export function readFile(file: File, callback: (result: string) => void) {

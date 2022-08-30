@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { ColorPicker, FieldColorPicker, JarbColorPicker } from './ColorPicker';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -14,7 +14,7 @@ function isToDark(value?: string) {
   }
 
   const c = value.substring(1); // strip #
-  const rgb = parseInt(c, 16); // convert rrggbb to decimal
+  const rgb = parseInt(c, 16); // convert rgb to decimal
   const r = (rgb >> 16) & 0xff; // extract red
   const g = (rgb >> 8) & 0xff; // extract green
   const b = (rgb >> 0) & 0xff; // extract blue

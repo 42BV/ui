@@ -1,3 +1,13 @@
+.date-time-input {
+  .input-group .btn {
+    line-height: 1;
+
+    & > i.material-icons {
+      font-size: 22px;
+    }
+  }
+}
+
 .react-datepicker {
   &::after {
     clear: both;

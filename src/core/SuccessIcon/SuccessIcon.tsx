@@ -4,7 +4,7 @@ import { Color } from '../types';
 
 type Props = {
   /**
-   * Whether or not the process succeeded.
+   * Whether the process succeeded.
    */
   value: boolean;
 

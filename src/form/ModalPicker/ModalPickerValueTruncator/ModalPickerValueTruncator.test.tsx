@@ -42,7 +42,7 @@ describe('Component: ModalPickerValueTruncator', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('mutliple values', () => {
+    test('multiple values', () => {
       setup({ hasMultipleValues: true });
       expect(screen.getByText('admin@42.nl, user@42.nl')).toBeInTheDocument();
     });

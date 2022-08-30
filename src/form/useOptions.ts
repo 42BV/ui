@@ -69,7 +69,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
   
         Take for example the `ModalPickerMultiple`. The selected values 
         are rendered in the modal above the options in `Tag`'s. So there 
-        is no need to append the selected values, because the are already
+        is no need to append the selected values, because they are already
         visible.
       */
     if (!optionsShouldAlwaysContainValue) {

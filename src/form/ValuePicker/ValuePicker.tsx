@@ -9,11 +9,10 @@ import { RadioGroup } from '../RadioGroup/RadioGroup';
 import { Select } from '../Select/Select';
 import { ModalPickerSingle } from '../ModalPicker/single/ModalPickerSingle';
 
-import { Spinner } from '../../core/Spinner/Spinner';
-import { t } from '../../utilities/translation/translation';
 import { FieldCompatible } from '../types';
 import { IconType } from '../../core/Icon';
 import { withField } from '../withField/withField';
+import { Loading } from '../../core/Loading/Loading';
 
 export type Text = {
   /**
@@ -37,7 +36,7 @@ type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> &
   icon?: IconType;
 
   /**
-   * Optionally whether or not the user can search.
+   * Optionally whether the user can search.
    * Defaults to `true`.
    */
   canSearch?: boolean;
@@ -49,7 +48,7 @@ type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> &
   text?: Text;
 
   /**
-   * Whether or not to show a "clear" button.
+   * Whether to show a "clear" button.
    * This property only has effect when there are more than 10 options
    * or single value with 1-3 options.
    *
@@ -61,7 +60,7 @@ type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> &
 type SingleValuePicker<T> = Omit<BaseValuePickerProps<T>,
   'value' | 'onChange'> & {
   /**
-   * Whether or not multiple values can be selected.
+   * Whether multiple values can be selected.
    */
   multiple: false;
 
@@ -79,7 +78,7 @@ type SingleValuePicker<T> = Omit<BaseValuePickerProps<T>,
 type MultipleValuePicker<T> = Omit<BaseValuePickerProps<T>,
   'value' | 'onChange'> & {
   /**
-   * Whether or not multiple values can be selected.
+   * Whether multiple values can be selected.
    */
   multiple: true;
 
@@ -134,20 +133,11 @@ export function ValuePicker<T>(props: Props<T>) {
     boot();
   }, [ options ]);
 
-  // Until we know the number of totalElements the ValuePicker is booting.
-  // and we do not shown anything to the user yet.
+  // Until we know the number of totalElements, the ValuePicker is booting,
+  // and we do not show anything to the user yet.
   if (booting) {
     return (
-      <div>
-        <Spinner color="black" size={16} />{' '}
-        <span>
-          {t({
-            key: 'ValuePicker.LOADING',
-            fallback: 'Loading...',
-            overrideText: text.loadingMessage
-          })}
-        </span>
-      </div>
+      <Loading text={{ loading: text.loadingMessage }}/>
     );
   }
 

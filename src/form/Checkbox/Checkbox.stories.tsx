@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { Alert } from 'reactstrap';
 
 import { Checkbox, FieldCheckbox, JarbCheckbox } from './Checkbox';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
 
 import { Icon } from '../../core/Icon';
 import { Tooltip } from '../../core/Tooltip/Tooltip';

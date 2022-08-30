@@ -13,7 +13,7 @@ import {
   provinces,
   ReloadOptionsInfo,
   resolveAfter
-} from '../../story-utils';
+} from '../../../story-utils';
 import { pageWithContentAndExactSize } from '../../../test/utils';
 import { adminUser, coordinatorUser, userUser } from '../../../test/fixtures';
 import { User } from '../../../test/types';

@@ -9,7 +9,7 @@ import { Button } from '../Button/Button';
 import { JarbInput } from '../../form/Input/Input';
 import { JarbTextarea } from '../../form/Textarea/Textarea';
 import { Card } from '../Card/Card';
-import { sleep } from '../../form/story-utils';
+import { sleep } from '../../story-utils';
 
 storiesOf('core/Tabs', module)
   .addParameters({ component: Tabs })

@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react';
 import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
 
 describe('useAutoSelectOptionWhenQueryMatchesExactly', () => {
-  it('should auto select the value when a lowercased exact match is found', () => {
+  it('should auto-select the value when a lowercase exact match is found', () => {
     const onChangeSpy = jest.fn();
 
     const { rerender } = renderHook(

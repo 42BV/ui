@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { FieldImageUpload, ImageUpload, JarbImageUpload, requireImage } from './ImageUpload';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../story-utils';
+import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
 import { FileInput } from '../FileInput/FileInput';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
