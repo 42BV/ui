@@ -170,13 +170,17 @@ type IsDateBeforeValidatorConfig = {
  */
 export function isDateBeforeValidator(
   config: IsDateBeforeValidatorConfig
-): FieldValidator<Date> {
+): FieldValidator<Date | string> {
   const { end, label, overrideErrorText } = config;
 
   return (
-    value: MomentInput | undefined,
-    allValues: Record<string, MomentInput>
+    value?: Date | string,
+    allValues?: Record<string, MomentInput>
   ): string | undefined => {
+    if (!value) {
+      return undefined;
+    }
+
     const before = get(allValues, end.path);
 
     const result = isDateBefore(before, { inclusive: end.inclusive })(value);
@@ -220,13 +224,17 @@ type IsDateAfterValidatorConfig = {
  */
 export function isDateAfterValidator(
   config: IsDateAfterValidatorConfig
-): FieldValidator<Date> {
+): FieldValidator<Date | string> {
   const { start, label, overrideErrorText } = config;
 
   return (
-    value: MomentInput | undefined,
-    allValues: Record<string, MomentInput>
+    value?: Date | string,
+    allValues?: Record<string, any>
   ): string | undefined => {
+    if (!value) {
+      return undefined;
+    }
+
     const after = get(allValues, start.path);
 
     const result = isDateAfter(after, { inclusive: start.inclusive })(value);
@@ -273,13 +281,17 @@ type IsDateBetweenValidatorConfig = IsDateBetweenConfig & {
  */
 export function isDateBetweenValidator(
   config: IsDateBetweenValidatorConfig
-): FieldValidator<Date> {
+): FieldValidator<Date | string> {
   const { start, end, label, overrideErrorText } = config;
 
   return (
-    value: MomentInput | undefined,
-    allValues: Record<string, MomentInput>
+    value?: Date | string,
+    allValues?: Record<string, MomentInput>
   ): string | undefined => {
+    if (!value) {
+      return undefined;
+    }
+
     const after = get(allValues, start.path);
     const before = get(allValues, end.path);
 
