@@ -11,6 +11,8 @@ describe('isDateBefore', () => {
       end: undefined
     };
 
+    expect(isBefore('', values)).toBe(undefined);
+    expect(isBefore('test', values)).toBe(undefined);
     expect(isBefore(new Date('2020-05-05'), values)).toBe(undefined);
     expect(isBefore(new Date('2020-05-06'), values)).toBe(undefined);
     expect(isBefore(new Date('2020-05-07'), values)).toBe(undefined);
