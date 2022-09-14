@@ -22,9 +22,9 @@ exports[`Icon ui with id 1`] = `
 `;
 
 exports[`index should contain exports 1`] = `
-Object {
+{
   "Icon": [Function],
-  "icons": Array [
+  "icons": [
     "10k",
     "10mp",
     "11mp",

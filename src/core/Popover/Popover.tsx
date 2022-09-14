@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import * as Popper from 'popper.js';
 import Tippy from '@tippyjs/react';
+import { TippyPlacement } from '../types';
 
 type Props = {
   /**
@@ -33,7 +33,7 @@ type Props = {
   /**
    * Optional alignment relative to the target where the popover will be shown.
    */
-  placement?: Popper.Placement;
+  placement?: TippyPlacement;
 
   /**
    * Optional offset that the popover will show up relative from the target.

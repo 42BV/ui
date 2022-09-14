@@ -32,7 +32,7 @@ exports[`HoC: withField errorMode: tooltip 1`] = `
 
 exports[`HoC: withField should throw an error when detecting illegal props 1`] = `
 "
-        withField: illegal props detected on \\"FieldInput\\".
+        withField: illegal props detected on "FieldInput".
         
         The following illegal props were detected: 'onChange' and 'value'.
         
@@ -40,7 +40,7 @@ exports[`HoC: withField should throw an error when detecting illegal props 1`] =
         managed props: 'onChange', 'onBlur', 'onFocus', 'value', 'color', 'valid' or 'error' manually. 
         
         You should never provide these props manually instead you should
-        trust that \\"withField\\" will manage these props for you.
+        trust that "withField" will manage these props for you.
 
         Remove the following illegal props: 'onChange' and 'value'.
       "

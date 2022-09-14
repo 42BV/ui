@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
-import { AsyncTypeahead, TokenProps, Typeahead, TypeaheadProps } from 'react-bootstrap-typeahead';
+import { AsyncTypeahead, Typeahead } from 'react-bootstrap-typeahead';
 import { TypeaheadCustomOption, TypeaheadOption } from '../types';
 import { withJarb } from '../../withJarb/withJarb';
 import { alwaysTrue, doBlur } from '../../utils';
@@ -174,14 +174,15 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
 
   function renderToken(
     option: TypeaheadOption<T>,
-    props: TokenProps,
+    props: {
+      onRemove: (option: TypeaheadOption<T>) => void
+    },
     index: number
   ) {
     return (
       <Tag
         key={index}
         text={option.label}
-        // @ts-expect-error The prop onRemove actually exists, the typings are wrong
         onRemove={() => props.onRemove(option)}
         className="align-self-center"
       />
@@ -197,7 +198,7 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
     'is-invalid': valid === false
   });
 
-  const typeaheadProps: TypeaheadProps<TypeaheadOption<T>> = {
+  const typeaheadProps = {
     id: `${id}-options`,
     filterBy: alwaysTrue,
     paginationText: t({
@@ -213,14 +214,11 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
     onFocus,
     inputProps: {
       id,
-      // @ts-expect-error The input props value works
-      value,
-      className: classNames('form-control', {
+      className: classNames({
         'is-invalid': valid === false
       }),
       'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
     },
-    renderToken,
     maxResults,
     allowNew,
     paginate: true
@@ -231,10 +229,17 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
       {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
       <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
         {Array.isArray(options) ? (
-          <Typeahead {...typeaheadProps} onInputChange={setQuery} />
+          <Typeahead
+            {...typeaheadProps}
+            // @ts-expect-error onRemove is always present
+            renderToken={renderToken}
+            onInputChange={setQuery}
+          />
         ) : (
           <AsyncTypeahead
             {...typeaheadProps}
+            // @ts-expect-error onRemove is always present
+            renderToken={renderToken}
             isLoading={loading}
             delay={200}
             onSearch={setQuery}
