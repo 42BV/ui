@@ -257,7 +257,7 @@ describe('Component: TypeaheadSingle', () => {
     });
 
     it('should set the query when the user starts typing in the input field', async () => {
-      expect.assertions(15);
+      expect.assertions(13);
 
       setup({
         value: undefined,

@@ -23,7 +23,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
             aria-label="Best friend"
             aria-owns="bestFriend-options"
             autocomplete="off"
-            class="rbt-input-main form-control rbt-input form-control"
+            class="rbt-input-main form-control rbt-input"
             id="bestFriend"
             role="combobox"
             type="text"
@@ -41,9 +41,12 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
+          data-popper-escaped="true"
+          data-popper-placement="bottom-start"
+          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -106,7 +109,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
             aria-label="Best friend"
             aria-owns="bestFriend-options"
             autocomplete="off"
-            class="rbt-input-main form-control rbt-input form-control"
+            class="rbt-input-main form-control rbt-input"
             id="bestFriend"
             role="combobox"
             type="text"
@@ -124,9 +127,12 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
+          data-popper-escaped="true"
+          data-popper-placement="bottom-start"
+          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -203,7 +209,7 @@ exports[`Component: TypeaheadSingle ui default 1`] = `
             aria-haspopup="listbox"
             aria-label="Best friend"
             autocomplete="off"
-            class="rbt-input-main form-control rbt-input form-control"
+            class="rbt-input-main form-control rbt-input"
             id="bestFriend"
             role="combobox"
             type="text"
@@ -247,7 +253,7 @@ exports[`Component: TypeaheadSingle ui loading 1`] = `
             aria-haspopup="listbox"
             aria-label="Best friend"
             autocomplete="off"
-            class="rbt-input-main form-control rbt-input form-control"
+            class="rbt-input-main form-control rbt-input"
             id="bestFriend"
             role="combobox"
             type="text"
@@ -306,7 +312,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
             aria-label="Best friend"
             aria-owns="bestFriend-options"
             autocomplete="off"
-            class="rbt-input-main form-control rbt-input form-control"
+            class="rbt-input-main form-control rbt-input"
             id="bestFriend"
             role="combobox"
             type="text"
@@ -324,9 +330,12 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
+          data-popper-escaped="true"
+          data-popper-placement="bottom-start"
+          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -403,7 +412,7 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
             aria-label="Best friend"
             aria-owns="bestFriend-options"
             autocomplete="off"
-            class="rbt-input-main form-control rbt-input form-control"
+            class="rbt-input-main form-control rbt-input"
             id="bestFriend"
             role="combobox"
             type="text"
@@ -421,9 +430,12 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
+          data-popper-escaped="true"
+          data-popper-placement="bottom-start"
+          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"

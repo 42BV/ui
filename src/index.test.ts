@@ -3,7 +3,7 @@ import * as index from '../src';
 describe('index', () => {
   test('exports', () => {
     expect(index).toMatchInlineSnapshot(`
-      Object {
+      {
         "Addon": [Function],
         "AddonButton": [Function],
         "AddonIcon": [Function],
@@ -34,7 +34,7 @@ describe('index', () => {
         "EpicCell": [Function],
         "EpicCellLayout": [Function],
         "EpicDetail": [Function],
-        "EpicDetailRow": Object {
+        "EpicDetailRow": {
           "$$typeof": Symbol(react.forward_ref),
           "render": [Function],
         },

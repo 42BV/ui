@@ -233,7 +233,7 @@ describe('Component: TypeaheadMultiple', () => {
     });
 
     it('should set the query when the user starts typing in the input field', async () => {
-      expect.assertions(16);
+      expect.assertions(14);
       setup({
         isAsync: true
       });

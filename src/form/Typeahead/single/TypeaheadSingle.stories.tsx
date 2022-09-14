@@ -44,6 +44,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
           labelForOption={(province) => province.label}
           value={value}
           onChange={setValue}
+          valid={false}
         />
 
         {value ? <p>Your chosen province is: {value.label}</p> : null}

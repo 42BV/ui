@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
-import { AsyncTypeahead, Typeahead, TypeaheadProps } from 'react-bootstrap-typeahead';
+import { AsyncTypeahead, Typeahead } from 'react-bootstrap-typeahead';
 import { FormGroup, Label } from 'reactstrap';
 import { FieldCompatibleWithPredeterminedOptions } from '../../option';
 import { FieldCompatible } from '../../types';
@@ -181,7 +181,7 @@ export function TypeaheadSingle<T>(props: Props<T>) {
     'is-invalid': valid === false
   });
 
-  const typeaheadProps: TypeaheadProps<TypeaheadOption<T>> = {
+  const typeaheadProps = {
     id: `${id}-options`,
     filterBy: alwaysTrue,
     multiple: false,
@@ -197,7 +197,7 @@ export function TypeaheadSingle<T>(props: Props<T>) {
     }),
     inputProps: {
       id,
-      className: classNames('form-control', {
+      className: classNames({
         'is-invalid': valid === false
       }),
       'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined

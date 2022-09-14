@@ -29,7 +29,7 @@ exports[`Component: TypeaheadMultiple ui async with a custom pageSize of 2 optio
                 aria-label="Best friend"
                 aria-owns="bestFriend-options"
                 autocomplete="off"
-                class="rbt-input-main form-control"
+                class="rbt-input-main"
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
@@ -49,9 +49,12 @@ exports[`Component: TypeaheadMultiple ui async with a custom pageSize of 2 optio
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
+          data-popper-escaped="true"
+          data-popper-placement="bottom-start"
+          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -120,7 +123,7 @@ exports[`Component: TypeaheadMultiple ui async with the default pageSize of 10 o
                 aria-label="Best friend"
                 aria-owns="bestFriend-options"
                 autocomplete="off"
-                class="rbt-input-main form-control"
+                class="rbt-input-main"
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
@@ -140,9 +143,12 @@ exports[`Component: TypeaheadMultiple ui async with the default pageSize of 10 o
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
+          data-popper-escaped="true"
+          data-popper-placement="bottom-start"
+          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -225,7 +231,7 @@ exports[`Component: TypeaheadMultiple ui default 1`] = `
                 aria-haspopup="listbox"
                 aria-label="Best friend"
                 autocomplete="off"
-                class="rbt-input-main form-control"
+                class="rbt-input-main"
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
@@ -277,7 +283,7 @@ exports[`Component: TypeaheadMultiple ui loading 1`] = `
                 aria-haspopup="listbox"
                 aria-label="Best friend"
                 autocomplete="off"
-                class="rbt-input-main form-control"
+                class="rbt-input-main"
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
@@ -344,7 +350,7 @@ exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
                 aria-label="Best friend"
                 aria-owns="bestFriend-options"
                 autocomplete="off"
-                class="rbt-input-main form-control"
+                class="rbt-input-main"
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
@@ -364,9 +370,12 @@ exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
+          data-popper-escaped="true"
+          data-popper-placement="bottom-start"
+          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -449,7 +458,7 @@ exports[`Component: TypeaheadMultiple ui with the default pagination text 1`] = 
                 aria-label="Best friend"
                 aria-owns="bestFriend-options"
                 autocomplete="off"
-                class="rbt-input-main form-control"
+                class="rbt-input-main"
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
@@ -469,9 +478,12 @@ exports[`Component: TypeaheadMultiple ui with the default pagination text 1`] = 
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
+          data-popper-escaped="true"
+          data-popper-placement="bottom-start"
+          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; opacity: 0; pointer-events: none; display: block; max-height: 300px; overflow: auto; top: 0px; left: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
