@@ -50,6 +50,14 @@ export type Props = FieldCompatible<string, string> & {
   addon?: React.ReactElement;
 
   /**
+   * The position of the Addon, is it to the right or left
+   * of the input.
+   *
+   * Defaults to 'left'
+   */
+  addonPosition?: 'left' | 'right';
+
+  /**
    * A ref to the actual input, can be used to focus the element.
    */
   innerRef?: React.Ref<HTMLInputElement>;
@@ -76,6 +84,7 @@ export function Input(props: Props) {
     color,
     valid,
     addon,
+    addonPosition,
     className = ''
   } = props;
 
@@ -98,8 +107,6 @@ export function Input(props: Props) {
   let content = input;
 
   if (addon !== undefined) {
-    const addonPosition = addon.props.position ?? 'left';
-
     if (addonPosition === 'left') {
       content = (
         <InputGroup>

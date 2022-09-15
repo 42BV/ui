@@ -4,13 +4,12 @@ import { action } from '@storybook/addon-actions';
 
 import { FieldInput, Input, JarbInput } from './Input';
 import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
-import { Alert } from 'reactstrap';
+import { Alert, InputGroupText } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
-import { AddonIcon } from '../addons/AddonIcon/AddonIcon';
-import { Addon } from '../addons/Addon/Addon';
-import { AddonButton } from '../addons/AddonButton/AddonButton';
+import { AddonIcon } from '../AddonIcon/AddonIcon';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { Icon } from '../../core/Icon';
+import { Button } from '../../core/Button/Button';
 
 function isSuperman(value: string) {
   return value === 'superman' ? undefined : 'Not "superman"';
@@ -55,7 +54,7 @@ storiesOf('Form/Input', module)
           label="Last name"
           placeholder="Please enter your last name"
           onChange={(value) => action(`onChange: ${value}`)}
-          addon={<AddonIcon position="right" icon="face" />}
+          addon={<AddonIcon icon="face" />}
           color="success"
         />
 
@@ -64,7 +63,16 @@ storiesOf('Form/Input', module)
           label="Magic number"
           placeholder="Please enter the magic number"
           onChange={(value) => action(`onChange: ${value}`)}
-          addon={<Addon>Try 42</Addon>}
+          addon={<InputGroupText>Nr</InputGroupText>}
+        />
+
+        <Input
+          id="magicNumber"
+          label="Magic number"
+          placeholder="Please enter the magic number"
+          onChange={(value) => action(`onChange: ${value}`)}
+          addon={<InputGroupText>Try 42</InputGroupText>}
+          addonPosition="right"
         />
 
         <Input
@@ -73,9 +81,9 @@ storiesOf('Form/Input', module)
           placeholder="Please click on my addon button"
           onChange={(value) => action(`onChange: ${value}`)}
           addon={
-            <AddonButton onClick={() => alert('Yippy')} position="right">
+            <Button onClick={() => alert('Yippy')}>
               Click me
-            </AddonButton>
+            </Button>
           }
         />
       </Card>

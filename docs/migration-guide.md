@@ -18,6 +18,11 @@ done together with other improvements to a lot of components to comply with the 
 [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/) compliant. If you find any problems with accessibility, please
 [create an issue](https://github.com/42BV/ui/issues/new), so we can work on it.
 
+Since reactstrap removed their Addon component and changed their implementation to base the position of the addon on the order
+of the components, we also removed the Addon and AddonButton. In v4 we changed our Addon component to only be a wrapping fragment,
+but it was misleading as it still had the position property. The AddonIcon is still convenient as it uses InputGroupText, but
+doesn't it support the position property anymore.
+
 For forms, we added Field components like the Jarb components, but without JaRB. This simplifies usage of form elements
 in forms for fields that don't have a JaRB validator or in projects that don't supply JaRB validation. In addition to that,
 we changed the label for Jarb components to default to the value from `jarb.label` so you only have to specify the label once.

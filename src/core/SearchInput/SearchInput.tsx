@@ -4,7 +4,7 @@ import { FormGroup, Input, InputGroup, InputProps, Label } from 'reactstrap';
 
 import { Icon } from '../Icon';
 import { BootstrapSize } from '../types';
-import { AddonIcon } from '../../form/addons/AddonIcon/AddonIcon';
+import { AddonIcon } from '../../form/AddonIcon/AddonIcon';
 
 export type SearchInputApi = {
   /**

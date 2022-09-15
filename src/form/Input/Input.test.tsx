@@ -3,14 +3,14 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { Input, InputType, reactStrapInput } from './Input';
-
-import { Addon } from '../addons/Addon/Addon';
+import { InputGroupText } from 'reactstrap';
 
 describe('Component: Input', () => {
   function setup({
     value,
     type,
     addon,
+    addonPosition,
     valid,
     hasPlaceholder,
     hasLabel
@@ -18,6 +18,7 @@ describe('Component: Input', () => {
     value?: string;
     type?: InputType;
     addon?: React.ReactElement;
+    addonPosition?: 'left' | 'right';
     valid?: boolean;
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
@@ -37,6 +38,7 @@ describe('Component: Input', () => {
       error: 'Some error',
       valid,
       addon,
+      addonPosition,
       id: hasLabel ? 'firstName' : undefined,
       label: 'First name',
       hiddenLabel: !hasLabel
@@ -84,18 +86,18 @@ describe('Component: Input', () => {
     });
 
     test('addon default', () => {
-      const { container } = setup({ addon: <Addon>Default on the left</Addon> });
+      const { container } = setup({ addon: <InputGroupText>Default on the left</InputGroupText> });
       expect(container).toMatchSnapshot();
     });
 
     test('addon left', () => {
-      setup({ addon: <Addon position="left"><span>Left</span></Addon> });
+      setup({ addon: <InputGroupText>Left</InputGroupText>, addonPosition: 'left' });
       const addon = screen.getByText('Left');
       expect(addon.parentNode?.childNodes.item(0)).toBe(addon);
     });
 
     test('addon right', () => {
-      setup({ addon: <Addon position="right"><span>Right</span></Addon> });
+      setup({ addon: <InputGroupText position="right">Right</InputGroupText>, addonPosition: 'right' });
       const addon = screen.getByText('Right');
       expect(addon.parentNode?.childNodes.item(1)).toBe(addon);
     });
