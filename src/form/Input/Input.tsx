@@ -84,7 +84,7 @@ export function Input(props: Props) {
     color,
     valid,
     addon,
-    addonPosition,
+    addonPosition = 'left',
     className = ''
   } = props;
 
