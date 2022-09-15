@@ -7,10 +7,10 @@ import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { Translation } from '../../utilities/translation/translator';
-import { AddonButton } from '../addons/AddonButton/AddonButton';
 import { FieldCompatible } from '../types';
 import { Icon } from '../../core/Icon';
 import { withField } from '../withField/withField';
+import { Button } from '../../core/Button/Button';
 
 type Props = FieldCompatible<File, File | null> & {
   /**
@@ -95,13 +95,12 @@ export function FileInput(props: Props) {
 
       <InputGroup>
         <Input {...inputProps} />
-        <AddonButton
-          position="right"
+        <Button
           color={value || valid === false ? 'danger' : 'primary'}
           onClick={noop}
         >
           <Icon icon={value ? 'delete' : 'cloud_upload'} className="d-block" />
-        </AddonButton>
+        </Button>
       </InputGroup>
 
       {error}

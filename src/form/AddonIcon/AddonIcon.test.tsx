@@ -7,7 +7,7 @@ import { AddonIcon } from './AddonIcon';
 describe('Component: AddonIcon', () => {
   function setup({ className }: { className?: string }) {
     const { container } = render(
-      <AddonIcon icon="360" position="right" className={className} />
+      <AddonIcon icon="360" className={className} />
     );
 
     return { container };

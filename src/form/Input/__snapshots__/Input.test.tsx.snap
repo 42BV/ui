@@ -9,7 +9,6 @@ exports[`Component: Input ui addon default 1`] = `
     <div
       class="input-group"
     >
-      Default on the left
       <input
         aria-label="First name"
         class="form-control"
@@ -17,6 +16,11 @@ exports[`Component: Input ui addon default 1`] = `
         type="text"
         value=""
       />
+      <span
+        class="input-group-text"
+      >
+        Default on the left
+      </span>
     </div>
     Some error
   </div>

@@ -148,10 +148,7 @@ export {
 } from './form/NewPasswordInput/NewPasswordInput';
 export type { NewPasswordInputRule } from './form/NewPasswordInput/types';
 export { FormButton } from './form/FormButton/FormButton';
-export { Addon } from './form/addons/Addon/Addon';
-export type { AddonPosition } from './form/addons/Addon/Addon';
-export { AddonButton } from './form/addons/AddonButton/AddonButton';
-export { AddonIcon } from './form/addons/AddonIcon/AddonIcon';
+export { AddonIcon } from './form/AddonIcon/AddonIcon';
 export { PlainTextFormControl } from './form/PlainTextFormControl/PlainTextFormControl';
 
 // Table

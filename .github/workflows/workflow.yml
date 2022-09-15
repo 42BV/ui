@@ -12,19 +12,19 @@ jobs:
         node-version: [14.x, 15.x, 16.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: actions/cache@v2
+    - uses: actions/cache@v3
       with:
         path: ~/.npm
         key: ${{ runner.os }}-${{ matrix.node-version }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Setup timezone
-      uses: zcong1993/setup-timezone@v1.1.0
+      uses: zcong1993/setup-timezone@v1.1.2
       with:
         timezone: Europe/Amsterdam
     - run: npm install --legacy-peer-deps
@@ -36,7 +36,7 @@ jobs:
       env:
         CI: true
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v3
       with:
         directory: ./coverage
         flags: unittests

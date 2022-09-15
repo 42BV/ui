@@ -4,7 +4,7 @@ import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } 
 import { FieldNewPasswordInput, isStrongPassword, JarbNewPasswordInput, NewPasswordInput } from './NewPasswordInput';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
-import { Addon } from '../addons/Addon/Addon';
+import { AddonIcon } from '../AddonIcon/AddonIcon';
 import { Icon } from '../../core/Icon';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 
@@ -46,9 +46,7 @@ storiesOf('Form/NewPasswordInput', module)
           value={password}
           onChange={setPassword}
           addon={
-            <Addon>
-              <Icon icon="lock" />
-            </Addon>
+            <AddonIcon icon="lock" />
           }
         />
       </Card>

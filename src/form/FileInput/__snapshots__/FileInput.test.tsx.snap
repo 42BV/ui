@@ -28,17 +28,24 @@ exports[`Component: FileInput ui with value 1`] = `
         type="text"
         value="maarten.png"
       />
-      <button
-        class="btn btn-danger"
-        tabindex="-1"
-        type="button"
+      <span
+        class="button d-inline-block danger"
       >
-        <i
-          class="icon d-block material-icons"
+        <button
+          class="btn btn-danger btn-md"
+          type="button"
         >
-          delete
-        </i>
-      </button>
+          <div
+            class="d-flex justify-content-center align-items-center"
+          >
+            <i
+              class="icon d-block material-icons"
+            >
+              delete
+            </i>
+          </div>
+        </button>
+      </span>
     </div>
     Some error
   </div>

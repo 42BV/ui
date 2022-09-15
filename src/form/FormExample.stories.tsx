@@ -57,7 +57,7 @@ import {
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
 import { ModalForm } from '../core/OpenCloseModal/OpenCloseModal.stories';
-import { AddonIcon } from './addons/AddonIcon/AddonIcon';
+import { AddonIcon } from './AddonIcon/AddonIcon';
 import { Col, Row } from 'reactstrap';
 import { action } from '@storybook/addon-actions';
 import { Debug } from '../core/Debug/Debug';

@@ -158,7 +158,6 @@
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "14.4.3",
     "@tippyjs/react": "4.2.6",
-    "@types/classnames": "2.3.1",
     "@types/estree": "1.0.0",
     "@types/jest": "29.0.2",
     "@types/lodash": "4.14.185",
@@ -262,7 +261,7 @@
   },
   "lint-staged": {
     "{src,tests}/**/*.{js,jsx,json,scss,ts,tsx}": [
-      "prettier --single-quote --trailing-comma none --write"
+      "prettier --write"
     ]
   }
 }

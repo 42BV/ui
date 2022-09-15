@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 import { withJarb } from '../withJarb/withJarb';
 import { FieldCompatible } from '../types';
-import { AddonButton } from '../addons/AddonButton/AddonButton';
 import { Icon } from '../../core/Icon';
 import { Select } from '../Select/Select';
 import { t } from '../../utilities/translation/translation';
@@ -17,6 +16,7 @@ import { isDate } from './checkers';
 import { combineFormat } from './utils';
 import { DateTimeModal, Text } from './DateTimeModal/DateTimeModal';
 import { withField } from '../withField/withField';
+import { Button } from '../../core/Button/Button';
 
 /**
  * Callback which returns whether a date is selectable.
@@ -120,9 +120,9 @@ export function DateTimeInput(props: Props) {
     return (
       <InputGroup>
         <Input innerRef={ref} {...props} />
-        <AddonButton onClick={() => setIsModalOpen(!isModalOpen)}>
+        <Button onClick={() => setIsModalOpen(!isModalOpen)}>
           <Icon icon="edit_calendar" />
-        </AddonButton>
+        </Button>
       </InputGroup>
     );
   }
