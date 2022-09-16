@@ -18,7 +18,7 @@ storiesOf('Form/TextEditor', module)
         <p className="mb-1">To be able to use TextEditor, you have to add lodash and react-quill to your dependencies:</p>
         <code>npm install --save lodash react-quill</code>
         <p className="mb-1 mt-3">You also have to include the react-quill stylesheet in your project stylesheet:</p>
-        <code>@import &apos;~react-quill/dist/quill.snow.css&apos;;</code>
+        <code>@import &apos;react-quill/dist/quill.snow.css&apos;;</code>
         <p className="mb-1 mt-1">or in your project index file:</p>
         <code>import &apos;react-quill/dist/quill.snow.css&apos;;</code>
       </Alert>

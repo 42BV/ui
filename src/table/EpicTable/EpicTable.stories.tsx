@@ -36,7 +36,7 @@ storiesOf('table/EpicTable', module)
         <p className="mb-0">To be able to use EpicTable, you have to add lodash, overlayscrollbars and overlayscrollbars-react to your dependencies:</p>
         <code>npm install --save lodash overlayscrollbars overlayscrollbars-react</code>
         <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
-        <code>@import &apos;~overlayscrollbars/css/OverlayScrollbars.css&apos;;</code>
+        <code>@import &apos;overlayscrollbars/css/OverlayScrollbars.css&apos;;</code>
       </Alert>
       <Story />
     </>

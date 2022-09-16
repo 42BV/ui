@@ -37,7 +37,7 @@ storiesOf('table/CrudTable', module)
         <p>To be able to use CrudTable, you have to add lodash, overlayscrollbars and overlayscrollbars-react to your dependencies:</p>
         <code>npm install --save lodash overlayscrollbars overlayscrollbars-react</code>
         <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
-        <code>@import &apos;~overlayscrollbars/css/OverlayScrollbars.css&apos;;</code>
+        <code>@import &apos;overlayscrollbars/css/OverlayScrollbars.css&apos;;</code>
       </Alert>
       <Alert color="warning" className="mb-4">
         <p>To be able to use CrudTable with Page, you have to add @42.nl/spring-connect to your dependencies:</p>

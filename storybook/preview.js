@@ -1,12 +1,12 @@
-import 'react-quill/dist/quill.snow.css';
-import {setConstraints} from "@42.nl/jarb-final-form/lib";
-
 import "./show-code-fix.scss";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import 'tippy.js/dist/tippy.css';
 import "react-datepicker/dist/react-datepicker.css";
+import 'react-quill/dist/quill.snow.css';
 import '../src/main.scss';
+
+import {setConstraints} from "@42.nl/jarb-final-form/lib";
 
 setConstraints({
   Person: {
