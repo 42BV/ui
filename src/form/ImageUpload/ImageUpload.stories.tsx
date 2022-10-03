@@ -15,8 +15,8 @@ storiesOf('Form/ImageUpload', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use ImageUpload, you have to add lodash, pica and react-avatar-editor to your dependencies:</p>
-        <code>npm install --save lodash pica react-avatar-editor</code>
+        <p>To be able to use ImageUpload, you have to add lodash, pica, buffer and react-avatar-editor to your dependencies:</p>
+        <code>npm install --save lodash pica buffer react-avatar-editor</code>
       </Alert>
       <Story />
     </>

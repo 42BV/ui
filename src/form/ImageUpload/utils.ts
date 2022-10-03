@@ -1,6 +1,7 @@
-// TODO: Declarations
 import picaFn from 'pica';
 import { ImageUploadCrop } from './ImageUpload';
+import { Buffer } from 'buffer';
+Buffer.from('anything','base64');
 
 let picaInstance: any;
 
