@@ -47,7 +47,8 @@
     "@42.nl/react-error-store": "^1.1.1",
     "@42.nl/spring-connect": "^4.3.0||^5.1.0",
     "@tanstack/react-query": "^4.0.0",
-    "@tippyjs/react": "4.2.6",
+    "@tippyjs/react": "^4.2.6",
+    "buffer": "^6.0.3",
     "classnames": "^2.3.1",
     "final-form": "^4.20.4",
     "lodash": "^4.17.21",
@@ -91,6 +92,9 @@
       "optional": true
     },
     "@tippyjs/react": {
+      "optional": true
+    },
+    "buffer": {
       "optional": true
     },
     "final-form": {
@@ -176,6 +180,7 @@
     "babel-eslint": "10.1.0",
     "babel-loader": "8.2.5",
     "better-npm-audit": "3.7.3",
+    "buffer": "6.0.3",
     "canvas": "2.10.1",
     "classnames": "2.3.2",
     "eslint": "8.25.0",
