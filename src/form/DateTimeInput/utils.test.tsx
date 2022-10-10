@@ -1,4 +1,4 @@
-import { combineFormat } from './utils';
+import { combineFormat, formatToMask } from './utils';
 
 test('combineFormat', () => {
   expect(combineFormat('YYYY-MM-DD', 'HH:mm:ss')).toBe('YYYY-MM-DD HH:mm:ss');
@@ -10,4 +10,78 @@ test('combineFormat', () => {
   }).toThrowError(
     'DateTimeInput: dateFormat and timeFormat cannot both be false'
   );
+});
+
+test('formatToMask', () => {
+  expect(formatToMask('YYYY-MM-DD', 'HH:mm:ss')).toEqual([
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    '-',
+    /\d/,
+    /\d/,
+    '-',
+    /\d/,
+    /\d/,
+    ' ',
+    /\d/,
+    /\d/,
+    ':',
+    /\d/,
+    /\d/,
+    ':',
+    /\d/,
+    /\d/
+  ]);
+  expect(formatToMask('YYYY/MM/DD', false)).toEqual([
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    '/',
+    /\d/,
+    /\d/,
+    '/',
+    /\d/,
+    /\d/
+  ]);
+  expect(formatToMask('YYYY.MM.DD', false)).toEqual([
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    '.',
+    /\d/,
+    /\d/,
+    '.',
+    /\d/,
+    /\d/
+  ]);
+  expect(formatToMask('YYYY-MM-DD', false)).toEqual([
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    '-',
+    /\d/,
+    /\d/,
+    '-',
+    /\d/,
+    /\d/
+  ]);
+  expect(formatToMask(false, 'HH:mm:ss')).toEqual([
+    /\d/,
+    /\d/,
+    ':',
+    /\d/,
+    /\d/,
+    ':',
+    /\d/,
+    /\d/
+  ]);
+
+  expect(() => {
+    formatToMask('hupbarbatruck', false);
+  }).toThrowError('DateTimeInput: cannot extract separator from dateFormat');
 });

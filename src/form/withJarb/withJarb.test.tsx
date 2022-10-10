@@ -10,14 +10,19 @@ import { JarbInput } from '../Input/Input';
 import { JarbDateTimeInput } from '../DateTimeInput/DateTimeInput';
 import * as Validators from '../DateTimeInput/validators';
 
+jest.mock('@42.nl/react-error-store');
+
 const isSuperman = (value: string) =>
   value === 'superman' ? undefined : 'not superman';
 
 describe('HoC: withJarb', () => {
-  function setup({ hasErrors = false, errorMode }: { hasErrors?: boolean; errorMode?: 'tooltip' | 'below' }) {
+  function setup({ hasErrors = false, hasBackEndErrors = false, errorMode }: { hasErrors?: boolean; hasBackEndErrors?: boolean; errorMode?: 'tooltip' | 'below' }) {
     jest
       .spyOn(useHasErrors, 'useHasErrors')
       .mockImplementation(() => [ hasErrors, jest.fn() ]);
+    jest
+      .spyOn(reactErrorStore, 'useErrorsForValidator')
+      .mockReturnValue(hasBackEndErrors ? [ 'back-end error' ] : []);
 
     setConstraints({
       User: {
@@ -100,6 +105,9 @@ describe('HoC: withJarb', () => {
   test('defaultValidators', async () => {
     expect.assertions(2);
 
+    jest
+      .spyOn(reactErrorStore, 'useErrorsForValidator')
+      .mockReturnValue([]);
     const isDateValidatorSpy = jest.fn();
     jest.spyOn(Validators, 'isDateValidator').mockReturnValue(isDateValidatorSpy);
     jest.spyOn(console, 'warn').mockImplementation(jest.fn());
@@ -116,7 +124,7 @@ describe('HoC: withJarb', () => {
     render(
       <Form onSubmit={jest.fn()}>
         {() => (
-          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'test' }} name="test" dateFormat="yyyy-MM-dd" timeFormat={false} />
+          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'test' }} name="test" dateFormat="YYYY-MM-DD" timeFormat={false} />
         )}
       </Form>
     );
@@ -146,7 +154,7 @@ describe('HoC: withJarb', () => {
     test('onChange: remove back-end errors', async () => {
       expect.assertions(2);
 
-      setup({});
+      setup({ hasBackEndErrors: true });
 
       jest.spyOn(reactErrorStore, 'clearErrorsForValidator');
 

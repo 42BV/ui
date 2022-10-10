@@ -8,6 +8,8 @@ import * as SettledErrors from './useSettledErrors';
 
 import { FormError } from './FormError';
 
+jest.mock('@42.nl/react-error-store');
+
 describe('Component: FormError', () => {
   function setup({
     hasFrontEndErrors,

@@ -1,9 +1,12 @@
 import React, { ChangeEvent } from 'react';
+import RTMaskedInput from 'react-text-mask';
 import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
 import { withJarb } from '../withJarb/withJarb';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
 import { withField } from '../withField/withField';
+
+export type InputMask = (string | RegExp)[];
 
 export type InputType =
   | 'text'
@@ -38,6 +41,13 @@ export type Props = FieldCompatible<string, string> & {
    * Optional type of the input, default to `text`.
    */
   type?: InputType;
+
+  /**
+   * Optional mask of the input.
+   *
+   * @see https://text-mask.github.io/text-mask/
+   */
+  mask?: InputMask;
 
   /**
    * Optional addon to display to the left or right of the input
@@ -83,6 +93,7 @@ export function Input(props: Props) {
     error,
     color,
     valid,
+    mask,
     addon,
     addonPosition = 'left',
     className = ''
@@ -102,7 +113,20 @@ export function Input(props: Props) {
     'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
   };
 
-  const input = <RSInput key="input" {...inputProps} />;
+  // Cannot pass a reference when the input requires a mask
+  const { innerRef: _, ...withoutRef } = inputProps;
+
+  const input =
+    mask === undefined ? (
+      <RSInput key="input" {...inputProps} />
+    ) : (
+      <RTMaskedInput
+        key="mask"
+        mask={mask}
+        {...withoutRef}
+        render={reactStrapInput}
+      />
+    );
 
   let content = input;
 

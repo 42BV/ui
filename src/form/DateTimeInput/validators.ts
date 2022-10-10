@@ -40,12 +40,12 @@ type IsDateValidatorConfig = {
  * Useful for the `JarbDateTimeInput` components `validators` prop.
  *
  * @param {IsDateValidatorConfig} config The configuration for the isDateBeforeValidator
- * @returns {FieldValidator<Date | string>} A date validator function which checks if the date lies before the end date.
+ * @returns {FieldValidator<MomentInput>} A date validator function which checks if the date lies before the end date.
  */
-export function isDateValidator(config: IsDateValidatorConfig): FieldValidator<Date | string> {
+export function isDateValidator(config: IsDateValidatorConfig): FieldValidator<MomentInput> {
   const { dateFormat, timeFormat, label } = config;
 
-  return (value?: string | Date): string | undefined => {
+  return (value?: MomentInput): string | undefined => {
     if (!value || isDate({ dateFormat, timeFormat })(value)) {
       return undefined;
     }
@@ -166,15 +166,15 @@ type IsDateBeforeValidatorConfig = {
  * Useful for the `JarbDateTimeInput` components `validators` prop.
  *
  * @param {IsDateAfterValidatorConfig} config The configuration for the isDateBeforeValidator
- * @returns {FieldValidator<Date>} A date validator function which checks if the date lies before the end date.
+ * @returns {FieldValidator<MomentInput>} A date validator function which checks if the date lies before the end date.
  */
 export function isDateBeforeValidator(
   config: IsDateBeforeValidatorConfig
-): FieldValidator<Date | string> {
+): FieldValidator<MomentInput> {
   const { end, label, overrideErrorText } = config;
 
   return (
-    value?: Date | string,
+    value?: MomentInput,
     allValues?: Record<string, MomentInput>
   ): string | undefined => {
     if (!value) {
@@ -220,15 +220,15 @@ type IsDateAfterValidatorConfig = {
  * Useful for the `JarbDateTimeInput` components `validators` prop.
  *
  * @param {IsDateAfterValidatorConfig} config The configuration for the isDateBeforeValidator
- * @returns {FieldValidator<Date>} A date validator function which checks if the date lies after the start date.
+ * @returns {FieldValidator<MomentInput>} A date validator function which checks if the date lies after the start date.
  */
 export function isDateAfterValidator(
   config: IsDateAfterValidatorConfig
-): FieldValidator<Date | string> {
+): FieldValidator<MomentInput> {
   const { start, label, overrideErrorText } = config;
 
   return (
-    value?: Date | string,
+    value?: MomentInput,
     allValues?: Record<string, any>
   ): string | undefined => {
     if (!value) {
@@ -277,15 +277,15 @@ type IsDateBetweenValidatorConfig = IsDateBetweenConfig & {
  * Useful for the `JarbDateTimeInput` components `validators` prop.
  *
  * @param {IsDateBetweenValidatorConfig} config The configuration for the isDateBetweenValidatorConfig
- * @returns {FieldValidator<Date>} A date validator function which checks if the date lies after the start date, and before the end date.
+ * @returns {FieldValidator<MomentInput>} A date validator function which checks if the date lies after the start date, and before the end date.
  */
 export function isDateBetweenValidator(
   config: IsDateBetweenValidatorConfig
-): FieldValidator<Date | string> {
+): FieldValidator<MomentInput> {
   const { start, end, label, overrideErrorText } = config;
 
   return (
-    value?: Date | string,
+    value?: MomentInput,
     allValues?: Record<string, MomentInput>
   ): string | undefined => {
     if (!value) {

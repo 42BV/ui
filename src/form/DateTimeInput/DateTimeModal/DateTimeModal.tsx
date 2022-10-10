@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import ReactDatePicker, { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
+import Datetime from 'react-datetime';
+import moment, { Moment, MomentInput } from 'moment';
 import { constant, get } from 'lodash';
 
 import { DateTimeInputIsDateAllowed } from '../DateTimeInput';
+import { DateFormat, TimeFormat } from '../types';
 import { t } from '../../../utilities/translation/translation';
 import { OpenCloseModal } from '../../../core/OpenCloseModal/OpenCloseModal';
 
@@ -25,12 +27,32 @@ type Props = {
   /**
    * Callback for when the form element changes.
    */
-  onSave: (value?: Date) => void;
+  onSave: (value: Moment | string) => void;
 
   /**
    * The value that the form element currently has.
    */
-  defaultValue?: Date;
+  defaultValue?: MomentInput;
+
+  /**
+   * The format for the date, follows Moment.js format.
+   *
+   * At least a DateFormat or TimeFormat should be defined, otherwise
+   * an error occurs.
+   *
+   * @see https://momentjs.com/docs/#/displaying/format/
+   */
+  dateFormat: DateFormat;
+
+  /**
+   * The format for the time, follows Moment.js format.
+   *
+   * At least a TimeFormat or DateFormat should be defined, otherwise
+   * an error occurs.
+   *
+   * @see https://momentjs.com/docs/#/displaying/format/
+   */
+  timeFormat: TimeFormat;
 
   /**
    * Optionally the locale moment js should use.
@@ -44,9 +66,14 @@ type Props = {
    */
   isDateAllowed?: DateTimeInputIsDateAllowed;
 
-  showDateSelect: boolean;
-  showTimeInput: boolean;
-  renderCustomHeader: (props: ReactDatePickerCustomHeaderProps) => React.ReactNode;
+  /**
+   * When true, input time values will be interpreted as UTC (Zulu time)
+   * by Moment.js. Otherwise they will default to the user's local
+   * timezone.
+   *
+   * Defaults to true.
+   */
+  utc?: boolean;
 
   /**
    * Optionally customized text within the component.
@@ -60,10 +87,10 @@ export function DateTimeModal(props: Props) {
     onClose,
     onSave,
     label,
+    dateFormat,
+    timeFormat,
     locale,
-    showDateSelect,
-    showTimeInput,
-    renderCustomHeader,
+    utc = true,
     text = {
       save: t({
         key: 'DateTimeModal.SELECT',
@@ -73,7 +100,7 @@ export function DateTimeModal(props: Props) {
   } = props;
   const isDateAllowed = get(props, 'isDateAllowed', constant(true));
 
-  const [ value, setValue ] = useState(props.defaultValue);
+  const [ value, setValue ] = useState(props.defaultValue ? moment(props.defaultValue) : '');
 
   return (
     <OpenCloseModal
@@ -81,23 +108,23 @@ export function DateTimeModal(props: Props) {
       onSave={() => onSave(value)}
       label={label}
       text={text}
-      size="md"
+      size="sm"
       className="date-time-modal"
       stickyFooter={false}
     >
-      <ReactDatePicker
-        onChange={(date) => setValue(
-          /* istanbul ignore next */
-          date ?? undefined
-        )}
-        selected={value}
+      <Datetime
+        input={false}
+        open={true}
+        closeOnSelect={false}
+        onChange={setValue}
+        value={value}
+        dateFormat={dateFormat}
+        timeFormat={timeFormat}
         locale={locale}
-        showWeekNumbers={true}
-        filterDate={isDateAllowed}
-        inline
-        showTimeSelectOnly={!showDateSelect}
-        showTimeInput={showTimeInput}
-        renderCustomHeader={renderCustomHeader}
+        utc={utc}
+        isValidDate={(date: Moment, current?: Moment) =>
+          isDateAllowed(date, current)
+        }
       />
     </OpenCloseModal>
   );
