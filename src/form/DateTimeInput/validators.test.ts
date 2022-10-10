@@ -11,8 +11,6 @@ describe('isDateBefore', () => {
       end: undefined
     };
 
-    expect(isBefore('', values)).toBe(undefined);
-    expect(isBefore('test', values)).toBe(undefined);
     expect(isBefore(new Date('2020-05-05'), values)).toBe(undefined);
     expect(isBefore(new Date('2020-05-06'), values)).toBe(undefined);
     expect(isBefore(new Date('2020-05-07'), values)).toBe(undefined);
@@ -53,7 +51,6 @@ describe('isDateBefore', () => {
       expect(isBefore(new Date('2020-05-09'), values)).toBe(
         `The "start" must be before the "end"`
       );
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBefore(undefined, values)).toBe(undefined);
     });
 
@@ -74,7 +71,6 @@ describe('isDateBefore', () => {
       expect(isBefore(new Date('2020-05-08 12:00:01'), values)).toBe(
         `The "start" must be before the "end"`
       );
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBefore(undefined, values)).toBe(undefined);
     });
   });
@@ -95,7 +91,6 @@ describe('isDateBefore', () => {
       expect(isBefore(new Date('2020-05-09'), values)).toBe(
         `The "start" must be before the "end"`
       );
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBefore(undefined, values)).toBe(undefined);
     });
 
@@ -115,7 +110,6 @@ describe('isDateBefore', () => {
         `The "start" must be before the "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBefore(undefined, values)).toBe(undefined);
     });
   });
@@ -173,7 +167,6 @@ describe('isDateAfter', () => {
       );
       expect(isAfter(new Date('2020-05-09'), values)).toBe(undefined);
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isAfter(undefined, values)).toBe(undefined);
     });
 
@@ -195,7 +188,6 @@ describe('isDateAfter', () => {
       );
       expect(isAfter(new Date('2020-05-08 12:00:01'), values)).toBe(undefined);
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isAfter(undefined, values)).toBe(undefined);
     });
   });
@@ -217,7 +209,6 @@ describe('isDateAfter', () => {
       expect(isAfter(new Date('2020-05-08'), values)).toBe(undefined);
       expect(isAfter(new Date('2020-05-09'), values)).toBe(undefined);
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isAfter(undefined, values)).toBe(undefined);
     });
 
@@ -237,7 +228,6 @@ describe('isDateAfter', () => {
       expect(isAfter(new Date('2020-05-08 12:00:00'), values)).toBe(undefined);
       expect(isAfter(new Date('2020-05-08 12:00:01'), values)).toBe(undefined);
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isAfter(undefined, values)).toBe(undefined);
     });
   });
@@ -385,7 +375,6 @@ describe('isDateBetween', () => {
         `The "reminder" must be between the "start" and "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
 
@@ -411,7 +400,6 @@ describe('isDateBetween', () => {
         `The "reminder" must be between the "start" and "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
   });
@@ -439,7 +427,6 @@ describe('isDateBetween', () => {
         `The "reminder" must be between the "start" and "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
 
@@ -471,7 +458,6 @@ describe('isDateBetween', () => {
         `The "reminder" must be between the "start" and "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
   });
@@ -498,7 +484,6 @@ describe('isDateBetween', () => {
         `The "reminder" must be between the "start" and "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
 
@@ -527,7 +512,6 @@ describe('isDateBetween', () => {
         `The "reminder" must be between the "start" and "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
   });
@@ -554,7 +538,6 @@ describe('isDateBetween', () => {
         `The "reminder" must be between the "start" and "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
 
@@ -583,7 +566,6 @@ describe('isDateBetween', () => {
         `The "reminder" must be between the "start" and "end"`
       );
 
-      // @ts-expect-error undefined should work and be guarded against
       expect(isBetween(undefined, values)).toBe(undefined);
     });
   });
@@ -623,7 +605,6 @@ describe('isDate', () => {
     expect(isDate('2022-__-__')).toBe(
       'Must match required format "YYYY-MM-DD"'
     );
-    // @ts-expect-error undefined should work and be guarded against
     expect(isDate(undefined)).toBe(undefined);
   });
 
@@ -640,7 +621,6 @@ describe('isDate', () => {
     expect(isDate('12:__:__')).toBe(
       'Must match required format "HH:mm:ss"'
     );
-    // @ts-expect-error undefined should work and be guarded against
     expect(isDate(undefined)).toBe(undefined);
   });
 
@@ -663,7 +643,6 @@ describe('isDate', () => {
     expect(isDate('2020-42-42 12:00:01')).toBe(
       'Must match required format "YYYY-MM-DD HH:mm:ss"'
     );
-    // @ts-expect-error undefined should work and be guarded against
     expect(isDate(undefined)).toBe(undefined);
   });
 });

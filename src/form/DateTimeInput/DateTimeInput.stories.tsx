@@ -17,11 +17,9 @@ storiesOf('Form/DateTimeInput', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use DateTimeInput, you have to add lodash, moment and react-datepicker to your dependencies:</p>
-        <code>npm install --save lodash moment react-datepicker</code>
+        <p>To be able to use DateTimeInput, you have to add lodash, moment and react-datetime to your dependencies:</p>
+        <code>npm install --save lodash moment react-datetime</code>
       </Alert>
-      <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
-      <code>@import &apos;react-datepicker/dist/react-datepicker.css&apos;;</code>
       <Story />
     </>
   ))
@@ -34,12 +32,13 @@ storiesOf('Form/DateTimeInput', module)
           id="dateOfBirth"
           label="Date of birth"
           placeholder="Please enter your date and time of birth"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
-          isDateAllowed={(date) => date < new Date()}
+          isDateAllowed={(date) => {
+            return date.isBefore(new Date());
+          }}
           value={value}
           onChange={setValue}
-          onFocus={() => action('focus')}
         />
 
         <div>
@@ -58,9 +57,11 @@ storiesOf('Form/DateTimeInput', module)
           id="dateOfBirth"
           label="Date of birth"
           placeholder="Please enter your date of birth"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="YYYY-MM-DD"
           timeFormat={false}
-          isDateAllowed={(date) => date < new Date()}
+          isDateAllowed={(date) => {
+            return date.isBefore(new Date());
+          }}
           value={value}
           onChange={setValue}
         />
@@ -83,8 +84,10 @@ storiesOf('Form/DateTimeInput', module)
           placeholder="Please enter your start time"
           dateFormat={false}
           timeFormat="HH:mm:ss"
-          isDateAllowed={(date) => date < new Date()}
-         value={value}
+          isDateAllowed={(date) => {
+            return date.isBefore(new Date());
+          }}
+          value={value}
           onChange={setValue}
         />
 
@@ -117,10 +120,12 @@ storiesOf('Form/DateTimeInput', module)
             </>
           }
           placeholder="Please enter your date and time of birth"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
-          isDateAllowed={(date) => date < new Date()}
-         value={value}
+          isDateAllowed={(date) => {
+            return date.isBefore(new Date());
+          }}
+          value={value}
           onChange={setValue}
         />
 
@@ -140,9 +145,11 @@ storiesOf('Form/DateTimeInput', module)
           id="dateOfBirth"
           label="Date of birth"
           placeholder="Please enter your date and time of birth"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
-          isDateAllowed={(date) => date < new Date()}
+          isDateAllowed={(date) => {
+            return date.isBefore(new Date());
+          }}
           value={value}
           onChange={setValue}
           mode="modal"
@@ -165,7 +172,7 @@ storiesOf('Form/DateTimeInput', module)
           id="start"
           label="Start"
           placeholder="Please enter your start date and time"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
           value={start}
           onChange={setStart}
@@ -176,7 +183,7 @@ storiesOf('Form/DateTimeInput', module)
           id="end"
           label="End"
           placeholder="Please enter your end date and time"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
           value={end}
           onChange={setEnd}
@@ -212,7 +219,7 @@ storiesOf('Form/DateTimeInput', module)
           id="start"
           label="Start"
           placeholder="Please enter your start date and time"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
           value={start}
           onChange={setStart}
@@ -223,7 +230,7 @@ storiesOf('Form/DateTimeInput', module)
           id="end"
           label="End"
           placeholder="Please enter your end date and time"
-          dateFormat="yyyy-MM-dd"
+          dateFormat="YYYY-MM-DD"
           timeFormat="HH:mm:ss"
           value={end}
           onChange={setEnd}
@@ -259,7 +266,7 @@ storiesOf('Form/DateTimeInput', module)
             placeholder="Please enter your date of birth"
             dateFormat="dd-MM-yyyy"
             timeFormat={false}
-            isDateAllowed={(date) => date < new Date()}
+            isDateAllowed={(date) => date.isBefore(new Date)}
           />
 
           <FieldDateTimeInput
@@ -269,7 +276,7 @@ storiesOf('Form/DateTimeInput', module)
             placeholder="Please enter your wedding day"
             dateFormat="dd-MM-yyyy"
             timeFormat={false}
-            isDateAllowed={(date) => date > new Date()}
+            isDateAllowed={(date) => date.isBefore(new Date)}
             mode="modal"
           />
 
@@ -280,7 +287,7 @@ storiesOf('Form/DateTimeInput', module)
             placeholder="Please enter the time the sun sets"
             dateFormat={false}
             timeFormat="HH:mm:ss"
-            isDateAllowed={(date) => date < new Date()}
+            isDateAllowed={(date) => date.isBefore(new Date)}
           />
 
           <FieldDateTimeInput
@@ -513,9 +520,11 @@ storiesOf('Form/DateTimeInput', module)
             id="dateOfBirth"
             name="dateOfBirth"
             placeholder="Please enter your date of birth"
-            dateFormat="dd-MM-yyyy"
+            dateFormat="DD-MM-YYYY"
             timeFormat={false}
-            isDateAllowed={(date) => date < new Date()}
+            isDateAllowed={(date) => {
+              return date.isBefore(new Date());
+            }}
             jarb={{
               validator: 'User.birthday',
               label: 'Birthday'
@@ -526,9 +535,11 @@ storiesOf('Form/DateTimeInput', module)
             id="weddingDay"
             name="weddingDay"
             placeholder="Please enter your wedding day"
-            dateFormat="dd-MM-yyyy"
+            dateFormat="DD-MM-YYYY"
             timeFormat={false}
-            isDateAllowed={(date) => date > new Date()}
+            isDateAllowed={(date) => {
+              return date.isAfter(new Date());
+            }}
             mode="modal"
             jarb={{
               validator: 'User.weddingDay',
@@ -542,7 +553,9 @@ storiesOf('Form/DateTimeInput', module)
             placeholder="Please enter the time the sun sets"
             dateFormat={false}
             timeFormat="HH:mm:ss"
-            isDateAllowed={(date) => date < new Date()}
+            isDateAllowed={(date) => {
+              return date.isBefore(new Date());
+            }}
             jarb={{
               validator: 'User.sunset',
               label: 'Sunset'
@@ -553,7 +566,7 @@ storiesOf('Form/DateTimeInput', module)
             id="dueDate"
             name="dueDate"
             placeholder="Please enter the due date for when the ticket needs to be resolved"
-            dateFormat="dd-MM-yyyy"
+            dateFormat="DD-MM-YYYY"
             timeFormat="HH:mm:ss"
             jarb={{
               validator: 'Issue.dueDate',
@@ -587,7 +600,7 @@ storiesOf('Form/DateTimeInput', module)
                       id="start"
                       name="start"
                       placeholder="Please enter your start date and time"
-                      dateFormat="yyyy-MM-dd"
+                      dateFormat="YYYY-MM-DD"
                       timeFormat="HH:mm:ss"
                       isDateAllowed={isDateBefore(values.end)}
                       validators={[
@@ -609,7 +622,7 @@ storiesOf('Form/DateTimeInput', module)
                       id="end"
                       name="end"
                       placeholder="Please enter your end date and time"
-                      dateFormat="yyyy-MM-dd"
+                      dateFormat="YYYY-MM-DD"
                       timeFormat="HH:mm:ss"
                       isDateAllowed={isDateAfter(values.start)}
                       validators={[
@@ -631,7 +644,7 @@ storiesOf('Form/DateTimeInput', module)
                       id="reminder"
                       name="reminder"
                       placeholder="Please select a reminder date"
-                      dateFormat="yyyy-MM-dd"
+                      dateFormat="YYYY-MM-DD"
                       timeFormat="HH:mm:ss"
                       isDateAllowed={isDateBetween(values.start, values.end)}
                       validators={[
@@ -692,7 +705,7 @@ storiesOf('Form/DateTimeInput', module)
                       id="start"
                       name="start"
                       placeholder="Please enter your start date and time"
-                      dateFormat="yyyy-MM-dd"
+                      dateFormat="YYYY-MM-DD"
                       timeFormat="HH:mm:ss"
                       isDateAllowed={isDateBefore(values.end, {
                         inclusive: true
@@ -717,7 +730,7 @@ storiesOf('Form/DateTimeInput', module)
                       id="end"
                       name="end"
                       placeholder="Please enter your end date and time"
-                      dateFormat="yyyy-MM-dd"
+                      dateFormat="YYYY-MM-DD"
                       timeFormat="HH:mm:ss"
                       isDateAllowed={isDateAfter(values.start, {
                         inclusive: true
@@ -742,7 +755,7 @@ storiesOf('Form/DateTimeInput', module)
                       id="reminder"
                       name="reminder"
                       placeholder="Please select a reminder date"
-                      dateFormat="yyyy-MM-dd"
+                      dateFormat="YYYY-MM-DD"
                       timeFormat="HH:mm:ss"
                       isDateAllowed={isDateBetween(values.start, values.end, {
                         startInclusive: true,

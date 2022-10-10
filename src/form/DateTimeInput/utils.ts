@@ -1,3 +1,4 @@
+import { InputMask } from '../Input/Input';
 import { DateFormat, TimeFormat } from './types';
 
 export function combineFormat(
@@ -15,4 +16,58 @@ export function combineFormat(
   throw new Error(
     'DateTimeInput: dateFormat and timeFormat cannot both be false'
   );
+}
+
+export function formatToMask(
+  dateFormat: DateFormat,
+  timeFormat: TimeFormat
+): InputMask {
+  const dateMask = dateFormatToMask(dateFormat);
+
+  const timeMask = timeFormatToMask(timeFormat);
+
+  const dateMaskIsDefined = dateMask.length > 0;
+
+  if (dateMaskIsDefined && timeMask.length > 0) {
+    return [ ...dateMask, ' ', ...timeMask ];
+  } else if (dateMaskIsDefined) {
+    return dateMask;
+  } else {
+    return timeMask;
+  }
+}
+
+function timeFormatToMask(timeFormat: TimeFormat): InputMask {
+  if (timeFormat === false) {
+    return [];
+  }
+
+  return timeFormat.split('').map((char) => (char === ':' ? ':' : /\d/));
+}
+
+function dateFormatToMask(dateFormat: DateFormat): InputMask {
+  if (dateFormat === false) {
+    return [];
+  }
+
+  const separator = extractSeparator(dateFormat);
+  return dateFormat
+    .split('')
+    .map((char) => (char === separator ? separator : /\d/));
+}
+
+function extractSeparator(dateFormat: string): string {
+  if (dateFormat.includes('-')) {
+    return '-';
+  }
+
+  if (dateFormat.includes('/')) {
+    return '/';
+  }
+
+  if (dateFormat.includes('.')) {
+    return '.';
+  }
+
+  throw new Error('DateTimeInput: cannot extract separator from dateFormat');
 }

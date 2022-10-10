@@ -1,14 +1,32 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
-import { Input, InputType, reactStrapInput } from './Input';
 import { InputGroupText } from 'reactstrap';
+
+import { Input, InputMask, InputType, reactStrapInput } from './Input';
+
+const mask: InputMask = [
+  '(',
+  /[1-9]/,
+  /\d/,
+  /\d/,
+  ')',
+  ' ',
+  /\d/,
+  /\d/,
+  /\d/,
+  '-',
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/
+];
 
 describe('Component: Input', () => {
   function setup({
     value,
     type,
+    mask,
     addon,
     addonPosition,
     valid,
@@ -17,6 +35,7 @@ describe('Component: Input', () => {
   }: {
     value?: string;
     type?: InputType;
+    mask?: InputMask;
     addon?: React.ReactElement;
     addonPosition?: 'left' | 'right';
     valid?: boolean;
@@ -37,6 +56,7 @@ describe('Component: Input', () => {
       onFocus: onFocusSpy,
       error: 'Some error',
       valid,
+      mask,
       addon,
       addonPosition,
       id: hasLabel ? 'firstName' : undefined,
@@ -111,6 +131,11 @@ describe('Component: Input', () => {
       setup({ valid: false });
       expect(screen.getByRole('textbox')).toHaveClass('is-invalid');
     });
+  });
+
+  test('masked', () => {
+    const { container } = setup({ mask });
+    expect(container).toMatchSnapshot();
   });
 
   describe('events', () => {
