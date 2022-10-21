@@ -30,7 +30,7 @@
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings=0",
     "storybook:build": "build-storybook -c storybook -o docs/storybook && git add docs && git clean -df",
     "docs": "jekyll serve --source docs",
-    "release": "np --otp",
+    "release": "np",
     "compile": "npm run clean && rollup -c",
     "dev:publish": "./scripts/dev-publish.sh",
     "version": "npm run compile && jekyll build && npm run storybook:build && git add stats.html && git add .size-snapshot.json",
