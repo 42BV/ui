@@ -1,28 +1,10 @@
 .button {
   .btn {
-    font-size: 0.9rem;
     position: relative;
     overflow: hidden;
 
-    // The sizes for the icons were chosen so that when the button
-    // has an icon the buttons do not increase in height. This way
-    // buttons with or without icons have the same size.
-    &-lg {
-      .button-icon {
-        font-size: 1.1rem;
-      }
-    }
-
-    &-md {
-      .button-icon {
-        font-size: 1rem;
-      }
-    }
-
-    &-sm {
-      .button-icon {
-        font-size: 0.9rem;
-      }
+    .button-icon {
+      font-size: 1.1em;
     }
   }
 
