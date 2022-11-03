@@ -31,6 +31,11 @@ module.exports = {
       include: path.resolve(__dirname, '../'),
     });
 
+    config.resolve.fallback.http = require.resolve('stream-http');
+    config.resolve.fallback.https = require.resolve('https-browserify');
+    config.resolve.fallback.stream = require.resolve('stream-browserify');
+    config.resolve.fallback.zlib = require.resolve('browserify-zlib');
+
     // Return the altered config
     return config;
   }
