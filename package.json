@@ -45,7 +45,7 @@
     "@42.nl/final-form-field-validation": "^1.0.0",
     "@42.nl/jarb-final-form": "^3.0.0",
     "@42.nl/react-error-store": "^1.1.1",
-    "@42.nl/spring-connect": ">=4.3.0 <= 7.0.0",
+    "@42.nl/spring-connect": ">=4.3 <7.0",
     "@tanstack/react-query": "^4.0.0",
     "@tippyjs/react": "^4.2.6",
     "buffer": "^6.0.3",
