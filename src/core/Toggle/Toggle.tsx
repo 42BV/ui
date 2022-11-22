@@ -1,7 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '../types';
+import {
+  BootstrapColor,
+  Changeable,
+  UIBasePropsWithCSSPropertiesAndChildren,
+  WithColor,
+  WithLabel,
+  WithValue
+} from '../types';
 import { uniqueId } from 'lodash';
+import { CheckBox } from '../CheckBox/CheckBox';
 
 type Props = {
   /**
@@ -10,36 +18,9 @@ type Props = {
   id?: string;
 
   /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * The color of the element.
-   */
-  color: Color;
-
-  /**
-   * Optionally the value of the Toggle, when `true` it is active.
-   * when `false` it is inactive. Defaults to `false`.
-   */
-  value?: boolean;
-
-  /**
-   * Callback for when the Toggle element is toggled.
-   */
-  onChange: (value: boolean) => void;
-
-  /**
    * Optional callback for when the Toggle is blurred.
    */
   onBlur?: React.FocusEventHandler;
-
-  /**
-   * Label to display next to the toggle.
-   */
-  label: React.ReactNode;
 
   /**
    * Optionally whether the label should be invisible (aria-label).
@@ -47,7 +28,13 @@ type Props = {
    * Defaults to false.
    */
   hiddenLabel?: boolean;
-};
+} & WithLabel<React.ReactNode> &
+  WithColor<BootstrapColor> &
+  Changeable<boolean, void> &
+  Partial<
+    UIBasePropsWithCSSPropertiesAndChildren<React.ReactNode> &
+      WithValue<boolean>
+  >;
 
 /**
  * Toggle is a component which looks like a switch. Use the Toggle
@@ -62,7 +49,8 @@ export function Toggle({
   onChange,
   onBlur,
   label,
-  hiddenLabel
+  hiddenLabel,
+  ...props
 }: Props) {
   const toggleClasses = classNames(
     'toggle-container',
@@ -71,19 +59,20 @@ export function Toggle({
   );
 
   return (
-    <span className={toggleClasses}>
+    <span className={toggleClasses} {...props}>
       {!hiddenLabel || typeof label !== 'string' ? (
         <label className="d-inline-block toggle-label me-2" htmlFor={id}>
           {label}
         </label>
       ) : null}
-      <input
+      <CheckBox
         id={id}
-        type="checkbox"
         onChange={(event) => onChange(event.target.checked)}
         checked={value}
         onBlur={onBlur}
-        aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
+        aria-label={
+          hiddenLabel && typeof label === 'string' ? label : undefined
+        }
       />
     </span>
   );

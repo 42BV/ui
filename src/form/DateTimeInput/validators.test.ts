@@ -1,4 +1,9 @@
-import { isDateAfterValidator, isDateBeforeValidator, isDateBetweenValidator, isDateValidator } from './validators';
+import {
+  isDateAfterValidator,
+  isDateBeforeValidator,
+  isDateBetweenValidator,
+  isDateValidator
+} from './validators';
 
 describe('isDateBefore', () => {
   it('should when before is undefined allow every date', () => {
@@ -618,9 +623,7 @@ describe('isDate', () => {
     expect(isDate(new Date('2020-05-07'))).toBe(undefined);
     expect(isDate('12:00:00')).toBe(undefined);
 
-    expect(isDate('12:__:__')).toBe(
-      'Must match required format "HH:mm:ss"'
-    );
+    expect(isDate('12:__:__')).toBe('Must match required format "HH:mm:ss"');
     expect(isDate(undefined)).toBe(undefined);
   });
 

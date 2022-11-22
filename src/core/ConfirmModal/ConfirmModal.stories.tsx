@@ -2,7 +2,12 @@ import { storiesOf } from '@storybook/react';
 import { ConfirmModal } from './ConfirmModal';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import {
+  ButtonDropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle
+} from 'reactstrap';
 import { Card } from '../Card/Card';
 
 const disclaimer = (
@@ -22,8 +27,8 @@ const disclaimer = (
 storiesOf('core/ConfirmModal', module)
   .addParameters({ component: ConfirmModal })
   .add('in dropdown', () => {
-    const [ isDropdownMenuOpen, setDropdownMenuOpen ] = useState(false);
-    const [ isConfirmModalOpen, setConfirmModalOpen ] = useState(false);
+    const [isDropdownMenuOpen, setDropdownMenuOpen] = useState(false);
+    const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
 
     return (
       <Card>
@@ -34,8 +39,9 @@ storiesOf('core/ConfirmModal', module)
               setConfirmModalOpen(false);
               action('confirm clicked')();
             }}
-            modalText="Are you sure to delete this user? This operation cannot be undone!"
-          />
+          >
+            Are you sure to delete this user? This operation cannot be undone!
+          </ConfirmModal>
         ) : null}
         <ButtonDropdown
           isOpen={isDropdownMenuOpen}
@@ -54,8 +60,8 @@ storiesOf('core/ConfirmModal', module)
     );
   })
   .add('with custom text', () => {
-    const [ isDropdownMenuOpen, setDropdownMenuOpen ] = useState(false);
-    const [ isConfirmModalOpen, setConfirmModalOpen ] = useState(false);
+    const [isDropdownMenuOpen, setDropdownMenuOpen] = useState(false);
+    const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
 
     return (
       <Card>
@@ -67,14 +73,13 @@ storiesOf('core/ConfirmModal', module)
               action('Confirm clicked')();
             }}
             label="PLEASE SAY YES"
-            modalText={
-              <p>
-                Are you sure you want to <strong>delete</strong> all users?
-              </p>
-            }
             confirmText="YES"
             cancelText="NO"
-          />
+          >
+            <p>
+              Are you sure you want to <strong>delete</strong> all users?
+            </p>
+          </ConfirmModal>
         ) : null}
         <ButtonDropdown
           isOpen={isDropdownMenuOpen}

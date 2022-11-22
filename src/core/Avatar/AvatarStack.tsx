@@ -1,25 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
+import { UIBasePropsWithCSSProperties, WithChildren } from '../types';
 
-type Props = {
-  /**
-   * Element underneath the image.
-   */
-  children: React.ReactNode;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-};
+type AvatarStackProps = Partial<Omit<UIBasePropsWithCSSProperties, 'roles'>> &
+  WithChildren<React.ReactNode>;
 
 /**
  * AvatarStack is a component which shows a row of overlapped avatars.
  * Use it for instance when you want to show multiple thumbnails of users in an organized way.
  */
-export function AvatarStack({ children, className }: Props) {
+export function AvatarStack({
+  className,
+  children,
+  ...props
+}: AvatarStackProps) {
   return (
-    <div className={classNames('avatar-stack', className)}>{children}</div>
+    <div className={classNames('avatar-stack', className)} {...props}>
+      {children}
+    </div>
   );
 }

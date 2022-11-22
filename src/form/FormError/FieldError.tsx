@@ -9,9 +9,14 @@ type Props = {
   validator?: string;
   setHasErrors: Dispatch<SetStateAction<boolean>>;
   errorMode: ErrorMode;
-}
+};
 
-export function FieldError({ name, validator, setHasErrors, errorMode }: Props) {
+export function FieldError({
+  name,
+  validator,
+  setHasErrors,
+  errorMode
+}: Props) {
   // Listen to all props on the `Meta` object.
   const errorSubscription = {
     active: true,

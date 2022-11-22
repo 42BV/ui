@@ -25,7 +25,12 @@ export function alwaysTrue(): true {
   return true;
 }
 
-export function illegalPropsDetected(component: string, displayName: string, illegalProps: string[], managedProps: string[]) {
+export function illegalPropsDetected(
+  component: string,
+  displayName: string,
+  illegalProps: string[],
+  managedProps: string[]
+) {
   const illegalPropsAsString = prettyPropsSummation(illegalProps, 'and');
   const managedPropsAsString = prettyPropsSummation(managedProps, 'or');
 

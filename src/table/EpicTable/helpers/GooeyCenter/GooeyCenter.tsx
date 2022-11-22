@@ -76,7 +76,7 @@ export function GooeyCenter({
   const wrapperEl = useRef<HTMLDivElement>(null);
   const centerEl = useRef<HTMLDivElement>(null);
 
-  const [ centerWidth, setCenterWidth ] = useState(0);
+  const [centerWidth, setCenterWidth] = useState(0);
 
   useEffect(
     function trackCenterWidthBasedOnResize() {
@@ -109,7 +109,7 @@ export function GooeyCenter({
         window.removeEventListener('resizeEpicTables', calculateCenterWidth);
       };
     },
-    [ setCenterWidth, onCenterWidthChanged, left, center, right ]
+    [setCenterWidth, onCenterWidthChanged, left, center, right]
   );
 
   function handleScroll(instance: OverlayScrollbars, event: Event) {

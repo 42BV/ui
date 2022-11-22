@@ -31,11 +31,11 @@ describe('Component: FormError', () => {
 
     jest
       .spyOn(reactErrorStore, 'useErrorsForValidator')
-      .mockReturnValue(hasBackEndErrors ? [ 'back-end error' ] : []);
+      .mockReturnValue(hasBackEndErrors ? ['back-end error'] : []);
 
     jest
       .spyOn(SettledErrors, 'useSettledErrors')
-      .mockReturnValue(hasFrontEndErrors ? [ required ] : []);
+      .mockReturnValue(hasFrontEndErrors ? [required] : []);
 
     const { container } = render(
       <FormError

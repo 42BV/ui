@@ -2,8 +2,17 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { FieldImageUpload, ImageUpload, JarbImageUpload, requireImage } from './ImageUpload';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldImageUpload,
+  ImageUpload,
+  JarbImageUpload,
+  requireImage
+} from './ImageUpload';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { FileInput } from '../FileInput/FileInput';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
@@ -15,7 +24,10 @@ storiesOf('Form/ImageUpload', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use ImageUpload, you have to add lodash, pica, buffer and react-avatar-editor to your dependencies:</p>
+        <p>
+          To be able to use ImageUpload, you have to add lodash, pica, buffer
+          and react-avatar-editor to your dependencies:
+        </p>
         <code>npm install --save lodash pica buffer react-avatar-editor</code>
       </Alert>
       <Story />
@@ -97,7 +109,7 @@ storiesOf('Form/ImageUpload', module)
     );
   })
   .add('File as initial value', () => {
-    const [ file, setFile ] = useState<File | null>();
+    const [file, setFile] = useState<File | null>();
     return (
       <Card className="m2">
         <FileInput
@@ -131,7 +143,7 @@ storiesOf('Form/ImageUpload', module)
             id="image-uploader"
             name="profile"
             label="Profile photo"
-            validators={[ requireImage('Profile photo') ]}
+            validators={[requireImage('Profile photo')]}
             crop={{
               type: 'rect',
               width: 500,
@@ -150,7 +162,7 @@ storiesOf('Form/ImageUpload', module)
           <JarbImageUpload
             id="image-uploader"
             name="profile"
-            validators={[ requireImage('Profile photo') ]}
+            validators={[requireImage('Profile photo')]}
             crop={{
               type: 'rect',
               width: 500,

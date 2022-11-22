@@ -3,10 +3,22 @@ import { storiesOf } from '@storybook/react';
 import React, { Fragment, useState } from 'react';
 import { Form as ReactFinalForm } from 'react-final-form';
 import { Alert, Col, Row } from 'reactstrap';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { isDateAfter, isDateBefore, isDateBetween } from './checkers';
-import { DateTimeInput, FieldDateTimeInput, JarbDateTimeInput } from './DateTimeInput';
-import { isDateAfterValidator, isDateBeforeValidator, isDateBetweenValidator } from './validators';
+import {
+  DateTimeInput,
+  FieldDateTimeInput,
+  JarbDateTimeInput
+} from './DateTimeInput';
+import {
+  isDateAfterValidator,
+  isDateBeforeValidator,
+  isDateBetweenValidator
+} from './validators';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { Icon } from '../../core/Icon';
@@ -17,14 +29,17 @@ storiesOf('Form/DateTimeInput', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use DateTimeInput, you have to add lodash, moment and react-datetime to your dependencies:</p>
+        <p>
+          To be able to use DateTimeInput, you have to add lodash, moment and
+          react-datetime to your dependencies:
+        </p>
         <code>npm install --save lodash moment react-datetime</code>
       </Alert>
       <Story />
     </>
   ))
   .add('date and time', () => {
-    const [ value, setValue ] = useState<Date | string | undefined>(undefined);
+    const [value, setValue] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -49,7 +64,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('date', () => {
-    const [ value, setValue ] = useState<Date | string | undefined>(undefined);
+    const [value, setValue] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -74,7 +89,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('time', () => {
-    const [ value, setValue ] = useState<Date | string | undefined>(undefined);
+    const [value, setValue] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -101,7 +116,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('with custom label', () => {
-    const [ value, setValue ] = useState<Date | string | undefined>(undefined);
+    const [value, setValue] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -137,7 +152,7 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('open in modal', () => {
-    const [ value, setValue ] = useState<Date | string | undefined>();
+    const [value, setValue] = useState<Date | string | undefined>();
 
     return (
       <Card className="m2">
@@ -163,8 +178,8 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('range', () => {
-    const [ start, setStart ] = useState<Date | string | undefined>(undefined);
-    const [ end, setEnd ] = useState<Date | string | undefined>(undefined);
+    const [start, setStart] = useState<Date | string | undefined>(undefined);
+    const [end, setEnd] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -210,8 +225,8 @@ storiesOf('Form/DateTimeInput', module)
     );
   })
   .add('range inclusive', () => {
-    const [ start, setStart ] = useState<Date | string | undefined>(undefined);
-    const [ end, setEnd ] = useState<Date | string | undefined>(undefined);
+    const [start, setStart] = useState<Date | string | undefined>(undefined);
+    const [end, setEnd] = useState<Date | string | undefined>(undefined);
 
     return (
       <Card className="m2">
@@ -266,7 +281,7 @@ storiesOf('Form/DateTimeInput', module)
             placeholder="Please enter your date of birth"
             dateFormat="dd-MM-yyyy"
             timeFormat={false}
-            isDateAllowed={(date) => date.isBefore(new Date)}
+            isDateAllowed={(date) => date.isBefore(new Date())}
           />
 
           <FieldDateTimeInput
@@ -276,7 +291,7 @@ storiesOf('Form/DateTimeInput', module)
             placeholder="Please enter your wedding day"
             dateFormat="dd-MM-yyyy"
             timeFormat={false}
-            isDateAllowed={(date) => date.isBefore(new Date)}
+            isDateAllowed={(date) => date.isBefore(new Date())}
             mode="modal"
           />
 
@@ -287,7 +302,7 @@ storiesOf('Form/DateTimeInput', module)
             placeholder="Please enter the time the sun sets"
             dateFormat={false}
             timeFormat="HH:mm:ss"
-            isDateAllowed={(date) => date.isBefore(new Date)}
+            isDateAllowed={(date) => date.isBefore(new Date())}
           />
 
           <FieldDateTimeInput

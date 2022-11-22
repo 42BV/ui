@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: CheckBox ui default 1`] = `
+<div>
+  <input
+    aria-label="Test"
+    id="1"
+    type="checkbox"
+  />
+</div>
+`;

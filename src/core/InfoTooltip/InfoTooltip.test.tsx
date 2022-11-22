@@ -21,9 +21,7 @@ describe('Component: InfoTooltip', () => {
       className
     };
 
-    const { container } = render(
-      <InfoTooltip {...props} />
-    );
+    const { container } = render(<InfoTooltip {...props} />);
 
     return { container };
   }

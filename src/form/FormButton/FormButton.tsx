@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Props as ButtonProps } from '../../core/Button/Button';
+import { Button } from '../../core/Button/Button';
+import { ButtonProps } from '../../core/types';
 
 type Props = {
   /**
@@ -29,14 +30,18 @@ export function FormButton({
   formId,
   type,
   ...rest
-}: Props & Omit<ButtonProps, 'type' | 'onClick'>) {
+}: Props & Omit<ButtonProps<React.ReactNode>, 'type' | 'onClick'>) {
   function onClick() {
     document
       .getElementById(formId)
       ?.dispatchEvent(new Event(type, { cancelable: true, bubbles: true }));
   }
 
-  const buttonProps = { type, onClick, ...rest } as ButtonProps;
+  const buttonProps = {
+    type,
+    onClick,
+    ...rest
+  } as ButtonProps<React.ReactNode>;
 
   return <Button {...buttonProps} />;
 }

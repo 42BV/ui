@@ -31,9 +31,7 @@ describe('Component: Pager', () => {
       onChange: onChangeSpy
     };
 
-    const { container } = render(
-      <Pager {...props} />
-    );
+    const { container } = render(<Pager {...props} />);
 
     return { container, onChangeSpy };
   }
@@ -51,12 +49,16 @@ describe('Component: Pager', () => {
 
     test('first', () => {
       setup({ number: 1, totalPages: 10 });
-      expect(screen.getByText('arrow_back').parentNode?.parentNode).toBeDisabled();
+      expect(
+        screen.getByText('arrow_back').parentNode?.parentNode
+      ).toBeDisabled();
     });
 
     test('last', () => {
       setup({ number: 10, totalPages: 10 });
-      expect(screen.getByText('arrow_forward').parentNode?.parentNode).toBeDisabled();
+      expect(
+        screen.getByText('arrow_forward').parentNode?.parentNode
+      ).toBeDisabled();
     });
   });
 

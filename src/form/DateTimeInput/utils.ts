@@ -29,7 +29,7 @@ export function formatToMask(
   const dateMaskIsDefined = dateMask.length > 0;
 
   if (dateMaskIsDefined && timeMask.length > 0) {
-    return [ ...dateMask, ' ', ...timeMask ];
+    return [...dateMask, ' ', ...timeMask];
   } else if (dateMaskIsDefined) {
     return dateMask;
   } else {

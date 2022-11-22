@@ -48,7 +48,8 @@
       cursor: col-resize;
     }
 
-    .form-control, .form-select {
+    .form-control,
+    .form-select {
       height: calc(1.5em + 0.2rem + 2px);
       border-radius: 0;
       padding: 0.375rem 0.2rem;

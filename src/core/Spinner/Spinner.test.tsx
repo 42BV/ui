@@ -5,9 +5,7 @@ import { Spinner } from './Spinner';
 
 describe('Component: Spinner', () => {
   test('ui', () => {
-    const { container } = render(
-      <Spinner color="white" size={42} />
-    );
+    const { container } = render(<Spinner color="white" size={42} />);
     expect(container).toMatchSnapshot();
   });
 });

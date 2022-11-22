@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import Tippy from '@tippyjs/react';
-import { TippyPlacement } from '../types';
+import { TippyPlacement, WithChildren } from '../types';
 
 type Props = {
   /**
@@ -17,11 +17,6 @@ type Props = {
    * Is useful for when wanting to take complete control over the popover.
    */
   onClickOutside?: () => void;
-
-  /**
-   * Content shown inside the popover.
-   */
-  children: React.ReactNode;
 
   /**
    * Target component that, when hovered, will trigger the popover to show up.
@@ -64,7 +59,7 @@ type Props = {
    * by the wrapping of the children inside the CustomTag.
    */
   style?: CSSProperties;
-};
+} & WithChildren<React.ReactNode>;
 
 /**
  * Bootstrap-like Popover component based on the Tippy.js library.
@@ -90,7 +85,7 @@ export function Popover({
       className="border-0 tippy-popover"
       content={children}
       placement={placement}
-      offset={[ offset, distance ]}
+      offset={[offset, distance]}
       interactive={true}
       zIndex={1049} // One level below bootstrap's modal
     >

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavItem, NavLink } from 'reactstrap';
-import { Icon, IconType } from '../../Icon';
-import { Color } from '../../types';
+import { Icon } from '../../Icon';
+import { BootstrapColor, IconType } from '../../types';
 import { alwaysTrue } from '../../../form/utils';
 import classNames from 'classnames';
 
@@ -55,7 +55,7 @@ export type Props = {
    * This is useful when using tabs in a form and an inactive tab
    * contains validation errors.
    */
-  iconColor?: Color;
+  iconColor?: BootstrapColor;
 
   /**
    * Optional extra CSS class you want to add to the component.

@@ -13,9 +13,9 @@ import { range } from 'lodash';
 storiesOf('core/OpenCloseModal', module)
   .addParameters({ component: OpenCloseModal })
   .add('basic', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
-    const [ inProgress, setInProgress ] = useState(false);
-    const [ choice, setChoice ] = useState<string | undefined>(undefined);
+    const [isOpen, setIsOpen] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
+    const [choice, setChoice] = useState<string | undefined>(undefined);
 
     function onSave() {
       action('save button was clicked');
@@ -62,8 +62,8 @@ storiesOf('core/OpenCloseModal', module)
   })
   .add('with form', ModalForm)
   .add('sticky', () => {
-    const [ isOpenSticky, setIsOpenSticky ] = useState(false);
-    const [ isOpenSansSticky, setIsOpenSansSticky ] = useState(false);
+    const [isOpenSticky, setIsOpenSticky] = useState(false);
+    const [isOpenSansSticky, setIsOpenSansSticky] = useState(false);
 
     return (
       <Card body>
@@ -116,7 +116,7 @@ storiesOf('core/OpenCloseModal', module)
     );
   })
   .add('without heading', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
       <Card body>
@@ -137,7 +137,7 @@ storiesOf('core/OpenCloseModal', module)
     );
   })
   .add('without buttons', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     function onClose() {
       setIsOpen(false);
@@ -161,8 +161,10 @@ storiesOf('core/OpenCloseModal', module)
     );
   })
   .add('custom button text and icons', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
-    const [ choice, setChoice ] = useState<{ label: string; value: string } | undefined>(undefined);
+    const [isOpen, setIsOpen] = useState(false);
+    const [choice, setChoice] = useState<
+      { label: string; value: string } | undefined
+    >(undefined);
 
     function onSave() {
       alert(`You chose to ${choice?.value} the diamond`);
@@ -214,7 +216,7 @@ storiesOf('core/OpenCloseModal', module)
   });
 
 export function ModalForm() {
-  const [ isOpen, setIsOpen ] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   async function onSave() {
     action('save button was clicked');
@@ -254,15 +256,15 @@ export function ModalForm() {
       ) : null}
 
       <p className="mt-2">
-        Note: the <code>Form</code> element should wrap the <code>OpenCloseModal</code> not
-        the other way around. Otherwise you cannot use the inProgress prop, and you cannot
-        use submit in onSave.
+        Note: the <code>Form</code> element should wrap the{' '}
+        <code>OpenCloseModal</code> not the other way around. Otherwise you
+        cannot use the inProgress prop, and you cannot use submit in onSave.
       </p>
 
       <p className="mt-2">
-        Also make sure that you do not render the <code>Form</code> this way when you close
-        the modal the form will be reset. Otherwise information will linger in
-        the <code>Form</code> element.
+        Also make sure that you do not render the <code>Form</code> this way
+        when you close the modal the form will be reset. Otherwise information
+        will linger in the <code>Form</code> element.
       </p>
 
       <p className="mt-2">

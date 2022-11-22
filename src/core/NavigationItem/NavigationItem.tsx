@@ -3,7 +3,8 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 import { NavItem, NavLink } from 'reactstrap';
 import classNames from 'classnames';
 
-import { Icon, IconType } from '../Icon';
+import { Icon } from '../Icon';
+import { IconType } from '../types';
 
 type Props = {
   /**

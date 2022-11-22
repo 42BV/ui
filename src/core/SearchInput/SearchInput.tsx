@@ -3,7 +3,7 @@ import { debounce as lodashDebounce, DebounceSettings, uniqueId } from 'lodash';
 import { FormGroup, Input, InputGroup, InputProps, Label } from 'reactstrap';
 
 import { Icon } from '../Icon';
-import { BootstrapSize } from '../types';
+import { BootstrapSize, Changeable, WithChildren, WithSize } from '../types';
 import { AddonIcon } from '../../form/AddonIcon/AddonIcon';
 
 export type SearchInputApi = {
@@ -15,7 +15,8 @@ export type SearchInputApi = {
   setValue: (value: string) => void;
 };
 
-type ModifiedInputProps = Omit<InputProps,
+type ModifiedInputProps = Omit<
+  InputProps,
   // We are going to override onChange, so it sends out strings.
   | 'onChange'
   // We want to remove the value because we use defaultValue,
@@ -31,7 +32,8 @@ type ModifiedInputProps = Omit<InputProps,
   | 'children'
   // We are going to override some properties to be able to provide docs.
   | 'placeholder'
-  | 'className'>;
+  | 'className'
+>;
 
 export type Props = ModifiedInputProps & {
   /**
@@ -44,7 +46,6 @@ export type Props = ModifiedInputProps & {
    * The label of the SearchInput.
    */
   label: React.ReactNode;
-
 
   /**
    * Optionally whether the label should be invisible (aria-label).
@@ -77,34 +78,10 @@ export type Props = ModifiedInputProps & {
   defaultValue: string;
 
   /**
-   * Called when the value changes after the debounce period.
-   */
-  onChange: (value: string) => void;
-
-  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
   className?: string;
-
-  /**
-   * Optionally you can use the `children` prop to manipulate the
-   * value rendered inside the `SearchInput`.
-   *
-   * You will be called with the `searchInput`, which you must render, and
-   * an API object, which you can use to manually alter the value.
-   *
-   * The `setValue` in the API will then cancel any active debounce.
-   *
-   * This has to be done via this unconventional api because the
-   * `SearchInput` has to use an uncontrolled <input> so it can
-   * debounce the value. If you change the `props.value` from
-   * outside this component, nothing would normally happen.
-   */
-  children?: (
-    searchInput: React.ReactNode,
-    api: SearchInputApi
-  ) => React.ReactNode;
 
   /**
    * Whether to show a magnifying glass icon.
@@ -114,17 +91,18 @@ export type Props = ModifiedInputProps & {
   showIcon?: boolean;
 
   /**
-   * Optional size you want to give the icon.
-   */
-  size?: BootstrapSize;
-
-  /**
    * Whether to show a "clear" button.
    *
    * Defaults to `true`
    */
   canClear?: boolean;
-};
+} & Changeable<string, void> &
+  Partial<
+    WithChildren<
+      (searchInput: React.ReactNode, api: SearchInputApi) => React.ReactNode
+    > &
+      WithSize<BootstrapSize>
+  >;
 
 /**
  * SearchInput is a component which shows an input field which has
@@ -160,7 +138,7 @@ export function SearchInput(props: Props) {
   // When the onChange changes update the handleChange
   useEffect(() => {
     handleChange.current = lodashDebounce(onChange, debounce, debounceSettings);
-  }, [ onChange, debounce, debounceSettings ]);
+  }, [onChange, debounce, debounceSettings]);
 
   function handleKeyUp(event: KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter') {

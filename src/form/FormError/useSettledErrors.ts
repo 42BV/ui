@@ -31,13 +31,13 @@ import { Meta, MetaError } from '../types';
 export function useSettledErrors(meta: Meta, value: any): MetaError[] {
   const { error, active, touched } = meta;
 
-  const [ errorCache ] = useState({});
+  const [errorCache] = useState({});
 
   const errors: MetaError[] = useMemo(() => {
-    return error === undefined ? [] : Array.isArray(error) ? error : [ error ];
-  }, [ error ]);
+    return error === undefined ? [] : Array.isArray(error) ? error : [error];
+  }, [error]);
 
-  const [ settledErrors, setSettledErrors ] = useState(errors);
+  const [settledErrors, setSettledErrors] = useState(errors);
 
   const hasErrors = errors.length > 0;
 

@@ -18,7 +18,7 @@ describe('Component: PasswordStrength', () => {
     const { container } = render(
       <PasswordStrength
         password={password}
-        rules={[ 'lowercase', 'minimumLength' ]}
+        rules={['lowercase', 'minimumLength']}
         showMeter={showMeter}
       />
     );

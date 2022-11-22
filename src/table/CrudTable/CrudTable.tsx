@@ -112,9 +112,7 @@ export function CrudTable(props: Props) {
 
       {renderSelection ? renderSelection() : null}
 
-      <EpicTable minHeight={400}>
-        {children}
-      </EpicTable>
+      <EpicTable minHeight={400}>{children}</EpicTable>
 
       {page && pageChanged ? (
         <div className="d-flex justify-content-center">

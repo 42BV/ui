@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { CheckboxMultipleSelect, FieldCheckboxMultipleSelect, JarbCheckboxMultipleSelect } from './CheckboxMultipleSelect';
+import {
+  CheckboxMultipleSelect,
+  FieldCheckboxMultipleSelect,
+  JarbCheckboxMultipleSelect
+} from './CheckboxMultipleSelect';
 import {
   FieldFormElementDependencies,
   FinalForm,
@@ -25,14 +29,17 @@ storiesOf('Form/CheckboxMultipleSelect', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use CheckboxMultipleSelect, you have to add lodash to your dependencies:</p>
+        <p>
+          To be able to use CheckboxMultipleSelect, you have to add lodash to
+          your dependencies:
+        </p>
         <code>npm install --save lodash</code>
       </Alert>
       <Story />
     </>
   ))
   .add('predefined options', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -58,7 +65,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('async options', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -90,7 +97,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('disabled options', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -117,7 +124,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       provinces()[0]
     ]);
 
@@ -146,7 +153,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('custom keyForOption', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       provinces()[0]
     ]);
 
@@ -175,8 +182,8 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [ limitToNorthern, setLimitToNorthern ] = useState(false);
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [limitToNorthern, setLimitToNorthern] = useState(false);
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -237,18 +244,18 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     type Permission = typeof permissions[number];
 
     function carPermissions(): Permission[] {
-      return [ 'CREATE_CAR', 'UPDATE_CAR', 'READ_CAR', 'DELETE_CAR' ];
+      return ['CREATE_CAR', 'UPDATE_CAR', 'READ_CAR', 'DELETE_CAR'];
     }
 
     function bikePermissions(): Permission[] {
-      return [ 'CREATE_BIKE', 'UPDATE_BIKE', 'READ_BIKE', 'DELETE_BIKE' ];
+      return ['CREATE_BIKE', 'UPDATE_BIKE', 'READ_BIKE', 'DELETE_BIKE'];
     }
 
     function boatPermissions(): Permission[] {
-      return [ 'CREATE_BOAT', 'UPDATE_BOAT', 'READ_BOAT', 'DELETE_BOAT' ];
+      return ['CREATE_BOAT', 'UPDATE_BOAT', 'READ_BOAT', 'DELETE_BOAT'];
     }
 
-    const [ value, setValue ] = useState<Permission[] | undefined>([
+    const [value, setValue] = useState<Permission[] | undefined>([
       'CREATE_CAR',
       'CREATE_BIKE',
       'CREATE_BOAT'
@@ -344,7 +351,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('label & placeholder', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -408,7 +415,7 @@ storiesOf('Form/CheckboxMultipleSelect', module)
     );
   })
   .add('horizontal', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 

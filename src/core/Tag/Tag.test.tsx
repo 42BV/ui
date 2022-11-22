@@ -7,23 +7,19 @@ import { Tag } from './Tag';
 describe('Component: Tag', () => {
   describe('ui', () => {
     test('default', () => {
-      const { container } = render(
-        <Tag text="Maarten" />
-      );
+      const { container } = render(<Tag text="Maarten" />);
       expect(container).toMatchSnapshot();
     });
 
     test('with type', () => {
-      const { container } = render(
-        <Tag text="Maarten" color="success" />
+      const { container } = render(<Tag text="Maarten" color="success" />);
+      expect(container.firstChild).toHaveClass(
+        'badge rounded-pill text-bg-success'
       );
-      expect(container.firstChild).toHaveClass('badge rounded-pill text-bg-success');
     });
 
     test('with remove', () => {
-      const { container } = render(
-        <Tag text="Maarten" onRemove={jest.fn()} />
-      );
+      const { container } = render(<Tag text="Maarten" onRemove={jest.fn()} />);
       expect(screen.queryByText('×')).toBeInTheDocument();
       expect(container).toMatchSnapshot();
     });
@@ -31,9 +27,7 @@ describe('Component: Tag', () => {
 
   test('onRemove', () => {
     const onRemoveSpy = jest.fn();
-    render(
-      <Tag text="Maarten" onRemove={onRemoveSpy} />
-    );
+    render(<Tag text="Maarten" onRemove={onRemoveSpy} />);
 
     fireEvent.click(screen.getByRole('button'));
 

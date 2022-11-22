@@ -8,7 +8,7 @@ describe('useShowSpinner', () => {
   });
 
   test('that the showSpinner is debounced', () => {
-    const { result, rerender } = renderHook(show => useShowSpinner(show), {
+    const { result, rerender } = renderHook((show) => useShowSpinner(show), {
       initialProps: false
     });
 

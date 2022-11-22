@@ -90,7 +90,7 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [ { id: 1, label: 'Nederland' } ]
+          content: [{ id: 1, label: 'Nederland' }]
         },
         loading: false
       });
@@ -102,7 +102,7 @@ describe('useOptions', () => {
           const options = generateOptions();
 
           return useOptions({
-            options: reloadOptions === 'all' ? options : [ options[0] ],
+            options: reloadOptions === 'all' ? options : [options[0]],
             value: undefined,
             labelForOption: (option: Option) => option.label,
             isOptionEqual: (a, b) => a.id === b.id,
@@ -149,7 +149,7 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [ { id: 1, label: '1' } ]
+          content: [{ id: 1, label: '1' }]
         },
         loading: false
       });
@@ -208,7 +208,7 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [ { id: 1, label: '1' } ]
+          content: [{ id: 1, label: '1' }]
         },
         loading: false
       });
@@ -611,9 +611,7 @@ describe('useOptions', () => {
         optionsShouldAlwaysContainValue: false
       };
 
-      const { result } = renderHook(() =>
-        useOptions(config)
-      );
+      const { result } = renderHook(() => useOptions(config));
 
       // Should start by loading
       expect(result.current).toEqual({
@@ -873,10 +871,13 @@ describe('useOptions', () => {
       expect.assertions(8);
 
       const options = generateOptions();
-      const { promise: promise1, resolve: resolve1 } = resolvablePromise<Page<Option>>();
-      const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
+      const { promise: promise1, resolve: resolve1 } =
+        resolvablePromise<Page<Option>>();
+      const { promise: promise2, resolve: resolve2 } =
+        resolvablePromise<Page<Option>>();
 
-      const fetcher = jest.fn()
+      const fetcher = jest
+        .fn()
         .mockImplementationOnce(() => promise1)
         .mockImplementationOnce(() => promise2);
 
@@ -982,10 +983,13 @@ describe('useOptions', () => {
       expect.assertions(8);
 
       const options = generateOptions();
-      const { promise: promise1, resolve: resolve1 } = resolvablePromise<Page<Option>>();
-      const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
+      const { promise: promise1, resolve: resolve1 } =
+        resolvablePromise<Page<Option>>();
+      const { promise: promise2, resolve: resolve2 } =
+        resolvablePromise<Page<Option>>();
 
-      const fetcher = jest.fn()
+      const fetcher = jest
+        .fn()
         .mockImplementationOnce(() => promise1)
         .mockImplementationOnce(() => promise2);
 
@@ -1110,9 +1114,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: false
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
@@ -1158,9 +1160,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
@@ -1206,9 +1206,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
@@ -1254,9 +1252,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
@@ -1308,9 +1304,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));

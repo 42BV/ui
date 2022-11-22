@@ -1,6 +1,6 @@
 .toggle-container {
   @each $color, $value in $theme-colors {
-    &.toggle-#{"" + $color} {
+    &.toggle-#{'' + $color} {
       input[type='checkbox'] {
         &:checked {
           &::after {

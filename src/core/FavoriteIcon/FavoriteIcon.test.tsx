@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { FavoriteIcon } from './FavoriteIcon';
-import { Color } from '../types';
+import { BootstrapColor } from '../types';
 import userEvent from '@testing-library/user-event';
 
 describe('Component: FavoriteIcon', () => {
@@ -15,9 +15,9 @@ describe('Component: FavoriteIcon', () => {
     size
   }: {
     value: boolean;
-    color?: Color;
-    hoverColor?: Color;
-    activeColor?: Color;
+    color?: BootstrapColor;
+    hoverColor?: BootstrapColor;
+    activeColor?: BootstrapColor;
     size?: number;
   }) {
     const onChangeSpy = jest.fn();
@@ -66,7 +66,11 @@ describe('Component: FavoriteIcon', () => {
     });
 
     test('active color', () => {
-      const { container } = setup({ value: true, color: 'primary', activeColor: 'success' });
+      const { container } = setup({
+        value: true,
+        color: 'primary',
+        activeColor: 'success'
+      });
 
       expect(container.firstChild).toHaveClass('text-success');
     });

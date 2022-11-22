@@ -1,29 +1,22 @@
 import React, { Suspense } from 'react';
-import { Modal as ReactstrapModal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { BootstrapSize } from '../types';
+import {
+  Modal as ReactstrapModal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader
+} from 'reactstrap';
+import {
+  BootstrapSize,
+  Closeable,
+  UIBasePropsWithCSSProperties,
+  WithChildren,
+  WithFooter,
+  WithHeader,
+  WithSize
+} from '../types';
 import { Loading } from '../Loading/Loading';
 
-type Props = {
-  /**
-   * Callback for when the modal should close.
-   */
-  onClose: () => void;
-
-  /**
-   * Optionally the content of the modal header.
-   */
-  header?: React.ReactNode;
-
-  /**
-   * Optionally the content of the modal footer.
-   */
-  footer?: React.ReactNode;
-
-  /**
-   * Optionally the size (width) of the modal.
-   */
-  size?: BootstrapSize;
-
+type ModalProps = {
   /**
    * Whether the footer should stick to the bottom of the modal.
    * This allows the user to always click the close and save buttons.
@@ -31,12 +24,6 @@ type Props = {
    * Defaults to `true`.
    */
   stickyFooter?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
 
   /**
    * Optional extra CSS class you want to add to the <ModalHeader>.
@@ -55,12 +42,14 @@ type Props = {
    * Useful for styling the component.
    */
   modalFooterClassName?: string;
-
-  /**
-   * The content of the modal body.
-   */
-  children: React.ReactNode;
-};
+} & Partial<
+  UIBasePropsWithCSSProperties &
+    WithSize<BootstrapSize> &
+    WithHeader<React.ReactNode> &
+    WithFooter<React.ReactNode>
+> &
+  WithChildren<React.ReactNode> &
+  Closeable<unknown, void>;
 
 /**
  * Modal is a dialog that overlays the website. The dialog is often used to
@@ -69,7 +58,7 @@ type Props = {
  * because this component has Suspense built in to display a loader
  * and wait for its content to be fully loaded before displaying.
  */
-export function Modal(props: Props) {
+export function Modal(props: ModalProps) {
   const {
     onClose,
     header,

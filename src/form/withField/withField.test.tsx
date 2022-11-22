@@ -1,5 +1,11 @@
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import * as useHasErrors from '../../hooks/useHasErrors/useHasErrors';
@@ -13,18 +19,24 @@ const isSuperman = (value: string) =>
   value === 'superman' ? undefined : 'not superman';
 
 describe('HoC: withField', () => {
-  function setup({ hasErrors = false, errorMode }: { hasErrors?: boolean; errorMode?: 'tooltip' | 'below' }) {
+  function setup({
+    hasErrors = false,
+    errorMode
+  }: {
+    hasErrors?: boolean;
+    errorMode?: 'tooltip' | 'below';
+  }) {
     jest
       .spyOn(useHasErrors, 'useHasErrors')
-      .mockImplementation(() => [ hasErrors, jest.fn() ]);
+      .mockImplementation(() => [hasErrors, jest.fn()]);
 
     const { container, asFragment } = render(
       <Form onSubmit={jest.fn()}>
         {() => (
           <FieldInput
             name="firstName"
-            validators={[ isSuperman ]}
-            asyncValidators={[ isSuperman ]}
+            validators={[isSuperman]}
+            asyncValidators={[isSuperman]}
             asyncValidatorsDebounce={100}
             id="firstName"
             label="First name"
@@ -90,7 +102,9 @@ describe('HoC: withField', () => {
     expect.assertions(2);
 
     const isDateValidatorSpy = jest.fn();
-    jest.spyOn(Validators, 'isDateValidator').mockReturnValue(isDateValidatorSpy);
+    jest
+      .spyOn(Validators, 'isDateValidator')
+      .mockReturnValue(isDateValidatorSpy);
     jest.spyOn(console, 'warn').mockImplementation(jest.fn());
     setConstraints({
       Test: {
@@ -105,12 +119,19 @@ describe('HoC: withField', () => {
     render(
       <Form onSubmit={jest.fn()}>
         {() => (
-          <FieldDateTimeInput label="Test" name="test" dateFormat="yyyy-MM-dd" timeFormat={false} />
+          <FieldDateTimeInput
+            label="Test"
+            name="test"
+            dateFormat="yyyy-MM-dd"
+            timeFormat={false}
+          />
         )}
       </Form>
     );
 
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: '4242-42-42' } });
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: '4242-42-42' }
+    });
     await act(() => {
       jest.runAllTimers();
     });

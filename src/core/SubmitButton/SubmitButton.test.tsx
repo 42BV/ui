@@ -8,7 +8,10 @@ import * as useScrollToClosestError from './useScrollToClosestError';
 
 describe('Component: SubmitButton', () => {
   function setup(
-    { hasOnClick = true, inProgress = false }: { hasOnClick: boolean; inProgress?: boolean },
+    {
+      hasOnClick = true,
+      inProgress = false
+    }: { hasOnClick: boolean; inProgress?: boolean },
     props?: Partial<Props>
   ) {
     const doScrollToClosestErrorSpy = jest.fn();

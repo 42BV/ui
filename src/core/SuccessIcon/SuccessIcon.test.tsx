@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { SuccessIcon } from './SuccessIcon';
-import { Color } from '../types';
+import { BootstrapColor } from '../types';
 import userEvent from '@testing-library/user-event';
 
 describe('Component: SuccessIcon', () => {
@@ -15,8 +15,8 @@ describe('Component: SuccessIcon', () => {
     hasOnChangeSpy
   }: {
     value: boolean;
-    color?: Color;
-    hoverColor?: Color;
+    color?: BootstrapColor;
+    hoverColor?: BootstrapColor;
     size?: number;
     hasOnChangeSpy?: boolean;
   }) {
@@ -28,6 +28,7 @@ describe('Component: SuccessIcon', () => {
         color={color}
         hoverColor={hoverColor}
         size={size}
+        // @ts-expect-error mocks
         onChange={hasOnChangeSpy ? onChangeSpy : undefined}
       />
     );

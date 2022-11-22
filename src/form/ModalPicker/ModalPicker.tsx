@@ -1,14 +1,29 @@
 import React from 'react';
 import { Page } from '@42.nl/spring-connect';
-import { Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
+import {
+  Button,
+  Col,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Row
+} from 'reactstrap';
 
 import { Pagination } from '../../core/Pagination/Pagination';
 import { t } from '../../utilities/translation/translation';
 import { SearchInput } from '../../core/SearchInput/SearchInput';
 import { ContentState } from '../../core/ContentState/ContentState';
 import { EmptyModal } from './EmptyModal';
-import { ModalPickerRenderOptions, ModalPickerRenderOptionsOption } from './types';
-import { FieldCompatibleWithPredeterminedOptions, IsOptionEnabled, isOptionSelected } from '../option';
+import {
+  ModalPickerRenderOptions,
+  ModalPickerRenderOptionsOption
+} from './types';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  IsOptionEnabled,
+  isOptionSelected
+} from '../option';
 
 export type Text = {
   placeholder?: string;
@@ -110,8 +125,10 @@ type Props<T> = {
   selected: T | T[];
 };
 
-export type RenderOptionsConfig<T> = Omit<FieldCompatibleWithPredeterminedOptions<T>,
-  'options' | 'reloadOptions' | 'isOptionEnabled'> & {
+export type RenderOptionsConfig<T> = Omit<
+  FieldCompatibleWithPredeterminedOptions<T>,
+  'options' | 'reloadOptions' | 'isOptionEnabled'
+> & {
   // It is always provided by the ModalPickerSingle and ModalPickerMultiple
   isOptionEnabled: IsOptionEnabled<T>;
 

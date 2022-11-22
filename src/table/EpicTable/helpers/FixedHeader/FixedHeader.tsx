@@ -55,7 +55,7 @@ export function FixedHeader({
     if (fixedCenterEl.current) {
       fixedCenterEl.current.scrollLeft = leftScroll;
     }
-  }, [ fixedCenterEl, leftScroll ]);
+  }, [fixedCenterEl, leftScroll]);
 
   const { left, center, right } = layout;
 

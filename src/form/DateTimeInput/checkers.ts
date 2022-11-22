@@ -197,9 +197,7 @@ type IsDateConfig = {
  * @param {IsDateConfig} config The configuration of the isDateBetween function.
  * @returns {DateChecker} A date validator function which checks if the date is an actual date
  */
-export function isDate(
-  config: IsDateConfig
-): DateChecker {
+export function isDate(config: IsDateConfig): DateChecker {
   return (date?: MomentInput) => {
     if (!date) {
       return false;
@@ -210,6 +208,9 @@ export function isDate(
       return false;
     }
 
-    return moment(date, combineFormat(config.dateFormat, config.timeFormat)).isValid();
+    return moment(
+      date,
+      combineFormat(config.dateFormat, config.timeFormat)
+    ).isValid();
   };
 }

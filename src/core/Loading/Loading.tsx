@@ -4,34 +4,17 @@ import classNames from 'classnames';
 import { Spinner } from '../Spinner/Spinner';
 
 import { t } from '../../utilities/translation/translation';
-
-type Text = {
-  /**
-   * Loading text which is shown by default
-   */
-  loading?: string;
-};
+import { UIBasePropsWithCSSPropertiesAndChildren } from '../types';
 
 type Props = {
   /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
-  text?: Text;
+  loading?: string;
+} & Partial<UIBasePropsWithCSSPropertiesAndChildren<React.ReactNode>>;
 
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * Optional text to show next to the loading indicator.
-   */
-  children?: React.ReactNode;
-};
-
-export function Loading({ children, className, text = {} }: Props) {
+export function Loading({ children, className, loading }: Props) {
   const classes = classNames('d-flex', className);
 
   return (
@@ -41,10 +24,10 @@ export function Loading({ children, className, text = {} }: Props) {
         {children
           ? children
           : t({
-            key: 'Loading.LOADING',
-            fallback: 'Loading...',
-            overrideText: text.loading
-          })}
+              key: 'Loading.LOADING',
+              fallback: 'Loading...',
+              overrideText: loading
+            })}
       </span>
     </div>
   );

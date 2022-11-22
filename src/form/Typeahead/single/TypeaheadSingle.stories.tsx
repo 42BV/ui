@@ -13,7 +13,11 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../../../story-utils';
-import { FieldTypeaheadSingle, JarbTypeaheadSingle, TypeaheadSingle } from './TypeaheadSingle';
+import {
+  FieldTypeaheadSingle,
+  JarbTypeaheadSingle,
+  TypeaheadSingle
+} from './TypeaheadSingle';
 import { Alert } from 'reactstrap';
 
 storiesOf('Form/Typeahead/TypeaheadSingle', module)
@@ -21,16 +25,23 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use TypeaheadSingle, you have to add react-bootstrap-typeahead to your dependencies:</p>
+        <p className="mb-0">
+          To be able to use TypeaheadSingle, you have to add
+          react-bootstrap-typeahead to your dependencies:
+        </p>
         <code>npm install --save react-bootstrap-typeahead</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
-        <code>@import &apos;react-bootstrap-typeahead/css/Typeahead.css&apos;;</code>
+        <p className="mb-0 mt-2">
+          You also have to add the stylesheet to your project
+        </p>
+        <code>
+          @import &apos;react-bootstrap-typeahead/css/Typeahead.css&apos;;
+        </code>
       </Alert>
       <Story />
     </>
   ))
   .add('predefined options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -52,7 +63,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('async options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -71,7 +82,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('async options - limited pageSize', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -98,7 +109,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('disabled options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -120,7 +131,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -142,13 +153,13 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [ brand, setBrand ] = useState<string>();
-    const [ model, setModel ] = useState<string>();
+    const [brand, setBrand] = useState<string>();
+    const [model, setModel] = useState<string>();
 
     const allOptions = {
-      Audi: [ 'A1', 'A2', 'A3', 'M5' ],
-      BMW: [ 'series 1', 'series 2', 'series 3', 'series 4', 'series 5' ],
-      Mercedes: [ 'Viano', 'Vito', 'Sprinter' ]
+      Audi: ['A1', 'A2', 'A3', 'M5'],
+      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
+      Mercedes: ['Viano', 'Vito', 'Sprinter']
     };
 
     return (
@@ -188,7 +199,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('allow new', () => {
-    const [ brand, setBrand ] = useState<string>();
+    const [brand, setBrand] = useState<string>();
 
     const brands = ['Audi', 'BMW', 'Mercedes', 'Tesla'];
 
@@ -201,7 +212,11 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
           options={() => resolveAfter(pageOf(brands, 1))}
           labelForOption={(option) => option}
           onChange={(chosenBrand) =>
-            setBrand(chosenBrand && isTypeaheadCustomOption(chosenBrand) ? chosenBrand.label : chosenBrand)
+            setBrand(
+              chosenBrand && isTypeaheadCustomOption(chosenBrand)
+                ? chosenBrand.label
+                : chosenBrand
+            )
           }
           value={brand}
           allowNew={true}
@@ -213,7 +228,7 @@ storiesOf('Form/Typeahead/TypeaheadSingle', module)
     );
   })
   .add('label & placeholder', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 

@@ -2,7 +2,7 @@ import { ValidationError } from '@42.nl/jarb-final-form';
 
 import { Translation } from '../utilities/translation/translator';
 import { ReactNode } from 'react';
-import { Color } from '..';
+import { BootstrapColor } from '..';
 
 export type MetaError = ValidationError | ReactNode | Translation;
 
@@ -16,7 +16,7 @@ export type Meta = {
   error?: MetaError | MetaError[];
 };
 
-export type FieldCompatible<Value, ChangeValue> = {
+export type FieldCompatible<Value, ChangeValue> = Partial<HTMLElement> & {
   /**
    * Optionally the id of the form element. Will often be automatically
    * filled in when not provided manually.
@@ -73,7 +73,7 @@ export type FieldCompatible<Value, ChangeValue> = {
   /**
    * Optionally the color of the FormGroup.
    */
-  color?: Color;
+  color?: BootstrapColor;
 
   /**
    * Optional extra CSS class you want to add to the component.

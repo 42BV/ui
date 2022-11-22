@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Icon, IconType } from '../../../../core/Icon';
+import { Icon } from '../../../../core/Icon';
 import { EpicTableSortDirection } from '../../types';
 import { nextDirection } from './utils';
+import { IconType } from '../../../../core/types';
 
 export type Props = {
   /**

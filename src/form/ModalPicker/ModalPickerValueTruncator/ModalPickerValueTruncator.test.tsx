@@ -18,8 +18,8 @@ describe('Component: ModalPickerValueTruncator', () => {
     const value = hasSingleValue
       ? userUser()
       : hasMultipleValues
-        ? [ adminUser(), userUser() ]
-        : undefined;
+      ? [adminUser(), userUser()]
+      : undefined;
 
     const { container } = render(
       <ModalPickerValueTruncator

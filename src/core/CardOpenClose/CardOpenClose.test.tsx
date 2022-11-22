@@ -5,16 +5,12 @@ import '@testing-library/jest-dom';
 import { CardOpenClose } from './CardOpenClose';
 
 describe('Component: CardOpenClose', () => {
-  function setup({ isOpen }: { isOpen: boolean }) {
-    const toggleSpy = jest.fn();
+  const toggleSpy = jest.fn();
 
+  function setup({ isOpen }: { isOpen: boolean }) {
     const { container } = render(
       <CardOpenClose header="click this" isOpen={isOpen} toggle={toggleSpy}>
-        {() => (
-          <p>
-            This is collapsable content
-          </p>
-        )}
+        {() => <p>This is collapsable content</p>}
       </CardOpenClose>
     );
 
@@ -25,17 +21,20 @@ describe('Component: CardOpenClose', () => {
     test('open', () => {
       const { container } = setup({ isOpen: true });
       expect(container).toMatchSnapshot();
-      expect(screen.queryByText('This is collapsable content')).toBeInTheDocument();
+      expect(
+        screen.queryByText('This is collapsable content')
+      ).toBeInTheDocument();
       expect(screen.getByText('expand_more')).toHaveClass('is-open');
     });
 
     test('closed', () => {
       setup({ isOpen: false });
-      expect(screen.queryByText('This is collapsable content')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('This is collapsable content')
+      ).not.toBeInTheDocument();
       expect(screen.getByText('expand_more')).toHaveClass('is-closed');
     });
   });
-
   describe('events', () => {
     it('should call toggle when the header is clicked', () => {
       const { toggleSpy } = setup({ isOpen: false });

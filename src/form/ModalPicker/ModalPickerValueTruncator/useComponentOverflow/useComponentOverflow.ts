@@ -5,14 +5,14 @@ export function useComponentOverflow<T>(
   ref: RefObject<HTMLElement>,
   values: T | T[]
 ): boolean {
-  const [ componentOverflow, setComponentOverflow ] = useState(
+  const [componentOverflow, setComponentOverflow] = useState(
     isOverflowing(ref.current)
   );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = useCallback(
     handleResizeCallback(ref, setComponentOverflow),
-    [ ref ]
+    [ref]
   );
 
   const resizeObserver = useResizeObserver(handleResize);

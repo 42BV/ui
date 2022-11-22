@@ -1,32 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
+import { UIBasePropsWithCSSProperties, WithSize } from '../types';
 
 type Props = {
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * Color of the circle within the spinner.
-   *
-   */
-  color: string;
-
-  /**
-   * Width and height of the spinner.
-   *
-   */
-  size: number;
-};
+  color?: string;
+} & WithSize<number> &
+  Partial<Omit<UIBasePropsWithCSSProperties, 'color'>>;
 
 /**
  * Spinner is a component which is used as a loading indicator.
  *
  * Use it for example when data is fetching during navigation to a page.
  */
-export function Spinner({ className, color, size }: Props) {
+export function Spinner({ className, size, color }: Props) {
   return (
     <svg
       className={classNames('spinner', className)}
@@ -37,7 +23,7 @@ export function Spinner({ className, color, size }: Props) {
       <circle
         className="path"
         fill="none"
-        stroke={color}
+        stroke={color ? color : ''}
         cx="50"
         cy="50"
         r="20"

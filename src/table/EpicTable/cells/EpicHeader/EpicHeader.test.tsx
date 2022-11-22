@@ -21,7 +21,9 @@ describe('Component: EpicHeader', () => {
           epic header
         </EpicHeader>
       );
-      expect(screen.queryByTestId('epic-table-header-resize')).toBeInTheDocument();
+      expect(
+        screen.queryByTestId('epic-table-header-resize')
+      ).toBeInTheDocument();
     });
   });
 
@@ -35,8 +37,12 @@ describe('Component: EpicHeader', () => {
         </EpicHeader>
       );
 
-      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), { clientX: 0 });
-      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), { clientX: 10 });
+      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 0
+      });
+      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 10
+      });
       fireEvent.mouseUp(screen.getByTestId('epic-table-header-resize'));
 
       expect(onResizeSpy).toBeCalledTimes(1);

@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { AsyncContent, Props as AsyncContentProps, ReactAsyncState, ReactQueryState } from '../AsyncContent/AsyncContent';
+import { AsyncContent } from '../AsyncContent/AsyncContent';
 import { Page } from '@42.nl/spring-connect';
-
-type Props<T> = Omit<AsyncContentProps<T>, 'isEmpty'> & (ReactAsyncState<T> | ReactQueryState<T>);
+import { AsyncContentProps } from '../types';
 
 export function isEmpty<T>(page: Page<T>): boolean {
   return page.totalElements === 0;
@@ -19,6 +18,13 @@ export function isEmpty<T>(page: Page<T>): boolean {
  * standard `isEmpty` function which checks if the `totalElements`
  * of the `Page` is zero.
  */
-export function AsyncPage<T>(props: Props<Page<T>>) {
-  return <AsyncContent {...props} isEmpty={isEmpty} />;
+export function AsyncPage<T>({
+  children,
+  ...props
+}: AsyncContentProps<Page<T>>) {
+  return (
+    <AsyncContent {...props} isEmpty={isEmpty}>
+      {children}
+    </AsyncContent>
+  );
 }

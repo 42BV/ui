@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '../types';
+import { BootstrapColor } from '../types';
 
 type Props = {
   /**
@@ -12,7 +12,7 @@ type Props = {
    * The color of the badge. Supports Bootstrap colors (e.g. primary, danger).
    * Defaults to `primary`.
    */
-  color?: Color;
+  color?: BootstrapColor;
 
   /**
    * Determines if a tag should be removable.

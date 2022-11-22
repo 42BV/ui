@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { CardOpenClose } from '../CardOpenClose/CardOpenClose';
+import { UIBasePropsWithCSSPropertiesAndChildren, WithValue } from '../types';
 
-type Props = {
-  /**
-   * Any value you want to debug. Could be an object as well as any other type.
-   */
-  value: any;
-
+type Props<TVal> = {
   /**
    * Optionally whether the debug should start open or closed.
    *
    * Defaults to `true`.
    */
   defaultOpen?: boolean;
-};
+} & Partial<UIBasePropsWithCSSPropertiesAndChildren<() => React.ReactNode>> &
+  WithValue<TVal>;
 
 /**
  * A component which helps you debug things by rendering them as
@@ -36,14 +33,19 @@ type Props = {
  * />
  * ```
  */
-export function Debug({ value, defaultOpen = true }: Props) {
-  const [ isOpen, setIsOpen ] = useState(defaultOpen);
-
+export function Debug<TVal>({
+  value,
+  defaultOpen = true,
+  ...props
+}: Props<TVal>) {
   return (
     <CardOpenClose
       header="DEBUG"
-      isOpen={isOpen}
-      toggle={() => setIsOpen(!isOpen)}
+      isOpen={defaultOpen}
+      {...props}
+      toggle={() => {
+        return;
+      }}
     >
       {() => <pre>{JSON.stringify(value, null, 2)}</pre>}
     </CardOpenClose>

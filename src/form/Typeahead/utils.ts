@@ -10,6 +10,8 @@ export function optionToTypeaheadOption<T>(
   return { label, value: option };
 }
 
-export function isTypeaheadCustomOption(option: any): option is TypeaheadCustomOption {
+export function isTypeaheadCustomOption(
+  option: any
+): option is TypeaheadCustomOption {
   return (option as TypeaheadCustomOption).customOption;
 }

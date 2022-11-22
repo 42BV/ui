@@ -18,7 +18,7 @@ exports[`Component: AvatarsStack ui 1`] = `
         >
           <img
             alt="Picture 1"
-            src="http://lorempixel.com/200/200"
+            src="https://lorempixel.com/200/200"
           />
         </span>
       </span>
@@ -36,7 +36,7 @@ exports[`Component: AvatarsStack ui 1`] = `
         >
           <img
             alt="Picture 2"
-            src="http://lorempixel.com/200/200"
+            src="https://lorempixel.com/200/200"
           />
         </span>
       </span>
@@ -54,7 +54,7 @@ exports[`Component: AvatarsStack ui 1`] = `
         >
           <img
             alt="Picture 3"
-            src="http://lorempixel.com/200/200"
+            src="https://lorempixel.com/200/200"
           />
         </span>
       </span>
@@ -72,7 +72,7 @@ exports[`Component: AvatarsStack ui 1`] = `
         >
           <img
             alt="Picture 4"
-            src="http://lorempixel.com/200/200"
+            src="https://lorempixel.com/200/200"
           />
         </span>
       </span>

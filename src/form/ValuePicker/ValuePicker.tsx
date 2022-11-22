@@ -10,9 +10,9 @@ import { Select } from '../Select/Select';
 import { ModalPickerSingle } from '../ModalPicker/single/ModalPickerSingle';
 
 import { FieldCompatible } from '../types';
-import { IconType } from '../../core/Icon';
 import { withField } from '../withField/withField';
 import { Loading } from '../../core/Loading/Loading';
+import { IconType } from '../../core/types';
 
 export type Text = {
   /**
@@ -24,41 +24,43 @@ export type Text = {
 
 type BaseValuePickerProps<T> = Omit<FieldCompatible<T, T>, 'placeholder'> &
   FieldCompatibleWithPredeterminedOptions<T> & {
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder: string;
+    /**
+     * The placeholder of the form element.
+     */
+    placeholder: string;
 
-  /**
-   * Optionally the icon to display on the button that opens the modal picker.
-   * This icon only works when there are more than 10 options.
-   */
-  icon?: IconType;
+    /**
+     * Optionally the icon to display on the button that opens the modal picker.
+     * This icon only works when there are more than 10 options.
+     */
+    icon?: IconType;
 
-  /**
-   * Optionally whether the user can search.
-   * Defaults to `true`.
-   */
-  canSearch?: boolean;
+    /**
+     * Optionally whether the user can search.
+     * Defaults to `true`.
+     */
+    canSearch?: boolean;
 
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
 
-  /**
-   * Whether to show a "clear" button.
-   * This property only has effect when there are more than 10 options
-   * or single value with 1-3 options.
-   *
-   * Defaults to `true`
-   */
-  canClear?: boolean;
-};
+    /**
+     * Whether to show a "clear" button.
+     * This property only has effect when there are more than 10 options
+     * or single value with 1-3 options.
+     *
+     * Defaults to `true`
+     */
+    canClear?: boolean;
+  };
 
-type SingleValuePicker<T> = Omit<BaseValuePickerProps<T>,
-  'value' | 'onChange'> & {
+type SingleValuePicker<T> = Omit<
+  BaseValuePickerProps<T>,
+  'value' | 'onChange'
+> & {
   /**
    * Whether multiple values can be selected.
    */
@@ -75,8 +77,10 @@ type SingleValuePicker<T> = Omit<BaseValuePickerProps<T>,
   value?: T;
 };
 
-type MultipleValuePicker<T> = Omit<BaseValuePickerProps<T>,
-  'value' | 'onChange'> & {
+type MultipleValuePicker<T> = Omit<
+  BaseValuePickerProps<T>,
+  'value' | 'onChange'
+> & {
   /**
    * Whether multiple values can be selected.
    */
@@ -116,8 +120,8 @@ type Props<T> = SingleValuePicker<T> | MultipleValuePicker<T>;
 export function ValuePicker<T>(props: Props<T>) {
   const { text = {}, options, canClear = true } = props;
 
-  const [ booting, setBooting ] = useState(true);
-  const [ totalElements, setTotalElements ] = useState(0);
+  const [booting, setBooting] = useState(true);
+  const [totalElements, setTotalElements] = useState(0);
 
   useEffect(() => {
     async function boot() {
@@ -131,14 +135,12 @@ export function ValuePicker<T>(props: Props<T>) {
     }
 
     boot();
-  }, [ options ]);
+  }, [options]);
 
   // Until we know the number of totalElements, the ValuePicker is booting,
   // and we do not show anything to the user yet.
   if (booting) {
-    return (
-      <Loading text={{ loading: text.loadingMessage }}/>
-    );
+    return <Loading loading={text.loadingMessage} />;
   }
 
   if (props.multiple) {
@@ -165,9 +167,13 @@ export function ValuePicker<T>(props: Props<T>) {
 /**
  * Variant of the ValuePicker which can be used in a Jarb context.
  */
-export const JarbValuePicker = withJarb<any, any | null, Props<any>>(ValuePicker);
+export const JarbValuePicker = withJarb<any, any | null, Props<any>>(
+  ValuePicker
+);
 
 /**
  * Variant of the ValuePicker which can be used in a final form.
  */
-export const FieldValuePicker = withField<any, any | null, Props<any>>(ValuePicker);
+export const FieldValuePicker = withField<any, any | null, Props<any>>(
+  ValuePicker
+);

@@ -23,10 +23,13 @@ export function useMarkedAsRequiredLabel({
     showRequiredMarkInLabel &&
     isRequired(validator)
   ) {
-    return label + t({
-      key: 'withJarb.REQUIRED_MARK',
-      fallback: ' *'
-    });
+    return (
+      label +
+      t({
+        key: 'withJarb.REQUIRED_MARK',
+        fallback: ' *'
+      })
+    );
   }
 
   return label;

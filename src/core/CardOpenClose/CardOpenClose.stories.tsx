@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { CardOpenClose } from './CardOpenClose';
 
 storiesOf('core/CardOpenClose', module)
   .addParameters({ component: CardOpenClose })
   .add('basic', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
-
     return (
       <CardOpenClose
         header="You should see this!"
-        isOpen={isOpen}
-        toggle={() => setIsOpen(!isOpen)}
+        isOpen={false}
+        toggle={() => {
+          return;
+        }}
       >
         {() => (
           <iframe

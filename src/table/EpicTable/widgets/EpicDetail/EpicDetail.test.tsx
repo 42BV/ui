@@ -7,7 +7,6 @@ describe('Component: EpicDetail', () => {
   function setup() {
     const onCloseSpy = jest.fn();
 
-
     const { container } = render(
       <EpicDetail onClose={onCloseSpy}>
         <h1>children</h1>

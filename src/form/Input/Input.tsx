@@ -108,7 +108,8 @@ export function Input(props: Props) {
     innerRef,
     placeholder,
     onFocus,
-    onChange: (event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value),
+    onChange: (event: ChangeEvent<HTMLInputElement>) =>
+      onChange(event.target.value),
     onBlur,
     'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
   };

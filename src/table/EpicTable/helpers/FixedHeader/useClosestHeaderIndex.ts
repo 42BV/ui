@@ -18,7 +18,7 @@ export function useClosestHeaderIndex(
   fixedHeaderEl: RefObject<HTMLDivElement>,
   headers: HeaderRef[]
 ) {
-  const [ index, setIndex ] = useState(-1);
+  const [index, setIndex] = useState(-1);
 
   useEffect(() => {
     function onScroll() {
@@ -34,9 +34,7 @@ export function useClosestHeaderIndex(
         if (headersAboveFakeHeader && headersAboveFakeHeader.length > 0) {
           const lastIndex = headersAboveFakeHeader.length - 1;
 
-          setIndex(
-            headersAboveFakeHeader[lastIndex].index
-          );
+          setIndex(headersAboveFakeHeader[lastIndex].index);
         } else {
           setIndex(-1);
         }
@@ -48,7 +46,7 @@ export function useClosestHeaderIndex(
     return () => {
       window.removeEventListener('scroll', onScroll, true);
     };
-  }, [ fixedHeaderEl, headers ]);
+  }, [fixedHeaderEl, headers]);
 
   return index;
 }

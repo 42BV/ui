@@ -1,7 +1,11 @@
 import { emptyPage, Page } from '@42.nl/spring-connect';
 import { useEffect, useRef, useState } from 'react';
 import { pageOf } from '../utilities/page/page';
-import { FetchOptionsCallback, FieldCompatibleWithPredeterminedOptions, isOptionSelected } from './option';
+import {
+  FetchOptionsCallback,
+  FieldCompatibleWithPredeterminedOptions,
+  isOptionSelected
+} from './option';
 
 type UseOptionConfig<T> = FieldCompatibleWithPredeterminedOptions<T> & {
   value?: T | T[];
@@ -30,11 +34,11 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
     optionsShouldAlwaysContainValue
   } = config;
 
-  const [ loading, setLoading ] = useState(
+  const [loading, setLoading] = useState(
     () => !Array.isArray(optionsOrFetcher)
   );
 
-  const [ page, setPage ] = useState(() => {
+  const [page, setPage] = useState(() => {
     if (Array.isArray(optionsOrFetcher)) {
       const page = pageFromOptionsArray(optionsOrFetcher);
       appendValueToPage(page);
@@ -97,7 +101,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
         return !isValueIncludedInPage;
       });
 
-      page.content = [ ...prepend, ...page.content ];
+      page.content = [...prepend, ...page.content];
     } else {
       const isValueIncludedInPage = page.content.some((option) =>
         isOptionSelected({
@@ -149,7 +153,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
     }
     // We only want to reload when the following props change
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ watch ]);
+  }, [watch]);
 
   return { loading, page };
 }

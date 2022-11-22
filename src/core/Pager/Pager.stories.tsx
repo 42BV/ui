@@ -11,16 +11,19 @@ storiesOf('core/Pager', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use Pager, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <p>
+          To be able to use Pager, you have to add @42.nl/spring-connect to your
+          dependencies:
+        </p>
         <code>npm install --save @42.nl/spring-connect</code>
       </Alert>
       <Story />
     </>
   ))
   .add('default', () => {
-    const [ pageNumber, setPageNumber ] = useState(1);
+    const [pageNumber, setPageNumber] = useState(1);
 
-    const page = pageOf([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], pageNumber, 2);
+    const page = pageOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], pageNumber, 2);
 
     return (
       <Card>

@@ -76,7 +76,7 @@ describe('Util: isOptionSelected', () => {
 
         expect(
           isOptionSelected({
-            value: [ speedBoatCopy ],
+            value: [speedBoatCopy],
             option: speedBoat,
             keyForOption,
             labelForOption,
@@ -96,7 +96,7 @@ describe('Util: isOptionSelected', () => {
 
         expect(
           isOptionSelected({
-            value: [ tugBoat ],
+            value: [tugBoat],
             option: anotherTugBoat,
             keyForOption,
             labelForOption,
@@ -119,7 +119,7 @@ describe('Util: isOptionSelected', () => {
 
         expect(
           isOptionSelected({
-            value: [ tugBoat ],
+            value: [tugBoat],
             option: { ...anotherTugBoat, uniqueKey: tugBoat.uniqueKey },
             labelForOption,
             keyForOption
@@ -127,14 +127,14 @@ describe('Util: isOptionSelected', () => {
         ).toBe(true);
         expect(
           isOptionSelected({
-            value: [ speedBoat ],
+            value: [speedBoat],
             option: speedBoatCopy,
             labelForOption
           })
         ).toBe(true);
         expect(
           isOptionSelected({
-            value: [ { ...tugBoat, id: undefined } ],
+            value: [{ ...tugBoat, id: undefined }],
             option: { ...anotherTugBoat, id: undefined },
             labelForOption
           })
@@ -153,7 +153,7 @@ describe('Util: isOptionSelected', () => {
 
         expect(
           isOptionSelected({
-            value: [ speedBoatCopy ],
+            value: [speedBoatCopy],
             option: speedBoat,
             labelForOption,
             keyForOption
@@ -161,14 +161,14 @@ describe('Util: isOptionSelected', () => {
         ).toBe(false);
         expect(
           isOptionSelected({
-            value: [ tugBoat ],
+            value: [tugBoat],
             option: anotherTugBoat,
             labelForOption
           })
         ).toBe(false);
         expect(
           isOptionSelected({
-            value: [ { ...speedBoatCopy, id: undefined } ],
+            value: [{ ...speedBoatCopy, id: undefined }],
             option: { ...speedBoat, id: undefined },
             labelForOption
           })
@@ -180,12 +180,8 @@ describe('Util: isOptionSelected', () => {
   describe('when value is a primitive', () => {
     describe('when "isOptionEqual" is defined', () => {
       it('should consider a value selected when the "isOptionEqual" returns true', () => {
-        const {
-          labelForOption,
-          isOptionEqual,
-          speedBoat,
-          speedBoatCopy
-        } = setup();
+        const { labelForOption, isOptionEqual, speedBoat, speedBoatCopy } =
+          setup();
 
         expect(
           isOptionSelected({
@@ -198,12 +194,8 @@ describe('Util: isOptionSelected', () => {
       });
 
       it('should not consider a value selected when "isOptionEqual" returns false', () => {
-        const {
-          labelForOption,
-          isOptionEqual,
-          tugBoat,
-          anotherTugBoat
-        } = setup();
+        const { labelForOption, isOptionEqual, tugBoat, anotherTugBoat } =
+          setup();
 
         expect(
           isOptionSelected({
@@ -218,12 +210,8 @@ describe('Util: isOptionSelected', () => {
 
     describe('when "isOptionEqual" is not defined', () => {
       it('should consider a value selected when "keyForOption" returns the same string', () => {
-        const {
-          keyForOption,
-          labelForOption,
-          tugBoat,
-          anotherTugBoat
-        } = setup();
+        const { keyForOption, labelForOption, tugBoat, anotherTugBoat } =
+          setup();
 
         expect(
           isOptionSelected({

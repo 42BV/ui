@@ -24,17 +24,17 @@ describe('formatsFromToolbarModule', () => {
   });
 
   it('should when the "toolbar" has a "container" property use that instead of the "toolbar" prop', () => {
-    const placeholders = [ { label: 'First name', value: 'firstName' } ];
+    const placeholders = [{ label: 'First name', value: 'firstName' }];
 
     const modules = {
       toolbar: {
         container: [
           [
             {
-              placeholder: placeholders.map(ph => ph.value)
+              placeholder: placeholders.map((ph) => ph.value)
             }
           ],
-          [ 'bold', 'italic', 'underline', 'link' ]
+          ['bold', 'italic', 'underline', 'link']
         ],
         handlers: {
           placeholder: () => undefined
@@ -60,25 +60,25 @@ describe('formatsFromToolbarModule', () => {
   it('should know how to extract formats from a complex toolbar definition ', () => {
     const modules = {
       toolbar: [
-        [ 'bold', 'italic', 'underline', 'strike' ], // toggled buttons
-        [ 'blockquote', 'code-block' ],
+        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+        ['blockquote', 'code-block'],
 
-        [ { header: 1 }, { header: 2 } ], // custom button values
-        [ { list: 'ordered' }, { list: 'bullet' } ],
-        [ { script: 'sub' }, { script: 'super' } ], // superscript/subscript
-        [ { indent: '-1' }, { indent: '+1' } ], // outdent/indent
-        [ { direction: 'rtl' } ], // text direction
+        [{ header: 1 }, { header: 2 }], // custom button values
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+        [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+        [{ direction: 'rtl' }], // text direction
 
-        [ { size: [ 'small', false, 'large', 'huge' ] } ], // custom dropdown
-        [ { header: [ 1, 2, 3, 4, 5, 6, false ] } ],
+        [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-        [ { color: [] }, { background: [] } ], // dropdown with defaults from theme
-        [ { font: [] } ],
-        [ { align: [] } ],
+        [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+        [{ font: [] }],
+        [{ align: [] }],
 
-        [ 'link', 'image', 'video' ],
+        ['link', 'image', 'video'],
 
-        [ 'clean' ]
+        ['clean']
       ]
     };
 

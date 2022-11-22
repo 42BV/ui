@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { Button, getIconSize, getSpinnerSize } from './Button';
+import { Button } from './Button';
 import { useShowSpinner } from './useShowSpinner';
 
 describe('Component: Button', () => {
@@ -172,9 +172,7 @@ describe('Component: Button', () => {
 
     describe('icon only', () => {
       test('that when no icon is provided it will fallback to block', () => {
-        const { container } = render(
-          <Button />
-        );
+        const { container } = render(<Button />);
 
         expect(container).toMatchSnapshot();
       });
@@ -265,9 +263,7 @@ describe('Component: Button', () => {
           inProgress
         };
 
-        const { container } = render(
-          <Button {...props}>Save</Button>
-        );
+        const { container } = render(<Button {...props}>Save</Button>);
 
         return { container, onClickSpy };
       }
@@ -334,16 +330,4 @@ describe('Component: Button', () => {
       });
     });
   });
-});
-
-test('Util: getIconSize', () => {
-  expect(getIconSize('lg')).toBe(32);
-  expect(getIconSize('md')).toBe(24);
-  expect(getIconSize('sm')).toBe(16);
-});
-
-test('Util: getSpinnerSize', () => {
-  expect(getSpinnerSize('lg')).toBe(19);
-  expect(getSpinnerSize('md')).toBe(16);
-  expect(getSpinnerSize('sm')).toBe(12);
 });

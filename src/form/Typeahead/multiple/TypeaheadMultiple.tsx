@@ -5,7 +5,10 @@ import { TypeaheadCustomOption, TypeaheadOption } from '../types';
 import { withJarb } from '../../withJarb/withJarb';
 import { alwaysTrue, doBlur } from '../../utils';
 import { isTypeaheadCustomOption, optionToTypeaheadOption } from '../utils';
-import { FieldCompatibleWithPredeterminedOptions, isOptionSelected } from '../../option';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  isOptionSelected
+} from '../../option';
 import classNames from 'classnames';
 import { Tag } from '../../../core/Tag/Tag';
 import { FieldCompatible } from '../../types';
@@ -71,17 +74,22 @@ type BaseProps<T> = FieldCompatibleWithPredeterminedOptions<T> & {
   text?: Text;
 };
 
-type PropsWithCustomOption<T> = FieldCompatible<T[], (T | TypeaheadCustomOption)[] | undefined> & BaseProps<T> & {
-  /**
-   * Optionally whether it should be allowed to add new items by typing
-   * in the field and hitting enter or clicking the new option in the list.
-   */
-  allowNew: true;
-};
+type PropsWithCustomOption<T> = FieldCompatible<
+  T[],
+  (T | TypeaheadCustomOption)[] | undefined
+> &
+  BaseProps<T> & {
+    /**
+     * Optionally whether it should be allowed to add new items by typing
+     * in the field and hitting enter or clicking the new option in the list.
+     */
+    allowNew: true;
+  };
 
-type PropsWithoutCustomOption<T> = FieldCompatible<T[], T[] | undefined> & BaseProps<T> & {
-  allowNew?: never;
-};
+type PropsWithoutCustomOption<T> = FieldCompatible<T[], T[] | undefined> &
+  BaseProps<T> & {
+    allowNew?: never;
+  };
 
 type Props<T> = PropsWithCustomOption<T> | PropsWithoutCustomOption<T>;
 
@@ -127,7 +135,7 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
     text = {}
   } = props;
 
-  const [ query, setQuery ] = useState('');
+  const [query, setQuery] = useState('');
 
   const { page, loading } = useOptions<T>({
     options,
@@ -156,12 +164,18 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
     )
     .map((option) => optionToTypeaheadOption(option, labelForOption));
 
-  function doOnChange(values: (TypeaheadOption<T> | TypeaheadCustomOption)[]): void {
+  function doOnChange(
+    values: (TypeaheadOption<T> | TypeaheadCustomOption)[]
+  ): void {
     if (values.length === 0) {
       onChange(undefined);
     } else {
-      // @ts-expect-error Custom options are only available when allowNew is true, which causes the type of onChange param to match correctly
-      onChange(values.map((option) => isTypeaheadCustomOption(option) ? option : option.value));
+      onChange(
+        // @ts-expect-error Custom options are only available when allowNew is true, which causes the type of onChange param to match correctly
+        values.map((option) =>
+          isTypeaheadCustomOption(option) ? option : option.value
+        )
+      );
     }
 
     // Due this: https://github.com/ericgio/react-bootstrap-typeahead/issues/224
@@ -175,7 +189,7 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
   function renderToken(
     option: TypeaheadOption<T>,
     props: {
-      onRemove: (option: TypeaheadOption<T>) => void
+      onRemove: (option: TypeaheadOption<T>) => void;
     },
     index: number
   ) {
@@ -226,7 +240,9 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
 
   return (
     <FormGroup className={classes} color={color}>
-      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? (
+        <Label for={id}>{label}</Label>
+      ) : null}
       <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
         {Array.isArray(options) ? (
           <Typeahead
@@ -254,9 +270,17 @@ export function TypeaheadMultiple<T>(props: Props<T>) {
 /**
  * Variant of the TypeaheadMultiple which can be used in a Jarb context.
  */
-export const JarbTypeaheadMultiple = withJarb<any[], any[] | undefined, Props<any>>(TypeaheadMultiple);
+export const JarbTypeaheadMultiple = withJarb<
+  any[],
+  any[] | undefined,
+  Props<any>
+>(TypeaheadMultiple);
 
 /**
  * Variant of the TypeaheadMultiple which can be used in a final form.
  */
-export const FieldTypeaheadMultiple = withField<any[], any[] | undefined, Props<any>>(TypeaheadMultiple);
+export const FieldTypeaheadMultiple = withField<
+  any[],
+  any[] | undefined,
+  Props<any>
+>(TypeaheadMultiple);

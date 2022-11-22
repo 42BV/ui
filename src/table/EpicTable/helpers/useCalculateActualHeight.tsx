@@ -33,7 +33,7 @@ export function useCalculateActualHeight({
   overlayEl,
   headerHeight
 }: CalculateActualHeightConfig) {
-  const [ actualHeight, setActualHeight ] = useState(minHeight);
+  const [actualHeight, setActualHeight] = useState(minHeight);
   useEffect(() => {
     function resize() {
       const detailRowHeight = activeDetailRow
@@ -74,7 +74,7 @@ export function useCalculateActualHeight({
     return () => {
       window.clearInterval(interval);
     };
-  }, [ minHeight, totalDesiredHeight, activeDetailRow, overlayEl, headerHeight ]);
+  }, [minHeight, totalDesiredHeight, activeDetailRow, overlayEl, headerHeight]);
 
   return actualHeight;
 }

@@ -28,15 +28,13 @@ describe('Component: Modal', () => {
     const children = (
       <RadioGroup<string>
         onChange={jest.fn()}
-        options={[ 'local', 'development', 'test', 'acceptation', 'production' ]}
+        options={['local', 'development', 'test', 'acceptation', 'production']}
         labelForOption={(v) => v}
         label="Environment"
       />
     );
 
-    const { container } = render(
-      <Modal {...props}>{children}</Modal>
-    );
+    const { container } = render(<Modal {...props}>{children}</Modal>);
 
     return { container, onCloseSpy };
   }
@@ -65,7 +63,9 @@ describe('Component: Modal', () => {
     test('sans sticky footer', () => {
       setup({ stickyFooter: false });
 
-      expect(document.body.lastChild?.firstChild).not.toHaveClass('sticky-modal');
+      expect(document.body.lastChild?.firstChild).not.toHaveClass(
+        'sticky-modal'
+      );
     });
   });
 

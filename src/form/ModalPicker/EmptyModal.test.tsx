@@ -6,18 +6,20 @@ import { EmptyModal } from './EmptyModal';
 
 describe('Component: EmptyModal', () => {
   test('mode: empty', () => {
-    const { container } = render(
-      <EmptyModal userHasSearched={false} />
-    );
+    const { container } = render(<EmptyModal userHasSearched={false} />);
     expect(container).toMatchSnapshot();
-    expect(screen.queryByText('There is nothing here yet, the collection is empty.')).toBeInTheDocument();
+    expect(
+      screen.queryByText('There is nothing here yet, the collection is empty.')
+    ).toBeInTheDocument();
   });
 
   test('mode: no-results', () => {
-    const { container } = render(
-      <EmptyModal userHasSearched={true} />
-    );
+    const { container } = render(<EmptyModal userHasSearched={true} />);
     expect(container).toMatchSnapshot();
-    expect(screen.queryByText('No results were found please try again with a different query.')).toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        'No results were found please try again with a different query.'
+      )
+    ).toBeInTheDocument();
   });
 });

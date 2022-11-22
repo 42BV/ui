@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 import { IconPicker } from './IconPicker';
-import { IconType } from '../../core/Icon';
+import { IconType } from '../../core/types';
 
 describe('Component: IconPicker', () => {
   function setup({
@@ -27,7 +27,7 @@ describe('Component: IconPicker', () => {
       label: 'Best Friend',
       hiddenLabel: !hasLabel,
       placeholder: 'Select your best friend',
-      icon: hasIcon ? 'face' as IconType : undefined,
+      icon: hasIcon ? ('face' as IconType) : undefined,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -98,8 +98,7 @@ describe('Component: IconPicker', () => {
   describe('events', () => {
     it('should open the popover when the select button is clicked', () => {
       const setIsOpenSpy = jest.fn();
-      jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([ false, setIsOpenSpy ]);
+      jest.spyOn(React, 'useState').mockReturnValueOnce([false, setIsOpenSpy]);
 
       setup({
         value: undefined,
@@ -120,7 +119,9 @@ describe('Component: IconPicker', () => {
       });
 
       fireEvent.click(screen.getByText('face'));
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'home' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'home' }
+      });
 
       expect(screen.queryAllByText('home').length).toBe(0);
     });
@@ -143,8 +144,7 @@ describe('Component: IconPicker', () => {
 
     it('should close the popover and call onChange when the user selects an icon', () => {
       const setIsOpenSpy = jest.fn();
-      jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([ true, setIsOpenSpy ]);
+      jest.spyOn(React, 'useState').mockReturnValueOnce([true, setIsOpenSpy]);
 
       const { onBlurSpy, onChangeSpy } = setup({
         value: undefined
@@ -174,10 +174,11 @@ describe('Component: IconPicker', () => {
 
     it('should when the popover closes clear the query', () => {
       const setQuery = jest.fn();
-      jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([ true, jest.fn() ])
-        .mockReturnValueOnce([ 1, jest.fn() ])
-        .mockReturnValueOnce([ 'home', setQuery ]);
+      jest
+        .spyOn(React, 'useState')
+        .mockReturnValueOnce([true, jest.fn()])
+        .mockReturnValueOnce([1, jest.fn()])
+        .mockReturnValueOnce(['home', setQuery]);
 
       setup({
         value: undefined
@@ -203,9 +204,7 @@ describe('Component: IconPicker', () => {
         value: undefined
       };
 
-      rerender(
-        <IconPicker color="success" {...newProps} />
-      );
+      rerender(<IconPicker color="success" {...newProps} />);
 
       expect(screen.queryByText('home')).not.toBeInTheDocument();
     });
@@ -222,9 +221,7 @@ describe('Component: IconPicker', () => {
         value: 'home' as IconType
       };
 
-      rerender(
-        <IconPicker color="success" {...newProps} />
-      );
+      rerender(<IconPicker color="success" {...newProps} />);
 
       expect(screen.getByText('home')).toBeInTheDocument();
     });

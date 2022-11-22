@@ -2,9 +2,18 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { FieldFileInput, FileInput, JarbFileInput, requireFile } from './FileInput';
+import {
+  FieldFileInput,
+  FileInput,
+  JarbFileInput,
+  requireFile
+} from './FileInput';
 
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -15,7 +24,10 @@ storiesOf('Form/FileInput', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use FileInput, you have to add lodash to your dependencies:</p>
+        <p>
+          To be able to use FileInput, you have to add lodash to your
+          dependencies:
+        </p>
         <code>npm install --save lodash</code>
       </Alert>
       <Story />
@@ -95,7 +107,7 @@ storiesOf('Form/FileInput', module)
             placeholder="Upload a file here"
             label="Upload a file here"
             accept="text/plain"
-            validators={[ requireFile('Profile photo') ]}
+            validators={[requireFile('Profile photo')]}
           />
         </FinalForm>
       </>
@@ -111,7 +123,7 @@ storiesOf('Form/FileInput', module)
             name="upload"
             placeholder="Upload a file here"
             accept="text/plain"
-            validators={[ requireFile('Profile photo') ]}
+            validators={[requireFile('Profile photo')]}
             jarb={{
               validator: 'User.profile',
               label: 'Profile photo'

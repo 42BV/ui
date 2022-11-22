@@ -21,7 +21,9 @@ describe('Component: Debug', () => {
   it('should start closed when open is false', () => {
     setup({ defaultOpen: false });
 
-    expect(screen.queryByText('{ "property": "test" }')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('{ "property": "test" }')
+    ).not.toBeInTheDocument();
   });
 
   it('should start open when open is true', () => {
@@ -39,7 +41,7 @@ describe('Component: Debug', () => {
   describe('events', () => {
     it('should toggle isOpen', () => {
       const setIsOpenSpy = jest.fn();
-      jest.spyOn(React, 'useState').mockReturnValue([ true, setIsOpenSpy ]);
+      jest.spyOn(React, 'useState').mockReturnValue([true, setIsOpenSpy]);
 
       setup({});
 

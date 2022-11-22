@@ -46,9 +46,7 @@ describe('Component: Pagination', () => {
       allowedPageSizes
     };
 
-    const { container } = render(
-      <Pagination {...props} />
-    );
+    const { container } = render(<Pagination {...props} />);
 
     return { container, onChangeSpy, pageSizeChangeSpy };
   }
@@ -85,12 +83,16 @@ describe('Component: Pagination', () => {
     });
 
     test('with custom allowed page sizes', () => {
-      setup({ hasPageSizeDropdown: true, size: 3, allowedPageSizes: [ 3, 6 ] });
+      setup({ hasPageSizeDropdown: true, size: 3, allowedPageSizes: [3, 6] });
       expect(screen.queryAllByRole('option').length).toBe(2);
       expect(screen.queryByRole('option', { name: '3' })).toBeInTheDocument();
       expect(screen.queryByRole('option', { name: '6' })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: '5' })).not.toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: '10' })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('option', { name: '5' })
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('option', { name: '10' })
+      ).not.toBeInTheDocument();
     });
 
     test('without previous and next buttons', () => {
@@ -107,23 +109,35 @@ describe('Component: Pagination', () => {
 
     it('should disable the previous button when on the first page', () => {
       setup({ number: 1, totalPages: 3 });
-      expect(screen.getByText('arrow_back').parentNode?.parentNode).toHaveClass('disabled');
+      expect(screen.getByText('arrow_back').parentNode?.parentNode).toHaveClass(
+        'disabled'
+      );
     });
 
     it('should disable the next button when on the last page', () => {
       setup({ number: 3, totalPages: 3 });
-      expect(screen.getByText('arrow_forward').parentNode?.parentNode).toHaveClass('disabled');
+      expect(
+        screen.getByText('arrow_forward').parentNode?.parentNode
+      ).toHaveClass('disabled');
     });
 
     it('should return null when onPageSizeChange is defined but the total number of elements does not exceed the minimum page size', () => {
-      const { container } = setup({ hasPageSizeDropdown: true, totalElements: 5, totalPages: 1 });
+      const { container } = setup({
+        hasPageSizeDropdown: true,
+        totalElements: 5,
+        totalPages: 1
+      });
       expect(container.firstChild).toBeNull();
     });
   });
 
   describe('events', () => {
     it('should call onChange when pagination links are clicked', () => {
-      const { onChangeSpy } = setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: false });
+      const { onChangeSpy } = setup({
+        number: 5,
+        totalPages: 10,
+        showPreviousAndNextButtons: false
+      });
 
       fireEvent.click(screen.getByText('1'));
 
@@ -179,41 +193,41 @@ describe('Component: Pagination', () => {
 
 describe('pages', () => {
   test('exact middle', () => {
-    expect(pagesFor(5, 10)).toEqual([ 1, '...', 4, 5, 6, '...', 10 ]);
+    expect(pagesFor(5, 10)).toEqual([1, '...', 4, 5, 6, '...', 10]);
   });
 
   test('almost middle', () => {
-    expect(pagesFor(5, 10)).toEqual([ 1, '...', 4, 5, 6, '...', 10 ]);
-    expect(pagesFor(6, 10)).toEqual([ 1, '...', 5, 6, 7, '...', 10 ]);
+    expect(pagesFor(5, 10)).toEqual([1, '...', 4, 5, 6, '...', 10]);
+    expect(pagesFor(6, 10)).toEqual([1, '...', 5, 6, 7, '...', 10]);
   });
 
   test('absolute left', () => {
-    expect(pagesFor(1, 10)).toEqual([ 1, 2, 3, '...', 8, 9, 10 ]);
+    expect(pagesFor(1, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('almost left', () => {
-    expect(pagesFor(2, 10)).toEqual([ 1, 2, 3, '...', 8, 9, 10 ]);
-    expect(pagesFor(3, 10)).toEqual([ 1, 2, 3, 4, '...', 9, 10 ]);
-    expect(pagesFor(4, 10)).toEqual([ 1, 2, 3, 4, 5, '...', 10 ]);
+    expect(pagesFor(2, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
+    expect(pagesFor(3, 10)).toEqual([1, 2, 3, 4, '...', 9, 10]);
+    expect(pagesFor(4, 10)).toEqual([1, 2, 3, 4, 5, '...', 10]);
   });
 
   test('almost right', () => {
-    expect(pagesFor(7, 10)).toEqual([ 1, '...', 6, 7, 8, 9, 10 ]);
-    expect(pagesFor(8, 10)).toEqual([ 1, 2, '...', 7, 8, 9, 10 ]);
-    expect(pagesFor(9, 10)).toEqual([ 1, 2, 3, '...', 8, 9, 10 ]);
+    expect(pagesFor(7, 10)).toEqual([1, '...', 6, 7, 8, 9, 10]);
+    expect(pagesFor(8, 10)).toEqual([1, 2, '...', 7, 8, 9, 10]);
+    expect(pagesFor(9, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('absolute right', () => {
-    expect(pagesFor(10, 10)).toEqual([ 1, 2, 3, '...', 8, 9, 10 ]);
+    expect(pagesFor(10, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('shortage', () => {
-    expect(pagesFor(1, 3)).toEqual([ 1, 2, 3 ]);
-    expect(pagesFor(3, 3)).toEqual([ 1, 2, 3 ]);
-    expect(pagesFor(1, 7)).toEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
-    expect(pagesFor(4, 7)).toEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
-    expect(pagesFor(7, 7)).toEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
-    expect(pagesFor(1, 8)).toEqual([ 1, 2, 3, '...', 6, 7, 8 ]);
-    expect(pagesFor(8, 8)).toEqual([ 1, 2, 3, '...', 6, 7, 8 ]);
+    expect(pagesFor(1, 3)).toEqual([1, 2, 3]);
+    expect(pagesFor(3, 3)).toEqual([1, 2, 3]);
+    expect(pagesFor(1, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(4, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(7, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(1, 8)).toEqual([1, 2, 3, '...', 6, 7, 8]);
+    expect(pagesFor(8, 8)).toEqual([1, 2, 3, '...', 6, 7, 8]);
   });
 });

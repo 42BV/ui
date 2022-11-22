@@ -1,8 +1,9 @@
 import React from 'react';
 import { OpenCloseModal } from '../OpenCloseModal/OpenCloseModal';
 import { t } from '../../utilities/translation/translation';
+import { Closeable, UIBasePropsWithCSSPropertiesAndChildren } from '../types';
 
-type Props = {
+type ConfirmModalProps = {
   /**
    * The text to show in the heading of the modal. Defaults to "Confirmation"
    *
@@ -18,34 +19,18 @@ type Props = {
   cancelText?: string;
 
   /**
-   * The text to show as the ok button's text, defaults to "OK"
+   * The text to show as the OK-button's text, defaults to "OK"
    *
    * @default OK
    */
   confirmText?: string;
 
   /**
-   * Function that gets called when the modal is dismissed or closed via the close button
-   *
-   */
-  onClose: () => void;
-
-  /**
    * Function that gets called when the user clicks the save button
    */
   onSave: () => void;
-
-  /**
-   * Text which is rendered inside the modal
-   */
-  modalText: React.ReactNode;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-};
+} & Partial<UIBasePropsWithCSSPropertiesAndChildren<React.ReactNode>> &
+  Closeable<void, void>;
 
 /**
  * ConfirmModal offers the user a confirmation dialog before performing an operation.
@@ -60,13 +45,15 @@ export function ConfirmModal({
   onClose,
   onSave,
   label,
+  children,
   cancelText,
   confirmText,
-  modalText,
-  className
-}: Props) {
+  className,
+  ...props
+}: ConfirmModalProps) {
   return (
     <OpenCloseModal
+      {...props}
       onClose={onClose}
       onSave={onSave}
       label={t({
@@ -88,7 +75,7 @@ export function ConfirmModal({
       }}
       className={className}
     >
-      {modalText}
+      {children}
     </OpenCloseModal>
   );
 }

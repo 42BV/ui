@@ -3,7 +3,11 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { FieldInput, Input, JarbInput } from './Input';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { Alert, InputGroupText } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { AddonIcon } from '../AddonIcon/AddonIcon';
@@ -20,7 +24,10 @@ storiesOf('Form/Input', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use Input, you have to add react-text-mask to your dependencies:</p>
+        <p>
+          To be able to use Input, you have to add react-text-mask to your
+          dependencies:
+        </p>
         <code>npm install --save react-text-mask</code>
       </Alert>
       <Story />
@@ -80,11 +87,7 @@ storiesOf('Form/Input', module)
           label="Addon as a button"
           placeholder="Please click on my addon button"
           onChange={(value) => action(`onChange: ${value}`)}
-          addon={
-            <Button onClick={() => alert('Yippy')}>
-              Click me
-            </Button>
-          }
+          addon={<Button onClick={() => alert('Yippy')}>Click me</Button>}
         />
       </Card>
     );
@@ -108,7 +111,7 @@ storiesOf('Form/Input', module)
           label="Zipcode"
           placeholder="Please enter your zipcode"
           onChange={(value) => action(`You entered ${value}`)}
-          mask={[ /[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, ' ', /[A-z]/, /[A-z]/ ]}
+          mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/, ' ', /[A-z]/, /[A-z]/]}
         />
         <p>
           Look
@@ -162,7 +165,7 @@ storiesOf('Form/Input', module)
           <FieldInput
             name="firstName"
             jarb={{ validator: 'Hero.name', label: 'First name' }}
-            validators={[ isSuperman ]}
+            validators={[isSuperman]}
             id="firstName"
             label="First name"
             placeholder="Please enter your first name"
@@ -179,7 +182,7 @@ storiesOf('Form/Input', module)
           <JarbInput
             name="firstName"
             jarb={{ validator: 'Hero.name', label: 'First name' }}
-            validators={[ isSuperman ]}
+            validators={[isSuperman]}
             id="firstName"
             placeholder="Please enter your first name"
           />

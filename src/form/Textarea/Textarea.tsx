@@ -45,7 +45,9 @@ export function Textarea(props: Props) {
 
   return (
     <FormGroup className={className} color={color}>
-      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? (
+        <Label for={id}>{label}</Label>
+      ) : null}
       <TextareaAutosize className={classes} {...inputProps} />
       {error}
     </FormGroup>

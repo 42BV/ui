@@ -35,7 +35,8 @@ interface Props<FormValues> extends FormProps<FormValues> {
  * allow forms to be used inside an EpicRow.
  */
 export function EpicForm<FormValues>(props: Props<FormValues>) {
-  const { id, children, width, height, submitOnChange, odd, ...formProps } = props;
+  const { id, children, width, height, submitOnChange, odd, ...formProps } =
+    props;
 
   const classes = classNames('epic-table-form border-bottom p-1', {
     'epic-table-form--odd': odd

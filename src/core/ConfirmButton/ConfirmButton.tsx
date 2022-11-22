@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 
-import { Button, Props as ButtonProps } from '../Button/Button';
+import { Button } from '../Button/Button';
 import { ConfirmModal } from '../ConfirmModal/ConfirmModal';
+import { ButtonProps, WithHeader } from '../types';
 
 type Text = {
-  /**
-   * The text to show in the header, defaults to "Confirmation"
-   *
-   * @default Confirmation
-   */
-  modalHeader?: string;
-
   /**
    * The text to show as the cancel button's text, defaults to "Cancel"
    *
@@ -19,14 +13,14 @@ type Text = {
   cancel?: string;
 
   /**
-   * The text to show as the ok button's text, defaults to "OK"
+   * The text to show as the OK button's text, defaults to "OK"
    *
    * @default OK
    */
   confirm?: string;
-};
+} & Partial<WithHeader<string>>;
 
-type Props = ButtonProps & {
+type ConfirmButtonProps = {
   /**
    * The text you want to render inside the dialog.
    */
@@ -45,34 +39,30 @@ type Props = ButtonProps & {
    * Optionally customized text to use within the component.
    */
   text?: Text;
-};
+} & ButtonProps<React.ReactNode>;
 
 /**
- * The ConfirmButton asks the user if he / she is sure he wants to
+ * The ConfirmButton asks the user whether they are certain they want to
  * perform the action.
  *
- * The obvious use case is a delete button which asks the user if
- * he is sure he wants to delete something.
+ * The obvious use case is a delete button which asks the user whether they are
+ * sure they want to delete something.
  */
 export function ConfirmButton({
+  dialogText,
+  onConfirm,
+  text = {},
+  className,
+  color = 'danger',
   icon,
   children,
-  fullWidth,
-  size,
-  dialogText,
-  color = 'danger',
-  onConfirm,
-  inProgress,
-  disabled,
-  text = {},
-  className
-}: Props) {
-  const [ isModalOpen, setIsModalOpen ] = useState(false);
-  const { modalHeader, confirm, cancel } = text;
+  ...buttonProps
+}: ConfirmButtonProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { header, confirm, cancel } = text;
 
-  function openModal(event: React.MouseEvent<HTMLElement>) {
-    event.stopPropagation();
-    setIsModalOpen(true);
+  function closeModal() {
+    setIsModalOpen(false);
   }
 
   function saveModal() {
@@ -80,35 +70,32 @@ export function ConfirmButton({
     onConfirm();
   }
 
-  const buttonProps: ButtonProps = {
-    onClick: openModal,
-    color,
-    inProgress: !!inProgress,
-    icon,
-    children,
-    fullWidth,
-    size,
-    disabled
-  };
+  function openModal(event: React.MouseEvent<HTMLElement>) {
+    event.stopPropagation();
+    setIsModalOpen(true);
+  }
 
   return (
     <div
       className={className}
       style={{
-        display: buttonProps.icon && !buttonProps.children ? 'inline' : 'block'
+        display: icon && !children ? 'inline' : 'block'
       }}
     >
-      <Button {...buttonProps} />
+      <Button color={color} icon={icon} {...buttonProps} onClick={openModal}>
+        {children}
+      </Button>
 
       {isModalOpen ? (
         <ConfirmModal
-          onClose={() => setIsModalOpen(false)}
-          onSave={() => saveModal()}
-          label={modalHeader}
-          modalText={dialogText}
+          onClose={closeModal}
+          onSave={saveModal}
+          label={header}
           cancelText={cancel}
           confirmText={confirm}
-        />
+        >
+          {dialogText}
+        </ConfirmModal>
       ) : null}
     </div>
   );

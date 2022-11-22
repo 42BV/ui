@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { t } from '../../utilities/translation/translation';
 import { Button } from '../Button/Button';
+import { Changeable } from '../types';
 
 type Text = {
   /**
@@ -28,11 +29,6 @@ type Props<T> = {
   page: Page<T>;
 
   /**
-   * Called when navigation to a certain page number.
-   */
-  onChange: (pageNumber: number) => void;
-
-  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
@@ -42,7 +38,7 @@ type Props<T> = {
    * Optionally customized text to use within the component.
    */
   text?: Text;
-};
+} & Changeable<number, void>;
 
 /**
  * The Pager component shows a small variant of bootstraps pagination,
@@ -50,12 +46,7 @@ type Props<T> = {
  *
  * It supports working with a `Page` from `@42.nl/spring-connect`.
  */
-export function Pager<T>({
-  page,
-  onChange,
-  className,
-  text = {}
-}: Props<T>) {
+export function Pager<T>({ page, onChange, className, text = {} }: Props<T>) {
   const { first, last } = page;
   const { next, previous } = text;
 

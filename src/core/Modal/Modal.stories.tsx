@@ -13,7 +13,7 @@ import { SubmitButton } from '../SubmitButton/SubmitButton';
 storiesOf('core/Modal', module)
   .addParameters({ component: Modal })
   .add('basic', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     function onClose() {
       action('modal was closed');
@@ -40,7 +40,7 @@ storiesOf('core/Modal', module)
     );
   })
   .add('without header', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     function onClose() {
       action('modal was closed');
@@ -66,7 +66,7 @@ storiesOf('core/Modal', module)
     );
   })
   .add('without footer', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     function onClose() {
       action('modal was closed');
@@ -86,8 +86,8 @@ storiesOf('core/Modal', module)
   })
   .add('with form', ModalForm)
   .add('sticky', () => {
-    const [ isOpenSticky, setIsOpenSticky ] = useState(false);
-    const [ isOpenSansSticky, setIsOpenSansSticky ] = useState(false);
+    const [isOpenSticky, setIsOpenSticky] = useState(false);
+    const [isOpenSansSticky, setIsOpenSansSticky] = useState(false);
 
     return (
       <Card body>
@@ -152,7 +152,7 @@ storiesOf('core/Modal', module)
   });
 
 export function ModalForm() {
-  const [ isOpen, setIsOpen ] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   async function onSave() {
     action('save button was clicked');
@@ -198,14 +198,15 @@ export function ModalForm() {
       ) : null}
 
       <p className="mt-2">
-        Note: the <code>Form</code> element should wrap the <code>Modal</code> not the
-        other way around. Otherwise you cannot use the submitting prop in the footer.
+        Note: the <code>Form</code> element should wrap the <code>Modal</code>{' '}
+        not the other way around. Otherwise you cannot use the submitting prop
+        in the footer.
       </p>
 
       <p className="mt-2">
-        Also make sure that you do not render the <code>Form</code> this way when you
-        close the modal the form will be reset. Otherwise information will linger in
-        the <code>Form</code> element.
+        Also make sure that you do not render the <code>Form</code> this way
+        when you close the modal the form will be reset. Otherwise information
+        will linger in the <code>Form</code> element.
       </p>
 
       <p className="mt-2">

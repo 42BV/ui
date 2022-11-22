@@ -5,81 +5,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { ContentState } from '../ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
 import { Button } from '../Button/Button';
-
-type Text = {
-  /**
-   * Error text to show when an error occurred.
-   */
-  error?: string;
-
-  /**
-   * Loading text to show when a request is being fetched.
-   */
-  loading?: string;
-
-  /**
-   * Empty text to show when a request has loaded but the response
-   * is considered empty.
-   */
-  empty?: string;
-
-  /**
-   * Text to show within the `retry` button.
-   */
-  retry?: string;
-};
-
-export type ReactAsyncState<T> = {
-  /**
-   * Result from calling `useAsync` from `react-async`.
-   */
-  state: AsyncState<T>;
-}
-
-export type ReactQueryState<T> = {
-  /**
-   * Result from calling `useQuery` from `@tanstack/react-query`.
-   */
-  state: UseQueryResult<T>;
-}
-
-export type Props<T> = {
-  /**
-   * Render function which takes the `data` from the `useQuery`'s
-   * or `useAsync`'s `state` when the promise is fulfilled, and
-   * expects you to render content.
-   */
-  children: (data: T) => React.ReactNode;
-
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-
-  /**
-   * Optionally whether to show a retry button when the error state
-   * occurs.
-   * Defaults to `true`.
-   *
-   * @default true
-   */
-  showRetryButton?: boolean;
-
-  /**
-   * An optional callback which gets called when the data has
-   * loaded. When `isEmpty` returns `true` the `emptyContent` is
-   * rendered.
-   */
-  isEmpty?: (data?: T) => boolean;
-
-  /**
-   * Optionally when `isEmpty` returns `true` what content to render.
-   *
-   * Defaults to rendering a `ContentState` in the `empty` mode.
-   */
-  emptyContent?: (data?: T) => React.ReactNode;
-};
+import { AsyncContentProps } from '../types';
 
 /**
  * AsyncContent is a component which can be used to render the result of a
@@ -105,18 +31,21 @@ export type Props<T> = {
  * With these behaviors you ensure that you always handle the error and
  * loading state when using `useQuery` or `useAsync`.
  */
-export function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQueryState<T>)) {
+export function AsyncContent<TData>(props: AsyncContentProps<TData>) {
   const {
     state,
     text = {},
     showRetryButton = true,
     isEmpty,
-    emptyContent
+    emptyContent,
+    contentStateProps,
+    retryButtonProps
   } = props;
 
   if (state.isLoading) {
     return (
       <ContentState
+        {...contentStateProps}
         mode="loading"
         title={t({
           key: 'AsyncContent.LOADING.TITLE',
@@ -133,6 +62,7 @@ export function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQue
     } else {
       return (
         <ContentState
+          {...contentStateProps}
           mode="empty"
           title={t({
             key: 'AsyncContent.EMPTY.TITLE',
@@ -146,6 +76,7 @@ export function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQue
     console.error(state.error);
     return (
       <ContentState
+        {...contentStateProps}
         mode="error"
         title={t({
           key: 'AsyncContent.ERROR.TITLE',
@@ -154,7 +85,13 @@ export function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQue
         })}
       >
         {showRetryButton ? (
-          <Button icon="refresh" onClick={() => stateIsAsyncState(state) ? state.reload() : state.refetch()}>
+          <Button
+            {...retryButtonProps}
+            icon="refresh"
+            onClick={() =>
+              stateIsAsyncState(state) ? state.reload() : state.refetch()
+            }
+          >
             {t({
               key: 'AsyncContent.ERROR.RETRY',
               fallback: 'Retry',
@@ -171,6 +108,8 @@ function isStateFulfilled<T>(state: AsyncState<T> | UseQueryResult<T>) {
   return stateIsAsyncState(state) ? state.isFulfilled : !state.isError;
 }
 
-function stateIsAsyncState<T>(state: AsyncState<T> | UseQueryResult<T>): state is AsyncState<T> {
-  return state.hasOwnProperty('isFulfilled');
+function stateIsAsyncState<T>(
+  state: AsyncState<T> | UseQueryResult<T>
+): state is AsyncState<T> {
+  return 'isFulfilled' in state;
 }

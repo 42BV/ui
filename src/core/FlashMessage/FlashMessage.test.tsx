@@ -28,9 +28,7 @@ describe('Component: FlashMessage', () => {
   test('onClose', () => {
     const onCloseSpy = jest.fn();
 
-    render(
-      <FlashMessage onClose={onCloseSpy}>Warning commander</FlashMessage>
-    );
+    render(<FlashMessage onClose={onCloseSpy}>Warning commander</FlashMessage>);
 
     fireEvent.click(screen.getByLabelText('Close'));
 

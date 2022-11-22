@@ -32,7 +32,7 @@ type UseHoverResult = [
  * }
  */
 export function useHover(): UseHoverResult {
-  const [ hover, setHover ] = useState(false);
+  const [hover, setHover] = useState(false);
 
   function onMouseEnter() {
     setHover(true);
@@ -42,5 +42,5 @@ export function useHover(): UseHoverResult {
     setHover(false);
   }
 
-  return [ hover, { onMouseEnter, onMouseLeave } ];
+  return [hover, { onMouseEnter, onMouseLeave }];
 }

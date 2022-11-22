@@ -1,18 +1,22 @@
 import React from 'react';
 import { ContentState } from '../ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
+import { WithChildren } from '../types';
 
 type ErrorState = {
   hasError: boolean;
 };
 
-type Props = {
+type Props = Partial<Omit<HTMLElement, 'children'>> & {
   text?: {
     error: string;
   };
-  children: React.ReactNode;
-}
+} & WithChildren<React.ReactNode>;
 
+/**
+ * Only class-components can serve as an ErrorBoundary. As such, this cannot be rewritten in a functional manner.
+ * {@link https://reactjs.org/docs/error-boundaries.html#introducing-error-boundaries:~:text=Only%20class%20components%20can%20be%20error%20boundaries ReactJS.org}
+ */
 export class ErrorBoundary extends React.Component<Props, ErrorState> {
   constructor(props) {
     super(props);

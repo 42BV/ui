@@ -100,7 +100,9 @@ export function DateTimeModal(props: Props) {
   } = props;
   const isDateAllowed = get(props, 'isDateAllowed', constant(true));
 
-  const [ value, setValue ] = useState(props.defaultValue ? moment(props.defaultValue) : '');
+  const [value, setValue] = useState(
+    props.defaultValue ? moment(props.defaultValue) : ''
+  );
 
   return (
     <OpenCloseModal

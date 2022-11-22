@@ -23,5 +23,5 @@ export function useAutoSelectOptionWhenQueryMatchesExactly<T>({
     if (selectedValue) {
       onChange(selectedValue.value);
     }
-  }, [ typeaheadOptions, onChange, query ]);
+  }, [typeaheadOptions, onChange, query]);
 }

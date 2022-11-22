@@ -27,42 +27,70 @@ describe('Component: NewPasswordInput', () => {
 
   test('default all rules enabled', () => {
     setup({});
-    expect(screen.queryByText('Must contain at least one lowercase letter')).toBeInTheDocument();
-    expect(screen.queryByText('Must contain at least one uppercase letter')).toBeInTheDocument();
-    expect(screen.queryByText('Must contain at least one number')).toBeInTheDocument();
-    expect(screen.queryByText('Must contain at least one special character (@#$%^&+=.,?!)')).toBeInTheDocument();
-    expect(screen.queryByText('Must contain at least 10 characters')).toBeInTheDocument();
-    expect(screen.queryByText('Must not contain any space')).toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least one lowercase letter')
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least one uppercase letter')
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least one number')
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        'Must contain at least one special character (@#$%^&+=.,?!)'
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least 10 characters')
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('Must not contain any space')
+    ).toBeInTheDocument();
   });
 
   test('disable lowercase check', () => {
     setup({ lowercase: false });
-    expect(screen.queryByText('Must contain at least one lowercase letter')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least one lowercase letter')
+    ).not.toBeInTheDocument();
   });
 
   test('disable uppercase check', () => {
     setup({ uppercase: false });
-    expect(screen.queryByText('Must contain at least one uppercase letter')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least one uppercase letter')
+    ).not.toBeInTheDocument();
   });
 
   test('disable number check', () => {
     setup({ number: false });
-    expect(screen.queryByText('Must contain at least one number')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least one number')
+    ).not.toBeInTheDocument();
   });
 
   test('disable special character check', () => {
     setup({ specialCharacter: false });
-    expect(screen.queryByText('Must contain at least one special character (@#$%^&+=.,?!)')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        'Must contain at least one special character (@#$%^&+=.,?!)'
+      )
+    ).not.toBeInTheDocument();
   });
 
   test('disable minimum length check', () => {
     setup({ minimumLength: 0 });
-    expect(screen.queryByText('Must contain at least 10 characters')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least 10 characters')
+    ).not.toBeInTheDocument();
   });
 
   test('disable no space check', () => {
     setup({ noSpace: false });
-    expect(screen.queryByText('Must not contain any space')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Must not contain any space')
+    ).not.toBeInTheDocument();
   });
 
   describe('isStrongPassword', () => {

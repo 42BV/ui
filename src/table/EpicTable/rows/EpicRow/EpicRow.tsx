@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type Props = {
-
   /**
    * Tabindex for tab selection.
    */

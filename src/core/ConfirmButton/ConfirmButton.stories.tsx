@@ -118,7 +118,7 @@ storiesOf('core/buttons/ConfirmButton', module)
           text={{
             confirm: 'YES',
             cancel: 'NO',
-            modalHeader: 'PLEASE SAY YES'
+            header: 'PLEASE SAY YES'
           }}
         >
           Delete user
@@ -140,7 +140,7 @@ storiesOf('core/buttons/ConfirmButton', module)
           text={{
             confirm: 'YES',
             cancel: 'NO',
-            modalHeader: 'PLEASE SAY YES'
+            header: 'PLEASE SAY YES'
           }}
         >
           Delete user

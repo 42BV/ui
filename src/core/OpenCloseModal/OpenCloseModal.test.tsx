@@ -40,7 +40,7 @@ describe('Component: OpenCloseModal', () => {
     const children = (
       <RadioGroup<string>
         onChange={jest.fn()}
-        options={[ 'local', 'development', 'test', 'acceptation', 'production' ]}
+        options={['local', 'development', 'test', 'acceptation', 'production']}
         labelForOption={(v) => v}
         label="Environment"
       />
@@ -84,8 +84,12 @@ describe('Component: OpenCloseModal', () => {
     test('custom button texts', () => {
       setup({ isOpen: true, hasCustomText: true });
       expect(screen.queryAllByRole('button').length).toBe(3);
-      expect(screen.queryAllByRole('button')[1]).toHaveTextContent('cancelStop please');
-      expect(screen.queryAllByRole('button')[2]).toHaveTextContent('saveSelect me');
+      expect(screen.queryAllByRole('button')[1]).toHaveTextContent(
+        'cancelStop please'
+      );
+      expect(screen.queryAllByRole('button')[2]).toHaveTextContent(
+        'saveSelect me'
+      );
     });
 
     test('in progress', () => {
@@ -95,7 +99,9 @@ describe('Component: OpenCloseModal', () => {
 
     test('sans sticky footer', () => {
       setup({ isOpen: true, stickyFooter: false });
-      expect(document.body.lastChild?.firstChild).not.toHaveClass('sticky-modal');
+      expect(document.body.lastChild?.firstChild).not.toHaveClass(
+        'sticky-modal'
+      );
     });
   });
 

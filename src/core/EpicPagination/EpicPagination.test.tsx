@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Page } from '@42.nl/spring-connect';
 
-import Pagination, { pagesFor } from './EpicPagination';
+import { EpicPagination, pagesFor } from './EpicPagination';
 
 describe('Component: Pagination', () => {
   function setup({
@@ -31,7 +31,7 @@ describe('Component: Pagination', () => {
       onChange: onChangeSpy
     };
 
-    const { container } = render(<Pagination {...props} />);
+    const { container } = render(<EpicPagination {...props} />);
 
     return { container, onChangeSpy };
   }
@@ -51,10 +51,18 @@ describe('Component: Pagination', () => {
       expect(screen.getByText('5').parentNode).toHaveClass('active');
       expect(screen.queryByText('7')).toBeInTheDocument();
       expect(screen.queryByText('10')).not.toBeInTheDocument();
-      expect(screen.getByText('first_page').parentNode?.parentNode).not.toHaveClass('disabled');
-      expect(screen.getByText('last_page').parentNode?.parentNode).not.toHaveClass('disabled');
-      expect(screen.getByText('chevron_left').parentNode?.parentNode).not.toHaveClass('disabled');
-      expect(screen.getByText('chevron_right').parentNode?.parentNode).not.toHaveClass('disabled');
+      expect(
+        screen.getByText('first_page').parentNode?.parentNode
+      ).not.toHaveClass('disabled');
+      expect(
+        screen.getByText('last_page').parentNode?.parentNode
+      ).not.toHaveClass('disabled');
+      expect(
+        screen.getByText('chevron_left').parentNode?.parentNode
+      ).not.toHaveClass('disabled');
+      expect(
+        screen.getByText('chevron_right').parentNode?.parentNode
+      ).not.toHaveClass('disabled');
     });
 
     test('first page', () => {
@@ -63,8 +71,12 @@ describe('Component: Pagination', () => {
       expect(screen.getByText('1').parentNode).toHaveClass('active');
       expect(screen.queryByText('3')).toBeInTheDocument();
       expect(screen.queryByText('4')).not.toBeInTheDocument();
-      expect(screen.getByText('first_page').parentNode?.parentNode).toHaveClass('disabled');
-      expect(screen.getByText('chevron_left').parentNode?.parentNode).toHaveClass('disabled');
+      expect(screen.getByText('first_page').parentNode?.parentNode).toHaveClass(
+        'disabled'
+      );
+      expect(
+        screen.getByText('chevron_left').parentNode?.parentNode
+      ).toHaveClass('disabled');
     });
 
     test('last page', () => {
@@ -73,8 +85,12 @@ describe('Component: Pagination', () => {
       expect(screen.getByText('10').parentNode).toHaveClass('active');
       expect(screen.queryByText('8')).toBeInTheDocument();
       expect(screen.queryByText('7')).not.toBeInTheDocument();
-      expect(screen.getByText('last_page').parentNode?.parentNode).toHaveClass('disabled');
-      expect(screen.getByText('chevron_right').parentNode?.parentNode).toHaveClass('disabled');
+      expect(screen.getByText('last_page').parentNode?.parentNode).toHaveClass(
+        'disabled'
+      );
+      expect(
+        screen.getByText('chevron_right').parentNode?.parentNode
+      ).toHaveClass('disabled');
     });
   });
 
@@ -140,36 +156,36 @@ describe('Component: Pagination', () => {
 
 describe('pages', () => {
   test('exact middle', () => {
-    expect(pagesFor(5, 10)).toEqual([ 3, 4, 5, 6, 7 ]);
+    expect(pagesFor(5, 10)).toEqual([3, 4, 5, 6, 7]);
   });
 
   test('almost middle', () => {
-    expect(pagesFor(4, 10)).toEqual([ 2, 3, 4, 5, 6 ]);
-    expect(pagesFor(6, 10)).toEqual([ 4, 5, 6, 7, 8 ]);
+    expect(pagesFor(4, 10)).toEqual([2, 3, 4, 5, 6]);
+    expect(pagesFor(6, 10)).toEqual([4, 5, 6, 7, 8]);
   });
 
   test('absolute left', () => {
-    expect(pagesFor(1, 10)).toEqual([ '...', '...', 1, 2, 3 ]);
+    expect(pagesFor(1, 10)).toEqual(['...', '...', 1, 2, 3]);
   });
 
   test('almost left', () => {
-    expect(pagesFor(2, 10)).toEqual([ '...', 1, 2, 3, 4 ]);
-    expect(pagesFor(3, 10)).toEqual([ 1, 2, 3, 4, 5 ]);
-    expect(pagesFor(4, 10)).toEqual([ 2, 3, 4, 5, 6 ]);
+    expect(pagesFor(2, 10)).toEqual(['...', 1, 2, 3, 4]);
+    expect(pagesFor(3, 10)).toEqual([1, 2, 3, 4, 5]);
+    expect(pagesFor(4, 10)).toEqual([2, 3, 4, 5, 6]);
   });
 
   test('almost right', () => {
-    expect(pagesFor(7, 10)).toEqual([ 5, 6, 7, 8, 9 ]);
-    expect(pagesFor(8, 10)).toEqual([ 6, 7, 8, 9, 10 ]);
-    expect(pagesFor(9, 10)).toEqual([ 7, 8, 9, 10, '...' ]);
+    expect(pagesFor(7, 10)).toEqual([5, 6, 7, 8, 9]);
+    expect(pagesFor(8, 10)).toEqual([6, 7, 8, 9, 10]);
+    expect(pagesFor(9, 10)).toEqual([7, 8, 9, 10, '...']);
   });
 
   test('absolute right', () => {
-    expect(pagesFor(10, 10)).toEqual([ 8, 9, 10, '...', '...' ]);
+    expect(pagesFor(10, 10)).toEqual([8, 9, 10, '...', '...']);
   });
 
   test('shortage', () => {
-    expect(pagesFor(1, 3)).toEqual([ '...', '...', 1, 2, 3 ]);
-    expect(pagesFor(3, 3)).toEqual([ 1, 2, 3, '...', '...' ]);
+    expect(pagesFor(1, 3)).toEqual(['...', '...', 1, 2, 3]);
+    expect(pagesFor(3, 3)).toEqual([1, 2, 3, '...', '...']);
   });
 });

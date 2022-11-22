@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Color } from '../types';
+import { BootstrapColor } from '../types';
 
 type Props<T> = {
   /**
@@ -29,9 +29,9 @@ type Props<T> = {
    *
    * @param {any} step The step you must provide the color for
    * @param {number} index The index of the step you must provide the color for\
-   * @returns {Color}
+   * @returns {BootstrapColor}
    */
-  colorForStep(step: T, index: number): Color;
+  colorForStep(step: T, index: number): BootstrapColor;
 
   /**
    * Callback to determine the title for the step to display below the circle.
@@ -61,15 +61,13 @@ type Props<T> = {
   className?: string;
 };
 
-const alwaysFalse = () => false;
-
 export function ProgressStepper<T>(props: Props<T>) {
   const {
     steps,
     onClick,
     colorForStep,
     titleForStep,
-    isStepClickable = alwaysFalse,
+    isStepClickable,
     className
   } = props;
 
@@ -78,7 +76,9 @@ export function ProgressStepper<T>(props: Props<T>) {
       {steps.map((step, index) => {
         const title = titleForStep(step, index);
         const color = colorForStep(step, index);
-        const clickable = isStepClickable(step, index);
+        const clickable = isStepClickable
+          ? isStepClickable(step, index)
+          : false;
         const classes = classNames('step', color, { clickable });
 
         return (

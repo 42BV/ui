@@ -7,7 +7,7 @@
 import { RefObject, useEffect, useState } from 'react';
 
 export function useEpicTableRect(epicTableEl: RefObject<HTMLDivElement>) {
-  const [ epicTableRect, setEpicTableRect ] = useState<DOMRect | null>(null);
+  const [epicTableRect, setEpicTableRect] = useState<DOMRect | null>(null);
 
   useEffect(() => {
     requestAnimationFrame(() => {

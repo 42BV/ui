@@ -58,7 +58,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: [ 'text' ],
+          types: ['text'],
           required: false,
           minimumLength: null,
           maximumLength: 50,
@@ -80,7 +80,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: [ 'text' ],
+          types: ['text'],
           required: false,
           minimumLength: null,
           maximumLength: 50,
@@ -102,7 +102,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: [ 'text' ],
+          types: ['text'],
           required: true,
           minimumLength: null,
           maximumLength: 50,

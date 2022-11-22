@@ -1,34 +1,9 @@
 import React from 'react';
-import { Icon, Props as IconProps } from '../Icon/Icon';
-import { Color } from '../types';
+import { Icon } from '../Icon';
+import { BootstrapColor, Changeable, IconProps } from '../types';
 
 type Props = {
-  /**
-   * Whether the process succeeded.
-   */
   value: boolean;
-
-  /**
-   * Optionally the size of the icon in pixels.
-   *
-   * Defaults to `24px`
-   */
-  size?: number;
-
-  /**
-   * Optionally the color of the icon.
-   * When onChange is defined, this property is used when
-   * value is false and the icon is not hovered.
-   *
-   * Defaults to dark.
-   */
-  color?: Color;
-
-  /**
-   * Optional color you want the icon to have when it is hovered.
-   * When hoverColor is not defined, activeColor will be used.
-   */
-  hoverColor?: Color;
 
   /**
    * Optionally the color of the icon when value is true.
@@ -37,19 +12,9 @@ type Props = {
    *
    * Defaults to primary.
    */
-  activeColor?: Color;
-
-  /**
-   * Optional callback for when the form element changes.
-   */
-  onChange?: () => void;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-};
+  activeColor?: BootstrapColor;
+} & Partial<Omit<IconProps, 'icon'>> &
+  Changeable<void, void>;
 
 /**
  * SuccessIcon is used to display whether a process succeeded or not
@@ -64,7 +29,7 @@ export function SuccessIcon({
   onChange,
   className
 }: Props) {
-  const props: IconProps = {
+  const props: Partial<IconProps> = {
     icon: value ? 'done' : 'clear',
     size,
     className

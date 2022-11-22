@@ -5,7 +5,12 @@ import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import { ModalPicker, RenderOptionsConfig } from './ModalPicker';
 import { User } from '../../test/types';
-import { adminUser, coordinatorUser, pageOfUsers, userUser } from '../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  pageOfUsers,
+  userUser
+} from '../../test/fixtures';
 import { ModalPickerRenderOptionsOption } from './types';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import lodash from 'lodash';
@@ -145,7 +150,9 @@ describe('Component: ModalPicker', () => {
 
       const { queryChangedSpy } = setup({});
 
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(queryChangedSpy).toHaveBeenCalledTimes(1);
       expect(queryChangedSpy).toHaveBeenCalledWith('Maarten');
@@ -181,14 +188,8 @@ describe('Component: ModalPicker', () => {
       return (
         <ListGroup>
           {options.map(
-            ({
-              option,
-              toggle
-            }: ModalPickerRenderOptionsOption<User>) => (
-              <ListGroupItem
-                key={option.id}
-                onClick={toggle}
-              >
+            ({ option, toggle }: ModalPickerRenderOptionsOption<User>) => (
+              <ListGroupItem key={option.id} onClick={toggle}>
                 {option.email}
               </ListGroupItem>
             )

@@ -1,23 +1,17 @@
 import React from 'react';
-import { Icon, IconType } from '../../core/Icon';
+import { Icon } from '../../core/Icon';
+import { IconProps } from '../../core/types';
 
 import { InputGroupText } from 'reactstrap';
-
-export type Props = {
-  icon: IconType;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-};
 
 /**
  * Defines an addon to use with an Input element which is a readonly
  * Icon.
  */
-export function AddonIcon({ icon, className }: Props) {
+export function AddonIcon({
+  icon,
+  className
+}: Pick<IconProps, 'icon' | 'className'>) {
   return (
     <InputGroupText>
       <Icon icon={icon} className={className} />

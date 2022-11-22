@@ -2011,6 +2011,3 @@ export const icons = [
   'zoom_out',
   'zoom_out_map'
 ] as const;
-
-// Turns the Icon array into a union type of icons
-export type IconType = typeof icons[number];

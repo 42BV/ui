@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { BooleanIcon } from './BooleanIcon';
-import { Color } from '../types';
+import { BootstrapColor } from '../types';
 import userEvent from '@testing-library/user-event';
 
 describe('Component: BooleanIcon', () => {
@@ -15,8 +15,8 @@ describe('Component: BooleanIcon', () => {
     hasOnChangeSpy
   }: {
     value: boolean;
-    color?: Color;
-    hoverColor?: Color;
+    color?: BootstrapColor;
+    hoverColor?: BootstrapColor;
     size?: number;
     hasOnChangeSpy?: boolean;
   }) {
@@ -41,7 +41,9 @@ describe('Component: BooleanIcon', () => {
 
       expect(container).toMatchSnapshot();
       expect(screen.queryByText('check_box')).toBeInTheDocument();
-      expect(screen.queryByText('check_box_outline_blank')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('check_box_outline_blank')
+      ).not.toBeInTheDocument();
     });
 
     test('value false', () => {

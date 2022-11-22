@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { FieldIconPicker, IconPicker, JarbIconPicker } from './IconPicker';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
-import { Card, Icon, IconType, Tooltip } from '../../';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
+import { Card, Icon, Tooltip } from '../../';
 import { Alert } from 'reactstrap';
+import { IconType } from '../../core/types';
 
 function is3DRotation(value: IconType) {
   return value === '3d_rotation' ? undefined : 'Not "3d_rotation"';
@@ -15,16 +20,21 @@ storiesOf('Form/IconPicker', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use IconPicker, you have to add @tippyjs/react to your dependencies:</p>
+        <p className="mb-0">
+          To be able to use IconPicker, you have to add @tippyjs/react to your
+          dependencies:
+        </p>
         <code>npm install --save @tippyjs/react</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <p className="mb-0 mt-2">
+          You also have to add the stylesheet to your project
+        </p>
         <code>@import &apos;tippy.js/dist/tippy.css&apos;;</code>
       </Alert>
       <Story />
     </>
   ))
   .add('basic', () => {
-    const [ value, setValue ] = useState<IconType | undefined>(undefined);
+    const [value, setValue] = useState<IconType | undefined>(undefined);
 
     return (
       <div>
@@ -41,7 +51,7 @@ storiesOf('Form/IconPicker', module)
     );
   })
   .add('invisible label', () => {
-    const [ value, setValue ] = useState<IconType | undefined>(undefined);
+    const [value, setValue] = useState<IconType | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -57,7 +67,7 @@ storiesOf('Form/IconPicker', module)
     );
   })
   .add('with custom label', () => {
-    const [ value, setValue ] = useState<IconType | undefined>(undefined);
+    const [value, setValue] = useState<IconType | undefined>(undefined);
 
     return (
       <div>
@@ -84,7 +94,7 @@ storiesOf('Form/IconPicker', module)
     );
   })
   .add('with icon', () => {
-    const [ value, setValue ] = useState<IconType | undefined>(undefined);
+    const [value, setValue] = useState<IconType | undefined>(undefined);
 
     return (
       <div>
@@ -102,7 +112,7 @@ storiesOf('Form/IconPicker', module)
     );
   })
   .add('without clear button', () => {
-    const [ value, setValue ] = useState<IconType | undefined>(undefined);
+    const [value, setValue] = useState<IconType | undefined>(undefined);
 
     return (
       <div>
@@ -129,7 +139,7 @@ storiesOf('Form/IconPicker', module)
             name="icon"
             label="Icon"
             placeholder="Please select your icon"
-            validators={[ is3DRotation ]}
+            validators={[is3DRotation]}
           />
         </FinalForm>
       </>
@@ -144,7 +154,7 @@ storiesOf('Form/IconPicker', module)
             id="icon"
             name="icon"
             placeholder="Please select your icon"
-            validators={[ is3DRotation ]}
+            validators={[is3DRotation]}
             jarb={{
               validator: 'Hero.icon',
               label: 'Icon'

@@ -1,10 +1,24 @@
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import * as imgUploadUtils from './utils';
 
-import { ImageState, ImageUpload, ImageUploadCrop, limitImageSize, Mode, requireImage, Text } from './ImageUpload';
+import {
+  ImageState,
+  ImageUpload,
+  ImageUploadCrop,
+  limitImageSize,
+  Mode,
+  requireImage,
+  Text
+} from './ImageUpload';
 
 import * as testUtils from '../../test/utils';
 import AvatarEditor from 'react-avatar-editor';
@@ -22,7 +36,7 @@ describe('Component: ImageUpload', () => {
     mode,
     image = { src: '', fileName: 'maarten.png', rotate: 0, scale: 1 },
     imageSize = { width: 1000, height: 1000 },
-    file = new File([ '' ], 'maarten.png')
+    file = new File([''], 'maarten.png')
   }: {
     value?: File | string;
     cropType?: 'rect' | 'circle';
@@ -39,7 +53,8 @@ describe('Component: ImageUpload', () => {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
-    jest.spyOn(AvatarEditor.prototype, 'getImage')
+    jest
+      .spyOn(AvatarEditor.prototype, 'getImage')
       // @ts-expect-error Test mock
       .mockReturnValue(imageSize);
 
@@ -55,17 +70,16 @@ describe('Component: ImageUpload', () => {
       };
     });
 
-    jest
-      .spyOn(imgUploadUtils, 'dataUrlToFile')
-      .mockImplementation(() => file);
+    jest.spyOn(imgUploadUtils, 'dataUrlToFile').mockImplementation(() => file);
 
     const setModeSpy = jest.fn();
     const setImageSpy = jest.fn();
 
     if (mode) {
-      jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([ mode, setModeSpy ])
-        .mockReturnValueOnce([ image, setImageSpy ]);
+      jest
+        .spyOn(React, 'useState')
+        .mockReturnValueOnce([mode, setModeSpy])
+        .mockReturnValueOnce([image, setImageSpy]);
     }
 
     const crop: ImageUploadCrop =
@@ -90,7 +104,17 @@ describe('Component: ImageUpload', () => {
       <ImageUpload color="success" {...props} />
     );
 
-    return { container, asFragment, onChangeSpy, onBlurSpy, resizeSpy, resolve, promise, setModeSpy, setImageSpy };
+    return {
+      container,
+      asFragment,
+      onChangeSpy,
+      onBlurSpy,
+      resizeSpy,
+      resolve,
+      promise,
+      setModeSpy,
+      setImageSpy
+    };
   }
 
   it('should not show the image when the value is undefined', () => {
@@ -113,7 +137,7 @@ describe('Component: ImageUpload', () => {
 
     const { setModeSpy, setImageSpy } = setup({
       mode: 'no-file',
-      value: new File([ 'base64code' ], 'gido.png'),
+      value: new File(['base64code'], 'gido.png'),
       image: null
     });
 
@@ -121,11 +145,13 @@ describe('Component: ImageUpload', () => {
       expect(setImageSpy).toHaveBeenCalledTimes(1);
     });
 
-    expect(setImageSpy).toHaveBeenCalledWith(expect.objectContaining({
-      fileName: 'gido.png',
-      rotate: 0,
-      scale: 1
-    }));
+    expect(setImageSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        fileName: 'gido.png',
+        rotate: 0,
+        scale: 1
+      })
+    );
     expect(setModeSpy).toHaveBeenCalledTimes(1);
     expect(setModeSpy).toHaveBeenCalledWith('file-selected');
   });
@@ -137,7 +163,10 @@ describe('Component: ImageUpload', () => {
     });
 
     test('file-selected as circle', () => {
-      const { container } = setup({ cropType: 'circle', mode: 'file-selected' });
+      const { container } = setup({
+        cropType: 'circle',
+        mode: 'file-selected'
+      });
       expect(container).toMatchSnapshot();
     });
 
@@ -183,13 +212,17 @@ describe('Component: ImageUpload', () => {
 
   describe('events', () => {
     it('should set mode to edit when file is selected', () => {
-      const readFileSpy = jest.spyOn(imgUploadUtils, 'readFile').mockImplementation((file, callback) => callback(''));
+      const readFileSpy = jest
+        .spyOn(imgUploadUtils, 'readFile')
+        .mockImplementation((file, callback) => callback(''));
 
       const { setModeSpy, setImageSpy } = setup({
         mode: 'no-file'
       });
 
-      fireEvent.change(screen.getByLabelText('Profile photo'), { target: { files: [ new File([ '' ], 'maarten.png') ] } });
+      fireEvent.change(screen.getByLabelText('Profile photo'), {
+        target: { files: [new File([''], 'maarten.png')] }
+      });
 
       expect(readFileSpy).toHaveBeenCalledTimes(1);
 
@@ -271,9 +304,17 @@ describe('Component: ImageUpload', () => {
     it('should set the final image and set mode to file-selected when done button is clicked', async () => {
       expect.assertions(13);
 
-      const file = new File([ '' ], 'maarten.png');
+      const file = new File([''], 'maarten.png');
 
-      const { setModeSpy, setImageSpy, resizeSpy, resolve, promise, onChangeSpy, onBlurSpy } = setup({
+      const {
+        setModeSpy,
+        setImageSpy,
+        resizeSpy,
+        resolve,
+        promise,
+        onChangeSpy,
+        onBlurSpy
+      } = setup({
         mode: 'edit',
         file
       });
@@ -320,9 +361,12 @@ describe('Component: ImageUpload', () => {
     it('should replace the file extension when keepOriginalFileExtension is undefined', async () => {
       expect.assertions(4);
 
-      const file = new File([ '' ], 'maarten.jpg');
+      const file = new File([''], 'maarten.jpg');
 
-      const replaceFileExtensionSpy = jest.spyOn(imgUploadUtils, 'replaceFileExtension');
+      const replaceFileExtensionSpy = jest.spyOn(
+        imgUploadUtils,
+        'replaceFileExtension'
+      );
 
       const { resolve, promise, setImageSpy } = setup({
         mode: 'edit',
@@ -352,9 +396,12 @@ describe('Component: ImageUpload', () => {
     it('should not replace the file extension when keepOriginalFileExtension is true', async () => {
       expect.assertions(4);
 
-      const file = new File([ '' ], 'maarten.jpg');
+      const file = new File([''], 'maarten.jpg');
 
-      const replaceFileExtensionSpy = jest.spyOn(imgUploadUtils, 'replaceFileExtension');
+      const replaceFileExtensionSpy = jest.spyOn(
+        imgUploadUtils,
+        'replaceFileExtension'
+      );
 
       const { resolve, promise, setImageSpy } = setup({
         mode: 'edit',
@@ -512,7 +559,7 @@ test('requireImage', () => {
     fallback: 'profile picture is required'
   });
 
-  expect(validator(new File([ '' ], 'henkie.png'), {})).toBe(undefined);
+  expect(validator(new File([''], 'henkie.png'), {})).toBe(undefined);
 });
 
 test('limitImageSize', () => {
@@ -523,11 +570,11 @@ test('limitImageSize', () => {
   // @ts-expect-error Even though it accepts Value it will be given undefined and null
   expect(validator(null, {})).toBe(undefined);
 
-  const smallFile = new File([ '' ], 'small.png');
+  const smallFile = new File([''], 'small.png');
   expect(validator(smallFile, {})).toBe(undefined);
 
   const largeFile = new File(
-    [ 'very large image string'.repeat(100000) ],
+    ['very large image string'.repeat(100000)],
     'large.png'
   );
   expect(validator(largeFile, {})).toEqual({

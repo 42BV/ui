@@ -4,12 +4,13 @@ import { range } from 'lodash';
 
 import { pageOf } from '../../utilities/page/page';
 
-import Pagination from './EpicPagination';
+import { EpicPagination } from './EpicPagination';
+import { Pagination } from '../Pagination/Pagination';
 
 storiesOf('core/EpicPagination', module)
-  .addParameters({ component: Pagination })
+  .addParameters({ component: EpicPagination })
   .add('default', () => {
-    const [ pageNumber, setPageNumber ] = useState(5);
+    const [pageNumber, setPageNumber] = useState(5);
 
     const page = pageOf(range(0, 100), pageNumber, 10);
 

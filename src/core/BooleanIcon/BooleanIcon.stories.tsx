@@ -78,15 +78,24 @@ storiesOf('core/BooleanIcon', module)
           <BooleanIcon value={false} color="light" />
         </AttributeView>
       </AttributeList>
-    )
-      ;
+    );
   })
   .add('hover color', () => {
     return (
       <div className="text-center align-middle">
-        true <BooleanIcon value={true} hoverColor="primary" onChange={action('active icon clicked')} />
+        true{' '}
+        <BooleanIcon
+          value={true}
+          hoverColor="primary"
+          onChange={action('active icon clicked')}
+        />
         <br />
-        false <BooleanIcon value={false} hoverColor="primary" onChange={action('inactive icon clicked')} />
+        false{' '}
+        <BooleanIcon
+          value={false}
+          hoverColor="primary"
+          onChange={action('inactive icon clicked')}
+        />
       </div>
     );
   });

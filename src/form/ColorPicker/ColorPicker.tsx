@@ -4,7 +4,7 @@ import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 
 import { withJarb } from '../withJarb/withJarb';
-import { Icon, IconType } from '../../core/Icon';
+import { Icon } from '../../core/Icon';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import { TextButton } from '../../core/TextButton/TextButton';
@@ -13,6 +13,7 @@ import { Card } from '../../core/Card/Card';
 import { uniqueId } from 'lodash';
 import { FieldCompatible } from '../types';
 import { withField } from '../withField/withField';
+import { IconType } from '../../core/types';
 
 type Text = {
   /**
@@ -72,9 +73,9 @@ export function ColorPicker(props: Props) {
     text = {}
   } = props;
 
-  const [ colorValue, setColorValue ] = useState(value ? value : '#ffffff');
+  const [colorValue, setColorValue] = useState(value ? value : '#ffffff');
 
-  const [ isOpen, setIsOpen ] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   function onColorSelected(newColor?: string) {
     onChange(newColor);
@@ -86,7 +87,9 @@ export function ColorPicker(props: Props) {
 
   return (
     <FormGroup className={classes} color={color}>
-      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? (
+        <Label for={id}>{label}</Label>
+      ) : null}
 
       <div className="d-flex">
         {value ? (
@@ -99,10 +102,7 @@ export function ColorPicker(props: Props) {
               />
             </div>
             {canClear ? (
-              <TextButton
-                onClick={() => onColorSelected()}
-                className="me-3"
-              >
+              <TextButton onClick={() => onColorSelected()} className="me-3">
                 {t({
                   key: 'ColorPicker.CLEAR',
                   fallback: 'Clear',
@@ -116,13 +116,13 @@ export function ColorPicker(props: Props) {
           visible={isOpen}
           className="border-0 tippy-popover"
           placement="bottom"
-          offset={[ 0, 7 ]}
+          offset={[0, 7]}
           interactive={true}
           zIndex={1049} // One level below bootstrap's modal
-          content={(
+          content={
             <Card
               cardBodyClassName="p-0"
-              footer={(
+              footer={
                 <div className="d-flex justify-content-between my-1 p-1">
                   <Button
                     color="secondary"
@@ -149,16 +149,20 @@ export function ColorPicker(props: Props) {
                     })}
                   </Button>
                 </div>
-              )}
+              }
             >
               <SketchPicker
                 color={colorValue}
                 onChange={(result) => setColorValue(result.hex)}
               />
             </Card>
-          )}
+          }
         >
-          <ColorPickerButtonRef onClick={() => setIsOpen(!isOpen)} icon={icon} placeholder={placeholder} />
+          <ColorPickerButtonRef
+            onClick={() => setIsOpen(!isOpen)}
+            icon={icon}
+            placeholder={placeholder}
+          />
         </Tippy>
       </div>
       {error}
@@ -172,7 +176,10 @@ type ButtonProps = {
   placeholder?: string;
 };
 
-function ColorPickerButton({ onClick, icon, placeholder }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
+function ColorPickerButton(
+  { onClick, icon, placeholder }: ButtonProps,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
   return (
     <button
       type="button"
@@ -183,7 +190,7 @@ function ColorPickerButton({ onClick, icon, placeholder }: ButtonProps, ref: For
       {icon ? <Icon icon={icon} className="me-2 align-bottom" /> : null}
       {placeholder}
     </button>
-  )
+  );
 }
 
 const ColorPickerButtonRef = forwardRef(ColorPickerButton);

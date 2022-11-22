@@ -1,7 +1,7 @@
 import picaFn from 'pica';
 import { ImageUploadCrop } from './ImageUpload';
 import { Buffer } from 'buffer';
-Buffer.from('anything','base64');
+Buffer.from('anything', 'base64');
 
 let picaInstance: any;
 
@@ -27,7 +27,7 @@ export function dataUrlToFile(dataUrl: string, fileName: string): File {
     bytes[i] = byteString[i];
   }
 
-  return new File([ bytes ], fileName, { type: mimeString });
+  return new File([bytes], fileName, { type: mimeString });
 }
 
 type AvatarEditorConfig = {

@@ -11,8 +11,10 @@ describe('Component: Avatar', () => {
       <Avatar
         className="red"
         size={size}
-        src="http://lorempixel.com/200/200/"
-        alt="A picture of a tomato"
+        imgProps={{
+          src: 'https://lorempixel.com/200/200/',
+          alt: 'A picture of a tomato'
+        }}
       >
         <h1>Children</h1>
       </Avatar>

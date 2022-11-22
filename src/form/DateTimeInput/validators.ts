@@ -2,7 +2,13 @@ import { FieldValidator } from 'final-form';
 import { get } from 'lodash';
 import { MomentInput } from 'moment';
 import { t } from '../../utilities/translation/translation';
-import { isDate, isDateAfter, isDateBefore, isDateBetween, IsDateBetweenConfig } from './checkers';
+import {
+  isDate,
+  isDateAfter,
+  isDateBefore,
+  isDateBetween,
+  IsDateBetweenConfig
+} from './checkers';
 import { DateFormat, TimeFormat } from './types';
 import { combineFormat } from './utils';
 
@@ -42,7 +48,9 @@ type IsDateValidatorConfig = {
  * @param {IsDateValidatorConfig} config The configuration for the isDateBeforeValidator
  * @returns {FieldValidator<MomentInput>} A date validator function which checks if the date lies before the end date.
  */
-export function isDateValidator(config: IsDateValidatorConfig): FieldValidator<MomentInput> {
+export function isDateValidator(
+  config: IsDateValidatorConfig
+): FieldValidator<MomentInput> {
   const { dateFormat, timeFormat, label } = config;
 
   return (value?: MomentInput): string | undefined => {
@@ -52,7 +60,10 @@ export function isDateValidator(config: IsDateValidatorConfig): FieldValidator<M
 
     return t({
       key: 'DateTimeInput.INVALID_DATE',
-      fallback: `Must match required format "${combineFormat(dateFormat, timeFormat)}"`,
+      fallback: `Must match required format "${combineFormat(
+        dateFormat,
+        timeFormat
+      )}"`,
       data: {
         format: combineFormat(dateFormat, timeFormat),
         label

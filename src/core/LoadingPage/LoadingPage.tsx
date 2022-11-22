@@ -1,27 +1,16 @@
 import classNames from 'classnames';
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { Spinner } from '../Spinner/Spinner';
 import { useShowAfter } from '../../hooks/useShowAfter/useShowAfter';
+import { UIBasePropsWithCSSProperties } from '../types';
 
 type Props = {
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * Optional extra CSSProperties you want to add to the component.
-   * Useful for styling the component.
-   */
-  style?: CSSProperties;
-
   /**
    * Optionally a height, by default this will be the full height
    * of the view port.
    */
   height?: number;
-};
+} & Partial<UIBasePropsWithCSSProperties>;
 
 /**
  * The LoadingPage component embeds the Spinner component in a page-friendly matter.

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { AsyncContent, Props as AsyncContentProps, ReactAsyncState, ReactQueryState } from '../AsyncContent/AsyncContent';
-
-type Props<T> = Omit<AsyncContentProps<T>, 'isEmpty'> & (ReactAsyncState<T> | ReactQueryState<T>);
+import { AsyncContent } from '../AsyncContent/AsyncContent';
+import { AsyncContentProps } from '../types';
 
 export function isEmpty<T>(list: T[]): boolean {
   return list.length === 0;
@@ -17,6 +16,10 @@ export function isEmpty<T>(list: T[]): boolean {
  * standard `isEmpty` function which checks if the array has the
  * `length` zero.
  */
-export function AsyncList<T>(props: Props<T[]>) {
-  return <AsyncContent {...props} isEmpty={isEmpty} />;
+export function AsyncList<T>({ children, ...props }: AsyncContentProps<T[]>) {
+  return (
+    <AsyncContent {...props} isEmpty={isEmpty}>
+      {children}
+    </AsyncContent>
+  );
 }

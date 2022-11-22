@@ -3,7 +3,11 @@ import { storiesOf } from '@storybook/react';
 import { Alert } from 'reactstrap';
 
 import { Checkbox, FieldCheckbox, JarbCheckbox } from './Checkbox';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 
 import { Icon } from '../../core/Icon';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -20,7 +24,7 @@ function isSClass(value?: boolean) {
 storiesOf('Form/Checkbox', module)
   .addParameters({ component: Checkbox })
   .add('basic', () => {
-    const [ isSClass, setIsSClass ] = useState<boolean | undefined>(undefined);
+    const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -42,7 +46,7 @@ storiesOf('Form/Checkbox', module)
     );
   })
   .add('basic with indeterminate', () => {
-    const [ isSClass, setIsSClass ] = useState<boolean | undefined>(undefined);
+    const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -65,7 +69,7 @@ storiesOf('Form/Checkbox', module)
     );
   })
   .add('without placeholder', () => {
-    const [ isSClass, setIsSClass ] = useState<boolean | undefined>(undefined);
+    const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -86,7 +90,7 @@ storiesOf('Form/Checkbox', module)
     );
   })
   .add('with custom label', () => {
-    const [ isSClass, setIsSClass ] = useState<boolean | undefined>(undefined);
+    const [isSClass, setIsSClass] = useState<boolean | undefined>(undefined);
 
     return (
       <Card className="m-2">
@@ -127,7 +131,7 @@ storiesOf('Form/Checkbox', module)
             name="isSClass"
             label="Is S class hero"
             placeholder="Whether or not the hero is S class"
-            validators={[ isSClass ]}
+            validators={[isSClass]}
           />
         </FinalForm>
       </>
@@ -143,7 +147,7 @@ storiesOf('Form/Checkbox', module)
             name="isSClass"
             label="Is S class hero"
             placeholder="Whether or not the hero is S class"
-            validators={[ isSClass ]}
+            validators={[isSClass]}
             allowIndeterminate={true}
           />
         </FinalForm>
@@ -159,7 +163,7 @@ storiesOf('Form/Checkbox', module)
             id="isSClass"
             name="isSClass"
             placeholder="Whether or not the hero is S class"
-            validators={[ isSClass ]}
+            validators={[isSClass]}
             jarb={{
               validator: 'Hero.isSClass',
               label: 'Is S class hero'
@@ -178,7 +182,7 @@ storiesOf('Form/Checkbox', module)
             id="isSClass"
             name="isSClass"
             placeholder="Whether or not the hero is S class"
-            validators={[ isSClass ]}
+            validators={[isSClass]}
             jarb={{
               validator: 'Hero.isSClass',
               label: 'Is S class hero'

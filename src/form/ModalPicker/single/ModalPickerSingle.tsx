@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
-import { FieldCompatibleWithPredeterminedOptions, getKeyForOption, isOptionSelected } from '../../option';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  getKeyForOption,
+  isOptionSelected
+} from '../../option';
 import { FieldCompatible } from '../../types';
 import { useOptions } from '../../useOptions';
 import { alwaysTrue } from '../../utils';
@@ -8,87 +12,94 @@ import { withJarb } from '../../withJarb/withJarb';
 import { ModalPicker, Text } from '../ModalPicker';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
-import { ModalPickerAddButtonCallback, ModalPickerAddButtonOptions, ModalPickerButtonAlignment, ModalPickerRenderOptions } from '../types';
-import { IconType } from '../../../core/Icon';
+import {
+  ModalPickerAddButtonCallback,
+  ModalPickerAddButtonOptions,
+  ModalPickerButtonAlignment,
+  ModalPickerRenderOptions
+} from '../types';
 import { withField } from '../../withField/withField';
+import { IconType } from '../../../core/types';
 
 export type ModalPickerSingleRenderValue<T> = (value?: T) => React.ReactNode;
 
-type Props<T> = Omit<FieldCompatible<T, T | undefined>,
-  'placeholder' | 'valid'> &
+type Props<T> = Omit<
+  FieldCompatible<T, T | undefined>,
+  'placeholder' | 'valid'
+> &
   FieldCompatibleWithPredeterminedOptions<T> & {
-  /**
-   * The placeholder of the form element.
-   */
-  placeholder: string;
+    /**
+     * The placeholder of the form element.
+     */
+    placeholder: string;
 
-  /**
-   * Optionally the icon to display on the button to open the modal picker.
-   */
-  icon?: IconType;
+    /**
+     * Optionally the icon to display on the button to open the modal picker.
+     */
+    icon?: IconType;
 
-  /**
-   * Optionally whether the user can search.
-   * Defaults to `true`.
-   */
-  canSearch?: boolean;
+    /**
+     * Optionally whether the user can search.
+     * Defaults to `true`.
+     */
+    canSearch?: boolean;
 
-  /**
-   * Optionally specify the number of options to show / fetch per
-   * page in the modal.
-   *
-   * When `options` is an array, it will determine how many options
-   * will be displayed per page.
-   *
-   * When `options` is a fetcher, it will determine how many options
-   * are requested through the fetcher as the `page` parameter.
-   * This means that when you set the pageSize to `100` that
-   * `100` items are fetched from the back-end. Beware of
-   * performance issues when setting the value too high.
-   *
-   * Beware that setting the page size too high will cause the UX
-   * to deteriorate on smaller screens!
-   *
-   * Defaults to `10`.
-   */
-  pageSize?: number;
+    /**
+     * Optionally specify the number of options to show / fetch per
+     * page in the modal.
+     *
+     * When `options` is an array, it will determine how many options
+     * will be displayed per page.
+     *
+     * When `options` is a fetcher, it will determine how many options
+     * are requested through the fetcher as the `page` parameter.
+     * This means that when you set the pageSize to `100` that
+     * `100` items are fetched from the back-end. Beware of
+     * performance issues when setting the value too high.
+     *
+     * Beware that setting the page size too high will cause the UX
+     * to deteriorate on smaller screens!
+     *
+     * Defaults to `10`.
+     */
+    pageSize?: number;
 
-  /**
-   * Optionally an add button to display in the Modal. Can
-   * be used to dynamically add an option which was not there
-   * before.
-   */
-  addButton?: ModalPickerAddButtonOptions<T>;
+    /**
+     * Optionally an add button to display in the Modal. Can
+     * be used to dynamically add an option which was not there
+     * before.
+     */
+    addButton?: ModalPickerAddButtonOptions<T>;
 
-  /**
-   * Optionally the position the button should be aligned to
-   * within its container.
-   */
-  alignButton?: ModalPickerButtonAlignment;
+    /**
+     * Optionally the position the button should be aligned to
+     * within its container.
+     */
+    alignButton?: ModalPickerButtonAlignment;
 
-  /**
-   * Optionally callback to display the selected item.
-   */
-  renderValue?: ModalPickerSingleRenderValue<T>;
+    /**
+     * Optionally callback to display the selected item.
+     */
+    renderValue?: ModalPickerSingleRenderValue<T>;
 
-  /**
-   * Callback to customize display of options.
-   */
-  renderOptions?: ModalPickerRenderOptions<T>;
+    /**
+     * Callback to customize display of options.
+     */
+    renderOptions?: ModalPickerRenderOptions<T>;
 
-  /**
-   * Whether to show a "clear" button.
-   *
-   * Defaults to `true`
-   */
-  canClear?: boolean;
+    /**
+     * Whether to show a "clear" button.
+     *
+     * Defaults to `true`
+     */
+    canClear?: boolean;
 
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-};
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
+  };
 
 /**
  * The ModalPickerSingle is a form element which allows the user
@@ -130,11 +141,11 @@ export function ModalPickerSingle<T>(props: Props<T>) {
     text
   } = props;
 
-  const [ isOpen, setIsOpen ] = useState(false);
-  const [ pageNumber, setPageNumber ] = useState(1);
-  const [ query, setQuery ] = useState<string>('');
-  const [ userHasSearched, setUserHasSearched ] = useState(false);
-  const [ selected, setSelected ] = useState<T | undefined>(undefined);
+  const [isOpen, setIsOpen] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [query, setQuery] = useState<string>('');
+  const [userHasSearched, setUserHasSearched] = useState(false);
+  const [selected, setSelected] = useState<T | undefined>(undefined);
 
   const { page, loading } = useOptions({
     options,
@@ -189,11 +200,11 @@ export function ModalPickerSingle<T>(props: Props<T>) {
     renderValue: renderValue
       ? renderValue
       : (value: T) => (
-        <ModalPickerValueTruncator
-          value={value}
-          labelForOption={labelForOption}
-        />
-      ),
+          <ModalPickerValueTruncator
+            value={value}
+            labelForOption={labelForOption}
+          />
+        ),
     onClear: canClear ? () => onChange(undefined) : undefined,
     value
   };
@@ -219,9 +230,9 @@ export function ModalPickerSingle<T>(props: Props<T>) {
   function renderModal() {
     const addButtonOptions = addButton
       ? {
-        label: addButton.label,
-        onClick: () => addButtonClicked(addButton.onClick)
-      }
+          label: addButton.label,
+          onClick: () => addButtonClicked(addButton.onClick)
+        }
       : undefined;
 
     return (
@@ -243,13 +254,13 @@ export function ModalPickerSingle<T>(props: Props<T>) {
         renderOptionsConfig={
           renderOptions
             ? {
-              labelForOption,
-              isOptionEqual,
-              keyForOption,
-              isOptionEnabled,
-              renderOptions,
-              onChange: setSelected
-            }
+                labelForOption,
+                isOptionEqual,
+                keyForOption,
+                isOptionEnabled,
+                renderOptions,
+                onChange: setSelected
+              }
             : undefined
         }
         text={text}
@@ -292,9 +303,13 @@ export function ModalPickerSingle<T>(props: Props<T>) {
 /**
  * Variant of the ModalPickerSingle which can be used in a Jarb context.
  */
-export const JarbModalPickerSingle = withJarb<any, any | null, Props<any>>(ModalPickerSingle);
+export const JarbModalPickerSingle = withJarb<any, any | null, Props<any>>(
+  ModalPickerSingle
+);
 
 /**
  * Variant of the ModalPickerSingle which can be used in a final form.
  */
-export const FieldModalPickerSingle = withField<any, any | null, Props<any>>(ModalPickerSingle);
+export const FieldModalPickerSingle = withField<any, any | null, Props<any>>(
+  ModalPickerSingle
+);

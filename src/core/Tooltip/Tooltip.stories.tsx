@@ -10,9 +10,14 @@ storiesOf('core/Tooltip', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use Tooltip, you have to add @tippyjs/react to your dependencies:</p>
+        <p className="mb-0">
+          To be able to use Tooltip, you have to add @tippyjs/react to your
+          dependencies:
+        </p>
         <code>npm install --save @tippyjs/react</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <p className="mb-0 mt-2">
+          You also have to add the stylesheet to your project
+        </p>
         <code>@import &apos;tippy.js/dist/tippy.css&apos;;</code>
       </Alert>
       <Story />
@@ -32,7 +37,11 @@ storiesOf('core/Tooltip', module)
 
           <Tooltip content="This is a tooltip">Plain text</Tooltip>
 
-          <Tooltip content="Buttons work too" tag="button" className="btn btn-secondary">
+          <Tooltip
+            content="Buttons work too"
+            tag="button"
+            className="btn btn-secondary"
+          >
             Hover this button!
           </Tooltip>
         </Col>
@@ -242,7 +251,11 @@ storiesOf('core/Tooltip', module)
             You can change that with the tag property
           </Tooltip>
 
-          <Tooltip content="My children are in a <button>" tag="button" className="btn btn-primary">
+          <Tooltip
+            content="My children are in a <button>"
+            tag="button"
+            className="btn btn-primary"
+          >
             Buttons are allowed too!
           </Tooltip>
         </Col>

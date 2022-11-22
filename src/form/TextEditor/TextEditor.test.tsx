@@ -36,8 +36,8 @@ describe('Component: TextEditor', () => {
       valid: true,
       modules: hasModules
         ? {
-          toolbar: [ 'bold' ]
-        }
+            toolbar: ['bold']
+          }
         : undefined,
       formats,
       id: hasLabel ? 'firstName' : undefined,
@@ -65,12 +65,16 @@ describe('Component: TextEditor', () => {
 
     test('with placeholder', () => {
       const { container } = setup({ hasPlaceholder: true });
-      expect(container.firstChild?.firstChild?.lastChild?.firstChild).toHaveAttribute('data-placeholder', 'Please enter your first name');
+      expect(
+        container.firstChild?.firstChild?.lastChild?.firstChild
+      ).toHaveAttribute('data-placeholder', 'Please enter your first name');
     });
 
     test('without placeholder', () => {
       const { container } = setup({ hasPlaceholder: false });
-      expect(container.firstChild?.firstChild?.lastChild?.firstChild).not.toHaveAttribute('data-placeholder', 'Please enter your first name');
+      expect(
+        container.firstChild?.firstChild?.lastChild?.firstChild
+      ).not.toHaveAttribute('data-placeholder', 'Please enter your first name');
     });
 
     test('with label', () => {
@@ -96,7 +100,7 @@ describe('Component: TextEditor', () => {
     });
 
     test('with formats', () => {
-      setup({ formats: [ 'italic' ] });
+      setup({ formats: ['italic'] });
       // We cannot check the formats, but it has to be covered
     });
   });
@@ -149,9 +153,7 @@ describe('Component: TextEditor', () => {
         value: undefined
       };
 
-      rerender(
-        <TextEditor {...newProps} />
-      );
+      rerender(<TextEditor {...newProps} />);
 
       expect(document.querySelector('.ql-editor')?.textContent).toBe('');
     });
@@ -166,9 +168,7 @@ describe('Component: TextEditor', () => {
         value: 'Maarten'
       };
 
-      rerender(
-        <TextEditor {...newProps} />
-      );
+      rerender(<TextEditor {...newProps} />);
 
       expect(document.querySelector('.ql-editor')?.textContent).toBe('Maarten');
     });

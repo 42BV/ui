@@ -8,15 +8,11 @@ describe('Component: ConfirmModal', () => {
   describe('ui', () => {
     test('default texts', () => {
       render(
-        <ConfirmModal
-          onClose={() => undefined}
-          onSave={() => undefined}
-          modalText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        />
+        <ConfirmModal onClose={() => undefined} onSave={() => undefined}>
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        </ConfirmModal>
       );
 
       expect(document.body.lastChild).toMatchSnapshot();
@@ -27,20 +23,21 @@ describe('Component: ConfirmModal', () => {
         <ConfirmModal
           onClose={() => undefined}
           onSave={() => undefined}
-          modalText={
-            <p>
-              Are you sure you want to <strong>delete</strong> all users in the
-              database?
-            </p>
-          }
           cancelText="NO"
           confirmText="YES"
           label="Perform dangerous action"
-        />
+        >
+          <p>
+            Are you sure you want to <strong>delete</strong> all users in the
+            database?
+          </p>
+        </ConfirmModal>
       );
 
       expect(screen.queryByText('Confirmation')).not.toBeInTheDocument();
-      expect(screen.queryByText('Perform dangerous action')).toBeInTheDocument();
+      expect(
+        screen.queryByText('Perform dangerous action')
+      ).toBeInTheDocument();
       expect(screen.getAllByRole('button')[1]).toHaveTextContent('cancelNO');
       expect(screen.getAllByRole('button')[2]).toHaveTextContent('saveYES');
       expect(document.body.lastChild).toMatchSnapshot();
@@ -59,12 +56,10 @@ describe('Component: ConfirmModal', () => {
         onClose: onCloseSpy,
         onSave: onSaveSpy,
         label: 'Are you sure you want a ConfirmAction?',
-        modalText: text
+        children: text
       };
 
-      const { container } = render(
-        <ConfirmModal {...props} />
-      );
+      const { container } = render(<ConfirmModal {...props} />);
 
       return { container, onCloseSpy, onSaveSpy };
     }
@@ -75,7 +70,9 @@ describe('Component: ConfirmModal', () => {
         isOpen: true
       });
 
-      expect(screen.queryByText('Delete all data in the database?')).toBeInTheDocument();
+      expect(
+        screen.queryByText('Delete all data in the database?')
+      ).toBeInTheDocument();
     });
 
     it('should call onClose when the Modal is closed', () => {

@@ -1,22 +1,28 @@
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { CopyToClipboard } from './CopyToClipboard';
-import { Color } from '../types';
+import { BootstrapColor } from '../types';
 import { resolvablePromise } from '../../test/utils';
 
 describe('Component: CopyToClipboard', () => {
   function setup({
     id,
     className,
-    buttonColor,
+    buttonProps,
     text
   }: {
     id?: string;
     className?: string;
-    buttonColor?: Color;
     text?: { copied: string };
+    buttonProps?: { color?: BootstrapColor };
   }) {
     const { promise, resolve } = resolvablePromise();
     const writeTextSpy = jest.fn().mockReturnValue(promise);
@@ -27,10 +33,16 @@ describe('Component: CopyToClipboard', () => {
     });
 
     const { container } = render(
-      <CopyToClipboard id={id} className={className} buttonColor={buttonColor} text={text}>
-        This is a very long text that should hide behind the copy button at the end of the line.
-        It should be horizontally scrollable so you should be able to see the entire line of text,
-        but it should not be wrapped to multiple lines, it still has to be one long line of text.
+      <CopyToClipboard
+        id={id}
+        className={className}
+        buttonProps={buttonProps}
+        text={text}
+      >
+        This is a very long text that should hide behind the copy button at the
+        end of the line. It should be horizontally scrollable so you should be
+        able to see the entire line of text, but it should not be wrapped to
+        multiple lines, it still has to be one long line of text.
       </CopyToClipboard>
     );
 
@@ -49,7 +61,7 @@ describe('Component: CopyToClipboard', () => {
     });
 
     test('with button color', () => {
-      setup({ buttonColor: 'secondary' });
+      setup({ buttonProps: { color: 'secondary' } });
       expect(screen.getByText('content_copy')).toHaveClass('text-secondary');
     });
 
@@ -81,7 +93,9 @@ describe('Component: CopyToClipboard', () => {
 
       const element = document.createElement('div');
       element.innerText = 'Copy this text!';
-      const getElementByIdSpy = jest.spyOn(document, 'getElementById').mockReturnValue(element);
+      const getElementByIdSpy = jest
+        .spyOn(document, 'getElementById')
+        .mockReturnValue(element);
 
       const { writeTextSpy, resolve } = setup({ id: 'test' });
 
@@ -112,7 +126,6 @@ describe('Component: CopyToClipboard', () => {
       await waitFor(() => {
         expect(screen.queryByText('Copied!')).toBeInTheDocument();
       });
-
 
       await act(() => {
         jest.runAllTimers();

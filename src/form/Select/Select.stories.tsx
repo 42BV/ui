@@ -23,7 +23,7 @@ import { Icon } from '../../core/Icon';
 storiesOf('Form/Select', module)
   .addParameters({ component: Select })
   .add('predefined options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -44,7 +44,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('async options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -69,7 +69,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('disabled options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -91,7 +91,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -113,7 +113,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('custom keyForOption', () => {
-    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -135,13 +135,13 @@ storiesOf('Form/Select', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [ brand, setBrand ] = useState<string>();
-    const [ model, setModel ] = useState<string>();
+    const [brand, setBrand] = useState<string>();
+    const [model, setModel] = useState<string>();
 
     const allOptions = {
-      Audi: [ 'A1', 'A2', 'A3', 'M5' ],
-      BMW: [ 'series 1', 'series 2', 'series 3', 'series 4', 'series 5' ],
-      Mercedes: [ 'Viano', 'Vito', 'Sprinter' ]
+      Audi: ['A1', 'A2', 'A3', 'M5'],
+      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
+      Mercedes: ['Viano', 'Vito', 'Sprinter']
     };
 
     return (
@@ -181,7 +181,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('label & placeholder', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 

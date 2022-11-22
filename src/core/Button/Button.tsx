@@ -2,94 +2,46 @@ import React from 'react';
 import { Button as RSButton } from 'reactstrap';
 
 import { Spinner } from '../Spinner/Spinner';
-import { Icon, IconType } from '../Icon';
+import { Icon } from '../Icon';
 import { useShowSpinner } from './useShowSpinner';
 
-import { Color } from '../types';
+import { ButtonProps, ButtonSize, IconType, KeyValueMapping } from '../types';
 import classNames from 'classnames';
 
-export type ButtonSize = 'sm' | 'md' | 'lg';
-
-export type ButtonIconPosition = 'left' | 'right';
-
-export type Props = {
-  /**
-   * Optionally the type of button it is, defaults to 'button'.
-   *
-   * @default button
-   */
-  type?: 'button' | 'submit' | 'reset';
-
-  /**
-   * Optionally the color of the button.
-   */
-  color?: Color;
-
-  /**
-   *  Optional callback for what needs to happen when the button is clicked.
-   */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => any;
-
-  /**
-   * Whether the action you are performing is currently in progress.
-   * If so, a spinner is rendered inside the button.
-   * This behavior is optional and defaults to `false`.
-   *
-   * @default false
-   */
-  inProgress?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * Optionally whether the button is disabled
-   *
-   * Defaults to `false`
-   */
-  disabled?: boolean;
-
-  /**
-   * Optionally the Icon you want to use.
-   */
-  icon?: IconType;
-
-  /**
-   * Optionally the position of the icon, either left or right.
-   * Defaults to "left".
-   *
-   * Only applicable when the `icon` prop is set.
-   */
-  iconPosition?: ButtonIconPosition;
-
-  /**
-   * Optionally whether to show the button only as an outline.
-   */
-  outline?: boolean;
-
-  /**
-   * Optionally the size of the button, or icon when only the icon
-   * is rendered.
-   *
-   * Defaults to 'md'.
-   */
-  size?: ButtonSize;
-
-  /**
-   * Optionally whether the button should take the full width available.
-   *
-   * Defaults to `false`
-   */
-  fullWidth?: boolean;
-
-  /**
-   * Optionally the text of the button.
-   */
-  children?: React.ReactNode;
+const ICON_SIZE_MAPPING: KeyValueMapping<number> = {
+  lg: 32,
+  md: 24,
+  sm: 16
 };
+
+const SPINNER_SIZE_MAPPING: KeyValueMapping<number> = {
+  lg: 19,
+  md: 16,
+  sm: 12
+};
+
+function getWidget(
+  showSpinner: boolean,
+  size: ButtonSize,
+  iconPosition: 'me-2' | 'ms-2',
+  outline?: boolean,
+  icon?: IconType
+) {
+  if (showSpinner) {
+    return (
+      <Spinner
+        size={SPINNER_SIZE_MAPPING[size]}
+        color={outline ? '' : 'white'}
+        className={iconPosition}
+      />
+    );
+  } else if (icon) {
+    return (
+      <Icon icon={icon} className={classNames('button-icon', iconPosition)} />
+    );
+  }
+  return null;
+}
 
 /**
  * The Button component is a clickable element which can
@@ -103,31 +55,24 @@ export type Props = {
 export function Button({
   type = 'button',
   color = 'primary',
-  inProgress,
-  className = '',
-  onClick,
+  className,
   ...props
-}: Props) {
-  const showSpinner = useShowSpinner(!!inProgress);
+}: ButtonProps<React.ReactNode>) {
+  const showSpinner = useShowSpinner(!!props.inProgress);
 
   function handleOnClick(event: React.MouseEvent<HTMLElement>) {
-    if (!onClick) {
-      return;
-    }
-
-    if (!inProgress) {
-      onClick(event);
-    }
+    if (props.onClick && !props.inProgress) props.onClick(event);
   }
 
   const {
-    children,
-    outline,
     size = 'md',
+    iconPosition = 'left',
+    outline,
     fullWidth,
+    inProgress,
     disabled,
     icon,
-    iconPosition = 'left'
+    children
   } = props;
 
   // If there are children it will look like a button.
@@ -137,24 +82,18 @@ export function Button({
       size,
       color,
       outline,
-      block: fullWidth
+      block: fullWidth,
+      onClick: handleOnClick,
+      disabled: inProgress || disabled
     };
 
-    const widget = showSpinner ? (
-      <Spinner
-        size={getSpinnerSize(size)}
-        color={outline ? '' : 'white'}
-        className={iconPosition === 'left' ? 'me-2' : 'ms-2'}
-      />
-    ) : icon ? (
-      <Icon
-        icon={icon}
-        className={classNames(
-          'button-icon',
-          iconPosition === 'left' ? 'me-2' : 'ms-2'
-        )}
-      />
-    ) : null;
+    const widget = getWidget(
+      showSpinner,
+      size,
+      iconPosition === 'left' ? 'me-2' : 'ms-2',
+      outline,
+      icon
+    );
 
     return (
       <span
@@ -165,15 +104,13 @@ export function Button({
           color
         )}
       >
-        <RSButton
-          onClick={handleOnClick}
-          disabled={inProgress || disabled}
-          {...buttonProps}
-        >
+        <RSButton {...buttonProps}>
           <div className="d-flex justify-content-center align-items-center">
-            {iconPosition === 'left' && widget}
-            {children}
-            {iconPosition === 'right' && widget}
+            <>
+              {iconPosition === 'left' && widget}
+              {children}
+              {iconPosition === 'right' && widget}
+            </>
           </div>
         </RSButton>
       </span>
@@ -195,7 +132,7 @@ export function Button({
         {showSpinner ? (
           // Size is the same size as the icon.
           // Color is empty string so we can override the color
-          <Spinner size={getIconSize(size)} color="" />
+          <Spinner size={ICON_SIZE_MAPPING[size]} />
         ) : (
           <Icon
             onClick={handleOnClick}
@@ -203,38 +140,10 @@ export function Button({
             icon={icon ?? 'block'}
             color={color}
             disabled={inProgress || disabled}
-            size={getIconSize(size)}
+            size={ICON_SIZE_MAPPING[size]}
           />
         )}
       </span>
     );
-  }
-}
-
-// Based md is based on default the size of the Icon component
-export function getIconSize(size: ButtonSize): number {
-  switch (size) {
-    case 'lg':
-      return 32;
-
-    case 'md':
-      return 24;
-
-    case 'sm':
-      return 16;
-  }
-}
-
-// Based on the sizes in pixels of a button with text but without an icon
-export function getSpinnerSize(size: ButtonSize): number {
-  switch (size) {
-    case 'lg':
-      return 19;
-
-    case 'md':
-      return 16;
-
-    case 'sm':
-      return 12;
   }
 }

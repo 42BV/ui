@@ -1,5 +1,11 @@
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import * as reactErrorStore from '@42.nl/react-error-store';
 
@@ -16,13 +22,21 @@ const isSuperman = (value: string) =>
   value === 'superman' ? undefined : 'not superman';
 
 describe('HoC: withJarb', () => {
-  function setup({ hasErrors = false, hasBackEndErrors = false, errorMode }: { hasErrors?: boolean; hasBackEndErrors?: boolean; errorMode?: 'tooltip' | 'below' }) {
+  function setup({
+    hasErrors = false,
+    hasBackEndErrors = false,
+    errorMode
+  }: {
+    hasErrors?: boolean;
+    hasBackEndErrors?: boolean;
+    errorMode?: 'tooltip' | 'below';
+  }) {
     jest
       .spyOn(useHasErrors, 'useHasErrors')
-      .mockImplementation(() => [ hasErrors, jest.fn() ]);
+      .mockImplementation(() => [hasErrors, jest.fn()]);
     jest
       .spyOn(reactErrorStore, 'useErrorsForValidator')
-      .mockReturnValue(hasBackEndErrors ? [ 'back-end error' ] : []);
+      .mockReturnValue(hasBackEndErrors ? ['back-end error'] : []);
 
     setConstraints({
       User: {
@@ -39,8 +53,8 @@ describe('HoC: withJarb', () => {
           <JarbInput
             name="firstName"
             jarb={{ validator: 'User.firstName', label: 'First name' }}
-            validators={[ isSuperman ]}
-            asyncValidators={[ isSuperman ]}
+            validators={[isSuperman]}
+            asyncValidators={[isSuperman]}
             asyncValidatorsDebounce={100}
             id="firstName"
             label="First name"
@@ -105,11 +119,11 @@ describe('HoC: withJarb', () => {
   test('defaultValidators', async () => {
     expect.assertions(2);
 
-    jest
-      .spyOn(reactErrorStore, 'useErrorsForValidator')
-      .mockReturnValue([]);
+    jest.spyOn(reactErrorStore, 'useErrorsForValidator').mockReturnValue([]);
     const isDateValidatorSpy = jest.fn();
-    jest.spyOn(Validators, 'isDateValidator').mockReturnValue(isDateValidatorSpy);
+    jest
+      .spyOn(Validators, 'isDateValidator')
+      .mockReturnValue(isDateValidatorSpy);
     jest.spyOn(console, 'warn').mockImplementation(jest.fn());
     setConstraints({
       Test: {
@@ -124,12 +138,19 @@ describe('HoC: withJarb', () => {
     render(
       <Form onSubmit={jest.fn()}>
         {() => (
-          <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'test' }} name="test" dateFormat="YYYY-MM-DD" timeFormat={false} />
+          <JarbDateTimeInput
+            jarb={{ validator: 'Test.date', label: 'test' }}
+            name="test"
+            dateFormat="YYYY-MM-DD"
+            timeFormat={false}
+          />
         )}
       </Form>
     );
 
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: '4242-42-42' } });
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: '4242-42-42' }
+    });
     await act(() => {
       jest.runAllTimers();
     });
@@ -158,14 +179,18 @@ describe('HoC: withJarb', () => {
 
       jest.spyOn(reactErrorStore, 'clearErrorsForValidator');
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: '42' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: '42' }
+      });
 
       await act(() => {
         jest.runAllTimers();
       });
 
       expect(reactErrorStore.clearErrorsForValidator).toHaveBeenCalledTimes(1);
-      expect(reactErrorStore.clearErrorsForValidator).toHaveBeenCalledWith('User.firstName');
+      expect(reactErrorStore.clearErrorsForValidator).toHaveBeenCalledWith(
+        'User.firstName'
+      );
     });
   });
 });

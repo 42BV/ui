@@ -6,7 +6,8 @@ import { t } from '../../../utilities/translation/translation';
 import { TextButton } from '../../../core/TextButton/TextButton';
 import { ModalPickerSingleRenderValue } from '../single/ModalPickerSingle';
 import { ModalPickerMultipleRenderValues } from '../multiple/ModalPickerMultiple';
-import { Icon, IconType } from '../../../core/Icon';
+import { Icon } from '../../../core/Icon';
+import { IconType } from '../../../core/types';
 
 type Text = {
   clear?: string;

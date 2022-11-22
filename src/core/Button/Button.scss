@@ -9,7 +9,7 @@
   }
 
   @each $color, $value in $theme-colors {
-    &.#{"" + $color} {
+    &.#{'' + $color} {
       .spinner {
         stroke: $value;
       }

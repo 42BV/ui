@@ -1,7 +1,10 @@
 import React from 'react';
 import { ValidationError } from '@42.nl/jarb-final-form';
 import { MetaError } from '../types';
-import { getTranslator, Translation } from '../../utilities/translation/translator';
+import {
+  getTranslator,
+  Translation
+} from '../../utilities/translation/translator';
 
 export function errorMessage(error: MetaError): React.ReactNode {
   const translator = getTranslator();

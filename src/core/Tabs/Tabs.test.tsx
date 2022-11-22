@@ -38,8 +38,12 @@ describe('Component: Tabs', () => {
       const { container } = setup({ hideInactiveTabsBy: 'CSS' });
       expect(screen.queryByText('test active true')).toBeInTheDocument();
       expect(screen.queryByText('test active false')).toBeInTheDocument();
-      expect(screen.getByText('test active true').parentNode).toHaveClass('active');
-      expect(screen.getByText('test active false').parentNode).not.toHaveClass('active');
+      expect(screen.getByText('test active true').parentNode).toHaveClass(
+        'active'
+      );
+      expect(screen.getByText('test active false').parentNode).not.toHaveClass(
+        'active'
+      );
       expect(container).toMatchSnapshot();
     });
 

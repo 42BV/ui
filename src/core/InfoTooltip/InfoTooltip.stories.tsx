@@ -9,9 +9,14 @@ storiesOf('core/InfoTooltip', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use InfoTooltip, you have to add @tippyjs/react to your dependencies:</p>
+        <p className="mb-0">
+          To be able to use InfoTooltip, you have to add @tippyjs/react to your
+          dependencies:
+        </p>
         <code>npm install --save @tippyjs/react</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <p className="mb-0 mt-2">
+          You also have to add the stylesheet to your project
+        </p>
         <code>@import &apos;tippy.js/dist/tippy.css&apos;;</code>
       </Alert>
       <Story />
@@ -20,7 +25,7 @@ storiesOf('core/InfoTooltip', module)
   .add('basic', () => {
     return (
       <div className="text-center">
-        <InfoTooltip tooltip="This is the content of the tooltip" />
+        <InfoTooltip value="This is the content of the tooltip" />
       </div>
     );
   })
@@ -28,7 +33,7 @@ storiesOf('core/InfoTooltip', module)
     return (
       <div className="text-center">
         <InfoTooltip
-          tooltip={
+          value={
             <>
               <p>
                 The tooltip can contain multiple paragraphs by using plain HTML.
@@ -47,9 +52,9 @@ storiesOf('core/InfoTooltip', module)
   .add('custom size', () => {
     return (
       <div className="text-center">
-        <InfoTooltip tooltip="This icon is quite small" size={10} />
-        <InfoTooltip tooltip="This is the default size of the icon" />
-        <InfoTooltip tooltip="This icon is quite big" size={20} />
+        <InfoTooltip value="This icon is quite small" size={10} />
+        <InfoTooltip value="This is the default size of the icon" />
+        <InfoTooltip value="This icon is quite big" size={20} />
       </div>
     );
   });

@@ -1,35 +1,26 @@
-import React, { Suspense } from 'react';
-import { Card as ReactstrapCard, CardBody, CardFooter, CardHeader } from 'reactstrap';
+import React, { CSSProperties, Suspense } from 'react';
+import {
+  Card as ReactstrapCard,
+  CardBody,
+  CardFooter,
+  CardHeader
+} from 'reactstrap';
 import { Loading } from '../Loading/Loading';
 import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
+import {
+  UIBasePropsWithCSSPropertiesAndChildren,
+  WithFooter,
+  WithHeader
+} from '../types';
 
 export type Props = {
-  /**
-   * Optionally the content of the card header.
-   */
-  header?: React.ReactNode;
-
-  /**
-   * Optionally the content of the card footer.
-   */
-  footer?: React.ReactNode;
-
-  /**
-   * The content of the card body.
-   */
-  children: React.ReactNode;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
   /**
    * Optional extra CSS class you want to add to the <CardHeader>.
    * Useful for styling the component.
    */
   cardHeaderClassName?: string;
+
+  cardHeaderStyle?: CSSProperties;
 
   /**
    * Optional extra CSS class you want to add to the <CardBody>.
@@ -37,12 +28,20 @@ export type Props = {
    */
   cardBodyClassName?: string;
 
+  cardBodyStyle?: CSSProperties;
+
   /**
    * Optional extra CSS class you want to add to the <CardFooter>.
    * Useful for styling the component.
    */
   cardFooterClassName?: string;
-};
+
+  cardFooterStyle?: CSSProperties;
+} & Partial<
+  UIBasePropsWithCSSPropertiesAndChildren<React.ReactNode> &
+    WithHeader<React.ReactNode> &
+    WithFooter<React.ReactNode>
+>;
 
 /**
  * Card is a content container with an optional header and footer.
@@ -57,24 +56,28 @@ export function Card({
   className,
   cardHeaderClassName,
   cardBodyClassName,
-  cardFooterClassName
+  cardFooterClassName,
+  cardHeaderStyle,
+  cardBodyStyle,
+  cardFooterStyle,
+  ...props
 }: Props) {
   return (
-    <ReactstrapCard className={className}>
+    <ReactstrapCard className={className} {...props}>
       {header ? (
-        <CardHeader className={cardHeaderClassName}>
+        <CardHeader className={cardHeaderClassName} style={cardHeaderStyle}>
           <Suspense fallback={<Loading />}>{header}</Suspense>
         </CardHeader>
       ) : null}
-      <CardBody className={cardBodyClassName}>
+      <CardBody className={cardBodyClassName} style={cardBodyStyle}>
         <Suspense fallback={<Loading />}>
           <ErrorBoundary>
-            {children}
+            <>{children}</>
           </ErrorBoundary>
         </Suspense>
       </CardBody>
       {footer ? (
-        <CardFooter className={cardFooterClassName}>
+        <CardFooter className={cardFooterClassName} style={cardFooterStyle}>
           <Suspense fallback={<Loading />}>{footer}</Suspense>
         </CardFooter>
       ) : null}

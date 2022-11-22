@@ -10,9 +10,7 @@ describe('Component: LoadingPage', () => {
   function setup({ show, height }: { show: boolean; height?: number }) {
     jest.spyOn(ShowAfter, 'useShowAfter').mockReturnValue(show);
 
-    const { container } = render(
-      <LoadingPage height={height} />
-    );
+    const { container } = render(<LoadingPage height={height} />);
 
     return { container };
   }

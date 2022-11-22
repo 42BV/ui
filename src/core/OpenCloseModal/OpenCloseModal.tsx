@@ -2,8 +2,14 @@ import React from 'react';
 import { Button } from '../Button/Button';
 import { SubmitButton } from '../SubmitButton/SubmitButton';
 import { t } from '../../utilities/translation/translation';
-import { BootstrapSize } from '../types';
-import { IconType } from '../Icon';
+import {
+  BootstrapSize,
+  Closeable,
+  IconType,
+  UIBasePropsWithCSSPropertiesAndChildren,
+  WithLabel,
+  WithSize
+} from '../types';
 import { Modal } from '../Modal/Modal';
 
 type Text = {
@@ -18,11 +24,6 @@ type Props = {
    * This behavior is optional and default to `false`.
    */
   inProgress?: boolean;
-
-  /**
-   * Callback for when the modal should close.
-   */
-  onClose: () => void;
 
   /**
    * Optionally the icon of the save button.
@@ -44,25 +45,10 @@ type Props = {
   onSave?: () => void;
 
   /**
-   * The content of the modal body.
-   */
-  children: React.ReactNode;
-
-  /**
-   * The label of the form element.
-   */
-  label?: React.ReactNode;
-
-  /**
    * Optionally customized text within the component.
    * This text should already be translated.
    */
   text?: Text;
-
-  /**
-   * Optionally the size (width) of the modal.
-   */
-  size?: BootstrapSize;
 
   /**
    * Whether the footer should stick to the bottom of the modal.
@@ -71,12 +57,6 @@ type Props = {
    * Defaults to `true`.
    */
   stickyFooter?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
 
   /**
    * Optional extra CSS class you want to add to the <ModalHeader>.
@@ -95,7 +75,12 @@ type Props = {
    * Useful for styling the component.
    */
   modalFooterClassName?: string;
-};
+} & Partial<
+  UIBasePropsWithCSSPropertiesAndChildren<React.ReactNode> &
+    WithLabel<React.ReactNode> &
+    WithSize<BootstrapSize>
+> &
+  Closeable<void, void>;
 
 /**
  * Often a modal is content with a header and a cancel and save button

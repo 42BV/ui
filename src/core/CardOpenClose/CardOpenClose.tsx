@@ -1,64 +1,53 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { OpenClose } from '../OpenClose/OpenClose';
 import { Card, CardHeader } from 'reactstrap';
 import classNames from 'classnames';
 import { Loading } from '../Loading/Loading';
+import {
+  UIBasePropsWithCSSProperties,
+  WithChildren,
+  WithHeader
+} from '../types';
 
-type Props = {
-  /**
-   * The important details you always want to be displayed.
-   */
-  header: React.ReactNode;
-
-  /**
-   * Whether the collapsable body is opened.
-   */
-  isOpen: boolean;
+type CardOpenCloseProps = {
+  isOpen?: boolean;
 
   /**
-   * Callback that is triggered when the header is clicked.
-   * It should invert the isOpen property to show or hide the collapsable body.
+   * Callback that is triggered when the header is clicked. May not flip the value of the isOpen-property.
+   * The Callback-function is called just before the isOpen-property is flipped.
    */
   toggle: () => void;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * The content that might be hidden in the collapsable body.
-   */
-  children: () => React.ReactNode;
-};
+} & Partial<UIBasePropsWithCSSProperties> &
+  WithHeader<React.ReactNode> &
+  WithChildren<() => React.ReactNode>;
 
 /**
  * CardOpenClose is a collapsable bootstrap card that you can use to only display
  * important details and hide other details in a collapsable body to prevent extra
  * long pages that cause the user to scroll a lot.
  */
-export function CardOpenClose(props: Props) {
-  const { header, isOpen, toggle, className } = props;
+export function CardOpenClose(props: CardOpenCloseProps) {
+  const { header, className, children, toggle } = props;
+  const [isOpen, setIsOpen] = useState(props.isOpen === true);
+
+  function onClick() {
+    toggle();
+    setIsOpen(!isOpen);
+  }
 
   return (
     <Card className={classNames('my-2', className)}>
       <CardHeader
         className="d-flex justify-content-between align-content-center clickable"
-        onClick={toggle}
+        onClick={onClick}
       >
         {header}
-
         <OpenClose open={isOpen} />
       </CardHeader>
 
-      {!isOpen
-        ? null
-        : (
-          <Suspense fallback={<Loading />}>
-            {props.children()}
-          </Suspense>
-        )}
+      {!isOpen ? null : (
+        <Suspense fallback={<Loading />}>{children()}</Suspense>
+      )}
     </Card>
   );
 }

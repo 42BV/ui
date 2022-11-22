@@ -4,7 +4,12 @@ import '@testing-library/jest-dom';
 
 import { TypeaheadMultiple } from './TypeaheadMultiple';
 
-import { adminUser, listOfUsers, pageOfUsersFetcher, userUser } from '../../../test/fixtures';
+import {
+  adminUser,
+  listOfUsers,
+  pageOfUsersFetcher,
+  userUser
+} from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
 import { pageOf } from '../../../utilities/page/page';
@@ -62,7 +67,9 @@ describe('Component: TypeaheadMultiple', () => {
     );
 
     const props = {
-      placeholder: hasPlaceholder ? 'Please provide your best friend' : undefined,
+      placeholder: hasPlaceholder
+        ? 'Please provide your best friend'
+        : undefined,
       options: isAsync ? pageOfUsersFetcher : listOfUsers(),
       labelForOption: (user: User) => user.email,
       isOptionEnabled,
@@ -93,19 +100,25 @@ describe('Component: TypeaheadMultiple', () => {
     });
 
     test('with value', () => {
-      setup({ value: [ adminUser() ] });
+      setup({ value: [adminUser()] });
       expect(screen.queryAllByText('×').length).toBe(1);
-      expect(screen.getByText('×').parentNode?.textContent).toBe('admin@42.nl×');
+      expect(screen.getByText('×').parentNode?.textContent).toBe(
+        'admin@42.nl×'
+      );
     });
 
     test('with placeholder', () => {
       setup({ hasPlaceholder: true });
-      expect(screen.queryByPlaceholderText('Please provide your best friend')).toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please provide your best friend')
+      ).toBeInTheDocument();
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByPlaceholderText('Please provide your best friend')).not.toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please provide your best friend')
+      ).not.toBeInTheDocument();
     });
 
     test('without id', () => {
@@ -136,7 +149,9 @@ describe('Component: TypeaheadMultiple', () => {
       expect(useOptions).toBeCalledTimes(1);
       expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 2 }));
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: '42.nl' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: '42.nl' }
+      });
 
       await waitFor(() => {
         expect(screen.queryAllByText('42.nl').length).toBe(2);
@@ -152,7 +167,9 @@ describe('Component: TypeaheadMultiple', () => {
       expect(useOptions).toBeCalledTimes(1);
       expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 10 }));
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: '42.nl' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: '42.nl' }
+      });
 
       await waitFor(() => {
         expect(screen.queryAllByText('42.nl').length).toBe(3);
@@ -168,10 +185,14 @@ describe('Component: TypeaheadMultiple', () => {
         maxResults: 2
       });
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: '42.nl' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: '42.nl' }
+      });
 
       await waitFor(() => {
-        expect(screen.queryByText('Display additional results...')).toBeInTheDocument();
+        expect(
+          screen.queryByText('Display additional results...')
+        ).toBeInTheDocument();
       });
       expect(asFragment()).toMatchSnapshot();
     });
@@ -187,10 +208,14 @@ describe('Component: TypeaheadMultiple', () => {
         }
       });
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: '42.nl' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: '42.nl' }
+      });
 
       await waitFor(() => {
-        expect(screen.queryByText('Display additional results...')).not.toBeInTheDocument();
+        expect(
+          screen.queryByText('Display additional results...')
+        ).not.toBeInTheDocument();
         expect(screen.queryByText('Show more')).toBeInTheDocument();
       });
       expect(asFragment()).toMatchSnapshot();
@@ -206,7 +231,7 @@ describe('Component: TypeaheadMultiple', () => {
   describe('renderToken', () => {
     it('should when the Tag is closed call onRemove', () => {
       const { onChangeSpy } = setup({
-        value: [ adminUser() ]
+        value: [adminUser()]
       });
 
       fireEvent.click(screen.getByText('×'));
@@ -228,7 +253,7 @@ describe('Component: TypeaheadMultiple', () => {
       fireEvent.click(screen.getByLabelText('admin@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([ adminUser() ]);
+      expect(onChangeSpy).toHaveBeenCalledWith([adminUser()]);
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
@@ -240,7 +265,9 @@ describe('Component: TypeaheadMultiple', () => {
 
       expect(useOptions).toBeCalledTimes(1);
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'admin' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'admin' }
+      });
 
       await waitFor(() => {
         expect(useOptions).toBeCalledTimes(2);
@@ -254,7 +281,7 @@ describe('Component: TypeaheadMultiple', () => {
       expect.assertions(6);
 
       setup({
-        value: [ adminUser() ], // The admin user is select, so it should be filtered out
+        value: [adminUser()], // The admin user is select, so it should be filtered out
         isOptionEnabled: (user) => user.id !== userUser().id // Also disable the userUser
       });
 
@@ -262,7 +289,9 @@ describe('Component: TypeaheadMultiple', () => {
 
       await waitFor(() => {
         expect(screen.queryByLabelText('admin@42.nl')).not.toBeInTheDocument();
-        expect(screen.queryByLabelText('coordinator@42.nl')).toBeInTheDocument();
+        expect(
+          screen.queryByLabelText('coordinator@42.nl')
+        ).toBeInTheDocument();
         expect(screen.queryByLabelText('user@42.nl')).not.toBeInTheDocument();
       });
     });
@@ -274,7 +303,9 @@ describe('Component: TypeaheadMultiple', () => {
         allowNew: true
       });
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Test' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'Test' }
+      });
 
       await waitFor(() => {
         expect(screen.queryByLabelText('Test')).toBeInTheDocument();
@@ -283,44 +314,50 @@ describe('Component: TypeaheadMultiple', () => {
       fireEvent.click(screen.getByLabelText('Test'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy.mock.calls[0][0]).toMatchObject([{ label: 'Test', customOption: true }]);
+      expect(onChangeSpy.mock.calls[0][0]).toMatchObject([
+        { label: 'Test', customOption: true }
+      ]);
     });
 
     describe('value changes', () => {
       test('becomes empty', () => {
         const { props, rerender } = setup({
-          value: [ adminUser() ]
+          value: [adminUser()]
         });
 
-        expect(screen.queryByText('admin@42.nl', { exact: false })).toBeInTheDocument();
+        expect(
+          screen.queryByText('admin@42.nl', { exact: false })
+        ).toBeInTheDocument();
 
         const newProps = {
           ...props,
           value: undefined
         };
 
-        rerender(
-          <TypeaheadMultiple {...newProps} />
-        );
+        rerender(<TypeaheadMultiple {...newProps} />);
 
-        expect(screen.queryByText('admin@42.nl', { exact: false })).not.toBeInTheDocument();
+        expect(
+          screen.queryByText('admin@42.nl', { exact: false })
+        ).not.toBeInTheDocument();
       });
 
       test('becomes filled', () => {
         const { props, rerender } = setup({});
 
-        expect(screen.queryByText('admin@42.nl', { exact: false })).not.toBeInTheDocument();
+        expect(
+          screen.queryByText('admin@42.nl', { exact: false })
+        ).not.toBeInTheDocument();
 
         const newProps = {
           ...props,
-          value: [ adminUser() ]
+          value: [adminUser()]
         };
 
-        rerender(
-          <TypeaheadMultiple {...newProps} />
-        );
+        rerender(<TypeaheadMultiple {...newProps} />);
 
-        expect(screen.queryByText('admin@42.nl', { exact: false })).toBeInTheDocument();
+        expect(
+          screen.queryByText('admin@42.nl', { exact: false })
+        ).toBeInTheDocument();
       });
     });
   });

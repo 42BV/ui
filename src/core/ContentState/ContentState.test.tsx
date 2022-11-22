@@ -61,5 +61,29 @@ describe('Component: ContentStateIcon', () => {
       expect(screen.getByText('Children')).toBeInTheDocument();
       expect(container).toMatchSnapshot();
     });
+
+    test('with icon-props', () => {
+      const { container } = render(
+        <ContentState
+          title={'icon-props'}
+          mode={'error'}
+          iconProps={{ style: { visibility: 'hidden' } }}
+        />
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    test('state-content-props', () => {
+      const { container } = render(
+        <ContentState
+          title={'state-content-props'}
+          mode={'error'}
+          stateContentDivProps={{ style: { visibility: 'hidden' } }}
+        />
+      );
+
+      expect(container).toMatchSnapshot();
+    });
   });
 });

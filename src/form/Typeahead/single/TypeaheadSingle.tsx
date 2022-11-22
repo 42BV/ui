@@ -71,20 +71,24 @@ type BaseProps<T> = FieldCompatibleWithPredeterminedOptions<T> & {
   text?: Text;
 };
 
-type PropsWithCustomOption<T> = FieldCompatible<T, T | TypeaheadCustomOption | undefined> & BaseProps<T> & {
-  /**
-   * Optionally whether it should be allowed to add new items by typing
-   * in the field and hitting enter or clicking the new option in the list.
-   */
-  allowNew: true;
-};
+type PropsWithCustomOption<T> = FieldCompatible<
+  T,
+  T | TypeaheadCustomOption | undefined
+> &
+  BaseProps<T> & {
+    /**
+     * Optionally whether it should be allowed to add new items by typing
+     * in the field and hitting enter or clicking the new option in the list.
+     */
+    allowNew: true;
+  };
 
-type PropsWithoutCustomOption<T> = FieldCompatible<T, T | undefined> & BaseProps<T> & {
-  allowNew?: never;
-};
+type PropsWithoutCustomOption<T> = FieldCompatible<T, T | undefined> &
+  BaseProps<T> & {
+    allowNew?: never;
+  };
 
 type Props<T> = PropsWithCustomOption<T> | PropsWithoutCustomOption<T>;
-
 
 /**
  * The TypeaheadSingle is a form element which allows the user
@@ -128,7 +132,7 @@ export function TypeaheadSingle<T>(props: Props<T>) {
     text = {}
   } = props;
 
-  const [ query, setQuery ] = useState('');
+  const [query, setQuery] = useState('');
 
   const { page, loading } = useOptions<T>({
     options,
@@ -153,8 +157,12 @@ export function TypeaheadSingle<T>(props: Props<T>) {
     } else {
       const selectedOption = values[0];
 
-      // @ts-expect-error Custom options are only available when allowNew is true, which causes the type of onChange param to match correctly
-      onChange(isTypeaheadCustomOption(selectedOption) ? selectedOption : selectedOption.value);
+      onChange(
+        // @ts-expect-error Custom options are only available when allowNew is true, which causes the type of onChange param to match correctly
+        isTypeaheadCustomOption(selectedOption)
+          ? selectedOption
+          : selectedOption.value
+      );
     }
 
     // Due this: https://github.com/ericgio/react-bootstrap-typeahead/issues/224
@@ -209,7 +217,9 @@ export function TypeaheadSingle<T>(props: Props<T>) {
 
   return (
     <FormGroup className={classes} color={color}>
-      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? (
+        <Label for={id}>{label}</Label>
+      ) : null}
       <div className={selected.length === 0 ? 'showing-placeholder' : ''}>
         {Array.isArray(options) ? (
           <Typeahead {...typeaheadProps} onInputChange={setQuery} />
@@ -230,9 +240,13 @@ export function TypeaheadSingle<T>(props: Props<T>) {
 /**
  * Variant of the TypeaheadSingle which can be used in a Jarb context.
  */
-export const JarbTypeaheadSingle = withJarb<any, any | null, Props<any>>(TypeaheadSingle);
+export const JarbTypeaheadSingle = withJarb<any, any | null, Props<any>>(
+  TypeaheadSingle
+);
 
 /**
  * Variant of the TypeaheadSingle which can be used in a final form.
  */
-export const FieldTypeaheadSingle = withField<any, any | null, Props<any>>(TypeaheadSingle);
+export const FieldTypeaheadSingle = withField<any, any | null, Props<any>>(
+  TypeaheadSingle
+);

@@ -75,7 +75,7 @@ type Props<T> = {
    * Optionally the (invisible) label for the search field.
    */
   searchLabel?: React.ReactNode;
-}
+};
 
 /**
  * CrudHeader is used to display a header in the EpicTable or CrudTable.
@@ -98,10 +98,7 @@ export function CrudHeader<T = string>({
   const header = onSort ? (
     <EpicCellLayout mode="horizontal">
       {children}
-      <EpicSort
-        direction={direction}
-        onChange={onSort}
-      />
+      <EpicSort direction={direction} onChange={onSort} />
     </EpicCellLayout>
   ) : (
     <>{children}</>
@@ -109,7 +106,11 @@ export function CrudHeader<T = string>({
 
   if (onSearch) {
     return (
-      <EpicHeader width={width} height={height ? height : 88} onResize={onResize}>
+      <EpicHeader
+        width={width}
+        height={height ? height : 88}
+        onResize={onResize}
+      >
         <EpicCellLayout mode="vertical">
           {header}
           {options && labelForOption ? (
@@ -138,6 +139,8 @@ export function CrudHeader<T = string>({
   }
 
   return (
-    <EpicHeader width={width} height={height} onResize={onResize}>{header}</EpicHeader>
+    <EpicHeader width={width} height={height} onResize={onResize}>
+      {header}
+    </EpicHeader>
   );
 }

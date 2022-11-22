@@ -1,71 +1,61 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import { BootstrapSize } from '../types';
+import {
+  BootstrapSize,
+  ImageProps,
+  KeyValueMapping,
+  ToolTipProps,
+  UIBasePropsWithCSSPropertiesAndChildren,
+  WithSize
+} from '../types';
 import { Tooltip } from '../Tooltip/Tooltip';
 
-type Props = {
-  /**
-   * Image URL to show as avatar.
-   */
-  src: string;
-
-  /**
-   * Element underneath the image.
-   */
-  children?: ReactNode;
-
-  /**
-   * Text that will be shown upon hovering over the image.
-   */
-  alt: string;
-
-  /**
-   * Optional size.
-   *
-   * @default md
-   */
-  size?: BootstrapSize;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
+const TOOLTIP_DISTANCE_MAPPING: KeyValueMapping<number> = {
+  lg: 42,
+  md: 32,
+  sm: 22
 };
+
+type ToolTipPropsWithoutChildren = Omit<ToolTipProps, 'children'>;
+
+type AvatarProps = {
+  tooltipProps?: Partial<ToolTipPropsWithoutChildren>;
+  imgProps: Partial<ImageProps>;
+} & Partial<
+  UIBasePropsWithCSSPropertiesAndChildren<React.ReactNode> &
+    WithSize<BootstrapSize> &
+    Omit<HTMLSpanElement, 'children'>
+>;
 
 /**
  * Avatar is a component which shows a circular image with any element underneath.
  * Use it for instance for showing the profile image of a logged-in user.
  */
-export function Avatar({ size, className, alt, src, children }: Props) {
+export function Avatar({
+  size,
+  children,
+  className,
+  tooltipProps,
+  imgProps,
+  ...props
+}: AvatarProps) {
   const sizeClass = size ? `avatar-${size}` : null;
   const classes = classNames('avatar', sizeClass, className);
+  const { alt, src, ...other } = imgProps;
 
   return (
     <span className={classes}>
       <Tooltip
-        placement="top"
         content={alt}
-        distance={tooltipDistanceFromSize(size)}
+        placement="top"
+        distance={TOOLTIP_DISTANCE_MAPPING[!!size ? size : 'default']}
+        {...props}
       >
         <span className="img-placeholder">
-          <img alt={alt} src={src} />
+          <img alt={alt} src={src} {...other} />
         </span>
         {children}
       </Tooltip>
     </span>
   );
-}
-
-function tooltipDistanceFromSize(size?: BootstrapSize): number {
-  switch (size) {
-    case 'lg':
-      return 42;
-    case 'md':
-      return 32;
-    case 'sm':
-      return 22;
-  }
-
-  return 7;
 }

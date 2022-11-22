@@ -81,8 +81,8 @@ export function PasswordStrength(props: Props) {
               meterWidth >= 100
                 ? 'success'
                 : meterWidth >= 75
-                  ? 'warning'
-                  : 'danger'
+                ? 'warning'
+                : 'danger'
             }
             value={meterWidth}
             className="mb-2"

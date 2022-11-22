@@ -1,33 +1,19 @@
 import React from 'react';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip/Tooltip';
+import { ToolTipProps, WithSize, WithValue } from '../types';
 
-type Props = {
-  /**
-   * The content of the tooltip.
-   */
-  tooltip: React.ReactNode;
-
-  /**
-   * Optionally the size of the icon.
-   * Defaults to 16.
-   */
-  size?: number;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-};
+type Props = Partial<
+  ToolTipProps & WithSize<number> & WithValue<React.ReactNode>
+>;
 
 /**
  * InfoTooltip is an info icon that displays a tooltip on mouseover.
  */
 export function InfoTooltip(props: Props) {
-  const { tooltip, size = 16, className } = props;
+  const { value, size = 16, className } = props;
   return (
-    <Tooltip content={tooltip} className={className}>
+    <Tooltip content={value} className={className}>
       <Icon icon="info" size={size} />
     </Tooltip>
   );

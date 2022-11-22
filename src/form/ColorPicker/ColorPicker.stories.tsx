@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { ColorPicker, FieldColorPicker, JarbColorPicker } from './ColorPicker';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -33,14 +37,17 @@ storiesOf('Form/ColorPicker', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use ColorPicker, you have to add react-color to your dependencies:</p>
+        <p>
+          To be able to use ColorPicker, you have to add react-color to your
+          dependencies:
+        </p>
         <code>npm install --save react-color</code>
       </Alert>
       <Story />
     </>
   ))
   .add('basic', () => {
-    const [ value, setValue ] = useState<string | undefined>();
+    const [value, setValue] = useState<string | undefined>();
 
     return (
       <div>
@@ -57,7 +64,7 @@ storiesOf('Form/ColorPicker', module)
     );
   })
   .add('basic preselected', () => {
-    const [ value, setValue ] = useState<string | undefined>('#ff0000');
+    const [value, setValue] = useState<string | undefined>('#ff0000');
 
     return (
       <div>
@@ -74,7 +81,7 @@ storiesOf('Form/ColorPicker', module)
     );
   })
   .add('with custom label', () => {
-    const [ value, setValue ] = useState<string | undefined>();
+    const [value, setValue] = useState<string | undefined>();
 
     return (
       <div>
@@ -101,7 +108,7 @@ storiesOf('Form/ColorPicker', module)
     );
   })
   .add('with icon', () => {
-    const [ value, setValue ] = useState<string | undefined>();
+    const [value, setValue] = useState<string | undefined>();
 
     return (
       <div>
@@ -119,7 +126,7 @@ storiesOf('Form/ColorPicker', module)
     );
   })
   .add('without clear button', () => {
-    const [ value, setValue ] = useState<string | undefined>('#ff0000');
+    const [value, setValue] = useState<string | undefined>('#ff0000');
 
     return (
       <div>
@@ -146,7 +153,7 @@ storiesOf('Form/ColorPicker', module)
             name="color"
             label="Color"
             placeholder="Please select your favorite color"
-            validators={[ isToDark ]}
+            validators={[isToDark]}
           />
         </FinalForm>
       </>
@@ -161,7 +168,7 @@ storiesOf('Form/ColorPicker', module)
             id="color"
             name="color"
             placeholder="Please select your favorite color"
-            validators={[ isToDark ]}
+            validators={[isToDark]}
             jarb={{
               validator: 'Hero.color',
               label: 'Color'

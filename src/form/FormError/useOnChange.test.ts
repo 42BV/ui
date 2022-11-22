@@ -7,8 +7,10 @@ describe('useOnChange', () => {
   test('that it passes values only when they change', () => {
     const onChange = jest.fn();
 
-    const { rerender } = renderHook<void,
-      { hasErrors: boolean; onChange: FormErrorOnChange }>((props) => useOnChange(props.hasErrors, props.onChange), {
+    const { rerender } = renderHook<
+      void,
+      { hasErrors: boolean; onChange: FormErrorOnChange }
+    >((props) => useOnChange(props.hasErrors, props.onChange), {
       initialProps: {
         hasErrors: true,
         onChange

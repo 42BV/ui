@@ -50,7 +50,9 @@ describe('Component: PlainTextFormControl', () => {
       setup({
         valueClassName: 'value-class-name'
       });
-      expect(screen.getByText('This is your name')).toHaveClass('value-class-name');
+      expect(screen.getByText('This is your name')).toHaveClass(
+        'value-class-name'
+      );
     });
   });
 });

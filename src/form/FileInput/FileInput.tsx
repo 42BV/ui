@@ -68,20 +68,25 @@ export function FileInput(props: Props) {
     // The input should now trigger the browsers file dialog
   }
 
-
   const name = get(value, 'name', '');
   const inputProps = {
     placeholder,
     value: name,
     invalid: valid === false ? true : undefined,
-    onChange: () => console.error('The placeholder input of FileInput should not be changeable'),
-    'aria-label': 'This is a placeholder input that should not be reachable. Use the file input instead.',
+    onChange: () =>
+      console.error(
+        'The placeholder input of FileInput should not be changeable'
+      ),
+    'aria-label':
+      'This is a placeholder input that should not be reachable. Use the file input instead.',
     tabIndex: -1
   };
 
   return (
     <FormGroup className={`file-upload ${className}`} color={color}>
-      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? (
+        <Label for={id}>{label}</Label>
+      ) : null}
       <input
         id={id}
         accept={accept}
@@ -90,7 +95,9 @@ export function FileInput(props: Props) {
         onClick={onClick}
         onChange={onChange}
         onFocus={onFocus}
-        aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
+        aria-label={
+          hiddenLabel && typeof label === 'string' ? label : undefined
+        }
       />
 
       <InputGroup>

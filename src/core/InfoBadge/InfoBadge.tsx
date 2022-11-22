@@ -1,30 +1,12 @@
 import React from 'react';
 import { Badge } from 'reactstrap';
 import classNames from 'classnames';
-import { Color } from '../types';
+import { UIBasePropsWithCSSPropertiesAndChildren, WithValue } from '../types';
 
-type Props = {
-  /**
-   * The element you want to add the InfoBadge to.
-   */
-  children: React.ReactNode;
-
-  /**
-   * The color of the badge. Supports Bootstrap colors (e.g. primary, danger).
-   */
-  color: Color;
-
-  /**
-   * The string or number to show in the badge.
-   */
-  value: string | number;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-};
+type InfoBadgeProps = Partial<
+  UIBasePropsWithCSSPropertiesAndChildren<React.ReactNode>
+> &
+  WithValue<string | number>;
 
 /**
  * InfoBadge is a badge which shows up on the top right of an element.
@@ -35,11 +17,12 @@ type Props = {
 export function InfoBadge({
   color,
   value,
+  className,
   children,
-  className
-}: Props) {
+  ...props
+}: InfoBadgeProps) {
   return (
-    <span className={classNames('info-badge-container', className)}>
+    <span className={classNames('info-badge-container', className)} {...props}>
       {children}
       <Badge color={color} pill>
         {value}
