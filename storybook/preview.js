@@ -1,6 +1,9 @@
 import "./show-code-fix.scss";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-import 'overlayscrollbars/css/OverlayScrollbars.css';
+// They mapped the CSS file using exports in their package.json,
+// so the file is not at this path, but it works when compiled
+// eslint-disable-next-line import/no-unresolved
+import 'overlayscrollbars/overlayscrollbars.css';
 import 'tippy.js/dist/tippy.css';
 import 'react-quill/dist/quill.snow.css';
 import '../src/main.scss';

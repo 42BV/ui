@@ -7,6 +7,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { debounce } from 'lodash';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import type { OverlayScrollbars } from "overlayscrollbars";
 
 type Props = {
   /**
@@ -111,7 +112,7 @@ export function GooeyCenter({
     [ setCenterWidth, onCenterWidthChanged, left, center, right ]
   );
 
-  function handleScroll(this: OverlayScrollbars, event?: UIEvent) {
+  function handleScroll(instance: OverlayScrollbars, event: Event) {
     if (onScroll && event) {
       onScroll((event.target as HTMLDivElement).scrollLeft);
     }
@@ -142,10 +143,10 @@ export function GooeyCenter({
           options={{
             scrollbars: {
               visibility: 'visible'
-            },
-            callbacks: {
-              onScroll: handleScroll
             }
+          }}
+          events={{
+            scroll: handleScroll
           }}
         >
           {centerWrapper}
