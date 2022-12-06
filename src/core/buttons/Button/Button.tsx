@@ -56,15 +56,15 @@ function getWidget(
 export function Button({
   type = 'button',
   color = 'primary',
-  inProgress,
+  inProgress = false,
   className = '',
   onClick,
   size = 'md',
-  outline,
-  fullWidth,
+  outline = false,
+  fullWidth = false,
   iconPosition = 'left',
   icon,
-  disabled,
+  disabled = false,
   children
 }: ButtonProps) {
   const showSpinner = useShowSpinner(!!inProgress);
@@ -86,7 +86,7 @@ export function Button({
     block: fullWidth
   };
 
-  const widget = getWidget(showSpinner, size, !!outline, iconPosition, icon);
+  const widget = getWidget(showSpinner, size, outline, iconPosition, icon);
 
   return (
     <span
