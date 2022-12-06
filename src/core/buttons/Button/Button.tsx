@@ -113,13 +113,13 @@ export function Button({
 }
 
 // Based on the sizes in pixels of a button with text but without an icon
-export function getSpinnerSize(size?: ButtonSize): number {
+export function getSpinnerSize(size: ButtonSize): number {
   switch (size) {
     case 'lg':
       return 19;
+    case 'md':
+      return 16;
     case 'sm':
       return 12;
-    default:
-      return 16;
   }
 }
