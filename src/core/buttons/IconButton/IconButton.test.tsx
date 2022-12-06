@@ -76,7 +76,13 @@ describe('icon only', () => {
 });
 
 describe('icon', () => {
-  function setup({ inProgress }: { inProgress: boolean }) {
+  function setup({
+    inProgress,
+    hasOnClick = true
+  }: {
+    inProgress: boolean;
+    hasOnClick?: boolean;
+  }) {
     const onClickSpy = jest.fn();
 
     jest
@@ -84,7 +90,11 @@ describe('icon', () => {
       .mockReturnValue(inProgress);
 
     const { container } = render(
-      <IconButton onClick={onClickSpy} inProgress={inProgress} icon="save" />
+      <IconButton
+        onClick={hasOnClick ? onClickSpy : undefined}
+        inProgress={inProgress}
+        icon="save"
+      />
     );
 
     return { container, onClickSpy };
@@ -98,6 +108,17 @@ describe('icon', () => {
     fireEvent.click(screen.getByText('save'));
 
     expect(onClickSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should return when onClick is not set', () => {
+    const { onClickSpy } = setup({
+      inProgress: false,
+      hasOnClick: false
+    });
+
+    fireEvent.click(screen.getByText('save'));
+
+    expect(onClickSpy).toHaveBeenCalledTimes(0);
   });
 });
 

@@ -118,12 +118,9 @@ export function getSpinnerSize(size?: ButtonSize): number {
   switch (size) {
     case 'lg':
       return 19;
-
-    case 'md':
-      return 16;
-
     case 'sm':
       return 12;
+    default:
+      return 16;
   }
-  return 7;
 }
