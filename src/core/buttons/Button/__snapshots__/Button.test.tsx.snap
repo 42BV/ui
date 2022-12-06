@@ -469,3 +469,357 @@ exports[`Component: Button ui icon only that when no icon is provided it will fa
   </span>
 </div>
 `;
+
+exports[`Component: buttons ui button disabled is disabled 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button disabled is enabled 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button full-width 1`] = `
+<div>
+  <span
+    class="button d-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md d-block w-100"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button normal inProgress is false 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button normal inProgress is true 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+        <svg
+          class="spinner ms-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke="white"
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button outline inProgress is false 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-outline-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button outline inProgress is true 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-outline-primary btn-md disabled"
+      disabled=""
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <svg
+          class="spinner me-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke=""
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button size can override size 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-sm"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button size use md by default 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button with icon normal inProgress is false 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <i
+          class="icon button-icon me-2 material-icons"
+        >
+          save
+        </i>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button with icon normal inProgress is true 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md disabled"
+      disabled=""
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <svg
+          class="spinner me-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke="white"
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button with icon normal with icon on the right 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        Save
+        <i
+          class="icon button-icon ms-2 material-icons"
+        >
+          save
+        </i>
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button with icon outline inProgress is false 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-outline-primary btn-md"
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <i
+          class="icon button-icon me-2 material-icons"
+        >
+          save
+        </i>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;
+
+exports[`Component: buttons ui button with icon outline inProgress is true 1`] = `
+<div>
+  <span
+    class="button d-inline-block primary"
+  >
+    <button
+      class="btn btn-outline-primary btn-md disabled"
+      disabled=""
+      type="button"
+    >
+      <div
+        class="d-flex justify-content-center align-items-center"
+      >
+        <svg
+          class="spinner me-2"
+          height="16"
+          viewBox="25 25 50 50"
+          width="16"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke=""
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+        Save
+      </div>
+    </button>
+  </span>
+</div>
+`;

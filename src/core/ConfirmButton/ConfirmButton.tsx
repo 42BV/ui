@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
-import { Button, Props as ButtonProps } from '../Button/Button';
+import { Button } from '../buttons/Button/Button';
 import { ConfirmModal } from '../ConfirmModal/ConfirmModal';
+import { ButtonProps } from '../types';
+import { IconButton } from '../buttons/IconButton/IconButton';
 
 type Text = {
   /**
@@ -26,7 +28,7 @@ type Text = {
   confirm?: string;
 };
 
-type Props = ButtonProps & {
+type Props = {
   /**
    * The text you want to render inside the dialog.
    */
@@ -45,7 +47,7 @@ type Props = ButtonProps & {
    * Optionally customized text to use within the component.
    */
   text?: Text;
-};
+} & Partial<ButtonProps>;
 
 /**
  * The ConfirmButton asks the user if he / she is sure he wants to
@@ -67,7 +69,7 @@ export function ConfirmButton({
   text = {},
   className
 }: Props) {
-  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { modalHeader, confirm, cancel } = text;
 
   function openModal(event: React.MouseEvent<HTMLElement>) {
@@ -80,13 +82,12 @@ export function ConfirmButton({
     onConfirm();
   }
 
-  const buttonProps: ButtonProps = {
+  const buttonProps: Partial<ButtonProps> = {
     onClick: openModal,
     color,
     inProgress: !!inProgress,
-    icon,
-    children,
     fullWidth,
+    icon,
     size,
     disabled
   };
@@ -95,10 +96,14 @@ export function ConfirmButton({
     <div
       className={className}
       style={{
-        display: buttonProps.icon && !buttonProps.children ? 'inline' : 'block'
+        display: buttonProps.icon && !children ? 'inline' : 'block'
       }}
     >
-      <Button {...buttonProps} />
+      {children ? (
+        <Button {...buttonProps}>{children}</Button>
+      ) : (
+        <IconButton {...buttonProps} />
+      )}
 
       {isModalOpen ? (
         <ConfirmModal

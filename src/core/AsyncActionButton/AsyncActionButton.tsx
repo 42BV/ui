@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
-import { Button, Props as ButtonProps } from '../Button/Button';
+import { Button } from '../buttons/Button/Button';
+import { ButtonProps } from '../types';
 
-export type Props = Omit<ButtonProps, 'onClick' | 'inProgress'> & {
+export type Props = {
   /**
    * Callback that is triggered when the button is clicked.
    * This callback should return a request promise.
    */
   action: () => Promise<unknown>;
-};
+} & Partial<Omit<ButtonProps, 'onClick' | 'inProgress'>>;
 
 /**
  * The AsyncActionButton is a button that triggers a request when it is
@@ -17,7 +18,7 @@ export type Props = Omit<ButtonProps, 'onClick' | 'inProgress'> & {
  * multiple times asynchronously.
  */
 export function AsyncActionButton({ action, children, ...buttonProps }: Props) {
-  const [ inProgress, setInProgress ] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
 
   async function onClick() {
     setInProgress(true);

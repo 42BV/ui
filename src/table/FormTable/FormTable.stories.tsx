@@ -16,7 +16,7 @@ import { pageOf } from '../../utilities/page/page';
 import { EpicForm } from '../EpicTable/cells/EpicForm/EpicForm';
 import { EpicCell } from '../EpicTable/cells/EpicCell/EpicCell';
 import { EpicFormCell } from '../EpicTable/cells/EpicFormCell/EpicFormCell';
-import { Button } from '../../core/Button/Button';
+import { Button } from '../../core/buttons/Button/Button';
 import { Loading } from '../../core/Loading/Loading';
 import { FormButton } from '../../form/FormButton/FormButton';
 import { FormApi } from 'final-form';
@@ -32,18 +32,24 @@ storiesOf('table/FormTable', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use EpicForm, you have to add lodash to your dependencies:</p>
+        <p>
+          To be able to use EpicForm, you have to add lodash to your
+          dependencies:
+        </p>
         <code>npm install --save lodash</code>
       </Alert>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use EpicForm with Page, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <p>
+          To be able to use EpicForm with Page, you have to add
+          @42.nl/spring-connect to your dependencies:
+        </p>
         <code>npm install --save @42.nl/spring-connect</code>
       </Alert>
       <Story />
     </>
   ))
   .add('basic example', () => {
-    const [ newPerson ] = useState<Person>({
+    const [newPerson] = useState<Person>({
       id: Math.random(),
       firstName: '',
       lastName: '',
@@ -58,31 +64,31 @@ storiesOf('table/FormTable', module)
       sex: ''
     });
 
-    const [ page, setPage ] = useState(1);
-    const [ newPage, setNewPage ] = useState<number>();
-    const [ personsList, setPersonsList ] = useState(persons);
-    const [ pageOfPersons, setPageOfPersons ] = useState<Page<Person>>(
+    const [page, setPage] = useState(1);
+    const [newPage, setNewPage] = useState<number>();
+    const [personsList, setPersonsList] = useState(persons);
+    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
       emptyPage<Person>()
     );
-    const [ loading, setLoading ] = useState<Person>();
-    const [ dirtyPersons, setDirtyPersons ] = useState<{ [id: number]: boolean }>(
+    const [loading, setLoading] = useState<Person>();
+    const [dirtyPersons, setDirtyPersons] = useState<{ [id: number]: boolean }>(
       {}
     );
-    const [ flashMessage, setFlashMessage ] = useState<string>();
+    const [flashMessage, setFlashMessage] = useState<string>();
 
     useEffect(() => {
       const p = pageOf<Person>(personsList, page, 10);
       p.content.push({ ...newPerson });
       setDirtyPersons({});
       setPageOfPersons(p);
-    }, [ personsList, newPerson, page ]);
+    }, [personsList, newPerson, page]);
 
     useEffect(() => {
       const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [ flashMessage ]);
+    }, [flashMessage]);
 
     async function onSubmit(data: Person, form: FormApi<Person>) {
       setLoading(data);
@@ -90,7 +96,7 @@ storiesOf('table/FormTable', module)
       const person = { ...data };
       if (data.id === newPerson.id) {
         person.id = Math.random();
-        setPersonsList([ ...personsList, person ]);
+        setPersonsList([...personsList, person]);
       } else {
         setPersonsList(
           personsList.map((p) => {
@@ -287,7 +293,7 @@ storiesOf('table/FormTable', module)
                     label="Eye color"
                     hiddenLabel={true}
                     placeholder="Enter eye color"
-                    options={[ 'green', 'blue', 'brown' ]}
+                    options={['green', 'blue', 'brown']}
                     labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
@@ -419,7 +425,7 @@ storiesOf('table/FormTable', module)
                     label="Sex"
                     hiddenLabel={true}
                     className="ms-1"
-                    options={[ 'male', 'female' ]}
+                    options={['male', 'female']}
                     labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{
@@ -459,8 +465,8 @@ storiesOf('table/FormTable', module)
     );
   })
   .add('edit per row', () => {
-    const [ editingPerson, setEditingPerson ] = useState<Person>();
-    const [ newPerson ] = useState<Person>({
+    const [editingPerson, setEditingPerson] = useState<Person>();
+    const [newPerson] = useState<Person>({
       id: Math.random(),
       firstName: '',
       lastName: '',
@@ -475,29 +481,29 @@ storiesOf('table/FormTable', module)
       sex: ''
     });
 
-    const [ page, setPage ] = useState(1);
-    const [ newPage, setNewPage ] = useState<number>();
-    const [ personsList, setPersonsList ] = useState(persons);
-    const [ pageOfPersons, setPageOfPersons ] = useState<Page<Person>>(
+    const [page, setPage] = useState(1);
+    const [newPage, setNewPage] = useState<number>();
+    const [personsList, setPersonsList] = useState(persons);
+    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
       emptyPage<Person>()
     );
-    const [ loading, setLoading ] = useState<Person>();
-    const [ dirty, setDirty ] = useState(false);
-    const [ flashMessage, setFlashMessage ] = useState<string>();
+    const [loading, setLoading] = useState<Person>();
+    const [dirty, setDirty] = useState(false);
+    const [flashMessage, setFlashMessage] = useState<string>();
 
     useEffect(() => {
       const p = pageOf<Person>(personsList, page, 10);
       p.content.push({ ...newPerson });
       setPageOfPersons(p);
       setEditingPerson(undefined);
-    }, [ personsList, newPerson, page ]);
+    }, [personsList, newPerson, page]);
 
     useEffect(() => {
       const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [ flashMessage ]);
+    }, [flashMessage]);
 
     async function onSubmit(data: Person, form: FormApi<Person>) {
       setLoading(data);
@@ -505,7 +511,7 @@ storiesOf('table/FormTable', module)
       const person = { ...data };
       if (data.id === newPerson.id) {
         person.id = Math.random();
-        setPersonsList([ ...personsList, person ]);
+        setPersonsList([...personsList, person]);
       } else {
         setPersonsList(
           personsList.map((p) => {
@@ -692,7 +698,7 @@ storiesOf('table/FormTable', module)
                       label="Eye color"
                       hiddenLabel={true}
                       placeholder="Enter eye color"
-                      options={[ 'green', 'blue', 'brown' ]}
+                      options={['green', 'blue', 'brown']}
                       labelForOption={(option) => option}
                       jarb={{
                         validator: 'Person.eyeColor',
@@ -822,7 +828,7 @@ storiesOf('table/FormTable', module)
                       label="Sex"
                       hiddenLabel={true}
                       className="ms-1"
-                      options={[ 'male', 'female' ]}
+                      options={['male', 'female']}
                       labelForOption={(option) => option}
                       horizontal={true}
                       jarb={{
@@ -946,7 +952,7 @@ storiesOf('table/FormTable', module)
     );
   })
   .add('instant edit', () => {
-    const [ newPerson ] = useState<Person>({
+    const [newPerson] = useState<Person>({
       id: Math.random(),
       firstName: '',
       lastName: '',
@@ -961,30 +967,30 @@ storiesOf('table/FormTable', module)
       sex: ''
     });
 
-    const [ page, setPage ] = useState(1);
-    const [ personsList, setPersonsList ] = useState(persons);
-    const [ pageOfPersons, setPageOfPersons ] = useState<Page<Person>>(
+    const [page, setPage] = useState(1);
+    const [personsList, setPersonsList] = useState(persons);
+    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
       emptyPage<Person>()
     );
-    const [ loading, setLoading ] = useState<Person>();
-    const [ dirtyPersons, setDirtyPersons ] = useState<{ [id: number]: boolean }>(
+    const [loading, setLoading] = useState<Person>();
+    const [dirtyPersons, setDirtyPersons] = useState<{ [id: number]: boolean }>(
       {}
     );
-    const [ flashMessage, setFlashMessage ] = useState<string>();
+    const [flashMessage, setFlashMessage] = useState<string>();
 
     useEffect(() => {
       const p = pageOf<Person>(personsList, page, 10);
       p.content.push({ ...newPerson });
       setDirtyPersons({});
       setPageOfPersons(p);
-    }, [ personsList, newPerson, page ]);
+    }, [personsList, newPerson, page]);
 
     useEffect(() => {
       const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [ flashMessage ]);
+    }, [flashMessage]);
 
     async function onSubmit(data: Person) {
       setLoading(data);
@@ -992,7 +998,7 @@ storiesOf('table/FormTable', module)
       const person = { ...data };
       if (data.id === newPerson.id) {
         person.id = Math.random();
-        setPersonsList([ ...personsList, person ]);
+        setPersonsList([...personsList, person]);
       } else {
         setPersonsList(
           personsList.map((p) => {
@@ -1158,7 +1164,7 @@ storiesOf('table/FormTable', module)
                     label="Eye color"
                     hiddenLabel={true}
                     placeholder="Enter eye color"
-                    options={[ 'green', 'blue', 'brown' ]}
+                    options={['green', 'blue', 'brown']}
                     labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
@@ -1289,7 +1295,7 @@ storiesOf('table/FormTable', module)
                     label="Sex"
                     hiddenLabel={true}
                     className="ms-1"
-                    options={[ 'male', 'female' ]}
+                    options={['male', 'female']}
                     labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{
@@ -1315,7 +1321,7 @@ storiesOf('table/FormTable', module)
     );
   })
   .add('copy / paste to spreadsheet', () => {
-    const [ newPerson ] = useState<Person>({
+    const [newPerson] = useState<Person>({
       id: Math.random(),
       firstName: '',
       lastName: '',
@@ -1330,32 +1336,32 @@ storiesOf('table/FormTable', module)
       sex: ''
     });
 
-    const [ page, setPage ] = useState(1);
-    const [ newPage, setNewPage ] = useState<number>();
-    const [ personsList, setPersonsList ] = useState(persons);
-    const [ pageOfPersons, setPageOfPersons ] = useState<Page<Person>>(
+    const [page, setPage] = useState(1);
+    const [newPage, setNewPage] = useState<number>();
+    const [personsList, setPersonsList] = useState(persons);
+    const [pageOfPersons, setPageOfPersons] = useState<Page<Person>>(
       emptyPage<Person>()
     );
-    const [ loading, setLoading ] = useState<Person>();
-    const [ dirtyPersons, setDirtyPersons ] = useState<{ [id: number]: boolean }>(
+    const [loading, setLoading] = useState<Person>();
+    const [dirtyPersons, setDirtyPersons] = useState<{ [id: number]: boolean }>(
       {}
     );
-    const [ flashMessage, setFlashMessage ] = useState<string>();
-    const [ processingPaste, setProcessingPaste ] = useState(false);
+    const [flashMessage, setFlashMessage] = useState<string>();
+    const [processingPaste, setProcessingPaste] = useState(false);
 
     useEffect(() => {
       const p = pageOf<Person>(personsList, page, 10);
       p.content.push({ ...newPerson });
       setDirtyPersons({});
       setPageOfPersons(p);
-    }, [ personsList, newPerson, page ]);
+    }, [personsList, newPerson, page]);
 
     useEffect(() => {
       const timeout = window.setTimeout(() => setFlashMessage(undefined), 5000);
       return () => {
         window.clearTimeout(timeout);
       };
-    }, [ flashMessage ]);
+    }, [flashMessage]);
 
     async function onSubmit(data: Person, form: FormApi<Person>) {
       setLoading(data);
@@ -1363,7 +1369,7 @@ storiesOf('table/FormTable', module)
       const person = { ...data };
       if (data.id === newPerson.id) {
         person.id = Math.random();
-        setPersonsList([ ...personsList, person ]);
+        setPersonsList([...personsList, person]);
       } else {
         setPersonsList(
           personsList.map((p) => {
@@ -1406,7 +1412,7 @@ storiesOf('table/FormTable', module)
     }
 
     async function copy() {
-      const csv = [ personKeys.join('\t') ]
+      const csv = [personKeys.join('\t')]
         .concat(
           persons.map((person) =>
             personKeys
@@ -1433,7 +1439,7 @@ storiesOf('table/FormTable', module)
       setProcessingPaste(true);
 
       const text = await navigator.clipboard.readText();
-      const keys = [ ...personKeys ];
+      const keys = [...personKeys];
       const list: Person[] = [];
 
       const rows = text.split('\n');
@@ -1672,7 +1678,7 @@ storiesOf('table/FormTable', module)
                     label="Eye color"
                     hiddenLabel={true}
                     placeholder="Enter eye color"
-                    options={[ 'green', 'blue', 'brown' ]}
+                    options={['green', 'blue', 'brown']}
                     labelForOption={(option) => option}
                     jarb={{
                       validator: 'Person.eyeColor',
@@ -1803,7 +1809,7 @@ storiesOf('table/FormTable', module)
                     label="Sex"
                     hiddenLabel={true}
                     className="ms-1"
-                    options={[ 'male', 'female' ]}
+                    options={['male', 'female']}
                     labelForOption={(option) => option}
                     horizontal={true}
                     jarb={{

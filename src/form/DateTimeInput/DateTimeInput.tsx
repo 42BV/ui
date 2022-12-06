@@ -17,7 +17,7 @@ import { FieldCompatible } from '../types';
 import { isDateValidator } from './validators';
 import { isDate } from './checkers';
 import { withField } from '../withField/withField';
-import { Button } from '../../core/Button/Button';
+import { Button } from '../../core/buttons/Button/Button';
 import { Icon } from '../../core/Icon';
 import { MomentInput } from 'moment/moment';
 
@@ -31,7 +31,10 @@ export type DateTimeInputIsDateAllowed = (
 
 export type DateTimeInputMode = 'modal' | 'default';
 
-export type Props = FieldCompatible<Date | string, Date | string | undefined> & {
+export type Props = FieldCompatible<
+  Date | string,
+  Date | string | undefined
+> & {
   /**
    * The format for the date, follows Moment.js format.
    *
@@ -91,7 +94,7 @@ export type Props = FieldCompatible<Date | string, Date | string | undefined> & 
  * date and times, times, and dates.
  */
 export function DateTimeInput(props: Props) {
-  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     id = uniqueId(),
@@ -126,7 +129,7 @@ export function DateTimeInput(props: Props) {
     // picker or the user typed in a valid date, or it is a string
     // when the user typed in a partial or invalid date manually.
     if (moment.isMoment(newValue)) {
-      props.onChange((newValue).toDate());
+      props.onChange(newValue.toDate());
       doBlur(onBlur);
     } else {
       props.onChange(newValue);
@@ -157,7 +160,8 @@ export function DateTimeInput(props: Props) {
           invalid: valid === false,
           id,
           autoComplete: 'off',
-          'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
+          'aria-label':
+            hiddenLabel && typeof label === 'string' ? label : undefined
         }}
         open={mode === 'modal' ? false : undefined}
         renderInput={(inputProps) =>
@@ -182,7 +186,11 @@ export function DateTimeInput(props: Props) {
           onSave={onChange}
           dateFormat={dateFormat}
           timeFormat={timeFormat}
-          defaultValue={value instanceof Date || isDate({ dateFormat, timeFormat })(value) ? value : undefined}
+          defaultValue={
+            value instanceof Date || isDate({ dateFormat, timeFormat })(value)
+              ? value
+              : undefined
+          }
           isDateAllowed={isDateAllowed}
           label={placeholder}
           locale={locale}
@@ -198,7 +206,10 @@ export function maskedInput(props: Record<string, unknown>) {
   return <MaskedInput {...props} render={reactStrapInput} />;
 }
 
-export function maskedInputGroup(props: Record<string, unknown>, onClick: () => void) {
+export function maskedInputGroup(
+  props: Record<string, unknown>,
+  onClick: () => void
+) {
   return (
     <InputGroup>
       <MaskedInput {...props} render={reactStrapInput} />
@@ -221,7 +232,7 @@ export function reactStrapInput(
  */
 export const JarbDateTimeInput = withJarb<MomentInput, MomentInput, Props>(
   DateTimeInput,
-  (props) => [ isDateValidator({ ...props, label: props.jarb.label }) ]
+  (props) => [isDateValidator({ ...props, label: props.jarb.label })]
 );
 
 /**
@@ -229,5 +240,10 @@ export const JarbDateTimeInput = withJarb<MomentInput, MomentInput, Props>(
  */
 export const FieldDateTimeInput = withField<MomentInput, MomentInput, Props>(
   DateTimeInput,
-  (props) => [ isDateValidator({ ...props, label: typeof props.label === 'string' ? props.label : undefined }) ]
+  (props) => [
+    isDateValidator({
+      ...props,
+      label: typeof props.label === 'string' ? props.label : undefined
+    })
+  ]
 );

@@ -6,7 +6,7 @@ import { SearchInput } from './SearchInput';
 import { Alert, Card } from 'reactstrap';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip/Tooltip';
-import { Button } from '../Button/Button';
+import { Button } from '../buttons/Button/Button';
 import { Select } from '../../form/Select/Select';
 
 storiesOf('core/SearchInput', module)
@@ -14,14 +14,17 @@ storiesOf('core/SearchInput', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use SearchInput, you have to add lodash to your dependencies:</p>
+        <p>
+          To be able to use SearchInput, you have to add lodash to your
+          dependencies:
+        </p>
         <code>npm install --save lodash</code>
       </Alert>
       <Story />
     </>
   ))
   .add('default', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>
@@ -31,7 +34,7 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('without icon', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>
@@ -46,17 +49,22 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('with custom debounce', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>
         <p>You searched for: {query}</p>
-        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000} label="Search" />
+        <SearchInput
+          defaultValue={query}
+          onChange={setQuery}
+          debounce={1000}
+          label="Search"
+        />
       </Card>
     );
   })
   .add('with custom debounce settings', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>
@@ -72,7 +80,7 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('with placeholder', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>
@@ -87,7 +95,7 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('invisible label', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>
@@ -103,7 +111,7 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('with custom label', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>
@@ -125,13 +133,18 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('with external value', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>
         <p>You searched for: {query}</p>
 
-        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000} label="Search">
+        <SearchInput
+          defaultValue={query}
+          onChange={setQuery}
+          debounce={1000}
+          label="Search"
+        >
           {(searchInput, { setValue }) => (
             <>
               {searchInput}
@@ -146,7 +159,7 @@ storiesOf('core/SearchInput', module)
                 label="Predefined queries"
                 value={query}
                 placeholder="Please select a predefined query"
-                options={[ 'Maarten', 'Jeffrey' ]}
+                options={['Maarten', 'Jeffrey']}
                 labelForOption={(option) => option}
                 onChange={(value) => {
                   if (value) {
@@ -161,7 +174,7 @@ storiesOf('core/SearchInput', module)
     );
   })
   .add('without clear button', () => {
-    const [ query, setQuery ] = useState('');
+    const [query, setQuery] = useState('');
 
     return (
       <Card body>

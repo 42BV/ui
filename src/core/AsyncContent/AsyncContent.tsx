@@ -4,7 +4,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 
 import { ContentState } from '../ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
-import { Button } from '../Button/Button';
+import { Button } from '../buttons/Button/Button';
 
 type Text = {
   /**
@@ -34,14 +34,14 @@ export type ReactAsyncState<T> = {
    * Result from calling `useAsync` from `react-async`.
    */
   state: AsyncState<T>;
-}
+};
 
 export type ReactQueryState<T> = {
   /**
    * Result from calling `useQuery` from `@tanstack/react-query`.
    */
   state: UseQueryResult<T>;
-}
+};
 
 export type Props<T> = {
   /**
@@ -105,7 +105,9 @@ export type Props<T> = {
  * With these behaviors you ensure that you always handle the error and
  * loading state when using `useQuery` or `useAsync`.
  */
-export function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQueryState<T>)) {
+export function AsyncContent<T>(
+  props: Props<T> & (ReactAsyncState<T> | ReactQueryState<T>)
+) {
   const {
     state,
     text = {},
@@ -154,7 +156,12 @@ export function AsyncContent<T>(props: Props<T> & (ReactAsyncState<T> | ReactQue
         })}
       >
         {showRetryButton ? (
-          <Button icon="refresh" onClick={() => stateIsAsyncState(state) ? state.reload() : state.refetch()}>
+          <Button
+            icon="refresh"
+            onClick={() =>
+              stateIsAsyncState(state) ? state.reload() : state.refetch()
+            }
+          >
             {t({
               key: 'AsyncContent.ERROR.RETRY',
               fallback: 'Retry',
@@ -171,6 +178,8 @@ function isStateFulfilled<T>(state: AsyncState<T> | UseQueryResult<T>) {
   return stateIsAsyncState(state) ? state.isFulfilled : !state.isError;
 }
 
-function stateIsAsyncState<T>(state: AsyncState<T> | UseQueryResult<T>): state is AsyncState<T> {
+function stateIsAsyncState<T>(
+  state: AsyncState<T> | UseQueryResult<T>
+): state is AsyncState<T> {
   return state.hasOwnProperty('isFulfilled');
 }

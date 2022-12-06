@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '../../../../core/Button/Button';
+import { IconButton } from '../../../../core/buttons/IconButton/IconButton';
 
 export type Props = {
   /**
@@ -21,5 +21,7 @@ export type Props = {
 export function EpicExpander({ open, onChange }: Props) {
   const icon = open ? 'expand_less' : 'expand_more';
 
-  return <Button color="dark" icon={icon} onClick={() => onChange(!open)} />;
+  return (
+    <IconButton color="dark" icon={icon} onClick={() => onChange(!open)} />
+  );
 }

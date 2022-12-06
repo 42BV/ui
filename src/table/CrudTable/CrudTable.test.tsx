@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { CrudTable } from './CrudTable';
 import { Page } from '@42.nl/spring-connect';
 import { Tag } from '../../core/Tag/Tag';
-import { Button } from '../../core/Button/Button';
+import { Button } from '../../core/buttons/Button/Button';
 import { pageOfUsers } from '../../test/fixtures';
 import { EpicRow } from '../EpicTable/rows/EpicRow/EpicRow';
 import { EpicCell } from '../EpicTable/cells/EpicCell/EpicCell';
@@ -39,7 +39,9 @@ describe('Component: CrudTable', () => {
         pageChanged={pageChangedSpy}
       >
         <EpicRow>
-          <EpicCell width={100} height={44}>test</EpicCell>
+          <EpicCell width={100} height={44}>
+            test
+          </EpicCell>
         </EpicRow>
       </CrudTable>
     );
@@ -99,7 +101,9 @@ describe('Component: CrudTable', () => {
 
       const { onSearchSpy } = setup({});
 
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
       expect(onSearchSpy).toBeCalledTimes(1);
       expect(onSearchSpy).toBeCalledWith('test');

@@ -3,12 +3,12 @@ import { storiesOf } from '@storybook/react';
 import { Card } from 'reactstrap';
 
 import { OpenClose } from './OpenClose';
-import { Button } from '../Button/Button';
+import { Button } from '../buttons/Button/Button';
 
 storiesOf('core/OpenClose', module)
   .addParameters({ component: OpenClose })
   .add('basic', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
       <Card body>
@@ -18,7 +18,9 @@ storiesOf('core/OpenClose', module)
           </Button>
           <OpenClose open={isOpen} />
         </div>
-        <p>The collapsable element should now be {isOpen ? 'open' : 'closed'}</p>
+        <p>
+          The collapsable element should now be {isOpen ? 'open' : 'closed'}
+        </p>
       </Card>
     );
   });

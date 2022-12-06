@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`icon only disabled is disabled 1`] = `
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <i
+      class="icon material-icons text-primary icon--disabled"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
+`;
+
+exports[`icon only disabled is enabled 1`] = `
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
+`;
+
+exports[`icon only full-width full width and icon left 1`] = `
+<div>
+  <span
+    class="button primary d-flex justify-content-start"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
+`;
+
+exports[`icon only full-width full width and icon right 1`] = `
+<div>
+  <span
+    class="button primary d-flex justify-content-end"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
+`;
+
+exports[`icon only inProgress inProgress is false 1`] = `
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      save
+    </i>
+  </span>
+</div>
+`;
+
+exports[`icon only inProgress inProgress is true 1`] = `
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <svg
+      class="spinner"
+      height="24"
+      viewBox="25 25 50 50"
+      width="24"
+    >
+      <circle
+        class="path"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="20"
+        stroke=""
+        stroke-miterlimit="10"
+        stroke-width="4"
+      />
+    </svg>
+  </span>
+</div>
+`;
+
+exports[`icon only that when no icon is provided it will fallback to block 1`] = `
+<div>
+  <span
+    class="button primary d-inline-block"
+  >
+    <i
+      class="icon material-icons text-primary clickable"
+      style="font-size: 24px;"
+    >
+      block
+    </i>
+  </span>
+</div>
+`;

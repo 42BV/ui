@@ -5,7 +5,7 @@ import { Tabs } from './Tabs';
 
 import { Form } from 'react-final-form';
 import { Tab } from './Tab/Tab';
-import { Button } from '../Button/Button';
+import { Button } from '../buttons/Button/Button';
 import { JarbInput } from '../../form/Input/Input';
 import { JarbTextarea } from '../../form/Textarea/Textarea';
 import { Card } from '../Card/Card';
@@ -15,7 +15,7 @@ storiesOf('core/Tabs', module)
   .addParameters({ component: Tabs })
   .add('default', () => {
     type AvailableTabs = 'info' | 'testing' | 'details';
-    const [ activeTab, setActiveTab ] = useState<AvailableTabs>('info');
+    const [activeTab, setActiveTab] = useState<AvailableTabs>('info');
     return (
       <Card>
         <Tabs>
@@ -46,7 +46,7 @@ storiesOf('core/Tabs', module)
   })
   .add('disabled', () => {
     type AvailableTabs = 'info' | 'testing' | 'details';
-    const [ activeTab, setActiveTab ] = useState<AvailableTabs>('info');
+    const [activeTab, setActiveTab] = useState<AvailableTabs>('info');
     return (
       <Card>
         <Tabs>
@@ -80,7 +80,7 @@ storiesOf('core/Tabs', module)
   })
   .add('show/hide', () => {
     type AvailableTabs = 'info' | 'testing' | 'details';
-    const [ activeTab, setActiveTab ] = useState<AvailableTabs>('info');
+    const [activeTab, setActiveTab] = useState<AvailableTabs>('info');
     return (
       <Card>
         <p>
@@ -118,7 +118,7 @@ storiesOf('core/Tabs', module)
   })
   .add('with icons', () => {
     type AvailableTabs = 'info' | 'testing' | 'details';
-    const [ activeTab, setActiveTab ] = useState<AvailableTabs>('info');
+    const [activeTab, setActiveTab] = useState<AvailableTabs>('info');
     return (
       <Card>
         <Tabs>
@@ -155,8 +155,8 @@ storiesOf('core/Tabs', module)
   })
   .add('within a form', () => {
     type AvailableTabs = 'info' | 'content';
-    const [ activeTab, setActiveTab ] = useState<AvailableTabs>('info');
-    const [ triedToSubmit, setTriedToSubmit ] = useState(false);
+    const [activeTab, setActiveTab] = useState<AvailableTabs>('info');
+    const [triedToSubmit, setTriedToSubmit] = useState(false);
     return (
       <Form
         onSubmit={() => sleep(1000)}
@@ -189,7 +189,7 @@ storiesOf('core/Tabs', module)
                         validator: '',
                         label: 'username'
                       }}
-                      validators={[ isRequired ]}
+                      validators={[isRequired]}
                       id="username"
                       label="Username"
                       name="username"
@@ -199,7 +199,7 @@ storiesOf('core/Tabs', module)
                         validator: '',
                         label: 'password'
                       }}
-                      validators={[ isRequired ]}
+                      validators={[isRequired]}
                       id="password"
                       label="Password"
                       type="password"
@@ -225,7 +225,7 @@ storiesOf('core/Tabs', module)
                       validator: '',
                       label: 'content'
                     }}
-                    validators={[ isRequired ]}
+                    validators={[isRequired]}
                     id="content"
                     label="Content"
                     name="content"

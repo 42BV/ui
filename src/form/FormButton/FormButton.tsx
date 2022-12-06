@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Props as ButtonProps } from '../../core/Button/Button';
+import { Button } from '../../core/buttons/Button/Button';
+import { ButtonProps } from '../../core/types';
 
 type Props = {
   /**
@@ -13,7 +14,7 @@ type Props = {
    * @default button
    */
   type: 'submit' | 'reset';
-};
+} & Partial<Omit<ButtonProps, 'type' | 'onClick'>>;
 
 /**
  * The FormButton component is used to submit forms from a distance.
@@ -25,11 +26,7 @@ type Props = {
  *
  * It is used when using the EpicForm component.
  */
-export function FormButton({
-  formId,
-  type,
-  ...rest
-}: Props & Omit<ButtonProps, 'type' | 'onClick'>) {
+export function FormButton({ formId, type, ...rest }: Props) {
   function onClick() {
     document
       .getElementById(formId)
