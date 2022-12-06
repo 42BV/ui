@@ -5,7 +5,7 @@ import { Icon } from '../../Icon';
 import { ButtonProps, ButtonSize } from '../../types';
 import { useShowSpinner } from '../useShowSpinner';
 
-type IconButtonProps = Partial<Omit<ButtonProps, 'children'>>;
+type IconButtonProps = Partial<ButtonProps>;
 
 export function IconButton({
   className,

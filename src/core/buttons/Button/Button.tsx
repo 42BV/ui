@@ -8,13 +8,12 @@ import { useShowSpinner } from '../useShowSpinner';
 import {
   ButtonIconPosition,
   ButtonProps as GButtonProps,
-  ButtonSize
+  ButtonSize,
+  WithChildren
 } from '../../types';
 import classNames from 'classnames';
 
-type ButtonProps = {
-  children: React.ReactNode;
-} & Partial<GButtonProps>;
+type ButtonProps = WithChildren<React.ReactNode> & Partial<GButtonProps>;
 
 function getWidget(
   showSpinner: boolean,

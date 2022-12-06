@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Button } from '../buttons/Button/Button';
 import { ConfirmModal } from '../ConfirmModal/ConfirmModal';
-import { ButtonProps } from '../types';
+import { ButtonProps, WithChildren } from '../types';
 import { IconButton } from '../buttons/IconButton/IconButton';
 
 type Text = {
@@ -47,7 +47,7 @@ type Props = {
    * Optionally customized text to use within the component.
    */
   text?: Text;
-} & Partial<ButtonProps>;
+} & Partial<ButtonProps & WithChildren<React.ReactNode>>;
 
 /**
  * The ConfirmButton asks the user if he / she is sure he wants to

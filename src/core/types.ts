@@ -21,6 +21,10 @@ type Side = 'top' | 'right' | 'bottom' | 'left';
 type StartOrEnd = 'start' | 'end';
 export type TippyPlacement = Side | `${Side}-${StartOrEnd}`;
 
+export type WithChildren<TChildren> = {
+  children: TChildren;
+};
+
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonIconPosition = 'left' | 'right';
 export type ButtonProps = {
@@ -89,9 +93,4 @@ export type ButtonProps = {
    * Defaults to `false`
    */
   fullWidth: boolean;
-
-  /**
-   * Optionally the text of the button.
-   */
-  children: React.ReactNode;
 } & Partial<Omit<HTMLButtonElement, 'children'>>;

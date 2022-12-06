@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Button } from '../buttons/Button/Button';
-import { ButtonProps } from '../types';
+import { ButtonProps, WithChildren } from '../types';
 
 export type Props = {
   /**
@@ -9,7 +9,9 @@ export type Props = {
    * This callback should return a request promise.
    */
   action: () => Promise<unknown>;
-} & Partial<Omit<ButtonProps, 'onClick' | 'inProgress'>>;
+} & Partial<
+  Omit<ButtonProps, 'onClick' | 'inProgress'> & WithChildren<React.ReactNode>
+>;
 
 /**
  * The AsyncActionButton is a button that triggers a request when it is
