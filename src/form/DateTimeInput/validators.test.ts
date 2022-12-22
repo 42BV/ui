@@ -601,20 +601,16 @@ describe('isDate', () => {
       timeFormat: false
     });
 
-    const values = {
-      end: new Date('2020-05-08 12:00:00')
-    };
+    expect(isDate(new Date('2020-05-07'), {})).toBe(undefined);
+    expect(isDate('2020-05-08', {})).toBe(undefined);
 
-    expect(isDate(new Date('2020-05-07'), values)).toBe(undefined);
-    expect(isDate('2020-05-08', values)).toBe(undefined);
-
-    expect(isDate('2022-42-42', values)).toBe(
+    expect(isDate('2022-42-42', {})).toBe(
       'Must match required format "YYYY-MM-DD"'
     );
-    expect(isDate('2022-__-__', values)).toBe(
+    expect(isDate('2022-__-__', {})).toBe(
       'Must match required format "YYYY-MM-DD"'
     );
-    expect(isDate(undefined, values)).toBe(undefined);
+    expect(isDate(undefined, {})).toBe(undefined);
   });
 
   test('time', () => {
@@ -624,17 +620,13 @@ describe('isDate', () => {
       timeFormat: 'HH:mm:ss'
     });
 
-    const values = {
-      end: new Date('2020-05-08 12:00:00')
-    };
+    expect(isDate(new Date('2020-05-07'), {})).toBe(undefined);
+    expect(isDate('12:00:00', {})).toBe(undefined);
 
-    expect(isDate(new Date('2020-05-07'), values)).toBe(undefined);
-    expect(isDate('12:00:00', values)).toBe(undefined);
-
-    expect(isDate('12:__:__', values)).toBe(
+    expect(isDate('12:__:__', {})).toBe(
       'Must match required format "HH:mm:ss"'
     );
-    expect(isDate(undefined, values)).toBe(undefined);
+    expect(isDate(undefined, {})).toBe(undefined);
   });
 
   test('date and time', () => {
@@ -644,22 +636,18 @@ describe('isDate', () => {
       timeFormat: 'HH:mm:ss'
     });
 
-    const values = {
-      end: new Date('2020-05-08 12:00:00')
-    };
+    expect(isDate(new Date('2020-05-08 11:59:59'), {})).toBe(undefined);
+    expect(isDate('2020-05-08 11:59:59', {})).toBe(undefined);
 
-    expect(isDate(new Date('2020-05-08 11:59:59'), values)).toBe(undefined);
-    expect(isDate('2020-05-08 11:59:59', values)).toBe(undefined);
-
-    expect(isDate('2020-05-08 __:__:__', values)).toBe(
+    expect(isDate('2020-05-08 __:__:__', {})).toBe(
       'Must match required format "YYYY-MM-DD HH:mm:ss"'
     );
-    expect(isDate('2020-__-__ 12:00:01', values)).toBe(
+    expect(isDate('2020-__-__ 12:00:01', {})).toBe(
       'Must match required format "YYYY-MM-DD HH:mm:ss"'
     );
-    expect(isDate('2020-42-42 12:00:01', values)).toBe(
+    expect(isDate('2020-42-42 12:00:01', {})).toBe(
       'Must match required format "YYYY-MM-DD HH:mm:ss"'
     );
-    expect(isDate(undefined, values)).toBe(undefined);
+    expect(isDate(undefined, {})).toBe(undefined);
   });
 });
