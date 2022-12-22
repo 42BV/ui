@@ -1,10 +1,24 @@
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor
+} from '@testing-library/react';
+import { vi } from 'vitest';
 
 import * as imgUploadUtils from './utils';
 
-import { ImageState, ImageUpload, ImageUploadCrop, limitImageSize, Mode, requireImage, Text } from './ImageUpload';
+import {
+  ImageState,
+  ImageUpload,
+  ImageUploadCrop,
+  limitImageSize,
+  Mode,
+  requireImage,
+  Text
+} from './ImageUpload';
 
 import * as testUtils from '../../test/utils';
 import AvatarEditor from 'react-avatar-editor';
@@ -22,7 +36,7 @@ describe('Component: ImageUpload', () => {
     mode,
     image = { src: '', fileName: 'maarten.png', rotate: 0, scale: 1 },
     imageSize = { width: 1000, height: 1000 },
-    file = new File([ '' ], 'maarten.png')
+    file = new File([''], 'maarten.png')
   }: {
     value?: File | string;
     cropType?: 'rect' | 'circle';
@@ -36,36 +50,34 @@ describe('Component: ImageUpload', () => {
     imageSize?: { width: number; height: number };
     file?: File;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
-    jest.spyOn(AvatarEditor.prototype, 'getImage')
+    vi.spyOn(AvatarEditor.prototype, 'getImage')
       // @ts-expect-error Test mock
       .mockReturnValue(imageSize);
 
     const { promise, resolve } = testUtils.resolvablePromise();
 
-    const resizeSpy = jest.fn(() => {
+    const resizeSpy = vi.fn(() => {
       return promise;
     });
 
-    jest.spyOn(imgUploadUtils, 'getPicaInstance').mockImplementation(() => {
+    vi.spyOn(imgUploadUtils, 'getPicaInstance').mockImplementation(() => {
       return {
         resize: resizeSpy
       };
     });
 
-    jest
-      .spyOn(imgUploadUtils, 'dataUrlToFile')
-      .mockImplementation(() => file);
+    vi.spyOn(imgUploadUtils, 'dataUrlToFile').mockImplementation(() => file);
 
-    const setModeSpy = jest.fn();
-    const setImageSpy = jest.fn();
+    const setModeSpy = vi.fn();
+    const setImageSpy = vi.fn();
 
     if (mode) {
-      jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([ mode, setModeSpy ])
-        .mockReturnValueOnce([ image, setImageSpy ]);
+      vi.spyOn(React, 'useState')
+        .mockReturnValueOnce([mode, setModeSpy])
+        .mockReturnValueOnce([image, setImageSpy]);
     }
 
     const crop: ImageUploadCrop =
@@ -90,22 +102,33 @@ describe('Component: ImageUpload', () => {
       <ImageUpload color="success" {...props} />
     );
 
-    return { container, asFragment, onChangeSpy, onBlurSpy, resizeSpy, resolve, promise, setModeSpy, setImageSpy };
+    return {
+      container,
+      asFragment,
+      onChangeSpy,
+      onBlurSpy,
+      resizeSpy,
+      resolve,
+      promise,
+      setModeSpy,
+      setImageSpy
+    };
   }
 
   it('should not show the image when the value is undefined', () => {
     setup({});
-    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    expect(screen.queryByRole('img')).toBeNull();
   });
 
   it('should not show the image when the value is empty string', () => {
     setup({ value: '' });
-    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+    expect(screen.queryByRole('img')).toBeNull();
   });
 
-  it('should show the image when the value is a non empty string', () => {
+  it('should show the image when the value is a non empty string', async () => {
+    expect.assertions(0);
     setup({ value: 'maarten.png' });
-    expect(screen.queryByRole('img')).toBeInTheDocument();
+    await screen.findByRole('img');
   });
 
   it('should set image and set mode to file-selected when the value is a File', async () => {
@@ -113,7 +136,7 @@ describe('Component: ImageUpload', () => {
 
     const { setModeSpy, setImageSpy } = setup({
       mode: 'no-file',
-      value: new File([ 'base64code' ], 'gido.png'),
+      value: new File(['base64code'], 'gido.png'),
       image: null
     });
 
@@ -121,11 +144,13 @@ describe('Component: ImageUpload', () => {
       expect(setImageSpy).toHaveBeenCalledTimes(1);
     });
 
-    expect(setImageSpy).toHaveBeenCalledWith(expect.objectContaining({
-      fileName: 'gido.png',
-      rotate: 0,
-      scale: 1
-    }));
+    expect(setImageSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
+        fileName: 'gido.png',
+        rotate: 0,
+        scale: 1
+      })
+    );
     expect(setModeSpy).toHaveBeenCalledTimes(1);
     expect(setModeSpy).toHaveBeenCalledWith('file-selected');
   });
@@ -137,7 +162,10 @@ describe('Component: ImageUpload', () => {
     });
 
     test('file-selected as circle', () => {
-      const { container } = setup({ cropType: 'circle', mode: 'file-selected' });
+      const { container } = setup({
+        cropType: 'circle',
+        mode: 'file-selected'
+      });
       expect(container).toMatchSnapshot();
     });
 
@@ -156,40 +184,48 @@ describe('Component: ImageUpload', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('visible label', () => {
+    test('visible label', async () => {
+      expect.assertions(0);
       setup({});
-      expect(screen.queryByText('Profile photo')).toBeInTheDocument();
-      expect(screen.queryByLabelText('Profile photo')).toBeInTheDocument();
+      await screen.findByText('Profile photo');
+      await screen.findByLabelText('Profile photo');
     });
 
-    test('invisible label', () => {
+    test('invisible label', async () => {
+      expect.assertions(2);
       setup({ hasLabel: false });
-      expect(screen.queryByText('Profile photo')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('Profile photo')).toBeInTheDocument();
+      expect(screen.queryByRole('img')).toBeNull();
+      expect(screen.queryByText('Profile photo')).toBeNull();
+      await screen.findByLabelText('Profile photo');
     });
 
     test('with empty label', () => {
       setup({ emptyLabel: true });
-      expect(screen.queryByText('Profile photo')).not.toBeInTheDocument();
+      expect(screen.queryByText('Profile photo')).toBeNull();
     });
 
-    test('with custom label', () => {
+    test('with custom label', async () => {
+      expect.assertions(1);
       const label = <Tooltip content="Is this a test?">Profile photo</Tooltip>;
       setup({ label, hasLabel: true, mode: 'file-selected' });
-      expect(screen.queryByText('Profile photo')).toBeInTheDocument();
-      expect(screen.queryByAltText('Profile photo')).not.toBeInTheDocument();
+      await screen.findByText('Profile photo');
+      expect(screen.queryByAltText('Profile photo')).toBeNull();
     });
   });
 
   describe('events', () => {
     it('should set mode to edit when file is selected', () => {
-      const readFileSpy = jest.spyOn(imgUploadUtils, 'readFile').mockImplementation((file, callback) => callback(''));
+      const readFileSpy = vi
+        .spyOn(imgUploadUtils, 'readFile')
+        .mockImplementation((file, callback) => callback(''));
 
       const { setModeSpy, setImageSpy } = setup({
         mode: 'no-file'
       });
 
-      fireEvent.change(screen.getByLabelText('Profile photo'), { target: { files: [ new File([ '' ], 'maarten.png') ] } });
+      fireEvent.change(screen.getByLabelText('Profile photo'), {
+        target: { files: [new File([''], 'maarten.png')] }
+      });
 
       expect(readFileSpy).toHaveBeenCalledTimes(1);
 
@@ -236,7 +272,7 @@ describe('Component: ImageUpload', () => {
         mode: 'edit'
       });
 
-      const calculateScaleSpy = jest.spyOn(imgUploadUtils, 'calculateScale');
+      const calculateScaleSpy = vi.spyOn(imgUploadUtils, 'calculateScale');
 
       fireEvent.wheel(screen.getByTestId('scroll-scale'), { deltaY: -100 });
 
@@ -271,9 +307,17 @@ describe('Component: ImageUpload', () => {
     it('should set the final image and set mode to file-selected when done button is clicked', async () => {
       expect.assertions(13);
 
-      const file = new File([ '' ], 'maarten.png');
+      const file = new File([''], 'maarten.png');
 
-      const { setModeSpy, setImageSpy, resizeSpy, resolve, promise, onChangeSpy, onBlurSpy } = setup({
+      const {
+        setModeSpy,
+        setImageSpy,
+        resizeSpy,
+        resolve,
+        promise,
+        onChangeSpy,
+        onBlurSpy
+      } = setup({
         mode: 'edit',
         file
       });
@@ -282,7 +326,7 @@ describe('Component: ImageUpload', () => {
 
       await act(async () => {
         resolve({
-          toDataURL: jest.fn(() => 'Some base 64 string')
+          toDataURL: vi.fn(() => 'Some base 64 string')
         });
         await expect(promise).resolves.toBeDefined();
       });
@@ -320,9 +364,12 @@ describe('Component: ImageUpload', () => {
     it('should replace the file extension when keepOriginalFileExtension is undefined', async () => {
       expect.assertions(4);
 
-      const file = new File([ '' ], 'maarten.jpg');
+      const file = new File([''], 'maarten.jpg');
 
-      const replaceFileExtensionSpy = jest.spyOn(imgUploadUtils, 'replaceFileExtension');
+      const replaceFileExtensionSpy = vi.spyOn(
+        imgUploadUtils,
+        'replaceFileExtension'
+      );
 
       const { resolve, promise, setImageSpy } = setup({
         mode: 'edit',
@@ -333,7 +380,7 @@ describe('Component: ImageUpload', () => {
 
       await act(async () => {
         resolve({
-          toDataURL: jest.fn(() => 'Some base 64 string')
+          toDataURL: vi.fn(() => 'Some base 64 string')
         });
         await expect(promise).resolves.toBeDefined();
       });
@@ -352,9 +399,12 @@ describe('Component: ImageUpload', () => {
     it('should not replace the file extension when keepOriginalFileExtension is true', async () => {
       expect.assertions(4);
 
-      const file = new File([ '' ], 'maarten.jpg');
+      const file = new File([''], 'maarten.jpg');
 
-      const replaceFileExtensionSpy = jest.spyOn(imgUploadUtils, 'replaceFileExtension');
+      const replaceFileExtensionSpy = vi.spyOn(
+        imgUploadUtils,
+        'replaceFileExtension'
+      );
 
       const { resolve, promise, setImageSpy } = setup({
         mode: 'edit',
@@ -367,7 +417,7 @@ describe('Component: ImageUpload', () => {
 
       await act(async () => {
         resolve({
-          toDataURL: jest.fn(() => 'Some base 64 string')
+          toDataURL: vi.fn(() => 'Some base 64 string')
         });
         await expect(promise).resolves.toBeDefined();
       });
@@ -403,10 +453,10 @@ describe('Component: ImageUpload', () => {
     });
 
     it('should clear the image, set mode to no-file and trigger the file input so user can select a new image when change button is clicked', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
-      const clickSpy = jest.fn();
-      jest.spyOn(React, 'useRef').mockReturnValueOnce({
+      const clickSpy = vi.fn();
+      vi.spyOn(React, 'useRef').mockReturnValueOnce({
         current: {
           click: clickSpy
         }
@@ -426,7 +476,7 @@ describe('Component: ImageUpload', () => {
 
       expect(clickSpy).toHaveBeenCalledTimes(0);
 
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       expect(clickSpy).toHaveBeenCalledTimes(1);
     });
@@ -434,18 +484,18 @@ describe('Component: ImageUpload', () => {
     it('should call onChange with initial image when selected image starts edit mode', async () => {
       expect.assertions(2);
 
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const { onChangeSpy, resolve, promise } = setup({
         mode: 'edit'
       });
 
       await act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
 
       await act(async () => {
         resolve({
-          toDataURL: jest.fn(() => 'Some base 64 string')
+          toDataURL: vi.fn(() => 'Some base 64 string')
         });
         await expect(promise).resolves.toBeDefined();
       });
@@ -456,14 +506,14 @@ describe('Component: ImageUpload', () => {
     it('should not call onChange with initial image when selected image is not readable', async () => {
       expect.assertions(1);
 
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const { onChangeSpy } = setup({
         mode: 'edit',
         image: null
       });
 
       await act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(0);
@@ -472,7 +522,7 @@ describe('Component: ImageUpload', () => {
     it('should set mode to file-selected when selected image is too small for cropping', async () => {
       expect.assertions(3);
 
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       const { setModeSpy, resolve, promise } = setup({
         mode: 'edit',
@@ -480,12 +530,12 @@ describe('Component: ImageUpload', () => {
       });
 
       await act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
 
       await act(async () => {
         resolve({
-          toDataURL: jest.fn(() => 'Some base 64 string')
+          toDataURL: vi.fn(() => 'Some base 64 string')
         });
         await expect(promise).resolves.toBeDefined();
       });
@@ -512,7 +562,7 @@ test('requireImage', () => {
     fallback: 'profile picture is required'
   });
 
-  expect(validator(new File([ '' ], 'henkie.png'), {})).toBe(undefined);
+  expect(validator(new File([''], 'henkie.png'), {})).toBe(undefined);
 });
 
 test('limitImageSize', () => {
@@ -523,11 +573,11 @@ test('limitImageSize', () => {
   // @ts-expect-error Even though it accepts Value it will be given undefined and null
   expect(validator(null, {})).toBe(undefined);
 
-  const smallFile = new File([ '' ], 'small.png');
+  const smallFile = new File([''], 'small.png');
   expect(validator(smallFile, {})).toBe(undefined);
 
   const largeFile = new File(
-    [ 'very large image string'.repeat(100000) ],
+    ['very large image string'.repeat(100000)],
     'large.png'
   );
   expect(validator(largeFile, {})).toEqual({

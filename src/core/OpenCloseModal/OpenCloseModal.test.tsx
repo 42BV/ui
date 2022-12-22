@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 import { RadioGroup } from '../../form/RadioGroup/RadioGroup';
 
@@ -22,8 +22,8 @@ describe('Component: OpenCloseModal', () => {
     inProgress?: boolean;
     stickyFooter?: boolean;
   }) {
-    const onCloseSpy = jest.fn();
-    const onSaveSpy = jest.fn();
+    const onCloseSpy = vi.fn();
+    const onSaveSpy = vi.fn();
 
     const props = {
       isOpen,
@@ -39,8 +39,8 @@ describe('Component: OpenCloseModal', () => {
 
     const children = (
       <RadioGroup<string>
-        onChange={jest.fn()}
-        options={[ 'local', 'development', 'test', 'acceptation', 'production' ]}
+        onChange={vi.fn()}
+        options={['local', 'development', 'test', 'acceptation', 'production']}
         labelForOption={(v) => v}
         label="Environment"
       />
@@ -64,28 +64,33 @@ describe('Component: OpenCloseModal', () => {
       expect(container.firstChild).toBeNull();
     });
 
-    test('with label', () => {
+    test('with label', async () => {
+      expect.assertions(0);
       setup({ isOpen: true });
-      expect(screen.queryByText('Choose something')).toBeInTheDocument();
+      await screen.findByText('Choose something');
     });
 
     test('without label', () => {
       setup({ isOpen: true, hasLabel: false });
-      expect(screen.queryByText('Choose something')).not.toBeInTheDocument();
+      expect(screen.queryByText('Choose something')).toBeNull();
     });
 
     test('without buttons', () => {
       setup({ isOpen: true, hasButtons: false });
       expect(screen.queryAllByRole('button').length).toBe(1);
-      expect(screen.queryByText('save')).not.toBeInTheDocument();
-      expect(screen.queryByText('cancel')).not.toBeInTheDocument();
+      expect(screen.queryByText('save')).toBeNull();
+      expect(screen.queryByText('cancel')).toBeNull();
     });
 
     test('custom button texts', () => {
       setup({ isOpen: true, hasCustomText: true });
       expect(screen.queryAllByRole('button').length).toBe(3);
-      expect(screen.queryAllByRole('button')[1]).toHaveTextContent('cancelStop please');
-      expect(screen.queryAllByRole('button')[2]).toHaveTextContent('saveSelect me');
+      expect(screen.queryAllByRole('button')[1].textContent).toBe(
+        'cancelStop please'
+      );
+      expect(screen.queryAllByRole('button')[2].textContent).toBe(
+        'saveSelect me'
+      );
     });
 
     test('in progress', () => {
@@ -95,7 +100,10 @@ describe('Component: OpenCloseModal', () => {
 
     test('sans sticky footer', () => {
       setup({ isOpen: true, stickyFooter: false });
-      expect(document.body.lastChild?.firstChild).not.toHaveClass('sticky-modal');
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        document.body.lastChild?.firstChild?.classList.contains('sticky-modal')
+      ).toBe(false);
     });
   });
 

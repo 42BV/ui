@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { InfoTooltip } from './InfoTooltip';
 import { Spinner } from '../Spinner/Spinner';
@@ -21,9 +20,7 @@ describe('Component: InfoTooltip', () => {
       className
     };
 
-    const { container } = render(
-      <InfoTooltip {...props} />
-    );
+    const { container } = render(<InfoTooltip {...props} />);
 
     return { container };
   }
@@ -43,7 +40,7 @@ describe('Component: InfoTooltip', () => {
 
     test('with size', () => {
       setup({ size: 10 });
-      expect(screen.getByText('info')).toHaveStyle({ fontSize: 10 });
+      expect(getComputedStyle(screen.getByText('info')).fontSize).toBe('10px');
     });
   });
 });

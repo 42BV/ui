@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { ConfirmButton } from './ConfirmButton';
 import { IconType } from '../Icon';
@@ -107,7 +107,7 @@ describe('Component: ConfirmButton', () => {
       | { button: string; icon?: never };
 
     function setup({ button, icon }: Props) {
-      const onConfirmSpy = jest.fn();
+      const onConfirmSpy = vi.fn();
 
       const props = {
         onConfirm: onConfirmSpy,
@@ -122,9 +122,7 @@ describe('Component: ConfirmButton', () => {
         );
         return { container, onConfirmSpy };
       } else if (icon) {
-        const { container } = render(
-          <ConfirmButton icon={icon} {...props} />
-        );
+        const { container } = render(<ConfirmButton icon={icon} {...props} />);
         return { container, onConfirmSpy };
       } else {
         const { container } = render(
@@ -134,39 +132,51 @@ describe('Component: ConfirmButton', () => {
       }
     }
 
-    it('should open the Modal when the ConfirmButton button is clicked', () => {
+    it('should open the Modal when the ConfirmButton button is clicked', async () => {
+      expect.assertions(1);
+
       setup({ button: 'Delete' });
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).toBeNull();
 
       fireEvent.click(screen.getByText('Delete'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
+      await screen.findByText('Are you sure you want a ConfirmButton?');
     });
 
-    it('should close the Modal when the Cancel button is clicked', () => {
+    it('should close the Modal when the Cancel button is clicked', async () => {
+      expect.assertions(2);
+
       const { onConfirmSpy } = setup({ button: 'Delete' });
 
       fireEvent.click(screen.getByText('Delete'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
+      await screen.findByText('Are you sure you want a ConfirmButton?');
 
       fireEvent.click(screen.getByText('Cancel'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).toBeNull();
       expect(onConfirmSpy).toHaveBeenCalledTimes(0);
     });
 
-    it('should close and save the Modal when the Confirm button is clicked', () => {
+    it('should close and save the Modal when the Confirm button is clicked', async () => {
+      expect.assertions(2);
+
       const { onConfirmSpy } = setup({ button: 'Delete' });
 
       fireEvent.click(screen.getByText('Delete'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
+      await screen.findByText('Are you sure you want a ConfirmButton?');
 
       fireEvent.click(screen.getByText('Confirm'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).toBeNull();
       expect(onConfirmSpy).toHaveBeenCalledTimes(1);
     });
   });

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ModalPickerValueTruncator ui overflowing 1`] = `
+exports[`Component: ModalPickerValueTruncator > ui > overflowing 1`] = `
 <div>
   <span
     class="text-truncate position-relative"
@@ -18,7 +18,7 @@ exports[`Component: ModalPickerValueTruncator ui overflowing 1`] = `
 </div>
 `;
 
-exports[`Component: ModalPickerValueTruncator ui single value 1`] = `
+exports[`Component: ModalPickerValueTruncator > ui > single value 1`] = `
 <div>
   <span
     class="text-truncate position-relative"

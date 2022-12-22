@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import * as MeterWidth from './useMeterWidth/useMeterWidth';
 import * as Rules from './useRules/useRules';
@@ -18,7 +17,7 @@ describe('Component: PasswordStrength', () => {
     const { container } = render(
       <PasswordStrength
         password={password}
-        rules={[ 'lowercase', 'minimumLength' ]}
+        rules={['lowercase', 'minimumLength']}
         showMeter={showMeter}
       />
     );
@@ -34,41 +33,51 @@ describe('Component: PasswordStrength', () => {
 
     it('without meter', () => {
       setup({ showMeter: false });
-      expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      expect(screen.queryByRole('progressbar')).toBeNull();
     });
   });
 
   describe('events', () => {
     it('should display the progress bar in color warning when password strength 75%', () => {
-      jest.spyOn(MeterWidth, 'useMeterWidth').mockReturnValue(75);
+      vi.spyOn(MeterWidth, 'useMeterWidth').mockReturnValue(75);
 
       setup({});
 
-      expect(screen.getByRole('progressbar')).toHaveClass('bg-warning');
+      expect(
+        screen.getByRole('progressbar').classList.contains('bg-warning')
+      ).toBe(true);
     });
 
     it('should display the progress bar in color warning when password strength 100%', () => {
-      jest.spyOn(MeterWidth, 'useMeterWidth').mockReturnValue(100);
+      vi.spyOn(MeterWidth, 'useMeterWidth').mockReturnValue(100);
 
       setup({});
 
-      expect(screen.getByRole('progressbar')).toHaveClass('bg-success');
+      expect(
+        screen.getByRole('progressbar').classList.contains('bg-success')
+      ).toBe(true);
     });
 
     it('should display the rule with a red cross', () => {
       setup({});
 
       expect(screen.queryAllByText('cancel').length).toBe(2);
-      expect(screen.getAllByText('cancel')[0]).toHaveClass('text-danger');
+      expect(
+        screen.getAllByText('cancel')[0].classList.contains('text-danger')
+      ).toBe(true);
     });
 
-    it('should display the rule with a green checkmark', () => {
-      jest.spyOn(Rules, 'useRules').mockReturnValue({ lowercase: true });
+    it('should display the rule with a green checkmark', async () => {
+      expect.assertions(1);
+
+      vi.spyOn(Rules, 'useRules').mockReturnValue({ lowercase: true });
 
       setup({});
 
-      expect(screen.queryByText('check_circle')).toBeInTheDocument();
-      expect(screen.getByText('check_circle')).toHaveClass('text-success');
+      await screen.findByText('check_circle');
+      expect(
+        screen.getByText('check_circle').classList.contains('text-success')
+      ).toBe(true);
     });
   });
 });

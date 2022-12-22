@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { ContentState } from './ContentState';
 
@@ -48,17 +47,20 @@ describe('Component: ContentStateIcon', () => {
         />
       );
 
-      expect(container.firstChild).toHaveClass('extra-class');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('extra-class')).toBe(true);
     });
 
-    test('with children', () => {
+    test('with children', async () => {
+      expect.assertions(1);
+
       const { container } = render(
         <ContentState mode="error" title="title" subTitle="subtitle">
           <p>Children</p>
         </ContentState>
       );
 
-      expect(screen.getByText('Children')).toBeInTheDocument();
+      await screen.findByText('Children');
       expect(container).toMatchSnapshot();
     });
   });

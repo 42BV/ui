@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: AsyncContent deprecated React Async when fulfilled when empty 1`] = `
+exports[`Component: AsyncContent > deprecated React Async > when fulfilled > when empty 1`] = `
 <div>
   <div
     class="text-center"
@@ -61,7 +61,7 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when empt
 </div>
 `;
 
-exports[`Component: AsyncContent deprecated React Async when fulfilled when empty with custom empty  1`] = `
+exports[`Component: AsyncContent > deprecated React Async > when fulfilled > when empty with custom empty  1`] = `
 <div>
   <h1>
     Custom renderer
@@ -69,7 +69,7 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when empt
 </div>
 `;
 
-exports[`Component: AsyncContent deprecated React Async when fulfilled when not empty 1`] = `
+exports[`Component: AsyncContent > deprecated React Async > when fulfilled > when not empty 1`] = `
 <div>
   <h2>
     important data
@@ -77,7 +77,7 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when not 
 </div>
 `;
 
-exports[`Component: AsyncContent deprecated React Async when rejected should not render when showRetryButton is undefined 1`] = `
+exports[`Component: AsyncContent > deprecated React Async > when rejected > should not render when showRetryButton is undefined 1`] = `
 <div>
   <div
     class="text-center"
@@ -157,7 +157,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected should not
 </div>
 `;
 
-exports[`Component: AsyncContent deprecated React Async when rejected with retry button 1`] = `
+exports[`Component: AsyncContent > deprecated React Async > when rejected > with retry button 1`] = `
 <div>
   <div
     class="text-center"
@@ -237,7 +237,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected with retry
 </div>
 `;
 
-exports[`Component: AsyncContent deprecated React Async when rejected without retry button 1`] = `
+exports[`Component: AsyncContent > deprecated React Async > when rejected > without retry button 1`] = `
 <div>
   <div
     class="text-center"
@@ -298,7 +298,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected without re
 </div>
 `;
 
-exports[`Component: AsyncContent when fulfilled when empty 1`] = `
+exports[`Component: AsyncContent > when fulfilled > when empty 1`] = `
 <div>
   <div
     class="text-center"
@@ -359,7 +359,7 @@ exports[`Component: AsyncContent when fulfilled when empty 1`] = `
 </div>
 `;
 
-exports[`Component: AsyncContent when fulfilled when empty with custom empty  1`] = `
+exports[`Component: AsyncContent > when fulfilled > when empty with custom empty  1`] = `
 <div>
   <h1>
     Custom renderer
@@ -367,7 +367,7 @@ exports[`Component: AsyncContent when fulfilled when empty with custom empty  1`
 </div>
 `;
 
-exports[`Component: AsyncContent when fulfilled when not empty 1`] = `
+exports[`Component: AsyncContent > when fulfilled > when not empty 1`] = `
 <div>
   <h2>
     important data
@@ -375,7 +375,7 @@ exports[`Component: AsyncContent when fulfilled when not empty 1`] = `
 </div>
 `;
 
-exports[`Component: AsyncContent when loading 1`] = `
+exports[`Component: AsyncContent > when loading 1`] = `
 <div>
   <div
     class="text-center"
@@ -448,7 +448,7 @@ exports[`Component: AsyncContent when loading 1`] = `
 </div>
 `;
 
-exports[`Component: AsyncContent when rejected should not render when showRetryButton is undefined 1`] = `
+exports[`Component: AsyncContent > when rejected > should not render when showRetryButton is undefined 1`] = `
 <div>
   <div
     class="text-center"
@@ -528,7 +528,7 @@ exports[`Component: AsyncContent when rejected should not render when showRetryB
 </div>
 `;
 
-exports[`Component: AsyncContent when rejected with retry button 1`] = `
+exports[`Component: AsyncContent > when rejected > with retry button 1`] = `
 <div>
   <div
     class="text-center"
@@ -608,7 +608,7 @@ exports[`Component: AsyncContent when rejected with retry button 1`] = `
 </div>
 `;
 
-exports[`Component: AsyncContent when rejected without retry button 1`] = `
+exports[`Component: AsyncContent > when rejected > without retry button 1`] = `
 <div>
   <div
     class="text-center"

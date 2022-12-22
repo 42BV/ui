@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: CheckboxMultipleSelect ui default 1`] = `
+exports[`Component: CheckboxMultipleSelect > ui > default 1`] = `
 <div>
   <div
     class="mb-3"
@@ -20,6 +20,7 @@ exports[`Component: CheckboxMultipleSelect ui default 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="0"
               type="checkbox"
               value="0"
             />
@@ -35,6 +36,7 @@ exports[`Component: CheckboxMultipleSelect ui default 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="1"
               type="checkbox"
               value="1"
             />
@@ -50,6 +52,7 @@ exports[`Component: CheckboxMultipleSelect ui default 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="2"
               type="checkbox"
               value="2"
             />
@@ -64,7 +67,7 @@ exports[`Component: CheckboxMultipleSelect ui default 1`] = `
 </div>
 `;
 
-exports[`Component: CheckboxMultipleSelect ui loading 1`] = `
+exports[`Component: CheckboxMultipleSelect > ui > loading 1`] = `
 <div>
   <div
     class="mb-3"

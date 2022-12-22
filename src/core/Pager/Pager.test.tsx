@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { Page } from '@42.nl/spring-connect';
 
 import { Pager } from './Pager';
@@ -24,16 +24,14 @@ describe('Component: Pager', () => {
       numberOfElements: 10
     };
 
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const props = {
       page,
       onChange: onChangeSpy
     };
 
-    const { container } = render(
-      <Pager {...props} />
-    );
+    const { container } = render(<Pager {...props} />);
 
     return { container, onChangeSpy };
   }
@@ -51,12 +49,18 @@ describe('Component: Pager', () => {
 
     test('first', () => {
       setup({ number: 1, totalPages: 10 });
-      expect(screen.getByText('arrow_back').parentNode?.parentNode).toBeDisabled();
+      expect(
+        // @ts-expect-error HTMLElement has property disabled
+        screen.getByText('arrow_back').parentNode?.parentNode?.disabled
+      ).toEqual(true);
     });
 
     test('last', () => {
       setup({ number: 10, totalPages: 10 });
-      expect(screen.getByText('arrow_forward').parentNode?.parentNode).toBeDisabled();
+      expect(
+        // @ts-expect-error HTMLElement has property disabled
+        screen.getByText('arrow_forward').parentNode?.parentNode?.disabled
+      ).toEqual(true);
     });
   });
 

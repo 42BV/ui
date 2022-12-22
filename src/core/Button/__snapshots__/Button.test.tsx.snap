@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Button ui button disabled is disabled 1`] = `
+exports[`Component: Button > ui > button > disabled > is disabled 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -20,7 +20,7 @@ exports[`Component: Button ui button disabled is disabled 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button disabled is enabled 1`] = `
+exports[`Component: Button > ui > button > disabled > is enabled 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -39,7 +39,7 @@ exports[`Component: Button ui button disabled is enabled 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button full-width 1`] = `
+exports[`Component: Button > ui > button > full-width 1`] = `
 <div>
   <span
     class="button d-block primary"
@@ -58,7 +58,7 @@ exports[`Component: Button ui button full-width 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button normal inProgress is false 1`] = `
+exports[`Component: Button > ui > button > normal > inProgress is false 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -77,7 +77,7 @@ exports[`Component: Button ui button normal inProgress is false 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button normal inProgress is true 1`] = `
+exports[`Component: Button > ui > button > normal > inProgress is true 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -114,7 +114,7 @@ exports[`Component: Button ui button normal inProgress is true 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button outline inProgress is false 1`] = `
+exports[`Component: Button > ui > button > outline > inProgress is false 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -133,7 +133,7 @@ exports[`Component: Button ui button outline inProgress is false 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button outline inProgress is true 1`] = `
+exports[`Component: Button > ui > button > outline > inProgress is true 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -170,7 +170,7 @@ exports[`Component: Button ui button outline inProgress is true 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button size can override size 1`] = `
+exports[`Component: Button > ui > button > size > can override size 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -189,7 +189,7 @@ exports[`Component: Button ui button size can override size 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button size use md by default 1`] = `
+exports[`Component: Button > ui > button > size > use md by default 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -208,7 +208,7 @@ exports[`Component: Button ui button size use md by default 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button with icon normal inProgress is false 1`] = `
+exports[`Component: Button > ui > button with icon > normal > inProgress is false 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -232,7 +232,7 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
 </div>
 `;
 
-exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
+exports[`Component: Button > ui > button with icon > normal > inProgress is true 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -269,7 +269,7 @@ exports[`Component: Button ui button with icon normal inProgress is true 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui button with icon normal with icon on the right 1`] = `
+exports[`Component: Button > ui > button with icon > normal > with icon on the right 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -293,7 +293,7 @@ exports[`Component: Button ui button with icon normal with icon on the right 1`]
 </div>
 `;
 
-exports[`Component: Button ui button with icon outline inProgress is false 1`] = `
+exports[`Component: Button > ui > button with icon > outline > inProgress is false 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -317,7 +317,7 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
 </div>
 `;
 
-exports[`Component: Button ui button with icon outline inProgress is true 1`] = `
+exports[`Component: Button > ui > button with icon > outline > inProgress is true 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -354,7 +354,7 @@ exports[`Component: Button ui button with icon outline inProgress is true 1`] = 
 </div>
 `;
 
-exports[`Component: Button ui icon only disabled is disabled 1`] = `
+exports[`Component: Button > ui > icon only > disabled > is disabled 1`] = `
 <div>
   <span
     class="button primary d-inline-block"
@@ -369,7 +369,7 @@ exports[`Component: Button ui icon only disabled is disabled 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui icon only disabled is enabled 1`] = `
+exports[`Component: Button > ui > icon only > disabled > is enabled 1`] = `
 <div>
   <span
     class="button primary d-inline-block"
@@ -384,7 +384,7 @@ exports[`Component: Button ui icon only disabled is enabled 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui icon only full-width full width and icon left 1`] = `
+exports[`Component: Button > ui > icon only > full-width > full width and icon left 1`] = `
 <div>
   <span
     class="button primary d-flex justify-content-start"
@@ -399,7 +399,7 @@ exports[`Component: Button ui icon only full-width full width and icon left 1`] 
 </div>
 `;
 
-exports[`Component: Button ui icon only full-width full width and icon right 1`] = `
+exports[`Component: Button > ui > icon only > full-width > full width and icon right 1`] = `
 <div>
   <span
     class="button primary d-flex justify-content-end"
@@ -414,7 +414,7 @@ exports[`Component: Button ui icon only full-width full width and icon right 1`]
 </div>
 `;
 
-exports[`Component: Button ui icon only inProgress inProgress is false 1`] = `
+exports[`Component: Button > ui > icon only > inProgress > inProgress is false 1`] = `
 <div>
   <span
     class="button primary d-inline-block"
@@ -429,7 +429,7 @@ exports[`Component: Button ui icon only inProgress inProgress is false 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui icon only inProgress inProgress is true 1`] = `
+exports[`Component: Button > ui > icon only > inProgress > inProgress is true 1`] = `
 <div>
   <span
     class="button primary d-inline-block"
@@ -455,7 +455,7 @@ exports[`Component: Button ui icon only inProgress inProgress is true 1`] = `
 </div>
 `;
 
-exports[`Component: Button ui icon only that when no icon is provided it will fallback to block 1`] = `
+exports[`Component: Button > ui > icon only > that when no icon is provided it will fallback to block 1`] = `
 <div>
   <span
     class="button primary d-inline-block"

@@ -1,32 +1,36 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { ErrorBoundary } from './ErrorBoundary';
 
 describe('Component: ErrorBoundary', () => {
   describe('ui', () => {
-    test('without error', () => {
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {
-        // Do nothing, we only want to make sure the error is logged
-      });
+    test('without error', async () => {
+      expect.assertions(3);
+
+      const consoleErrorSpy = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => {
+          // Do nothing, we only want to make sure the error is logged
+        });
 
       const { container } = render(
-        <ErrorBoundary>
-          Here is some content without an error
-        </ErrorBoundary>
+        <ErrorBoundary>Here is some content without an error</ErrorBoundary>
       );
 
-      expect(screen.queryByText('Oops something went wrong!')).not.toBeInTheDocument();
-      expect(screen.queryByText('Here is some content without an error')).toBeInTheDocument();
+      expect(screen.queryByText('Oops something went wrong!')).toBeNull();
+      await screen.findByText('Here is some content without an error');
       expect(container).toMatchSnapshot();
       expect(consoleErrorSpy).toHaveBeenCalledTimes(0);
     });
 
-    test('with error', () => {
-      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {
-        // Do nothing, we only want to make sure the error is logged
-      });
+    test('with error', async () => {
+      expect.assertions(2);
+
+      const consoleErrorSpy = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => undefined);
 
       const error = new Error('bad');
 
@@ -40,13 +44,15 @@ describe('Component: ErrorBoundary', () => {
         </ErrorBoundary>
       );
 
-      expect(screen.queryByText('Oops something went wrong!')).toBeInTheDocument();
+      await screen.queryByText('Oops something went wrong!');
       expect(container).toMatchSnapshot();
-      expect(consoleErrorSpy).toHaveBeenCalledTimes(4);
+      expect(consoleErrorSpy).toHaveBeenCalledTimes(2);
     });
 
-    test('with custom text', () => {
-      jest.spyOn(console, 'error').mockImplementation(() => {
+    test('with custom text', async () => {
+      expect.assertions(1);
+
+      vi.spyOn(console, 'error').mockImplementation(() => {
         // Do nothing, we only want to make sure the error is logged
       });
 
@@ -60,8 +66,8 @@ describe('Component: ErrorBoundary', () => {
         </ErrorBoundary>
       );
 
-      expect(screen.queryByText('Oops something went wrong!')).not.toBeInTheDocument();
-      expect(screen.queryByText('Something terrible happened!')).toBeInTheDocument();
+      expect(screen.queryByText('Oops something went wrong!')).toBeNull();
+      await screen.findByText('Something terrible happened!');
     });
   });
 });

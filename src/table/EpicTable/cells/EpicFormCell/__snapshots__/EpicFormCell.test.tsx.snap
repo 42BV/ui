@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: EpicFormCell ui 1`] = `
+exports[`Component: EpicFormCell > ui 1`] = `
 <div>
   <div
     class="epic-table-form-cell border-bottom py-1 pe-1"

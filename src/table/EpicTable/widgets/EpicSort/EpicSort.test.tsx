@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { EpicSort } from './EpicSort';
 import { EpicTableSortDirection } from '../../types';
@@ -9,9 +9,9 @@ import * as utils from './utils';
 
 describe('Component: EpicSort', () => {
   function setup({ direction }: { direction: EpicTableSortDirection }) {
-    jest.spyOn(utils, 'nextDirection').mockReturnValue('ASC');
+    vi.spyOn(utils, 'nextDirection').mockReturnValue('ASC');
 
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const { container } = render(
       <EpicSort onChange={onChangeSpy} direction={direction} />
@@ -21,26 +21,29 @@ describe('Component: EpicSort', () => {
   }
 
   describe('ui', () => {
-    test('is ASC', () => {
+    test('is ASC', async () => {
+      expect.assertions(3);
       const { container } = setup({ direction: 'ASC' });
       expect(container).toMatchSnapshot();
-      expect(screen.queryByText('arrow_drop_up')).toBeInTheDocument();
-      expect(screen.queryByText('arrow_drop_down')).not.toBeInTheDocument();
-      expect(screen.queryByText('sort')).not.toBeInTheDocument();
+      await screen.findByText('arrow_drop_up');
+      expect(screen.queryByText('arrow_drop_down')).toBeNull();
+      expect(screen.queryByText('sort')).toBeNull();
     });
 
-    test('is DESC', () => {
+    test('is DESC', async () => {
+      expect.assertions(2);
       setup({ direction: 'DESC' });
-      expect(screen.queryByText('arrow_drop_up')).not.toBeInTheDocument();
-      expect(screen.queryByText('arrow_drop_down')).toBeInTheDocument();
-      expect(screen.queryByText('sort')).not.toBeInTheDocument();
+      expect(screen.queryByText('arrow_drop_up')).toBeNull();
+      await screen.findByText('arrow_drop_down');
+      expect(screen.queryByText('sort')).toBeNull();
     });
 
-    test('is NONE', () => {
+    test('is NONE', async () => {
+      expect.assertions(2);
       setup({ direction: 'NONE' });
-      expect(screen.queryByText('arrow_drop_up')).not.toBeInTheDocument();
-      expect(screen.queryByText('arrow_drop_down')).not.toBeInTheDocument();
-      expect(screen.queryByText('sort')).toBeInTheDocument();
+      expect(screen.queryByText('arrow_drop_up')).toBeNull();
+      expect(screen.queryByText('arrow_drop_down')).toBeNull();
+      await screen.findByText('sort');
     });
   });
 

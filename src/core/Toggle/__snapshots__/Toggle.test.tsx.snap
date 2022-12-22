@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Toggle ui default 1`] = `
+exports[`Component: Toggle > ui > default 1`] = `
 <div>
   <span
     class="toggle-container toggle-primary"
@@ -14,7 +14,7 @@ exports[`Component: Toggle ui default 1`] = `
 </div>
 `;
 
-exports[`Component: Toggle ui with custom label 1`] = `
+exports[`Component: Toggle > ui > with custom label 1`] = `
 <div>
   <span
     class="toggle-container toggle-primary"
@@ -39,7 +39,7 @@ exports[`Component: Toggle ui with custom label 1`] = `
 </div>
 `;
 
-exports[`Component: Toggle ui with text label 1`] = `
+exports[`Component: Toggle > ui > with text label 1`] = `
 <div>
   <span
     class="toggle-container toggle-primary"

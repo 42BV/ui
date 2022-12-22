@@ -1,10 +1,11 @@
+import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 
 import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
 
 describe('useAutoSelectOptionWhenQueryMatchesExactly', () => {
   it('should auto-select the value when a lowercase exact match is found', () => {
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const { rerender } = renderHook(
       ({ query }) => {

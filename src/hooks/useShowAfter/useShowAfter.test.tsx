@@ -1,10 +1,11 @@
 import { act, renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { useShowAfter } from './useShowAfter';
 
 describe('useShowAfter', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   test('that the  useShowAfter starts with false but changes to true after the after parameter amount of milliseconds', () => {
@@ -16,13 +17,13 @@ describe('useShowAfter', () => {
 
     // Should after 199 milliseconds still be false
     act(() => {
-      jest.advanceTimersByTime(199);
+      vi.advanceTimersByTime(199);
     });
     expect(result.current).toBe(false);
 
     // Should after 200 milliseconds become true
     act(() => {
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
     });
     expect(result.current).toBe(true);
   });
@@ -30,12 +31,12 @@ describe('useShowAfter', () => {
   test('cleanup: that window clearTimeout is called', () => {
     const { unmount } = renderHook(() => useShowAfter(200));
 
-    const spy = jest.spyOn(window, 'clearTimeout');
+    const spy = vi.spyOn(window, 'clearTimeout');
 
     unmount();
 
     expect(window.clearTimeout).toHaveBeenCalledTimes(1);
 
-    (spy as jest.Mock).mockClear();
+    spy.mockClear();
   });
 });

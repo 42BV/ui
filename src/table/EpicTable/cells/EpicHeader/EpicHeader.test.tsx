@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { EpicHeader } from './EpicHeader';
 
@@ -15,19 +15,20 @@ describe('Component: EpicHeader', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with resize', () => {
+    test('with resize', async () => {
+      expect.assertions(0);
       render(
-        <EpicHeader width={300} height={44} onResize={jest.fn()}>
+        <EpicHeader width={300} height={44} onResize={vi.fn()}>
           epic header
         </EpicHeader>
       );
-      expect(screen.queryByTestId('epic-table-header-resize')).toBeInTheDocument();
+      await screen.findByTestId('epic-table-header-resize');
     });
   });
 
   describe('events', () => {
     it('should call onResize with the width when the user resizes', () => {
-      const onResizeSpy = jest.fn();
+      const onResizeSpy = vi.fn();
 
       render(
         <EpicHeader width={300} height={44} onResize={onResizeSpy}>
@@ -35,8 +36,12 @@ describe('Component: EpicHeader', () => {
         </EpicHeader>
       );
 
-      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), { clientX: 0 });
-      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), { clientX: 10 });
+      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 0
+      });
+      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 10
+      });
       fireEvent.mouseUp(screen.getByTestId('epic-table-header-resize'));
 
       expect(onResizeSpy).toBeCalledTimes(1);

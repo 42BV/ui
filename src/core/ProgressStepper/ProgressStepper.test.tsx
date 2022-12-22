@@ -5,8 +5,8 @@ import { ProgressStepper } from './ProgressStepper';
 
 describe('Component: ProgressStepper', () => {
   test('ui', () => {
-    const colorForStepSpy = jest.fn((_step, _index) => 'primary');
-    const titleForStepSpy = jest.fn((step, _index) => step);
+    const colorForStepSpy = vi.fn((_step, _index) => 'primary');
+    const titleForStepSpy = vi.fn((step, _index) => step);
 
     const { container } = render(
       <ProgressStepper
@@ -29,7 +29,7 @@ describe('Component: ProgressStepper', () => {
 
   describe('onClick', () => {
     it('should call onClick when isStepClickable returns true', () => {
-      const onClickSpy = jest.fn();
+      const onClickSpy = vi.fn();
 
       render(
         <ProgressStepper

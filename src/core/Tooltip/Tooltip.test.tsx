@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { Tooltip } from './Tooltip';
 import userEvent from '@testing-library/user-event';
@@ -16,7 +15,9 @@ describe('Component: Tooltip', () => {
         </Tooltip>
       );
 
-      await userEvent.hover(screen.getByText('The tooltip should be wrapped around this'));
+      await userEvent.hover(
+        screen.getByText('The tooltip should be wrapped around this')
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -39,7 +40,9 @@ describe('Component: Tooltip', () => {
         </Tooltip>
       );
 
-      await userEvent.hover(screen.getByText('The tooltip should be wrapped around this'));
+      await userEvent.hover(
+        screen.getByText('The tooltip should be wrapped around this')
+      );
 
       expect(screen.getByText('Tooltip content').nodeName).toBe('SPAN');
     });
@@ -50,7 +53,10 @@ describe('Component: Tooltip', () => {
           The tooltip should be wrapped around this
         </Tooltip>
       );
-      expect(container.firstChild).toHaveClass('extra-classnames');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('extra-classnames')).toBe(
+        true
+      );
     });
 
     test('with style', () => {
@@ -62,7 +68,12 @@ describe('Component: Tooltip', () => {
           The tooltip should be wrapped around this
         </Tooltip>
       );
-      expect(container.firstChild).toHaveStyle({ marginTop: '5px', padding: '10px', outline: 0 });
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).marginTop).toBe('5px');
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).padding).toBe('10px');
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).outline).toBe('0');
     });
 
     test('with style, override outline', () => {
@@ -71,7 +82,8 @@ describe('Component: Tooltip', () => {
           The tooltip should be wrapped around this
         </Tooltip>
       );
-      expect(container.firstChild).toHaveStyle({ outline: '20px' });
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).outline).toBe('20px');
     });
   });
 });

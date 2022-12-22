@@ -21,8 +21,8 @@ describe('Component: FormButton', () => {
   describe('events', () => {
     it('should dispatch an event when element with id exists', () => {
       const element = document.createElement('div');
-      element.dispatchEvent = jest.fn();
-      const getElementByIdSpy = jest
+      element.dispatchEvent = vi.fn();
+      const getElementByIdSpy = vi
         .spyOn(document, 'getElementById')
         .mockReturnValue(element);
 
@@ -35,14 +35,14 @@ describe('Component: FormButton', () => {
 
       expect(element.dispatchEvent).toBeCalledTimes(1);
       expect(element.dispatchEvent).toBeCalledWith(
-        new Event('submit', { cancelable: true, bubbles: true })
+        expect.objectContaining({ type: 'submit' })
       );
     });
 
     it('should not dispatch an event when element with id does not exist', () => {
       const element = document.createElement('div');
-      element.dispatchEvent = jest.fn();
-      const getElementByIdSpy = jest.spyOn(document, 'getElementById');
+      element.dispatchEvent = vi.fn();
+      const getElementByIdSpy = vi.spyOn(document, 'getElementById');
 
       setup();
 

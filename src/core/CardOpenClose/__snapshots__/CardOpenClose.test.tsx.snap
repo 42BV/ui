@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: CardOpenClose ui open 1`] = `
+exports[`Component: CardOpenClose > ui > open 1`] = `
 <div>
   <div
     class="my-2 card"

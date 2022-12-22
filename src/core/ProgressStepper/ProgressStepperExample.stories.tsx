@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { ProgressStepper } from './ProgressStepper';
 import { Card } from '../Card/Card';
@@ -8,7 +7,7 @@ type Step = 'Billing' | 'Coupon' | 'Finished';
 
 type Status = 'complete' | 'incomplete' | 'error';
 
-const steps: Step[] = [ 'Billing', 'Coupon', 'Finished' ];
+const steps: Step[] = ['Billing', 'Coupon', 'Finished'];
 
 type ShoppingWizardState = { [x in Step]: Status };
 
@@ -18,76 +17,87 @@ const initialState: ShoppingWizardState = {
   ['Finished']: 'incomplete'
 };
 
-storiesOf('core/ProgressStepper', module)
-  .addParameters({ component: ProgressStepper })
-  .add('example', () => {
-    const [ status, setStatus ] = useState<ShoppingWizardState>(initialState);
-    const [ current, setCurrent ] = useState<Step>('Billing');
+export default {
+  title: 'core/ProgressStepper',
 
-    function onSubmit() {
-      // Add a random error chance
-      if (Math.random() > 0.5) {
-        setStatus({ ...status, [current]: 'Error' });
-        return;
-      }
+  parameters: {
+    component: ProgressStepper
+  }
+};
 
-      const currentIndex = steps.indexOf(current);
-      const index = Math.min(steps.length - 1, currentIndex + 1);
+const ExampleStory = () => {
+  const [status, setStatus] = useState<ShoppingWizardState>(initialState);
+  const [current, setCurrent] = useState<Step>('Billing');
 
-      const nextStep = steps[index];
-
-      setStatus({
-        ...status,
-        [current]: 'complete'
-      });
-      setCurrent(nextStep);
+  function onSubmit() {
+    // Add a random error chance
+    if (Math.random() > 0.5) {
+      setStatus({ ...status, [current]: 'Error' });
+      return;
     }
 
-    return (
-      <Card>
-        <div className="text-center">
-          <ProgressStepper<Step>
-            className="ms-auto"
-            steps={steps}
-            onClick={(step) => setCurrent(step)}
-            isStepClickable={(step) => {
-              // The current step is never clickable
-              if (step === current) {
-                return false;
-              }
+    const currentIndex = steps.indexOf(current);
+    const index = Math.min(steps.length - 1, currentIndex + 1);
 
-              return status[step] === 'complete';
-            }}
-            titleForStep={(step) => step}
-            colorForStep={(step) => {
-              const stepStatus = status[step];
+    const nextStep = steps[index];
 
-              // Error status always wins from the current status.
-              if (stepStatus === 'error') {
-                return 'danger';
-              }
+    setStatus({
+      ...status,
+      [current]: 'complete'
+    });
+    setCurrent(nextStep);
+  }
 
-              // When not in error and the step is the current step make it primary
-              if (step === current) {
-                return 'primary';
-              }
+  return (
+    <Card>
+      <div className="text-center">
+        <ProgressStepper<Step>
+          className="ms-auto"
+          steps={steps}
+          onClick={(step) => setCurrent(step)}
+          isStepClickable={(step) => {
+            // The current step is never clickable
+            if (step === current) {
+              return false;
+            }
 
-              return stepStatus === 'complete' ? 'success' : 'secondary';
-            }}
-          />
-        </div>
-        <div className="ms-2">
-          <h1>Form: {current}</h1>
+            return status[step] === 'complete';
+          }}
+          titleForStep={(step) => step}
+          colorForStep={(step) => {
+            const stepStatus = status[step];
 
-          <button className="btn btn-primary" onClick={onSubmit}>
-            Submit
-          </button>
+            // Error status always wins from the current status.
+            if (stepStatus === 'error') {
+              return 'danger';
+            }
 
-          <p>
-            Press the &quot;Submit&quot; button to jump to the next stage. It
-            will either succeed or fail randomly.
-          </p>
-        </div>
-      </Card>
-    );
-  });
+            // When not in error and the step is the current step make it primary
+            if (step === current) {
+              return 'primary';
+            }
+
+            return stepStatus === 'complete' ? 'success' : 'secondary';
+          }}
+        />
+      </div>
+      <div className="ms-2">
+        <h1>Form: {current}</h1>
+
+        <button className="btn btn-primary" onClick={onSubmit}>
+          Submit
+        </button>
+
+        <p>
+          Press the &quot;Submit&quot; button to jump to the next stage. It will
+          either succeed or fail randomly.
+        </p>
+      </div>
+    </Card>
+  );
+};
+
+export const Example = {
+  render: ExampleStory,
+  name: 'example'
+};

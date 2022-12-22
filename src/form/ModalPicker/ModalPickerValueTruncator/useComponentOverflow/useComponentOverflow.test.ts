@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import * as useComponentOverflow from './useComponentOverflow';
 
 describe('HoC: useComponentOverflow', () => {
@@ -19,7 +20,7 @@ describe('HoC: useComponentOverflow', () => {
 
   test('handleResizeCallback', () => {
     const ref = { current: null } as { current: HTMLElement | null };
-    const setComponentOverflowSpy = jest.fn();
+    const setComponentOverflowSpy = vi.fn();
 
     useComponentOverflow.handleResizeCallback(ref, setComponentOverflowSpy)();
 
@@ -34,9 +35,9 @@ describe('HoC: useComponentOverflow', () => {
 
   describe('layoutEffect', () => {
     const ref = { current: null } as { current: HTMLElement | null };
-    const handleResizeSpy = jest.fn();
-    const addEventListenerSpy = jest.fn();
-    const removeEventListenerSpy = jest.fn();
+    const handleResizeSpy = vi.fn();
+    const addEventListenerSpy = vi.fn();
+    const removeEventListenerSpy = vi.fn();
 
     afterEach(() => {
       handleResizeSpy.mockReset();
@@ -87,8 +88,8 @@ describe('HoC: useComponentOverflow', () => {
         document.createElement('div')
       );
 
-      const observeSpy = jest.fn();
-      const unobserveSpy = jest.fn();
+      const observeSpy = vi.fn();
+      const unobserveSpy = vi.fn();
 
       const resizeObserverResult = useComponentOverflow.layoutEffect(
         ref,

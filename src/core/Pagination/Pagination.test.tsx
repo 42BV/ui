@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import { Page } from '@42.nl/spring-connect';
 
 import { pagesFor, Pagination } from './Pagination';
@@ -35,8 +35,8 @@ describe('Component: Pagination', () => {
       numberOfElements: 10
     };
 
-    const onChangeSpy = jest.fn();
-    const pageSizeChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const pageSizeChangeSpy = vi.fn();
 
     const props = {
       page,
@@ -46,9 +46,7 @@ describe('Component: Pagination', () => {
       allowedPageSizes
     };
 
-    const { container } = render(
-      <Pagination {...props} />
-    );
+    const { container } = render(<Pagination {...props} />);
 
     return { container, onChangeSpy, pageSizeChangeSpy };
   }
@@ -74,56 +72,77 @@ describe('Component: Pagination', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with page size dropdown', () => {
+    test('with page size dropdown', async () => {
+      expect.assertions(0);
       setup({ hasPageSizeDropdown: true });
-      expect(screen.queryByRole('combobox')).toBeInTheDocument();
+      await screen.findByRole('combobox');
     });
 
     test('without page size dropdown', () => {
       setup({ hasPageSizeDropdown: false });
-      expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+      expect(screen.queryByRole('combobox')).toBeNull();
     });
 
-    test('with custom allowed page sizes', () => {
-      setup({ hasPageSizeDropdown: true, size: 3, allowedPageSizes: [ 3, 6 ] });
+    test('with custom allowed page sizes', async () => {
+      expect.assertions(3);
+      setup({ hasPageSizeDropdown: true, size: 3, allowedPageSizes: [3, 6] });
       expect(screen.queryAllByRole('option').length).toBe(2);
-      expect(screen.queryByRole('option', { name: '3' })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: '6' })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: '5' })).not.toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: '10' })).not.toBeInTheDocument();
+      await screen.findByRole('option', { name: '3' });
+      await screen.findByRole('option', { name: '6' });
+      expect(screen.queryByRole('option', { name: '5' })).toBeNull();
+      expect(screen.queryByRole('option', { name: '10' })).toBeNull();
     });
 
     test('without previous and next buttons', () => {
       setup({ number: 1, totalPages: 10, showPreviousAndNextButtons: false });
-      expect(screen.queryByText('arrow_back')).not.toBeInTheDocument();
-      expect(screen.queryByText('arrow_forward')).not.toBeInTheDocument();
+      expect(screen.queryByText('arrow_back')).toBeNull();
+      expect(screen.queryByText('arrow_forward')).toBeNull();
     });
 
-    test('with previous and next buttons', () => {
+    test('with previous and next buttons', async () => {
+      expect.assertions(0);
       setup({ number: 5, totalPages: 10 });
-      expect(screen.queryByText('arrow_back')).toBeInTheDocument();
-      expect(screen.queryByText('arrow_forward')).toBeInTheDocument();
+      await screen.findByText('arrow_back');
+      await screen.findByText('arrow_forward');
     });
 
     it('should disable the previous button when on the first page', () => {
       setup({ number: 1, totalPages: 3 });
-      expect(screen.getByText('arrow_back').parentNode?.parentNode).toHaveClass('disabled');
+      expect(
+        screen
+          .getByText('arrow_back')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.parentNode?.classList.contains('disabled')
+      ).toBe(true);
     });
 
     it('should disable the next button when on the last page', () => {
       setup({ number: 3, totalPages: 3 });
-      expect(screen.getByText('arrow_forward').parentNode?.parentNode).toHaveClass('disabled');
+      expect(
+        screen
+          .getByText('arrow_forward')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.parentNode?.classList.contains('disabled')
+      ).toBe(true);
     });
 
     it('should return null when onPageSizeChange is defined but the total number of elements does not exceed the minimum page size', () => {
-      const { container } = setup({ hasPageSizeDropdown: true, totalElements: 5, totalPages: 1 });
+      const { container } = setup({
+        hasPageSizeDropdown: true,
+        totalElements: 5,
+        totalPages: 1
+      });
       expect(container.firstChild).toBeNull();
     });
   });
 
   describe('events', () => {
     it('should call onChange when pagination links are clicked', () => {
-      const { onChangeSpy } = setup({ number: 5, totalPages: 10, showPreviousAndNextButtons: false });
+      const { onChangeSpy } = setup({
+        number: 5,
+        totalPages: 10,
+        showPreviousAndNextButtons: false
+      });
 
       fireEvent.click(screen.getByText('1'));
 
@@ -179,41 +198,41 @@ describe('Component: Pagination', () => {
 
 describe('pages', () => {
   test('exact middle', () => {
-    expect(pagesFor(5, 10)).toEqual([ 1, '...', 4, 5, 6, '...', 10 ]);
+    expect(pagesFor(5, 10)).toEqual([1, '...', 4, 5, 6, '...', 10]);
   });
 
   test('almost middle', () => {
-    expect(pagesFor(5, 10)).toEqual([ 1, '...', 4, 5, 6, '...', 10 ]);
-    expect(pagesFor(6, 10)).toEqual([ 1, '...', 5, 6, 7, '...', 10 ]);
+    expect(pagesFor(5, 10)).toEqual([1, '...', 4, 5, 6, '...', 10]);
+    expect(pagesFor(6, 10)).toEqual([1, '...', 5, 6, 7, '...', 10]);
   });
 
   test('absolute left', () => {
-    expect(pagesFor(1, 10)).toEqual([ 1, 2, 3, '...', 8, 9, 10 ]);
+    expect(pagesFor(1, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('almost left', () => {
-    expect(pagesFor(2, 10)).toEqual([ 1, 2, 3, '...', 8, 9, 10 ]);
-    expect(pagesFor(3, 10)).toEqual([ 1, 2, 3, 4, '...', 9, 10 ]);
-    expect(pagesFor(4, 10)).toEqual([ 1, 2, 3, 4, 5, '...', 10 ]);
+    expect(pagesFor(2, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
+    expect(pagesFor(3, 10)).toEqual([1, 2, 3, 4, '...', 9, 10]);
+    expect(pagesFor(4, 10)).toEqual([1, 2, 3, 4, 5, '...', 10]);
   });
 
   test('almost right', () => {
-    expect(pagesFor(7, 10)).toEqual([ 1, '...', 6, 7, 8, 9, 10 ]);
-    expect(pagesFor(8, 10)).toEqual([ 1, 2, '...', 7, 8, 9, 10 ]);
-    expect(pagesFor(9, 10)).toEqual([ 1, 2, 3, '...', 8, 9, 10 ]);
+    expect(pagesFor(7, 10)).toEqual([1, '...', 6, 7, 8, 9, 10]);
+    expect(pagesFor(8, 10)).toEqual([1, 2, '...', 7, 8, 9, 10]);
+    expect(pagesFor(9, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('absolute right', () => {
-    expect(pagesFor(10, 10)).toEqual([ 1, 2, 3, '...', 8, 9, 10 ]);
+    expect(pagesFor(10, 10)).toEqual([1, 2, 3, '...', 8, 9, 10]);
   });
 
   test('shortage', () => {
-    expect(pagesFor(1, 3)).toEqual([ 1, 2, 3 ]);
-    expect(pagesFor(3, 3)).toEqual([ 1, 2, 3 ]);
-    expect(pagesFor(1, 7)).toEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
-    expect(pagesFor(4, 7)).toEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
-    expect(pagesFor(7, 7)).toEqual([ 1, 2, 3, 4, 5, 6, 7 ]);
-    expect(pagesFor(1, 8)).toEqual([ 1, 2, 3, '...', 6, 7, 8 ]);
-    expect(pagesFor(8, 8)).toEqual([ 1, 2, 3, '...', 6, 7, 8 ]);
+    expect(pagesFor(1, 3)).toEqual([1, 2, 3]);
+    expect(pagesFor(3, 3)).toEqual([1, 2, 3]);
+    expect(pagesFor(1, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(4, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(7, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(pagesFor(1, 8)).toEqual([1, 2, 3, '...', 6, 7, 8]);
+    expect(pagesFor(8, 8)).toEqual([1, 2, 3, '...', 6, 7, 8]);
   });
 });

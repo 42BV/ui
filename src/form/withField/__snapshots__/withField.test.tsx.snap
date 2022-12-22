@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`HoC: withField errorMode: tooltip 1`] = `
+exports[`HoC: withField > errorMode: tooltip 1`] = `
 <div>
   <div
     class="w-100"
@@ -20,33 +20,33 @@ exports[`HoC: withField errorMode: tooltip 1`] = `
       </label>
       <input
         class="form-control"
+        defaultvalue="yolo"
         id="firstName"
         placeholder="Please enter your first name"
         type="text"
-        value="yolo"
       />
     </div>
   </div>
 </div>
 `;
 
-exports[`HoC: withField should throw an error when detecting illegal props 1`] = `
+exports[`HoC: withField > should throw an error when detecting illegal props 1`] = `
 "
-        withField: illegal props detected on "FieldInput".
-        
+        withField: illegal props detected on \\"FieldInput\\".
+
         The following illegal props were detected: 'onChange' and 'value'.
-        
-        This happens when providing one or multiple of the following 
-        managed props: 'onChange', 'onBlur', 'onFocus', 'value', 'color', 'valid' or 'error' manually. 
-        
+
+        This happens when providing one or multiple of the following
+        managed props: 'onChange', 'onBlur', 'onFocus', 'value', 'color', 'valid' or 'error' manually.
+
         You should never provide these props manually instead you should
-        trust that "withField" will manage these props for you.
+        trust that \\"withField\\" will manage these props for you.
 
         Remove the following illegal props: 'onChange' and 'value'.
       "
 `;
 
-exports[`HoC: withField ui default 1`] = `
+exports[`HoC: withField > ui > default 1`] = `
 <div>
   <div
     class="mb-3"
@@ -60,16 +60,16 @@ exports[`HoC: withField ui default 1`] = `
     </label>
     <input
       class="form-control"
+      defaultvalue="yolo"
       id="firstName"
       placeholder="Please enter your first name"
       type="text"
-      value="yolo"
     />
   </div>
 </div>
 `;
 
-exports[`HoC: withField ui with error 1`] = `
+exports[`HoC: withField > ui > with error 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -84,10 +84,10 @@ exports[`HoC: withField ui with error 1`] = `
     <input
       aria-invalid="true"
       class="is-invalid form-control"
+      defaultValue="yolo"
       id="firstName"
       placeholder="Please enter your first name"
       type="text"
-      value="yolo"
     />
     <div
       class="error-below"

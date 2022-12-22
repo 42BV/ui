@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: SuccessIcon ui value true 1`] = `
+exports[`Component: SuccessIcon > ui > value true 1`] = `
 <div>
   <i
     class="icon material-icons text-dark"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ColorPicker ui default 1`] = `
+exports[`Component: ColorPicker > ui > default 1`] = `
 <div>
   <div
     class="color-picker mb-3"
@@ -22,7 +22,7 @@ exports[`Component: ColorPicker ui default 1`] = `
 </div>
 `;
 
-exports[`Component: ColorPicker ui open 1`] = `
+exports[`Component: ColorPicker > ui > open 1`] = `
 <DocumentFragment>
   <div
     class="color-picker mb-3"
@@ -501,7 +501,7 @@ exports[`Component: ColorPicker ui open 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Component: ColorPicker ui with selected value 1`] = `
+exports[`Component: ColorPicker > ui > with selected value 1`] = `
 <div>
   <div
     class="color-picker mb-3"
@@ -519,7 +519,7 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
           <div
             class="h-100"
             id="color-picker-value"
-            style="background-color: rgb(205, 205, 205); width: 42px;"
+            style="background-color: #cdcdcd; width: 42px;"
           />
         </div>
         <u
@@ -542,7 +542,7 @@ exports[`Component: ColorPicker ui with selected value 1`] = `
 </div>
 `;
 
-exports[`Component: ColorPicker value changes becomes empty: with value 1`] = `
+exports[`Component: ColorPicker > value changes > becomes empty > with value 1`] = `
 <div>
   <div
     class="color-picker mb-3"
@@ -560,7 +560,7 @@ exports[`Component: ColorPicker value changes becomes empty: with value 1`] = `
           <div
             class="h-100"
             id="color-picker-value"
-            style="background-color: rgb(205, 205, 205); width: 42px;"
+            style="background-color: #cdcdcd; width: 42px;"
           />
         </div>
         <u
@@ -583,7 +583,7 @@ exports[`Component: ColorPicker value changes becomes empty: with value 1`] = `
 </div>
 `;
 
-exports[`Component: ColorPicker value changes becomes empty: without value 1`] = `
+exports[`Component: ColorPicker > value changes > becomes empty > without value 1`] = `
 <DocumentFragment>
   <div
     class="color-picker mb-3"
@@ -605,7 +605,7 @@ exports[`Component: ColorPicker value changes becomes empty: without value 1`] =
 </DocumentFragment>
 `;
 
-exports[`Component: ColorPicker value changes becomes filled: with value 1`] = `
+exports[`Component: ColorPicker > value changes > becomes filled > with value 1`] = `
 <DocumentFragment>
   <div
     class="color-picker mb-3"
@@ -623,7 +623,7 @@ exports[`Component: ColorPicker value changes becomes filled: with value 1`] = `
           <div
             class="h-100"
             id="color-picker-value"
-            style="background-color: rgb(66, 66, 66); width: 42px;"
+            style="background-color: #424242; width: 42px;"
           />
         </div>
         <u
@@ -646,7 +646,7 @@ exports[`Component: ColorPicker value changes becomes filled: with value 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Component: ColorPicker value changes becomes filled: without value 1`] = `
+exports[`Component: ColorPicker > value changes > becomes filled > without value 1`] = `
 <div>
   <div
     class="color-picker mb-3"

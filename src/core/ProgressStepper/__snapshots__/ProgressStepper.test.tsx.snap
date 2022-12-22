@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ProgressStepper ui 1`] = `
+exports[`Component: ProgressStepper > ui 1`] = `
 <div>
   <div
     class="progress-stepper extra-css-class"

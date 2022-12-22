@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { BooleanIcon } from './BooleanIcon';
 import { Color } from '../types';
@@ -20,7 +20,7 @@ describe('Component: BooleanIcon', () => {
     size?: number;
     hasOnChangeSpy?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const { container } = render(
       <BooleanIcon
@@ -36,32 +36,40 @@ describe('Component: BooleanIcon', () => {
   }
 
   describe('ui', () => {
-    test('value true', () => {
+    test('value true', async () => {
+      expect.assertions(2);
+
       const { container } = setup({ value: true });
 
       expect(container).toMatchSnapshot();
-      expect(screen.queryByText('check_box')).toBeInTheDocument();
-      expect(screen.queryByText('check_box_outline_blank')).not.toBeInTheDocument();
+      await screen.findByText('check_box');
+      expect(screen.queryByText('check_box_outline_blank')).toBeNull();
     });
 
-    test('value false', () => {
+    test('value false', async () => {
+      expect.assertions(2);
+
       const { container } = setup({ value: false });
 
       expect(container).toMatchSnapshot();
-      expect(screen.queryByText('check_box')).not.toBeInTheDocument();
-      expect(screen.queryByText('check_box_outline_blank')).toBeInTheDocument();
+      expect(screen.queryByText('check_box')).toBeNull();
+      await screen.findByText('check_box_outline_blank');
     });
 
     test('size', () => {
       const { container } = setup({ value: false, size: 10 });
 
-      expect(container.firstChild).toHaveStyle({ fontSize: 10 });
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).fontSize).toBe('10px');
     });
 
     test('color', () => {
       const { container } = setup({ value: false, color: 'secondary' });
 
-      expect(container.firstChild).toHaveClass('text-secondary');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('text-secondary')).toBe(
+        true
+      );
     });
 
     describe('activeColor', () => {
@@ -72,13 +80,19 @@ describe('Component: BooleanIcon', () => {
           hasOnChangeSpy: false
         });
 
-        expect(container.firstChild).toHaveClass('text-secondary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-secondary')).toBe(
+          true
+        );
       });
 
       it('should use activeColor when value is true if onChange is defined', () => {
         const { container } = setup({ value: true, hasOnChangeSpy: true });
 
-        expect(container.firstChild).toHaveClass('text-primary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-primary')).toBe(
+          true
+        );
       });
     });
 
@@ -95,7 +109,10 @@ describe('Component: BooleanIcon', () => {
 
         await userEvent.hover(screen.getByText('check_box'));
 
-        expect(container.firstChild).toHaveClass('text-success');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-success')).toBe(
+          true
+        );
       });
 
       it('should not use activeColor when onChange and hoverColor are not defined', () => {
@@ -105,13 +122,19 @@ describe('Component: BooleanIcon', () => {
           hasOnChangeSpy: false
         });
 
-        expect(container.firstChild).toHaveClass('text-secondary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-secondary')).toBe(
+          true
+        );
       });
 
       it('should use activeColor when hoverColor is not defined and onChange is defined', () => {
         const { container } = setup({ value: true, hasOnChangeSpy: true });
 
-        expect(container.firstChild).toHaveClass('text-primary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-primary')).toBe(
+          true
+        );
       });
     });
   });

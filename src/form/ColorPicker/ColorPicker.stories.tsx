@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { ColorPicker, FieldColorPicker, JarbColorPicker } from './ColorPicker';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { Alert } from 'reactstrap';
 import { Card } from '../../core/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -28,146 +31,199 @@ function isToDark(value?: string) {
   return undefined;
 }
 
-storiesOf('Form/ColorPicker', module)
-  .addParameters({ component: ColorPicker })
-  .addDecorator((Story) => (
+export default {
+  title: 'Form/ColorPicker',
+
+  decorators: [
+    (Story) => (
+      <>
+        <Alert color="warning" className="mb-4">
+          <p>
+            To be able to use ColorPicker, you have to add react-color to your
+            dependencies:
+          </p>
+          <code>npm install --save react-color</code>
+        </Alert>
+        <Story />
+      </>
+    )
+  ],
+
+  parameters: {
+    component: ColorPicker
+  }
+};
+
+const BasicStory = () => {
+  const [value, setValue] = useState<string | undefined>();
+
+  return (
+    <div>
+      <Card className="m-2">
+        <ColorPicker
+          id="color"
+          label="Color"
+          placeholder="Please select your favorite color"
+          value={value}
+          onChange={setValue}
+        />
+      </Card>
+    </div>
+  );
+};
+
+export const Basic = {
+  render: BasicStory,
+  name: 'basic'
+};
+
+const BasicPreselectedStory = () => {
+  const [value, setValue] = useState<string | undefined>('#ff0000');
+
+  return (
+    <div>
+      <Card className="m-2">
+        <ColorPicker
+          id="color"
+          label="Color"
+          placeholder="Please select your favorite color"
+          value={value}
+          onChange={setValue}
+        />
+      </Card>
+    </div>
+  );
+};
+
+export const BasicPreselected = {
+  render: BasicPreselectedStory,
+  name: 'basic preselected'
+};
+
+const WithCustomLabelStory = () => {
+  const [value, setValue] = useState<string | undefined>();
+
+  return (
+    <div>
+      <Card className="m-2">
+        <ColorPicker
+          id="color"
+          label={
+            <div className="d-flex justify-content-between">
+              <span>Color</span>
+              <Tooltip
+                className="ms-1"
+                content="Use the color picker to select a color"
+              >
+                <Icon icon="info" />
+              </Tooltip>
+            </div>
+          }
+          placeholder="Please select your favorite color"
+          value={value}
+          onChange={setValue}
+        />
+      </Card>
+    </div>
+  );
+};
+
+export const WithCustomLabel = {
+  render: WithCustomLabelStory,
+  name: 'with custom label'
+};
+
+const WithIconStory = () => {
+  const [value, setValue] = useState<string | undefined>();
+
+  return (
+    <div>
+      <Card className="m-2">
+        <ColorPicker
+          id="color"
+          label="Color"
+          placeholder="Please select your favorite color"
+          icon="colorize"
+          value={value}
+          onChange={setValue}
+        />
+      </Card>
+    </div>
+  );
+};
+
+export const WithIcon = {
+  render: WithIconStory,
+  name: 'with icon'
+};
+
+const WithoutClearButtonStory = () => {
+  const [value, setValue] = useState<string | undefined>('#ff0000');
+
+  return (
+    <div>
+      <Card className="m-2">
+        <ColorPicker
+          id="color"
+          label="Color"
+          placeholder="Please select your favorite color"
+          value={value}
+          onChange={setValue}
+          canClear={false}
+        />
+      </Card>
+    </div>
+  );
+};
+
+export const WithoutClearButton = {
+  render: WithoutClearButtonStory,
+  name: 'without clear button'
+};
+
+const FieldStory = () => {
+  return (
     <>
-      <Alert color="warning" className="mb-4">
-        <p>To be able to use ColorPicker, you have to add react-color to your dependencies:</p>
-        <code>npm install --save react-color</code>
-      </Alert>
-      <Story />
+      <FieldFormElementDependencies />
+      <FinalForm>
+        <FieldColorPicker
+          id="color"
+          name="color"
+          label="Color"
+          placeholder="Please select your favorite color"
+          validators={[isToDark]}
+        />
+      </FinalForm>
     </>
-  ))
-  .add('basic', () => {
-    const [ value, setValue ] = useState<string | undefined>();
+  );
+};
 
-    return (
-      <div>
-        <Card className="m-2">
-          <ColorPicker
-            id="color"
-            label="Color"
-            placeholder="Please select your favorite color"
-            value={value}
-            onChange={setValue}
-          />
-        </Card>
-      </div>
-    );
-  })
-  .add('basic preselected', () => {
-    const [ value, setValue ] = useState<string | undefined>('#ff0000');
+export const Field = {
+  render: FieldStory,
+  name: 'field'
+};
 
-    return (
-      <div>
-        <Card className="m-2">
-          <ColorPicker
-            id="color"
-            label="Color"
-            placeholder="Please select your favorite color"
-            value={value}
-            onChange={setValue}
-          />
-        </Card>
-      </div>
-    );
-  })
-  .add('with custom label', () => {
-    const [ value, setValue ] = useState<string | undefined>();
+const JarbStory = () => {
+  return (
+    <>
+      <JarbFormElementDependencies />
+      <FinalForm>
+        <JarbColorPicker
+          id="color"
+          name="color"
+          placeholder="Please select your favorite color"
+          validators={[isToDark]}
+          jarb={{
+            validator: 'Hero.color',
+            label: 'Color'
+          }}
+        />
+      </FinalForm>
+    </>
+  );
+};
 
-    return (
-      <div>
-        <Card className="m-2">
-          <ColorPicker
-            id="color"
-            label={
-              <div className="d-flex justify-content-between">
-                <span>Color</span>
-                <Tooltip
-                  className="ms-1"
-                  content="Use the color picker to select a color"
-                >
-                  <Icon icon="info" />
-                </Tooltip>
-              </div>
-            }
-            placeholder="Please select your favorite color"
-            value={value}
-            onChange={setValue}
-          />
-        </Card>
-      </div>
-    );
-  })
-  .add('with icon', () => {
-    const [ value, setValue ] = useState<string | undefined>();
-
-    return (
-      <div>
-        <Card className="m-2">
-          <ColorPicker
-            id="color"
-            label="Color"
-            placeholder="Please select your favorite color"
-            icon="colorize"
-            value={value}
-            onChange={setValue}
-          />
-        </Card>
-      </div>
-    );
-  })
-  .add('without clear button', () => {
-    const [ value, setValue ] = useState<string | undefined>('#ff0000');
-
-    return (
-      <div>
-        <Card className="m-2">
-          <ColorPicker
-            id="color"
-            label="Color"
-            placeholder="Please select your favorite color"
-            value={value}
-            onChange={setValue}
-            canClear={false}
-          />
-        </Card>
-      </div>
-    );
-  })
-  .add('field', () => {
-    return (
-      <>
-        <FieldFormElementDependencies />
-        <FinalForm>
-          <FieldColorPicker
-            id="color"
-            name="color"
-            label="Color"
-            placeholder="Please select your favorite color"
-            validators={[ isToDark ]}
-          />
-        </FinalForm>
-      </>
-    );
-  })
-  .add('jarb', () => {
-    return (
-      <>
-        <JarbFormElementDependencies />
-        <FinalForm>
-          <JarbColorPicker
-            id="color"
-            name="color"
-            placeholder="Please select your favorite color"
-            validators={[ isToDark ]}
-            jarb={{
-              validator: 'Hero.color',
-              label: 'Color'
-            }}
-          />
-        </FinalForm>
-      </>
-    );
-  });
+export const Jarb = {
+  render: JarbStory,
+  name: 'jarb'
+};

@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import * as useResizeObserver from './useResizeObserver';
 import { setResizeObserver } from './utils';
 
@@ -7,10 +8,10 @@ describe('HoC: useResizeObserver', () => {
       document.createElement('div'),
       document.createElement('div')
     ];
-    const resizeObserverSpy = jest.fn((fn: (entries: any[]) => void) => {
+    const resizeObserverSpy = vi.fn((fn: (entries: any[]) => void) => {
       return { fire: (entries: any[]) => fn(entries) };
     });
-    const handleResizeSpy = jest.fn();
+    const handleResizeSpy = vi.fn();
 
     const oldResizeObserver = setResizeObserver(resizeObserverSpy);
 

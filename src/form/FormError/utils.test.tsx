@@ -7,7 +7,7 @@ describe('errorMessage', () => {
   let t: Translator;
 
   beforeEach(() => {
-    t = jest.fn((translation) => translation.fallback);
+    t = vi.fn((translation) => translation.fallback);
 
     setTranslator(t);
   });

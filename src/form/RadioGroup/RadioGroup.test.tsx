@@ -1,17 +1,24 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { RadioGroup, Text } from './RadioGroup';
 import { User } from '../../test/types';
-import { adminUser, coordinatorUser, listOfUsers, pageOfUsers, pageOfUsersFetcher, userUser } from '../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  pageOfUsers,
+  pageOfUsersFetcher,
+  userUser
+} from '../../test/fixtures';
 import { IsOptionEnabled } from '../option';
 
 import { pageOf } from '../../utilities/page/page';
 import { useOptions } from '../useOptions';
 
-jest.mock('../useOptions', () => {
-  return { useOptions: jest.fn() };
+vi.mock('../useOptions', () => {
+  return { useOptions: vi.fn() };
 });
 
 describe('Component: RadioGroup', () => {
@@ -38,8 +45,8 @@ describe('Component: RadioGroup', () => {
     isAsync?: boolean;
     expectedSize?: number;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
     // @ts-expect-error This is in fact a mock
     useOptions.mockImplementation(
@@ -80,9 +87,7 @@ describe('Component: RadioGroup', () => {
       hiddenLabel: !hasLabel
     };
 
-    const { container, rerender } = render(
-      <RadioGroup<User> {...props} />
-    );
+    const { container, rerender } = render(<RadioGroup<User> {...props} />);
 
     return {
       container,
@@ -101,7 +106,8 @@ describe('Component: RadioGroup', () => {
 
     test('with value', () => {
       setup({ value: adminUser() });
-      expect(screen.getAllByRole('radio')[0]).toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[0].checked).toEqual(true);
     });
 
     test('loading', () => {
@@ -109,29 +115,36 @@ describe('Component: RadioGroup', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with placeholder', () => {
+    test('with placeholder', async () => {
+      expect.assertions(4);
       setup({ hasPlaceholder: true });
-      expect(screen.queryByText('Please enter your subject')).toBeInTheDocument();
+      await screen.findByText('Please enter your subject');
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByText('Please enter your subject')).not.toBeInTheDocument();
+      expect(screen.queryByText('Please enter your subject')).toBeNull();
     });
 
-    test('with label', () => {
+    test('with label', async () => {
+      expect.assertions(4);
       setup({ hasLabel: true });
-      expect(screen.queryByText('Subject')).toBeInTheDocument();
+      await screen.findByText('Subject');
     });
 
     test('without label', () => {
       setup({ hasLabel: false });
-      expect(screen.queryByText('Subject')).not.toBeInTheDocument();
+      expect(screen.queryByText('Subject')).toBeNull();
     });
 
     test('horizontal', () => {
       setup({ horizontal: true });
-      expect(screen.getAllByRole('radio')[0].parentNode?.parentNode).toHaveClass('form-check-inline');
+      expect(
+        screen
+          .getAllByRole('radio')[0]
+          //@ts-expect-error HTMLElement has property classList
+          .parentNode?.parentNode?.classList.contains('form-check-inline')
+      ).toBe(true);
     });
   });
 
@@ -174,13 +187,16 @@ describe('Component: RadioGroup', () => {
 
         expect(screen.queryAllByRole('radio').length).toBe(3);
 
-        expect(screen.getAllByRole('radio')[0]).not.toBeDisabled();
-        expect(screen.getAllByRole('radio')[1]).not.toBeDisabled();
-        expect(screen.getAllByRole('radio')[2]).not.toBeDisabled();
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('radio')[0].disabled).toEqual(false);
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('radio')[1].disabled).toEqual(false);
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('radio')[2].disabled).toEqual(false);
       });
 
       it('should use isOptionEnabled to determine if the option is enabled when it is defined', () => {
-        const isOptionEnabledSpy = jest.fn();
+        const isOptionEnabledSpy = vi.fn();
 
         // Disabled all option now
         isOptionEnabledSpy.mockReturnValue(false);
@@ -192,15 +208,18 @@ describe('Component: RadioGroup', () => {
 
         expect(screen.queryAllByRole('radio').length).toBe(3);
 
-        expect(screen.getAllByRole('radio')[0]).toBeDisabled();
-        expect(screen.getAllByRole('radio')[1]).toBeDisabled();
-        expect(screen.getAllByRole('radio')[2]).toBeDisabled();
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('radio')[0].disabled).toEqual(true);
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('radio')[1].disabled).toEqual(true);
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('radio')[2].disabled).toEqual(true);
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
-          [ adminUser() ],
-          [ coordinatorUser() ],
-          [ userUser() ]
+          [adminUser()],
+          [coordinatorUser()],
+          [userUser()]
         ]);
       });
     });
@@ -213,22 +232,26 @@ describe('Component: RadioGroup', () => {
         isOptionEnabled: undefined
       });
 
-      expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
-      expect(screen.getAllByRole('radio')[1]).not.toBeChecked();
-      expect(screen.getAllByRole('radio')[2]).toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[0].checked).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[1].checked).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[2].checked).toEqual(true);
 
       const newProps = {
         ...props,
         value: undefined
       };
 
-      rerender(
-        <RadioGroup {...newProps} />
-      );
+      rerender(<RadioGroup {...newProps} />);
 
-      expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
-      expect(screen.getAllByRole('radio')[1]).not.toBeChecked();
-      expect(screen.getAllByRole('radio')[2]).not.toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[0].checked).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[1].checked).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[2].checked).toEqual(false);
     });
 
     test('becomes filled', () => {
@@ -237,22 +260,26 @@ describe('Component: RadioGroup', () => {
         isOptionEnabled: undefined
       });
 
-      expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
-      expect(screen.getAllByRole('radio')[1]).not.toBeChecked();
-      expect(screen.getAllByRole('radio')[2]).not.toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[0].checked).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[1].checked).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[2].checked).toEqual(false);
 
       const newProps = {
         ...props,
         value: coordinatorUser()
       };
 
-      rerender(
-        <RadioGroup {...newProps} />
-      );
+      rerender(<RadioGroup {...newProps} />);
 
-      expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
-      expect(screen.getAllByRole('radio')[1]).toBeChecked();
-      expect(screen.getAllByRole('radio')[2]).not.toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[0].checked).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[1].checked).toEqual(true);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('radio')[2].checked).toEqual(false);
     });
   });
 });

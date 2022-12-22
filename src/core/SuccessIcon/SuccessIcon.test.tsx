@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { SuccessIcon } from './SuccessIcon';
 import { Color } from '../types';
@@ -20,7 +19,7 @@ describe('Component: SuccessIcon', () => {
     size?: number;
     hasOnChangeSpy?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const { container } = render(
       <SuccessIcon
@@ -43,17 +42,21 @@ describe('Component: SuccessIcon', () => {
 
     test('value false', () => {
       const { container } = setup({ value: false });
-      expect(container.firstChild).toHaveTextContent('clear');
+      expect(container.firstChild?.textContent).toEqual('clear');
     });
 
     test('size', () => {
       const { container } = setup({ value: false, size: 10 });
-      expect(container.firstChild).toHaveStyle({ fontSize: 10 });
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).fontSize).toBe('10px');
     });
 
     test('color', () => {
       const { container } = setup({ value: false, color: 'primary' });
-      expect(container.firstChild).toHaveClass('text-primary');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('text-primary')).toBe(
+        true
+      );
     });
 
     describe('activeColor', () => {
@@ -64,13 +67,19 @@ describe('Component: SuccessIcon', () => {
           hasOnChangeSpy: false
         });
 
-        expect(container.firstChild).toHaveClass('text-secondary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-secondary')).toBe(
+          true
+        );
       });
 
       it('should use activeColor when value is true if onChange is defined', () => {
         const { container } = setup({ value: true, hasOnChangeSpy: true });
 
-        expect(container.firstChild).toHaveClass('text-primary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-primary')).toBe(
+          true
+        );
       });
     });
 
@@ -87,7 +96,10 @@ describe('Component: SuccessIcon', () => {
 
         await userEvent.hover(screen.getByText('done'));
 
-        expect(container.firstChild).toHaveClass('text-success');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-success')).toBe(
+          true
+        );
       });
 
       it('should not use activeColor when onChange and hoverColor are not defined', async () => {
@@ -101,7 +113,10 @@ describe('Component: SuccessIcon', () => {
 
         await userEvent.hover(screen.getByText('done'));
 
-        expect(container.firstChild).toHaveClass('text-secondary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-secondary')).toBe(
+          true
+        );
       });
 
       it('should use activeColor when hoverColor is not defined and onChange is defined', async () => {
@@ -111,7 +126,10 @@ describe('Component: SuccessIcon', () => {
 
         await userEvent.hover(screen.getByText('done'));
 
-        expect(container.firstChild).toHaveClass('text-primary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-primary')).toBe(
+          true
+        );
       });
     });
   });

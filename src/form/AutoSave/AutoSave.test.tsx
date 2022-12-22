@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { AutoSave } from './AutoSave';
 import * as Active from './useActive';
@@ -24,18 +25,17 @@ describe('Component: AutoSave', () => {
     const resolvable = resolvablePromise();
     let onChangeTrigger: (formState: FormState<TestFormValues>) => void;
 
-    jest.spyOn(FinalForm, 'FormSpy').mockImplementation((props) => {
+    vi.spyOn(FinalForm, 'FormSpy').mockImplementation((props) => {
       // @ts-expect-error onChange must be defined in AutoSave for the component to work
       onChangeTrigger = props.onChange;
       return <></>;
     });
 
-    const onSaveSpy = jest.fn((_values) => resolvable.promise);
-    const onSubmitSpy = jest.fn((_values) => resolvable.promise);
+    const onSaveSpy = vi.fn((_values) => resolvable.promise);
+    const onSubmitSpy = vi.fn((_values) => resolvable.promise);
 
-    const setActiveSpy = jest.fn();
-    jest
-      .spyOn(Active, 'useActive')
+    const setActiveSpy = vi.fn();
+    vi.spyOn(Active, 'useActive')
       .mockImplementation(() => [ activeField, setActiveSpy ]);
 
     const { container } = render(
@@ -52,9 +52,9 @@ describe('Component: AutoSave', () => {
 
   test('ui', () => {
     const { container } = render(
-      <FinalForm.Form onSubmit={jest.fn()}>
+      <FinalForm.Form onSubmit={() => undefined}>
         {() => (
-          <AutoSave onSave={jest.fn()} />
+          <AutoSave onSave={vi.fn()} />
         )}
       </FinalForm.Form>
     );
@@ -106,8 +106,7 @@ describe('Component: AutoSave', () => {
 
       const { promise, resolve } = resolvablePromise();
 
-      jest
-        .spyOn(PendingPromise, 'usePromise')
+      vi.spyOn(PendingPromise, 'usePromise')
         .mockReturnValue({ current: promise });
 
       const { onChangeTrigger, onSaveSpy, setActiveSpy } = setup({

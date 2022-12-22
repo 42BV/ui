@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Tooltip ui default 1`] = `
+exports[`Component: Tooltip > ui > default 1`] = `
 <div>
   <span
     aria-describedby="tippy-1"

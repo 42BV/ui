@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { ModalPickerOpener } from './ModalPickerOpener';
 import { adminUser } from '../../../test/fixtures';
 import { ModalPickerButtonAlignment } from '../types';
@@ -15,8 +14,8 @@ describe('Component: ModalPickerOpener', () => {
     hasIcon?: boolean;
     alignButton?: ModalPickerButtonAlignment;
   }) {
-    const openModalSpy = jest.fn();
-    const onClearSpy = jest.fn();
+    const openModalSpy = vi.fn();
+    const onClearSpy = vi.fn();
 
     const value = hasValue ? adminUser().email : undefined;
     const icon = hasIcon ? 'face' : undefined;
@@ -49,31 +48,50 @@ describe('Component: ModalPickerOpener', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with icon', () => {
+    test('with icon', async () => {
+      expect.assertions(0);
       setup({ hasIcon: true });
-      expect(screen.getByText('face')).toBeInTheDocument();
+      await screen.findByText('face');
     });
 
     test('button aligned right without values', () => {
       const { container } = setup({ alignButton: 'right' });
-      expect(container.firstChild).toHaveClass('justify-content-end');
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        container.firstChild.classList.contains('justify-content-end')
+      ).toBe(true);
     });
 
     test('button aligned right with values', () => {
       const { container } = setup({ hasValue: true, alignButton: 'right' });
-      expect(container.firstChild).toHaveClass('justify-content-between');
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        container.firstChild.classList.contains('justify-content-between')
+      ).toBe(true);
     });
 
     test('button aligned left without values', () => {
       const { container } = setup({ alignButton: 'left' });
-      expect(container.firstChild).toHaveClass('flex-row-reverse');
-      expect(container.firstChild).toHaveClass('justify-content-end');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('flex-row-reverse')).toBe(
+        true
+      );
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        container.firstChild.classList.contains('justify-content-end')
+      ).toBe(true);
     });
 
     test('button aligned left with values', () => {
       const { container } = setup({ hasValue: true, alignButton: 'left' });
-      expect(container.firstChild).toHaveClass('flex-row-reverse');
-      expect(container.firstChild).toHaveClass('justify-content-end');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('flex-row-reverse')).toBe(
+        true
+      );
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        container.firstChild.classList.contains('justify-content-end')
+      ).toBe(true);
     });
   });
 

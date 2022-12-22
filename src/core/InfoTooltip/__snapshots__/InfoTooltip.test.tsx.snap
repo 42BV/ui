@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: InfoTooltip ui custom content 1`] = `
+exports[`Component: InfoTooltip > ui > custom content 1`] = `
 <div>
   <span
     role="button"
@@ -17,7 +17,7 @@ exports[`Component: InfoTooltip ui custom content 1`] = `
 </div>
 `;
 
-exports[`Component: InfoTooltip ui default 1`] = `
+exports[`Component: InfoTooltip > ui > default 1`] = `
 <div>
   <span
     role="button"

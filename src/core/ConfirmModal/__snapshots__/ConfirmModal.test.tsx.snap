@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ConfirmModal ui custom texts 1`] = `
+exports[`Component: ConfirmModal > ui > custom texts 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -98,7 +98,7 @@ exports[`Component: ConfirmModal ui custom texts 1`] = `
 </div>
 `;
 
-exports[`Component: ConfirmModal ui default texts 1`] = `
+exports[`Component: ConfirmModal > ui > default texts 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"

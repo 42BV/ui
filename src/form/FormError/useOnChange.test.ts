@@ -5,7 +5,7 @@ import { FormErrorOnChange } from './types';
 
 describe('useOnChange', () => {
   test('that it passes values only when they change', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     const { rerender } = renderHook<void,
       { hasErrors: boolean; onChange: FormErrorOnChange }>((props) => useOnChange(props.hasErrors, props.onChange), {
@@ -35,7 +35,7 @@ describe('useOnChange', () => {
   });
 
   test('when onChange is empty it does nothing', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     renderHook(() => useOnChange(false, undefined));
 

@@ -1,11 +1,15 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import { ModalPicker, RenderOptionsConfig } from './ModalPicker';
 import { User } from '../../test/types';
-import { adminUser, coordinatorUser, pageOfUsers, userUser } from '../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  pageOfUsers,
+  userUser
+} from '../../test/fixtures';
 import { ModalPickerRenderOptionsOption } from './types';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import lodash from 'lodash';
@@ -26,11 +30,11 @@ describe('Component: ModalPicker', () => {
     renderOptionsConfig?: RenderOptionsConfig<User>;
     canSearchSync?: boolean;
   }) {
-    const queryChangedSpy = jest.fn();
-    const pageChangedSpy = jest.fn();
-    const closeModalSpy = jest.fn();
-    const modalSavedSpy = jest.fn();
-    const addButtonSpy = jest.fn();
+    const queryChangedSpy = vi.fn();
+    const pageChangedSpy = vi.fn();
+    const closeModalSpy = vi.fn();
+    const modalSavedSpy = vi.fn();
+    const addButtonSpy = vi.fn();
 
     const addButton = showAddButton
       ? { label: 'Add color', onClick: addButtonSpy }
@@ -76,24 +80,26 @@ describe('Component: ModalPicker', () => {
 
     test('without addButton and search', () => {
       setup({ canSearch: false, showAddButton: false });
-      expect(screen.queryByText('Add color')).not.toBeInTheDocument();
-      expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
+      expect(screen.queryByText('Add color')).toBeNull();
+      expect(screen.queryByRole('searchbox')).toBeNull();
     });
 
-    test('with addButton and search', () => {
+    test('with addButton and search', async () => {
+      expect.assertions(0);
       setup({ canSearch: true, showAddButton: true });
-      expect(screen.queryByText('Add color')).toBeInTheDocument();
-      expect(screen.queryByRole('searchbox')).toBeInTheDocument();
+      await screen.findByText('Add color');
+      await screen.findByRole('searchbox');
     });
 
     test('without Pagination', () => {
       setup({ page: emptyPage() });
-      expect(screen.queryByText('arrow_forward')).not.toBeInTheDocument();
+      expect(screen.queryByText('arrow_forward')).toBeNull();
     });
 
-    test('with Pagination', () => {
+    test('with Pagination', async () => {
+      expect.assertions(0);
       setup({});
-      expect(screen.queryByText('arrow_forward')).toBeInTheDocument();
+      await screen.findByText('arrow_forward');
     });
 
     test('loading', () => {
@@ -101,14 +107,16 @@ describe('Component: ModalPicker', () => {
       expect(document.body.lastChild).toMatchSnapshot();
     });
 
-    test('empty', () => {
+    test('empty', async () => {
+      expect.assertions(0);
       setup({ page: emptyPage() });
-      expect(screen.queryByText('Empty')).toBeInTheDocument();
+      await screen.findByText('Empty');
     });
 
-    test('with children', () => {
+    test('with children', async () => {
+      expect.assertions(0);
       setup({});
-      expect(screen.queryByText('Children')).toBeInTheDocument();
+      await screen.findByText('Children');
     });
   });
 
@@ -139,13 +147,15 @@ describe('Component: ModalPicker', () => {
 
     it('should call search when user stops typing', () => {
       // @ts-expect-error Test mock
-      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+      vi.spyOn(lodash, 'debounce').mockImplementation((fn) => {
         return fn;
       });
 
       const { queryChangedSpy } = setup({});
 
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(queryChangedSpy).toHaveBeenCalledTimes(1);
       expect(queryChangedSpy).toHaveBeenCalledWith('Maarten');
@@ -173,7 +183,7 @@ describe('Component: ModalPicker', () => {
   });
 
   it('should render via renderOption and provide a working api for the developer when a renderOptionsConfig is provided', () => {
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     function renderOptions(
       options: ModalPickerRenderOptionsOption<User>[]
@@ -181,14 +191,8 @@ describe('Component: ModalPicker', () => {
       return (
         <ListGroup>
           {options.map(
-            ({
-              option,
-              toggle
-            }: ModalPickerRenderOptionsOption<User>) => (
-              <ListGroupItem
-                key={option.id}
-                onClick={toggle}
-              >
+            ({ option, toggle }: ModalPickerRenderOptionsOption<User>) => (
+              <ListGroupItem key={option.id} onClick={toggle}>
                 {option.email}
               </ListGroupItem>
             )
@@ -206,7 +210,9 @@ describe('Component: ModalPicker', () => {
       }
     });
 
-    expect(screen.getByText('admin@42.nl')).toHaveClass('list-group-item');
+    expect(
+      screen.getByText('admin@42.nl').classList.contains('list-group-item')
+    ).toBe(true);
 
     fireEvent.click(screen.getByText('admin@42.nl'));
     expect(onChangeSpy).toBeCalledTimes(0);

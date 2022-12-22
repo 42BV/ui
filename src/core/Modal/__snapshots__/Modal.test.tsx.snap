@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Modal ui with header and footer 1`] = `
+exports[`Component: Modal > ui > with header and footer 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -52,6 +52,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="local"
                     type="radio"
                     value="local"
                   />
@@ -67,6 +68,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="development"
                     type="radio"
                     value="development"
                   />
@@ -82,6 +84,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="test"
                     type="radio"
                     value="test"
                   />
@@ -97,6 +100,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="acceptation"
                     type="radio"
                     value="acceptation"
                   />
@@ -112,6 +116,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="production"
                     type="radio"
                     value="production"
                   />
@@ -136,7 +141,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
 </div>
 `;
 
-exports[`Component: Modal ui without footer 1`] = `
+exports[`Component: Modal > ui > without footer 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -188,6 +193,7 @@ exports[`Component: Modal ui without footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="local"
                     type="radio"
                     value="local"
                   />
@@ -203,6 +209,7 @@ exports[`Component: Modal ui without footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="development"
                     type="radio"
                     value="development"
                   />
@@ -218,6 +225,7 @@ exports[`Component: Modal ui without footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="test"
                     type="radio"
                     value="test"
                   />
@@ -233,6 +241,7 @@ exports[`Component: Modal ui without footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="acceptation"
                     type="radio"
                     value="acceptation"
                   />
@@ -248,6 +257,7 @@ exports[`Component: Modal ui without footer 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="production"
                     type="radio"
                     value="production"
                   />
@@ -267,7 +277,7 @@ exports[`Component: Modal ui without footer 1`] = `
 </div>
 `;
 
-exports[`Component: Modal ui without header 1`] = `
+exports[`Component: Modal > ui > without header 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -305,6 +315,7 @@ exports[`Component: Modal ui without header 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="local"
                     type="radio"
                     value="local"
                   />
@@ -320,6 +331,7 @@ exports[`Component: Modal ui without header 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="development"
                     type="radio"
                     value="development"
                   />
@@ -335,6 +347,7 @@ exports[`Component: Modal ui without header 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="test"
                     type="radio"
                     value="test"
                   />
@@ -350,6 +363,7 @@ exports[`Component: Modal ui without header 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="acceptation"
                     type="radio"
                     value="acceptation"
                   />
@@ -365,6 +379,7 @@ exports[`Component: Modal ui without header 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="production"
                     type="radio"
                     value="production"
                   />

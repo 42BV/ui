@@ -1,18 +1,25 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { Select, Text } from './Select';
 import { User } from '../../test/types';
-import { adminUser, coordinatorUser, listOfUsers, pageOfUsers, pageOfUsersFetcher, userUser } from '../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  pageOfUsers,
+  pageOfUsersFetcher,
+  userUser
+} from '../../test/fixtures';
 import { IsOptionEnabled } from '../option';
 
 import { pageOf } from '../../utilities/page/page';
 import { useOptions } from '../useOptions';
 import userEvent from '@testing-library/user-event';
 
-jest.mock('../useOptions', () => {
-  return { useOptions: jest.fn() };
+vi.mock('../useOptions', () => {
+  return { useOptions: vi.fn() };
 });
 
 describe('Component: Select', () => {
@@ -37,8 +44,8 @@ describe('Component: Select', () => {
     isAsync?: boolean;
     expectedSize?: number;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
     // @ts-expect-error This is in fact a mock
     useOptions.mockImplementation(
@@ -77,9 +84,7 @@ describe('Component: Select', () => {
       hiddenLabel: !hasLabel
     };
 
-    const { container, rerender } = render(
-      <Select {...props} />
-    );
+    const { container, rerender } = render(<Select {...props} />);
 
     return { container, props, rerender, onChangeSpy, onBlurSpy };
   }
@@ -93,55 +98,77 @@ describe('Component: Select', () => {
     test('with value', () => {
       setup({ value: adminUser() });
       // @ts-expect-error Selected is an existing property on option tags
-      expect(screen.getByRole('option', { name: 'admin@42.nl' }).selected).toBe(true);
+      expect(screen.getByRole('option', { name: 'admin@42.nl' }).selected).toBe(
+        true
+      );
     });
 
     test('without value', () => {
       setup({ hasPlaceholder: true });
       // @ts-expect-error Selected is an existing property on option tags
-      expect(screen.getByRole('option', { name: 'admin@42.nl' }).selected).toBe(false);
+      expect(screen.getByRole('option', { name: 'admin@42.nl' }).selected).toBe(
+        false
+      );
+      expect(
+        // @ts-expect-error Selected is an existing property on option tags
+        screen.getByRole('option', { name: 'coordinator@42.nl' }).selected
+      ).toBe(false);
       // @ts-expect-error Selected is an existing property on option tags
-      expect(screen.getByRole('option', { name: 'coordinator@42.nl' }).selected).toBe(false);
-      // @ts-expect-error Selected is an existing property on option tags
-      expect(screen.getByRole('option', { name: 'user@42.nl' }).selected).toBe(false);
+      expect(screen.getByRole('option', { name: 'user@42.nl' }).selected).toBe(
+        false
+      );
     });
 
-    it('with placeholder', () => {
+    it('with placeholder', async () => {
+      expect.assertions(6);
       setup({ hasPlaceholder: true });
       expect(screen.queryAllByRole('option').length).toBe(4);
-      expect(screen.queryByText('Please enter your subject')).toBeInTheDocument();
-      // @ts-expect-error Selected is an existing property on option tags
-      expect(screen.getByRole('option', { name: 'Please enter your subject' }).selected).toBe(true);
+      await screen.findByText('Please enter your subject');
+      expect(
+        screen
+          // @ts-expect-error Selected is an existing property on option tags
+          .getByRole('option', { name: 'Please enter your subject' }).selected
+      ).toBe(true);
     });
 
     it('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByText('Please enter your subject')).not.toBeInTheDocument();
+      expect(screen.queryByText('Please enter your subject')).toBeNull();
       expect(screen.queryAllByRole('option').length).toBe(3);
     });
 
-    test('visible label', () => {
+    test('visible label', async () => {
+      expect.assertions(4);
       setup({ hasLabel: true });
-      expect(screen.queryByText('Subject')).toBeInTheDocument();
-      expect(screen.queryByLabelText('Subject')).toBeInTheDocument();
+      await screen.findByText('Subject');
+      await screen.findByLabelText('Subject');
     });
 
-    test('invisible label', () => {
+    test('invisible label', async () => {
+      expect.assertions(5);
       setup({ hasLabel: false });
-      expect(screen.queryByText('Subject')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('Subject')).toBeInTheDocument();
+      expect(screen.queryByText('Subject')).toBeNull();
+      await screen.findByLabelText('Subject');
     });
 
     test('valid', () => {
       setup({ valid: true });
-      expect(screen.getByRole('combobox')).not.toHaveClass('is-invalid');
-      expect(screen.getByRole('combobox')).toHaveClass('is-valid');
+      expect(
+        screen.getByRole('combobox').classList.contains('is-invalid')
+      ).toBe(false);
+      expect(screen.getByRole('combobox').classList.contains('is-valid')).toBe(
+        true
+      );
     });
 
     test('invalid', () => {
       setup({ valid: false });
-      expect(screen.getByRole('combobox')).toHaveClass('is-invalid');
-      expect(screen.getByRole('combobox')).not.toHaveClass('is-valid');
+      expect(
+        screen.getByRole('combobox').classList.contains('is-invalid')
+      ).toBe(true);
+      expect(screen.getByRole('combobox').classList.contains('is-valid')).toBe(
+        false
+      );
     });
 
     test('loading', () => {
@@ -158,16 +185,24 @@ describe('Component: Select', () => {
   describe('selectDefaultOption', () => {
     it('should select the placeholder as the default value when value is empty string', () => {
       setup({ hasPlaceholder: true });
-      // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'Please enter your subject' }).selected).toBe(true);
+      expect(
+        screen
+          // @ts-expect-error Select property exists on options
+          .getByRole('option', { name: 'Please enter your subject' }).selected
+      ).toBe(true);
     });
 
     it('should not select the placeholder as the default value when value is not an empty string', () => {
       setup({ value: adminUser(), hasPlaceholder: true });
+      expect(
+        screen
+          // @ts-expect-error Select property exists on options
+          .getByRole('option', { name: 'Please enter your subject' }).selected
+      ).toBe(false);
       // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'Please enter your subject' }).selected).toBe(false);
-      // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'admin@42.nl' }).selected).toBe(true);
+      expect(screen.getByRole('option', { name: 'admin@42.nl' }).selected).toBe(
+        true
+      );
     });
   });
 
@@ -203,13 +238,16 @@ describe('Component: Select', () => {
 
         expect(screen.queryAllByRole('option').length).toBe(3);
 
-        expect(screen.getAllByRole('option')[0]).not.toBeDisabled();
-        expect(screen.getAllByRole('option')[1]).not.toBeDisabled();
-        expect(screen.getAllByRole('option')[2]).not.toBeDisabled();
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('option')[0].disabled).toEqual(false);
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('option')[1].disabled).toEqual(false);
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('option')[2].disabled).toEqual(false);
       });
 
       it('should use isOptionEnabled to determine if the option is enabled when it is defined', () => {
-        const isOptionEnabledSpy = jest.fn();
+        const isOptionEnabledSpy = vi.fn();
 
         // Disabled all option now
         isOptionEnabledSpy.mockReturnValue(false);
@@ -218,15 +256,18 @@ describe('Component: Select', () => {
 
         expect(screen.queryAllByRole('option').length).toBe(3);
 
-        expect(screen.getAllByRole('option')[0]).toBeDisabled();
-        expect(screen.getAllByRole('option')[1]).toBeDisabled();
-        expect(screen.getAllByRole('option')[2]).toBeDisabled();
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('option')[0].disabled).toEqual(true);
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('option')[1].disabled).toEqual(true);
+        // @ts-expect-error Form elements have property disabled
+        expect(screen.getAllByRole('option')[2].disabled).toEqual(true);
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
-          [ adminUser() ],
-          [ coordinatorUser() ],
-          [ userUser() ]
+          [adminUser()],
+          [coordinatorUser()],
+          [userUser()]
         ]);
       });
     });
@@ -240,42 +281,53 @@ describe('Component: Select', () => {
       });
 
       // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'user@42.nl' }).selected).toBe(true);
+      expect(screen.getByRole('option', { name: 'user@42.nl' }).selected).toBe(
+        true
+      );
 
       const newProps = {
         ...props,
         value: undefined
       };
 
-      rerender(
-        <Select {...newProps} />
-      );
+      rerender(<Select {...newProps} />);
 
+      expect(
+        screen
+          // @ts-expect-error Select property exists on options
+          .getByRole('option', { name: 'Please enter your subject' }).selected
+      ).toBe(true);
       // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'Please enter your subject' }).selected).toBe(true);
-      // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'user@42.nl' }).selected).toBe(false);
+      expect(screen.getByRole('option', { name: 'user@42.nl' }).selected).toBe(
+        false
+      );
     });
 
     test('becomes filled', () => {
       const { props, rerender } = setup({ hasPlaceholder: true });
 
-      // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'Please enter your subject' }).selected).toBe(true);
+      expect(
+        screen
+          // @ts-expect-error Select property exists on options
+          .getByRole('option', { name: 'Please enter your subject' }).selected
+      ).toBe(true);
 
       const newProps = {
         ...props,
         value: userUser()
       };
 
-      rerender(
-        <Select {...newProps} />
-      );
+      rerender(<Select {...newProps} />);
 
+      expect(
+        screen
+          // @ts-expect-error Select property exists on options
+          .getByRole('option', { name: 'Please enter your subject' }).selected
+      ).toBe(false);
       // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'Please enter your subject' }).selected).toBe(false);
-      // @ts-expect-error Select property exists on options
-      expect(screen.getByRole('option', { name: 'user@42.nl' }).selected).toBe(true);
+      expect(screen.getByRole('option', { name: 'user@42.nl' }).selected).toBe(
+        true
+      );
     });
   });
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { AsyncContent } from './AsyncContent';
@@ -25,7 +26,7 @@ describe('Component: AsyncContent', () => {
     isEmpty?: () => boolean;
     emptyContent?: (data: string) => React.ReactNode;
   }) {
-    jest.spyOn(console, 'error');
+    vi.spyOn(console, 'error');
 
     const { container } = render(
       <AsyncContent
@@ -108,9 +109,9 @@ describe('Component: AsyncContent', () => {
 
   describe('when rejected', () => {
     test('with retry button', () => {
-      const refetchSpy = jest.fn();
+      const refetchSpy = vi.fn();
 
-      jest.spyOn(console, 'error').mockImplementation(jest.fn());
+      vi.spyOn(console, 'error').mockImplementation(vi.fn());
       const state = {
         isLoading: false,
         isError: true,
@@ -130,7 +131,7 @@ describe('Component: AsyncContent', () => {
     });
 
     test('without retry button', () => {
-      jest.spyOn(console, 'error').mockImplementation(jest.fn());
+      vi.spyOn(console, 'error').mockImplementation(vi.fn());
       const state = {
         isLoading: false,
         isError: true,
@@ -146,9 +147,9 @@ describe('Component: AsyncContent', () => {
     });
 
     test('should not render when showRetryButton is undefined', () => {
-      const refetchSpy = jest.fn();
+      const refetchSpy = vi.fn();
 
-      jest.spyOn(console, 'error').mockImplementation(jest.fn());
+      vi.spyOn(console, 'error').mockImplementation(vi.fn());
       const state = {
         isLoading: false,
         isError: true,
@@ -220,9 +221,9 @@ describe('Component: AsyncContent', () => {
 
     describe('when rejected', () => {
       test('with retry button', () => {
-        const reloadSpy = jest.fn();
+        const reloadSpy = vi.fn();
 
-        jest.spyOn(console, 'error').mockImplementation(jest.fn());
+        vi.spyOn(console, 'error').mockImplementation(vi.fn());
         const state = {
           isLoading: false,
           isFulfilled: false,
@@ -242,7 +243,7 @@ describe('Component: AsyncContent', () => {
       });
 
       test('without retry button', () => {
-        jest.spyOn(console, 'error').mockImplementation(jest.fn());
+        vi.spyOn(console, 'error').mockImplementation(vi.fn());
         const state = {
           isLoading: false,
           isFulfilled: false,
@@ -258,9 +259,9 @@ describe('Component: AsyncContent', () => {
       });
 
       test('should not render when showRetryButton is undefined', () => {
-        const reloadSpy = jest.fn();
+        const reloadSpy = vi.fn();
 
-        jest.spyOn(console, 'error').mockImplementation(jest.fn());
+        vi.spyOn(console, 'error').mockImplementation(vi.fn());
         const state = {
           isLoading: false,
           isFulfilled: false,

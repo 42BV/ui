@@ -1,27 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ModalPickerMultiple ui default 1`] = `
-<div>
-  <div
-    class="mb-3"
-    color="success"
-  >
-    <div
-      class="d-flex align-items-center"
-    >
-      <button
-        class="flex-grow-0 flex-shrink-0 btn btn-primary"
-        type="button"
-      >
-        Select your best friend
-      </button>
-    </div>
-    Some error
-  </div>
-</div>
-`;
-
-exports[`Component: ModalPickerMultiple ui default: modal 1`] = `
+exports[`Component: ModalPickerMultiple > ui > default > modal 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -83,10 +62,10 @@ exports[`Component: ModalPickerMultiple ui default: modal 1`] = `
                     <input
                       aria-label="Start typing to search"
                       class="form-control"
+                      defaultvalue=""
                       id="1"
                       placeholder="Search..."
                       type="search"
-                      value=""
                     />
                   </div>
                 </div>
@@ -100,7 +79,7 @@ exports[`Component: ModalPickerMultiple ui default: modal 1`] = `
               >
                 <div
                   class="mb-3 p-2 row"
-                  style="background-color: rgb(237, 236, 241);"
+                  style="background-color: #edecf1;"
                 >
                   <div
                     class="col"
@@ -183,7 +162,28 @@ exports[`Component: ModalPickerMultiple ui default: modal 1`] = `
 </div>
 `;
 
-exports[`Component: ModalPickerMultiple ui loading 1`] = `
+exports[`Component: ModalPickerMultiple > ui > default 1`] = `
+<div>
+  <div
+    class="mb-3"
+    color="success"
+  >
+    <div
+      class="d-flex align-items-center"
+    >
+      <button
+        class="flex-grow-0 flex-shrink-0 btn btn-primary"
+        type="button"
+      >
+        Select your best friend
+      </button>
+    </div>
+    Some error
+  </div>
+</div>
+`;
+
+exports[`Component: ModalPickerMultiple > ui > loading 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -245,10 +245,10 @@ exports[`Component: ModalPickerMultiple ui loading 1`] = `
                     <input
                       aria-label="Start typing to search"
                       class="form-control"
+                      defaultvalue=""
                       id="9"
                       placeholder="Search..."
                       type="search"
-                      value=""
                     />
                   </div>
                 </div>
@@ -358,7 +358,7 @@ exports[`Component: ModalPickerMultiple ui loading 1`] = `
 </div>
 `;
 
-exports[`Component: ModalPickerMultiple ui without value 1`] = `
+exports[`Component: ModalPickerMultiple > ui > without value 1`] = `
 <div>
   <div
     class="mb-3"

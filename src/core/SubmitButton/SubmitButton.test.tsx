@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { Props, SubmitButton } from './SubmitButton';
 
@@ -8,18 +7,22 @@ import * as useScrollToClosestError from './useScrollToClosestError';
 
 describe('Component: SubmitButton', () => {
   function setup(
-    { hasOnClick = true, inProgress = false }: { hasOnClick: boolean; inProgress?: boolean },
+    {
+      hasOnClick = true,
+      inProgress = false
+    }: { hasOnClick: boolean; inProgress?: boolean },
     props?: Partial<Props>
   ) {
-    const doScrollToClosestErrorSpy = jest.fn();
+    const doScrollToClosestErrorSpy = vi.fn();
 
-    jest
-      .spyOn(useScrollToClosestError, 'useScrollToClosestError')
-      .mockReturnValue({
-        doScrollToClosestError: doScrollToClosestErrorSpy
-      });
+    vi.spyOn(
+      useScrollToClosestError,
+      'useScrollToClosestError'
+    ).mockReturnValue({
+      doScrollToClosestError: doScrollToClosestErrorSpy
+    });
 
-    const onClickSpy = jest.fn();
+    const onClickSpy = vi.fn();
 
     const { container } = render(
       <SubmitButton
@@ -50,7 +53,9 @@ describe('Component: SubmitButton', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with all optional params', () => {
+    test('with all optional params', async () => {
+      expect.assertions(5);
+
       const { container } = setup(
         {
           hasOnClick: true
@@ -62,10 +67,15 @@ describe('Component: SubmitButton', () => {
         }
       );
 
-      expect(container.firstChild).toHaveClass('extra-css-class');
-      expect(screen.getByRole('button')).toHaveClass('btn-lg');
-      expect(screen.queryByText('360')).toBeInTheDocument();
-      expect(screen.queryByText('save')).not.toBeInTheDocument();
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('extra-css-class')).toBe(
+        true
+      );
+      expect(screen.getByRole('button').classList.contains('btn-lg')).toBe(
+        true
+      );
+      await screen.findByText('360');
+      expect(screen.queryByText('save')).toBeNull();
     });
 
     test('in progress', () => {

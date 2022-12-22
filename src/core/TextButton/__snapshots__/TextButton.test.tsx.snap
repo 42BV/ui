@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`component: TextButton ui standard 1`] = `
+exports[`component: TextButton > ui > standard 1`] = `
 <div>
   <u
     class="align-self-center clickable fw-lighter"

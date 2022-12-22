@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { FlashMessage } from './FlashMessage';
 
@@ -21,16 +21,17 @@ describe('Component: FlashMessage', () => {
         </FlashMessage>
       );
 
-      expect(container.firstChild).toHaveClass('extra-css-class');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('extra-css-class')).toBe(
+        true
+      );
     });
   });
 
   test('onClose', () => {
-    const onCloseSpy = jest.fn();
+    const onCloseSpy = vi.fn();
 
-    render(
-      <FlashMessage onClose={onCloseSpy}>Warning commander</FlashMessage>
-    );
+    render(<FlashMessage onClose={onCloseSpy}>Warning commander</FlashMessage>);
 
     fireEvent.click(screen.getByLabelText('Close'));
 

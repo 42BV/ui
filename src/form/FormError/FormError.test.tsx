@@ -8,7 +8,7 @@ import * as SettledErrors from './useSettledErrors';
 
 import { FormError } from './FormError';
 
-jest.mock('@42.nl/react-error-store');
+vi.mock('@42.nl/react-error-store');
 
 describe('Component: FormError', () => {
   function setup({
@@ -29,12 +29,10 @@ describe('Component: FormError', () => {
       }
     };
 
-    jest
-      .spyOn(reactErrorStore, 'useErrorsForValidator')
+    vi.spyOn(reactErrorStore, 'useErrorsForValidator')
       .mockReturnValue(hasBackEndErrors ? [ 'back-end error' ] : []);
 
-    jest
-      .spyOn(SettledErrors, 'useSettledErrors')
+    vi.spyOn(SettledErrors, 'useSettledErrors')
       .mockReturnValue(hasFrontEndErrors ? [ required ] : []);
 
     const { container } = render(

@@ -1,30 +1,43 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { SuccessIcon } from './SuccessIcon';
 
-storiesOf('core/SuccessIcon', module)
-  .addParameters({ component: SuccessIcon })
-  .add('default', () => {
-    const [ value, setValue ] = useState(false);
-    return (
-      <div className="text-center">
-        <SuccessIcon
-          onChange={() => setValue(!value)}
-          value={value}
-        />
-      </div>
-    );
-  })
-  .add('hover color', () => {
-    const [ value, setValue ] = useState(false);
-    return (
-      <div className="text-center">
-        <SuccessIcon
-          onChange={() => setValue(!value)}
-          value={value}
-          hoverColor="danger"
-        />
-      </div>
-    );
-  });
+export default {
+  title: 'core/SuccessIcon',
+
+  parameters: {
+    component: SuccessIcon
+  }
+};
+
+const DefaultStory = () => {
+  const [value, setValue] = useState(false);
+  return (
+    <div className="text-center">
+      <SuccessIcon onChange={() => setValue(!value)} value={value} />
+    </div>
+  );
+};
+
+export const Default = {
+  render: DefaultStory,
+  name: 'default'
+};
+
+const HoverColorStory = () => {
+  const [value, setValue] = useState(false);
+  return (
+    <div className="text-center">
+      <SuccessIcon
+        onChange={() => setValue(!value)}
+        value={value}
+        hoverColor="danger"
+      />
+    </div>
+  );
+};
+
+export const HoverColor = {
+  render: HoverColorStory,
+  name: 'hover color'
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
 import { AsyncActionButton } from './AsyncActionButton';
@@ -6,7 +7,7 @@ import { rejectablePromise, resolvablePromise } from '../../test/utils';
 
 describe('Component: AsyncActionButton', () => {
   function setup({ promise }: { promise: Promise<any> }) {
-    const actionSpy = jest.fn().mockReturnValue(promise);
+    const actionSpy = vi.fn().mockReturnValue(promise);
 
     const props = {
       action: actionSpy,

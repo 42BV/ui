@@ -1,25 +1,26 @@
+import { vi } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 
 import { useScrollToClosestError } from './useScrollToClosestError';
 
 describe('useScrollToClosestError', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
 
   describe('when enabled', () => {
     it('should not scroll on initialization, after initialization it should scroll with a debounce', async () => {
       expect.assertions(16);
 
-      const scrollIntoViewSpy = jest.fn();
+      const scrollIntoViewSpy = vi.fn();
 
       // @ts-expect-error Mock test
-      jest.spyOn(document, 'querySelector').mockImplementation(() => {
+      vi.spyOn(document, 'querySelector').mockImplementation(() => {
         return {
           parentElement: {
             parentElement: {
@@ -38,7 +39,7 @@ describe('useScrollToClosestError', () => {
       expect(scrollIntoViewSpy).toBeCalledTimes(0);
 
       // Even after 200 seconds it should not be called
-      jest.advanceTimersByTime(200);
+      vi.advanceTimersByTime(200);
       expect(document.querySelector).toBeCalledTimes(0);
       expect(scrollIntoViewSpy).toBeCalledTimes(0);
 
@@ -47,12 +48,12 @@ describe('useScrollToClosestError', () => {
       await act(() => {
         result.current.doScrollToClosestError();
       });
-      jest.advanceTimersByTime(199);
+      vi.advanceTimersByTime(199);
       expect(document.querySelector).toBeCalledTimes(0);
       expect(scrollIntoViewSpy).toBeCalledTimes(0);
 
       // It should be called after 200 milliseconds
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
       expect(document.querySelector).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledWith({ behavior: 'smooth' });
@@ -61,7 +62,7 @@ describe('useScrollToClosestError', () => {
       await act(() => {
         result.current.doScrollToClosestError();
       });
-      jest.advanceTimersByTime(199);
+      vi.advanceTimersByTime(199);
       expect(document.querySelector).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledTimes(1);
 
@@ -70,13 +71,13 @@ describe('useScrollToClosestError', () => {
       await act(() => {
         result.current.doScrollToClosestError();
       });
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
       // The scroll should not be called due to the debounce
       expect(document.querySelector).toBeCalledTimes(1);
       expect(scrollIntoViewSpy).toBeCalledTimes(1);
 
       // Now it should trigger the debounced scroll
-      jest.advanceTimersByTime(199);
+      vi.advanceTimersByTime(199);
       expect(document.querySelector).toBeCalledTimes(2);
       expect(scrollIntoViewSpy).toBeCalledTimes(2);
       expect(scrollIntoViewSpy).toBeCalledWith({ behavior: 'smooth' });
@@ -85,7 +86,7 @@ describe('useScrollToClosestError', () => {
     describe('enabled but element not found scenarios', () => {
       it('it should not scroll when no .invalid-feedback element is found', () => {
         // @ts-expect-error Mock test
-        jest.spyOn(document, 'querySelector').mockImplementation(() => {
+        vi.spyOn(document, 'querySelector').mockImplementation(() => {
           return undefined;
         });
 
@@ -94,7 +95,7 @@ describe('useScrollToClosestError', () => {
 
       it('should not scroll when no parent is found on the .invalid-feedback element', () => {
         // @ts-expect-error Mock test
-        jest.spyOn(document, 'querySelector').mockImplementation(() => {
+        vi.spyOn(document, 'querySelector').mockImplementation(() => {
           return {
             parentElement: undefined
           };
@@ -105,7 +106,7 @@ describe('useScrollToClosestError', () => {
 
       it('should not scroll when no grandparent is found on the .invalid-feedback element', () => {
         // @ts-expect-error Mock test
-        jest.spyOn(document, 'querySelector').mockImplementation(() => {
+        vi.spyOn(document, 'querySelector').mockImplementation(() => {
           return {
             parentElement: {
               parentElement: undefined
@@ -126,7 +127,7 @@ describe('useScrollToClosestError', () => {
         });
 
         act(() => {
-          jest.advanceTimersByTime(200);
+          vi.advanceTimersByTime(200);
         });
 
         expect(document.querySelector).toBeCalledTimes(1);
@@ -135,7 +136,7 @@ describe('useScrollToClosestError', () => {
   });
 
   it('should when disabled never scroll to the closest error', () => {
-    jest.spyOn(document, 'querySelector');
+    vi.spyOn(document, 'querySelector');
 
     const { result } = renderHook(() =>
       useScrollToClosestError({ enabled: false })
@@ -147,7 +148,7 @@ describe('useScrollToClosestError', () => {
     });
 
     act(() => {
-      jest.advanceTimersByTime(200);
+      vi.advanceTimersByTime(200);
     });
 
     expect(document.querySelector).toBeCalledTimes(0);

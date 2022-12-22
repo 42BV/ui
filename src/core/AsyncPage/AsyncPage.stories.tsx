@@ -1,6 +1,9 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery
+} from '@tanstack/react-query';
 import { Alert, Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
@@ -51,190 +54,249 @@ const client = new QueryClient({
   }
 });
 
-storiesOf('core/async/AsyncPage', module)
-  .addParameters({ component: AsyncPage })
-  .addDecorator((Story) => (
-    <QueryClientProvider client={client}>
-      <Alert color="warning" className="mb-4">
-        <p>To be able to use AsyncPage, you have to add @tanstack/react-query and @42.nl/spring-connect to your dependencies:</p>
-        <code>npm install --save @tanstack/react-query @42.nl/spring-connect</code>
-      </Alert>
-      <Story />
-    </QueryClientProvider>
-  ))
-  .add('loaded', () => {
-    const state = useQuery([ 'loaded' ], loadData);
+export default {
+  title: 'core/async/AsyncPage',
 
-    return (
-      <Card body>
-        <AsyncPage state={state}>
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  })
+  decorators: [
+    (Story) => (
+      <QueryClientProvider client={client}>
+        <Alert color="warning" className="mb-4">
+          <p>
+            To be able to use AsyncPage, you have to add @tanstack/react-query
+            and @42.nl/spring-connect to your dependencies:
+          </p>
+          <code>
+            npm install --save @tanstack/react-query @42.nl/spring-connect
+          </code>
+        </Alert>
+        <Story />
+      </QueryClientProvider>
+    )
+  ],
 
-  .add('error', () => {
-    const state = useQuery([ 'error' ], rejectData);
+  parameters: {
+    component: AsyncPage
+  }
+};
 
-    return (
-      <Card body>
-        <AsyncPage state={state}>
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  })
+const LoadedStory = () => {
+  const state = useQuery(['loaded'], loadData);
 
-  .add('error with custom text', () => {
-    const state = useQuery([ 'error', 'custom text' ], rejectData);
+  return (
+    <Card body>
+      <AsyncPage state={state}>
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
 
-    return (
-      <Card body>
-        <AsyncPage
-          state={state}
-          text={{ error: 'I’m sorry Dave, I’m afraid I can’t do that' }}
-        >
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  })
+export const Loaded = {
+  render: LoadedStory,
+  name: 'loaded'
+};
 
-  .add('error with no retry button', () => {
-    const state = useQuery([ 'error', 'no retry' ], rejectData);
+const ErrorStory = () => {
+  const state = useQuery(['error'], rejectData);
 
-    return (
-      <Card body>
-        <AsyncPage state={state} showRetryButton={false}>
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  })
+  return (
+    <Card body>
+      <AsyncPage state={state}>
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
 
-  .add('loading', () => {
-    const state = useQuery([ 'loading' ], loadingData);
+export const Error = {
+  render: ErrorStory,
+  name: 'error'
+};
 
-    return (
-      <Card body>
-        <AsyncPage state={state}>
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  })
+const ErrorWithCustomTextStory = () => {
+  const state = useQuery(['error', 'custom text'], rejectData);
 
-  .add('loading with custom title', () => {
-    const state = useQuery([ 'loading', 'custom title' ], loadingData);
+  return (
+    <Card body>
+      <AsyncPage
+        state={state}
+        text={{ error: 'I’m sorry Dave, I’m afraid I can’t do that' }}
+      >
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
 
-    return (
-      <Card body>
-        <AsyncPage state={state} text={{ loading: 'Loading Jeffrey' }}>
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  })
+export const ErrorWithCustomText = {
+  render: ErrorWithCustomTextStory,
+  name: 'error with custom text'
+};
 
-  .add('empty', () => {
-    const state = useQuery([ 'empty' ], emptyData);
+const ErrorWithNoRetryButtonStory = () => {
+  const state = useQuery(['error', 'no retry'], rejectData);
 
-    return (
-      <Card body>
-        <AsyncPage state={state}>
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  })
+  return (
+    <Card body>
+      <AsyncPage state={state} showRetryButton={false}>
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
 
-  .add('empty with custom title', () => {
-    const state = useQuery([ 'empty', 'custom title' ], emptyData);
+export const ErrorWithNoRetryButton = {
+  render: ErrorWithNoRetryButtonStory,
+  name: 'error with no retry button'
+};
 
-    return (
-      <Card body>
-        <AsyncPage
-          state={state}
-          text={{ empty: 'No Jeffrey\'s match your parameters try again' }}
-        >
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  })
+const LoadingStory = () => {
+  const state = useQuery(['loading'], loadingData);
 
-  .add('empty with custom content', () => {
-    const state = useQuery([ 'empty', 'custom content' ], emptyData);
+  return (
+    <Card body>
+      <AsyncPage state={state}>
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
 
-    return (
-      <Card body>
-        <AsyncPage
-          state={state}
-          emptyContent={() => (
-            <ContentState mode="empty" title="No results found">
-              <Button icon="refresh" onClick={action('clear filters')}>
-                Clear filters
-              </Button>
-            </ContentState>
-          )}
-        >
-          {(userPage) => (
-            <ListGroup>
-              {userPage.content.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncPage>
-      </Card>
-    );
-  });
+export const Loading = {
+  render: LoadingStory,
+  name: 'loading'
+};
+
+const LoadingWithCustomTitleStory = () => {
+  const state = useQuery(['loading', 'custom title'], loadingData);
+
+  return (
+    <Card body>
+      <AsyncPage state={state} text={{ loading: 'Loading Jeffrey' }}>
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
+
+export const LoadingWithCustomTitle = {
+  render: LoadingWithCustomTitleStory,
+  name: 'loading with custom title'
+};
+
+const EmptyStory = () => {
+  const state = useQuery(['empty'], emptyData);
+
+  return (
+    <Card body>
+      <AsyncPage state={state}>
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
+
+export const Empty = {
+  render: EmptyStory,
+  name: 'empty'
+};
+
+const EmptyWithCustomTitleStory = () => {
+  const state = useQuery(['empty', 'custom title'], emptyData);
+
+  return (
+    <Card body>
+      <AsyncPage
+        state={state}
+        text={{ empty: "No Jeffrey's match your parameters try again" }}
+      >
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
+
+export const EmptyWithCustomTitle = {
+  render: EmptyWithCustomTitleStory,
+  name: 'empty with custom title'
+};
+
+const EmptyWithCustomContentStory = () => {
+  const state = useQuery(['empty', 'custom content'], emptyData);
+
+  return (
+    <Card body>
+      <AsyncPage
+        state={state}
+        emptyContent={() => (
+          <ContentState mode="empty" title="No results found">
+            <Button icon="refresh" onClick={action('clear filters')}>
+              Clear filters
+            </Button>
+          </ContentState>
+        )}
+      >
+        {(userPage) => (
+          <ListGroup>
+            {userPage.content.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncPage>
+    </Card>
+  );
+};
+
+export const EmptyWithCustomContent = {
+  render: EmptyWithCustomContentStory,
+  name: 'empty with custom content'
+};

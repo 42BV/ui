@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: EpicDetail ui 1`] = `
+exports[`Component: EpicDetail > ui 1`] = `
 <div>
   <div
     class="bg-white h-100 border-top border-end border-bottom py-1 shadow"

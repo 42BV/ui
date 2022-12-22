@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Hook: useMarkedAsRequiredLabel should render label without required mark when label is a custom component 1`] = `
+exports[`Hook: useMarkedAsRequiredLabel > should render label without required mark when label is a custom component 1`] = `
 <Tooltip
   content="This field is required"
 >

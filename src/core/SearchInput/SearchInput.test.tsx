@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import lodash from 'lodash';
 
@@ -22,7 +21,7 @@ describe('Component: SearchInput', () => {
     withChildren?: boolean;
     canClear?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const props: Props = {
       id: 'search',
@@ -38,9 +37,7 @@ describe('Component: SearchInput', () => {
       children: withChildren ? () => <h1>Children</h1> : undefined
     };
 
-    const { container } = render(
-      <SearchInput {...props} />
-    );
+    const { container } = render(<SearchInput {...props} />);
 
     return { container, onChangeSpy };
   }
@@ -51,63 +48,72 @@ describe('Component: SearchInput', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with icon', () => {
+    test('with icon', async () => {
+      expect.assertions(0);
       setup({ showIcon: true });
-      expect(screen.queryByText('search')).toBeInTheDocument();
+      await screen.queryByText('search');
     });
 
     test('without icon', () => {
       setup({ showIcon: false });
-      expect(screen.queryByText('search')).not.toBeInTheDocument();
+      expect(screen.queryByText('search')).toBeNull();
     });
 
-    test('with label', () => {
+    test('with label', async () => {
+      expect.assertions(0);
       setup({ showLabel: true });
-      expect(screen.getByText('Search')).toBeInTheDocument();
-      expect(screen.getByLabelText('Search')).toBeInTheDocument();
+      await screen.findByText('Search');
+      await screen.findByLabelText('Search');
     });
 
-    test('with label and children', () => {
+    test('with label and children', async () => {
+      expect.assertions(0);
       setup({ withChildren: true });
-      expect(screen.getByText('Children')).toBeInTheDocument();
+      await screen.findByText('Children');
     });
 
-    test('with value', () => {
-      jest
-        .spyOn(React, 'useRef')
-        .mockReturnValueOnce({ current: { value: 'test' } });
+    test('with value', async () => {
+      expect.assertions(1);
+
+      vi.spyOn(React, 'useRef').mockReturnValueOnce({
+        current: { value: 'test' }
+      });
 
       const { container } = setup({});
 
-      expect(screen.queryByText('close')).toBeInTheDocument();
+      await screen.findByText('close');
       expect(container).toMatchSnapshot();
     });
 
     test('without clear button', () => {
-      jest
-        .spyOn(React, 'useRef')
-        .mockReturnValueOnce({ current: { value: 'test' } });
+      vi.spyOn(React, 'useRef').mockReturnValueOnce({
+        current: { value: 'test' }
+      });
 
       setup({ canClear: false });
 
-      expect(screen.queryByText('close')).not.toBeInTheDocument();
+      expect(screen.queryByText('close')).toBeNull();
     });
   });
 
   describe('events', () => {
     it('should debounce by 500 by default', () => {
-      // @ts-expect-error Test mock
-      const debounceSpy = jest.spyOn(lodash, 'debounce').mockImplementation((fn, debounce) => {
-        expect(debounce).toBe(500);
-        return fn;
-      });
+      const debounceSpy = vi
+        .spyOn(lodash, 'debounce')
+        // @ts-expect-error Test mock
+        .mockImplementation((fn, debounce) => {
+          expect(debounce).toBe(500);
+          return fn;
+        });
 
       const { onChangeSpy } = setup({
         showIcon: true,
         showLabel: true
       });
 
-      fireEvent.change(screen.getByLabelText('Search'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByLabelText('Search'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith('Maarten');
@@ -118,11 +124,13 @@ describe('Component: SearchInput', () => {
     });
 
     it('should be able to debounce with a custom value', () => {
-      // @ts-expect-error Test mock
-      const debounceSpy = jest.spyOn(lodash, 'debounce').mockImplementation((fn, debounce) => {
-        expect(debounce).toBe(10);
-        return fn;
-      });
+      const debounceSpy = vi
+        .spyOn(lodash, 'debounce')
+        // @ts-expect-error Test mock
+        .mockImplementation((fn, debounce) => {
+          expect(debounce).toBe(10);
+          return fn;
+        });
 
       const { onChangeSpy } = setup({
         showIcon: true,
@@ -130,7 +138,9 @@ describe('Component: SearchInput', () => {
         debounce: 10
       });
 
-      fireEvent.change(screen.getByLabelText('Search'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByLabelText('Search'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith('Maarten');
@@ -140,7 +150,13 @@ describe('Component: SearchInput', () => {
     });
 
     it('should debounce with settings when settings are defined', () => {
-      const debounceSpy = jest.spyOn(lodash, 'debounce');
+      const debounceSpy = vi
+        .spyOn(lodash, 'debounce')
+        // @ts-expect-error Test mock
+        .mockImplementation((fn, debounce) => {
+          expect(debounce).toBe(500);
+          return fn;
+        });
 
       const debounceSettings = { leading: true, trailing: false };
 
@@ -150,7 +166,9 @@ describe('Component: SearchInput', () => {
         debounceSettings
       });
 
-      fireEvent.change(screen.getByLabelText('Search'), { target: { value: 'M' } });
+      fireEvent.change(screen.getByLabelText('Search'), {
+        target: { value: 'M' }
+      });
 
       // Trailing will cause the first character to go through immediately
       expect(onChangeSpy).toBeCalledTimes(1);
@@ -163,11 +181,11 @@ describe('Component: SearchInput', () => {
     it('should allow the user to take full control of the value through the children render prop', async () => {
       expect.assertions(4);
 
-      const onChangeSpy = jest.fn();
-      const cancel = jest.fn();
+      const onChangeSpy = vi.fn();
+      const cancel = vi.fn();
 
       // @ts-expect-error Test mock
-      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+      vi.spyOn(lodash, 'debounce').mockImplementation((fn) => {
         // @ts-expect-error Test mock
         fn.cancel = cancel;
         return fn;
@@ -205,7 +223,7 @@ describe('Component: SearchInput', () => {
     describe('onKeyUp behavior', () => {
       it('should on pressing "ENTER" set the value immediately', () => {
         // @ts-expect-error Test mock
-        jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+        vi.spyOn(lodash, 'debounce').mockImplementation((fn) => {
           return fn;
         });
 
@@ -213,7 +231,9 @@ describe('Component: SearchInput', () => {
           showLabel: true
         });
 
-        fireEvent.change(screen.getByLabelText('Search'), { target: { value: 'Maarten' } });
+        fireEvent.change(screen.getByLabelText('Search'), {
+          target: { value: 'Maarten' }
+        });
 
         expect(onChangeSpy).toBeCalledTimes(1);
         expect(onChangeSpy).toBeCalledWith('Maarten');
@@ -230,21 +250,24 @@ describe('Component: SearchInput', () => {
           showLabel: true
         });
 
-        fireEvent.keyUp(screen.getByLabelText('Search'), { key: 'a', currentTarget: { value: 'Maarten' } });
+        fireEvent.keyUp(screen.getByLabelText('Search'), {
+          key: 'a',
+          currentTarget: { value: 'Maarten' }
+        });
 
         expect(onChangeSpy).toBeCalledTimes(0);
       });
     });
 
     it('should clear value when clear icon is clicked', () => {
-      jest
-        .spyOn(React, 'useRef')
-        .mockReturnValueOnce({ current: { value: 'test' } });
+      vi.spyOn(React, 'useRef').mockReturnValueOnce({
+        current: { value: 'test' }
+      });
 
-      const debounceCancelSpy = jest.fn();
+      const debounceCancelSpy = vi.fn();
 
       // @ts-expect-error Test mock
-      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+      vi.spyOn(lodash, 'debounce').mockImplementation((fn) => {
         // @ts-expect-error Test mock
         fn.cancel = debounceCancelSpy;
         return fn;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { InfoBadge } from './InfoBadge';
 
@@ -20,6 +19,7 @@ describe('Component: InfoBadge', () => {
         <h1>Children</h1>
       </InfoBadge>
     );
-    expect(container.firstChild).toHaveClass('extra-class');
+    // @ts-expect-error HTMLElement has property classList
+    expect(container.firstChild.classList.contains('extra-class')).toBe(true);
   });
 });

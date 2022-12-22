@@ -5,7 +5,7 @@ import { listenerConfig } from './ListenerConfig';
 
 describe('useEpicResizeListenerCleanup', () => {
   test('that the event listeners are destroyed', () => {
-    const spy = jest.spyOn(window, 'removeEventListener');
+    const spy = vi.spyOn(window, 'removeEventListener');
 
     function resize() {
       console.log('resize');
@@ -38,6 +38,6 @@ describe('useEpicResizeListenerCleanup', () => {
       listenerConfig
     );
 
-    (spy as jest.Mock).mockClear();
+    spy.mockClear();
   });
 });

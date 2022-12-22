@@ -1,4 +1,82 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
+
+exports[`Component: DateTimeInput > ui > visible label 1`] = `
+<div>
+  <div
+    class="date-time-input mb-3"
+    color="success"
+  >
+    <label
+      class="form-label"
+      for="dateOfBirth"
+    >
+      Date of birth
+    </label>
+    <div
+      class="react-datepicker-wrapper"
+    >
+      <div
+        class="react-datepicker__input-container"
+      >
+        <input
+          class="form-control form-control"
+          defaultvalue="2000-01-01 12:30:40"
+          id="dateOfBirth"
+          placeholder="Please enter your date of birth"
+          type="text"
+        />
+      </div>
+    </div>
+    Some error
+  </div>
+</div>
+`;
+
+exports[`Component: DateTimeInput > ui > with date picker in modal 1`] = `
+<div>
+  <div
+    class="date-time-input with-modal mb-3"
+    color="success"
+  >
+    <label
+      class="visually-hidden form-label"
+      for="dateOfBirth"
+    >
+      Date of birth
+    </label>
+    <div
+      class="react-datepicker-wrapper"
+    >
+      <div
+        class="react-datepicker__input-container"
+      >
+        <div
+          class="input-group"
+        >
+          <input
+            class="form-control form-control"
+            defaultvalue="2000-01-01 12:30:40"
+            placeholder="Please enter your date of birth"
+            type="text"
+          />
+          <button
+            class="btn btn-primary"
+            tabindex="-1"
+            type="button"
+          >
+            <i
+              class="icon material-icons"
+            >
+              edit_calendar
+            </i>
+          </button>
+        </div>
+      </div>
+    </div>
+    Some error
+  </div>
+</div>
+`;
 
 exports[`Component: DateTimeInput ui visible label 1`] = `
 <div>

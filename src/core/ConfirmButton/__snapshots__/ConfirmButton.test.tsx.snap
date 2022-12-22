@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ConfirmButton ui button and icon 1`] = `
+exports[`Component: ConfirmButton > ui > button and icon 1`] = `
 <div>
   <div
     style="display: block;"
@@ -28,7 +28,7 @@ exports[`Component: ConfirmButton ui button and icon 1`] = `
 </div>
 `;
 
-exports[`Component: ConfirmButton ui custom class, color and texts 1`] = `
+exports[`Component: ConfirmButton > ui > custom class, color and texts 1`] = `
 <div>
   <div
     class="bigger-better-and-uncut"
@@ -57,7 +57,7 @@ exports[`Component: ConfirmButton ui custom class, color and texts 1`] = `
 </div>
 `;
 
-exports[`Component: ConfirmButton ui only button 1`] = `
+exports[`Component: ConfirmButton > ui > only button 1`] = `
 <div>
   <div
     style="display: block;"
@@ -80,7 +80,7 @@ exports[`Component: ConfirmButton ui only button 1`] = `
 </div>
 `;
 
-exports[`Component: ConfirmButton ui only icon 1`] = `
+exports[`Component: ConfirmButton > ui > only icon 1`] = `
 <div>
   <div
     style="display: inline;"
@@ -99,7 +99,7 @@ exports[`Component: ConfirmButton ui only icon 1`] = `
 </div>
 `;
 
-exports[`Component: ConfirmButton ui only icon in progress 1`] = `
+exports[`Component: ConfirmButton > ui > only icon in progress 1`] = `
 <div>
   <div
     style="display: inline;"

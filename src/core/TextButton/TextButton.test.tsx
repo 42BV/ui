@@ -1,12 +1,11 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { TextButton } from './TextButton';
 
 describe('component: TextButton', () => {
   function setup({ className }: { className?: string }) {
-    const onClickSpy = jest.fn();
+    const onClickSpy = vi.fn();
     const { container } = render(
       <TextButton onClick={onClickSpy} className={className}>
         Clear
@@ -24,7 +23,8 @@ describe('component: TextButton', () => {
 
     test('with custom classname', () => {
       const { container } = setup({ className: 'yolo' });
-      expect(container.firstChild).toHaveClass('yolo');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('yolo')).toBe(true);
     });
   });
 

@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 
 import { useOptions } from './useOptions';
@@ -596,7 +597,7 @@ describe('useOptions', () => {
       const { promise, resolve } = resolvablePromise<Page<Option>>();
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const fetcher = jest.fn(({ size, page }) => {
+      const fetcher = vi.fn(({ size, page }) => {
         return promise;
       });
 
@@ -654,7 +655,7 @@ describe('useOptions', () => {
       const { promise, resolve } = resolvablePromise<Page<Option>>();
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const fetcher = jest.fn(({ size, page }) => {
+      const fetcher = vi.fn(({ size, page }) => {
         return promise;
       });
 
@@ -763,7 +764,7 @@ describe('useOptions', () => {
       const { promise, resolve } = resolvablePromise<Page<Option>>();
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const fetcher = jest.fn(({ size, page }) => {
+      const fetcher = vi.fn(({ size, page }) => {
         return promise;
       });
 
@@ -876,7 +877,7 @@ describe('useOptions', () => {
       const { promise: promise1, resolve: resolve1 } = resolvablePromise<Page<Option>>();
       const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
 
-      const fetcher = jest.fn()
+      const fetcher = vi.fn()
         .mockImplementationOnce(() => promise1)
         .mockImplementationOnce(() => promise2);
 
@@ -985,7 +986,7 @@ describe('useOptions', () => {
       const { promise: promise1, resolve: resolve1 } = resolvablePromise<Page<Option>>();
       const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
 
-      const fetcher = jest.fn()
+      const fetcher = vi.fn()
         .mockImplementationOnce(() => promise1)
         .mockImplementationOnce(() => promise2);
 
@@ -1095,7 +1096,7 @@ describe('useOptions', () => {
         const { promise, resolve } = resolvablePromise<Page<Option>>();
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const fetcher = jest.fn(({ size, page }) => {
+        const fetcher = vi.fn(({ size, page }) => {
           return promise;
         });
 
@@ -1143,7 +1144,7 @@ describe('useOptions', () => {
         const { promise, resolve } = resolvablePromise<Page<Option>>();
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const fetcher = jest.fn(({ size, page }) => {
+        const fetcher = vi.fn(({ size, page }) => {
           return promise;
         });
 
@@ -1191,7 +1192,7 @@ describe('useOptions', () => {
         const { promise, resolve } = resolvablePromise<Page<Option>>();
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const fetcher = jest.fn(({ size, page }) => {
+        const fetcher = vi.fn(({ size, page }) => {
           return promise;
         });
 
@@ -1239,7 +1240,7 @@ describe('useOptions', () => {
         const { promise, resolve } = resolvablePromise<Page<Option>>();
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const fetcher = jest.fn(({ size, page }) => {
+        const fetcher = vi.fn(({ size, page }) => {
           return promise;
         });
 
@@ -1288,7 +1289,7 @@ describe('useOptions', () => {
         const { promise, resolve } = resolvablePromise<Page<Option>>();
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const fetcher = jest.fn(({ size, page }) => {
+        const fetcher = vi.fn(({ size, page }) => {
           return promise;
         });
 

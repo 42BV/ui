@@ -1,184 +1,218 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { ConfirmButton } from './ConfirmButton';
 
-storiesOf('core/buttons/ConfirmButton', module)
-  .addParameters({ component: ConfirmButton })
-  .add('as button', () => {
-    return (
-      <div className="text-center">
-        <p>When not in progress:</p>
-        <ConfirmButton
-          onConfirm={action('Accept clicked')}
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        >
-          Delete user
-        </ConfirmButton>
+export default {
+  title: 'core/buttons/ConfirmButton',
 
-        <hr />
+  parameters: {
+    component: ConfirmButton
+  }
+};
 
-        <p>When in progress:</p>
-        <ConfirmButton
-          onConfirm={action('Accept clicked')}
-          inProgress={true}
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        >
-          Delete user
-        </ConfirmButton>
-      </div>
-    );
-  })
-  .add('as icon', () => {
-    return (
-      <div className="text-center">
-        <p>When not in progress:</p>
-        <ConfirmButton
-          onConfirm={action('Accept clicked')}
-          icon="delete"
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        />
+const AsButtonStory = () => {
+  return (
+    <div className="text-center">
+      <p>When not in progress:</p>
+      <ConfirmButton
+        onConfirm={action('Accept clicked')}
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+      >
+        Delete user
+      </ConfirmButton>
 
-        <hr />
+      <hr />
 
-        <p>When in progress:</p>
-        <ConfirmButton
-          onConfirm={action('Confirm clicked')}
-          icon="delete"
-          inProgress={true}
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        />
-      </div>
-    );
-  })
-  .add('as button with icon', () => {
-    return (
-      <div className="text-center">
-        <p>When not in progress:</p>
-        <ConfirmButton
-          onConfirm={action('Confirm clicked')}
-          icon="delete"
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        >
-          Delete user
-        </ConfirmButton>
+      <p>When in progress:</p>
+      <ConfirmButton
+        onConfirm={action('Accept clicked')}
+        inProgress={true}
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+      >
+        Delete user
+      </ConfirmButton>
+    </div>
+  );
+};
 
-        <hr />
+export const AsButton = {
+  render: AsButtonStory,
+  name: 'as button'
+};
 
-        <p>When in progress:</p>
-        <ConfirmButton
-          onConfirm={action('Confirm clicked')}
-          icon="delete"
-          inProgress={true}
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        >
-          Delete user
-        </ConfirmButton>
-      </div>
-    );
-  })
-  .add('custom text and color', () => {
-    return (
-      <div className="text-center">
-        <p>When not in progress:</p>
-        <ConfirmButton
-          color="info"
-          onConfirm={action('Confirm clicked')}
-          icon="delete"
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-          text={{
-            confirm: 'YES',
-            cancel: 'NO',
-            modalHeader: 'PLEASE SAY YES'
-          }}
-        >
-          Delete user
-        </ConfirmButton>
+const AsIconStory = () => {
+  return (
+    <div className="text-center">
+      <p>When not in progress:</p>
+      <ConfirmButton
+        onConfirm={action('Accept clicked')}
+        icon="delete"
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+      />
 
-        <hr />
+      <hr />
 
-        <p>When in progress:</p>
-        <ConfirmButton
-          color="info"
-          onConfirm={action('Confirm clicked')}
-          icon="delete"
-          inProgress={true}
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-          text={{
-            confirm: 'YES',
-            cancel: 'NO',
-            modalHeader: 'PLEASE SAY YES'
-          }}
-        >
-          Delete user
-        </ConfirmButton>
-      </div>
-    );
-  })
-  .add('full width', () => {
-    return (
-      <div className="text-center">
-        <p>When not in progress:</p>
-        <ConfirmButton
-          fullWidth={true}
-          onConfirm={action('Accept clicked')}
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        >
-          Delete user
-        </ConfirmButton>
+      <p>When in progress:</p>
+      <ConfirmButton
+        onConfirm={action('Confirm clicked')}
+        icon="delete"
+        inProgress={true}
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+      />
+    </div>
+  );
+};
 
-        <hr />
+export const AsIcon = {
+  render: AsIconStory,
+  name: 'as icon'
+};
 
-        <p>When in progress:</p>
-        <ConfirmButton
-          fullWidth={true}
-          onConfirm={action('Accept clicked')}
-          inProgress={true}
-          dialogText={
-            <p>
-              Are you sure you want to <strong>delete</strong> the user?
-            </p>
-          }
-        >
-          Delete user
-        </ConfirmButton>
-      </div>
-    );
-  });
+const AsButtonWithIconStory = () => {
+  return (
+    <div className="text-center">
+      <p>When not in progress:</p>
+      <ConfirmButton
+        onConfirm={action('Confirm clicked')}
+        icon="delete"
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+      >
+        Delete user
+      </ConfirmButton>
+
+      <hr />
+
+      <p>When in progress:</p>
+      <ConfirmButton
+        onConfirm={action('Confirm clicked')}
+        icon="delete"
+        inProgress={true}
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+      >
+        Delete user
+      </ConfirmButton>
+    </div>
+  );
+};
+
+export const AsButtonWithIcon = {
+  render: AsButtonWithIconStory,
+  name: 'as button with icon'
+};
+
+const CustomTextAndColorStory = () => {
+  return (
+    <div className="text-center">
+      <p>When not in progress:</p>
+      <ConfirmButton
+        color="info"
+        onConfirm={action('Confirm clicked')}
+        icon="delete"
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+        text={{
+          confirm: 'YES',
+          cancel: 'NO',
+          modalHeader: 'PLEASE SAY YES'
+        }}
+      >
+        Delete user
+      </ConfirmButton>
+
+      <hr />
+
+      <p>When in progress:</p>
+      <ConfirmButton
+        color="info"
+        onConfirm={action('Confirm clicked')}
+        icon="delete"
+        inProgress={true}
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+        text={{
+          confirm: 'YES',
+          cancel: 'NO',
+          modalHeader: 'PLEASE SAY YES'
+        }}
+      >
+        Delete user
+      </ConfirmButton>
+    </div>
+  );
+};
+
+export const CustomTextAndColor = {
+  render: CustomTextAndColorStory,
+  name: 'custom text and color'
+};
+
+const FullWidthStory = () => {
+  return (
+    <div className="text-center">
+      <p>When not in progress:</p>
+      <ConfirmButton
+        fullWidth={true}
+        onConfirm={action('Accept clicked')}
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+      >
+        Delete user
+      </ConfirmButton>
+
+      <hr />
+
+      <p>When in progress:</p>
+      <ConfirmButton
+        fullWidth={true}
+        onConfirm={action('Accept clicked')}
+        inProgress={true}
+        dialogText={
+          <p>
+            Are you sure you want to <strong>delete</strong> the user?
+          </p>
+        }
+      >
+        Delete user
+      </ConfirmButton>
+    </div>
+  );
+};
+
+export const FullWidth = {
+  render: FullWidthStory,
+  name: 'full width'
+};

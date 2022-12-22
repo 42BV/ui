@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ValuePicker multiple CheckboxMultipleSelect should render a \`CheckboxMultipleSelect\` component when async page \`totalElements\` is less than 11 1`] = `
+exports[`Component: ValuePicker > multiple > CheckboxMultipleSelect > should render a \`CheckboxMultipleSelect\` component when async page \`totalElements\` is less than 11 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -30,6 +30,7 @@ exports[`Component: ValuePicker multiple CheckboxMultipleSelect should render a 
           >
             <input
               class="form-check-input"
+              defaultvalue="0"
               type="checkbox"
               value="0"
             />
@@ -44,6 +45,7 @@ exports[`Component: ValuePicker multiple CheckboxMultipleSelect should render a 
           >
             <input
               class="form-check-input"
+              defaultvalue="1"
               type="checkbox"
               value="1"
             />
@@ -58,6 +60,7 @@ exports[`Component: ValuePicker multiple CheckboxMultipleSelect should render a 
           >
             <input
               class="form-check-input"
+              defaultvalue="2"
               type="checkbox"
               value="2"
             />
@@ -70,7 +73,7 @@ exports[`Component: ValuePicker multiple CheckboxMultipleSelect should render a 
 </DocumentFragment>
 `;
 
-exports[`Component: ValuePicker multiple ModalPickerMultiple should render a \`ModalPickerMultiple\` when async page \`totalElements\` is more than 10 1`] = `
+exports[`Component: ValuePicker > multiple > ModalPickerMultiple > should render a \`ModalPickerMultiple\` when async page \`totalElements\` is more than 10 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -99,7 +102,7 @@ exports[`Component: ValuePicker multiple ModalPickerMultiple should render a \`M
 </DocumentFragment>
 `;
 
-exports[`Component: ValuePicker should when booting render a loading spinner and request an initial page 1`] = `
+exports[`Component: ValuePicker > should when booting render a loading spinner and request an initial page 1`] = `
 <div>
   <div
     class="d-flex"
@@ -130,7 +133,7 @@ exports[`Component: ValuePicker should when booting render a loading spinner and
 </div>
 `;
 
-exports[`Component: ValuePicker single ModalPickerSingle should render a \`ModalPickerSingle\` when async page \`totalElements\` is more than than 10 1`] = `
+exports[`Component: ValuePicker > single > ModalPickerSingle > should render a \`ModalPickerSingle\` when async page \`totalElements\` is more than than 10 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -159,7 +162,7 @@ exports[`Component: ValuePicker single ModalPickerSingle should render a \`Modal
 </DocumentFragment>
 `;
 
-exports[`Component: ValuePicker single RadioGroup should render a \`RadioGroup\` component when async page \`totalElements\` is less than 4 1`] = `
+exports[`Component: ValuePicker > single > RadioGroup > should render a \`RadioGroup\` component when async page \`totalElements\` is less than 4 1`] = `
 <DocumentFragment>
   <fieldset
     class="radio-group  mb-3"
@@ -180,6 +183,7 @@ exports[`Component: ValuePicker single RadioGroup should render a \`RadioGroup\`
       >
         <input
           class="form-check-input"
+          defaultvalue="admin@42.nl"
           type="radio"
           value="admin@42.nl"
         />
@@ -194,6 +198,7 @@ exports[`Component: ValuePicker single RadioGroup should render a \`RadioGroup\`
       >
         <input
           class="form-check-input"
+          defaultvalue="coordinator@42.nl"
           type="radio"
           value="coordinator@42.nl"
         />
@@ -208,6 +213,7 @@ exports[`Component: ValuePicker single RadioGroup should render a \`RadioGroup\`
       >
         <input
           class="form-check-input"
+          defaultvalue="user@42.nl"
           type="radio"
           value="user@42.nl"
         />
@@ -218,7 +224,7 @@ exports[`Component: ValuePicker single RadioGroup should render a \`RadioGroup\`
 </DocumentFragment>
 `;
 
-exports[`Component: ValuePicker single Select should render a \`Select\` component when async page \`totalElements\` is less than 11 but more than 3 1`] = `
+exports[`Component: ValuePicker > single > Select > should render a \`Select\` component when async page \`totalElements\` is less than 11 but more than 3 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"

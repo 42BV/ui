@@ -1,11 +1,12 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { EpicDetail } from './EpicDetail';
 
 describe('Component: EpicDetail', () => {
   function setup() {
-    const onCloseSpy = jest.fn();
+    const onCloseSpy = vi.fn();
 
 
     const { container } = render(

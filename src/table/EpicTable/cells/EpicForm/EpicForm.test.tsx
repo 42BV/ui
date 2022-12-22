@@ -1,6 +1,12 @@
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { vi } from 'vitest';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor
+} from '@testing-library/react';
 
 import { EpicForm } from './EpicForm';
 import { FieldInput } from '../../../../form/Input/Input';
@@ -19,7 +25,7 @@ describe('Component: EpicForm', () => {
       }
     });
 
-    const onSubmitSpy = jest.fn();
+    const onSubmitSpy = vi.fn();
 
     const { container } = render(
       <EpicForm
@@ -30,11 +36,7 @@ describe('Component: EpicForm', () => {
         onSubmit={onSubmitSpy}
         submitOnChange={submitOnChange}
       >
-        <FieldInput
-          id="testField"
-          name="testField"
-          label="Test"
-        />
+        <FieldInput id="testField" name="testField" label="Test" />
         <button type="reset">Reset</button>
       </EpicForm>
     );
@@ -58,7 +60,9 @@ describe('Component: EpicForm', () => {
       const { onSubmitSpy } = setup({ submitOnChange: true });
 
       fireEvent.focus(screen.getByRole('textbox'));
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'test' }
+      });
       fireEvent.blur(screen.getByRole('textbox'));
 
       await waitFor(() => {
@@ -76,7 +80,8 @@ describe('Component: EpicForm', () => {
         fireEvent.click(screen.getByText('Reset'));
       });
 
-      expect(screen.getByLabelText('Test')).toHaveValue('');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByLabelText('Test').value).toEqual('');
     });
   });
 });

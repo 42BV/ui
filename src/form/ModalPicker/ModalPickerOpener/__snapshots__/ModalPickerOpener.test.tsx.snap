@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ModalPickerOpener ui with values 1`] = `
+exports[`Component: ModalPickerOpener > ui > with values 1`] = `
 <div>
   <div
     class="d-flex align-items-center"
@@ -24,7 +24,7 @@ exports[`Component: ModalPickerOpener ui with values 1`] = `
 </div>
 `;
 
-exports[`Component: ModalPickerOpener ui without values 1`] = `
+exports[`Component: ModalPickerOpener > ui > without values 1`] = `
 <div>
   <div
     class="d-flex align-items-center"

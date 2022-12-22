@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: EpicExpander ui is open 1`] = `
+exports[`Component: EpicExpander > ui > is open 1`] = `
 <div>
   <span
     class="button dark d-inline-block"

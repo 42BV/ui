@@ -175,7 +175,7 @@ export function isDateBeforeValidator(
 
   return (
     value?: MomentInput,
-    allValues?: Record<string, MomentInput>
+    allValues?: object
   ): string | undefined => {
     if (!value) {
       return undefined;
@@ -286,7 +286,7 @@ export function isDateBetweenValidator(
 
   return (
     value?: MomentInput,
-    allValues?: Record<string, MomentInput>
+    allValues?: object
   ): string | undefined => {
     if (!value) {
       return undefined;

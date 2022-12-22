@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Icon ui default 1`] = `
+exports[`Icon > ui > default 1`] = `
 <div>
   <i
     class="icon material-icons"
@@ -10,7 +10,7 @@ exports[`Icon ui default 1`] = `
 </div>
 `;
 
-exports[`Icon ui with id 1`] = `
+exports[`Icon > ui > with id 1`] = `
 <div>
   <i
     class="icon material-icons"
@@ -21,7 +21,7 @@ exports[`Icon ui with id 1`] = `
 </div>
 `;
 
-exports[`index should contain exports 1`] = `
+exports[`index > should contain exports 1`] = `
 {
   "Icon": [Function],
   "icons": [

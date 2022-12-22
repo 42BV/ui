@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: EpicRow is header row 1`] = `
+exports[`Component: EpicRow > is header row 1`] = `
 <div>
   <span>
     <h1>

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: EpicSelection ui is checked 1`] = `
+exports[`Component: EpicSelection > ui > is checked 1`] = `
 <div>
   <label
     class="d-flex m-0 align-items-center form-label"

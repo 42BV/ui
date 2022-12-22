@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Input masked 1`] = `
+exports[`Component: Input > masked 1`] = `
 <div>
   <div
     class="mb-3"
@@ -9,16 +9,16 @@ exports[`Component: Input masked 1`] = `
     <input
       aria-label="First name"
       class="form-control"
+      defaultvalue=""
       id="11"
       type="text"
-      value=""
     />
     Some error
   </div>
 </div>
 `;
 
-exports[`Component: Input ui addon default 1`] = `
+exports[`Component: Input > ui > addon default 1`] = `
 <div>
   <div
     class="mb-3"
@@ -35,9 +35,9 @@ exports[`Component: Input ui addon default 1`] = `
       <input
         aria-label="First name"
         class="form-control"
+        defaultvalue=""
         id="6"
         type="text"
-        value=""
       />
     </div>
     Some error
@@ -45,7 +45,7 @@ exports[`Component: Input ui addon default 1`] = `
 </div>
 `;
 
-exports[`Component: Input ui default 1`] = `
+exports[`Component: Input > ui > default 1`] = `
 <div>
   <div
     class="mb-3"
@@ -54,16 +54,16 @@ exports[`Component: Input ui default 1`] = `
     <input
       aria-label="First name"
       class="form-control"
+      defaultvalue=""
       id="1"
       type="text"
-      value=""
     />
     Some error
   </div>
 </div>
 `;
 
-exports[`Component: Input ui visible label 1`] = `
+exports[`Component: Input > ui > visible label 1`] = `
 <div>
   <div
     class="mb-3"
@@ -77,21 +77,12 @@ exports[`Component: Input ui visible label 1`] = `
     </label>
     <input
       class="form-control"
+      defaultvalue=""
       id="firstName"
       type="text"
-      value=""
     />
     Some error
   </div>
 </div>
 `;
 
-exports[`reactStrapInput 1`] = `
-<div>
-  <input
-    class="form-control"
-    id="10"
-    type="text"
-  />
-</div>
-`;

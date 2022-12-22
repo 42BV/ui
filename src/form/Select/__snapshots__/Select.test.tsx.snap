@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Select ui default 1`] = `
+exports[`Component: Select > ui > default 1`] = `
 <div>
   <div
     class="mb-3"
@@ -31,7 +31,7 @@ exports[`Component: Select ui default 1`] = `
 </div>
 `;
 
-exports[`Component: Select ui loading 1`] = `
+exports[`Component: Select > ui > loading 1`] = `
 <div>
   <div
     class="mb-3"

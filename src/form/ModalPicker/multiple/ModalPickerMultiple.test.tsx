@@ -1,14 +1,23 @@
 import React from 'react';
+import { Mock, vi } from 'vitest';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import { ModalPickerMultiple } from './ModalPickerMultiple';
-import { adminUser, coordinatorUser, listOfUsers, randomUser, userUser } from '../../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  randomUser,
+  userUser
+} from '../../../test/fixtures';
 
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
-import { ModalPickerAddButtonOptions, ModalPickerButtonAlignment } from '../types';
+import {
+  ModalPickerAddButtonOptions,
+  ModalPickerButtonAlignment
+} from '../types';
 import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { Color } from '../../../core/types';
@@ -16,8 +25,8 @@ import { IsOptionEnabled } from '../../option';
 import { icons } from '../../../core/Icon';
 import lodash from 'lodash';
 
-jest.mock('../../useOptions', () => {
-  return { useOptions: jest.fn() };
+vi.mock('../../useOptions', () => {
+  return { useOptions: vi.fn() };
 });
 
 describe('Component: ModalPickerMultiple', () => {
@@ -51,10 +60,10 @@ describe('Component: ModalPickerMultiple', () => {
     isOptionEnabled?: IsOptionEnabled<User>;
     canClear?: boolean;
     pageSize?: number;
-    addButtonCallbackSpy?: jest.Mock;
+    addButtonCallbackSpy?: Mock;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
     // We might reuse the page, so it can be unshifted by `addButtonClicked`
     let page: Page<User> | undefined = undefined;
@@ -103,12 +112,12 @@ describe('Component: ModalPickerMultiple', () => {
       alignButton,
       renderValue: hasRenderValue
         ? (users?: User[]) => (
-          <span>
+            <span>
               {users
                 ? users.map((user) => user.id).join(', ')
                 : 'none selected'}
             </span>
-        )
+          )
         : undefined,
       renderOptions: hasRenderOptions
         ? () => <span>RenderOptions</span>
@@ -121,9 +130,7 @@ describe('Component: ModalPickerMultiple', () => {
       hiddenLabel: !hasLabel
     };
 
-    const { container, rerender } = render(
-      <ModalPickerMultiple {...props} />
-    );
+    const { container, rerender } = render(<ModalPickerMultiple {...props} />);
 
     return {
       container,
@@ -144,19 +151,21 @@ describe('Component: ModalPickerMultiple', () => {
       expect(document.body.lastChild).toMatchSnapshot('modal');
     });
 
-    test('with label', () => {
+    test('with label', async () => {
+      expect.assertions(4);
       setup({
         hasLabel: true
       });
-      expect(screen.queryByText('Best friend')).toBeInTheDocument();
+      await screen.findByText('Best friend');
     });
 
-    test('with search', () => {
+    test('with search', async () => {
+      expect.assertions(4);
       setup({
         canSearch: true
       });
       fireEvent.click(screen.getByText('Select your best friend'));
-      expect(screen.queryByRole('searchbox')).toBeInTheDocument();
+      await screen.findByRole('searchbox');
     });
 
     test('without search', () => {
@@ -164,20 +173,24 @@ describe('Component: ModalPickerMultiple', () => {
         canSearch: false
       });
       fireEvent.click(screen.getByText('Select your best friend'));
-      expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
+      expect(screen.queryByRole('searchbox')).toBeNull();
     });
 
-    test('with value', () => {
+    test('with value', async () => {
+      expect.assertions(6);
+
       setup({
-        value: [ adminUser(), userUser() ]
+        value: [adminUser(), userUser()]
       });
 
-      expect(screen.queryByText('admin@42.nl, user@42.nl')).toBeInTheDocument();
+      await screen.findByText('admin@42.nl, user@42.nl');
 
       fireEvent.click(screen.getByText('Select your best friend'));
 
       expect(screen.queryAllByText('×').length).toBe(2);
-      expect(screen.queryAllByText('×').map((e) => e.parentNode?.textContent)).toEqual([ 'admin@42.nl×', 'user@42.nl×' ]);
+      expect(
+        screen.queryAllByText('×').map((e) => e.parentNode?.textContent)
+      ).toEqual(['admin@42.nl×', 'user@42.nl×']);
     });
 
     test('without value', () => {
@@ -192,14 +205,17 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render the options with the correct checked state', () => {
       setup({
-        value: [ adminUser(), coordinatorUser() ]
+        value: [adminUser(), coordinatorUser()]
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
 
-      expect(screen.getAllByRole('checkbox')[0]).toBeChecked();
-      expect(screen.getAllByRole('checkbox')[1]).toBeChecked();
-      expect(screen.getAllByRole('checkbox')[2]).not.toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('checkbox')[0].checked).toEqual(true);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('checkbox')[1].checked).toEqual(true);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getAllByRole('checkbox')[2].checked).toEqual(false);
     });
 
     it('should disable options when isOptionEnabled is false', () => {
@@ -209,9 +225,12 @@ describe('Component: ModalPickerMultiple', () => {
 
       fireEvent.click(screen.getByText('Select your best friend'));
 
-      expect(screen.getAllByRole('checkbox')[0]).not.toBeDisabled();
-      expect(screen.getAllByRole('checkbox')[1]).toBeDisabled();
-      expect(screen.getAllByRole('checkbox')[2]).toBeDisabled();
+      // @ts-expect-error Form elements have property disabled
+      expect(screen.getAllByRole('checkbox')[0].disabled).toEqual(false);
+      // @ts-expect-error Form elements have property disabled
+      expect(screen.getAllByRole('checkbox')[1].disabled).toEqual(true);
+      // @ts-expect-error Form elements have property disabled
+      expect(screen.getAllByRole('checkbox')[2].disabled).toEqual(true);
     });
 
     it('should only render 2 options when pageSize is set to 2', () => {
@@ -226,64 +245,118 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render button left', () => {
       setup({
-        value: [ adminUser() ],
+        value: [adminUser()],
         alignButton: 'left'
       });
 
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center flex-row-reverse justify-content-end');
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('align-items-center')
+      ).toBe(true);
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('flex-row-reverse')
+      ).toBe(true);
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('justify-content-end')
+      ).toBe(true);
     });
 
     it('should render button right without value', () => {
       setup({
         alignButton: 'right'
       });
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-end');
-      expect(screen.getByText('Select your best friend').parentNode).not.toHaveClass('flex-row-reverse');
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('align-items-center')
+      ).toBe(true);
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('flex-row-reverse')
+      ).toBe(false);
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('justify-content-end')
+      ).toBe(true);
     });
 
     it('should render button right with value', () => {
       setup({
-        value: [ adminUser() ],
+        value: [adminUser()],
         alignButton: 'right'
       });
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-between');
-      expect(screen.getByText('Select your best friend').parentNode).not.toHaveClass('flex-row-reverse');
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('align-items-center')
+      ).toBe(true);
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('flex-row-reverse')
+      ).toBe(false);
+      expect(
+        screen
+          .getByText('Select your best friend')
+          // @ts-expect-error HTMLElement has property classList
+          .parentNode?.classList.contains('justify-content-between')
+      ).toBe(true);
     });
 
     it('should render without clear button', () => {
       setup({
-        value: [ adminUser() ],
+        value: [adminUser()],
         canClear: false
       });
-      expect(screen.queryByText('Clear')).not.toBeInTheDocument();
+      expect(screen.queryByText('Clear')).toBeNull();
     });
 
     describe('renderValue', () => {
-      it('should be able to use custom function to render values', () => {
+      it('should be able to use custom function to render values', async () => {
+        expect.assertions(4);
         setup({
           hasRenderValue: true
         });
-        expect(screen.queryByText('none selected')).toBeInTheDocument();
+        await screen.findByText('none selected');
       });
 
       it('should use the default ModalPickerValueTruncator to render values', () => {
         setup({
-          value: [ adminUser() ],
+          value: [adminUser()],
           hasRenderValue: false
         });
-        expect(screen.getByText('admin@42.nl')).toHaveClass('text-truncate');
+        expect(
+          screen.getByText('admin@42.nl').classList.contains('text-truncate')
+        ).toBe(true);
       });
     });
 
-    it('should be able to use custom function to render options', () => {
+    it('should be able to use custom function to render options', async () => {
+      expect.assertions(4);
+
       setup({
-        value: [ adminUser() ],
+        value: [adminUser()],
         hasRenderOptions: true
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
 
-      expect(screen.queryByText('RenderOptions')).toBeInTheDocument();
+      await screen.findByText('RenderOptions');
     });
 
     test('loading', () => {
@@ -306,7 +379,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should fetch options when the user searches', () => {
       // @ts-expect-error Test mock
-      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+      vi.spyOn(lodash, 'debounce').mockImplementation((fn) => {
         return fn;
       });
 
@@ -315,7 +388,9 @@ describe('Component: ModalPickerMultiple', () => {
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
       expect(useOptions).toHaveBeenLastCalledWith(
         expect.objectContaining({ query: 'test', pageNumber: 1 })
@@ -358,14 +433,14 @@ describe('Component: ModalPickerMultiple', () => {
       fireEvent.click(screen.getByText('Select'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([ adminUser() ]);
+      expect(onChangeSpy).toHaveBeenCalledWith([adminUser()]);
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should clear the value when the user clicks the clear button', () => {
       const { onChangeSpy } = setup({
-        value: [ adminUser(), coordinatorUser() ]
+        value: [adminUser(), coordinatorUser()]
       });
 
       fireEvent.click(screen.getByText('Clear'));
@@ -376,7 +451,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should remove the value after clicking select when the user removes a selected value via the tag inside the modal', () => {
       const { onChangeSpy } = setup({
-        value: [ adminUser() ]
+        value: [adminUser()]
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
@@ -392,7 +467,7 @@ describe('Component: ModalPickerMultiple', () => {
         expect.assertions(9);
 
         const { promise, resolve } = testUtils.resolvablePromise();
-        const addButtonCallbackSpy = jest.fn().mockReturnValueOnce(promise);
+        const addButtonCallbackSpy = vi.fn().mockReturnValueOnce(promise);
 
         setup({
           value: undefined,
@@ -415,14 +490,15 @@ describe('Component: ModalPickerMultiple', () => {
 
         expect(screen.queryAllByText(addedUser.email).length).toBe(2);
         expect(screen.queryAllByRole('checkbox').length).toBe(4);
-        expect(screen.getAllByRole('checkbox')[0]).toBeChecked();
+        // @ts-expect-error Checkbox has property checked
+        expect(screen.getAllByRole('checkbox')[0].checked).toEqual(true);
       });
 
       it('should hide when the promise is rejected', async () => {
         expect.assertions(7);
 
         const { promise, reject } = testUtils.rejectablePromise();
-        const addButtonCallbackSpy = jest.fn().mockReturnValueOnce(promise);
+        const addButtonCallbackSpy = vi.fn().mockReturnValueOnce(promise);
 
         setup({
           value: undefined,
@@ -447,40 +523,40 @@ describe('Component: ModalPickerMultiple', () => {
   });
 
   describe('value changes', () => {
-    test('becomes empty', () => {
-      const value = [ adminUser() ];
+    test('becomes empty', async () => {
+      expect.assertions(5);
+
+      const value = [adminUser()];
 
       const { props, rerender } = setup({ value: value });
 
-      expect(screen.queryByText('admin@42.nl')).toBeInTheDocument();
+      await screen.findByText('admin@42.nl');
 
       const newProps = {
         ...props,
         value: undefined
       };
 
-      rerender(
-        <ModalPickerMultiple {...newProps} />
-      );
+      rerender(<ModalPickerMultiple {...newProps} />);
 
-      expect(screen.queryByText('admin@42.nl')).not.toBeInTheDocument();
+      expect(screen.queryByText('admin@42.nl')).toBeNull();
     });
 
-    test('becomes filled', () => {
+    test('becomes filled', async () => {
+      expect.assertions(5);
+
       const { props, rerender } = setup({});
 
-      expect(screen.queryByText('admin@42.nl')).not.toBeInTheDocument();
+      expect(screen.queryByText('admin@42.nl')).toBeNull();
 
       const newProps = {
         ...props,
-        value: [ adminUser() ]
+        value: [adminUser()]
       };
 
-      rerender(
-        <ModalPickerMultiple {...newProps} />
-      );
+      rerender(<ModalPickerMultiple {...newProps} />);
 
-      expect(screen.queryByText('admin@42.nl')).toBeInTheDocument();
+      await screen.queryByText('admin@42.nl');
     });
   });
 });

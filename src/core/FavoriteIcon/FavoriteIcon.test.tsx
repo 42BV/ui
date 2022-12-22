@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { FavoriteIcon } from './FavoriteIcon';
 import { Color } from '../types';
@@ -20,7 +20,7 @@ describe('Component: FavoriteIcon', () => {
     activeColor?: Color;
     size?: number;
   }) {
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const { container } = render(
       <FavoriteIcon
@@ -37,38 +37,53 @@ describe('Component: FavoriteIcon', () => {
   }
 
   describe('ui', () => {
-    test('favorite', () => {
+    test('favorite', async () => {
+      expect.assertions(2);
+
       const { container } = setup({ value: true });
 
-      expect(screen.queryByText('star')).toBeInTheDocument();
-      expect(screen.queryByText('star_border')).not.toBeInTheDocument();
+      await screen.findByText('star');
+      expect(screen.queryByText('star_border')).toBeNull();
       expect(container).toMatchSnapshot();
     });
 
-    test('not favorite', () => {
+    test('not favorite', async () => {
+      expect.assertions(2);
+
       const { container } = setup({ value: false });
 
-      expect(screen.queryByText('star')).not.toBeInTheDocument();
-      expect(screen.queryByText('star_border')).toBeInTheDocument();
+      expect(screen.queryByText('star')).toBeNull();
+      await screen.queryByText('star_border');
       expect(container).toMatchSnapshot();
     });
 
     test('size', () => {
       const { container } = setup({ value: false, size: 10 });
 
-      expect(container.firstChild).toHaveStyle({ fontSize: 10 });
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).fontSize).toBe('10px');
     });
 
     test('color', () => {
       const { container } = setup({ value: false, color: 'primary' });
 
-      expect(container.firstChild).toHaveClass('text-primary');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('text-primary')).toBe(
+        true
+      );
     });
 
     test('active color', () => {
-      const { container } = setup({ value: true, color: 'primary', activeColor: 'success' });
+      const { container } = setup({
+        value: true,
+        color: 'primary',
+        activeColor: 'success'
+      });
 
-      expect(container.firstChild).toHaveClass('text-success');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('text-success')).toBe(
+        true
+      );
     });
 
     describe('hoverColor', () => {
@@ -83,7 +98,10 @@ describe('Component: FavoriteIcon', () => {
 
         await userEvent.hover(screen.getByText('star'));
 
-        expect(container.firstChild).toHaveClass('text-success');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-success')).toBe(
+          true
+        );
       });
 
       it('should use activeColor when hoverColor is not defined', async () => {
@@ -93,7 +111,10 @@ describe('Component: FavoriteIcon', () => {
 
         await userEvent.hover(screen.getByText('star'));
 
-        expect(container.firstChild).toHaveClass('text-primary');
+        // @ts-expect-error HTMLElement has property classList
+        expect(container.firstChild.classList.contains('text-primary')).toBe(
+          true
+        );
       });
     });
   });

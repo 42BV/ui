@@ -1,17 +1,33 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { Loading } from './Loading';
 
-storiesOf('core/Loading', module)
-  .addParameters({ component: Loading })
-  .add('default', () => {
-    return <Loading />;
-  })
-  .add('custom text', () => {
-    return (
-      <Loading>
-        We are <b>loading</b> the world!
-      </Loading>
-    );
-  });
+export default {
+  title: 'core/Loading',
+
+  parameters: {
+    component: Loading
+  }
+};
+
+const DefaultStory = () => {
+  return <Loading />;
+};
+
+export const Default = {
+  render: DefaultStory,
+  name: 'default'
+};
+
+const CustomTextStory = () => {
+  return (
+    <Loading>
+      We are <b>loading</b> the world!
+    </Loading>
+  );
+};
+
+export const CustomText = {
+  render: CustomTextStory,
+  name: 'custom text'
+};

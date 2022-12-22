@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ImageUpload ui edit as circle 1`] = `
+exports[`Component: ImageUpload > ui > edit as circle 1`] = `
 <div>
   <div>
     <div
@@ -13,80 +13,19 @@ exports[`Component: ImageUpload ui edit as circle 1`] = `
       >
         Profile photo
       </label>
+      <input
+        accept="image/*"
+        id="image-uploader"
+        type="file"
+      />
       <div
-        class="d-flex justify-content-center"
+        class="img-upload-wrapper bg-faded text-muted"
       >
-        <div
-          data-testid="scroll-scale"
+        <i
+          class="icon material-icons"
         >
-          <canvas
-            height="300"
-            style="width: 300px; height: 300px; cursor: grab;"
-            width="300"
-          />
-        </div>
-      </div>
-      <div
-        class="d-flex justify-content-center mt-1 mb-3"
-      >
-        <span
-          class="button mt-2 secondary d-inline-block"
-        >
-          <i
-            class="icon material-icons text-secondary clickable"
-            style="font-size: 24px;"
-          >
-            rotate_left
-          </i>
-        </span>
-        <span
-          class="button ms-1 mt-2 secondary d-inline-block"
-        >
-          <i
-            class="icon material-icons text-secondary clickable"
-            style="font-size: 24px;"
-          >
-            rotate_right
-          </i>
-        </span>
-        <span
-          class="button d-inline-block ms-3 secondary"
-        >
-          <button
-            class="btn btn-secondary btn-md"
-            type="button"
-          >
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <i
-                class="icon button-icon me-2 material-icons"
-              >
-                cancel
-              </i>
-              Cancel
-            </div>
-          </button>
-        </span>
-        <span
-          class="button d-inline-block ms-1 primary"
-        >
-          <button
-            class="btn btn-primary btn-md"
-            type="button"
-          >
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <i
-                class="icon button-icon me-2 material-icons"
-              >
-                done
-              </i>
-              Done
-            </div>
-          </button>
-        </span>
+          add_a_photo
+        </i>
       </div>
       Some error
     </div>
@@ -94,7 +33,7 @@ exports[`Component: ImageUpload ui edit as circle 1`] = `
 </div>
 `;
 
-exports[`Component: ImageUpload ui edit as rect 1`] = `
+exports[`Component: ImageUpload > ui > edit as rect 1`] = `
 <div>
   <div>
     <div
@@ -107,80 +46,19 @@ exports[`Component: ImageUpload ui edit as rect 1`] = `
       >
         Profile photo
       </label>
+      <input
+        accept="image/*"
+        id="image-uploader"
+        type="file"
+      />
       <div
-        class="d-flex justify-content-center"
+        class="img-upload-wrapper bg-faded text-muted"
       >
-        <div
-          data-testid="scroll-scale"
+        <i
+          class="icon material-icons"
         >
-          <canvas
-            height="550"
-            style="width: 550px; height: 550px; cursor: grab;"
-            width="550"
-          />
-        </div>
-      </div>
-      <div
-        class="d-flex justify-content-center mt-1 mb-3"
-      >
-        <span
-          class="button mt-2 secondary d-inline-block"
-        >
-          <i
-            class="icon material-icons text-secondary clickable"
-            style="font-size: 24px;"
-          >
-            rotate_left
-          </i>
-        </span>
-        <span
-          class="button ms-1 mt-2 secondary d-inline-block"
-        >
-          <i
-            class="icon material-icons text-secondary clickable"
-            style="font-size: 24px;"
-          >
-            rotate_right
-          </i>
-        </span>
-        <span
-          class="button d-inline-block ms-3 secondary"
-        >
-          <button
-            class="btn btn-secondary btn-md"
-            type="button"
-          >
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <i
-                class="icon button-icon me-2 material-icons"
-              >
-                cancel
-              </i>
-              Cancel
-            </div>
-          </button>
-        </span>
-        <span
-          class="button d-inline-block ms-1 primary"
-        >
-          <button
-            class="btn btn-primary btn-md"
-            type="button"
-          >
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <i
-                class="icon button-icon me-2 material-icons"
-              >
-                done
-              </i>
-              Done
-            </div>
-          </button>
-        </span>
+          add_a_photo
+        </i>
       </div>
       Some error
     </div>
@@ -188,7 +66,7 @@ exports[`Component: ImageUpload ui edit as rect 1`] = `
 </div>
 `;
 
-exports[`Component: ImageUpload ui file-selected as circle 1`] = `
+exports[`Component: ImageUpload > ui > file-selected as circle 1`] = `
 <div>
   <div>
     <div
@@ -201,57 +79,19 @@ exports[`Component: ImageUpload ui file-selected as circle 1`] = `
       >
         Profile photo
       </label>
+      <input
+        accept="image/*"
+        id="image-uploader"
+        type="file"
+      />
       <div
-        class="d-flex justify-content-center"
+        class="img-upload-wrapper bg-faded text-muted"
       >
-        <img
-          alt="Profile photo"
-          class="img-fluid elevated-3"
-          src=""
-          style="border-radius: 50%;"
-        />
-      </div>
-      <div
-        class="text-center mt-1 mb-3"
-      >
-        <span
-          class="button d-inline-block primary"
+        <i
+          class="icon material-icons"
         >
-          <button
-            class="btn btn-primary btn-md"
-            type="button"
-          >
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <i
-                class="icon button-icon me-2 material-icons"
-              >
-                camera_roll
-              </i>
-              Change
-            </div>
-          </button>
-        </span>
-        <span
-          class="button d-inline-block ms-1 danger"
-        >
-          <button
-            class="btn btn-danger btn-md"
-            type="button"
-          >
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <i
-                class="icon button-icon me-2 material-icons"
-              >
-                delete
-              </i>
-              Remove
-            </div>
-          </button>
-        </span>
+          add_a_photo
+        </i>
       </div>
       Some error
     </div>
@@ -259,64 +99,27 @@ exports[`Component: ImageUpload ui file-selected as circle 1`] = `
 </div>
 `;
 
-exports[`Component: ImageUpload ui file-selected as rect 1`] = `
+exports[`Component: ImageUpload > ui > file-selected as rect 1`] = `
 <div>
   <div>
     <div
       class="img-upload mb-3"
       color="success"
     >
+      <input
+        accept="image/*"
+        aria-label="Profile photo"
+        id="1"
+        type="file"
+      />
       <div
-        class="d-flex justify-content-center"
+        class="img-upload-wrapper bg-faded text-muted"
       >
-        <img
-          alt="Profile photo"
-          class="img-fluid elevated-3"
-          src=""
-          style="border-radius: 0;"
-        />
-      </div>
-      <div
-        class="text-center mt-1 mb-3"
-      >
-        <span
-          class="button d-inline-block primary"
+        <i
+          class="icon material-icons"
         >
-          <button
-            class="btn btn-primary btn-md"
-            type="button"
-          >
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <i
-                class="icon button-icon me-2 material-icons"
-              >
-                camera_roll
-              </i>
-              Change
-            </div>
-          </button>
-        </span>
-        <span
-          class="button d-inline-block ms-1 danger"
-        >
-          <button
-            class="btn btn-danger btn-md"
-            type="button"
-          >
-            <div
-              class="d-flex justify-content-center align-items-center"
-            >
-              <i
-                class="icon button-icon me-2 material-icons"
-              >
-                delete
-              </i>
-              Remove
-            </div>
-          </button>
-        </span>
+          add_a_photo
+        </i>
       </div>
       Some error
     </div>
@@ -324,7 +127,7 @@ exports[`Component: ImageUpload ui file-selected as rect 1`] = `
 </div>
 `;
 
-exports[`Component: ImageUpload ui no-file 1`] = `
+exports[`Component: ImageUpload > ui > no-file 1`] = `
 <div>
   <div>
     <div

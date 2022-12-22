@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { AddonIcon } from './AddonIcon';
 
@@ -20,6 +19,8 @@ describe('Component: AddonIcon', () => {
 
   test('custom class', () => {
     setup({ className: 'extra-class' });
-    expect(screen.getByText('360')).toHaveClass('extra-class');
+    expect(screen.getByText('360').classList.contains('extra-class')).toBe(
+      true
+    );
   });
 });

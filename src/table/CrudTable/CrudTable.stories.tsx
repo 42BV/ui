@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Alert, Card } from 'reactstrap';
 import { capitalize, every, lowerCase, startsWith } from 'lodash';
@@ -29,67 +28,80 @@ import { AttributeList } from '../../core/lists/AttributeList/AttributeList';
 import { AttributeView } from '../../core/lists/AttributeView/AttributeView';
 import { Person, persons } from '../../story-utils';
 
-storiesOf('table/CrudTable', module)
-  .addParameters({ component: CrudTable })
-  .addDecorator((Story) => (
-    <>
-      <Alert color="warning" className="mb-4">
-        <p>To be able to use CrudTable, you have to add lodash, overlayscrollbars and overlayscrollbars-react to your dependencies:</p>
-        <code>npm install --save lodash overlayscrollbars overlayscrollbars-react</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
-        <code>@import &apos;overlayscrollbars/overlayscrollbars.css&apos;;</code>
-      </Alert>
-      <Alert color="warning" className="mb-4">
-        <p>To be able to use CrudTable with Page, you have to add @42.nl/spring-connect to your dependencies:</p>
-        <code>npm install --save @42.nl/spring-connect</code>
-      </Alert>
-      <Story />
-    </>
-  ))
-  .add('simple example', () => {
-    const columns = {
-      firstName: 300,
-      lastName: 200,
-      age: 200
-    };
+export default {
+  title: 'table/CrudTable',
 
-    const [ page, setPage ] = useState(1);
+  decorators: [
+    (Story) => (
+      <>
+        <Alert color="warning" className="mb-4">
+          <p>
+            To be able to use CrudTable, you have to add lodash,
+            overlayscrollbars and overlayscrollbars-react to your dependencies:
+          </p>
+          <code>
+            npm install --save lodash overlayscrollbars overlayscrollbars-react
+          </code>
+          <p className="mb-0 mt-2">
+            You also have to add the stylesheet to your project
+          </p>
+          <code>
+            @import &apos;overlayscrollbars/overlayscrollbars.css&apos;;
+          </code>
+        </Alert>
+        <Alert color="warning" className="mb-4">
+          <p>
+            To be able to use CrudTable with Page, you have to add
+            @42.nl/spring-connect to your dependencies:
+          </p>
+          <code>npm install --save @42.nl/spring-connect</code>
+        </Alert>
+        <Story />
+      </>
+    )
+  ],
 
-    const pageOfPersons = pageOf(persons, page, 20);
+  parameters: {
+    component: CrudTable
+  }
+};
 
-    const [ detail, setDetail ] = useState(-1);
+const SimpleExampleStory = () => {
+  const columns = {
+    firstName: 300,
+    lastName: 200,
+    age: 200
+  };
 
-    const [ loading, setLoading ] = useState(false);
+  const [page, setPage] = useState(1);
 
-    useEffect(() => {
-      setLoading(true);
+  const pageOfPersons = pageOf(persons, page, 20);
 
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    }, []);
+  const [detail, setDetail] = useState(-1);
 
-    return (
-      <Card body>
-        <CrudTable
-          page={pageOfPersons}
-          pageChanged={setPage}
-        >
-          <EpicRow header>
-            <CrudHeader width={columns.firstName}>
-              First name
-            </CrudHeader>
-            <CrudHeader width={columns.firstName}>
-              Last name
-            </CrudHeader>
-            <CrudHeader width={columns.firstName}>
-              Age
-            </CrudHeader>
-          </EpicRow>
+  const [loading, setLoading] = useState(false);
 
-          {loading ? (
-            <ContentState mode="loading" title="Loading..." />
-          ) : pageOfPersons.content.map((person) => (
+  useEffect(() => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  return (
+    <Card body>
+      <CrudTable page={pageOfPersons} pageChanged={setPage}>
+        <EpicRow header>
+          <CrudHeader width={columns.firstName}>First name</CrudHeader>
+          <CrudHeader width={columns.firstName}>Last name</CrudHeader>
+          <CrudHeader width={columns.firstName}>Age</CrudHeader>
+        </EpicRow>
+
+        {loading ? (
+          <ContentState mode="loading" title="Loading..." />
+        ) : (
+          pageOfPersons.content.map((person) => (
             <EpicRow key={person.id} onClick={() => setDetail(person.id)}>
               <EpicCell width={columns.firstName}>
                 <span
@@ -99,170 +111,183 @@ storiesOf('table/CrudTable', module)
                   {person.firstName}
                 </span>
               </EpicCell>
-              <EpicCell width={columns.lastName}>
-                {person.lastName}
-              </EpicCell>
-              <EpicCell width={columns.age}>
-                {person.age}
-              </EpicCell>
+              <EpicCell width={columns.lastName}>{person.lastName}</EpicCell>
+              <EpicCell width={columns.age}>{person.age}</EpicCell>
             </EpicRow>
-          ))}
-          <EpicDetailRow left={columns.firstName} active={detail > 0}>
-            {() => {
-              const person = pageOfPersons.content.find(p => p.id === detail);
+          ))
+        )}
+        <EpicDetailRow left={columns.firstName} active={detail > 0}>
+          {() => {
+            const person = pageOfPersons.content.find((p) => p.id === detail);
 
-              if (!person) {
-                return <EpicDetail onClose={() => setDetail(-1)}>Person not found</EpicDetail>;
-              }
-
+            if (!person) {
               return (
                 <EpicDetail onClose={() => setDetail(-1)}>
-                  <AttributeList>
-                    {Object.keys(person).map((column) => (
-                      <AttributeView key={column} label={capitalize(column.replace(/([A-Z])/, ' $1'))}>
-                        {person[column]}
-                      </AttributeView>
-                    ))}
-                  </AttributeList>
+                  Person not found
                 </EpicDetail>
               );
-            }}
-          </EpicDetailRow>
-        </CrudTable>
-      </Card>
-    );
-  })
-  .add('full example', () => {
-    const [ columns, setColumns ] = useState(() => ({
-      firstName: 300,
-      lastName: 200,
-      age: 200,
-      eyeColor: 200,
-      height: 150,
-      weight: 150,
-      jobTitle: 200,
-      favoriteMovie: 300,
-      favoriteFood: 200,
-      sex: 200,
-      dateOfBirth: 200
-    }));
+            }
 
-    function changeSize(name: keyof Person, width: number) {
-      setColumns((widths) => ({ ...widths, [name]: width }));
-    }
+            return (
+              <EpicDetail onClose={() => setDetail(-1)}>
+                <AttributeList>
+                  {Object.keys(person).map((column) => (
+                    <AttributeView
+                      key={column}
+                      label={capitalize(column.replace(/([A-Z])/, ' $1'))}
+                    >
+                      {person[column]}
+                    </AttributeView>
+                  ))}
+                </AttributeList>
+              </EpicDetail>
+            );
+          }}
+        </EpicDetailRow>
+      </CrudTable>
+    </Card>
+  );
+};
 
-    const [ filters, setFilters ] = useState(() => ({
-      firstName: '',
-      lastName: '',
-      age: '',
-      eyeColor: '',
-      height: '',
-      weight: '',
-      jobTitle: '',
-      favoriteMovie: '',
-      favoriteFood: '',
-      sex: '',
-      dateOfBirth: ''
-    }));
+export const SimpleExample = {
+  render: SimpleExampleStory,
+  name: 'simple example'
+};
 
-    function filterChanged(name: keyof Person, value: string) {
-      setPage(1);
-      setFilters({ ...filters, [name]: value });
-    }
+const FullExampleStory = () => {
+  const [columns, setColumns] = useState(() => ({
+    firstName: 300,
+    lastName: 200,
+    age: 200,
+    eyeColor: 200,
+    height: 150,
+    weight: 150,
+    jobTitle: 200,
+    favoriteMovie: 300,
+    favoriteFood: 200,
+    sex: 200,
+    dateOfBirth: 200
+  }));
 
-    const filteredPersons = persons.filter((person) => {
-      return every(filters, (value, key) => {
-        const text = person[key];
+  function changeSize(name: keyof Person, width: number) {
+    setColumns((widths) => ({ ...widths, [name]: width }));
+  }
 
-        if (!value || value === 'all') {
-          return true;
-        }
+  const [filters, setFilters] = useState(() => ({
+    firstName: '',
+    lastName: '',
+    age: '',
+    eyeColor: '',
+    height: '',
+    weight: '',
+    jobTitle: '',
+    favoriteMovie: '',
+    favoriteFood: '',
+    sex: '',
+    dateOfBirth: ''
+  }));
 
-        return startsWith(lowerCase(text), lowerCase(value));
-      });
-    });
+  function filterChanged(name: keyof Person, value: string) {
+    setPage(1);
+    setFilters({ ...filters, [name]: value });
+  }
 
-    const [ sort, setSort ] = useState<{
-      direction: EpicTableSortDirection;
-      column: string;
-    }>({ direction: 'NONE', column: 'firstName' });
+  const filteredPersons = persons.filter((person) => {
+    return every(filters, (value, key) => {
+      const text = person[key];
 
-    function changeSort(
-      column: keyof Person,
-      direction: EpicTableSortDirection
-    ) {
-      setPage(1);
-      setSort({ direction, column });
-    }
-
-    const sortFn =
-      sort.direction === 'ASC'
-        ? (a, b) => `${a[sort.column]}`.localeCompare(`${b[sort.column]}`)
-        : (a, b) => `${b[sort.column]}`.localeCompare(`${a[sort.column]}`);
-
-    filteredPersons.sort(sortFn);
-
-    const [ page, setPage ] = useState(1);
-
-    const pageOfPersons = pageOf(filteredPersons, page, 20);
-
-    const [ selected, setSelected ] = useState<Person[]>([]);
-
-    function onSelect(person: Person, checked: boolean) {
-      if (checked) {
-        selected.push(person);
-        setSelected([ ...selected ]);
-      } else {
-        const nextSelected = selected.filter((p) => p.id !== person.id);
-
-        setSelected(nextSelected);
+      if (!value || value === 'all') {
+        return true;
       }
+
+      return startsWith(lowerCase(text), lowerCase(value));
+    });
+  });
+
+  const [sort, setSort] = useState<{
+    direction: EpicTableSortDirection;
+    column: string;
+  }>({ direction: 'NONE', column: 'firstName' });
+
+  function changeSort(column: keyof Person, direction: EpicTableSortDirection) {
+    setPage(1);
+    setSort({ direction, column });
+  }
+
+  const sortFn =
+    sort.direction === 'ASC'
+      ? (a, b) => `${a[sort.column]}`.localeCompare(`${b[sort.column]}`)
+      : (a, b) => `${b[sort.column]}`.localeCompare(`${a[sort.column]}`);
+
+  filteredPersons.sort(sortFn);
+
+  const [page, setPage] = useState(1);
+
+  const pageOfPersons = pageOf(filteredPersons, page, 20);
+
+  const [selected, setSelected] = useState<Person[]>([]);
+
+  function onSelect(person: Person, checked: boolean) {
+    if (checked) {
+      selected.push(person);
+      setSelected([...selected]);
+    } else {
+      const nextSelected = selected.filter((p) => p.id !== person.id);
+
+      setSelected(nextSelected);
     }
+  }
 
-    const [ detail, setDetail ] = useState(-1);
+  const [detail, setDetail] = useState(-1);
 
-    const [ editing, setEditing ] = useState(-1);
+  const [editing, setEditing] = useState(-1);
 
-    const [ creating, setCreating ] = useState(false);
+  const [creating, setCreating] = useState(false);
 
-    const [ loading, setLoading ] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-      setLoading(true);
+  useEffect(() => {
+    setLoading(true);
 
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    }, []);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
-    return (
-      <Card body>
-        <CrudTable
-          buttons={() => (
-            <Button icon="add" onClick={() => setCreating(true)}>
-              Add person
-            </Button>
-          )}
-          renderSelection={selected.length > 0 ? () => (
-            <>
-              <h2>Selected</h2>
-              <div className="mb-3">
-                {selected.map((person) => (
-                  <Tag
-                    key={person.id}
-                    text={`${person.firstName} ${person.lastName}`}
-                    onRemove={() => onSelect(person, false)}
-                  />
-                ))}
-              </div>
-            </>
-          ) : undefined}
-          page={pageOfPersons}
-          pageChanged={setPage}
-          onSearch={(value) => filterChanged('firstName', value)}
-        >
-          <EpicRow header>
-            {Object.keys(columns).filter(column => column !== 'dateOfBirth').map(((column: keyof Person) => (
+  return (
+    <Card body>
+      <CrudTable
+        buttons={() => (
+          <Button icon="add" onClick={() => setCreating(true)}>
+            Add person
+          </Button>
+        )}
+        renderSelection={
+          selected.length > 0
+            ? () => (
+                <>
+                  <h2>Selected</h2>
+                  <div className="mb-3">
+                    {selected.map((person) => (
+                      <Tag
+                        key={person.id}
+                        text={`${person.firstName} ${person.lastName}`}
+                        onRemove={() => onSelect(person, false)}
+                      />
+                    ))}
+                  </div>
+                </>
+              )
+            : undefined
+        }
+        page={pageOfPersons}
+        pageChanged={setPage}
+        onSearch={(value) => filterChanged('firstName', value)}
+      >
+        <EpicRow header>
+          {Object.keys(columns)
+            .filter((column) => column !== 'dateOfBirth')
+            .map((column: keyof Person) => (
               <CrudHeader
                 key={column}
                 width={columns[column]}
@@ -275,49 +300,48 @@ storiesOf('table/CrudTable', module)
               >
                 {capitalize(column.replace(/([A-Z])/, ' $1'))}
               </CrudHeader>
-            )))}
-            <EpicHeader
-              width={columns.dateOfBirth}
-              height={88}
-              onResize={(width) => changeSize('dateOfBirth', width)}
-            >
-              <EpicCellLayout mode="vertical">
-                <EpicCellLayout mode="horizontal">
-                  Birth date
-                  <EpicSort
-                    direction={
-                      sort.column === 'dateOfBirth' ? sort.direction : 'NONE'
-                    }
-                    onChange={(direction) =>
-                      changeSort('dateOfBirth', direction)
-                    }
-                  />
-                </EpicCellLayout>
-
-                <DateTimeInput
-                  id="dateOfBirth"
-                  label="Date of birth"
-                  hiddenLabel={true}
-                  dateFormat="YYYY-MM-DD"
-                  placeholder="YYYY-MM-DD"
-                  timeFormat={false}
-                  onChange={(date) =>
-                    filterChanged(
-                      'dateOfBirth',
-                      date ? moment(date).format('YYYY-MM-DD') : ''
-                    )
+            ))}
+          <EpicHeader
+            width={columns.dateOfBirth}
+            height={88}
+            onResize={(width) => changeSize('dateOfBirth', width)}
+          >
+            <EpicCellLayout mode="vertical">
+              <EpicCellLayout mode="horizontal">
+                Birth date
+                <EpicSort
+                  direction={
+                    sort.column === 'dateOfBirth' ? sort.direction : 'NONE'
                   }
+                  onChange={(direction) => changeSort('dateOfBirth', direction)}
                 />
               </EpicCellLayout>
-            </EpicHeader>
-            <EpicHeader width={300} height={88}>
-              <div className="px-1 py-1 align-self-start">Actions</div>
-            </EpicHeader>
-          </EpicRow>
 
-          {loading ? (
-            <ContentState mode="loading" title="Loading..." />
-          ) : pageOfPersons.content.map((person) => (
+              <DateTimeInput
+                id="dateOfBirth"
+                label="Date of birth"
+                hiddenLabel={true}
+                dateFormat="YYYY-MM-DD"
+                placeholder="YYYY-MM-DD"
+                timeFormat={false}
+                onChange={(date) =>
+                  filterChanged(
+                    'dateOfBirth',
+                    date ? moment(date).format('YYYY-MM-DD') : ''
+                  )
+                }
+              />
+            </EpicCellLayout>
+          </EpicHeader>
+          <EpicHeader width={300} height={88}>
+            <div className="px-1 py-1 align-self-start">Actions</div>
+          </EpicHeader>
+        </EpicRow>
+
+        {loading ? (
+          <ContentState mode="loading" title="Loading..." />
+        ) : (
+          pageOfPersons.content.map((person) => (
             <EpicRow key={person.id} onClick={() => setDetail(person.id)}>
               <EpicCell width={columns.firstName}>
                 <EpicSelection
@@ -327,57 +351,80 @@ storiesOf('table/CrudTable', module)
                   {person.firstName}
                 </EpicSelection>
               </EpicCell>
-              {Object.keys(columns).filter(column => column !== 'firstName').map((column) => (
-                <EpicCell key={column} width={columns[column]}>
-                  {person[column]}
-                </EpicCell>
-              ))}
+              {Object.keys(columns)
+                .filter((column) => column !== 'firstName')
+                .map((column) => (
+                  <EpicCell key={column} width={columns[column]}>
+                    {person[column]}
+                  </EpicCell>
+                ))}
               <EpicCell width={300}>
-                <ConfirmButton icon="delete" dialogText="Are you sure you want to delete this person?" onConfirm={action('delete')} />
+                <ConfirmButton
+                  icon="delete"
+                  dialogText="Are you sure you want to delete this person?"
+                  onConfirm={action('delete')}
+                />
                 <Button icon="edit" onClick={() => setEditing(person.id)} />
               </EpicCell>
             </EpicRow>
-          ))}
+          ))
+        )}
 
-          <EpicDetailRow left={columns.firstName} active={editing > 0}>
-            {() => (
-              <EpicDetail onClose={() => setEditing(-1)}>
-                <PersonForm person={pageOfPersons.content.find(person => person.id === editing)} />
-              </EpicDetail>
-            )}
-          </EpicDetailRow>
-          <EpicDetailRow left={columns.firstName} active={detail > 0}>
-            {() => {
-              const person = pageOfPersons.content.find(p => p.id === detail);
+        <EpicDetailRow left={columns.firstName} active={editing > 0}>
+          {() => (
+            <EpicDetail onClose={() => setEditing(-1)}>
+              <PersonForm
+                person={pageOfPersons.content.find(
+                  (person) => person.id === editing
+                )}
+              />
+            </EpicDetail>
+          )}
+        </EpicDetailRow>
+        <EpicDetailRow left={columns.firstName} active={detail > 0}>
+          {() => {
+            const person = pageOfPersons.content.find((p) => p.id === detail);
 
-              if (!person) {
-                return <EpicDetail onClose={() => setDetail(-1)}>Person not found</EpicDetail>;
-              }
-
+            if (!person) {
               return (
                 <EpicDetail onClose={() => setDetail(-1)}>
-                  <AttributeList>
-                    {Object.keys(columns).map((column) => (
-                      <AttributeView key={column} label={capitalize(column.replace(/([A-Z])/, ' $1'))}>
-                        {person[column]}
-                      </AttributeView>
-                    ))}
-                  </AttributeList>
+                  Person not found
                 </EpicDetail>
               );
-            }}
-          </EpicDetailRow>
-          <EpicDetailRow left={columns.firstName} active={creating}>
-            {() => (
-              <EpicDetail onClose={() => setCreating(false)}>
-                <PersonForm />
+            }
+
+            return (
+              <EpicDetail onClose={() => setDetail(-1)}>
+                <AttributeList>
+                  {Object.keys(columns).map((column) => (
+                    <AttributeView
+                      key={column}
+                      label={capitalize(column.replace(/([A-Z])/, ' $1'))}
+                    >
+                      {person[column]}
+                    </AttributeView>
+                  ))}
+                </AttributeList>
               </EpicDetail>
-            )}
-          </EpicDetailRow>
-        </CrudTable>
-      </Card>
-    );
-  });
+            );
+          }}
+        </EpicDetailRow>
+        <EpicDetailRow left={columns.firstName} active={creating}>
+          {() => (
+            <EpicDetail onClose={() => setCreating(false)}>
+              <PersonForm />
+            </EpicDetail>
+          )}
+        </EpicDetailRow>
+      </CrudTable>
+    </Card>
+  );
+};
+
+export const FullExample = {
+  render: FullExampleStory,
+  name: 'full example'
+};
 
 function PersonForm({ person }: { person?: Person }) {
   return (
@@ -385,26 +432,20 @@ function PersonForm({ person }: { person?: Person }) {
       {() => (
         <>
           <Field name="firstName">
-            {({ input }) => (
-              <Input {...input} type="text" label="First name" />
-            )}
+            {({ input }) => <Input {...input} type="text" label="First name" />}
           </Field>
           <Field name="lastName">
-            {({ input }) => (
-              <Input {...input} type="text" label="Last name" />
-            )}
+            {({ input }) => <Input {...input} type="text" label="Last name" />}
           </Field>
           <Field name="age">
-            {({ input }) => (
-              <Input {...input} type="text" label="Age" />
-            )}
+            {({ input }) => <Input {...input} type="text" label="Age" />}
           </Field>
           <Field name="eyeColor">
             {({ input }) => (
               <Select
                 {...input}
                 label="Eye color"
-                options={[ 'all', 'brown', 'green', 'blue' ]}
+                options={['all', 'brown', 'green', 'blue']}
                 labelForOption={(option) => option}
               />
             )}
@@ -414,7 +455,7 @@ function PersonForm({ person }: { person?: Person }) {
               <Select
                 {...input}
                 label="Sex"
-                options={[ 'male', 'female' ]}
+                options={['male', 'female']}
                 labelForOption={(option) => option}
               />
             )}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { Tab } from './Tab';
 
@@ -18,8 +17,8 @@ describe('Component: Tab', () => {
     show?: boolean;
     disabled?: boolean;
   }) {
-    const onClickSpy = jest.fn();
-    const showSpy = jest.fn().mockReturnValue(show);
+    const onClickSpy = vi.fn();
+    const showSpy = vi.fn().mockReturnValue(show);
 
     const { container } = render(
       <Tab
@@ -53,37 +52,48 @@ describe('Component: Tab', () => {
 
     test('without icon', () => {
       setup({});
-      expect(screen.queryByText('close')).not.toBeInTheDocument();
+      expect(screen.queryByText('close')).toBeNull();
     });
 
-    test('with icon', () => {
+    test('with icon', async () => {
+      expect.assertions(0);
       setup({ hasIcon: true });
-      expect(screen.queryByText('close')).toBeInTheDocument();
+      await screen.findByText('close');
     });
 
     test('icon color', () => {
       setup({ hasIcon: true, hasIconColor: true });
-      expect(screen.getByText('close')).toHaveClass('text-primary');
+      expect(screen.getByText('close').classList.contains('text-primary')).toBe(
+        true
+      );
     });
 
     test('active', () => {
       const { container } = setup({ active: true });
-      expect(container.firstChild?.firstChild).toHaveClass('active');
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        container.firstChild?.firstChild?.classList.contains('active')
+      ).toBe(true);
     });
 
     test('not active', () => {
       const { container } = setup({});
-      expect(container.firstChild?.firstChild).not.toHaveClass('active');
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        container.firstChild?.firstChild?.classList.contains('active')
+      ).toBe(false);
     });
 
     test('disabled', () => {
       const { container } = setup({ disabled: true });
-      expect(container.firstChild).toHaveClass('disabled');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('disabled')).toBe(true);
     });
 
     test('not disabled', () => {
       const { container } = setup({ disabled: false });
-      expect(container.firstChild).not.toHaveClass('disabled');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild?.classList.contains('disabled')).toBe(false);
     });
   });
 

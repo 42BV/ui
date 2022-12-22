@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 import { isStrongPassword, NewPasswordInput } from './NewPasswordInput';
 
@@ -15,7 +15,7 @@ describe('Component: NewPasswordInput', () => {
     noSpace?: boolean;
   }) {
     const { container } = render(
-      <NewPasswordInput onChange={jest.fn()} {...props} label="Password" />
+      <NewPasswordInput onChange={vi.fn()} {...props} label="Password" />
     );
     return { container };
   }
@@ -25,44 +25,57 @@ describe('Component: NewPasswordInput', () => {
     expect(container).toMatchSnapshot();
   });
 
-  test('default all rules enabled', () => {
+  test('default all rules enabled', async () => {
+    expect.assertions(0);
     setup({});
-    expect(screen.queryByText('Must contain at least one lowercase letter')).toBeInTheDocument();
-    expect(screen.queryByText('Must contain at least one uppercase letter')).toBeInTheDocument();
-    expect(screen.queryByText('Must contain at least one number')).toBeInTheDocument();
-    expect(screen.queryByText('Must contain at least one special character (@#$%^&+=.,?!)')).toBeInTheDocument();
-    expect(screen.queryByText('Must contain at least 10 characters')).toBeInTheDocument();
-    expect(screen.queryByText('Must not contain any space')).toBeInTheDocument();
+    await screen.findByText('Must contain at least one lowercase letter');
+    await screen.findByText('Must contain at least one uppercase letter');
+    await screen.findByText('Must contain at least one number');
+    await screen.findByText(
+      'Must contain at least one special character (@#$%^&+=.,?!)'
+    );
+    await screen.findByText('Must contain at least 10 characters');
+    await screen.findByText('Must not contain any space');
   });
 
   test('disable lowercase check', () => {
     setup({ lowercase: false });
-    expect(screen.queryByText('Must contain at least one lowercase letter')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least one lowercase letter')
+    ).toBeNull();
   });
 
   test('disable uppercase check', () => {
     setup({ uppercase: false });
-    expect(screen.queryByText('Must contain at least one uppercase letter')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least one uppercase letter')
+    ).toBeNull();
   });
 
   test('disable number check', () => {
     setup({ number: false });
-    expect(screen.queryByText('Must contain at least one number')).not.toBeInTheDocument();
+    expect(screen.queryByText('Must contain at least one number')).toBeNull();
   });
 
   test('disable special character check', () => {
     setup({ specialCharacter: false });
-    expect(screen.queryByText('Must contain at least one special character (@#$%^&+=.,?!)')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        'Must contain at least one special character (@#$%^&+=.,?!)'
+      )
+    ).toBeNull();
   });
 
   test('disable minimum length check', () => {
     setup({ minimumLength: 0 });
-    expect(screen.queryByText('Must contain at least 10 characters')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText('Must contain at least 10 characters')
+    ).toBeNull();
   });
 
   test('disable no space check', () => {
     setup({ noSpace: false });
-    expect(screen.queryByText('Must not contain any space')).not.toBeInTheDocument();
+    expect(screen.queryByText('Must not contain any space')).toBeNull();
   });
 
   describe('isStrongPassword', () => {

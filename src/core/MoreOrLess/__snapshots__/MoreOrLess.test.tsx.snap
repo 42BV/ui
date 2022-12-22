@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: MoreOrLess toggle: closed 1`] = `
+exports[`Component: MoreOrLess > toggle > closed 1`] = `
 <div>
   <div
     class="more-or-less more-or-less-closed"
@@ -24,7 +24,7 @@ exports[`Component: MoreOrLess toggle: closed 1`] = `
 </div>
 `;
 
-exports[`Component: MoreOrLess toggle: open 1`] = `
+exports[`Component: MoreOrLess > toggle > open 1`] = `
 <div>
   <div
     class="more-or-less more-or-less-opened"
@@ -57,7 +57,7 @@ exports[`Component: MoreOrLess toggle: open 1`] = `
 </div>
 `;
 
-exports[`Component: MoreOrLess ui closed 1`] = `
+exports[`Component: MoreOrLess > ui > closed 1`] = `
 <div>
   <div
     class="more-or-less more-or-less-closed"
@@ -81,7 +81,7 @@ exports[`Component: MoreOrLess ui closed 1`] = `
 </div>
 `;
 
-exports[`Component: MoreOrLess ui open 1`] = `
+exports[`Component: MoreOrLess > ui > open 1`] = `
 <div>
   <div
     class="more-or-less more-or-less-opened"

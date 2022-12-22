@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: OpenClose ui open 1`] = `
+exports[`Component: OpenClose > ui > open 1`] = `
 <div>
   <i
     class="icon open-close is-open material-icons"

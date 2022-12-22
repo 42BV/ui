@@ -1,8 +1,12 @@
-import { storiesOf } from '@storybook/react';
 import { ConfirmModal } from './ConfirmModal';
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
-import { ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import {
+  ButtonDropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle
+} from 'reactstrap';
 import { Card } from '../Card/Card';
 
 const disclaimer = (
@@ -19,76 +23,93 @@ const disclaimer = (
   </>
 );
 
-storiesOf('core/ConfirmModal', module)
-  .addParameters({ component: ConfirmModal })
-  .add('in dropdown', () => {
-    const [ isDropdownMenuOpen, setDropdownMenuOpen ] = useState(false);
-    const [ isConfirmModalOpen, setConfirmModalOpen ] = useState(false);
+export default {
+  title: 'core/ConfirmModal',
 
-    return (
-      <Card>
-        {isConfirmModalOpen ? (
-          <ConfirmModal
-            onClose={() => setConfirmModalOpen(false)}
-            onSave={() => {
-              setConfirmModalOpen(false);
-              action('confirm clicked')();
-            }}
-            modalText="Are you sure to delete this user? This operation cannot be undone!"
-          />
-        ) : null}
-        <ButtonDropdown
-          isOpen={isDropdownMenuOpen}
-          toggle={() => setDropdownMenuOpen(!isDropdownMenuOpen)}
-        >
-          <DropdownToggle caret>Actions</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem onClick={() => setConfirmModalOpen(true)}>
-              Delete user
-            </DropdownItem>
-          </DropdownMenu>
-        </ButtonDropdown>
+  parameters: {
+    component: ConfirmModal
+  }
+};
 
-        {disclaimer}
-      </Card>
-    );
-  })
-  .add('with custom text', () => {
-    const [ isDropdownMenuOpen, setDropdownMenuOpen ] = useState(false);
-    const [ isConfirmModalOpen, setConfirmModalOpen ] = useState(false);
+const InDropdownStory = () => {
+  const [isDropdownMenuOpen, setDropdownMenuOpen] = useState(false);
+  const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
 
-    return (
-      <Card>
-        {isConfirmModalOpen ? (
-          <ConfirmModal
-            onClose={() => setConfirmModalOpen(false)}
-            onSave={() => {
-              setConfirmModalOpen(false);
-              action('Confirm clicked')();
-            }}
-            label="PLEASE SAY YES"
-            modalText={
-              <p>
-                Are you sure you want to <strong>delete</strong> all users?
-              </p>
-            }
-            confirmText="YES"
-            cancelText="NO"
-          />
-        ) : null}
-        <ButtonDropdown
-          isOpen={isDropdownMenuOpen}
-          toggle={() => setDropdownMenuOpen(!isDropdownMenuOpen)}
-        >
-          <DropdownToggle caret>Actions - custom text</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem onClick={() => setConfirmModalOpen(true)}>
-              Delete all users
-            </DropdownItem>
-          </DropdownMenu>
-        </ButtonDropdown>
+  return (
+    <Card>
+      {isConfirmModalOpen ? (
+        <ConfirmModal
+          onClose={() => setConfirmModalOpen(false)}
+          onSave={() => {
+            setConfirmModalOpen(false);
+            action('confirm clicked')();
+          }}
+          modalText="Are you sure to delete this user? This operation cannot be undone!"
+        />
+      ) : null}
+      <ButtonDropdown
+        isOpen={isDropdownMenuOpen}
+        toggle={() => setDropdownMenuOpen(!isDropdownMenuOpen)}
+      >
+        <DropdownToggle caret>Actions</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem onClick={() => setConfirmModalOpen(true)}>
+            Delete user
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
 
-        {disclaimer}
-      </Card>
-    );
-  });
+      {disclaimer}
+    </Card>
+  );
+};
+
+export const InDropdown = {
+  render: InDropdownStory,
+  name: 'in dropdown'
+};
+
+const WithCustomTextStory = () => {
+  const [isDropdownMenuOpen, setDropdownMenuOpen] = useState(false);
+  const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
+
+  return (
+    <Card>
+      {isConfirmModalOpen ? (
+        <ConfirmModal
+          onClose={() => setConfirmModalOpen(false)}
+          onSave={() => {
+            setConfirmModalOpen(false);
+            action('Confirm clicked')();
+          }}
+          label="PLEASE SAY YES"
+          modalText={
+            <p>
+              Are you sure you want to <strong>delete</strong> all users?
+            </p>
+          }
+          confirmText="YES"
+          cancelText="NO"
+        />
+      ) : null}
+      <ButtonDropdown
+        isOpen={isDropdownMenuOpen}
+        toggle={() => setDropdownMenuOpen(!isDropdownMenuOpen)}
+      >
+        <DropdownToggle caret>Actions - custom text</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem onClick={() => setConfirmModalOpen(true)}>
+            Delete all users
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+
+      {disclaimer}
+    </Card>
+  );
+};
+
+export const WithCustomText = {
+  render: WithCustomTextStory,
+  name: 'with custom text'
+};

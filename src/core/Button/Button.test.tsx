@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { Button, getIconSize, getSpinnerSize } from './Button';
@@ -10,7 +11,7 @@ describe('Component: Button', () => {
       describe('normal', () => {
         test('inProgress is true', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} inProgress={true} iconPosition="right">
+            <Button onClick={vi.fn()} inProgress={true} iconPosition="right">
               Save
             </Button>
           );
@@ -20,7 +21,7 @@ describe('Component: Button', () => {
 
         test('inProgress is false', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} inProgress={false}>
+            <Button onClick={vi.fn()} inProgress={false}>
               Save
             </Button>
           );
@@ -32,7 +33,7 @@ describe('Component: Button', () => {
       describe('outline', () => {
         test('inProgress is true', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} inProgress={true} outline={true}>
+            <Button onClick={vi.fn()} inProgress={true} outline={true}>
               Save
             </Button>
           );
@@ -42,7 +43,7 @@ describe('Component: Button', () => {
 
         test('inProgress is false', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} inProgress={false} outline={true}>
+            <Button onClick={vi.fn()} inProgress={false} outline={true}>
               Save
             </Button>
           );
@@ -54,7 +55,7 @@ describe('Component: Button', () => {
       describe('disabled', () => {
         test('is disabled', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} disabled={true}>
+            <Button onClick={vi.fn()} disabled={true}>
               Save
             </Button>
           );
@@ -64,7 +65,7 @@ describe('Component: Button', () => {
 
         test('is enabled', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} disabled={false}>
+            <Button onClick={vi.fn()} disabled={false}>
               Save
             </Button>
           );
@@ -76,7 +77,7 @@ describe('Component: Button', () => {
       describe('size', () => {
         test('use md by default', () => {
           const { container } = render(
-            <Button onClick={jest.fn()}>Save</Button>
+            <Button onClick={vi.fn()}>Save</Button>
           );
 
           expect(container).toMatchSnapshot();
@@ -84,7 +85,7 @@ describe('Component: Button', () => {
 
         test('can override size', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} size="sm">
+            <Button onClick={vi.fn()} size="sm">
               Save
             </Button>
           );
@@ -95,7 +96,7 @@ describe('Component: Button', () => {
 
       test('full-width', () => {
         const { container } = render(
-          <Button onClick={jest.fn()} fullWidth={true}>
+          <Button onClick={vi.fn()} fullWidth={true}>
             Save
           </Button>
         );
@@ -108,7 +109,7 @@ describe('Component: Button', () => {
       describe('normal', () => {
         test('inProgress is true', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} inProgress={true} icon="save">
+            <Button onClick={vi.fn()} inProgress={true} icon="save">
               Save
             </Button>
           );
@@ -118,7 +119,7 @@ describe('Component: Button', () => {
 
         test('inProgress is false', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} inProgress={false} icon="save">
+            <Button onClick={vi.fn()} inProgress={false} icon="save">
               Save
             </Button>
           );
@@ -128,7 +129,7 @@ describe('Component: Button', () => {
 
         test('with icon on the right', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} icon="save" iconPosition="right">
+            <Button onClick={vi.fn()} icon="save" iconPosition="right">
               Save
             </Button>
           );
@@ -141,7 +142,7 @@ describe('Component: Button', () => {
         test('inProgress is true', () => {
           const { container } = render(
             <Button
-              onClick={jest.fn()}
+              onClick={vi.fn()}
               inProgress={true}
               outline={true}
               icon="save"
@@ -156,7 +157,7 @@ describe('Component: Button', () => {
         test('inProgress is false', () => {
           const { container } = render(
             <Button
-              onClick={jest.fn()}
+              onClick={vi.fn()}
               inProgress={false}
               outline={true}
               icon="save"
@@ -182,7 +183,7 @@ describe('Component: Button', () => {
       describe('inProgress', () => {
         test('inProgress is true', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} inProgress={true} icon="save" />
+            <Button onClick={vi.fn()} inProgress={true} icon="save" />
           );
 
           expect(container).toMatchSnapshot();
@@ -190,7 +191,7 @@ describe('Component: Button', () => {
 
         test('inProgress is false', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} inProgress={false} icon="save" />
+            <Button onClick={vi.fn()} inProgress={false} icon="save" />
           );
 
           expect(container).toMatchSnapshot();
@@ -200,7 +201,7 @@ describe('Component: Button', () => {
       describe('disabled', () => {
         test('is disabled', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} icon="save" disabled={true} />
+            <Button onClick={vi.fn()} icon="save" disabled={true} />
           );
 
           expect(container).toMatchSnapshot();
@@ -208,7 +209,7 @@ describe('Component: Button', () => {
 
         test('is enabled', () => {
           const { container } = render(
-            <Button onClick={jest.fn()} icon="save" disabled={false} />
+            <Button onClick={vi.fn()} icon="save" disabled={false} />
           );
 
           expect(container).toMatchSnapshot();
@@ -219,7 +220,7 @@ describe('Component: Button', () => {
         test('full width and icon left', () => {
           const { container } = render(
             <Button
-              onClick={jest.fn()}
+              onClick={vi.fn()}
               icon="save"
               fullWidth={true}
               iconPosition="left"
@@ -232,7 +233,7 @@ describe('Component: Button', () => {
         test('full width and icon right', () => {
           const { container } = render(
             <Button
-              onClick={jest.fn()}
+              onClick={vi.fn()}
               icon="save"
               fullWidth={true}
               iconPosition="right"
@@ -254,11 +255,9 @@ describe('Component: Button', () => {
         inProgress: boolean;
         hasOnClick: boolean;
       }) {
-        const onClickSpy = jest.fn();
+        const onClickSpy = vi.fn();
 
-        jest
-          .spyOn({ useShowSpinner }, 'useShowSpinner')
-          .mockReturnValue(inProgress);
+        vi.spyOn({ useShowSpinner }, 'useShowSpinner').mockReturnValue(inProgress);
 
         const props = {
           onClick: hasOnClick ? onClickSpy : undefined,
@@ -309,11 +308,9 @@ describe('Component: Button', () => {
 
       describe('icon', () => {
         function setup({ inProgress }: { inProgress: boolean }) {
-          const onClickSpy = jest.fn();
+          const onClickSpy = vi.fn();
 
-          jest
-            .spyOn({ useShowSpinner }, 'useShowSpinner')
-            .mockReturnValue(inProgress);
+          vi.spyOn({ useShowSpinner }, 'useShowSpinner').mockReturnValue(inProgress);
 
           const { container } = render(
             <Button onClick={onClickSpy} inProgress={inProgress} icon="save" />

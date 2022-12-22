@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ModalPicker ui default 1`] = `
+exports[`Component: ModalPicker > ui > default 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -62,10 +62,10 @@ exports[`Component: ModalPicker ui default 1`] = `
                     <input
                       aria-label="Start typing to search"
                       class="form-control"
+                      defaultvalue=""
                       id="1"
                       placeholder="Search..."
                       type="search"
-                      value=""
                     />
                   </div>
                 </div>
@@ -184,7 +184,7 @@ exports[`Component: ModalPicker ui default 1`] = `
 </div>
 `;
 
-exports[`Component: ModalPicker ui loading 1`] = `
+exports[`Component: ModalPicker > ui > loading 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -246,10 +246,10 @@ exports[`Component: ModalPicker ui loading 1`] = `
                     <input
                       aria-label="Start typing to search"
                       class="form-control"
+                      defaultvalue=""
                       id="5"
                       placeholder="Search..."
                       type="search"
-                      value=""
                     />
                   </div>
                 </div>

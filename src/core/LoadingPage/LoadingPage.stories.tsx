@@ -1,16 +1,38 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { LoadingPage } from './LoadingPage';
 
-storiesOf('core/LoadingPage', module)
-  .addParameters({ component: LoadingPage })
-  .add('default', () => {
-    return <LoadingPage className="mt-0" />;
-  })
-  .add('custom height', () => {
-    return <LoadingPage height={100} />;
-  })
-  .add('custom style', () => {
-    return <LoadingPage style={{ backgroundColor: 'red' }} />;
-  });
+export default {
+  title: 'core/LoadingPage',
+
+  parameters: {
+    component: LoadingPage
+  }
+};
+
+const DefaultStory = () => {
+  return <LoadingPage className="mt-0" />;
+};
+
+export const Default = {
+  render: DefaultStory,
+  name: 'default'
+};
+
+const CustomHeightStory = () => {
+  return <LoadingPage height={100} />;
+};
+
+export const CustomHeight = {
+  render: CustomHeightStory,
+  name: 'custom height'
+};
+
+const CustomStyleStory = () => {
+  return <LoadingPage style={{ backgroundColor: 'red' }} />;
+};
+
+export const CustomStyle = {
+  render: CustomStyleStory,
+  name: 'custom style'
+};

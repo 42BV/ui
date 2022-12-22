@@ -1,6 +1,9 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery
+} from '@tanstack/react-query';
 import { Alert, Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 
 import { AsyncList } from './AsyncList';
@@ -50,190 +53,247 @@ const client = new QueryClient({
   }
 });
 
-storiesOf('core/Async/AsyncList', module)
-  .addParameters({ component: AsyncList })
-  .addDecorator((Story) => (
-    <QueryClientProvider client={client}>
-      <Alert color="warning" className="mb-4">
-        <p>To be able to use AsyncList, you have to add @tanstack/react-query to your dependencies:</p>
-        <code>npm install --save @tanstack/react-query</code>
-      </Alert>
-      <Story />
-    </QueryClientProvider>
-  ))
-  .add('loaded', () => {
-    const state = useQuery([ 'loaded' ], loadData);
+export default {
+  title: 'core/Async/AsyncList',
 
-    return (
-      <Card body>
-        <AsyncList state={state}>
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  })
+  decorators: [
+    (Story) => (
+      <QueryClientProvider client={client}>
+        <Alert color="warning" className="mb-4">
+          <p>
+            To be able to use AsyncList, you have to add @tanstack/react-query
+            to your dependencies:
+          </p>
+          <code>npm install --save @tanstack/react-query</code>
+        </Alert>
+        <Story />
+      </QueryClientProvider>
+    )
+  ],
 
-  .add('error', () => {
-    const state = useQuery([ 'error' ], rejectData);
+  parameters: {
+    component: AsyncList
+  }
+};
 
-    return (
-      <Card body>
-        <AsyncList state={state}>
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  })
+const LoadedStory = () => {
+  const state = useQuery(['loaded'], loadData);
 
-  .add('error with custom text', () => {
-    const state = useQuery([ 'error', 'custom text' ], rejectData);
+  return (
+    <Card body>
+      <AsyncList state={state}>
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
 
-    return (
-      <Card body>
-        <AsyncList
-          state={state}
-          text={{ error: 'I’m sorry Dave, I’m afraid I can’t do that' }}
-        >
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  })
+export const Loaded = {
+  render: LoadedStory,
+  name: 'loaded'
+};
 
-  .add('error with no retry button', () => {
-    const state = useQuery([ 'error', 'no retry' ], rejectData);
+const ErrorStory = () => {
+  const state = useQuery(['error'], rejectData);
 
-    return (
-      <Card body>
-        <AsyncList state={state} showRetryButton={false}>
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  })
+  return (
+    <Card body>
+      <AsyncList state={state}>
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
 
-  .add('loading', () => {
-    const state = useQuery([ 'loading' ], loadingData);
+export const Error = {
+  render: ErrorStory,
+  name: 'error'
+};
 
-    return (
-      <Card body>
-        <AsyncList state={state}>
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  })
+const ErrorWithCustomTextStory = () => {
+  const state = useQuery(['error', 'custom text'], rejectData);
 
-  .add('loading with custom title', () => {
-    const state = useQuery([ 'loading', 'custom title' ], loadingData);
+  return (
+    <Card body>
+      <AsyncList
+        state={state}
+        text={{ error: 'I’m sorry Dave, I’m afraid I can’t do that' }}
+      >
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
 
-    return (
-      <Card body>
-        <AsyncList state={state} text={{ loading: 'Loading Jeffrey' }}>
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  })
+export const ErrorWithCustomText = {
+  render: ErrorWithCustomTextStory,
+  name: 'error with custom text'
+};
 
-  .add('empty', () => {
-    const state = useQuery([ 'empty' ], emptyData);
+const ErrorWithNoRetryButtonStory = () => {
+  const state = useQuery(['error', 'no retry'], rejectData);
 
-    return (
-      <Card body>
-        <AsyncList state={state}>
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  })
+  return (
+    <Card body>
+      <AsyncList state={state} showRetryButton={false}>
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
 
-  .add('empty with custom title', () => {
-    const state = useQuery([ 'empty', 'custom title' ], emptyData);
+export const ErrorWithNoRetryButton = {
+  render: ErrorWithNoRetryButtonStory,
+  name: 'error with no retry button'
+};
 
-    return (
-      <Card body>
-        <AsyncList
-          state={state}
-          text={{ empty: 'No Jeffrey\'s match your parameters try again' }}
-        >
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  })
+const LoadingStory = () => {
+  const state = useQuery(['loading'], loadingData);
 
-  .add('empty with custom empty', () => {
-    const state = useQuery([ 'empty', 'custom empty' ], emptyData);
+  return (
+    <Card body>
+      <AsyncList state={state}>
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
 
-    return (
-      <Card body>
-        <AsyncList
-          state={state}
-          emptyContent={() => (
-            <ContentState mode="empty" title="No results found">
-              <Button icon="refresh" onClick={action('clear filters')}>
-                Clear filters
-              </Button>
-            </ContentState>
-          )}
-        >
-          {(users) => (
-            <ListGroup>
-              {users.map((user) => (
-                <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
-              ))}
-            </ListGroup>
-          )}
-        </AsyncList>
-      </Card>
-    );
-  });
+export const Loading = {
+  render: LoadingStory,
+  name: 'loading'
+};
+
+const LoadingWithCustomTitleStory = () => {
+  const state = useQuery(['loading', 'custom title'], loadingData);
+
+  return (
+    <Card body>
+      <AsyncList state={state} text={{ loading: 'Loading Jeffrey' }}>
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
+
+export const LoadingWithCustomTitle = {
+  render: LoadingWithCustomTitleStory,
+  name: 'loading with custom title'
+};
+
+const EmptyStory = () => {
+  const state = useQuery(['empty'], emptyData);
+
+  return (
+    <Card body>
+      <AsyncList state={state}>
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
+
+export const Empty = {
+  render: EmptyStory,
+  name: 'empty'
+};
+
+const EmptyWithCustomTitleStory = () => {
+  const state = useQuery(['empty', 'custom title'], emptyData);
+
+  return (
+    <Card body>
+      <AsyncList
+        state={state}
+        text={{ empty: "No Jeffrey's match your parameters try again" }}
+      >
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
+
+export const EmptyWithCustomTitle = {
+  render: EmptyWithCustomTitleStory,
+  name: 'empty with custom title'
+};
+
+const EmptyWithCustomEmptyStory = () => {
+  const state = useQuery(['empty', 'custom empty'], emptyData);
+
+  return (
+    <Card body>
+      <AsyncList
+        state={state}
+        emptyContent={() => (
+          <ContentState mode="empty" title="No results found">
+            <Button icon="refresh" onClick={action('clear filters')}>
+              Clear filters
+            </Button>
+          </ContentState>
+        )}
+      >
+        {(users) => (
+          <ListGroup>
+            {users.map((user) => (
+              <ListGroupItem key={user.id}>{user.email}</ListGroupItem>
+            ))}
+          </ListGroup>
+        )}
+      </AsyncList>
+    </Card>
+  );
+};
+
+export const EmptyWithCustomEmpty = {
+  render: EmptyWithCustomEmptyStory,
+  name: 'empty with custom empty'
+};

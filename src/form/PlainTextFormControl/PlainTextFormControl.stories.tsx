@@ -1,14 +1,24 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { PlainTextFormControl } from './PlainTextFormControl';
 import { Form } from 'reactstrap';
 
-storiesOf('Form/PlainTextFormControl', module)
-  .addParameters({ component: PlainTextFormControl })
-  .add('basic', () => {
-    return (
-      <Form>
-        <PlainTextFormControl label="Organisation">42 BV</PlainTextFormControl>
-      </Form>
-    );
-  });
+export default {
+  title: 'Form/PlainTextFormControl',
+
+  parameters: {
+    component: PlainTextFormControl
+  }
+};
+
+const BasicStory = () => {
+  return (
+    <Form>
+      <PlainTextFormControl label="Organisation">42 BV</PlainTextFormControl>
+    </Form>
+  );
+};
+
+export const Basic = {
+  render: BasicStory,
+  name: 'basic'
+};

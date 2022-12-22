@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { NavigationItem } from './NavigationItem';
 import { Navigator, Router } from 'react-router-dom';
@@ -43,34 +42,40 @@ describe('Component: NavigationItem', () => {
 
     test('active', () => {
       setup({ location: '/dashboard' });
-      expect(screen.getByText('dashboard').parentNode).toHaveClass('active');
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        screen.getByText('dashboard').parentNode?.classList.contains('active')
+      ).toBe(true);
     });
 
     test('extra class', () => {
       const { container } = setup({ className: 'extra-class' });
-      expect(container.firstChild).toHaveClass('extra-class');
+      // @ts-expect-error HTMLElement has property classList
+      expect(container.firstChild.classList.contains('extra-class')).toBe(true);
     });
   });
 
   describe('show behavior', () => {
     it('should not render when show is false', () => {
       setup({ show: false });
-      expect(screen.queryByText('dashboard')).not.toBeInTheDocument();
+      expect(screen.queryByText('dashboard')).toBeNull();
     });
 
-    it('should render when predicate resolves to true', () => {
+    it('should render when predicate resolves to true', async () => {
+      expect.assertions(0);
       setup({ show: () => 1 + 1 === 2 });
-      expect(screen.queryByText('dashboard')).toBeInTheDocument();
+      await screen.findByText('dashboard');
     });
 
     it('should not render when predicate resolves to false', () => {
       setup({ show: () => 1 + 2 === 2 });
-      expect(screen.queryByText('dashboard')).not.toBeInTheDocument();
+      expect(screen.queryByText('dashboard')).toBeNull();
     });
 
-    it('should default show to true if it is not provided', () => {
+    it('should default show to true if it is not provided', async () => {
+      expect.assertions(0);
       setup({});
-      expect(screen.queryByText('dashboard')).toBeInTheDocument();
+      await screen.queryByText('dashboard');
     });
   });
 });

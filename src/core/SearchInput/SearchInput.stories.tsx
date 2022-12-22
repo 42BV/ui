@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
 
 import { SearchInput } from './SearchInput';
 
@@ -9,169 +8,244 @@ import { Tooltip } from '../Tooltip/Tooltip';
 import { Button } from '../Button/Button';
 import { Select } from '../../form/Select/Select';
 
-storiesOf('core/SearchInput', module)
-  .addParameters({ component: SearchInput })
-  .addDecorator((Story) => (
-    <>
-      <Alert color="warning" className="mb-4">
-        <p>To be able to use SearchInput, you have to add lodash to your dependencies:</p>
-        <code>npm install --save lodash</code>
-      </Alert>
-      <Story />
-    </>
-  ))
-  .add('default', () => {
-    const [ query, setQuery ] = useState('');
+export default {
+  title: 'core/SearchInput',
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
-        <SearchInput label="Search" defaultValue={query} onChange={setQuery} />
-      </Card>
-    );
-  })
-  .add('without icon', () => {
-    const [ query, setQuery ] = useState('');
+  decorators: [
+    (Story) => (
+      <>
+        <Alert color="warning" className="mb-4">
+          <p>
+            To be able to use SearchInput, you have to add lodash to your
+            dependencies:
+          </p>
+          <code>npm install --save lodash</code>
+        </Alert>
+        <Story />
+      </>
+    )
+  ],
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
-        <SearchInput
-          label="Search"
-          defaultValue={query}
-          onChange={setQuery}
-          showIcon={false}
-        />
-      </Card>
-    );
-  })
-  .add('with custom debounce', () => {
-    const [ query, setQuery ] = useState('');
+  parameters: {
+    component: SearchInput
+  }
+};
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
-        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000} label="Search" />
-      </Card>
-    );
-  })
-  .add('with custom debounce settings', () => {
-    const [ query, setQuery ] = useState('');
+const DefaultStory = () => {
+  const [query, setQuery] = useState('');
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
-        <SearchInput
-          label="Search"
-          defaultValue={query}
-          onChange={setQuery}
-          debounce={1000}
-          debounceSettings={{ leading: true, trailing: true }}
-        />
-      </Card>
-    );
-  })
-  .add('with placeholder', () => {
-    const [ query, setQuery ] = useState('');
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+      <SearchInput label="Search" defaultValue={query} onChange={setQuery} />
+    </Card>
+  );
+};
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
-        <SearchInput
-          defaultValue={query}
-          onChange={setQuery}
-          placeholder="Search..."
-          label="Search"
-        />
-      </Card>
-    );
-  })
-  .add('invisible label', () => {
-    const [ query, setQuery ] = useState('');
+export const Default = {
+  render: DefaultStory,
+  name: 'default'
+};
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
-        <SearchInput
-          id="search"
-          label="Search"
-          hiddenLabel={true}
-          defaultValue={query}
-          onChange={setQuery}
-        />
-      </Card>
-    );
-  })
-  .add('with custom label', () => {
-    const [ query, setQuery ] = useState('');
+const WithoutIconStory = () => {
+  const [query, setQuery] = useState('');
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
-        <SearchInput
-          id="search"
-          label={
-            <div className="d-flex justify-content-between">
-              <span>Search</span>
-              <Tooltip className="ms-1" content="Search the following fields">
-                <Icon icon="info" />
-              </Tooltip>
-            </div>
-          }
-          defaultValue={query}
-          onChange={setQuery}
-        />
-      </Card>
-    );
-  })
-  .add('with external value', () => {
-    const [ query, setQuery ] = useState('');
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+      <SearchInput
+        label="Search"
+        defaultValue={query}
+        onChange={setQuery}
+        showIcon={false}
+      />
+    </Card>
+  );
+};
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
+export const WithoutIcon = {
+  render: WithoutIconStory,
+  name: 'without icon'
+};
 
-        <SearchInput defaultValue={query} onChange={setQuery} debounce={1000} label="Search">
-          {(searchInput, { setValue }) => (
-            <>
-              {searchInput}
+const WithCustomDebounceStory = () => {
+  const [query, setQuery] = useState('');
 
-              <Button className="mt-3" onClick={() => setValue('')}>
-                Clear query
-              </Button>
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+      <SearchInput
+        defaultValue={query}
+        onChange={setQuery}
+        debounce={1000}
+        label="Search"
+      />
+    </Card>
+  );
+};
 
-              <Select
-                className="mt-2"
-                id="predefined-query"
-                label="Predefined queries"
-                value={query}
-                placeholder="Please select a predefined query"
-                options={[ 'Maarten', 'Jeffrey' ]}
-                labelForOption={(option) => option}
-                onChange={(value) => {
-                  if (value) {
-                    setValue(value);
-                  }
-                }}
-              />
-            </>
-          )}
-        </SearchInput>
-      </Card>
-    );
-  })
-  .add('without clear button', () => {
-    const [ query, setQuery ] = useState('');
+export const WithCustomDebounce = {
+  render: WithCustomDebounceStory,
+  name: 'with custom debounce'
+};
 
-    return (
-      <Card body>
-        <p>You searched for: {query}</p>
-        <SearchInput
-          label="Search"
-          defaultValue={query}
-          onChange={setQuery}
-          canClear={false}
-        />
-      </Card>
-    );
-  });
+const WithCustomDebounceSettingsStory = () => {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+      <SearchInput
+        label="Search"
+        defaultValue={query}
+        onChange={setQuery}
+        debounce={1000}
+        debounceSettings={{ leading: true, trailing: true }}
+      />
+    </Card>
+  );
+};
+
+export const WithCustomDebounceSettings = {
+  render: WithCustomDebounceSettingsStory,
+  name: 'with custom debounce settings'
+};
+
+const WithPlaceholderStory = () => {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+      <SearchInput
+        defaultValue={query}
+        onChange={setQuery}
+        placeholder="Search..."
+        label="Search"
+      />
+    </Card>
+  );
+};
+
+export const WithPlaceholder = {
+  render: WithPlaceholderStory,
+  name: 'with placeholder'
+};
+
+const InvisibleLabelStory = () => {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+      <SearchInput
+        id="search"
+        label="Search"
+        hiddenLabel={true}
+        defaultValue={query}
+        onChange={setQuery}
+      />
+    </Card>
+  );
+};
+
+export const InvisibleLabel = {
+  render: InvisibleLabelStory,
+  name: 'invisible label'
+};
+
+const WithCustomLabelStory = () => {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+      <SearchInput
+        id="search"
+        label={
+          <div className="d-flex justify-content-between">
+            <span>Search</span>
+            <Tooltip className="ms-1" content="Search the following fields">
+              <Icon icon="info" />
+            </Tooltip>
+          </div>
+        }
+        defaultValue={query}
+        onChange={setQuery}
+      />
+    </Card>
+  );
+};
+
+export const WithCustomLabel = {
+  render: WithCustomLabelStory,
+  name: 'with custom label'
+};
+
+const WithExternalValueStory = () => {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+
+      <SearchInput
+        defaultValue={query}
+        onChange={setQuery}
+        debounce={1000}
+        label="Search"
+      >
+        {(searchInput, { setValue }) => (
+          <>
+            {searchInput}
+
+            <Button className="mt-3" onClick={() => setValue('')}>
+              Clear query
+            </Button>
+
+            <Select
+              className="mt-2"
+              id="predefined-query"
+              label="Predefined queries"
+              value={query}
+              placeholder="Please select a predefined query"
+              options={['Maarten', 'Jeffrey']}
+              labelForOption={(option) => option}
+              onChange={(value) => {
+                if (value) {
+                  setValue(value);
+                }
+              }}
+            />
+          </>
+        )}
+      </SearchInput>
+    </Card>
+  );
+};
+
+export const WithExternalValue = {
+  render: WithExternalValueStory,
+  name: 'with external value'
+};
+
+const WithoutClearButtonStory = () => {
+  const [query, setQuery] = useState('');
+
+  return (
+    <Card body>
+      <p>You searched for: {query}</p>
+      <SearchInput
+        label="Search"
+        defaultValue={query}
+        onChange={setQuery}
+        canClear={false}
+      />
+    </Card>
+  );
+};
+
+export const WithoutClearButton = {
+  render: WithoutClearButtonStory,
+  name: 'without clear button'
+};

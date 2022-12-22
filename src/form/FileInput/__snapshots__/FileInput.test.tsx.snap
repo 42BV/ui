@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: FileInput ui with value 1`] = `
+exports[`Component: FileInput > ui > with value 1`] = `
 <div>
   <div
     class="file-upload  mb-3"
@@ -23,10 +23,10 @@ exports[`Component: FileInput ui with value 1`] = `
       <input
         aria-label="This is a placeholder input that should not be reachable. Use the file input instead."
         class="form-control"
+        defaultvalue="maarten.png"
         placeholder="Upload a file here"
         tabindex="-1"
         type="text"
-        value="maarten.png"
       />
       <span
         class="button d-inline-block danger"

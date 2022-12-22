@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { Textarea } from './Textarea';
 
@@ -14,9 +14,9 @@ describe('Component: Textarea', () => {
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
-    const onFocusSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
+    const onFocusSpy = vi.fn();
 
     const props = {
       placeholder: hasPlaceholder ? 'Please enter your first name' : undefined,
@@ -46,29 +46,35 @@ describe('Component: Textarea', () => {
 
     test('with value', () => {
       setup({ value: 'Maarten' });
-      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('Maarten');
     });
 
-    test('with placeholder', () => {
+    test('with placeholder', async () => {
+      expect.assertions(0);
       setup({ hasPlaceholder: true });
-      expect(screen.queryByPlaceholderText('Please enter your first name')).toBeInTheDocument();
+      await screen.findByPlaceholderText('Please enter your first name');
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByPlaceholderText('Please enter your first name')).not.toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please enter your first name')
+      ).toBeNull();
     });
 
-    test('visible label', () => {
+    test('visible label', async () => {
+      expect.assertions(0);
       setup({ hasLabel: true });
-      expect(screen.queryByText('First name')).toBeInTheDocument();
-      expect(screen.queryByLabelText('First name')).toBeInTheDocument();
+      await screen.findByText('First name');
+      await screen.findByLabelText('First name');
     });
 
-    test('invisible label', () => {
+    test('invisible label', async () => {
+      expect.assertions(1);
       setup({ hasLabel: false });
-      expect(screen.queryByText('First name')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('First name')).toBeInTheDocument();
+      expect(screen.queryByText('First name')).toBeNull();
+      await screen.queryByLabelText('First name');
     });
   });
 
@@ -76,7 +82,9 @@ describe('Component: Textarea', () => {
     test('onChange', () => {
       const { onChangeSpy } = setup({ value: undefined });
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('Maarten');
@@ -103,35 +111,35 @@ describe('Component: Textarea', () => {
     test('becomes empty', () => {
       const { props, rerender } = setup({ value: 'Maarten' });
 
-      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('Maarten');
 
       const newProps = {
         ...props,
         value: ''
       };
 
-      rerender(
-        <Textarea {...newProps} />
-      );
+      rerender(<Textarea {...newProps} />);
 
-      expect(screen.getByRole('textbox')).toHaveValue('');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('');
     });
 
     test('becomes filled', () => {
       const { props, rerender } = setup({ value: undefined });
 
-      expect(screen.getByRole('textbox')).toHaveValue('');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('');
 
       const newProps = {
         ...props,
         value: 'Maarten'
       };
 
-      rerender(
-        <Textarea {...newProps} />
-      );
+      rerender(<Textarea {...newProps} />);
 
-      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('Maarten');
     });
   });
 });

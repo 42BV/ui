@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: FavoriteIcon ui favorite 1`] = `
+exports[`Component: FavoriteIcon > ui > favorite 1`] = `
 <div>
   <i
     class="icon material-icons text-primary clickable"
@@ -10,7 +10,7 @@ exports[`Component: FavoriteIcon ui favorite 1`] = `
 </div>
 `;
 
-exports[`Component: FavoriteIcon ui not favorite 1`] = `
+exports[`Component: FavoriteIcon > ui > not favorite 1`] = `
 <div>
   <i
     class="icon material-icons text-secondary clickable"

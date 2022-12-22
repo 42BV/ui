@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { ProgressStepper } from './ProgressStepper';
@@ -24,18 +23,29 @@ const steps: Step[] = [
   'link'
 ];
 
-storiesOf('core/ProgressStepper', module)
-  .addParameters({ component: ProgressStepper })
-  .add('colors', () => {
-    return (
-      <Card>
-        <ProgressStepper<Step>
-          steps={steps}
-          onClick={action(`Clicked`)}
-          isStepClickable={() => true}
-          titleForStep={(step) => step}
-          colorForStep={(step) => step}
-        />
-      </Card>
-    );
-  });
+export default {
+  title: 'core/ProgressStepper',
+
+  parameters: {
+    component: ProgressStepper
+  }
+};
+
+const ColorsStory = () => {
+  return (
+    <Card>
+      <ProgressStepper<Step>
+        steps={steps}
+        onClick={action(`Clicked`)}
+        isStepClickable={() => true}
+        titleForStep={(step) => step}
+        colorForStep={(step) => step}
+      />
+    </Card>
+  );
+};
+
+export const Colors = {
+  render: ColorsStory,
+  name: 'colors'
+};

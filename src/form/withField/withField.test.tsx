@@ -1,6 +1,6 @@
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import * as useHasErrors from '../../hooks/useHasErrors/useHasErrors';
 import { Form } from 'react-final-form';
@@ -13,18 +13,25 @@ const isSuperman = (value: string) =>
   value === 'superman' ? undefined : 'not superman';
 
 describe('HoC: withField', () => {
-  function setup({ hasErrors = false, errorMode }: { hasErrors?: boolean; errorMode?: 'tooltip' | 'below' }) {
-    jest
-      .spyOn(useHasErrors, 'useHasErrors')
-      .mockImplementation(() => [ hasErrors, jest.fn() ]);
+  function setup({
+    hasErrors = false,
+    errorMode
+  }: {
+    hasErrors?: boolean;
+    errorMode?: 'tooltip' | 'below';
+  }) {
+    vi.spyOn(useHasErrors, 'useHasErrors').mockImplementation(() => [
+      hasErrors,
+      vi.fn()
+    ]);
 
     const { container, asFragment } = render(
-      <Form onSubmit={jest.fn()}>
+      <Form onSubmit={vi.fn()}>
         {() => (
           <FieldInput
             name="firstName"
-            validators={[ isSuperman ]}
-            asyncValidators={[ isSuperman ]}
+            validators={[isSuperman]}
+            asyncValidators={[isSuperman]}
             asyncValidatorsDebounce={100}
             id="firstName"
             label="First name"
@@ -44,11 +51,11 @@ describe('HoC: withField', () => {
   }
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   describe('ui', () => {
@@ -56,22 +63,20 @@ describe('HoC: withField', () => {
       expect.assertions(1);
       const { container } = setup({});
       await act(() => {
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
       expect(container).toMatchSnapshot();
     });
 
     test('with error', async () => {
-      expect.assertions(2);
+      expect.assertions(1);
       const { asFragment } = setup({ hasErrors: true });
       await act(() => {
         fireEvent.focus(screen.getByRole('textbox'));
         fireEvent.blur(screen.getByRole('textbox'));
-        jest.runAllTimers();
+        vi.runAllTimers();
       });
-      await waitFor(() => {
-        expect(screen.queryByText('not superman')).toBeInTheDocument();
-      });
+      await screen.findByText('not superman');
       expect(asFragment()).toMatchSnapshot();
     });
   });
@@ -80,7 +85,7 @@ describe('HoC: withField', () => {
     expect.assertions(1);
     const { container } = setup({ hasErrors: true, errorMode: 'tooltip' });
     await act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     // Just ensure the tooltip div exists, because testing the tooltip is tested by itself
     expect(container).toMatchSnapshot();
@@ -89,9 +94,9 @@ describe('HoC: withField', () => {
   test('defaultValidators', async () => {
     expect.assertions(2);
 
-    const isDateValidatorSpy = jest.fn();
-    jest.spyOn(Validators, 'isDateValidator').mockReturnValue(isDateValidatorSpy);
-    jest.spyOn(console, 'warn').mockImplementation(jest.fn());
+    const isDateValidatorSpy = vi.fn();
+    vi.spyOn(Validators, 'isDateValidator').mockReturnValue(isDateValidatorSpy);
+    vi.spyOn(console, 'warn').mockImplementation(vi.fn());
     setConstraints({
       Test: {
         date: {
@@ -103,16 +108,23 @@ describe('HoC: withField', () => {
     });
 
     render(
-      <Form onSubmit={jest.fn()}>
+      <Form onSubmit={vi.fn()}>
         {() => (
-          <FieldDateTimeInput label="Test" name="test" dateFormat="yyyy-MM-dd" timeFormat={false} />
+          <FieldDateTimeInput
+            label="Test"
+            name="test"
+            dateFormat="yyyy-MM-dd"
+            timeFormat={false}
+          />
         )}
       </Form>
     );
 
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: '4242-42-42' } });
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: '4242-42-42' }
+    });
     await act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
 
     expect(isDateValidatorSpy).toHaveBeenCalled();
@@ -124,7 +136,7 @@ describe('HoC: withField', () => {
   });
 
   it('should throw an error when detecting illegal props', () => {
-    jest.spyOn(console, 'error').mockImplementation(jest.fn());
+    vi.spyOn(console, 'error').mockImplementation(vi.fn());
     expect(() =>
       // @ts-expect-error Test mock
       render(<FieldInput value="test" onChange={() => undefined} />)

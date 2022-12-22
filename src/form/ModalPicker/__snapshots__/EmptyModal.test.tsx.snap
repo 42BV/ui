@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: EmptyModal mode: empty 1`] = `
+exports[`Component: EmptyModal > mode: empty 1`] = `
 <div>
   <div
     class="text-center"
@@ -66,7 +66,7 @@ exports[`Component: EmptyModal mode: empty 1`] = `
 </div>
 `;
 
-exports[`Component: EmptyModal mode: no-results 1`] = `
+exports[`Component: EmptyModal > mode: no-results 1`] = `
 <div>
   <div
     class="text-center"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 
 import { IconPicker } from './IconPicker';
 import { IconType } from '../../core/Icon';
@@ -18,8 +18,8 @@ describe('Component: IconPicker', () => {
     hasIcon?: boolean;
     canClear?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
     const props = {
       id: 'bestFriend',
@@ -27,7 +27,7 @@ describe('Component: IconPicker', () => {
       label: 'Best Friend',
       hiddenLabel: !hasLabel,
       placeholder: 'Select your best friend',
-      icon: hasIcon ? 'face' as IconType : undefined,
+      icon: hasIcon ? ('face' as IconType) : undefined,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -61,7 +61,7 @@ describe('Component: IconPicker', () => {
     });
 
     test('no results', async () => {
-      expect.assertions(1);
+      expect.assertions(0);
 
       setup({
         value: undefined
@@ -70,36 +70,37 @@ describe('Component: IconPicker', () => {
       fireEvent.click(screen.getByText('Select your best friend'));
       await userEvent.type(screen.getByRole('searchbox'), 'we are testing');
 
-      expect(screen.queryByText('No icons found')).toBeInTheDocument();
+      await screen.findByText('No icons found');
     });
 
-    test('with label', () => {
+    test('with label', async () => {
+      expect.assertions(1);
       const { container } = setup({ hasLabel: true });
-      expect(screen.queryByText('Best Friend')).toBeInTheDocument();
+      await screen.findByText('Best Friend');
       expect(container).toMatchSnapshot();
     });
 
     test('without label', () => {
       setup({ hasLabel: false });
-      expect(screen.queryByText('Best Friend')).not.toBeInTheDocument();
+      expect(screen.queryByText('Best Friend')).toBeNull();
     });
 
-    test('with icon', () => {
+    test('with icon', async () => {
+      expect.assertions(0);
       setup({ hasIcon: true });
-      expect(screen.getByText('face')).toBeInTheDocument();
+      await screen.findByText('face');
     });
 
     test('without clear button', () => {
       setup({ value: '3d_rotation', canClear: false });
-      expect(screen.queryByText('clear')).not.toBeInTheDocument();
+      expect(screen.queryByText('clear')).toBeNull();
     });
   });
 
   describe('events', () => {
     it('should open the popover when the select button is clicked', () => {
-      const setIsOpenSpy = jest.fn();
-      jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([ false, setIsOpenSpy ]);
+      const setIsOpenSpy = vi.fn();
+      vi.spyOn(React, 'useState').mockReturnValueOnce([false, setIsOpenSpy]);
 
       setup({
         value: undefined,
@@ -120,12 +121,16 @@ describe('Component: IconPicker', () => {
       });
 
       fireEvent.click(screen.getByText('face'));
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'home' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'home' }
+      });
 
       expect(screen.queryAllByText('home').length).toBe(0);
     });
 
-    it('should when the user moves to another page load the new page', () => {
+    it('should when the user moves to another page load the new page', async () => {
+      expect.assertions(1);
+
       setup({
         value: undefined
       });
@@ -133,18 +138,17 @@ describe('Component: IconPicker', () => {
       fireEvent.click(screen.getByText('Select your best friend'));
 
       // The first icon on the first page is the 3d_rotation
-      expect(screen.getByText('10k')).toBeInTheDocument();
+      await screen.findByText('10k');
 
       fireEvent.click(screen.getByText('arrow_forward'));
 
-      expect(screen.queryByText('10k')).not.toBeInTheDocument();
-      expect(screen.getByText('4mp')).toBeInTheDocument();
+      await screen.findByText('4mp');
+      expect(screen.queryByText('10k')).toBeNull();
     });
 
     it('should close the popover and call onChange when the user selects an icon', () => {
-      const setIsOpenSpy = jest.fn();
-      jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([ true, setIsOpenSpy ]);
+      const setIsOpenSpy = vi.fn();
+      vi.spyOn(React, 'useState').mockReturnValueOnce([true, setIsOpenSpy]);
 
       const { onBlurSpy, onChangeSpy } = setup({
         value: undefined
@@ -173,11 +177,11 @@ describe('Component: IconPicker', () => {
     });
 
     it('should when the popover closes clear the query', () => {
-      const setQuery = jest.fn();
-      jest.spyOn(React, 'useState')
-        .mockReturnValueOnce([ true, jest.fn() ])
-        .mockReturnValueOnce([ 1, jest.fn() ])
-        .mockReturnValueOnce([ 'home', setQuery ]);
+      const setQuery = vi.fn();
+      vi.spyOn(React, 'useState')
+        .mockReturnValueOnce([true, vi.fn()])
+        .mockReturnValueOnce([1, vi.fn()])
+        .mockReturnValueOnce(['home', setQuery]);
 
       setup({
         value: undefined
@@ -191,42 +195,42 @@ describe('Component: IconPicker', () => {
   });
 
   describe('value changes', () => {
-    test('becomes empty', () => {
+    test('becomes empty', async () => {
+      expect.assertions(1);
+
       const { props, rerender } = setup({
         value: 'home'
       });
 
-      expect(screen.getByText('home')).toBeInTheDocument();
+      await screen.findByText('home');
 
       const newProps = {
         ...props,
         value: undefined
       };
 
-      rerender(
-        <IconPicker color="success" {...newProps} />
-      );
+      rerender(<IconPicker color="success" {...newProps} />);
 
-      expect(screen.queryByText('home')).not.toBeInTheDocument();
+      expect(screen.queryByText('home')).toBeNull();
     });
 
-    test('becomes filled', () => {
+    test('becomes filled', async () => {
+      expect.assertions(1);
+
       const { props, rerender } = setup({
         value: undefined
       });
 
-      expect(screen.queryByText('home')).not.toBeInTheDocument();
+      expect(screen.queryByText('home')).toBeNull();
 
       const newProps = {
         ...props,
         value: 'home' as IconType
       };
 
-      rerender(
-        <IconPicker color="success" {...newProps} />
-      );
+      rerender(<IconPicker color="success" {...newProps} />);
 
-      expect(screen.getByText('home')).toBeInTheDocument();
+      await screen.findByText('home');
     });
   });
 });

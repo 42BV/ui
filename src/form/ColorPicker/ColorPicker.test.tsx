@@ -1,15 +1,25 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 import { ColorPicker } from './ColorPicker';
 import { Color } from '../../core/types';
 import { IconType } from '../../core/Icon';
 
 describe('Component: ColorPicker', () => {
-  function setup({ value, hasIcon, canClear, hasLabel }: { value?: string; hasIcon?: boolean; canClear?: boolean; hasLabel?: boolean; }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+  function setup({
+    value,
+    hasIcon,
+    canClear,
+    hasLabel
+  }: {
+    value?: string;
+    hasIcon?: boolean;
+    canClear?: boolean;
+    hasLabel?: boolean;
+  }) {
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
     const props = {
       id: hasLabel ? 'bestFriend' : undefined,
@@ -17,7 +27,7 @@ describe('Component: ColorPicker', () => {
       name: 'bestFriend',
       label: 'Best Friend',
       placeholder: 'Select your best friend',
-      icon: hasIcon ? 'face' as IconType : undefined,
+      icon: hasIcon ? ('face' as IconType) : undefined,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -52,68 +62,73 @@ describe('Component: ColorPicker', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with icon', () => {
+    test('with icon', async () => {
+      expect.assertions(0);
       setup({ hasIcon: true });
-      expect(screen.queryByText('face')).toBeInTheDocument();
+      await screen.findByText('face');
     });
 
     test('without icon', () => {
       setup({ hasIcon: false });
-      expect(screen.queryByText('face')).not.toBeInTheDocument();
+      expect(screen.queryByText('face')).toBeNull();
     });
 
-    test('visible label', () => {
+    test('visible label', async () => {
+      expect.assertions(0);
       setup({ hasLabel: true });
-      expect(screen.queryByText('Best Friend')).toBeInTheDocument();
+      await screen.findByText('Best Friend');
     });
 
     test('invisible label', () => {
       setup({ hasLabel: false });
-      expect(screen.queryByText('Best Friend')).not.toBeInTheDocument();
+      expect(screen.queryByText('Best Friend')).toBeNull();
     });
 
-    test('with clear button', () => {
+    test('with clear button', async () => {
+      expect.assertions(0);
       setup({ value: '#cdcdcd', canClear: true });
-      expect(screen.queryByText('Clear')).toBeInTheDocument();
+      await screen.findByText('Clear');
     });
 
     test('without clear button', () => {
       setup({ value: '#cdcdcd', canClear: false });
-      expect(screen.queryByText('Clear')).not.toBeInTheDocument();
+      expect(screen.queryByText('Clear')).toBeNull();
     });
   });
 
   describe('events', () => {
-    function expectPopoverOpen(open: boolean) {
+    async function expectPopoverOpen(open: boolean) {
       if (open) {
-        expect(screen.queryByText('Cancel')).toBeInTheDocument();
-        expect(screen.queryByText('Select')).toBeInTheDocument();
-        expect(screen.queryByLabelText('hex')).toBeInTheDocument();
-        expect(screen.queryByLabelText('r')).toBeInTheDocument();
-        expect(screen.queryByLabelText('g')).toBeInTheDocument();
-        expect(screen.queryByLabelText('b')).toBeInTheDocument();
-        expect(screen.queryByLabelText('a')).toBeInTheDocument();
+        await screen.findByText('Cancel');
+        await screen.findByText('Select');
+        await screen.findByLabelText('hex');
+        await screen.findByLabelText('r');
+        await screen.findByLabelText('g');
+        await screen.findByLabelText('b');
+        await screen.findByLabelText('a');
       } else {
-        expect(screen.queryByText('Cancel')).not.toBeInTheDocument();
-        expect(screen.queryByText('Select')).not.toBeInTheDocument();
-        expect(screen.queryByLabelText('hex')).not.toBeInTheDocument();
-        expect(screen.queryByLabelText('r')).not.toBeInTheDocument();
-        expect(screen.queryByLabelText('g')).not.toBeInTheDocument();
-        expect(screen.queryByLabelText('b')).not.toBeInTheDocument();
-        expect(screen.queryByLabelText('a')).not.toBeInTheDocument();
+        expect(screen.queryByText('Cancel')).toBeNull();
+        expect(screen.queryByText('Select')).toBeNull();
+        expect(screen.queryByLabelText('hex')).toBeNull();
+        expect(screen.queryByLabelText('r')).toBeNull();
+        expect(screen.queryByLabelText('g')).toBeNull();
+        expect(screen.queryByLabelText('b')).toBeNull();
+        expect(screen.queryByLabelText('a')).toBeNull();
       }
     }
 
-    it('should open the popover when the select button is clicked', () => {
+    it('should open the popover when the select button is clicked', async () => {
+      expect.assertions(7);
+
       setup({
         value: undefined
       });
 
-      expectPopoverOpen(false);
+      await expectPopoverOpen(false);
 
       fireEvent.click(screen.getByText('Select your best friend'));
 
-      expectPopoverOpen(true);
+      await expectPopoverOpen(true);
     });
 
     it('should call onChange when the user selects a color', () => {
@@ -124,9 +139,13 @@ describe('Component: ColorPicker', () => {
       fireEvent.click(screen.getByText('Select your best friend'));
 
       // @ts-expect-error saturation-black will always return element
-      fireEvent.touchStart(document.querySelector('.saturation-black'), { touches: [ { pageX: 20, pageY: 20 } ] });
+      fireEvent.touchStart(document.querySelector('.saturation-black'), {
+        touches: [{ pageX: 20, pageY: 20 }]
+      });
       // @ts-expect-error saturation-black will always return element
-      fireEvent.touchEnd(document.querySelector('.saturation-black'), { touches: [ { pageX: 20, pageY: 20 } ] });
+      fireEvent.touchEnd(document.querySelector('.saturation-black'), {
+        touches: [{ pageX: 20, pageY: 20 }]
+      });
 
       fireEvent.click(screen.getByText('Select'));
 
@@ -137,14 +156,16 @@ describe('Component: ColorPicker', () => {
     });
 
     describe('cancel behavior', () => {
-      it('should not call onChange when cancelled when a previous value has been selected', () => {
+      it('should not call onChange when cancelled when a previous value has been selected', async () => {
+        expect.assertions(2);
+
         const { onChangeSpy, onBlurSpy } = setup({
           value: '#cdcdcd'
         });
 
         fireEvent.click(screen.getByText('Select your best friend'));
 
-        expectPopoverOpen(true);
+        await expectPopoverOpen(true);
 
         fireEvent.click(screen.getByText('Cancel'));
 
@@ -192,9 +213,7 @@ describe('Component: ColorPicker', () => {
         value: undefined
       };
 
-      rerender(
-        <ColorPicker {...newProps} />
-      );
+      rerender(<ColorPicker {...newProps} />);
 
       expect(asFragment()).toMatchSnapshot('without value');
     });
@@ -211,9 +230,7 @@ describe('Component: ColorPicker', () => {
         value: '#424242'
       };
 
-      rerender(
-        <ColorPicker {...newProps} />
-      );
+      rerender(<ColorPicker {...newProps} />);
 
       expect(asFragment()).toMatchSnapshot('with value');
     });

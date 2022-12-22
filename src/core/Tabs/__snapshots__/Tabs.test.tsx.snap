@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Tabs ui hide inactive tabs by CSS 1`] = `
+exports[`Component: Tabs > ui > hide inactive tabs by CSS 1`] = `
 <div>
   <div
     class="tabs"
@@ -58,7 +58,7 @@ exports[`Component: Tabs ui hide inactive tabs by CSS 1`] = `
 </div>
 `;
 
-exports[`Component: Tabs ui hide inactive tabs by removing from dom 1`] = `
+exports[`Component: Tabs > ui > hide inactive tabs by removing from dom 1`] = `
 <div>
   <div
     class="tabs"
@@ -109,4 +109,4 @@ exports[`Component: Tabs ui hide inactive tabs by removing from dom 1`] = `
 </div>
 `;
 
-exports[`Component: Tabs ui should throw an exception if any child is not a Tab component 1`] = `"Tabs: expecting children of Tabs to be of type Tab but got something else"`;
+exports[`Component: Tabs > ui > should throw an exception if any child is not a Tab component 1`] = `"Tabs: expecting children of Tabs to be of type Tab but got something else"`;

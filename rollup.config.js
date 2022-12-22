@@ -1,8 +1,7 @@
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
 import autoExternal from 'rollup-plugin-auto-external';
-import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import visualizer from 'rollup-plugin-visualizer';
- 
+
 import glob from 'glob';
 import path from 'path';
 import fs from 'fs-extra';
@@ -16,7 +15,7 @@ const pkg = require('./package.json');
 const defaultFormat = (match, src, dest) => {
   const formattedPath = match
     .split(path.sep)
-    .filter(dir => !src.split(path.sep).includes(dir))
+    .filter((dir) => !src.split(path.sep).includes(dir))
     .join(path.sep);
 
   return path.join(dest, formattedPath);
@@ -40,7 +39,7 @@ const copy = (options = {}) => {
       for (const { src, dest } of targets) {
         glob(src, async (err, matches) => {
           if (err) console.error(err);
-          const formattedMatches = matches.map(match => ({
+          const formattedMatches = matches.map((match) => ({
             src: match,
             dest:
               format && typeof format === 'function'
@@ -76,8 +75,6 @@ module.exports = {
   ],
   plugins: [
     autoExternal(),
-    sizeSnapshot(),
-    visualizer(),
     copy({
       targets: [
         {
@@ -86,8 +83,7 @@ module.exports = {
         }
       ]
     }),
-    typescript({
-      typescript: require('typescript')
-    })
+    typescript(),
+    visualizer()
   ]
 };

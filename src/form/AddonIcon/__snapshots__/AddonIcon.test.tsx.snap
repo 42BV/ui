@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: AddonIcon ui 1`] = `
+exports[`Component: AddonIcon > ui 1`] = `
 <div>
   <span
     class="input-group-text"

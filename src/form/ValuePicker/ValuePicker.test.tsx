@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import { Page } from '@42.nl/spring-connect';
 
 import { ValuePicker } from './ValuePicker';
@@ -8,7 +8,14 @@ import { Options } from '../option';
 
 import { User } from '../../test/types';
 import * as testUtils from '../../test/utils';
-import { adminUser, coordinatorUser, listOfUsers, nobodyUser, randomUser, userUser } from '../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  nobodyUser,
+  randomUser,
+  userUser
+} from '../../test/fixtures';
 
 describe('Component: ValuePicker', () => {
   function setup({
@@ -21,8 +28,8 @@ describe('Component: ValuePicker', () => {
     value?: User | User[];
     canClear?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
     const { container, asFragment } = render(
       <ValuePicker<User>
@@ -46,7 +53,7 @@ describe('Component: ValuePicker', () => {
 
   it('should when booting render a loading spinner and request an initial page', () => {
     const { promise } = testUtils.resolvablePromise<Page<User>>();
-    const fetchOptionsSpy = jest.fn(({}) => promise);
+    const fetchOptionsSpy = vi.fn(({}) => promise);
 
     const { container } = setup({ options: fetchOptionsSpy, multiple: false });
 
@@ -69,7 +76,7 @@ describe('Component: ValuePicker', () => {
           ])
         );
 
-        const fetchOptionsSpy = jest.fn(({}) => promise);
+        const fetchOptionsSpy = vi.fn(({}) => promise);
 
         const { asFragment } = setup({
           options: fetchOptionsSpy,
@@ -112,13 +119,13 @@ describe('Component: ValuePicker', () => {
           canClear: false
         });
 
-        expect(screen.queryByText('Clear')).not.toBeInTheDocument();
+        expect(screen.queryByText('Clear')).toBeNull();
       });
     });
 
     describe('Select', () => {
       it('should render a `Select` component when async page `totalElements` is less than 11 but more than 3', async () => {
-        expect.assertions(5);
+        expect.assertions(4);
 
         const promise = Promise.resolve(
           testUtils.pageWithContentAndExactSize([
@@ -129,7 +136,7 @@ describe('Component: ValuePicker', () => {
           ])
         );
 
-        const fetchOptionsSpy = jest.fn(({}) => promise);
+        const fetchOptionsSpy = vi.fn(({}) => promise);
 
         const { asFragment } = setup({
           options: fetchOptionsSpy,
@@ -140,7 +147,7 @@ describe('Component: ValuePicker', () => {
           await promise;
         });
 
-        expect(screen.queryByRole('combobox')).toBeInTheDocument();
+        await screen.findByRole('combobox');
         expect(asFragment()).toMatchSnapshot();
 
         expect(fetchOptionsSpy).toBeCalledTimes(2);
@@ -156,19 +163,21 @@ describe('Component: ValuePicker', () => {
         });
       });
 
-      it('should render a `Select` component when options array length is less than 11 but more than 3', () => {
+      it('should render a `Select` component when options array length is less than 11 but more than 3', async () => {
+        expect.assertions(0);
+
         setup({
-          options: [ adminUser(), coordinatorUser(), userUser(), nobodyUser() ],
+          options: [adminUser(), coordinatorUser(), userUser(), nobodyUser()],
           multiple: false
         });
 
-        expect(screen.queryByRole('combobox')).toBeInTheDocument();
+        await screen.findByRole('combobox');
       });
     });
 
     describe('ModalPickerSingle', () => {
       it('should render a `ModalPickerSingle` when async page `totalElements` is more than than 10', async () => {
-        expect.assertions(5);
+        expect.assertions(4);
 
         const promise = Promise.resolve(
           testUtils.pageWithContent([
@@ -178,7 +187,7 @@ describe('Component: ValuePicker', () => {
           ])
         );
 
-        const fetchOptionsSpy = jest.fn(({}) => promise);
+        const fetchOptionsSpy = vi.fn(({}) => promise);
 
         const { asFragment } = setup({
           options: fetchOptionsSpy,
@@ -189,7 +198,7 @@ describe('Component: ValuePicker', () => {
           await promise;
         });
 
-        expect(screen.queryByRole('button')).toBeInTheDocument();
+        await screen.findByRole('button');
         expect(asFragment()).toMatchSnapshot();
 
         expect(fetchOptionsSpy).toBeCalledTimes(2);
@@ -205,7 +214,9 @@ describe('Component: ValuePicker', () => {
         });
       });
 
-      it('should render a `ModalPickerSingle` component when options array length is more than than 10', () => {
+      it('should render a `ModalPickerSingle` component when options array length is more than than 10', async () => {
+        expect.assertions(0);
+
         setup({
           options: [
             adminUser(),
@@ -223,7 +234,7 @@ describe('Component: ValuePicker', () => {
           multiple: false
         });
 
-        expect(screen.queryByRole('button')).toBeInTheDocument();
+        await screen.findByRole('button');
       });
 
       it('should render a `ModalPickerSingle` component without clear button', () => {
@@ -245,7 +256,7 @@ describe('Component: ValuePicker', () => {
           canClear: false
         });
 
-        expect(screen.queryByText('Clear')).not.toBeInTheDocument();
+        expect(screen.queryByText('Clear')).toBeNull();
       });
     });
   });
@@ -263,7 +274,7 @@ describe('Component: ValuePicker', () => {
           ])
         );
 
-        const fetchOptionsSpy = jest.fn(({}) => promise);
+        const fetchOptionsSpy = vi.fn(({}) => promise);
 
         const { asFragment } = setup({
           options: fetchOptionsSpy,
@@ -313,7 +324,7 @@ describe('Component: ValuePicker', () => {
 
     describe('ModalPickerMultiple', () => {
       it('should render a `ModalPickerMultiple` when async page `totalElements` is more than 10', async () => {
-        expect.assertions(5);
+        expect.assertions(4);
 
         const promise = Promise.resolve(
           testUtils.pageWithContent([
@@ -323,7 +334,7 @@ describe('Component: ValuePicker', () => {
           ])
         );
 
-        const fetchOptionsSpy = jest.fn(({}) => promise);
+        const fetchOptionsSpy = vi.fn(({}) => promise);
 
         const { asFragment } = setup({
           options: fetchOptionsSpy,
@@ -334,7 +345,7 @@ describe('Component: ValuePicker', () => {
           await promise;
         });
 
-        expect(screen.queryByRole('button')).toBeInTheDocument();
+        await screen.findByRole('button');
         expect(asFragment()).toMatchSnapshot();
 
         expect(fetchOptionsSpy).toBeCalledTimes(2);
@@ -350,7 +361,9 @@ describe('Component: ValuePicker', () => {
         });
       });
 
-      it('should render a `ModalPickerMultiple` component when options array length is more than 10', () => {
+      it('should render a `ModalPickerMultiple` component when options array length is more than 10', async () => {
+        expect.assertions(0);
+
         setup({
           options: [
             adminUser(),
@@ -368,7 +381,7 @@ describe('Component: ValuePicker', () => {
           multiple: true
         });
 
-        expect(screen.queryByRole('button')).toBeInTheDocument();
+        await screen.findByRole('button');
       });
 
       it('should render a `ModalPickerMultiple` component without clear button', () => {
@@ -390,7 +403,7 @@ describe('Component: ValuePicker', () => {
           canClear: false
         });
 
-        expect(screen.queryByText('Clear')).not.toBeInTheDocument();
+        expect(screen.queryByText('Clear')).toBeNull();
       });
     });
   });

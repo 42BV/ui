@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Tag ui default 1`] = `
+exports[`Component: Tag > ui > default 1`] = `
 <div>
   <span
     class="badge rounded-pill text-bg-primary"
@@ -10,7 +10,7 @@ exports[`Component: Tag ui default 1`] = `
 </div>
 `;
 
-exports[`Component: Tag ui with remove 1`] = `
+exports[`Component: Tag > ui > with remove 1`] = `
 <div>
   <span
     class="badge rounded-pill text-bg-primary"

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Popover ui default 1`] = `
+exports[`Component: Popover > ui > default 1`] = `
 <div>
   <span
     aria-expanded="false"
@@ -14,7 +14,7 @@ exports[`Component: Popover ui default 1`] = `
 </div>
 `;
 
-exports[`Component: Popover ui open 1`] = `
+exports[`Component: Popover > ui > open 1`] = `
 <div>
   <span
     aria-expanded="true"
@@ -28,7 +28,7 @@ exports[`Component: Popover ui open 1`] = `
   <div
     data-tippy-root=""
     id="tippy-2"
-    style="z-index: 1049; visibility: visible; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px; bottom: 0px; transform: translate(0px, -7px);"
+    style="z-index: 1049; visibility: visible; transition: none; position: absolute; left: 0px; top: auto; margin: 0px; right: auto; bottom: 0px; transform: translate(0px, 0px);"
   >
     <div
       class="tippy-box border-0 tippy-popover"
@@ -52,14 +52,14 @@ exports[`Component: Popover ui open 1`] = `
       </div>
       <div
         class="tippy-arrow"
-        style="position: absolute; left: 0px; transform: translate(3px, 0px);"
+        style="position: absolute; left: 0px; transform: translate(0px, 0px);"
       />
     </div>
   </div>
 </div>
 `;
 
-exports[`Component: Popover ui with optional properties 1`] = `
+exports[`Component: Popover > ui > with optional properties 1`] = `
 <div>
   <span
     aria-expanded="true"
@@ -74,7 +74,7 @@ exports[`Component: Popover ui with optional properties 1`] = `
   <div
     data-tippy-root=""
     id="tippy-5"
-    style="z-index: 1049; visibility: visible; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px; transform: translate(0px, 10px);"
+    style="z-index: 1049; visibility: visible; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px; right: auto; bottom: auto; transform: translate(0px, 0px);"
   >
     <div
       class="tippy-box border-0 tippy-popover"
@@ -98,7 +98,7 @@ exports[`Component: Popover ui with optional properties 1`] = `
       </div>
       <div
         class="tippy-arrow"
-        style="position: absolute; left: 0px; transform: translate(3px, 0px);"
+        style="position: absolute; left: 0px; transform: translate(0px, 0px);"
       />
     </div>
   </div>

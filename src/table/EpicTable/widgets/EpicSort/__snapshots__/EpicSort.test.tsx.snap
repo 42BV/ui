@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: EpicSort ui is ASC 1`] = `
+exports[`Component: EpicSort > ui > is ASC 1`] = `
 <div>
   <i
     class="icon pe-1 material-icons clickable"

@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { PlainTextFormControl } from './PlainTextFormControl';
 
@@ -31,11 +30,12 @@ describe('Component: PlainTextFormControl', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with label', () => {
+    test('with label', async () => {
+      expect.assertions(0);
       setup({
         label: 'Test'
       });
-      expect(screen.queryByText('Test')).toBeInTheDocument();
+      await screen.findByText('Test');
     });
 
     test('with label class name', () => {
@@ -43,14 +43,20 @@ describe('Component: PlainTextFormControl', () => {
         label: 'Test',
         labelClassName: 'label-class-name'
       });
-      expect(screen.getByText('Test')).toHaveClass('label-class-name');
+      expect(
+        screen.getByText('Test').classList.contains('label-class-name')
+      ).toBe(true);
     });
 
     test('with value class name', () => {
       setup({
         valueClassName: 'value-class-name'
       });
-      expect(screen.getByText('This is your name')).toHaveClass('value-class-name');
+      expect(
+        screen
+          .getByText('This is your name')
+          .classList.contains('value-class-name')
+      ).toBe(true);
     });
   });
 });

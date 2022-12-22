@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: AsyncActionButton events should be in progress when the AsyncActionButton button is clicked 1`] = `
+exports[`Component: AsyncActionButton > events > should be in progress when the AsyncActionButton button is clicked 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -20,7 +20,7 @@ exports[`Component: AsyncActionButton events should be in progress when the Asyn
 </div>
 `;
 
-exports[`Component: AsyncActionButton events should call onError and set inProgress to false when promise is rejected 1`] = `
+exports[`Component: AsyncActionButton > events > should call onError and set inProgress to false when promise is rejected 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -39,7 +39,7 @@ exports[`Component: AsyncActionButton events should call onError and set inProgr
 </div>
 `;
 
-exports[`Component: AsyncActionButton events should set inProgress to false when promise is resolved 1`] = `
+exports[`Component: AsyncActionButton > events > should set inProgress to false when promise is resolved 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -58,7 +58,7 @@ exports[`Component: AsyncActionButton events should set inProgress to false when
 </div>
 `;
 
-exports[`Component: AsyncActionButton ui in progress 1`] = `
+exports[`Component: AsyncActionButton > ui > in progress 1`] = `
 <div>
   <span
     class="button d-inline-block primary"
@@ -78,7 +78,7 @@ exports[`Component: AsyncActionButton ui in progress 1`] = `
 </div>
 `;
 
-exports[`Component: AsyncActionButton ui not in progress 1`] = `
+exports[`Component: AsyncActionButton > ui > not in progress 1`] = `
 <div>
   <span
     class="button d-inline-block primary"

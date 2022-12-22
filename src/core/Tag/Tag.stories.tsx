@@ -1,12 +1,18 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { Tag } from './Tag';
 
-storiesOf('core/Tag', module)
-  .addParameters({ component: Tag })
-  .add('default', () => (
+export default {
+  title: 'core/Tag',
+
+  parameters: {
+    component: Tag
+  }
+};
+
+export const Default = {
+  render: () => (
     <div className="text-center">
       <Tag text="Maarten" />
       <Tag text="Maarten" color="success" />
@@ -15,4 +21,7 @@ storiesOf('core/Tag', module)
       <Tag text="Maarten" color="danger" />
       <Tag text="Maarten" onRemove={action('on close')} />
     </div>
-  ));
+  ),
+
+  name: 'default'
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { EpicResize } from './EpicResize';
@@ -6,7 +7,7 @@ import { EpicResize } from './EpicResize';
 describe('Component: EpicResize', () => {
   test('ui', () => {
     const { container } = render(
-      <EpicResize width={300} onResize={jest.fn()} />
+      <EpicResize width={300} onResize={vi.fn()} />
     );
 
     expect(container).toMatchSnapshot();
@@ -14,7 +15,7 @@ describe('Component: EpicResize', () => {
 
   describe('events', () => {
     it('should resize with a throttle', () => {
-      const onResizeSpy = jest.fn();
+      const onResizeSpy = vi.fn();
 
       render(
         <EpicResize width={300} onResize={onResizeSpy} />
@@ -41,7 +42,7 @@ describe('Component: EpicResize', () => {
     });
 
     it('should when onResize changes update the throttle', () => {
-      const oldResizeSpy = jest.fn();
+      const oldResizeSpy = vi.fn();
 
       const { rerender } = render(
         <EpicResize width={300} onResize={oldResizeSpy} />
@@ -52,7 +53,7 @@ describe('Component: EpicResize', () => {
 
       expect(oldResizeSpy).toBeCalledTimes(1);
 
-      const newResizeSpy = jest.fn();
+      const newResizeSpy = vi.fn();
 
       rerender(
         <EpicResize width={300} onResize={newResizeSpy} />
@@ -68,7 +69,7 @@ describe('Component: EpicResize', () => {
     });
 
     it('should not allow resizing to below the initial width', () => {
-      const onResizeSpy = jest.fn();
+      const onResizeSpy = vi.fn();
 
       render(
         <EpicResize width={300} onResize={onResizeSpy} />

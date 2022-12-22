@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { InputGroupText } from 'reactstrap';
 
 import { Input, InputMask, InputType, reactStrapInput } from './Input';
@@ -42,9 +41,9 @@ describe('Component: Input', () => {
     hasPlaceholder?: boolean;
     hasLabel?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
-    const onFocusSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
+    const onFocusSpy = vi.fn();
 
     const props = {
       name: 'firstName',
@@ -68,7 +67,15 @@ describe('Component: Input', () => {
       <Input color="success" {...props} />
     );
 
-    return { container, props, asFragment, rerender, onChangeSpy, onBlurSpy, onFocusSpy };
+    return {
+      container,
+      props,
+      asFragment,
+      rerender,
+      onChangeSpy,
+      onBlurSpy,
+      onFocusSpy
+    };
   }
 
   describe('ui', () => {
@@ -79,57 +86,74 @@ describe('Component: Input', () => {
 
     test('type email', () => {
       setup({ type: 'email' });
-      expect(screen.getByRole('textbox')).toHaveAttribute('type', 'email');
+      expect(screen.getByRole('textbox').getAttribute('type')).toBe('email');
     });
 
-    test('with placeholder', () => {
+    test('with placeholder', async () => {
+      expect.assertions(0);
       setup({ hasPlaceholder: true });
-      expect(screen.queryByPlaceholderText('Please enter your first name')).toBeInTheDocument();
+      await screen.findByPlaceholderText('Please enter your first name');
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByPlaceholderText('Please enter your first name')).not.toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please enter your first name')
+      ).toBeNull();
     });
 
-    test('visible label', () => {
+    test('visible label', async () => {
+      expect.assertions(1);
       const { container } = setup({ hasLabel: true });
-      expect(screen.queryByText('First name')).toBeInTheDocument();
-      expect(screen.queryByLabelText('First name')).toBeInTheDocument();
+      await screen.findByText('First name');
+      await screen.findByLabelText('First name');
       expect(container).toMatchSnapshot();
     });
 
-    test('invisible label', () => {
+    test('invisible label', async () => {
+      expect.assertions(1);
       setup({ hasLabel: false });
-      expect(screen.queryByText('First name')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('First name')).toBeInTheDocument();
+      expect(screen.queryByText('First name')).toBeNull();
+      await screen.findByLabelText('First name');
     });
 
     test('addon default', () => {
-      const { container } = setup({ addon: <InputGroupText>Default on the left</InputGroupText> });
+      const { container } = setup({
+        addon: <InputGroupText>Default on the left</InputGroupText>
+      });
       expect(container).toMatchSnapshot();
     });
 
     test('addon left', () => {
-      setup({ addon: <InputGroupText>Left</InputGroupText>, addonPosition: 'left' });
+      setup({
+        addon: <InputGroupText>Left</InputGroupText>,
+        addonPosition: 'left'
+      });
       const addon = screen.getByText('Left');
       expect(addon.parentNode?.childNodes.item(0)).toBe(addon);
     });
 
     test('addon right', () => {
-      setup({ addon: <InputGroupText position="right">Right</InputGroupText>, addonPosition: 'right' });
+      setup({
+        addon: <InputGroupText position="right">Right</InputGroupText>,
+        addonPosition: 'right'
+      });
       const addon = screen.getByText('Right');
       expect(addon.parentNode?.childNodes.item(1)).toBe(addon);
     });
 
     test('is valid', () => {
       setup({ valid: true });
-      expect(screen.getByRole('textbox')).toHaveClass('is-valid');
+      expect(screen.getByRole('textbox').classList.contains('is-valid')).toBe(
+        true
+      );
     });
 
     test('is invalid', () => {
       setup({ valid: false });
-      expect(screen.getByRole('textbox')).toHaveClass('is-invalid');
+      expect(screen.getByRole('textbox').classList.contains('is-invalid')).toBe(
+        true
+      );
     });
   });
 
@@ -142,7 +166,9 @@ describe('Component: Input', () => {
     test('onChange', () => {
       const { onChangeSpy } = setup({ value: undefined, type: 'text' });
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('Maarten');
@@ -169,40 +195,40 @@ describe('Component: Input', () => {
     test('becomes empty', () => {
       const { props, rerender } = setup({ value: 'Maarten', type: 'text' });
 
-      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('Maarten');
 
       const newProps = {
         ...props,
         value: ''
       };
 
-      rerender(
-        <Input color="success" {...newProps} />
-      );
+      rerender(<Input color="success" {...newProps} />);
 
-      expect(screen.getByRole('textbox')).toHaveValue('');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('');
     });
 
     test('becomes filled', () => {
       const { props, rerender } = setup({ value: '', type: 'text' });
 
-      expect(screen.getByRole('textbox')).toHaveValue('');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('');
 
       const newProps = {
         ...props,
         value: 'Maarten'
       };
 
-      rerender(
-        <Input color="success" {...newProps} />
-      );
+      rerender(<Input color="success" {...newProps} />);
 
-      expect(screen.getByRole('textbox')).toHaveValue('Maarten');
+      // @ts-expect-error Form elements have property value
+      expect(screen.getByRole('textbox').value).toEqual('Maarten');
     });
   });
 });
 
 test('reactStrapInput', () => {
-  const { container } = render(reactStrapInput(jest.fn(), { id: 10 }));
+  const { container } = render(reactStrapInput(vi.fn(), { id: 10 }));
   expect(container).toMatchSnapshot();
 });

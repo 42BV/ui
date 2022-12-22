@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
+exports[`Component: Card > ui > basic > Component: Card => ui => basic 1`] = `
 <div>
   <div
     class="card"
@@ -27,6 +27,7 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="local"
               type="radio"
               value="local"
             />
@@ -42,6 +43,7 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="development"
               type="radio"
               value="development"
             />
@@ -57,6 +59,7 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="test"
               type="radio"
               value="test"
             />
@@ -72,6 +75,7 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="acceptation"
               type="radio"
               value="acceptation"
             />
@@ -87,6 +91,7 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="production"
               type="radio"
               value="production"
             />
@@ -105,7 +110,7 @@ exports[`Component: Card ui basic: Component: Card => ui => basic 1`] = `
 </div>
 `;
 
-exports[`Component: Card ui without footer 1`] = `
+exports[`Component: Card > ui > without footer 1`] = `
 <div>
   <div
     class="card"
@@ -132,6 +137,7 @@ exports[`Component: Card ui without footer 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="local"
               type="radio"
               value="local"
             />
@@ -147,6 +153,7 @@ exports[`Component: Card ui without footer 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="development"
               type="radio"
               value="development"
             />
@@ -162,6 +169,7 @@ exports[`Component: Card ui without footer 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="test"
               type="radio"
               value="test"
             />
@@ -177,6 +185,7 @@ exports[`Component: Card ui without footer 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="acceptation"
               type="radio"
               value="acceptation"
             />
@@ -192,6 +201,7 @@ exports[`Component: Card ui without footer 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="production"
               type="radio"
               value="production"
             />
@@ -205,7 +215,7 @@ exports[`Component: Card ui without footer 1`] = `
 </div>
 `;
 
-exports[`Component: Card ui without header 1`] = `
+exports[`Component: Card > ui > without header 1`] = `
 <div>
   <div
     class="card"
@@ -227,6 +237,7 @@ exports[`Component: Card ui without header 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="local"
               type="radio"
               value="local"
             />
@@ -242,6 +253,7 @@ exports[`Component: Card ui without header 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="development"
               type="radio"
               value="development"
             />
@@ -257,6 +269,7 @@ exports[`Component: Card ui without header 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="test"
               type="radio"
               value="test"
             />
@@ -272,6 +285,7 @@ exports[`Component: Card ui without header 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="acceptation"
               type="radio"
               value="acceptation"
             />
@@ -287,6 +301,7 @@ exports[`Component: Card ui without header 1`] = `
           >
             <input
               class="form-check-input"
+              defaultvalue="production"
               type="radio"
               value="production"
             />

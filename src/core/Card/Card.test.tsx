@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { RadioGroup } from '../../form/RadioGroup/RadioGroup';
 
@@ -23,7 +24,7 @@ describe('Component: Card', () => {
 
     const children = (
       <RadioGroup<string>
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         options={[ 'local', 'development', 'test', 'acceptation', 'production' ]}
         labelForOption={(v) => v}
         label="Environment"

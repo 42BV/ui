@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 import { CrudHeader } from './CrudHeader';
@@ -19,9 +19,9 @@ describe('Component: CrudHeader', () => {
     hasSearch?: boolean;
     hasSearchOptions?: boolean;
   }) {
-    const onResizeSpy = jest.fn();
-    const onSearchSpy = jest.fn();
-    const onSortSpy = jest.fn();
+    const onResizeSpy = vi.fn();
+    const onSearchSpy = vi.fn();
+    const onSortSpy = vi.fn();
 
     const props = {
       width: 300,
@@ -29,14 +29,12 @@ describe('Component: CrudHeader', () => {
       onResize: hasResize ? onResizeSpy : undefined,
       onSearch: hasSearch ? onSearchSpy : undefined,
       onSort: hasSort ? onSortSpy : undefined,
-      options: hasSearchOptions ? [ 'crud', 'header' ] : undefined,
+      options: hasSearchOptions ? ['crud', 'header'] : undefined,
       labelForOption: hasSearchOptions ? (option) => option : undefined
     };
 
     const { container } = render(
-      <CrudHeader {...props}>
-        This is a header
-      </CrudHeader>
+      <CrudHeader {...props}>This is a header</CrudHeader>
     );
 
     return { container, onResizeSpy, onSearchSpy, onSortSpy };
@@ -50,36 +48,44 @@ describe('Component: CrudHeader', () => {
 
     test('with height', () => {
       const { container } = setup({ hasHeight: true });
-      expect(container.firstChild).toHaveStyle({ height: '100px' });
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).height).toBe('100px');
     });
 
-    test('with resize', () => {
+    test('with resize', async () => {
+      expect.assertions(0);
       setup({ hasResize: true });
-      expect(screen.queryByTestId('epic-table-header-resize')).toBeInTheDocument();
+      await screen.findByTestId('epic-table-header-resize');
     });
 
-    test('with sort', () => {
+    test('with sort', async () => {
+      expect.assertions(0);
       setup({ hasSort: true });
-      expect(screen.queryByText('sort')).toBeInTheDocument();
+      await screen.findByText('sort');
     });
 
-    test('with search', () => {
+    test('with search', async () => {
+      expect.assertions(0);
       setup({ hasSearch: true });
-      expect(screen.queryByRole('searchbox')).toBeInTheDocument();
+      await screen.findByRole('searchbox');
     });
 
-    test('with search and height', () => {
+    test('with search and height', async () => {
+      expect.assertions(1);
       const { container } = setup({ hasSearch: true, hasHeight: true });
-      expect(screen.queryByRole('searchbox')).toBeInTheDocument();
-      expect(container.firstChild).toHaveStyle({ height: '100px' });
+      await screen.findByRole('searchbox');
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).height).toBe('100px');
     });
 
-    test('with search options', () => {
+    test('with search options', async () => {
+      expect.assertions(0);
+
       setup({ hasSearch: true, hasSearchOptions: true });
 
-      expect(screen.queryByRole('combobox')).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: 'crud' })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: 'header' })).toBeInTheDocument();
+      await screen.findByRole('combobox');
+      await screen.findByRole('option', { name: 'crud' });
+      await screen.findByRole('option', { name: 'header' });
     });
   });
 
@@ -96,7 +102,9 @@ describe('Component: CrudHeader', () => {
     it('should call onSearch when the user types in the search field', () => {
       const { onSearchSpy } = setup({ hasSearch: true });
 
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
       expect(onSearchSpy).toBeCalledTimes(1);
       expect(onSearchSpy).toBeCalledWith('test');
@@ -105,7 +113,10 @@ describe('Component: CrudHeader', () => {
     it('should call onSearch when the user selects a search option', async () => {
       expect.assertions(2);
 
-      const { onSearchSpy } = setup({ hasSearch: true, hasSearchOptions: true });
+      const { onSearchSpy } = setup({
+        hasSearch: true,
+        hasSearchOptions: true
+      });
 
       await userEvent.selectOptions(screen.getByRole('combobox'), 'crud');
 

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ErrorBoundary ui with error 1`] = `
+exports[`Component: ErrorBoundary > ui > with error 1`] = `
 <div>
   <div
     class="text-center"
@@ -61,7 +61,7 @@ exports[`Component: ErrorBoundary ui with error 1`] = `
 </div>
 `;
 
-exports[`Component: ErrorBoundary ui without error 1`] = `
+exports[`Component: ErrorBoundary > ui > without error 1`] = `
 <div>
   Here is some content without an error
 </div>

@@ -1,21 +1,13 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
+import React, { useState } from 'react';
 import { random } from 'lodash';
 import { Moment } from 'moment';
-import { Form, FormRenderProps } from 'react-final-form';
+import { Form as RFForm, FormRenderProps } from 'react-final-form';
 
 import { FieldInput, JarbInput } from './Input/Input';
 import { provinceFetcher, resolveAfter, sleep } from '../story-utils';
 import {
+  Button,
   Card,
-  InfoTooltip,
-  isDateAfter,
-  isDateAfterValidator,
-  isDateBefore,
-  isDateBeforeValidator,
-  isDateBetween,
-  isDateBetweenValidator,
-  isStrongPassword,
   FieldCheckbox,
   FieldCheckboxMultipleSelect,
   FieldColorPicker,
@@ -32,6 +24,14 @@ import {
   FieldTextEditor,
   FieldTypeaheadMultiple,
   FieldTypeaheadSingle,
+  InfoTooltip,
+  isDateAfter,
+  isDateAfterValidator,
+  isDateBefore,
+  isDateBeforeValidator,
+  isDateBetween,
+  isDateBetweenValidator,
+  isStrongPassword,
   JarbCheckbox,
   JarbCheckboxMultipleSelect,
   JarbColorPicker,
@@ -50,6 +50,7 @@ import {
   JarbTypeaheadSingle,
   limitFileSize,
   limitImageSize,
+  OpenCloseModal,
   PlainTextFormControl,
   requireFile,
   requireImage,
@@ -57,7 +58,6 @@ import {
 } from '..';
 import { pageOfUsers } from '../test/fixtures';
 import { User } from '../test/types';
-import { ModalForm } from '../core/OpenCloseModal/OpenCloseModal.stories';
 import { AddonIcon } from './AddonIcon/AddonIcon';
 import { Col, Row } from 'reactstrap';
 import { action } from '@storybook/addon-actions';
@@ -84,7 +84,7 @@ async function firstNameAvailable(value?: string) {
 
   await sleep(random(2000, 5000));
 
-  return [ 'Maarten', 'Jeffrey' ].includes(value) ? undefined : (
+  return ['Maarten', 'Jeffrey'].includes(value) ? undefined : (
     <ul>
       <li>First name not available</li>
       <li>You can use Jeffrey</li>
@@ -100,7 +100,7 @@ async function lastNameAvailable(value?: string) {
 
   await sleep(random(100, 500));
 
-  return [ 'Hus', 'van Hoven' ].includes(value) ? undefined : (
+  return ['Hus', 'van Hoven'].includes(value) ? undefined : (
     <ul>
       <li>Last name not available</li>
       <li>You can use Hus</li>
@@ -126,29 +126,34 @@ const mask = [
   /\d/
 ];
 
-const validateCv = [ requireFile('cv'), limitFileSize(5, 'cv') ];
+const validateCv = [requireFile('cv'), limitFileSize(5, 'cv')];
 const validateProfile = [
   requireImage('profile photo'),
   limitImageSize(0.5, 'profile photo')
 ];
 
-const requiredValidator = [ required ];
+const requiredValidator = [required];
 
-const firstNameValidators = [ required, isLengthBelow100 ];
-const firstNameAsyncValidators = [ firstNameAvailable ];
+const firstNameValidators = [required, isLengthBelow100];
+const firstNameAsyncValidators = [firstNameAvailable];
 
-const lastNameValidators = [ required, isLengthBelow100 ];
-const lastNameAsyncValidators = [ lastNameAvailable ];
+const lastNameValidators = [required, isLengthBelow100];
+const lastNameAsyncValidators = [lastNameAvailable];
 
 export function userAsOption(user: User): string {
   return user.email;
 }
 
-storiesOf('Form/Example', module)
-  .add('form', () => {
+export default {
+  title: 'Form/Example',
+  excludeStories: ['userAsOption', 'TotalForm', 'TotalJarbForm']
+};
+
+export const Form = {
+  render: () => {
     return (
       <Card className="m2">
-        <Form
+        <RFForm
           onSubmit={() => action('form submitted')}
           render={(formRenderProps) => (
             <TotalForm hasSubmit={true} formRenderProps={formRenderProps} />
@@ -156,20 +161,93 @@ storiesOf('Form/Example', module)
         />
       </Card>
     );
-  })
-  .add('jarb form', () => {
-    return (
-      <Card className="m2">
-        <Form
-          onSubmit={() => action('form submitted')}
-          render={(formRenderProps) => (
-            <TotalJarbForm hasSubmit={true} formRenderProps={formRenderProps} />
+  },
+
+  name: 'form'
+};
+
+const JarbFormStory = () => {
+  return (
+    <Card className="m2">
+      <RFForm
+        onSubmit={() => action('form submitted')}
+        render={(formRenderProps) => (
+          <TotalJarbForm hasSubmit={true} formRenderProps={formRenderProps} />
+        )}
+      />
+    </Card>
+  );
+};
+
+export const JarbForm = {
+  render: JarbFormStory,
+  name: 'jarb form'
+};
+
+const JarbFormInModalStory = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  async function onSave() {
+    action('save button was clicked');
+
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(undefined);
+      }, 2000);
+    });
+
+    setIsOpen(false);
+  }
+
+  function onClose() {
+    action('modal was closed');
+    setIsOpen(false);
+  }
+
+  return (
+    <Card>
+      <Button onClick={() => setIsOpen(true)}>Open form</Button>
+
+      {isOpen ? (
+        <RFForm onSubmit={onSave}>
+          {(formRenderProps) => (
+            <OpenCloseModal
+              inProgress={formRenderProps.submitting}
+              onClose={onClose}
+              onSave={formRenderProps.handleSubmit}
+              label="Form example"
+              size="lg"
+            >
+              <TotalForm hasSubmit={false} formRenderProps={formRenderProps} />
+            </OpenCloseModal>
           )}
-        />
-      </Card>
-    );
-  })
-  .add('jarb form in modal', ModalForm);
+        </RFForm>
+      ) : null}
+
+      <p className="mt-2">
+        Note: the <code>Form</code> element should wrap the{' '}
+        <code>OpenCloseModal</code> not the other way around. Otherwise you
+        cannot use the inProgress prop, and you cannot use submit in onSave.
+      </p>
+
+      <p className="mt-2">
+        Also make sure that you do not render the <code>Form</code> this way
+        when you close the modal the form will be reset. Otherwise information
+        will linger in the <code>Form</code> element.
+      </p>
+
+      <p className="mt-2">
+        Also try to keep the modal forms limited. Sometimes it is better to just
+        create a create / edit page if a form is very large.
+      </p>
+    </Card>
+  );
+};
+
+export const JarbFormInModal = {
+  render: JarbFormInModalStory,
+  name: 'jarb form in modal'
+};
 
 export function TotalForm({
   hasSubmit,

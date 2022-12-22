@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { ConfirmModal } from './ConfirmModal';
 
@@ -22,7 +22,9 @@ describe('Component: ConfirmModal', () => {
       expect(document.body.lastChild).toMatchSnapshot();
     });
 
-    test('custom texts', () => {
+    test('custom texts', async () => {
+      expect.assertions(4);
+
       render(
         <ConfirmModal
           onClose={() => undefined}
@@ -39,10 +41,10 @@ describe('Component: ConfirmModal', () => {
         />
       );
 
-      expect(screen.queryByText('Confirmation')).not.toBeInTheDocument();
-      expect(screen.queryByText('Perform dangerous action')).toBeInTheDocument();
-      expect(screen.getAllByRole('button')[1]).toHaveTextContent('cancelNO');
-      expect(screen.getAllByRole('button')[2]).toHaveTextContent('saveYES');
+      expect(screen.queryByText('Confirmation')).toBeNull();
+      await screen.findByText('Perform dangerous action');
+      expect(screen.getAllByRole('button')[1].textContent).toEqual('cancelNO');
+      expect(screen.getAllByRole('button')[2].textContent).toEqual('saveYES');
       expect(document.body.lastChild).toMatchSnapshot();
     });
   });
@@ -51,8 +53,8 @@ describe('Component: ConfirmModal', () => {
     type Props = { text: string; isOpen?: boolean };
 
     function setup({ text, isOpen }: Props) {
-      const onCloseSpy = jest.fn();
-      const onSaveSpy = jest.fn();
+      const onCloseSpy = vi.fn();
+      const onSaveSpy = vi.fn();
 
       const props = {
         isOpen: isOpen ?? false,
@@ -62,20 +64,20 @@ describe('Component: ConfirmModal', () => {
         modalText: text
       };
 
-      const { container } = render(
-        <ConfirmModal {...props} />
-      );
+      const { container } = render(<ConfirmModal {...props} />);
 
       return { container, onCloseSpy, onSaveSpy };
     }
 
-    it('should open the OpenCloseModal when the ConfirmModal is opened', () => {
+    it('should open the OpenCloseModal when the ConfirmModal is opened', async () => {
+      expect.assertions(0);
+
       setup({
         text: 'Delete all data in the database?',
         isOpen: true
       });
 
-      expect(screen.queryByText('Delete all data in the database?')).toBeInTheDocument();
+      await screen.findByText('Delete all data in the database?');
     });
 
     it('should call onClose when the Modal is closed', () => {

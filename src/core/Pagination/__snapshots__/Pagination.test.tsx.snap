@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: Pagination ui first page 1`] = `
+exports[`Component: Pagination > ui > first page 1`] = `
 <div>
   <div
     class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
@@ -110,7 +110,7 @@ exports[`Component: Pagination ui first page 1`] = `
 </div>
 `;
 
-exports[`Component: Pagination ui last page 1`] = `
+exports[`Component: Pagination > ui > last page 1`] = `
 <div>
   <div
     class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
@@ -220,7 +220,7 @@ exports[`Component: Pagination ui last page 1`] = `
 </div>
 `;
 
-exports[`Component: Pagination ui middle 1`] = `
+exports[`Component: Pagination > ui > middle 1`] = `
 <div>
   <div
     class="d-flex justify-content-center flex-wrap flex-sm-nowrap"

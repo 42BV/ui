@@ -1,9 +1,9 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { Toggle } from './Toggle';
 import { Tooltip } from '../Tooltip/Tooltip';
+import userEvent from '@testing-library/user-event';
 
 describe('Component: Toggle', () => {
   function setup({
@@ -15,8 +15,8 @@ describe('Component: Toggle', () => {
     label?: React.ReactNode;
     hasLabel?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
     const props = {
       value,
@@ -42,13 +42,15 @@ describe('Component: Toggle', () => {
 
     test('checked', () => {
       setup({ value: true });
-      expect(screen.getByRole('checkbox')).toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(true);
     });
 
-    test('with text label', () => {
+    test('with text label', async () => {
+      expect.assertions(1);
       const { container } = setup({ value: false, hasLabel: true });
-      expect(screen.getByText('Test')).toBeInTheDocument();
-      expect(screen.getByLabelText('Test')).toBeInTheDocument();
+      await screen.findByText('Test');
+      await screen.findByLabelText('Test');
       expect(container).toMatchSnapshot();
     });
 
@@ -61,12 +63,21 @@ describe('Component: Toggle', () => {
 
   describe('events', () => {
     describe('onChange', () => {
-      it('should call onChange with true when unchecked', () => {
+      it('should call onChange with true when unchecked', async () => {
+        expect.assertions(2);
         const { onChangeSpy } = setup({ value: false });
 
-        expect(screen.getByRole('checkbox')).not.toBeChecked();
+        // @ts-expect-error Checkbox has property checked
+        expect(screen.getByRole('checkbox').checked).toEqual(false);
 
-        fireEvent.click(screen.getByRole('checkbox'));
+        await userEvent.click(screen.getByRole('checkbox'));
+
+        await waitFor(() => {
+          expect(
+            getComputedStyle(screen.getByRole('checkbox'), '::after').left
+          ).toBe('1rem');
+        });
+        expect(screen.getByRole('checkbox').checked).toEqual(true);
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
         expect(onChangeSpy).toHaveBeenCalledWith(true);
@@ -75,7 +86,8 @@ describe('Component: Toggle', () => {
       it('should call onChange with false when checked', () => {
         const { onChangeSpy } = setup({ value: true });
 
-        expect(screen.getByRole('checkbox')).toBeChecked();
+        // @ts-expect-error Checkbox has property checked
+        expect(screen.getByRole('checkbox').checked).toEqual(true);
 
         fireEvent.click(screen.getByRole('checkbox'));
 
@@ -103,7 +115,7 @@ describe('Component: Toggle', () => {
   });
 
   test('value changes', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     const { rerender } = render(
       <Toggle
@@ -115,7 +127,8 @@ describe('Component: Toggle', () => {
       />
     );
 
-    expect(screen.getByRole('checkbox')).not.toBeChecked();
+    // @ts-expect-error Checkbox has property checked
+    expect(screen.getByRole('checkbox').checked).toEqual(false);
 
     rerender(
       <Toggle
@@ -127,6 +140,7 @@ describe('Component: Toggle', () => {
       />
     );
 
-    expect(screen.getByRole('checkbox')).toBeChecked();
+    // @ts-expect-error Checkbox has property checked
+    expect(screen.getByRole('checkbox').checked).toEqual(true);
   });
 });

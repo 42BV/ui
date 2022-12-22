@@ -1,6 +1,7 @@
 import { alwaysTrue, doBlur, getState } from './utils';
+import { vi } from 'vitest';
 
-describe('getState', () => {
+test('getState', () => {
   expect(getState({ hasErrors: true, touched: true })).toEqual({
     color: 'danger',
     valid: false
@@ -23,7 +24,7 @@ describe('getState', () => {
 });
 
 test('doBlur', () => {
-  const onBlur = jest.fn();
+  const onBlur = vi.fn();
   doBlur(onBlur);
   expect(onBlur).toBeCalledTimes(1);
 });

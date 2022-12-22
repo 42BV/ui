@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { Popover } from './Popover';
 
@@ -48,7 +47,9 @@ describe('Component: Popover', () => {
           Popover content
         </Popover>
       );
-      expect(screen.getByText('target')).toHaveClass('extra-classnames');
+      expect(
+        screen.getByText('target').classList.contains('extra-classnames')
+      ).toBe(true);
     });
 
     test('with optional properties', () => {
@@ -58,7 +59,7 @@ describe('Component: Popover', () => {
           isOpen={true}
           distance={10}
           placement="bottom"
-          onClickOutside={jest.fn()}
+          onClickOutside={vi.fn()}
           target={
             <div>The popover should be wrapped around this div, in a div</div>
           }

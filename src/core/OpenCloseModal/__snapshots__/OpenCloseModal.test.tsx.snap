@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: OpenCloseModal ui in progress 1`] = `
+exports[`Component: OpenCloseModal > ui > in progress 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -52,6 +52,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="local"
                     type="radio"
                     value="local"
                   />
@@ -67,6 +68,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="development"
                     type="radio"
                     value="development"
                   />
@@ -82,6 +84,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="test"
                     type="radio"
                     value="test"
                   />
@@ -97,6 +100,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="acceptation"
                     type="radio"
                     value="acceptation"
                   />
@@ -112,6 +116,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="production"
                     type="radio"
                     value="production"
                   />
@@ -186,7 +191,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
 </div>
 `;
 
-exports[`Component: OpenCloseModal ui open 1`] = `
+exports[`Component: OpenCloseModal > ui > open 1`] = `
 <div
   style="position: relative; z-index: 1050; display: block;"
   tabindex="-1"
@@ -238,6 +243,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="local"
                     type="radio"
                     value="local"
                   />
@@ -253,6 +259,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="development"
                     type="radio"
                     value="development"
                   />
@@ -268,6 +275,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="test"
                     type="radio"
                     value="test"
                   />
@@ -283,6 +291,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="acceptation"
                     type="radio"
                     value="acceptation"
                   />
@@ -298,6 +307,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
                 >
                   <input
                     class="form-check-input"
+                    defaultvalue="production"
                     type="radio"
                     value="production"
                   />

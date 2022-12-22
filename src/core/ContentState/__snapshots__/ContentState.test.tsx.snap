@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: ContentStateIcon ui empty 1`] = `
+exports[`Component: ContentStateIcon > ui > empty 1`] = `
 <div>
   <div
     class="text-center"
@@ -66,7 +66,7 @@ exports[`Component: ContentStateIcon ui empty 1`] = `
 </div>
 `;
 
-exports[`Component: ContentStateIcon ui error 1`] = `
+exports[`Component: ContentStateIcon > ui > error 1`] = `
 <div>
   <div
     class="text-center"
@@ -132,7 +132,7 @@ exports[`Component: ContentStateIcon ui error 1`] = `
 </div>
 `;
 
-exports[`Component: ContentStateIcon ui loading 1`] = `
+exports[`Component: ContentStateIcon > ui > loading 1`] = `
 <div>
   <div
     class="text-center"
@@ -205,7 +205,7 @@ exports[`Component: ContentStateIcon ui loading 1`] = `
 </div>
 `;
 
-exports[`Component: ContentStateIcon ui no-results 1`] = `
+exports[`Component: ContentStateIcon > ui > no-results 1`] = `
 <div>
   <div
     class="text-center"
@@ -271,7 +271,7 @@ exports[`Component: ContentStateIcon ui no-results 1`] = `
 </div>
 `;
 
-exports[`Component: ContentStateIcon ui with children 1`] = `
+exports[`Component: ContentStateIcon > ui > with children 1`] = `
 <div>
   <div
     class="text-center"

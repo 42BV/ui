@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: EpicForm ui 1`] = `
+exports[`Component: EpicForm > ui 1`] = `
 <div>
   <form
     class="epic-table-form border-bottom p-1"
@@ -19,9 +19,9 @@ exports[`Component: EpicForm ui 1`] = `
       </label>
       <input
         class="form-control"
+        defaultvalue=""
         id="testField"
         type="text"
-        value=""
       />
     </div>
     <button

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: SearchInput ui default 1`] = `
+exports[`Component: SearchInput > ui > default 1`] = `
 <div>
   <div
     class="search-input"
@@ -20,45 +20,10 @@ exports[`Component: SearchInput ui default 1`] = `
       <input
         aria-label="Search"
         class="form-control"
+        defaultvalue=""
         id="search"
         placeholder="Search..."
         type="search"
-        value=""
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Component: SearchInput ui with value 1`] = `
-<div>
-  <div
-    class="search-input"
-  >
-    <i
-      class="icon cancel-search material-icons clickable"
-    >
-      close
-    </i>
-    <div
-      class="input-group"
-    >
-      <span
-        class="input-group-text"
-      >
-        <i
-          class="icon material-icons"
-        >
-          search
-        </i>
-      </span>
-      <input
-        aria-label="Search"
-        class="form-control"
-        id="search"
-        placeholder="Search..."
-        type="search"
-        value=""
       />
     </div>
   </div>

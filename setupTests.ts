@@ -1,12 +1,19 @@
+import { vi } from 'vitest';
 import { TextEncoder } from 'util';
+import { configure } from '@testing-library/react';
+
 global.TextEncoder = TextEncoder;
 
-beforeEach(() => {
-  jest.clearAllMocks();
-  jest.resetAllMocks();
+configure({
+  computedStyleSupportsPseudoElements: true
+});
 
+beforeEach(() => {
   // Re-create the fake storages for each test the stores always start fresh.
   setupStorages();
+});
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 // Create fake versions of localStorage and sessionStorage.
@@ -16,13 +23,13 @@ function setupStorages() {
 
   // @ts-expect-error override for custom store in test
   global.localStorage = {
-    getItem: jest.fn((key) => {
+    getItem: vi.fn((key) => {
       return localStorageMockStore[key] || null;
     }),
-    setItem: jest.fn((key, value) => {
+    setItem: vi.fn((key, value) => {
       localStorageMockStore[key] = `${value}`;
     }),
-    clear: jest.fn(() => {
+    clear: vi.fn(() => {
       localStorageMockStore = {};
     })
   };
@@ -31,13 +38,13 @@ function setupStorages() {
 
   // @ts-expect-error override for custom store in test
   global.sessionStorage = {
-    getItem: jest.fn((key) => {
+    getItem: vi.fn((key) => {
       return sessionStorageMockStore[key] || null;
     }),
-    setItem: jest.fn((key, value) => {
+    setItem: vi.fn((key, value) => {
       sessionStorageMockStore[key] = `${value}`;
     }),
-    clear: jest.fn(() => {
+    clear: vi.fn(() => {
       sessionStorageMockStore = {};
     })
   };

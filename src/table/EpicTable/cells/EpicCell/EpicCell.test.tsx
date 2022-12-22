@@ -1,13 +1,19 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { EpicCell } from './EpicCell';
 
 describe('Component: EpicCell', () => {
-  function setup({ hasOnRowClick = true, height }: { hasOnRowClick?: boolean; height?: number; }) {
-    const onRowClickSpy = jest.fn();
-    const onHoverChangedSpy = jest.fn();
+  function setup({
+    hasOnRowClick = true,
+    height
+  }: {
+    hasOnRowClick?: boolean;
+    height?: number;
+  }) {
+    const onRowClickSpy = vi.fn();
+    const onHoverChangedSpy = vi.fn();
 
     const { container } = render(
       <EpicCell
@@ -32,7 +38,8 @@ describe('Component: EpicCell', () => {
 
     test('with height', () => {
       const { container } = setup({ height: 50 });
-      expect(container.firstChild).toHaveStyle({ height: '50px' });
+      // @ts-expect-error Child node is an Element
+      expect(getComputedStyle(container.firstChild).height).toBe('50px');
     });
   });
 

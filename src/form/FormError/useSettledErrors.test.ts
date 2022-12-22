@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { useSettledErrors } from './useSettledErrors';
 import { Meta, MetaError } from '../types';
@@ -7,7 +8,7 @@ type Config = { meta: Meta; value: any };
 
 describe('useSettledErrors', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   function setup(config: Config) {
@@ -46,13 +47,13 @@ describe('useSettledErrors', () => {
         value: 'test'
       });
 
-      const spy = jest.spyOn(window, 'clearTimeout');
+      const spy = vi.spyOn(window, 'clearTimeout');
 
       unmount();
 
       expect(window.clearTimeout).toHaveBeenCalledTimes(1);
 
-      (spy as jest.Mock).mockClear();
+      (spy).mockClear();
     });
   });
 
@@ -70,12 +71,12 @@ describe('useSettledErrors', () => {
       rerender({ meta: { active: true, error: 'Big error' }, value: 'henk' });
 
       act(() => {
-        jest.advanceTimersByTime(4999);
+        vi.advanceTimersByTime(4999);
       });
       expect(result.current).toEqual([]);
 
       act(() => {
-        jest.advanceTimersByTime(1);
+        vi.advanceTimersByTime(1);
       });
       expect(result.current).toEqual([ 'Big error' ]);
     });
@@ -93,12 +94,12 @@ describe('useSettledErrors', () => {
       rerender({ meta: { active: true, error: undefined }, value: 'henk' });
 
       act(() => {
-        jest.advanceTimersByTime(99);
+        vi.advanceTimersByTime(99);
       });
       expect(result.current).toEqual([ 'Big error' ]);
 
       act(() => {
-        jest.advanceTimersByTime(1);
+        vi.advanceTimersByTime(1);
       });
       expect(result.current).toEqual([]);
     });
@@ -119,12 +120,12 @@ describe('useSettledErrors', () => {
       });
 
       act(() => {
-        jest.advanceTimersByTime(99);
+        vi.advanceTimersByTime(99);
       });
       expect(result.current).toEqual([]);
 
       act(() => {
-        jest.advanceTimersByTime(1);
+        vi.advanceTimersByTime(1);
       });
       expect(result.current).toEqual([ 'Small error' ]);
     });
@@ -160,12 +161,12 @@ describe('useSettledErrors', () => {
       rerender({ meta: { active: false, error: undefined }, value: 'henk' });
 
       act(() => {
-        jest.advanceTimersByTime(1999);
+        vi.advanceTimersByTime(1999);
       });
       expect(result.current).toEqual([ 'Small error' ]);
 
       act(() => {
-        jest.advanceTimersByTime(1);
+        vi.advanceTimersByTime(1);
       });
       expect(result.current).toEqual([]);
     });
@@ -179,7 +180,7 @@ describe('useSettledErrors', () => {
 
       // Show the error coming from the active to showErrors
       act(() => {
-        jest.advanceTimersByTime(5000);
+        vi.advanceTimersByTime(5000);
       });
       expect(result.current).toEqual([ 'Small error' ]);
 
@@ -195,13 +196,13 @@ describe('useSettledErrors', () => {
       // was undefined. But set a timer to clear it after
       // 2000 milliseconds.
       act(() => {
-        jest.advanceTimersByTime(100);
+        vi.advanceTimersByTime(100);
       });
       expect(result.current).toEqual([ 'Small error' ]);
 
       // It should clear the error after 2000 milliseconds
       act(() => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
 
       expect(result.current).toEqual([]);

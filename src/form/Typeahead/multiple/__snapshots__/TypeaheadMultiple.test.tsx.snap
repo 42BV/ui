@@ -1,209 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: TypeaheadMultiple ui async with a custom pageSize of 2 options in the dropdown 1`] = `
-<DocumentFragment>
-  <div
-    class="mb-3"
-  >
-    <div
-      class="showing-placeholder"
-    >
-      <div
-        class="rbt"
-        style="outline: none; position: relative;"
-        tabindex="-1"
-      >
-        <div
-          class="rbt-input-multi form-control rbt-input"
-          tabindex="-1"
-        >
-          <div
-            class="rbt-input-wrapper"
-          >
-            <div
-              style="display: flex; flex: 1; height: 100%; position: relative;"
-            >
-              <input
-                aria-autocomplete="list"
-                aria-haspopup="listbox"
-                aria-label="Best friend"
-                aria-owns="bestFriend-options"
-                autocomplete="off"
-                class="rbt-input-main"
-                id="bestFriend"
-                style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
-                type="text"
-                value="42.nl"
-              />
-              <input
-                aria-hidden="true"
-                class="rbt-input-hint"
-                readonly=""
-                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 0px 0px 0px 0px; line-height: normal; padding: 0px 0px 0px 0px;"
-                tabindex="-1"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          aria-label="menu-options"
-          class="rbt-menu dropdown-menu show"
-          data-popper-escaped="true"
-          data-popper-placement="bottom-start"
-          data-popper-reference-hidden="true"
-          id="bestFriend-options"
-          role="listbox"
-          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
-        >
-          <a
-            aria-label="admin@42.nl"
-            aria-selected="false"
-            class="dropdown-item"
-            href="#"
-            id="bestFriend-options-item-0"
-            role="option"
-          >
-            admin@
-            <mark
-              class="rbt-highlight-text"
-            >
-              42.nl
-            </mark>
-          </a>
-          <a
-            aria-label="coordinator@42.nl"
-            aria-selected="false"
-            class="dropdown-item"
-            href="#"
-            id="bestFriend-options-item-1"
-            role="option"
-          >
-            coordinator@
-            <mark
-              class="rbt-highlight-text"
-            >
-              42.nl
-            </mark>
-          </a>
-        </div>
-      </div>
-    </div>
-    Some error
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Component: TypeaheadMultiple ui async with the default pageSize of 10 options in the dropdown 1`] = `
-<DocumentFragment>
-  <div
-    class="mb-3"
-  >
-    <div
-      class="showing-placeholder"
-    >
-      <div
-        class="rbt"
-        style="outline: none; position: relative;"
-        tabindex="-1"
-      >
-        <div
-          class="rbt-input-multi form-control rbt-input"
-          tabindex="-1"
-        >
-          <div
-            class="rbt-input-wrapper"
-          >
-            <div
-              style="display: flex; flex: 1; height: 100%; position: relative;"
-            >
-              <input
-                aria-autocomplete="list"
-                aria-haspopup="listbox"
-                aria-label="Best friend"
-                aria-owns="bestFriend-options"
-                autocomplete="off"
-                class="rbt-input-main"
-                id="bestFriend"
-                style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
-                type="text"
-                value="42.nl"
-              />
-              <input
-                aria-hidden="true"
-                class="rbt-input-hint"
-                readonly=""
-                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 0px 0px 0px 0px; line-height: normal; padding: 0px 0px 0px 0px;"
-                tabindex="-1"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          aria-label="menu-options"
-          class="rbt-menu dropdown-menu show"
-          data-popper-escaped="true"
-          data-popper-placement="bottom-start"
-          data-popper-reference-hidden="true"
-          id="bestFriend-options"
-          role="listbox"
-          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
-        >
-          <a
-            aria-label="admin@42.nl"
-            aria-selected="false"
-            class="dropdown-item"
-            href="#"
-            id="bestFriend-options-item-0"
-            role="option"
-          >
-            admin@
-            <mark
-              class="rbt-highlight-text"
-            >
-              42.nl
-            </mark>
-          </a>
-          <a
-            aria-label="coordinator@42.nl"
-            aria-selected="false"
-            class="dropdown-item"
-            href="#"
-            id="bestFriend-options-item-1"
-            role="option"
-          >
-            coordinator@
-            <mark
-              class="rbt-highlight-text"
-            >
-              42.nl
-            </mark>
-          </a>
-          <a
-            aria-label="user@42.nl"
-            aria-selected="false"
-            class="dropdown-item"
-            href="#"
-            id="bestFriend-options-item-2"
-            role="option"
-          >
-            user@
-            <mark
-              class="rbt-highlight-text"
-            >
-              42.nl
-            </mark>
-          </a>
-        </div>
-      </div>
-    </div>
-    Some error
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Component: TypeaheadMultiple ui default 1`] = `
+exports[`Component: TypeaheadMultiple > ui > default 1`] = `
 <div>
   <div
     class="mb-3"
@@ -224,7 +21,7 @@ exports[`Component: TypeaheadMultiple ui default 1`] = `
             class="rbt-input-wrapper"
           >
             <div
-              style="display: flex; flex: 1; height: 100%; position: relative;"
+              style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="list"
@@ -232,18 +29,18 @@ exports[`Component: TypeaheadMultiple ui default 1`] = `
                 aria-label="Best friend"
                 autocomplete="off"
                 class="rbt-input-main"
+                defaultvalue=""
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
-                value=""
               />
               <input
                 aria-hidden="true"
                 class="rbt-input-hint"
+                defaultvalue=""
                 readonly=""
                 style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
                 tabindex="-1"
-                value=""
               />
             </div>
           </div>
@@ -255,7 +52,7 @@ exports[`Component: TypeaheadMultiple ui default 1`] = `
 </div>
 `;
 
-exports[`Component: TypeaheadMultiple ui loading 1`] = `
+exports[`Component: TypeaheadMultiple > ui > loading 1`] = `
 <div>
   <div
     class="mb-3"
@@ -276,7 +73,7 @@ exports[`Component: TypeaheadMultiple ui loading 1`] = `
             class="rbt-input-wrapper"
           >
             <div
-              style="display: flex; flex: 1; height: 100%; position: relative;"
+              style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="list"
@@ -284,18 +81,18 @@ exports[`Component: TypeaheadMultiple ui loading 1`] = `
                 aria-label="Best friend"
                 autocomplete="off"
                 class="rbt-input-main"
+                defaultvalue=""
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
-                value=""
               />
               <input
                 aria-hidden="true"
                 class="rbt-input-hint"
+                defaultvalue=""
                 readonly=""
                 style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
                 tabindex="-1"
-                value=""
               />
             </div>
           </div>
@@ -321,7 +118,7 @@ exports[`Component: TypeaheadMultiple ui loading 1`] = `
 </div>
 `;
 
-exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
+exports[`Component: TypeaheadMultiple > ui > with a custom pagination text 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -342,7 +139,7 @@ exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
             class="rbt-input-wrapper"
           >
             <div
-              style="display: flex; flex: 1; height: 100%; position: relative;"
+              style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="list"
@@ -351,18 +148,18 @@ exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
                 aria-owns="bestFriend-options"
                 autocomplete="off"
                 class="rbt-input-main"
+                defaultvalue="42.nl"
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
-                value="42.nl"
               />
               <input
                 aria-hidden="true"
                 class="rbt-input-hint"
+                defaultvalue=""
                 readonly=""
-                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 0px 0px 0px 0px; line-height: normal; padding: 0px 0px 0px 0px;"
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: initial; border-width: 0px; padding: 0px;"
                 tabindex="-1"
-                value=""
               />
             </div>
           </div>
@@ -375,7 +172,7 @@ exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
           data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; right: auto; bottom: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -429,7 +226,7 @@ exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Component: TypeaheadMultiple ui with the default pagination text 1`] = `
+exports[`Component: TypeaheadMultiple > ui > with the default pagination text 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -450,7 +247,7 @@ exports[`Component: TypeaheadMultiple ui with the default pagination text 1`] = 
             class="rbt-input-wrapper"
           >
             <div
-              style="display: flex; flex: 1; height: 100%; position: relative;"
+              style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
             >
               <input
                 aria-autocomplete="list"
@@ -459,18 +256,18 @@ exports[`Component: TypeaheadMultiple ui with the default pagination text 1`] = 
                 aria-owns="bestFriend-options"
                 autocomplete="off"
                 class="rbt-input-main"
+                defaultvalue="42.nl"
                 id="bestFriend"
                 style="background-color: transparent; border: 0px; box-shadow: none; cursor: inherit; outline: none; padding: 0px; width: 100%; z-index: 1;"
                 type="text"
-                value="42.nl"
               />
               <input
                 aria-hidden="true"
                 class="rbt-input-hint"
+                defaultvalue=""
                 readonly=""
-                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 0px 0px 0px 0px; line-height: normal; padding: 0px 0px 0px 0px;"
+                style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: initial; border-width: 0px; padding: 0px;"
                 tabindex="-1"
-                value=""
               />
             </div>
           </div>
@@ -483,7 +280,7 @@ exports[`Component: TypeaheadMultiple ui with the default pagination text 1`] = 
           data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; right: auto; bottom: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"

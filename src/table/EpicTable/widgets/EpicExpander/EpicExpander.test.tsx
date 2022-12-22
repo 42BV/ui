@@ -1,12 +1,12 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { EpicExpander } from './EpicExpander';
 
 describe('Component: EpicExpander', () => {
   function setup({ open }: { open: boolean }) {
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const { container } = render(
       <EpicExpander onChange={onChangeSpy} open={open} />
@@ -16,17 +16,19 @@ describe('Component: EpicExpander', () => {
   }
 
   describe('ui', () => {
-    test('is open', () => {
+    test('is open', async () => {
+      expect.assertions(2);
       const { container } = setup({ open: true });
       expect(container).toMatchSnapshot();
-      expect(screen.queryByText('expand_less')).toBeInTheDocument();
-      expect(screen.queryByText('expand_more')).not.toBeInTheDocument();
+      await screen.findByText('expand_less');
+      expect(screen.queryByText('expand_more')).toBeNull();
     });
 
-    test('is closed', () => {
+    test('is closed', async () => {
+      expect.assertions(1);
       setup({ open: false });
-      expect(screen.queryByText('expand_less')).not.toBeInTheDocument();
-      expect(screen.queryByText('expand_more')).toBeInTheDocument();
+      expect(screen.queryByText('expand_less')).toBeNull();
+      await screen.findByText('expand_more');
     });
   });
 

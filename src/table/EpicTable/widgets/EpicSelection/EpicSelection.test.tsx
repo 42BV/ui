@@ -1,12 +1,12 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { EpicSelection } from './EpicSelection';
 
 describe('Component: EpicSelection', () => {
   function setup({ checked }: { checked: boolean }) {
-    const onChangeSpy = jest.fn();
+    const onChangeSpy = vi.fn();
 
     const { container } = render(
       <EpicSelection onChange={onChangeSpy} checked={checked} />
@@ -19,12 +19,14 @@ describe('Component: EpicSelection', () => {
     test('is checked', () => {
       const { container } = setup({ checked: true });
       expect(container).toMatchSnapshot();
-      expect(screen.getByRole('checkbox')).toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(true);
     });
 
     test('is not checked', () => {
       setup({ checked: false });
-      expect(screen.getByRole('checkbox')).not.toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(false);
     });
   });
 

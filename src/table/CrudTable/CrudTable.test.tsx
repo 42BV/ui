@@ -1,6 +1,6 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { CrudTable } from './CrudTable';
 import { Page } from '@42.nl/spring-connect';
@@ -25,8 +25,8 @@ describe('Component: CrudTable', () => {
     searchValue?: string;
     page?: Page<any>;
   }) {
-    const onSearchSpy = jest.fn();
-    const pageChangedSpy = jest.fn();
+    const onSearchSpy = vi.fn();
+    const pageChangedSpy = vi.fn();
 
     const { container } = render(
       <CrudTable
@@ -39,7 +39,9 @@ describe('Component: CrudTable', () => {
         pageChanged={pageChangedSpy}
       >
         <EpicRow>
-          <EpicCell width={100} height={44}>test</EpicCell>
+          <EpicCell width={100} height={44}>
+            test
+          </EpicCell>
         </EpicRow>
       </CrudTable>
     );
@@ -53,53 +55,60 @@ describe('Component: CrudTable', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with buttons', () => {
+    test('with buttons', async () => {
+      expect.assertions(0);
       setup({
-        buttons: () => <Button onClick={jest.fn()}>click this button</Button>
+        buttons: () => <Button onClick={vi.fn()}>click this button</Button>
       });
-      expect(screen.queryByText('click this button')).toBeInTheDocument();
+      await screen.findByText('click this button');
     });
 
-    test('with selection', () => {
+    test('with selection', async () => {
+      expect.assertions(0);
       setup({
         renderSelection: () => <Tag text="selected item" />
       });
-      expect(screen.queryByText('selected item')).toBeInTheDocument();
+      await screen.findByText('selected item');
     });
 
     test('without search', () => {
       setup({
         canSearch: () => false
       });
-      expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
+      expect(screen.queryByRole('searchbox')).toBeNull();
     });
 
-    test('with search value', () => {
+    test('with search value', async () => {
+      expect.assertions(1);
       setup({
         searchValue: 'test'
       });
-      expect(screen.queryByRole('searchbox')).toBeInTheDocument();
-      expect(screen.queryByRole('searchbox')).toHaveValue('test');
+      await screen.findByRole('searchbox');
+      // @ts-expect-error Form elements have property value
+      expect(screen.queryByRole('searchbox').value).toEqual('test');
     });
 
-    test('with pagination', () => {
+    test('with pagination', async () => {
+      expect.assertions(0);
       setup({
         page: pageOfUsers()
       });
-      expect(screen.queryByText('arrow_forward')).toBeInTheDocument();
+      await screen.findByText('arrow_forward');
     });
   });
 
   describe('events', () => {
     it('should call onSearch when the user types in the search field', () => {
       // @ts-expect-error Test mock
-      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
+      vi.spyOn(lodash, 'debounce').mockImplementation((fn) => {
         return fn;
       });
 
       const { onSearchSpy } = setup({});
 
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
       expect(onSearchSpy).toBeCalledTimes(1);
       expect(onSearchSpy).toBeCalledWith('test');

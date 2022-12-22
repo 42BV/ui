@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 
 import { Checkbox } from './Checkbox';
 
@@ -16,8 +15,8 @@ describe('Component: Checkbox', () => {
     allowIndeterminate?: boolean;
     hasLabel?: boolean;
   }) {
-    const onChangeSpy = jest.fn();
-    const onBlurSpy = jest.fn();
+    const onChangeSpy = vi.fn();
+    const onBlurSpy = vi.fn();
 
     const props = {
       id: hasLabel ? 'agree' : undefined,
@@ -29,12 +28,10 @@ describe('Component: Checkbox', () => {
       allowIndeterminate,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
-      error: 'Some error',
+      error: 'Some error'
     };
 
-    const { container, rerender, asFragment } = render(
-      <Checkbox {...props} />
-    );
+    const { container, rerender, asFragment } = render(<Checkbox {...props} />);
 
     return { container, rerender, asFragment, onBlurSpy, onChangeSpy };
   }
@@ -45,46 +42,56 @@ describe('Component: Checkbox', () => {
       expect(container).toMatchSnapshot();
     });
 
-    test('with placeholder', () => {
+    test('with placeholder', async () => {
+      expect.assertions(0);
       setup({ hasPlaceholder: true });
-      expect(screen.queryByText('Do you agree')).toBeInTheDocument();
+      await screen.findByText('Do you agree');
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByText('Do you agree')).not.toBeInTheDocument();
+      expect(screen.queryByText('Do you agree')).toBeNull();
     });
 
-    test('visible label', () => {
+    test('visible label', async () => {
+      expect.assertions(1);
       setup({ hasLabel: true });
-      expect(screen.queryByText('Agree')).toBeInTheDocument();
-      expect(screen.queryByLabelText('Agree')).toBeInTheDocument();
+      expect.assertions(0);
+      await screen.findByText('Agree');
+      await screen.findByLabelText('Agree');
     });
 
-    test('invisible label', () => {
+    test('invisible label', async () => {
+      expect.assertions(1);
       setup({ hasLabel: false });
-      expect(screen.queryByText('Agree')).not.toBeInTheDocument();
-      expect(screen.queryByLabelText('Agree')).toBeInTheDocument();
+      expect(screen.queryByText('Agree')).toBeNull();
+      await screen.findByLabelText('Agree');
     });
   });
 
   describe('allowIndeterminate is true', () => {
     it('should set indeterminate to false when value is true', () => {
       setup({ value: true, allowIndeterminate: true });
-      expect(screen.getByRole('checkbox')).not.toBePartiallyChecked();
-      expect(screen.getByRole('checkbox')).toBeChecked();
+      // @ts-expect-error Checkbox has property indeterminate
+      expect(screen.getByRole('checkbox').indeterminate).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(true);
     });
 
     it('should set indeterminate to false when value is false', () => {
       setup({ value: false, allowIndeterminate: true });
-      expect(screen.getByRole('checkbox')).not.toBePartiallyChecked();
-      expect(screen.getByRole('checkbox')).not.toBeChecked();
+      // @ts-expect-error Checkbox has property indeterminate
+      expect(screen.getByRole('checkbox').indeterminate).toEqual(false);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(false);
     });
 
     it('should set indeterminate to true when value is undefined', () => {
       setup({ value: undefined, allowIndeterminate: true });
-      expect(screen.getByRole('checkbox')).toBePartiallyChecked();
-      expect(screen.getByRole('checkbox')).not.toBeChecked();
+      // @ts-expect-error Checkbox has property indeterminate
+      expect(screen.getByRole('checkbox').indeterminate).toEqual(true);
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(false);
     });
   });
 
@@ -105,7 +112,8 @@ describe('Component: Checkbox', () => {
     test('becomes empty', () => {
       const { rerender, onBlurSpy, onChangeSpy } = setup({ value: true });
 
-      expect(screen.getByRole('checkbox')).toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(true);
 
       rerender(
         <Checkbox
@@ -119,13 +127,15 @@ describe('Component: Checkbox', () => {
         />
       );
 
-      expect(screen.getByRole('checkbox')).not.toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(false);
     });
 
     test('becomes filled from false', () => {
       const { rerender, onChangeSpy, onBlurSpy } = setup({ value: false });
 
-      expect(screen.getByRole('checkbox')).not.toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(false);
 
       rerender(
         <Checkbox
@@ -139,13 +149,15 @@ describe('Component: Checkbox', () => {
         />
       );
 
-      expect(screen.getByRole('checkbox')).toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(true);
     });
 
     test('becomes filled from undefined', () => {
       const { rerender, onBlurSpy, onChangeSpy } = setup({ value: undefined });
 
-      expect(screen.getByRole('checkbox')).not.toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(false);
 
       rerender(
         <Checkbox
@@ -159,7 +171,8 @@ describe('Component: Checkbox', () => {
         />
       );
 
-      expect(screen.getByRole('checkbox')).toBeChecked();
+      // @ts-expect-error Checkbox has property checked
+      expect(screen.getByRole('checkbox').checked).toEqual(true);
     });
   });
 });

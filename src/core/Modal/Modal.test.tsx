@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 import { RadioGroup } from '../../form/RadioGroup/RadioGroup';
 
@@ -16,7 +16,7 @@ describe('Component: Modal', () => {
     hasFooter?: boolean;
     stickyFooter?: boolean;
   }) {
-    const onCloseSpy = jest.fn();
+    const onCloseSpy = vi.fn();
 
     const props = {
       stickyFooter,
@@ -27,16 +27,14 @@ describe('Component: Modal', () => {
 
     const children = (
       <RadioGroup<string>
-        onChange={jest.fn()}
-        options={[ 'local', 'development', 'test', 'acceptation', 'production' ]}
+        onChange={vi.fn()}
+        options={['local', 'development', 'test', 'acceptation', 'production']}
         labelForOption={(v) => v}
         label="Environment"
       />
     );
 
-    const { container } = render(
-      <Modal {...props}>{children}</Modal>
-    );
+    const { container } = render(<Modal {...props}>{children}</Modal>);
 
     return { container, onCloseSpy };
   }
@@ -51,21 +49,24 @@ describe('Component: Modal', () => {
     test('without header', () => {
       setup({ hasHeader: false });
 
-      expect(screen.queryByText('Header text')).not.toBeInTheDocument();
+      expect(screen.queryByText('Header text')).toBeNull();
       expect(document.body.lastChild).toMatchSnapshot();
     });
 
     test('without footer', () => {
       setup({ hasFooter: false });
 
-      expect(screen.queryByText('Footer text')).not.toBeInTheDocument();
+      expect(screen.queryByText('Footer text')).toBeNull();
       expect(document.body.lastChild).toMatchSnapshot();
     });
 
     test('sans sticky footer', () => {
       setup({ stickyFooter: false });
 
-      expect(document.body.lastChild?.firstChild).not.toHaveClass('sticky-modal');
+      expect(
+        // @ts-expect-error HTMLElement has property classList
+        document.body.lastChild?.firstChild?.classList.contains('sticky-modal')
+      ).toBe(false);
     });
   });
 

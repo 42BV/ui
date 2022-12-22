@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options in the dropdown 1`] = `
+exports[`Component: TypeaheadSingle > ui > async with a custom pageSize of 2 options in the dropdown 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -14,7 +14,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
         tabindex="-1"
       >
         <div
-          style="display: flex; flex: 1; height: 100%; position: relative;"
+          style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
         >
           <input
             aria-autocomplete="both"
@@ -24,18 +24,18 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
             aria-owns="bestFriend-options"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input"
+            defaultvalue="42.nl"
             id="bestFriend"
             role="combobox"
             type="text"
-            value="42.nl"
           />
           <input
             aria-hidden="true"
             class="rbt-input-hint"
+            defaultvalue=""
             readonly=""
-            style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;"
+            style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
             tabindex="-1"
-            value=""
           />
         </div>
         <div
@@ -46,7 +46,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
           data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; right: auto; bottom: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -86,7 +86,7 @@ exports[`Component: TypeaheadSingle ui async with a custom pageSize of 2 options
 </DocumentFragment>
 `;
 
-exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 options in the dropdown 1`] = `
+exports[`Component: TypeaheadSingle > ui > async with the default pageSize of 10 options in the dropdown 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -100,7 +100,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
         tabindex="-1"
       >
         <div
-          style="display: flex; flex: 1; height: 100%; position: relative;"
+          style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
         >
           <input
             aria-autocomplete="both"
@@ -110,18 +110,18 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
             aria-owns="bestFriend-options"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input"
+            defaultvalue="42.nl"
             id="bestFriend"
             role="combobox"
             type="text"
-            value="42.nl"
           />
           <input
             aria-hidden="true"
             class="rbt-input-hint"
+            defaultvalue=""
             readonly=""
-            style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;"
+            style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
             tabindex="-1"
-            value=""
           />
         </div>
         <div
@@ -132,7 +132,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
           data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; right: auto; bottom: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -187,7 +187,7 @@ exports[`Component: TypeaheadSingle ui async with the default pageSize of 10 opt
 </DocumentFragment>
 `;
 
-exports[`Component: TypeaheadSingle ui default 1`] = `
+exports[`Component: TypeaheadSingle > ui > default 1`] = `
 <div>
   <div
     class="mb-3"
@@ -201,7 +201,7 @@ exports[`Component: TypeaheadSingle ui default 1`] = `
         tabindex="-1"
       >
         <div
-          style="display: flex; flex: 1; height: 100%; position: relative;"
+          style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
         >
           <input
             aria-autocomplete="both"
@@ -210,18 +210,18 @@ exports[`Component: TypeaheadSingle ui default 1`] = `
             aria-label="Best friend"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input"
+            defaultvalue=""
             id="bestFriend"
             role="combobox"
             type="text"
-            value=""
           />
           <input
             aria-hidden="true"
             class="rbt-input-hint"
+            defaultvalue=""
             readonly=""
             style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
             tabindex="-1"
-            value=""
           />
         </div>
       </div>
@@ -231,7 +231,7 @@ exports[`Component: TypeaheadSingle ui default 1`] = `
 </div>
 `;
 
-exports[`Component: TypeaheadSingle ui loading 1`] = `
+exports[`Component: TypeaheadSingle > ui > loading 1`] = `
 <div>
   <div
     class="mb-3"
@@ -245,7 +245,7 @@ exports[`Component: TypeaheadSingle ui loading 1`] = `
         tabindex="-1"
       >
         <div
-          style="display: flex; flex: 1; height: 100%; position: relative;"
+          style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
         >
           <input
             aria-autocomplete="both"
@@ -254,18 +254,18 @@ exports[`Component: TypeaheadSingle ui loading 1`] = `
             aria-label="Best friend"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input"
+            defaultvalue=""
             id="bestFriend"
             role="combobox"
             type="text"
-            value=""
           />
           <input
             aria-hidden="true"
             class="rbt-input-hint"
+            defaultvalue=""
             readonly=""
             style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
             tabindex="-1"
-            value=""
           />
         </div>
         <div
@@ -289,7 +289,7 @@ exports[`Component: TypeaheadSingle ui loading 1`] = `
 </div>
 `;
 
-exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
+exports[`Component: TypeaheadSingle > ui > with a custom pagination text 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -303,7 +303,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
         tabindex="-1"
       >
         <div
-          style="display: flex; flex: 1; height: 100%; position: relative;"
+          style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
         >
           <input
             aria-autocomplete="both"
@@ -313,18 +313,18 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
             aria-owns="bestFriend-options"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input"
+            defaultvalue="42.nl"
             id="bestFriend"
             role="combobox"
             type="text"
-            value="42.nl"
           />
           <input
             aria-hidden="true"
             class="rbt-input-hint"
+            defaultvalue=""
             readonly=""
-            style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;"
+            style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
             tabindex="-1"
-            value=""
           />
         </div>
         <div
@@ -335,7 +335,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
           data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; right: auto; bottom: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
@@ -389,7 +389,7 @@ exports[`Component: TypeaheadSingle ui with a custom pagination text 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
+exports[`Component: TypeaheadSingle > ui > with the default pagination text 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
@@ -403,7 +403,7 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
         tabindex="-1"
       >
         <div
-          style="display: flex; flex: 1; height: 100%; position: relative;"
+          style="display: flex; flex-grow: 1; flex-shrink: 1; flex-basis: 0%; height: 100%; position: relative;"
         >
           <input
             aria-autocomplete="both"
@@ -413,18 +413,18 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
             aria-owns="bestFriend-options"
             autocomplete="off"
             class="rbt-input-main form-control rbt-input"
+            defaultvalue="42.nl"
             id="bestFriend"
             role="combobox"
             type="text"
-            value="42.nl"
           />
           <input
             aria-hidden="true"
             class="rbt-input-hint"
+            defaultvalue=""
             readonly=""
-            style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;"
+            style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;"
             tabindex="-1"
-            value=""
           />
         </div>
         <div
@@ -435,7 +435,7 @@ exports[`Component: TypeaheadSingle ui with the default pagination text 1`] = `
           data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
-          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
+          style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; right: auto; bottom: auto; transform: translate(0px, 0px); width: 0px;"
         >
           <a
             aria-label="admin@42.nl"
