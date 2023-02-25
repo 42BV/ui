@@ -2,7 +2,13 @@ import { FieldValidator } from 'final-form';
 import { get } from 'lodash';
 import { MomentInput } from 'moment';
 import { t } from '../../utilities/translation/translation';
-import { isDate, isDateAfter, isDateBefore, isDateBetween, IsDateBetweenConfig } from './checkers';
+import {
+  isDate,
+  isDateAfter,
+  isDateBefore,
+  isDateBetween,
+  IsDateBetweenConfig
+} from './checkers';
 import { DateFormat, TimeFormat } from './types';
 import { combineFormat } from './utils';
 
@@ -42,17 +48,22 @@ type IsDateValidatorConfig = {
  * @param {IsDateValidatorConfig} config The configuration for the isDateBeforeValidator
  * @returns {FieldValidator<MomentInput>} A date validator function which checks if the date lies before the end date.
  */
-export function isDateValidator(config: IsDateValidatorConfig): FieldValidator<MomentInput> {
+export function isDateValidator(
+  config: IsDateValidatorConfig
+): FieldValidator<MomentInput> {
   const { dateFormat, timeFormat, label } = config;
 
-  return (value?: MomentInput): string | undefined => {
+  return (value: MomentInput): string | undefined => {
     if (!value || isDate({ dateFormat, timeFormat })(value)) {
       return undefined;
     }
 
     return t({
       key: 'DateTimeInput.INVALID_DATE',
-      fallback: `Must match required format "${combineFormat(dateFormat, timeFormat)}"`,
+      fallback: `Must match required format "${combineFormat(
+        dateFormat,
+        timeFormat
+      )}"`,
       data: {
         format: combineFormat(dateFormat, timeFormat),
         label
@@ -174,8 +185,8 @@ export function isDateBeforeValidator(
   const { end, label, overrideErrorText } = config;
 
   return (
-    value?: MomentInput,
-    allValues?: Record<string, MomentInput>
+    value: MomentInput,
+    allValues: Record<string, any>
   ): string | undefined => {
     if (!value) {
       return undefined;
@@ -228,8 +239,8 @@ export function isDateAfterValidator(
   const { start, label, overrideErrorText } = config;
 
   return (
-    value?: MomentInput,
-    allValues?: Record<string, any>
+    value: MomentInput,
+    allValues: Record<string, any>
   ): string | undefined => {
     if (!value) {
       return undefined;
@@ -285,8 +296,8 @@ export function isDateBetweenValidator(
   const { start, end, label, overrideErrorText } = config;
 
   return (
-    value?: MomentInput,
-    allValues?: Record<string, MomentInput>
+    value: MomentInput,
+    allValues: Record<string, any>
   ): string | undefined => {
     if (!value) {
       return undefined;
