@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
-import Datetime from 'react-datetime';
+import ReactDatetimeClass from 'react-datetime';
 import { constant, get, uniqueId } from 'lodash';
 import moment, { Moment } from 'moment';
 import classNames from 'classnames';
@@ -20,6 +20,10 @@ import { withField } from '../withField/withField';
 import { Button } from '../../core/Button/Button';
 import { Icon } from '../../core/Icon';
 import { MomentInput } from 'moment/moment';
+
+// istanbul ignore next
+// @ts-expect-error This is only a temporary hacky fix for rollup related issues https://github.com/arqex/react-datetime/issues/843
+const Datetime = ReactDatetimeClass.default ?? ReactDatetimeClass;
 
 /**
  * Callback which returns whether a date is selectable.
@@ -151,7 +155,6 @@ export function DateTimeInput(props: Props) {
       ) : null}
       <Datetime
         inputProps={{
-          // @ts-expect-error Our input prop will have a mask because it is a `MaskedInput`.
           mask: formatToMask(dateFormat, timeFormat),
           placeholder,
           invalid: valid === false,
