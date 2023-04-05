@@ -2,7 +2,11 @@ import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 import classNames from 'classnames';
 
-import { Pagination as RPagination, PaginationItem, PaginationLink } from 'reactstrap';
+import {
+  Pagination as RPagination,
+  PaginationItem,
+  PaginationLink
+} from 'reactstrap';
 
 import { Icon } from '../Icon';
 
@@ -28,11 +32,7 @@ type Props<T> = {
  * The Pagination component is an enhanced Bootstrap pagination component. It supports working with `Page`s and shows a fixed
  * layout for the number of pages, indicating that multiple pages exist for the min and max ranges (e.g. 1 ... 4 5 6 ... 10).
  */
-export default function EpicPagination<T>({
-  page,
-  onChange,
-  className
-}: Props<T>) {
+export function EpicPagination<T>({ page, onChange, className }: Props<T>) {
   const { first, last, totalPages } = page;
 
   // Don't bother to render if there is nothing to paginate.
@@ -65,8 +65,8 @@ export default function EpicPagination<T>({
                 item >= 10000
                   ? 'scale-to-page-size-10000'
                   : item >= 1000
-                    ? 'scale-to-page-size-1000'
-                    : undefined
+                  ? 'scale-to-page-size-1000'
+                  : undefined
               }
               onClick={() => onChange(item)}
             >

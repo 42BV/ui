@@ -41,6 +41,7 @@ describe('index', () => {
         "EpicForm": [Function],
         "EpicFormCell": [Function],
         "EpicHeader": [Function],
+        "EpicPagination": [Function],
         "EpicRow": [Function],
         "EpicSelection": [Function],
         "EpicSort": [Function],
