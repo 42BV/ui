@@ -9,6 +9,12 @@ import {
 } from 'reactstrap';
 
 import { Icon } from '../Icon';
+import { Select } from '../../form/Select/Select';
+import { t } from '../../utilities/translation/translation';
+
+type Text = {
+  pageSizeDropdownLabel?: string;
+};
 
 type Props<T> = {
   /**
@@ -22,73 +28,145 @@ type Props<T> = {
   onChange: (pageNumber: number) => void;
 
   /**
+   * Optional callback to change the page's size using a dropdown.
+   * Only if this property is provided, the dropdown will be displayed.
+   */
+  onPageSizeChange?: (size: number) => void;
+
+  /**
+   * Optional list of page sizes used for the page size dropdown.
+   * Defaults to `[5, 10, 20, 50, 100]`.
+   */
+  allowedPageSizes?: number[];
+
+  /**
+   * Whether to show the previous and next buttons.
+   *
+   * Defaults to `true`
+   */
+  showPreviousAndNextButtons?: boolean;
+
+  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
   className?: string;
+
+  /**
+   * Optionally customized text to use within the component.
+   */
+  text?: Text;
 };
 
 /**
- * The Pagination component is an enhanced Bootstrap pagination component. It supports working with `Page`s and shows a fixed
- * layout for the number of pages, indicating that multiple pages exist for the min and max ranges (e.g. 1 ... 4 5 6 ... 10).
+ * The Pagination component is an enhanced Bootstrap pagination component.
+ * It supports working with a `Page` from `@42.nl/spring-connect` and shows
+ * a number of pages next to the current page number, always keeping the
+ * current page number in the center.
  */
-export function EpicPagination<T>({ page, onChange, className }: Props<T>) {
-  const { first, last, totalPages } = page;
+export function EpicPagination<T>({
+  page,
+  onChange,
+  onPageSizeChange,
+  allowedPageSizes = [5, 10, 20, 50, 100],
+  className,
+  showPreviousAndNextButtons = true,
+  text = {}
+}: Props<T>) {
+  const {
+    first,
+    last,
+    totalPages,
+    totalElements,
+    size,
+    number: current
+  } = page;
 
   // Don't bother to render if there is nothing to paginate.
-  if (first && last) {
+  if (
+    first &&
+    last &&
+    (!onPageSizeChange ||
+      (allowedPageSizes && allowedPageSizes[0] >= totalElements))
+  ) {
     return null;
   }
 
-  const current = page.number;
   const content = pagesFor(current, totalPages);
 
   return (
-    <RPagination className={classNames('epic-pagination', className)}>
-      <PaginationItem disabled={first}>
-        <PaginationLink onClick={() => onChange(1)}>
-          <Icon className="center-icon" icon="first_page" />
-        </PaginationLink>
-      </PaginationItem>
-      <PaginationItem disabled={first}>
-        <PaginationLink onClick={() => onChange(current - 1)}>
-          <Icon className="center-icon" icon="chevron_left" />
-        </PaginationLink>
-      </PaginationItem>
-      {content.map((item, index) => (
-        <PaginationItem active={item === current} key={index}>
-          {item === '...' ? (
-            <PaginationLink className="disabled" disabled={true} />
-          ) : (
-            <PaginationLink
-              className={
-                item >= 10000
-                  ? 'scale-to-page-size-10000'
-                  : item >= 1000
-                  ? 'scale-to-page-size-1000'
-                  : undefined
-              }
-              onClick={() => onChange(item)}
-            >
-              {item}
-            </PaginationLink>
-          )}
+    <div className="d-flex justify-content-center flex-wrap flex-sm-nowrap">
+      <RPagination className={classNames('epic-pagination', className)}>
+        {showPreviousAndNextButtons ? (
+          <>
+            <PaginationItem disabled={first}>
+              <PaginationLink onClick={() => onChange(1)}>
+                <Icon className="center-icon" icon="first_page" />
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem disabled={first}>
+              <PaginationLink onClick={() => onChange(current - 1)}>
+                <Icon className="center-icon" icon="chevron_left" />
+              </PaginationLink>
+            </PaginationItem>
+          </>
+        ) : null}
+        {content.map((item, index) => (
+          <PaginationItem active={item === current} key={index}>
+            {item === '...' ? (
+              <PaginationLink className="disabled" disabled={true} />
+            ) : (
+              <PaginationLink
+                className={
+                  item >= 10000
+                    ? 'scale-to-page-size-10000'
+                    : item >= 1000
+                    ? 'scale-to-page-size-1000'
+                    : undefined
+                }
+                onClick={() => onChange(item)}
+              >
+                {item}
+              </PaginationLink>
+            )}
+          </PaginationItem>
+        ))}
+        {showPreviousAndNextButtons ? (
+          <>
+            <PaginationItem disabled={last}>
+              <PaginationLink onClick={() => onChange(current + 1)}>
+                <Icon className="center-icon" icon="chevron_right" />
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem disabled={last}>
+              <PaginationLink onClick={() => onChange(totalPages)}>
+                <Icon className="center-icon" icon="last_page" />
+              </PaginationLink>
+            </PaginationItem>
+          </>
+        ) : null}
+        <PaginationItem disabled={true}>
+          <div className="total-elements">
+            {page.totalElements} records found
+          </div>
         </PaginationItem>
-      ))}
-      <PaginationItem disabled={last}>
-        <PaginationLink onClick={() => onChange(current + 1)}>
-          <Icon className="center-icon" icon="chevron_right" />
-        </PaginationLink>
-      </PaginationItem>
-      <PaginationItem disabled={last}>
-        <PaginationLink onClick={() => onChange(totalPages)}>
-          <Icon className="center-icon" icon="last_page" />
-        </PaginationLink>
-      </PaginationItem>
-      <PaginationItem disabled={true}>
-        <div className="total-elements">{page.totalElements} records found</div>
-      </PaginationItem>
-    </RPagination>
+      </RPagination>
+      {onPageSizeChange && allowedPageSizes ? (
+        <Select<number>
+          onChange={onPageSizeChange}
+          options={allowedPageSizes}
+          labelForOption={(pageSize) => `${pageSize}`}
+          value={size}
+          className="ms-3 mt-2 mt-sm-0 pagination__select-size"
+          label={t({
+            key: 'Pagination.PAGE_SIZE_DROPDOWN_LABEL',
+            fallback: 'Select page size',
+            overrideText: text.pageSizeDropdownLabel
+          })}
+          hiddenLabel={true}
+        />
+      ) : null}
+    </div>
   );
 }
 
