@@ -2,121 +2,125 @@
 
 exports[`Component: EpicPagination ui middle 1`] = `
 <div>
-  <nav
-    aria-label="pagination"
-    class="epic-pagination"
+  <div
+    class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
   >
-    <ul
-      class="pagination"
+    <nav
+      aria-label="pagination"
+      class="epic-pagination"
     >
-      <li
-        class="page-item"
+      <ul
+        class="pagination"
       >
-        <button
-          class="page-link"
+        <li
+          class="page-item"
         >
-          <i
-            class="icon center-icon material-icons"
+          <button
+            class="page-link"
           >
-            first_page
-          </i>
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
+            <i
+              class="icon center-icon material-icons"
+            >
+              first_page
+            </i>
+          </button>
+        </li>
+        <li
+          class="page-item"
         >
-          <i
-            class="icon center-icon material-icons"
+          <button
+            class="page-link"
           >
-            chevron_left
-          </i>
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
+            <i
+              class="icon center-icon material-icons"
+            >
+              chevron_left
+            </i>
+          </button>
+        </li>
+        <li
+          class="page-item"
         >
-          3
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          4
-        </button>
-      </li>
-      <li
-        class="page-item active"
-      >
-        <button
-          class="page-link"
-        >
-          5
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          6
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          7
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
-        >
-          <i
-            class="icon center-icon material-icons"
+          <button
+            class="page-link"
           >
-            chevron_right
-          </i>
-        </button>
-      </li>
-      <li
-        class="page-item"
-      >
-        <button
-          class="page-link"
+            3
+          </button>
+        </li>
+        <li
+          class="page-item"
         >
-          <i
-            class="icon center-icon material-icons"
+          <button
+            class="page-link"
           >
-            last_page
-          </i>
-        </button>
-      </li>
-      <li
-        class="page-item disabled"
-      >
-        <div
-          class="total-elements"
+            4
+          </button>
+        </li>
+        <li
+          class="page-item active"
         >
-          100
-           records found
-        </div>
-      </li>
-    </ul>
-  </nav>
+          <button
+            class="page-link"
+          >
+            5
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            6
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            7
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            <i
+              class="icon center-icon material-icons"
+            >
+              chevron_right
+            </i>
+          </button>
+        </li>
+        <li
+          class="page-item"
+        >
+          <button
+            class="page-link"
+          >
+            <i
+              class="icon center-icon material-icons"
+            >
+              last_page
+            </i>
+          </button>
+        </li>
+        <li
+          class="page-item disabled"
+        >
+          <div
+            class="total-elements"
+          >
+            100
+             records found
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
 `;
