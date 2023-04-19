@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Button } from '../Button/Button';
 import { SubmitButton } from '../SubmitButton/SubmitButton';
 import { t } from '../../utilities/translation/translation';
 import { BootstrapSize } from '../types';
 import { IconType } from '../Icon';
-import { Modal } from '../Modal/Modal';
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { Loading } from '../Loading/Loading';
 
 type Text = {
   cancel?: string;
@@ -122,24 +123,36 @@ export function OpenCloseModal(props: Props) {
     modalFooterClassName
   } = props;
 
+  const header = label ? (
+    <ModalHeader toggle={onClose} className={modalHeaderClassName}>
+      {label}
+    </ModalHeader>
+  ) : null;
+
+  const body = (
+    <ModalBody className={modalBodyClassName}>
+      <Suspense fallback={<Loading />}>{children}</Suspense>
+    </ModalBody>
+  );
+
   return (
     <Modal
-      stickyFooter={stickyFooter}
-      onClose={onClose}
-      size={size}
+      toggle={onClose}
       className={className}
-      modalHeaderClassName={modalHeaderClassName}
-      modalBodyClassName={modalBodyClassName}
-      modalFooterClassName={modalFooterClassName}
-      header={label}
-      footer={
-        onSave ? (
-          <>
+      isOpen={true}
+      size={size}
+      wrapClassName={stickyFooter ? 'sticky-modal' : undefined}
+    >
+      {onSave ? (
+        <form onSubmit={onSave}>
+          {header}
+          {body}
+          <ModalFooter className={modalFooterClassName}>
             <Button
               className="ms-1"
               color="secondary"
               icon={cancelIcon}
-              onClick={() => onClose()}
+              onClick={onClose}
             >
               {t({
                 overrideText: text?.cancel,
@@ -151,7 +164,6 @@ export function OpenCloseModal(props: Props) {
               className="ms-1"
               inProgress={!!inProgress}
               icon={saveIcon}
-              onClick={() => onSave()}
             >
               {t({
                 overrideText: text?.save,
@@ -159,11 +171,14 @@ export function OpenCloseModal(props: Props) {
                 fallback: 'Save'
               })}
             </SubmitButton>
-          </>
-        ) : undefined
-      }
-    >
-      {children}
+          </ModalFooter>
+        </form>
+      ) : (
+        <>
+          {header}
+          {body}
+        </>
+      )}
     </Modal>
   );
 }

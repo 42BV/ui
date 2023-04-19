@@ -21,161 +21,163 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
         <div
           class="modal-content"
         >
-          <div
-            class="modal-header"
-          >
-            <h5
-              class="modal-title"
+          <form>
+            <div
+              class="modal-header"
             >
-              Choose something
-            </h5>
-            <button
-              aria-label="Close"
-              class="btn-close"
-              type="button"
-            />
-          </div>
-          <div
-            class="modal-body"
-          >
-            <fieldset
-              class="radio-group  mb-3"
-            >
-              <legend>
-                Environment
-              </legend>
-              <div
-                class="form-check"
+              <h5
+                class="modal-title"
               >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="local"
-                  />
-                   
-                  local
-                </label>
-              </div>
-              <div
-                class="form-check"
-              >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="development"
-                  />
-                   
-                  development
-                </label>
-              </div>
-              <div
-                class="form-check"
-              >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="test"
-                  />
-                   
-                  test
-                </label>
-              </div>
-              <div
-                class="form-check"
-              >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="acceptation"
-                  />
-                   
-                  acceptation
-                </label>
-              </div>
-              <div
-                class="form-check"
-              >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="production"
-                  />
-                   
-                  production
-                </label>
-              </div>
-            </fieldset>
-          </div>
-          <div
-            class="modal-footer"
-          >
-            <span
-              class="button d-inline-block ms-1 secondary"
-            >
+                Choose something
+              </h5>
               <button
-                class="btn btn-secondary btn-md"
+                aria-label="Close"
+                class="btn-close"
                 type="button"
-              >
-                <div
-                  class="d-flex justify-content-center align-items-center"
-                >
-                  <i
-                    class="icon button-icon me-2 material-icons"
-                  >
-                    cancel
-                  </i>
-                  Cancel
-                </div>
-              </button>
-            </span>
-            <span
-              class="button d-inline-block ms-1 primary"
+              />
+            </div>
+            <div
+              class="modal-body"
             >
-              <button
-                class="btn btn-primary btn-md disabled"
-                disabled=""
-                type="submit"
+              <fieldset
+                class="radio-group  mb-3"
               >
+                <legend>
+                  Environment
+                </legend>
                 <div
-                  class="d-flex justify-content-center align-items-center"
+                  class="form-check"
                 >
-                  <svg
-                    class="spinner me-2"
-                    height="16"
-                    viewBox="25 25 50 50"
-                    width="16"
+                  <label
+                    class="form-check-label"
                   >
-                    <circle
-                      class="path"
-                      cx="50"
-                      cy="50"
-                      fill="none"
-                      r="20"
-                      stroke="white"
-                      stroke-miterlimit="10"
-                      stroke-width="4"
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="local"
                     />
-                  </svg>
-                  Save
+                     
+                    local
+                  </label>
                 </div>
-              </button>
-            </span>
-          </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="development"
+                    />
+                     
+                    development
+                  </label>
+                </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="test"
+                    />
+                     
+                    test
+                  </label>
+                </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="acceptation"
+                    />
+                     
+                    acceptation
+                  </label>
+                </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="production"
+                    />
+                     
+                    production
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+            <div
+              class="modal-footer"
+            >
+              <span
+                class="button d-inline-block ms-1 secondary"
+              >
+                <button
+                  class="btn btn-secondary btn-md"
+                  type="button"
+                >
+                  <div
+                    class="d-flex justify-content-center align-items-center"
+                  >
+                    <i
+                      class="icon button-icon me-2 material-icons"
+                    >
+                      cancel
+                    </i>
+                    Cancel
+                  </div>
+                </button>
+              </span>
+              <span
+                class="button d-inline-block ms-1 primary"
+              >
+                <button
+                  class="btn btn-primary btn-md disabled"
+                  disabled=""
+                  type="submit"
+                >
+                  <div
+                    class="d-flex justify-content-center align-items-center"
+                  >
+                    <svg
+                      class="spinner me-2"
+                      height="16"
+                      viewBox="25 25 50 50"
+                      width="16"
+                    >
+                      <circle
+                        class="path"
+                        cx="50"
+                        cy="50"
+                        fill="none"
+                        r="20"
+                        stroke="white"
+                        stroke-miterlimit="10"
+                        stroke-width="4"
+                      />
+                    </svg>
+                    Save
+                  </div>
+                </button>
+              </span>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -207,148 +209,150 @@ exports[`Component: OpenCloseModal ui open 1`] = `
         <div
           class="modal-content"
         >
-          <div
-            class="modal-header"
-          >
-            <h5
-              class="modal-title"
+          <form>
+            <div
+              class="modal-header"
             >
-              Choose something
-            </h5>
-            <button
-              aria-label="Close"
-              class="btn-close"
-              type="button"
-            />
-          </div>
-          <div
-            class="modal-body"
-          >
-            <fieldset
-              class="radio-group  mb-3"
-            >
-              <legend>
-                Environment
-              </legend>
-              <div
-                class="form-check"
+              <h5
+                class="modal-title"
               >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="local"
-                  />
-                   
-                  local
-                </label>
-              </div>
-              <div
-                class="form-check"
-              >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="development"
-                  />
-                   
-                  development
-                </label>
-              </div>
-              <div
-                class="form-check"
-              >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="test"
-                  />
-                   
-                  test
-                </label>
-              </div>
-              <div
-                class="form-check"
-              >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="acceptation"
-                  />
-                   
-                  acceptation
-                </label>
-              </div>
-              <div
-                class="form-check"
-              >
-                <label
-                  class="form-check-label"
-                >
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    value="production"
-                  />
-                   
-                  production
-                </label>
-              </div>
-            </fieldset>
-          </div>
-          <div
-            class="modal-footer"
-          >
-            <span
-              class="button d-inline-block ms-1 secondary"
-            >
+                Choose something
+              </h5>
               <button
-                class="btn btn-secondary btn-md"
+                aria-label="Close"
+                class="btn-close"
                 type="button"
-              >
-                <div
-                  class="d-flex justify-content-center align-items-center"
-                >
-                  <i
-                    class="icon button-icon me-2 material-icons"
-                  >
-                    cancel
-                  </i>
-                  Cancel
-                </div>
-              </button>
-            </span>
-            <span
-              class="button d-inline-block ms-1 primary"
+              />
+            </div>
+            <div
+              class="modal-body"
             >
-              <button
-                class="btn btn-primary btn-md"
-                type="submit"
+              <fieldset
+                class="radio-group  mb-3"
               >
+                <legend>
+                  Environment
+                </legend>
                 <div
-                  class="d-flex justify-content-center align-items-center"
+                  class="form-check"
                 >
-                  <i
-                    class="icon button-icon me-2 material-icons"
+                  <label
+                    class="form-check-label"
                   >
-                    save
-                  </i>
-                  Save
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="local"
+                    />
+                     
+                    local
+                  </label>
                 </div>
-              </button>
-            </span>
-          </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="development"
+                    />
+                     
+                    development
+                  </label>
+                </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="test"
+                    />
+                     
+                    test
+                  </label>
+                </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="acceptation"
+                    />
+                     
+                    acceptation
+                  </label>
+                </div>
+                <div
+                  class="form-check"
+                >
+                  <label
+                    class="form-check-label"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      value="production"
+                    />
+                     
+                    production
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+            <div
+              class="modal-footer"
+            >
+              <span
+                class="button d-inline-block ms-1 secondary"
+              >
+                <button
+                  class="btn btn-secondary btn-md"
+                  type="button"
+                >
+                  <div
+                    class="d-flex justify-content-center align-items-center"
+                  >
+                    <i
+                      class="icon button-icon me-2 material-icons"
+                    >
+                      cancel
+                    </i>
+                    Cancel
+                  </div>
+                </button>
+              </span>
+              <span
+                class="button d-inline-block ms-1 primary"
+              >
+                <button
+                  class="btn btn-primary btn-md"
+                  type="submit"
+                >
+                  <div
+                    class="d-flex justify-content-center align-items-center"
+                  >
+                    <i
+                      class="icon button-icon me-2 material-icons"
+                    >
+                      save
+                    </i>
+                    Save
+                  </div>
+                </button>
+              </span>
+            </div>
+          </form>
         </div>
       </div>
     </div>
