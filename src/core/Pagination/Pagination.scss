@@ -21,9 +21,17 @@
   }
 }
 
-.pagination__select-size .form-select {
-  border-color: #dee2e6;
-  min-width: 77px;
-  padding-bottom: 0.5rem;
-  padding-top: 0.5rem;
+.pagination__total-elements {
+  padding: 0.5rem;
+}
+
+.pagination__select-size {
+  margin-bottom: 0 !important;
+
+  .form-select {
+    border-color: #dee2e6;
+    min-width: 77px;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+  }
 }

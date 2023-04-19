@@ -109,18 +109,13 @@ exports[`Component: EpicPagination ui middle 1`] = `
             </i>
           </button>
         </li>
-        <li
-          class="page-item disabled"
-        >
-          <div
-            class="total-elements"
-          >
-            100
-             records found
-          </div>
-        </li>
       </ul>
     </nav>
+    <div
+      class="ms-3 mt-2 mt-sm-0 pagination__total-elements"
+    >
+      100 records found
+    </div>
   </div>
 </div>
 `;

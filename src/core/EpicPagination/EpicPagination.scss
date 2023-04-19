@@ -28,11 +28,6 @@
       color: var(--bs-body-color);
     }
 
-    .total-elements {
-      border: var(--bs-pagination-border-width) solid transparent;
-      padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
-    }
-
     .scale-to-page-size-1000 {
       font-size: small;
     }
@@ -40,5 +35,10 @@
     .scale-to-page-size-10000 {
       font-size: x-small;
     }
+  }
+
+  .total-elements {
+    border: var(--bs-pagination-border-width) solid transparent;
+    padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
   }
 }
