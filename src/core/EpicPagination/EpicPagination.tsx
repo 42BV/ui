@@ -14,6 +14,7 @@ import { t } from '../../utilities/translation/translation';
 
 type Text = {
   pageSizeDropdownLabel?: string;
+  totalElements?: string;
 };
 
 type Props<T> = {
@@ -47,6 +48,13 @@ type Props<T> = {
   showPreviousAndNextButtons?: boolean;
 
   /**
+   * Whether to show the total number of elements.
+   *
+   * Defaults to `true`
+   */
+  showTotalElements?: boolean;
+
+  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
@@ -71,6 +79,7 @@ export function EpicPagination<T>({
   allowedPageSizes = [5, 10, 20, 50, 100],
   className,
   showPreviousAndNextButtons = true,
+  showTotalElements = true,
   text = {}
 }: Props<T>) {
   const {
@@ -145,12 +154,17 @@ export function EpicPagination<T>({
             </PaginationItem>
           </>
         ) : null}
-        <PaginationItem disabled={true}>
-          <div className="total-elements">
-            {page.totalElements} records found
-          </div>
-        </PaginationItem>
       </RPagination>
+      {showTotalElements ? (
+        <div className="ms-3 mt-2 mt-sm-0 pagination__total-elements">
+          {t({
+            key: 'Pagination.TOTAL_ELEMENTS',
+            data: { totalElements },
+            fallback: `${totalElements} records found`,
+            overrideText: text.totalElements
+          })}
+        </div>
+      ) : null}
       {onPageSizeChange && allowedPageSizes ? (
         <Select<number>
           onChange={onPageSizeChange}

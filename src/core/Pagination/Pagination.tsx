@@ -1,7 +1,11 @@
 import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 
-import { Pagination as RPagination, PaginationItem, PaginationLink } from 'reactstrap';
+import {
+  Pagination as RPagination,
+  PaginationItem,
+  PaginationLink
+} from 'reactstrap';
 
 import { Icon } from '../Icon';
 import { range } from 'lodash';
@@ -10,6 +14,7 @@ import { t } from '../../utilities/translation/translation';
 
 type Text = {
   pageSizeDropdownLabel?: string;
+  totalElements?: string;
 };
 
 type Props<T> = {
@@ -43,6 +48,13 @@ type Props<T> = {
   showPreviousAndNextButtons?: boolean;
 
   /**
+   * Whether to show the total number of elements.
+   *
+   * Defaults to `true`
+   */
+  showTotalElements?: boolean;
+
+  /**
    * Optional extra CSS class you want to add to the component.
    * Useful for styling the component.
    */
@@ -64,16 +76,29 @@ export function Pagination<T>({
   page,
   onChange,
   onPageSizeChange,
-  allowedPageSizes = [ 5, 10, 20, 50, 100 ],
+  allowedPageSizes = [5, 10, 20, 50, 100],
   className,
   showPreviousAndNextButtons = true,
+  showTotalElements = true,
   text = {}
 }: Props<T>) {
-  const { first, last, totalPages, totalElements, size, number: current } = page;
+  const {
+    first,
+    last,
+    totalPages,
+    totalElements,
+    size,
+    number: current
+  } = page;
   const content = pagesFor(current, totalPages);
 
   // Don't bother to render if there is nothing to paginate.
-  if (first && last && (!onPageSizeChange || allowedPageSizes && allowedPageSizes[0] >= totalElements)) {
+  if (
+    first &&
+    last &&
+    (!onPageSizeChange ||
+      (allowedPageSizes && allowedPageSizes[0] >= totalElements))
+  ) {
     return null;
   }
 
@@ -108,6 +133,16 @@ export function Pagination<T>({
           </PaginationItem>
         ) : null}
       </RPagination>
+      {showTotalElements ? (
+        <div className="ms-3 mt-2 mt-sm-0 pagination__total-elements">
+          {t({
+            key: 'Pagination.TOTAL_ELEMENTS',
+            data: { totalElements },
+            fallback: `${totalElements} records found`,
+            overrideText: text.totalElements
+          })}
+        </div>
+      ) : null}
       {onPageSizeChange && allowedPageSizes ? (
         <Select<number>
           onChange={onPageSizeChange}
@@ -146,9 +181,12 @@ export function pagesFor(
     // 1 2 3 {4} 5 ... 31
 
     const tillEllipsis = range(1, Math.max(4, currentPage + 2));
-    const fromEllipsis = range(totalPages - (5 - tillEllipsis.length), totalPages + 1);
+    const fromEllipsis = range(
+      totalPages - (5 - tillEllipsis.length),
+      totalPages + 1
+    );
 
-    return [ ...tillEllipsis, ellipsis, ...fromEllipsis ];
+    return [...tillEllipsis, ellipsis, ...fromEllipsis];
   }
 
   if (currentPage > totalPages - 4) {
@@ -156,11 +194,20 @@ export function pagesFor(
     // till
     // 1 2 3 ... 29 30 {31}
 
-    const fromEllipsis = range(Math.min(totalPages - 2, currentPage - 1), totalPages + 1);
+    const fromEllipsis = range(
+      Math.min(totalPages - 2, currentPage - 1),
+      totalPages + 1
+    );
     const tillEllipsis = range(1, 7 - fromEllipsis.length);
 
-    return [ ...tillEllipsis, ellipsis, ...fromEllipsis ];
+    return [...tillEllipsis, ellipsis, ...fromEllipsis];
   }
 
-  return [ 1, ellipsis, ...range(currentPage - 1, currentPage + 2), ellipsis, totalPages ];
+  return [
+    1,
+    ellipsis,
+    ...range(currentPage - 1, currentPage + 2),
+    ellipsis,
+    totalPages
+  ];
 }

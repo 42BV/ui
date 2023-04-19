@@ -13,6 +13,7 @@ describe('Component: EpicPagination', () => {
     totalElements = 100,
     size = 10,
     showPreviousAndNextButtons,
+    showTotalElements,
     hasPageSizeDropdown,
     allowedPageSizes
   }: {
@@ -21,6 +22,7 @@ describe('Component: EpicPagination', () => {
     totalElements?: number;
     size?: number;
     showPreviousAndNextButtons?: boolean;
+    showTotalElements?: boolean;
     hasPageSizeDropdown?: boolean;
     allowedPageSizes?: number[];
   }) {
@@ -42,6 +44,7 @@ describe('Component: EpicPagination', () => {
       page,
       onChange: onChangeSpy,
       showPreviousAndNextButtons,
+      showTotalElements,
       onPageSizeChange: hasPageSizeDropdown ? pageSizeChangeSpy : undefined,
       allowedPageSizes
     };
@@ -116,6 +119,16 @@ describe('Component: EpicPagination', () => {
     test('without page size dropdown', () => {
       setup({ hasPageSizeDropdown: false });
       expect(screen.queryByRole('combobox')).not.toBeInTheDocument();
+    });
+
+    test('with total elements', () => {
+      setup({ totalElements: 20, showTotalElements: true });
+      expect(screen.queryByText('20 records found')).toBeInTheDocument();
+    });
+
+    test('without total elements', () => {
+      setup({ totalElements: 20, showTotalElements: false });
+      expect(screen.queryByText('20 records found')).not.toBeInTheDocument();
     });
 
     test('with custom allowed page sizes', () => {

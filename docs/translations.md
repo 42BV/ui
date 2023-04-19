@@ -216,7 +216,8 @@ Here is a JSON notation containing all keys and default translations:
     "SEARCH_LABEL": "Start typing to search"
   },
   "Pagination": {
-    "PAGE_SIZE_DROPDOWN_LABEL": "Select page size"
+    "PAGE_SIZE_DROPDOWN_LABEL": "Select page size",
+    "TOTAL_ELEMENTS": "{{totalElements}} records found"
   }
 }
 ```

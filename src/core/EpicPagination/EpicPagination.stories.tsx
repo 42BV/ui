@@ -47,6 +47,21 @@ storiesOf('core/EpicPagination', module)
       </div>
     );
   })
+  .add('without total elements', () => {
+    const [pageNumber, setPageNumber] = useState(5);
+
+    const page = pageOf(range(1, 100), pageNumber, 10);
+
+    return (
+      <div className="d-flex justify-content-center">
+        <EpicPagination
+          page={page}
+          onChange={setPageNumber}
+          showTotalElements={false}
+        />
+      </div>
+    );
+  })
   .add('with changeable page size', () => {
     const [pageNumber, setPageNumber] = useState(5);
     const [pageSize, setPageSize] = useState(10);

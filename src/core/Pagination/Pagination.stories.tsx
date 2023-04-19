@@ -12,14 +12,17 @@ storiesOf('core/Pagination', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use Pagination, you have to add @42.nl/spring-connect and lodash to your dependencies:</p>
+        <p>
+          To be able to use Pagination, you have to add @42.nl/spring-connect
+          and lodash to your dependencies:
+        </p>
         <code>npm install --save @42.nl/spring-connect lodash</code>
       </Alert>
       <Story />
     </>
   ))
   .add('default', () => {
-    const [ pageNumber, setPageNumber ] = useState(5);
+    const [pageNumber, setPageNumber] = useState(5);
 
     const page = pageOf(range(1, 100), pageNumber, 10);
 
@@ -30,7 +33,7 @@ storiesOf('core/Pagination', module)
     );
   })
   .add('without previous and next', () => {
-    const [ pageNumber, setPageNumber ] = useState(5);
+    const [pageNumber, setPageNumber] = useState(5);
 
     const page = pageOf(range(1, 100), pageNumber, 10);
 
@@ -44,9 +47,24 @@ storiesOf('core/Pagination', module)
       </div>
     );
   })
+  .add('without total elements', () => {
+    const [pageNumber, setPageNumber] = useState(5);
+
+    const page = pageOf(range(1, 100), pageNumber, 10);
+
+    return (
+      <div className="d-flex justify-content-center">
+        <Pagination
+          page={page}
+          onChange={setPageNumber}
+          showTotalElements={false}
+        />
+      </div>
+    );
+  })
   .add('with changeable page size', () => {
-    const [ pageNumber, setPageNumber ] = useState(5);
-    const [ pageSize, setPageSize ] = useState(10);
+    const [pageNumber, setPageNumber] = useState(5);
+    const [pageSize, setPageSize] = useState(10);
 
     const page = pageOf(range(1, 200), pageNumber, pageSize);
 
@@ -64,8 +82,8 @@ storiesOf('core/Pagination', module)
     );
   })
   .add('with allowed page sizes', () => {
-    const [ pageNumber, setPageNumber ] = useState(5);
-    const [ pageSize, setPageSize ] = useState(8);
+    const [pageNumber, setPageNumber] = useState(5);
+    const [pageSize, setPageSize] = useState(8);
 
     const page = pageOf(range(1, 200), pageNumber, pageSize);
 
@@ -78,7 +96,7 @@ storiesOf('core/Pagination', module)
             setPageSize(size);
             setPageNumber(1);
           }}
-          allowedPageSizes={[ 2, 4, 8, 16, 32 ]}
+          allowedPageSizes={[2, 4, 8, 16, 32]}
         />
       </div>
     );
