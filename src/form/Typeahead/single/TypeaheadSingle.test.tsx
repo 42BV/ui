@@ -4,7 +4,13 @@ import '@testing-library/jest-dom';
 
 import { TypeaheadSingle } from './TypeaheadSingle';
 
-import { adminUser, coordinatorUser, listOfUsers, pageOfUsersFetcher, userUser } from '../../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  pageOfUsersFetcher,
+  userUser
+} from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
 import { pageOf } from '../../../utilities/page/page';
@@ -103,12 +109,16 @@ describe('Component: TypeaheadSingle', () => {
 
     test('with placeholder', () => {
       setup({ hasPlaceholder: true });
-      expect(screen.queryByPlaceholderText('Please provide your best friend')).toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please provide your best friend')
+      ).toBeInTheDocument();
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByPlaceholderText('Please provide your best friend')).not.toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please provide your best friend')
+      ).not.toBeInTheDocument();
     });
 
     test('without id', () => {
@@ -139,7 +149,9 @@ describe('Component: TypeaheadSingle', () => {
       expect(useOptions).toBeCalledTimes(1);
       expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 2 }));
 
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: '42.nl' } });
+      fireEvent.change(screen.getByRole('combobox'), {
+        target: { value: '42.nl' }
+      });
 
       await waitFor(() => {
         expect(screen.queryAllByText('42.nl').length).toBe(2);
@@ -157,7 +169,9 @@ describe('Component: TypeaheadSingle', () => {
       expect(useOptions).toBeCalledTimes(1);
       expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 10 }));
 
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: '42.nl' } });
+      fireEvent.change(screen.getByRole('combobox'), {
+        target: { value: '42.nl' }
+      });
 
       await waitFor(() => {
         expect(screen.queryAllByText('42.nl').length).toBe(3);
@@ -173,13 +187,16 @@ describe('Component: TypeaheadSingle', () => {
         maxResults: 2
       });
 
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: '42.nl' } });
+      fireEvent.change(screen.getByRole('combobox'), {
+        target: { value: '42.nl' }
+      });
 
       await waitFor(() => {
-        expect(screen.queryByText('Display additional results...')).toBeInTheDocument();
+        expect(
+          screen.queryByText('Display additional results...')
+        ).toBeInTheDocument();
       });
       expect(asFragment()).toMatchSnapshot();
-
     });
 
     test('with a custom pagination text', async () => {
@@ -192,10 +209,14 @@ describe('Component: TypeaheadSingle', () => {
         }
       });
 
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: '42.nl' } });
+      fireEvent.change(screen.getByRole('combobox'), {
+        target: { value: '42.nl' }
+      });
 
       await waitFor(() => {
-        expect(screen.queryByText('Display additional results...')).not.toBeInTheDocument();
+        expect(
+          screen.queryByText('Display additional results...')
+        ).not.toBeInTheDocument();
         expect(screen.queryByText('Show more')).toBeInTheDocument();
       });
       expect(asFragment()).toMatchSnapshot();
@@ -206,7 +227,6 @@ describe('Component: TypeaheadSingle', () => {
       expect(screen.queryByText('Loading...')).toBeInTheDocument();
       expect(container).toMatchSnapshot();
     });
-
   });
 
   describe('events', () => {
@@ -215,7 +235,9 @@ describe('Component: TypeaheadSingle', () => {
         value: undefined
       });
 
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'admin' } });
+      fireEvent.change(screen.getByRole('combobox'), {
+        target: { value: 'admin' }
+      });
       fireEvent.click(screen.getByLabelText('admin@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
@@ -264,14 +286,16 @@ describe('Component: TypeaheadSingle', () => {
         isAsync: true
       });
 
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'admin' } });
+      fireEvent.change(screen.getByRole('combobox'), {
+        target: { value: 'admin' }
+      });
 
       await waitFor(() => {
         expect(useOptions).toBeCalledTimes(2);
-        expect(useOptions).toHaveBeenLastCalledWith(
-          expect.objectContaining({ query: 'admin' })
-        );
       });
+      expect(useOptions).toHaveBeenLastCalledWith(
+        expect.objectContaining({ query: 'admin' })
+      );
     });
 
     it('should filter out disabled options from the typeahead options', async () => {
@@ -286,7 +310,9 @@ describe('Component: TypeaheadSingle', () => {
 
       await waitFor(() => {
         expect(screen.queryByLabelText('admin@42.nl')).toBeInTheDocument();
-        expect(screen.queryByLabelText('coordinator@42.nl')).toBeInTheDocument();
+        expect(
+          screen.queryByLabelText('coordinator@42.nl')
+        ).toBeInTheDocument();
         expect(screen.queryByLabelText('user@42.nl')).not.toBeInTheDocument();
       });
     });
@@ -298,7 +324,9 @@ describe('Component: TypeaheadSingle', () => {
         allowNew: true
       });
 
-      fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Test' } });
+      fireEvent.change(screen.getByRole('combobox'), {
+        target: { value: 'Test' }
+      });
 
       await waitFor(() => {
         expect(screen.queryByLabelText('Test')).toBeInTheDocument();
@@ -307,7 +335,10 @@ describe('Component: TypeaheadSingle', () => {
       fireEvent.click(screen.getByLabelText('Test'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy.mock.calls[0][0]).toMatchObject({ label: 'Test', customOption: true });
+      expect(onChangeSpy.mock.calls[0][0]).toMatchObject({
+        label: 'Test',
+        customOption: true
+      });
     });
 
     describe('value changes', () => {
@@ -321,9 +352,7 @@ describe('Component: TypeaheadSingle', () => {
           value: undefined
         };
 
-        rerender(
-          <TypeaheadSingle {...newProps} />
-        );
+        rerender(<TypeaheadSingle {...newProps} />);
 
         expect(screen.getByRole('combobox')).toHaveValue('');
       });
@@ -338,9 +367,7 @@ describe('Component: TypeaheadSingle', () => {
           value: adminUser()
         };
 
-        rerender(
-          <TypeaheadSingle {...newProps} />
-        );
+        rerender(<TypeaheadSingle {...newProps} />);
 
         expect(screen.getByRole('combobox')).toHaveValue('admin@42.nl');
       });
