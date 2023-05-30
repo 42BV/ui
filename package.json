@@ -278,5 +278,8 @@
     "{src,tests}/**/*.{js,jsx,json,scss,ts,tsx}": [
       "prettier --write"
     ]
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
