@@ -11,7 +11,7 @@ type UseScrollToClosestErrorResult = {
 export function useScrollToClosestError({
   enabled
 }: UseScrollToClosestErrorConfig): UseScrollToClosestErrorResult {
-  const [ scroll, setScroll ] = useState<number>(0);
+  const [scroll, setScroll] = useState<number>(0);
 
   useEffect(() => {
     // Do not scroll on the initial call of the useEffect,
@@ -20,7 +20,7 @@ export function useScrollToClosestError({
       return;
     }
 
-    // Scroll after 200 milliseconds to give teh FormError's time
+    // Scroll after 200 milliseconds to give the FormError's time
     // to render.
     const timeoutId = setTimeout(() => {
       const firstError = document.querySelector('.invalid-feedback');
@@ -38,7 +38,7 @@ export function useScrollToClosestError({
     return () => {
       return clearTimeout(timeoutId);
     };
-  }, [ scroll, enabled ]);
+  }, [scroll, enabled]);
 
   function doScrollToClosestError() {
     setScroll((value) => value + 1);
