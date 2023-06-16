@@ -9,6 +9,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
     class="sticky-modal"
   >
     <div
+      aria-modal="true"
       class="modal fade"
       role="dialog"
       style="display: block;"
@@ -145,6 +146,7 @@ exports[`Component: Modal ui without footer 1`] = `
     class="sticky-modal"
   >
     <div
+      aria-modal="true"
       class="modal fade"
       role="dialog"
       style="display: block;"
@@ -276,6 +278,7 @@ exports[`Component: Modal ui without header 1`] = `
     class="sticky-modal"
   >
     <div
+      aria-modal="true"
       class="modal fade"
       role="dialog"
       style="display: block;"
