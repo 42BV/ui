@@ -104,8 +104,13 @@ export function EpicPagination<T>({
   const content = pagesFor(current, totalPages);
 
   return (
-    <div className="d-flex justify-content-center flex-wrap flex-sm-nowrap">
-      <RPagination className={classNames('epic-pagination', className)}>
+    <div
+      className={classNames(
+        'epic-pagination d-flex justify-content-center flex-wrap flex-sm-nowrap',
+        className
+      )}
+    >
+      <RPagination>
         {showPreviousAndNextButtons ? (
           <>
             <PaginationItem disabled={first}>
@@ -156,20 +161,28 @@ export function EpicPagination<T>({
         ) : null}
       </RPagination>
       {showTotalElements ? (
-        <div className="ms-3 mt-2 mt-sm-0 pagination__total-elements">
-          {t({
-            key: 'Pagination.TOTAL_ELEMENTS',
-            data: { totalElements },
-            fallback: `${totalElements} records found`,
-            overrideText: text.totalElements
-          })}
+        <div className="ms-3 pagination__total-elements">
+          <span>
+            {t({
+              key: 'Pagination.TOTAL_ELEMENTS',
+              data: { totalElements },
+              fallback: `${totalElements} records found`,
+              overrideText: text.totalElements
+            })}
+          </span>
         </div>
       ) : null}
       {onPageSizeChange && allowedPageSizes ? (
         <Select<number>
           onChange={onPageSizeChange}
           options={allowedPageSizes}
-          labelForOption={(pageSize) => `${pageSize}`}
+          labelForOption={(pageSize) =>
+            t({
+              key: 'Pagination.PAGE_SIZE',
+              data: { pageSize },
+              fallback: `${pageSize} items per page`
+            })
+          }
           value={size}
           className="ms-3 mt-2 mt-sm-0 pagination__select-size"
           label={t({

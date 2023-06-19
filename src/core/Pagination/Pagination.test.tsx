@@ -98,13 +98,17 @@ describe('Component: Pagination', () => {
     test('with custom allowed page sizes', () => {
       setup({ hasPageSizeDropdown: true, size: 3, allowedPageSizes: [3, 6] });
       expect(screen.queryAllByRole('option').length).toBe(2);
-      expect(screen.queryByRole('option', { name: '3' })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: '6' })).toBeInTheDocument();
       expect(
-        screen.queryByRole('option', { name: '5' })
+        screen.queryByRole('option', { name: '3 items per page' })
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole('option', { name: '6 items per page' })
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole('option', { name: '5 items per page' })
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByRole('option', { name: '10' })
+        screen.queryByRole('option', { name: '10 items per page' })
       ).not.toBeInTheDocument();
     });
 
@@ -197,7 +201,10 @@ describe('Component: Pagination', () => {
     it('should call onPageSizeChange when page size dropdown is changed', async () => {
       expect.assertions(2);
       const { pageSizeChangeSpy } = setup({ hasPageSizeDropdown: true });
-      await userEvent.selectOptions(screen.getByRole('combobox'), '100');
+      await userEvent.selectOptions(
+        screen.getByRole('combobox'),
+        '100 items per page'
+      );
       expect(pageSizeChangeSpy).toHaveBeenCalledTimes(1);
       expect(pageSizeChangeSpy).toHaveBeenCalledWith(100);
     });

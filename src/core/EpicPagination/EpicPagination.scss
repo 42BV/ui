@@ -1,6 +1,4 @@
 .epic-pagination {
-  user-select: none;
-
   .page-item {
     margin: 2px;
 
@@ -37,8 +35,11 @@
     }
   }
 
-  .total-elements {
-    border: var(--bs-pagination-border-width) solid transparent;
-    padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+  .pagination__total-elements {
+    margin: 2px;
+    padding: initial;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
   }
 }

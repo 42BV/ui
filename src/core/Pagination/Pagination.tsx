@@ -11,6 +11,7 @@ import { Icon } from '../Icon';
 import { range } from 'lodash';
 import { Select } from '../../form/Select/Select';
 import { t } from '../../utilities/translation/translation';
+import classNames from 'classnames';
 
 type Text = {
   pageSizeDropdownLabel?: string;
@@ -103,8 +104,13 @@ export function Pagination<T>({
   }
 
   return (
-    <div className="d-flex justify-content-center flex-wrap flex-sm-nowrap">
-      <RPagination className={className}>
+    <div
+      className={classNames(
+        'd-flex justify-content-center flex-wrap flex-sm-nowrap',
+        className
+      )}
+    >
+      <RPagination>
         {showPreviousAndNextButtons ? (
           <PaginationItem disabled={first}>
             <PaginationLink onClick={() => onChange(current - 1)}>
@@ -147,7 +153,13 @@ export function Pagination<T>({
         <Select<number>
           onChange={onPageSizeChange}
           options={allowedPageSizes}
-          labelForOption={(pageSize) => `${pageSize}`}
+          labelForOption={(pageSize) =>
+            t({
+              key: 'Pagination.PAGE_SIZE',
+              data: { pageSize },
+              fallback: `${pageSize} items per page`
+            })
+          }
           value={size}
           className="ms-3 mt-2 mt-sm-0 pagination__select-size"
           label={t({

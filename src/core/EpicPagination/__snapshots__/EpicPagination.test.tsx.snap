@@ -3,11 +3,11 @@
 exports[`Component: EpicPagination ui middle 1`] = `
 <div>
   <div
-    class="d-flex justify-content-center flex-wrap flex-sm-nowrap"
+    class="epic-pagination d-flex justify-content-center flex-wrap flex-sm-nowrap"
   >
     <nav
       aria-label="pagination"
-      class="epic-pagination"
+      class=""
     >
       <ul
         class="pagination"
@@ -112,9 +112,11 @@ exports[`Component: EpicPagination ui middle 1`] = `
       </ul>
     </nav>
     <div
-      class="ms-3 mt-2 mt-sm-0 pagination__total-elements"
+      class="ms-3 pagination__total-elements"
     >
-      100 records found
+      <span>
+        100 records found
+      </span>
     </div>
   </div>
 </div>
