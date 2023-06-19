@@ -1,5 +1,9 @@
 @import 'bootstrap/scss/bootstrap';
 
+body {
+  background: #f4f6f8;
+}
+
 .b-t {
   border-top: 1px solid rgba($body-color, 0.13);
 }
