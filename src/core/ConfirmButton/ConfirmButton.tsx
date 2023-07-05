@@ -26,7 +26,7 @@ type Text = {
   confirm?: string;
 };
 
-type Props = ButtonProps & {
+type Props = Omit<ButtonProps, 'onClick'> & {
   /**
    * The text you want to render inside the dialog.
    */
@@ -55,19 +55,13 @@ type Props = ButtonProps & {
  * he is sure he wants to delete something.
  */
 export function ConfirmButton({
-  icon,
-  children,
-  fullWidth,
-  size,
-  dialogText,
   color = 'danger',
-  onConfirm,
-  inProgress,
-  disabled,
+  dialogText,
   text = {},
-  className
+  onConfirm,
+  ...buttonProps
 }: Props) {
-  const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { modalHeader, confirm, cancel } = text;
 
   function openModal(event: React.MouseEvent<HTMLElement>) {
@@ -80,25 +74,9 @@ export function ConfirmButton({
     onConfirm();
   }
 
-  const buttonProps: ButtonProps = {
-    onClick: openModal,
-    color,
-    inProgress: !!inProgress,
-    icon,
-    children,
-    fullWidth,
-    size,
-    disabled
-  };
-
   return (
-    <div
-      className={className}
-      style={{
-        display: buttonProps.icon && !buttonProps.children ? 'inline' : 'block'
-      }}
-    >
-      <Button {...buttonProps} />
+    <>
+      <Button color={color} onClick={openModal} {...buttonProps} />
 
       {isModalOpen ? (
         <ConfirmModal
@@ -110,6 +88,6 @@ export function ConfirmButton({
           confirmText={confirm}
         />
       ) : null}
-    </div>
+    </>
   );
 }
