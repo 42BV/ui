@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { FormEventHandler, Suspense } from 'react';
 import { Button } from '../Button/Button';
 import { SubmitButton } from '../SubmitButton/SubmitButton';
 import { t } from '../../utilities/translation/translation';
@@ -42,7 +42,7 @@ type Props = {
   /**
    * Callback for when the save button is clicked.
    */
-  onSave?: () => void;
+  onSave?: FormEventHandler;
 
   /**
    * The content of the modal body.
