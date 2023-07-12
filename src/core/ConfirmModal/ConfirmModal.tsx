@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEventHandler } from 'react';
 import { OpenCloseModal } from '../OpenCloseModal/OpenCloseModal';
 import { t } from '../../utilities/translation/translation';
 
@@ -33,7 +33,7 @@ type Props = {
   /**
    * Function that gets called when the user clicks the save button
    */
-  onSave: () => void;
+  onSave: FormEventHandler;
 
   /**
    * Text which is rendered inside the modal
