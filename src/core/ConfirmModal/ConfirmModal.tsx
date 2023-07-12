@@ -1,6 +1,7 @@
-import React, { FormEventHandler } from 'react';
-import { OpenCloseModal } from '../OpenCloseModal/OpenCloseModal';
+import React from 'react';
 import { t } from '../../utilities/translation/translation';
+import { Modal } from '../Modal/Modal';
+import { Button } from '../Button/Button';
 
 type Props = {
   /**
@@ -33,7 +34,7 @@ type Props = {
   /**
    * Function that gets called when the user clicks the save button
    */
-  onSave: FormEventHandler;
+  onSave: () => void;
 
   /**
    * Text which is rendered inside the modal
@@ -66,29 +67,44 @@ export function ConfirmModal({
   className
 }: Props) {
   return (
-    <OpenCloseModal
+    <Modal
       onClose={onClose}
-      onSave={onSave}
-      label={t({
+      className={className}
+      header={t({
         overrideText: label,
         key: 'ConfirmButton.MODAL_HEADER',
         fallback: 'Confirmation'
       })}
-      text={{
-        cancel: t({
-          overrideText: cancelText,
-          key: 'ConfirmButton.CANCEL',
-          fallback: 'Cancel'
-        }),
-        save: t({
-          overrideText: confirmText,
-          key: 'ConfirmButton.CONFIRM',
-          fallback: 'Confirm'
-        })
-      }}
-      className={className}
+      footer={
+        <>
+          <Button
+            className="ms-1"
+            color="secondary"
+            icon="close"
+            onClick={onClose}
+          >
+            {t({
+              overrideText: cancelText,
+              key: 'ConfirmButton.CANCEL',
+              fallback: 'Cancel'
+            })}
+          </Button>
+          <Button
+            className="ms-1"
+            color="primary"
+            icon="check"
+            onClick={onSave}
+          >
+            {t({
+              overrideText: confirmText,
+              key: 'ConfirmButton.CONFIRM',
+              fallback: 'Confirm'
+            })}
+          </Button>
+        </>
+      }
     >
       {modalText}
-    </OpenCloseModal>
+    </Modal>
   );
 }

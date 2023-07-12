@@ -43,8 +43,8 @@ describe('Component: ConfirmModal', () => {
       expect(
         screen.queryByText('Perform dangerous action')
       ).toBeInTheDocument();
-      expect(screen.getAllByRole('button')[1]).toHaveTextContent('cancelNO');
-      expect(screen.getAllByRole('button')[2]).toHaveTextContent('saveYES');
+      expect(screen.getAllByRole('button')[1]).toHaveTextContent('closeNO');
+      expect(screen.getAllByRole('button')[2]).toHaveTextContent('checkYES');
       expect(document.body.lastChild).toMatchSnapshot();
     });
   });
@@ -98,7 +98,7 @@ describe('Component: ConfirmModal', () => {
         isOpen: true
       });
 
-      fireEvent.click(screen.getByText('cancel'));
+      fireEvent.click(screen.getByText('close'));
 
       expect(onCloseSpy).toHaveBeenCalledTimes(1);
       expect(onSaveSpy).toHaveBeenCalledTimes(0);
@@ -110,7 +110,7 @@ describe('Component: ConfirmModal', () => {
         isOpen: true
       });
 
-      fireEvent.click(screen.getByText('save'));
+      fireEvent.click(screen.getByText('check'));
 
       expect(onCloseSpy).toHaveBeenCalledTimes(0);
       expect(onSaveSpy).toHaveBeenCalledTimes(1);

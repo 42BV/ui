@@ -22,75 +22,73 @@ exports[`Component: ConfirmModal ui custom texts 1`] = `
         <div
           class="modal-content"
         >
-          <form>
-            <div
-              class="modal-header"
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
             >
-              <h5
-                class="modal-title"
-              >
-                Perform dangerous action
-              </h5>
+              Perform dangerous action
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <p>
+              Are you sure you want to 
+              <strong>
+                delete
+              </strong>
+               all users in the database?
+            </p>
+          </div>
+          <div
+            class="modal-footer"
+          >
+            <span
+              class="button d-inline-block ms-1 secondary"
+            >
               <button
-                aria-label="Close"
-                class="btn-close"
+                class="btn btn-secondary btn-md"
                 type="button"
-              />
-            </div>
-            <div
-              class="modal-body"
-            >
-              <p>
-                Are you sure you want to 
-                <strong>
-                  delete
-                </strong>
-                 all users in the database?
-              </p>
-            </div>
-            <div
-              class="modal-footer"
-            >
-              <span
-                class="button d-inline-block ms-1 secondary"
               >
-                <button
-                  class="btn btn-secondary btn-md"
-                  type="button"
+                <div
+                  class="d-flex justify-content-center align-items-center"
                 >
-                  <div
-                    class="d-flex justify-content-center align-items-center"
+                  <i
+                    class="icon button-icon me-2 material-icons"
                   >
-                    <i
-                      class="icon button-icon me-2 material-icons"
-                    >
-                      cancel
-                    </i>
-                    NO
-                  </div>
-                </button>
-              </span>
-              <span
-                class="button d-inline-block ms-1 primary"
+                    close
+                  </i>
+                  NO
+                </div>
+              </button>
+            </span>
+            <span
+              class="button d-inline-block ms-1 primary"
+            >
+              <button
+                class="btn btn-primary btn-md"
+                type="button"
               >
-                <button
-                  class="btn btn-primary btn-md"
-                  type="submit"
+                <div
+                  class="d-flex justify-content-center align-items-center"
                 >
-                  <div
-                    class="d-flex justify-content-center align-items-center"
+                  <i
+                    class="icon button-icon me-2 material-icons"
                   >
-                    <i
-                      class="icon button-icon me-2 material-icons"
-                    >
-                      save
-                    </i>
-                    YES
-                  </div>
-                </button>
-              </span>
-            </div>
-          </form>
+                    check
+                  </i>
+                  YES
+                </div>
+              </button>
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -123,75 +121,73 @@ exports[`Component: ConfirmModal ui default texts 1`] = `
         <div
           class="modal-content"
         >
-          <form>
-            <div
-              class="modal-header"
+          <div
+            class="modal-header"
+          >
+            <h5
+              class="modal-title"
             >
-              <h5
-                class="modal-title"
-              >
-                Confirmation
-              </h5>
+              Confirmation
+            </h5>
+            <button
+              aria-label="Close"
+              class="btn-close"
+              type="button"
+            />
+          </div>
+          <div
+            class="modal-body"
+          >
+            <p>
+              Are you sure you want to 
+              <strong>
+                delete
+              </strong>
+               the user?
+            </p>
+          </div>
+          <div
+            class="modal-footer"
+          >
+            <span
+              class="button d-inline-block ms-1 secondary"
+            >
               <button
-                aria-label="Close"
-                class="btn-close"
+                class="btn btn-secondary btn-md"
                 type="button"
-              />
-            </div>
-            <div
-              class="modal-body"
-            >
-              <p>
-                Are you sure you want to 
-                <strong>
-                  delete
-                </strong>
-                 the user?
-              </p>
-            </div>
-            <div
-              class="modal-footer"
-            >
-              <span
-                class="button d-inline-block ms-1 secondary"
               >
-                <button
-                  class="btn btn-secondary btn-md"
-                  type="button"
+                <div
+                  class="d-flex justify-content-center align-items-center"
                 >
-                  <div
-                    class="d-flex justify-content-center align-items-center"
+                  <i
+                    class="icon button-icon me-2 material-icons"
                   >
-                    <i
-                      class="icon button-icon me-2 material-icons"
-                    >
-                      cancel
-                    </i>
-                    Cancel
-                  </div>
-                </button>
-              </span>
-              <span
-                class="button d-inline-block ms-1 primary"
+                    close
+                  </i>
+                  Cancel
+                </div>
+              </button>
+            </span>
+            <span
+              class="button d-inline-block ms-1 primary"
+            >
+              <button
+                class="btn btn-primary btn-md"
+                type="button"
               >
-                <button
-                  class="btn btn-primary btn-md"
-                  type="submit"
+                <div
+                  class="d-flex justify-content-center align-items-center"
                 >
-                  <div
-                    class="d-flex justify-content-center align-items-center"
+                  <i
+                    class="icon button-icon me-2 material-icons"
                   >
-                    <i
-                      class="icon button-icon me-2 material-icons"
-                    >
-                      save
-                    </i>
-                    Confirm
-                  </div>
-                </button>
-              </span>
-            </div>
-          </form>
+                    check
+                  </i>
+                  Confirm
+                </div>
+              </button>
+            </span>
+          </div>
         </div>
       </div>
     </div>
