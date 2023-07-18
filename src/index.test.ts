@@ -151,6 +151,7 @@ describe('index', () => {
         "useHover": [Function],
         "useShowAfter": [Function],
         "useShowSpinner": [Function],
+        "withField": [Function],
         "withJarb": [Function],
       }
     `);

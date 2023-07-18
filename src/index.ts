@@ -54,6 +54,8 @@ export { ErrorBoundary } from './core/ErrorBoundary/ErrorBoundary';
 export { AutoSave } from './form/AutoSave/AutoSave';
 export { withJarb } from './form/withJarb/withJarb';
 export type { JarbFieldCompatible } from './form/withJarb/withJarb';
+export { withField } from './form/withField/withField';
+export type { FieldProps } from './form/withField/withField';
 export { Input, JarbInput, FieldInput } from './form/Input/Input';
 export {
   Textarea,
