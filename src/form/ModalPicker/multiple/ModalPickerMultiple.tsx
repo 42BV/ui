@@ -342,7 +342,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
   function renderModalCurrentSelection() {
     return (
       <Row className="mb-3 py-2 bg-dark bg-opacity-10">
-        <Col>
+        <Col className="bg-opacity-100">
           {selected && selected.length > 0 ? (
             selected.map((value) => {
               const label = labelForOption(value);

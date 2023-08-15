@@ -103,7 +103,7 @@ exports[`Component: ModalPickerMultiple ui default: modal 1`] = `
                   class="mb-3 py-2 bg-dark bg-opacity-10 row"
                 >
                   <div
-                    class="col"
+                    class="bg-opacity-100 col"
                   >
                     <span
                       class="text-muted"
