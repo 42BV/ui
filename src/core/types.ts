@@ -12,7 +12,7 @@ export type Color =
   | 'dark'
   | 'light';
 
-export type BootstrapSize = 'xs' | 'sm' | 'md' | 'lg';
+export type ModalSize = 'sm' | 'md' | 'lg' | 'xl';
 
 type Side = 'top' | 'right' | 'bottom' | 'left';
 type StartOrEnd = 'start' | 'end';

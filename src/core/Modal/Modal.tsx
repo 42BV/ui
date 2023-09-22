@@ -1,7 +1,12 @@
 import React, { Suspense } from 'react';
-import { Modal as ReactstrapModal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { BootstrapSize } from '../types';
+import {
+  Modal as ReactstrapModal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader
+} from 'reactstrap';
 import { Loading } from '../Loading/Loading';
+import { ModalSize } from '../types';
 
 type Props = {
   /**
@@ -22,7 +27,7 @@ type Props = {
   /**
    * Optionally the size (width) of the modal.
    */
-  size?: BootstrapSize;
+  size?: ModalSize;
 
   /**
    * Whether the footer should stick to the bottom of the modal.

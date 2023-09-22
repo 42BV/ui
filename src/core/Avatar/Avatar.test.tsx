@@ -2,11 +2,10 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { Avatar } from './Avatar';
-import { BootstrapSize } from '../types';
+import { Avatar, AvatarSize } from './Avatar';
 
 describe('Component: Avatar', () => {
-  function setup({ size }: { size?: BootstrapSize }) {
+  function setup({ size }: { size?: AvatarSize }) {
     const { container } = render(
       <Avatar
         className="red"

@@ -2,7 +2,7 @@ import React, { FormEventHandler, Suspense } from 'react';
 import { Button } from '../Button/Button';
 import { SubmitButton } from '../SubmitButton/SubmitButton';
 import { t } from '../../utilities/translation/translation';
-import { BootstrapSize } from '../types';
+import { ModalSize } from '../types';
 import { IconType } from '../Icon';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { Loading } from '../Loading/Loading';
@@ -63,7 +63,7 @@ type Props = {
   /**
    * Optionally the size (width) of the modal.
    */
-  size?: BootstrapSize;
+  size?: ModalSize;
 
   /**
    * Whether the footer should stick to the bottom of the modal.

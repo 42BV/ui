@@ -3,7 +3,6 @@ import { debounce as lodashDebounce, DebounceSettings, uniqueId } from 'lodash';
 import { FormGroup, Input, InputGroup, InputProps, Label } from 'reactstrap';
 
 import { Icon } from '../Icon';
-import { BootstrapSize } from '../types';
 import { AddonIcon } from '../../form/AddonIcon/AddonIcon';
 
 export type SearchInputApi = {
@@ -15,7 +14,8 @@ export type SearchInputApi = {
   setValue: (value: string) => void;
 };
 
-type ModifiedInputProps = Omit<InputProps,
+type ModifiedInputProps = Omit<
+  InputProps,
   // We are going to override onChange, so it sends out strings.
   | 'onChange'
   // We want to remove the value because we use defaultValue,
@@ -31,7 +31,8 @@ type ModifiedInputProps = Omit<InputProps,
   | 'children'
   // We are going to override some properties to be able to provide docs.
   | 'placeholder'
-  | 'className'>;
+  | 'className'
+>;
 
 export type Props = ModifiedInputProps & {
   /**
@@ -44,7 +45,6 @@ export type Props = ModifiedInputProps & {
    * The label of the SearchInput.
    */
   label: React.ReactNode;
-
 
   /**
    * Optionally whether the label should be invisible (aria-label).
@@ -116,7 +116,7 @@ export type Props = ModifiedInputProps & {
   /**
    * Optional size you want to give the icon.
    */
-  size?: BootstrapSize;
+  size?: InputSize;
 
   /**
    * Whether to show a "clear" button.
@@ -125,6 +125,8 @@ export type Props = ModifiedInputProps & {
    */
   canClear?: boolean;
 };
+
+type InputSize = 'sm' | 'md' | 'lg';
 
 /**
  * SearchInput is a component which shows an input field which has
@@ -160,7 +162,7 @@ export function SearchInput(props: Props) {
   // When the onChange changes update the handleChange
   useEffect(() => {
     handleChange.current = lodashDebounce(onChange, debounce, debounceSettings);
-  }, [ onChange, debounce, debounceSettings ]);
+  }, [onChange, debounce, debounceSettings]);
 
   function handleKeyUp(event: KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter') {

@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import { BootstrapSize } from '../types';
 import { Tooltip } from '../Tooltip/Tooltip';
 
 type Props = {
@@ -24,7 +23,7 @@ type Props = {
    *
    * @default md
    */
-  size?: BootstrapSize;
+  size?: AvatarSize;
 
   /**
    * Optional extra CSS class you want to add to the component.
@@ -32,6 +31,8 @@ type Props = {
    */
   className?: string;
 };
+
+export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg';
 
 /**
  * Avatar is a component which shows a circular image with any element underneath.
@@ -57,7 +58,7 @@ export function Avatar({ size, className, alt, src, children }: Props) {
   );
 }
 
-function tooltipDistanceFromSize(size?: BootstrapSize): number {
+function tooltipDistanceFromSize(size?: AvatarSize): number {
   switch (size) {
     case 'lg':
       return 42;
