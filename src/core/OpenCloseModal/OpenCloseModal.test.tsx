@@ -104,11 +104,18 @@ describe('Component: OpenCloseModal', () => {
       expect(document.body.lastChild).toMatchSnapshot();
     });
 
+    test('sticky footer', () => {
+      setup({ isOpen: true, stickyFooter: true });
+      expect(
+        document.body.lastChild?.firstChild?.firstChild?.firstChild
+      ).toHaveClass('modal-dialog-scrollable');
+    });
+
     test('sans sticky footer', () => {
       setup({ isOpen: true, stickyFooter: false });
-      expect(document.body.lastChild?.firstChild).not.toHaveClass(
-        'sticky-modal'
-      );
+      expect(
+        document.body.lastChild?.firstChild?.firstChild?.firstChild
+      ).not.toHaveClass('modal-dialog-scrollable');
     });
   });
 

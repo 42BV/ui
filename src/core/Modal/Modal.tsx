@@ -90,11 +90,11 @@ export function Modal(props: Props) {
 
   return (
     <ReactstrapModal
-      wrapClassName={stickyFooter ? 'sticky-modal' : undefined}
       isOpen={true}
       toggle={onClose}
       size={size}
       className={className}
+      scrollable={stickyFooter}
     >
       {header ? (
         <ModalHeader toggle={onClose} className={modalHeaderClassName}>

@@ -141,7 +141,7 @@ export function OpenCloseModal(props: Props) {
       className={className}
       isOpen={true}
       size={size}
-      wrapClassName={stickyFooter ? 'sticky-modal' : undefined}
+      scrollable={stickyFooter}
     >
       {onSave ? (
         <form onSubmit={onSave}>

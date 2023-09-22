@@ -6,7 +6,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
   tabindex="-1"
 >
   <div
-    class="sticky-modal"
+    class=""
   >
     <div
       aria-modal="true"
@@ -16,7 +16,7 @@ exports[`Component: Modal ui with header and footer 1`] = `
       tabindex="-1"
     >
       <div
-        class="modal-dialog"
+        class="modal-dialog modal-dialog-scrollable"
         role="document"
       >
         <div
@@ -143,7 +143,7 @@ exports[`Component: Modal ui without footer 1`] = `
   tabindex="-1"
 >
   <div
-    class="sticky-modal"
+    class=""
   >
     <div
       aria-modal="true"
@@ -153,7 +153,7 @@ exports[`Component: Modal ui without footer 1`] = `
       tabindex="-1"
     >
       <div
-        class="modal-dialog"
+        class="modal-dialog modal-dialog-scrollable"
         role="document"
       >
         <div
@@ -275,7 +275,7 @@ exports[`Component: Modal ui without header 1`] = `
   tabindex="-1"
 >
   <div
-    class="sticky-modal"
+    class=""
   >
     <div
       aria-modal="true"
@@ -285,7 +285,7 @@ exports[`Component: Modal ui without header 1`] = `
       tabindex="-1"
     >
       <div
-        class="modal-dialog"
+        class="modal-dialog modal-dialog-scrollable"
         role="document"
       >
         <div

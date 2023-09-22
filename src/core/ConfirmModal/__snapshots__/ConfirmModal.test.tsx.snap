@@ -6,7 +6,7 @@ exports[`Component: ConfirmModal ui custom texts 1`] = `
   tabindex="-1"
 >
   <div
-    class="sticky-modal"
+    class=""
   >
     <div
       aria-modal="true"
@@ -16,7 +16,7 @@ exports[`Component: ConfirmModal ui custom texts 1`] = `
       tabindex="-1"
     >
       <div
-        class="modal-dialog"
+        class="modal-dialog modal-dialog-scrollable"
         role="document"
       >
         <div
@@ -105,7 +105,7 @@ exports[`Component: ConfirmModal ui default texts 1`] = `
   tabindex="-1"
 >
   <div
-    class="sticky-modal"
+    class=""
   >
     <div
       aria-modal="true"
@@ -115,7 +115,7 @@ exports[`Component: ConfirmModal ui default texts 1`] = `
       tabindex="-1"
     >
       <div
-        class="modal-dialog"
+        class="modal-dialog modal-dialog-scrollable"
         role="document"
       >
         <div

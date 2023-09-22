@@ -6,7 +6,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
   tabindex="-1"
 >
   <div
-    class="sticky-modal"
+    class=""
   >
     <div
       aria-modal="true"
@@ -16,7 +16,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
       tabindex="-1"
     >
       <div
-        class="modal-dialog"
+        class="modal-dialog modal-dialog-scrollable"
         role="document"
       >
         <div
@@ -195,7 +195,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
   tabindex="-1"
 >
   <div
-    class="sticky-modal"
+    class=""
   >
     <div
       aria-modal="true"
@@ -205,7 +205,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
       tabindex="-1"
     >
       <div
-        class="modal-dialog"
+        class="modal-dialog modal-dialog-scrollable"
         role="document"
       >
         <div

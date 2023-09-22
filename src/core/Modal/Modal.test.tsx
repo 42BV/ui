@@ -10,7 +10,7 @@ describe('Component: Modal', () => {
   function setup({
     hasHeader = true,
     hasFooter = true,
-    stickyFooter = undefined
+    stickyFooter
   }: {
     hasHeader?: boolean;
     hasFooter?: boolean;
@@ -28,15 +28,13 @@ describe('Component: Modal', () => {
     const children = (
       <RadioGroup<string>
         onChange={jest.fn()}
-        options={[ 'local', 'development', 'test', 'acceptation', 'production' ]}
+        options={['local', 'development', 'test', 'acceptation', 'production']}
         labelForOption={(v) => v}
         label="Environment"
       />
     );
 
-    const { container } = render(
-      <Modal {...props}>{children}</Modal>
-    );
+    const { container } = render(<Modal {...props}>{children}</Modal>);
 
     return { container, onCloseSpy };
   }
@@ -62,10 +60,20 @@ describe('Component: Modal', () => {
       expect(document.body.lastChild).toMatchSnapshot();
     });
 
-    test('sans sticky footer', () => {
+    test('sticky footer', () => {
+      setup({ stickyFooter: true });
+
+      expect(
+        document.body.lastChild?.firstChild?.firstChild?.firstChild
+      ).toHaveClass('modal-dialog-scrollable');
+    });
+
+    test('scrollable', () => {
       setup({ stickyFooter: false });
 
-      expect(document.body.lastChild?.firstChild).not.toHaveClass('sticky-modal');
+      expect(
+        document.body.lastChild?.firstChild?.firstChild?.firstChild
+      ).not.toHaveClass('modal-dialog-scrollable');
     });
   });
 
