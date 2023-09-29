@@ -493,7 +493,9 @@ exports[`Component: DateTimeInput ui with date picker in modal 1`] = `
         <div
           class="modal-content"
         >
-          <form>
+          <form
+            class="d-flex flex-column overflow-hidden"
+          >
             <div
               class="modal-header"
             >

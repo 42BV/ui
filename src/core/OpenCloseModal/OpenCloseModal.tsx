@@ -144,7 +144,7 @@ export function OpenCloseModal(props: Props) {
       scrollable={stickyFooter}
     >
       {onSave ? (
-        <form onSubmit={onSave}>
+        <form onSubmit={onSave} className="d-flex flex-column overflow-hidden">
           {header}
           {body}
           <ModalFooter className={modalFooterClassName}>

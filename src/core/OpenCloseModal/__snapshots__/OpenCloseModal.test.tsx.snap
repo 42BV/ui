@@ -22,7 +22,9 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
         <div
           class="modal-content"
         >
-          <form>
+          <form
+            class="d-flex flex-column overflow-hidden"
+          >
             <div
               class="modal-header"
             >
@@ -211,7 +213,9 @@ exports[`Component: OpenCloseModal ui open 1`] = `
         <div
           class="modal-content"
         >
-          <form>
+          <form
+            class="d-flex flex-column overflow-hidden"
+          >
             <div
               class="modal-header"
             >

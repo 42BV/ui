@@ -22,7 +22,9 @@ exports[`Component: DateTimeModal ui default 1`] = `
         <div
           class="modal-content"
         >
-          <form>
+          <form
+            class="d-flex flex-column overflow-hidden"
+          >
             <div
               class="modal-body"
             >
