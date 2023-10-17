@@ -1,7 +1,11 @@
 import { emptyPage, Page } from '@42.nl/spring-connect';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { pageOf } from '../utilities/page/page';
-import { FetchOptionsCallback, FieldCompatibleWithPredeterminedOptions, isOptionSelected } from './option';
+import {
+  FetchOptionsCallback,
+  FieldCompatibleWithPredeterminedOptions,
+  isOptionSelected
+} from './option';
 
 type UseOptionConfig<T> = FieldCompatibleWithPredeterminedOptions<T> & {
   value?: T | T[];
@@ -30,15 +34,13 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
     optionsShouldAlwaysContainValue
   } = config;
 
-  const [ loading, setLoading ] = useState(
+  const [loading, setLoading] = useState(
     () => !Array.isArray(optionsOrFetcher)
   );
 
-  const [ page, setPage ] = useState(() => {
+  const [pageFromOptions, setPageFromOptions] = useState(() => {
     if (Array.isArray(optionsOrFetcher)) {
-      const page = pageFromOptionsArray(optionsOrFetcher);
-      appendValueToPage(page);
-      return page;
+      return pageFromOptionsArray(optionsOrFetcher);
     } else {
       return emptyPage<T>();
     }
@@ -61,7 +63,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
   // When the options are loaded make sure that the options always
   // contain the value that the user has selected when
   // `optionsShouldAlwaysContainValue` is `true`.
-  function appendValueToPage(page: Page<T>): void {
+  function appendValueToPage(page: Page<T>): Page<T> {
     /* 
         When a form component shows the selected value in one place, 
         but allows the user to select values from the another place 
@@ -73,12 +75,12 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
         visible.
       */
     if (!optionsShouldAlwaysContainValue) {
-      return;
+      return page;
     }
 
     // If there is no value there is no need to add it
     if (!value) {
-      return;
+      return page;
     }
 
     if (Array.isArray(value)) {
@@ -97,7 +99,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
         return !isValueIncludedInPage;
       });
 
-      page.content = [ ...prepend, ...page.content ];
+      return { ...page, content: [...prepend, ...page.content] };
     } else {
       const isValueIncludedInPage = page.content.some((option) =>
         isOptionSelected({
@@ -111,10 +113,10 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
 
       // If the value is in the page there is no need to add it
       if (isValueIncludedInPage) {
-        return;
+        return page;
       }
 
-      page.content.unshift(value);
+      return { ...page, content: [value, ...page.content] };
     }
   }
 
@@ -132,8 +134,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
         size
       });
 
-      appendValueToPage(resultPage);
-      setPage(resultPage);
+      setPageFromOptions(resultPage);
 
       setLoading(false);
     }
@@ -143,13 +144,18 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
     } else if (lastWatch.current !== watch) {
       lastWatch.current = watch;
 
-      const newPage = pageFromOptionsArray(optionsOrFetcher);
-      appendValueToPage(newPage);
-      setPage(newPage);
+      setPageFromOptions(pageFromOptionsArray(optionsOrFetcher));
     }
     // We only want to reload when the following props change
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ watch ]);
+  }, [watch]);
+
+  const page = useMemo(
+    () => appendValueToPage(pageFromOptions),
+    // We only want to reload when the following props change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [value, pageFromOptions]
+  );
 
   return { loading, page };
 }

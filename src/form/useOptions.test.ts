@@ -90,7 +90,7 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [ { id: 1, label: 'Nederland' } ]
+          content: [{ id: 1, label: 'Nederland' }]
         },
         loading: false
       });
@@ -102,7 +102,7 @@ describe('useOptions', () => {
           const options = generateOptions();
 
           return useOptions({
-            options: reloadOptions === 'all' ? options : [ options[0] ],
+            options: reloadOptions === 'all' ? options : [options[0]],
             value: undefined,
             labelForOption: (option: Option) => option.label,
             isOptionEqual: (a, b) => a.id === b.id,
@@ -149,7 +149,69 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [ { id: 1, label: '1' } ]
+          content: [{ id: 1, label: '1' }]
+        },
+        loading: false
+      });
+    });
+
+    it('should when the value changes update the options', () => {
+      const options = generateOptions();
+
+      const { result, rerender } = renderHook(
+        ({ value }) => {
+          return useOptions({
+            options: options,
+            value,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            query: '',
+            pageNumber: 1,
+            size: 2,
+            optionsShouldAlwaysContainValue: true
+          });
+        },
+        {
+          initialProps: {
+            value: { id: -1, label: 'test' }
+          }
+        }
+      );
+
+      // Check if the value is prepended to the
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: -1, label: 'test' },
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      rerender({ value: options[0] });
+
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
         },
         loading: false
       });
@@ -208,7 +270,7 @@ describe('useOptions', () => {
           size: 1,
           totalElements: 1,
           totalPages: 1,
-          content: [ { id: 1, label: '1' } ]
+          content: [{ id: 1, label: '1' }]
         },
         loading: false
       });
@@ -611,9 +673,7 @@ describe('useOptions', () => {
         optionsShouldAlwaysContainValue: false
       };
 
-      const { result } = renderHook(() =>
-        useOptions(config)
-      );
+      const { result } = renderHook(() => useOptions(config));
 
       // Should start by loading
       expect(result.current).toEqual({
@@ -756,6 +816,96 @@ describe('useOptions', () => {
       expect(fetcher).toHaveBeenLastCalledWith({ page: 1, query: '', size: 2 });
     });
 
+    it('should when the value changes update the options but not re-fetch', async () => {
+      expect.assertions(6);
+
+      const options = generateOptions();
+      const { promise, resolve } = resolvablePromise<Page<Option>>();
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const fetcher = jest.fn(({ size, page }) => {
+        return promise;
+      });
+
+      const { result, rerender } = renderHook(
+        ({ value }) => {
+          return useOptions({
+            options: fetcher,
+            value,
+            labelForOption: (option: Option) => option.label,
+            isOptionEqual: (a, b) => a.id === b.id,
+            query: '',
+            pageNumber: 1,
+            size: 2,
+            optionsShouldAlwaysContainValue: true
+          });
+        },
+        {
+          initialProps: {
+            value: { id: -1, label: 'test' }
+          }
+        }
+      );
+
+      // Should start by loading
+      expect(result.current).toEqual({
+        page: {
+          ...emptyPage(),
+          content: [{ id: -1, label: 'test' }]
+        },
+        loading: true
+      });
+
+      await act(async () => {
+        await resolve(pageOf(options, 1, 2));
+      });
+
+      // Check if the first page of 5 pages total is given including the value.
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: -1, label: 'test' },
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      expect(fetcher).toBeCalledTimes(1);
+      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+
+      rerender({ value: options[0] });
+
+      // Should remove the old value from the options
+      expect(result.current).toEqual({
+        page: {
+          first: true,
+          last: false,
+          number: 1,
+          numberOfElements: 2,
+          size: 2,
+          totalElements: 9,
+          totalPages: 5,
+          content: [
+            { id: 1, label: '1' },
+            { id: 2, label: '2' }
+          ]
+        },
+        loading: false
+      });
+
+      // Should not have called the options fetcher again
+      expect(fetcher).toBeCalledTimes(1);
+    });
+
     it('should when the query changes re-fetch the options and go back in loading state', async () => {
       expect.assertions(8);
 
@@ -873,10 +1023,13 @@ describe('useOptions', () => {
       expect.assertions(8);
 
       const options = generateOptions();
-      const { promise: promise1, resolve: resolve1 } = resolvablePromise<Page<Option>>();
-      const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
+      const { promise: promise1, resolve: resolve1 } =
+        resolvablePromise<Page<Option>>();
+      const { promise: promise2, resolve: resolve2 } =
+        resolvablePromise<Page<Option>>();
 
-      const fetcher = jest.fn()
+      const fetcher = jest
+        .fn()
         .mockImplementationOnce(() => promise1)
         .mockImplementationOnce(() => promise2);
 
@@ -982,10 +1135,13 @@ describe('useOptions', () => {
       expect.assertions(8);
 
       const options = generateOptions();
-      const { promise: promise1, resolve: resolve1 } = resolvablePromise<Page<Option>>();
-      const { promise: promise2, resolve: resolve2 } = resolvablePromise<Page<Option>>();
+      const { promise: promise1, resolve: resolve1 } =
+        resolvablePromise<Page<Option>>();
+      const { promise: promise2, resolve: resolve2 } =
+        resolvablePromise<Page<Option>>();
 
-      const fetcher = jest.fn()
+      const fetcher = jest
+        .fn()
         .mockImplementationOnce(() => promise1)
         .mockImplementationOnce(() => promise2);
 
@@ -1110,9 +1266,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: false
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
@@ -1158,9 +1312,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
@@ -1206,9 +1358,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
@@ -1254,9 +1404,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
@@ -1308,9 +1456,7 @@ describe('useOptions', () => {
           optionsShouldAlwaysContainValue: true
         };
 
-        const { result } = renderHook(() =>
-          useOptions(config)
-        );
+        const { result } = renderHook(() => useOptions(config));
 
         await act(async () => {
           await resolve(pageOf(generateOptions(), 1, 2));
