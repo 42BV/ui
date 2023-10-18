@@ -68,6 +68,7 @@ export function ConfirmModal({
 }: Props) {
   return (
     <Modal
+      autoFocus={false}
       onClose={onClose}
       className={className}
       header={t({
@@ -94,6 +95,7 @@ export function ConfirmModal({
             color="primary"
             icon="check"
             onClick={onSave}
+            autoFocus
           >
             {t({
               overrideText: confirmText,

@@ -52,6 +52,13 @@ export type Props = {
    * Defaults to `24px`
    */
   size?: number;
+
+  /**
+   * Optionally whether the button is focussed automatically when rendered.
+   *
+   * Defaults to `false`
+   */
+  autoFocus?: boolean;
 };
 
 /**
@@ -67,9 +74,10 @@ export function Icon({
   color,
   hoverColor,
   disabled,
-  size
+  size,
+  autoFocus
 }: Props) {
-  const [ hover, hoverEvents ] = useHover();
+  const [hover, hoverEvents] = useHover();
 
   const colorCssClasses = {};
   if (hoverColor && hover && !disabled && onClick !== undefined) {
@@ -102,6 +110,7 @@ export function Icon({
       }}
       className={classes}
       {...hoverEvents}
+      autoFocus={autoFocus}
     >
       {icon}
     </i>

@@ -62,6 +62,14 @@ type Props = {
   modalFooterClassName?: string;
 
   /**
+   * Optionally whether to focus on the modal when it opens.
+   * Useful when you want the focus to be on an input or button inside the modal.
+   *
+   * Defaults to `false`.
+   */
+  autoFocus?: boolean;
+
+  /**
    * The content of the modal body.
    */
   children: React.ReactNode;
@@ -74,20 +82,19 @@ type Props = {
  * because this component has Suspense built in to display a loader
  * and wait for its content to be fully loaded before displaying.
  */
-export function Modal(props: Props) {
-  const {
-    onClose,
-    header,
-    footer,
-    size,
-    stickyFooter = true,
-    className,
-    modalHeaderClassName,
-    modalBodyClassName,
-    modalFooterClassName,
-    children
-  } = props;
-
+export function Modal({
+  onClose,
+  header,
+  footer,
+  size,
+  stickyFooter = true,
+  className,
+  modalHeaderClassName,
+  modalBodyClassName,
+  modalFooterClassName,
+  autoFocus,
+  children
+}: Props) {
   return (
     <ReactstrapModal
       isOpen={true}
@@ -95,6 +102,7 @@ export function Modal(props: Props) {
       size={size}
       className={className}
       scrollable={stickyFooter}
+      autoFocus={autoFocus}
     >
       {header ? (
         <ModalHeader toggle={onClose} className={modalHeaderClassName}>

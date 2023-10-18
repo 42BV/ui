@@ -86,6 +86,13 @@ export type Props = {
   fullWidth?: boolean;
 
   /**
+   * Optionally whether the button should be focussed when rendered.
+   *
+   * Defaults to `false`
+   */
+  autoFocus?: boolean;
+
+  /**
    * Optionally the text of the button.
    */
   children?: React.ReactNode;
@@ -106,7 +113,14 @@ export function Button({
   inProgress,
   className = '',
   onClick,
-  ...props
+  children,
+  outline,
+  size = 'md',
+  fullWidth,
+  disabled,
+  icon,
+  iconPosition = 'left',
+  autoFocus
 }: Props) {
   const showSpinner = useShowSpinner(!!inProgress);
 
@@ -120,16 +134,6 @@ export function Button({
     }
   }
 
-  const {
-    children,
-    outline,
-    size = 'md',
-    fullWidth,
-    disabled,
-    icon,
-    iconPosition = 'left'
-  } = props;
-
   // If there are children it will look like a button.
   if (children) {
     const buttonProps = {
@@ -137,7 +141,8 @@ export function Button({
       size,
       color,
       outline,
-      block: fullWidth
+      block: fullWidth,
+      autoFocus
     };
 
     const widget = showSpinner ? (
@@ -204,6 +209,7 @@ export function Button({
             color={color}
             disabled={inProgress || disabled}
             size={getIconSize(size)}
+            autoFocus={autoFocus}
           />
         )}
       </span>
