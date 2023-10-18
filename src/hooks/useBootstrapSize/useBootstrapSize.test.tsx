@@ -113,5 +113,32 @@ describe('useBootstrapSize', () => {
         isDesktop: false
       });
     });
+
+    it('should change bootstrap size when screen is rotated', () => {
+      // noinspection JSConstantReassignment
+      global.innerWidth = 1024;
+
+      const { result } = renderHook(() => useBootstrapSize());
+
+      expect(result.current).toEqual({
+        bootstrapSize: 'lg',
+        isMobile: false,
+        isTablet: false,
+        isDesktop: true
+      });
+
+      act(() => {
+        // noinspection JSConstantReassignment
+        global.innerWidth = 768;
+        global.dispatchEvent(new Event('orientationchange'));
+      });
+
+      expect(result.current).toEqual({
+        bootstrapSize: 'md',
+        isMobile: false,
+        isTablet: true,
+        isDesktop: false
+      });
+    });
   });
 });

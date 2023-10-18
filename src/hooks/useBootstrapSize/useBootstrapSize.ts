@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 /**
  * xs: for all screen size below 576 px.
@@ -43,14 +43,18 @@ export type BootstrapInfo = {
  * ```
  */
 export function useBootstrapSize(): BootstrapInfo {
-  const [ bootstrapSize, setBootstrapSize ] = useState(
+  const [bootstrapSize, setBootstrapSize] = useState(
     getBootstrapSize(window.innerWidth)
   );
 
   useEffect(() => {
     window.addEventListener('resize', updateWindowDimensions);
+    window.addEventListener('orientationchange', updateWindowDimensions);
 
-    return () => window.removeEventListener('resize', updateWindowDimensions);
+    return () => {
+      window.removeEventListener('resize', updateWindowDimensions);
+      window.removeEventListener('orientationchange', updateWindowDimensions);
+    };
   });
 
   function updateWindowDimensions() {
@@ -66,15 +70,15 @@ export function useBootstrapSize(): BootstrapInfo {
 }
 
 function isMobile(size: BootstrapSize) {
-  return [ 'xs', 'sm' ].includes(size);
+  return ['xs', 'sm'].includes(size);
 }
 
 function isTablet(size: BootstrapSize) {
-  return [ 'md' ].includes(size);
+  return ['md'].includes(size);
 }
 
 function isDesktop(size: BootstrapSize) {
-  return [ 'lg', 'xl', 'xxl' ].includes(size);
+  return ['lg', 'xl', 'xxl'].includes(size);
 }
 
 function getBootstrapSize(width: number): BootstrapSize {
