@@ -1,6 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery
+} from '@tanstack/react-query';
 import { Alert, Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
@@ -46,7 +50,7 @@ const client = new QueryClient({
     queries: {
       retry: false,
       refetchOnWindowFocus: false,
-      cacheTime: 0
+      gcTime: 0
     }
   }
 });
@@ -56,14 +60,19 @@ storiesOf('core/async/AsyncPage', module)
   .addDecorator((Story) => (
     <QueryClientProvider client={client}>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use AsyncPage, you have to add @tanstack/react-query and @42.nl/spring-connect to your dependencies:</p>
-        <code>npm install --save @tanstack/react-query @42.nl/spring-connect</code>
+        <p>
+          To be able to use AsyncPage, you have to add @tanstack/react-query and
+          @42.nl/spring-connect to your dependencies:
+        </p>
+        <code>
+          npm install --save @tanstack/react-query @42.nl/spring-connect
+        </code>
       </Alert>
       <Story />
     </QueryClientProvider>
   ))
   .add('loaded', () => {
-    const state = useQuery([ 'loaded' ], loadData);
+    const state = useQuery({ queryKey: ['loaded'], queryFn: loadData });
 
     return (
       <Card body>
@@ -81,7 +90,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('error', () => {
-    const state = useQuery([ 'error' ], rejectData);
+    const state = useQuery({ queryKey: ['error'], queryFn: rejectData });
 
     return (
       <Card body>
@@ -99,7 +108,10 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('error with custom text', () => {
-    const state = useQuery([ 'error', 'custom text' ], rejectData);
+    const state = useQuery({
+      queryKey: ['error', 'custom text'],
+      queryFn: rejectData
+    });
 
     return (
       <Card body>
@@ -120,7 +132,10 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('error with no retry button', () => {
-    const state = useQuery([ 'error', 'no retry' ], rejectData);
+    const state = useQuery({
+      queryKey: ['error', 'no retry'],
+      queryFn: rejectData
+    });
 
     return (
       <Card body>
@@ -138,7 +153,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('loading', () => {
-    const state = useQuery([ 'loading' ], loadingData);
+    const state = useQuery({ queryKey: ['loading'], queryFn: loadingData });
 
     return (
       <Card body>
@@ -156,7 +171,10 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('loading with custom title', () => {
-    const state = useQuery([ 'loading', 'custom title' ], loadingData);
+    const state = useQuery({
+      queryKey: ['loading', 'custom title'],
+      queryFn: loadingData
+    });
 
     return (
       <Card body>
@@ -174,7 +192,7 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('empty', () => {
-    const state = useQuery([ 'empty' ], emptyData);
+    const state = useQuery({ queryKey: ['empty'], queryFn: emptyData });
 
     return (
       <Card body>
@@ -192,13 +210,16 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('empty with custom title', () => {
-    const state = useQuery([ 'empty', 'custom title' ], emptyData);
+    const state = useQuery({
+      queryKey: ['empty', 'custom title'],
+      queryFn: emptyData
+    });
 
     return (
       <Card body>
         <AsyncPage
           state={state}
-          text={{ empty: 'No Jeffrey\'s match your parameters try again' }}
+          text={{ empty: "No Jeffrey's match your parameters try again" }}
         >
           {(userPage) => (
             <ListGroup>
@@ -213,7 +234,10 @@ storiesOf('core/async/AsyncPage', module)
   })
 
   .add('empty with custom content', () => {
-    const state = useQuery([ 'empty', 'custom content' ], emptyData);
+    const state = useQuery({
+      queryKey: ['empty', 'custom content'],
+      queryFn: emptyData
+    });
 
     return (
       <Card body>

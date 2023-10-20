@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 import { Checkbox } from './Checkbox';
 
@@ -29,12 +29,10 @@ describe('Component: Checkbox', () => {
       allowIndeterminate,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
-      error: 'Some error',
+      error: 'Some error'
     };
 
-    const { container, rerender, asFragment } = render(
-      <Checkbox {...props} />
-    );
+    const { container, rerender, asFragment } = render(<Checkbox {...props} />);
 
     return { container, rerender, asFragment, onBlurSpy, onChangeSpy };
   }

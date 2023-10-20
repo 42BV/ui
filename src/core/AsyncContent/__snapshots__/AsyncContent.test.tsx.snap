@@ -375,7 +375,80 @@ exports[`Component: AsyncContent when fulfilled when not empty 1`] = `
 </div>
 `;
 
-exports[`Component: AsyncContent when loading 1`] = `
+exports[`Component: AsyncContent when loading React Async & React Query <= v4 1`] = `
+<div>
+  <div
+    class="text-center"
+  >
+    <div
+      class="content-state loading"
+    >
+      <div
+        class="state-icons"
+      >
+        <i
+          class="icon material-icons"
+        >
+          add
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          contrast
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          photo
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          folder_open
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          radio_button_unchecked
+        </i>
+        <i
+          class="icon material-icons"
+        >
+          bolt
+        </i>
+      </div>
+      <div
+        class="state-content"
+      >
+        <svg
+          class="spinner mb-2"
+          height="75"
+          viewBox="25 25 50 50"
+          width="75"
+        >
+          <circle
+            class="path"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="20"
+            stroke="#f0ad4e"
+            stroke-miterlimit="10"
+            stroke-width="4"
+          />
+        </svg>
+      </div>
+    </div>
+    <span
+      class="d-block fs-4"
+    >
+      Loading...
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Component: AsyncContent when loading React Query v5+ 1`] = `
 <div>
   <div
     class="text-center"

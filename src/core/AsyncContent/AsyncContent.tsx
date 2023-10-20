@@ -116,7 +116,7 @@ export function AsyncContent<T>(
     emptyContent
   } = props;
 
-  if (state.isLoading) {
+  if (state.isLoading || state.isPending) {
     return (
       <ContentState
         mode="loading"

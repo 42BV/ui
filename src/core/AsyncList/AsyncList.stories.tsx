@@ -1,6 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery
+} from '@tanstack/react-query';
 import { Alert, Button, Card, ListGroup, ListGroupItem } from 'reactstrap';
 
 import { AsyncList } from './AsyncList';
@@ -45,7 +49,7 @@ const client = new QueryClient({
     queries: {
       retry: false,
       refetchOnWindowFocus: false,
-      cacheTime: 0
+      gcTime: 0
     }
   }
 });
@@ -55,14 +59,17 @@ storiesOf('core/Async/AsyncList', module)
   .addDecorator((Story) => (
     <QueryClientProvider client={client}>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use AsyncList, you have to add @tanstack/react-query to your dependencies:</p>
+        <p>
+          To be able to use AsyncList, you have to add @tanstack/react-query to
+          your dependencies:
+        </p>
         <code>npm install --save @tanstack/react-query</code>
       </Alert>
       <Story />
     </QueryClientProvider>
   ))
   .add('loaded', () => {
-    const state = useQuery([ 'loaded' ], loadData);
+    const state = useQuery({ queryKey: ['loaded'], queryFn: loadData });
 
     return (
       <Card body>
@@ -80,7 +87,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('error', () => {
-    const state = useQuery([ 'error' ], rejectData);
+    const state = useQuery({ queryKey: ['error'], queryFn: rejectData });
 
     return (
       <Card body>
@@ -98,7 +105,10 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('error with custom text', () => {
-    const state = useQuery([ 'error', 'custom text' ], rejectData);
+    const state = useQuery({
+      queryKey: ['error', 'custom text'],
+      queryFn: rejectData
+    });
 
     return (
       <Card body>
@@ -119,7 +129,10 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('error with no retry button', () => {
-    const state = useQuery([ 'error', 'no retry' ], rejectData);
+    const state = useQuery({
+      queryKey: ['error', 'no retry'],
+      queryFn: rejectData
+    });
 
     return (
       <Card body>
@@ -137,7 +150,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('loading', () => {
-    const state = useQuery([ 'loading' ], loadingData);
+    const state = useQuery({ queryKey: ['loading'], queryFn: loadingData });
 
     return (
       <Card body>
@@ -155,7 +168,10 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('loading with custom title', () => {
-    const state = useQuery([ 'loading', 'custom title' ], loadingData);
+    const state = useQuery({
+      queryKey: ['loading', 'custom title'],
+      queryFn: loadingData
+    });
 
     return (
       <Card body>
@@ -173,7 +189,7 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('empty', () => {
-    const state = useQuery([ 'empty' ], emptyData);
+    const state = useQuery({ queryKey: ['empty'], queryFn: emptyData });
 
     return (
       <Card body>
@@ -191,13 +207,16 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('empty with custom title', () => {
-    const state = useQuery([ 'empty', 'custom title' ], emptyData);
+    const state = useQuery({
+      queryKey: ['empty', 'custom title'],
+      queryFn: emptyData
+    });
 
     return (
       <Card body>
         <AsyncList
           state={state}
-          text={{ empty: 'No Jeffrey\'s match your parameters try again' }}
+          text={{ empty: "No Jeffrey's match your parameters try again" }}
         >
           {(users) => (
             <ListGroup>
@@ -212,7 +231,10 @@ storiesOf('core/Async/AsyncList', module)
   })
 
   .add('empty with custom empty', () => {
-    const state = useQuery([ 'empty', 'custom empty' ], emptyData);
+    const state = useQuery({
+      queryKey: ['empty', 'custom empty'],
+      queryFn: emptyData
+    });
 
     return (
       <Card body>

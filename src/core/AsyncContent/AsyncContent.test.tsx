@@ -42,15 +42,29 @@ describe('Component: AsyncContent', () => {
     return { container };
   }
 
-  test('when loading', () => {
-    const state = {
-      isLoading: true,
-      refetch: () => undefined
-    };
+  describe('when loading', () => {
+    test('React Query v5+', () => {
+      const state = {
+        isPending: true,
+        isLoading: false,
+        refetch: () => undefined
+      };
 
-    const { container } = setup({ state });
-    expect(container).toMatchSnapshot();
-    expect(console.error).toHaveBeenCalledTimes(0);
+      const { container } = setup({ state });
+      expect(container).toMatchSnapshot();
+      expect(console.error).toHaveBeenCalledTimes(0);
+    });
+
+    test('React Async & React Query <= v4', () => {
+      const state = {
+        isLoading: true,
+        refetch: () => undefined
+      };
+
+      const { container } = setup({ state });
+      expect(container).toMatchSnapshot();
+      expect(console.error).toHaveBeenCalledTimes(0);
+    });
   });
 
   describe('when fulfilled', () => {
