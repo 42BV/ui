@@ -1,10 +1,10 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 type Props = {
   /**
    * The content of the cell.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The width of the cell.

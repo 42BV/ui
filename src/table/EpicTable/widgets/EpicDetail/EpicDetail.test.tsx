@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { EpicDetail } from './EpicDetail';
@@ -6,7 +5,6 @@ import { EpicDetail } from './EpicDetail';
 describe('Component: EpicDetail', () => {
   function setup() {
     const onCloseSpy = jest.fn();
-
 
     const { container } = render(
       <EpicDetail onClose={onCloseSpy}>

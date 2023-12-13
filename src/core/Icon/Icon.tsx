@@ -1,9 +1,10 @@
-import React from 'react';
 import classNames from 'classnames';
 
 import { IconType } from './types';
 import { Color } from '../types';
 import { useHover } from '../../hooks/useHover/useHover';
+
+import './Icon.scss';
 
 export type Props = {
   /**
@@ -37,7 +38,7 @@ export type Props = {
   /**
    * Optional onClick event for when the Icon is clicked.
    */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
 
   /**
    * Optionally whether the button is disabled
@@ -79,23 +80,14 @@ export function Icon({
 }: Props) {
   const [hover, hoverEvents] = useHover();
 
-  const colorCssClasses = {};
-  if (hoverColor && hover && !disabled && onClick !== undefined) {
-    colorCssClasses[`text-${hoverColor}`] = true;
-  } else if (color) {
-    colorCssClasses[`text-${color}`] = true;
-  }
+  const hoverEnabled = hoverColor && !disabled && onClick !== undefined;
 
-  const classes = classNames(
-    'icon',
-    className,
-    'material-icons',
-    colorCssClasses,
-    {
-      clickable: !disabled && onClick,
-      'icon--disabled': disabled
-    }
-  );
+  const classes = classNames('icon', className, 'material-icons', {
+    clickable: !disabled && onClick,
+    'icon--disabled': disabled,
+    [`text-${hoverColor}`]: hoverEnabled && hover,
+    [`text-${color}`]: !(hoverEnabled && hover) && color
+  });
 
   const style = size ? { fontSize: size } : undefined;
 

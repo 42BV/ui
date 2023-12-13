@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 
 import { TabContent } from './TabContent';
@@ -33,12 +32,19 @@ describe('Component: TabContent', () => {
   });
 
   it('should return null when show returns false', () => {
-    const { container } = setup({ hideInactiveTabsBy: 'excluding-from-dom', active: true, show: () => false });
+    const { container } = setup({
+      hideInactiveTabsBy: 'excluding-from-dom',
+      active: true,
+      show: () => false
+    });
     expect(container.firstChild).toBeNull();
   });
 
   it('should return null when hide inactive tabs by excluding from dom and inactive', () => {
-    const { container } = setup({ hideInactiveTabsBy: 'excluding-from-dom', active: false });
+    const { container } = setup({
+      hideInactiveTabsBy: 'excluding-from-dom',
+      active: false
+    });
     expect(container.firstChild).toBeNull();
   });
 
@@ -48,7 +54,10 @@ describe('Component: TabContent', () => {
   });
 
   it('should not return null when hide inactive tabs by excluding from dom and active', () => {
-    const { container } = setup({ hideInactiveTabsBy: 'excluding-from-dom', active: true });
+    const { container } = setup({
+      hideInactiveTabsBy: 'excluding-from-dom',
+      active: true
+    });
     expect(container.firstChild).not.toBeNull();
   });
 

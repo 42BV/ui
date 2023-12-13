@@ -1,5 +1,7 @@
-import React from 'react';
-import { Field, FieldProps as FieldValidationProps } from '@42.nl/final-form-field-validation';
+import {
+  Field,
+  FieldProps as FieldValidationProps
+} from '@42.nl/final-form-field-validation';
 import getDisplayName from 'react-display-name';
 import { merge, omit, pick } from 'lodash';
 
@@ -13,7 +15,7 @@ import { ErrorMode, FieldError } from '../FormError/FieldError';
 
 // This is a list of props that `withField` will pass to the `final-form`
 // Field, but not the wrapper.
-const passedFieldProps = [ 'initialValue', 'format', 'formatOnBlur', 'parse' ];
+const passedFieldProps = ['initialValue', 'format', 'formatOnBlur', 'parse'];
 
 // These are the props that are managed by `withField` and should not
 // be set manually by the user.
@@ -27,20 +29,18 @@ const managedProps = [
   'error'
 ];
 
-export type FieldProps<Value, ChangeValue> = FieldCompatible<Value,
-  ChangeValue> & {
+export type FieldProps<Value, ChangeValue> = FieldCompatible<
+  Value,
+  ChangeValue
+> & {
   errorMode?: ErrorMode;
 };
 
 export type WithFieldProps<Value, P> = FieldValidationProps<Value, any> &
-  Omit<P,
-    | 'onFocus'
-    | 'onBlur'
-    | 'onChange'
-    | 'value'
-    | 'color'
-    | 'valid'
-    | 'error'>;
+  Omit<
+    P,
+    'onFocus' | 'onBlur' | 'onChange' | 'value' | 'color' | 'valid' | 'error'
+  >;
 
 /**
  * withField is a Higher Order Component which takes an input element
@@ -58,9 +58,16 @@ export type WithFieldProps<Value, P> = FieldValidationProps<Value, any> &
  * @param Wrapper The Component which is `FieldCompatible`.
  * @param defaultValidators Optional validators the field should use by default
  */
-export function withField<Value,
+export function withField<
+  Value,
   ChangeValue,
-  P extends FieldProps<Value, ChangeValue>>(Wrapper: React.ComponentType<P>, defaultValidators?: (props: WithFieldProps<Value, P>) => FieldValidator<Value>[]) {
+  P extends FieldProps<Value, ChangeValue>
+>(
+  Wrapper: ComponentType<P>,
+  defaultValidators?: (
+    props: WithFieldProps<Value, P>
+  ) => FieldValidator<Value>[]
+) {
   const displayName = `Field${getDisplayName(Wrapper)}`;
 
   WithField.displayName = displayName;
@@ -69,10 +76,15 @@ export function withField<Value,
     const illegalProps = managedProps.filter((p) => props[p] !== undefined);
 
     if (illegalProps.length > 0) {
-      illegalPropsDetected('withField', displayName, illegalProps, managedProps);
+      illegalPropsDetected(
+        'withField',
+        displayName,
+        illegalProps,
+        managedProps
+      );
     }
 
-    const [ hasErrors, setHasErrors ] = useHasErrors();
+    const [hasErrors, setHasErrors] = useHasErrors();
 
     const {
       errorMode = 'below',
@@ -86,7 +98,7 @@ export function withField<Value,
 
     // A bit magical this one but this makes TypeScript accept all other
     // props as the Props to the wrapped component.
-    const wrapperProps = (omit(rest, passedFieldProps) as unknown) as P;
+    const wrapperProps = omit(rest, passedFieldProps) as unknown as P;
 
     const fieldProps = pick(rest, [
       'initialValue',
@@ -114,7 +126,11 @@ export function withField<Value,
     return (
       <Field<Value, any>
         name={name}
-        validators={defaultValidators ? merge(defaultValidators(props), validators) : validators}
+        validators={
+          defaultValidators
+            ? merge(defaultValidators(props), validators)
+            : validators
+        }
         asyncValidators={asyncValidators}
         asyncValidatorsDebounce={asyncValidatorsDebounce}
         subscription={fieldSubscription}

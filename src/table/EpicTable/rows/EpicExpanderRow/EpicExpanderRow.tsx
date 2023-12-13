@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type Props = {
   /**
    * A render function which gets called when `active` is true.

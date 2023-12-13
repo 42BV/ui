@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -66,7 +65,11 @@ describe('Component: FavoriteIcon', () => {
     });
 
     test('active color', () => {
-      const { container } = setup({ value: true, color: 'primary', activeColor: 'success' });
+      const { container } = setup({
+        value: true,
+        color: 'primary',
+        activeColor: 'success'
+      });
 
       expect(container.firstChild).toHaveClass('text-success');
     });

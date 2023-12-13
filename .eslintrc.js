@@ -18,13 +18,15 @@ module.exports = {
       rules: {
         indent: 'off',
         'no-unused-vars': 'off',
+        'react/jsx-uses-react': 'off',
+        'react/react-in-jsx-scope': 'off',
         '@typescript-eslint/no-unused-vars': [
           'error',
           {
             vars: 'all',
             args: 'after-used',
             ignoreRestSiblings: true,
-            "argsIgnorePattern": "^_"
+            argsIgnorePattern: '^_'
           }
         ],
         '@typescript-eslint/indent': ['off'],
@@ -42,7 +44,6 @@ module.exports = {
           { onlyFunctionsWithAsyncKeyword: true }
         ],
         'import/named': ['off'] // https://github.com/typescript-eslint/typescript-eslint/issues/154
-        
       }
     },
     {

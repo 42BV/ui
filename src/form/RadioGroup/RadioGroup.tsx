@@ -1,15 +1,20 @@
-import React from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 
 import { withJarb } from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
-import { FieldCompatibleWithPredeterminedOptions, getKeyForOption, isOptionSelected } from '../option';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  getKeyForOption,
+  isOptionSelected
+} from '../option';
 import { alwaysTrue, doBlur } from '../utils';
 import { Loading } from '../../core/Loading/Loading';
 import { useOptions } from '../useOptions';
 import { TextButton } from '../../core/TextButton/TextButton';
 import { FieldCompatible } from '../types';
 import { withField } from '../withField/withField';
+
+import './RadioGroup.scss';
 
 export type Text = {
   /**
@@ -26,26 +31,26 @@ export type Text = {
 
 export type Props<T> = FieldCompatible<T, T | undefined> &
   FieldCompatibleWithPredeterminedOptions<T> & {
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
 
-  /**
-   * Whether to show the RadioGroup horizontally.
-   *
-   * Defaults to `false`
-   */
-  horizontal?: boolean;
+    /**
+     * Whether to show the RadioGroup horizontally.
+     *
+     * Defaults to `false`
+     */
+    horizontal?: boolean;
 
-  /**
-   * Whether to show a "clear" button.
-   *
-   * Defaults to `false`
-   */
-  canClear?: boolean;
-};
+    /**
+     * Whether to show a "clear" button.
+     *
+     * Defaults to `false`
+     */
+    canClear?: boolean;
+  };
 
 /**
  * RadioGroup is a form element for which the value can be selected

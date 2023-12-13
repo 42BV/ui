@@ -1,5 +1,10 @@
-import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { EpicForm } from './EpicForm';
@@ -30,11 +35,7 @@ describe('Component: EpicForm', () => {
         onSubmit={onSubmitSpy}
         submitOnChange={submitOnChange}
       >
-        <FieldInput
-          id="testField"
-          name="testField"
-          label="Test"
-        />
+        <FieldInput id="testField" name="testField" label="Test" />
         <button type="reset">Reset</button>
       </EpicForm>
     );
@@ -58,7 +59,9 @@ describe('Component: EpicForm', () => {
       const { onSubmitSpy } = setup({ submitOnChange: true });
 
       fireEvent.focus(screen.getByRole('textbox'));
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'test' }
+      });
       fireEvent.blur(screen.getByRole('textbox'));
 
       await waitFor(() => {

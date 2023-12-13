@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
 
-import { Meta, MetaError } from '../types';
+import { Meta, MetaError } from "../types";
 
 /**
  * Final form considers a form to be `valid` when it is `validating`
@@ -19,25 +19,29 @@ import { Meta, MetaError } from '../types';
  * errors. This means that if N changes happen in rapid succession,
  * only the last state change is shown.
  *
- * It caches the `value` and the resulting `error` for a small window
- * of time whenever an error occurs. This way, when the same value
- * is encountered, it will return the previous error during the time
+ * It caches the `error` for a small period whenever an error occurs.
+ * This way, when the same value is encountered, it will return the previous error during the time
  * window. So when `final-form` performs async validations,
  * the error state will not change rapidly.
  *
  * @param meta
+ * @param name
  * @param value
  */
-export function useSettledErrors(meta: Meta, value: any): MetaError[] {
+export function useSettledErrors(
+  meta: Meta,
+  name: string,
+  value: any
+): MetaError[] {
   const { error, active, touched } = meta;
 
-  const [ errorCache ] = useState({});
+  const [errorCache] = useState<{ [name: string]: MetaError[] }>({});
 
   const errors: MetaError[] = useMemo(() => {
-    return error === undefined ? [] : Array.isArray(error) ? error : [ error ];
-  }, [ error ]);
+    return error === undefined ? [] : Array.isArray(error) ? error : [error];
+  }, [error]);
 
-  const [ settledErrors, setSettledErrors ] = useState(errors);
+  const [settledErrors, setSettledErrors] = useState(errors);
 
   const hasErrors = errors.length > 0;
 
@@ -46,7 +50,7 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
 
     function showErrors() {
       // Store the errors for this value.
-      errorCache[value] = errors;
+      errorCache[name] = errors;
 
       setSettledErrors(errors);
     }
@@ -59,7 +63,7 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
         We say when that value previously has an error it is likely 
         to still have an error, for at least 2 seconds.
       */
-      if (settledErrors.length > 0 && errorCache[value] === undefined) {
+      if (settledErrors.length > 0 && errorCache[name] === undefined) {
         setSettledErrors([]);
       } else {
         /*
@@ -76,7 +80,7 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
           
           If the user then selects a start date of 2020-01-01 the 
           previously wrong 2020-01-10 end date will now suddenly be 
-          correct. If we do not clear the cached value after a while
+          correct. If we do not clear the cached errors after a while,
           the error would forever be presented to the user.
         */
         timeout = window.setTimeout(clearCacheAndHideErrors, 2000);
@@ -84,7 +88,7 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
     }
 
     function clearCacheAndHideErrors() {
-      errorCache[value] = undefined;
+      delete errorCache[name];
       setSettledErrors([]);
     }
 
@@ -109,8 +113,8 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
         }
       } else {
         /* 
-          When there are no errors delay until the final valid state
-          is reached. Even when the field is not active other fields in
+          When there are no errors, delay until the final valid state
+          is reached. Even when the field is not active, other fields in
           the form which are active will trigger the 'validating' state.
           We delay showing the message to prevent the UI from jittering.
         */
@@ -128,7 +132,8 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
     errors,
     settledErrors.length,
     errorCache,
-    value
+    value,
+    name
   ]);
 
   return settledErrors;

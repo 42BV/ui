@@ -4,7 +4,13 @@
 // Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import React, { Children, cloneElement, createElement, ReactElement } from 'react';
+import {
+  Children,
+  cloneElement,
+  createElement,
+  ReactElement,
+  ReactNode
+} from 'react';
 import { isFragment } from 'react-is';
 
 import { EpicExpanderRow } from '../../rows/EpicExpanderRow/EpicExpanderRow';
@@ -57,16 +63,16 @@ export type EpicTableLayout = {
  */
 type EpicTableLayoutSection = {
   // Contains EpicHeader cells
-  header: React.ReactNode[];
+  header: ReactNode[];
   // Contains rows which are arrays which contain Cell's
-  contents: React.ReactNode[][];
+  contents: ReactNode[][];
 };
 
 type EpicTableLayoutConfig = {
   /**
    * The children to bucket
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The current rect of the epic table
@@ -380,7 +386,7 @@ export function epicTableLayout(
         odd: isRowOdd,
         hover: hoveredRow === index,
         onRowClick: onClick,
-        onHoverChanged: (value) => hoverChanged(index, value)
+        onHoverChanged: (value: boolean) => hoverChanged(index, value)
       });
 
       // The first cell should be bucketed on the left
@@ -399,7 +405,7 @@ export function epicTableLayout(
           rightRow.push(clone);
         }
       }
-        // All cells in the center (or when there is no right) should be
+      // All cells in the center (or when there is no right) should be
       // bucketed in the center.
       else {
         if (isHeader) {
@@ -452,7 +458,7 @@ export function epicTableLayout(
     // on the left, but instead it will cover the entire EpicTable
     // sans the `left` property of the `EpicDetailRow`
     // It needs to be added somewhere :P so why not on the left
-    leftSection.contents.push([ clone ]);
+    leftSection.contents.push([clone]);
   }
 
   // Impure helper function for handling ExpanderRow's
@@ -465,7 +471,7 @@ export function epicTableLayout(
     // center and right as well because it is as large as the width
     // of the rect.
     // It needs to be added somewhere :P so why not on the left
-    leftSection.contents.push([ clone ]);
+    leftSection.contents.push([clone]);
 
     if (row.props.active) {
       // Whenever the ExpanderRow is active, we need to add a fake
@@ -477,9 +483,9 @@ export function epicTableLayout(
         style: { height: row.props.height }
       });
 
-      leftSection.contents.push([ cloneElement(spacer, { key: 1 }) ]);
-      rightSection.contents.push([ cloneElement(spacer, { key: 2 }) ]);
-      centerSection.contents.push([ cloneElement(spacer, { key: 3 }) ]);
+      leftSection.contents.push([cloneElement(spacer, { key: 1 })]);
+      rightSection.contents.push([cloneElement(spacer, { key: 2 })]);
+      centerSection.contents.push([cloneElement(spacer, { key: 3 })]);
     }
   }
 }

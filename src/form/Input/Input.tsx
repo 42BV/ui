@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent, ReactElement } from 'react';
 import RTMaskedInput from 'react-text-mask';
 import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
 import { withJarb } from '../withJarb/withJarb';
@@ -57,7 +57,7 @@ export type Props = FieldCompatible<string, string> & {
    * The `position` property of the addon determines were the addon
    * is rendered.
    */
-  addon?: React.ReactElement;
+  addon?: ReactElement;
 
   /**
    * The position of the Addon, is it to the right or left
@@ -70,7 +70,7 @@ export type Props = FieldCompatible<string, string> & {
   /**
    * A ref to the actual input, can be used to focus the element.
    */
-  innerRef?: React.Ref<HTMLInputElement>;
+  innerRef?: Ref<HTMLInputElement>;
 };
 
 /**
@@ -108,7 +108,8 @@ export function Input(props: Props) {
     innerRef,
     placeholder,
     onFocus,
-    onChange: (event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value),
+    onChange: (event: ChangeEvent<HTMLInputElement>) =>
+      onChange(event.target.value),
     onBlur,
     'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
   };

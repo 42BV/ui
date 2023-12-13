@@ -1,8 +1,8 @@
-import React from 'react';
 import { Alert } from 'reactstrap';
 import classNames from 'classnames';
 
 import { Color } from '../types';
+import { ReactNode } from 'react';
 
 type Props = {
   /**
@@ -24,7 +24,7 @@ type Props = {
   /**
    * The text of the flash message.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 /**
@@ -32,14 +32,11 @@ type Props = {
  *
  * Use it when you want to globally show a notification / message.
  */
-export function FlashMessage({
-  className,
-  onClose,
-  color,
-  children
-}: Props) {
+export function FlashMessage({ className, onClose, color, children }: Props) {
   return (
-    <div className={classNames('flash-message', className)}>
+    <div
+      className={classNames('flash-message position-relative mt-3', className)}
+    >
       <Alert color={color} open={true} toggle={onClose}>
         {children}
       </Alert>

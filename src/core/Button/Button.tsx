@@ -1,18 +1,20 @@
-import React from 'react';
-import { Button as RSButton } from 'reactstrap';
+import { Button as RSButton, ButtonProps } from 'reactstrap';
 
 import { Spinner } from '../Spinner/Spinner';
 import { Icon, IconType } from '../Icon';
-import { useShowSpinner } from './useShowSpinner';
+import { useShowSpinner } from './useShowSpinner/useShowSpinner';
 
 import { Color } from '../types';
 import classNames from 'classnames';
+
+import './Button.scss';
+import { MouseEventHandler } from 'react';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export type ButtonIconPosition = 'left' | 'right';
 
-export type Props = {
+export type Props = Omit<ButtonProps, 'size' | 'color' | 'type'> & {
   /**
    * Optionally the type of button it is, defaults to 'button'.
    *
@@ -26,11 +28,6 @@ export type Props = {
   color?: Color;
 
   /**
-   *  Optional callback for what needs to happen when the button is clicked.
-   */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => any;
-
-  /**
    * Whether the action you are performing is currently in progress.
    * If so, a spinner is rendered inside the button.
    * This behavior is optional and defaults to `false`.
@@ -38,19 +35,6 @@ export type Props = {
    * @default false
    */
   inProgress?: boolean;
-
-  /**
-   * Optional extra CSS class you want to add to the component.
-   * Useful for styling the component.
-   */
-  className?: string;
-
-  /**
-   * Optionally whether the button is disabled
-   *
-   * Defaults to `false`
-   */
-  disabled?: boolean;
 
   /**
    * Optionally the Icon you want to use.
@@ -84,18 +68,6 @@ export type Props = {
    * Defaults to `false`
    */
   fullWidth?: boolean;
-
-  /**
-   * Optionally whether the button should be focussed when rendered.
-   *
-   * Defaults to `false`
-   */
-  autoFocus?: boolean;
-
-  /**
-   * Optionally the text of the button.
-   */
-  children?: React.ReactNode;
 };
 
 /**
@@ -107,24 +79,19 @@ export type Props = {
  * than 200 milliseconds. Useful for showing that a button is indeed
  * clicked when performing some call to the back-end.
  */
-export function Button({
-  type = 'button',
-  color = 'primary',
-  inProgress,
-  className = '',
-  onClick,
-  children,
-  outline,
-  size = 'md',
-  fullWidth,
-  disabled,
-  icon,
-  iconPosition = 'left',
-  autoFocus
-}: Props) {
-  const showSpinner = useShowSpinner(!!inProgress);
+export function Button(props: Readonly<Props>) {
+  const {
+    type = 'button',
+    inProgress,
+    onClick,
+    children,
+    size = 'md',
+    fullWidth,
+    disabled,
+    iconPosition = 'left'
+  } = props;
 
-  function handleOnClick(event: React.MouseEvent<HTMLElement>) {
+  const handleOnClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     if (!onClick) {
       return;
     }
@@ -132,89 +99,54 @@ export function Button({
     if (!inProgress) {
       onClick(event);
     }
-  }
+  };
 
-  // If there are children it will look like a button.
-  if (children) {
-    const buttonProps = {
-      type,
-      size,
-      color,
-      outline,
-      block: fullWidth,
-      autoFocus
-    };
+  const buttonProps: ButtonProps = {
+    ...props,
+    type,
+    size,
+    block: fullWidth,
+    disabled: disabled || inProgress
+  };
 
-    const widget = showSpinner ? (
+  return (
+    <RSButton onClick={handleOnClick} {...buttonProps}>
+      <div className="d-flex justify-content-center align-items-center">
+        {iconPosition === 'left' ? (
+          <Widget {...props} className="me-2" />
+        ) : null}
+        {children}
+        {iconPosition === 'right' ? (
+          <Widget {...props} className="ms-2" />
+        ) : null}
+      </div>
+    </RSButton>
+  );
+}
+
+function Widget({
+  inProgress,
+  icon,
+  size = 'md',
+  outline,
+  className
+}: Readonly<
+  Pick<Props, 'inProgress' | 'icon' | 'size' | 'outline' | 'className'>
+>) {
+  const showSpinner = useShowSpinner(!!inProgress);
+  if (showSpinner) {
+    return (
       <Spinner
         size={getSpinnerSize(size)}
         color={outline ? '' : 'white'}
-        className={iconPosition === 'left' ? 'me-2' : 'ms-2'}
+        className={className}
       />
-    ) : icon ? (
-      <Icon
-        icon={icon}
-        className={classNames(
-          'button-icon',
-          iconPosition === 'left' ? 'me-2' : 'ms-2'
-        )}
-      />
-    ) : null;
-
-    return (
-      <span
-        className={classNames(
-          'button',
-          fullWidth ? 'd-block' : 'd-inline-block',
-          className,
-          color
-        )}
-      >
-        <RSButton
-          onClick={handleOnClick}
-          disabled={inProgress || disabled}
-          {...buttonProps}
-        >
-          <div className="d-flex justify-content-center align-items-center">
-            {iconPosition === 'left' && widget}
-            {children}
-            {iconPosition === 'right' && widget}
-          </div>
-        </RSButton>
-      </span>
-    );
-  } else {
-    return (
-      <span
-        className={classNames(
-          'button',
-          className,
-          color,
-          fullWidth ? 'd-flex' : 'd-inline-block',
-          {
-            'justify-content-start': fullWidth && iconPosition === 'left',
-            'justify-content-end': fullWidth && iconPosition === 'right'
-          }
-        )}
-      >
-        {showSpinner ? (
-          // Size is the same size as the icon.
-          // Color is empty string so we can override the color
-          <Spinner size={getIconSize(size)} color="" />
-        ) : (
-          <Icon
-            onClick={handleOnClick}
-            // Use block as default icon to let the user know something is wrong
-            icon={icon ?? 'block'}
-            color={color}
-            disabled={inProgress || disabled}
-            size={getIconSize(size)}
-            autoFocus={autoFocus}
-          />
-        )}
-      </span>
     );
   }
+
+  return icon ? (
+    <Icon icon={icon} className={classNames('button-icon', className)} />
+  ) : null;
 }
 
 // Based md is based on default the size of the Icon component

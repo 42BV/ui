@@ -1,15 +1,14 @@
-import React from 'react';
-
 import { isRequired } from '@42.nl/jarb-final-form';
 
 import { getConfig } from '../../../config/config';
 import { t } from '../../../utilities/translation/translation';
+import { ReactNode } from 'react';
 
 export function useMarkedAsRequiredLabel({
   label,
   validator
 }: {
-  label?: React.ReactNode;
+  label?: ReactNode;
   validator: string;
 }) {
   if (!label) {
@@ -23,10 +22,13 @@ export function useMarkedAsRequiredLabel({
     showRequiredMarkInLabel &&
     isRequired(validator)
   ) {
-    return label + t({
-      key: 'withJarb.REQUIRED_MARK',
-      fallback: ' *'
-    });
+    return (
+      label +
+      t({
+        key: 'withJarb.REQUIRED_MARK',
+        fallback: ' *'
+      })
+    );
   }
 
   return label;

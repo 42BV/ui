@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ModalPickerValueTruncator } from './ModalPickerValueTruncator';
@@ -18,7 +17,7 @@ describe('Component: ModalPickerValueTruncator', () => {
     const value = hasSingleValue
       ? userUser()
       : hasMultipleValues
-        ? [ adminUser(), userUser() ]
+        ? [adminUser(), userUser()]
         : undefined;
 
     const { container } = render(

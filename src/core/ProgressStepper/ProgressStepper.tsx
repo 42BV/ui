@@ -1,6 +1,7 @@
-import React from 'react';
 import classNames from 'classnames';
 import { Color } from '../types';
+
+import './ProgressStepper.scss';
 
 type Props<T> = {
   /**

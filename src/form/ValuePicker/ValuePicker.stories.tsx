@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { pageWithContent, pageWithContentAndExactSize } from '../../test/utils';
@@ -7,10 +7,14 @@ import { User } from '../../test/types';
 
 import { FieldValuePicker, JarbValuePicker, ValuePicker } from './ValuePicker';
 
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { Button } from '../../core/Button/Button';
 import { Alert } from 'reactstrap';
-import { Card } from '../../core/Card/Card';
+import { Card } from '../../card/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { Icon } from '../../core/Icon';
 
@@ -33,7 +37,7 @@ const randomUser9 = randomUser();
 const randomUser10 = randomUser();
 const randomUser11 = randomUser();
 
-const small = Promise.resolve(pageWithContentAndExactSize([ user, admin ]));
+const small = Promise.resolve(pageWithContentAndExactSize([user, admin]));
 
 const medium = Promise.resolve(
   pageWithContentAndExactSize([
@@ -71,22 +75,30 @@ storiesOf('Form/ValuePicker/multiple', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use ValuePicker, you have to add @tippyjs/react to your dependencies:</p>
+        <p className="mb-0">
+          To be able to use ValuePicker, you have to add @tippyjs/react to your
+          dependencies:
+        </p>
         <code>npm install --save @tippyjs/react</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <p className="mb-0 mt-2">
+          You also have to add the stylesheet to your project
+        </p>
         <code>@import &apos;tippy.js/dist/tippy.css&apos;;</code>
       </Alert>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use ValuePicker with Page, you have to add @42.nl/spring-connect to your dependencies:</p>
+        <p>
+          To be able to use ValuePicker with Page, you have to add
+          @42.nl/spring-connect to your dependencies:
+        </p>
         <code>npm install --save @42.nl/spring-connect</code>
       </Alert>
       <Story />
     </>
   ))
   .add('basic', () => {
-    const [ value, setValue ] = useState<User[] | undefined>(undefined);
+    const [value, setValue] = useState<User[] | undefined>(undefined);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -113,9 +125,9 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [ value, setValue ] = useState<User[] | undefined>([ user ]);
+    const [value, setValue] = useState<User[] | undefined>([user]);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -143,9 +155,9 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('invisible label', () => {
-    const [ value, setValue ] = useState<User[] | undefined>(undefined);
+    const [value, setValue] = useState<User[] | undefined>(undefined);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -173,9 +185,9 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('with custom label', () => {
-    const [ value, setValue ] = useState<User[] | undefined>(undefined);
+    const [value, setValue] = useState<User[] | undefined>(undefined);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -212,7 +224,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('with icon', () => {
-    const [ value, setValue ] = useState<User[] | undefined>(undefined);
+    const [value, setValue] = useState<User[] | undefined>(undefined);
 
     const promise = sizes['large'];
 
@@ -236,7 +248,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('without clear button', () => {
-    const [ value, setValue ] = useState<User[] | undefined>([ user ]);
+    const [value, setValue] = useState<User[] | undefined>([user]);
 
     const promise = sizes['large'];
 
@@ -262,7 +274,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('field', () => {
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -291,7 +303,7 @@ storiesOf('Form/ValuePicker/multiple', module)
     );
   })
   .add('jarb', () => {
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -326,9 +338,9 @@ storiesOf('Form/ValuePicker/multiple', module)
 storiesOf('Form/ValuePicker/single', module)
   .addParameters({ component: ValuePicker })
   .add('basic', () => {
-    const [ value, setValue ] = useState<User | undefined>(undefined);
+    const [value, setValue] = useState<User | undefined>(undefined);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -358,9 +370,9 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [ value, setValue ] = useState<User | undefined>(userUser);
+    const [value, setValue] = useState<User | undefined>(userUser);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -391,9 +403,9 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('invisible label', () => {
-    const [ value, setValue ] = useState<User | undefined>(undefined);
+    const [value, setValue] = useState<User | undefined>(undefined);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -424,9 +436,9 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('with custom label', () => {
-    const [ value, setValue ] = useState<User | undefined>(undefined);
+    const [value, setValue] = useState<User | undefined>(undefined);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -466,7 +478,7 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('with icon', () => {
-    const [ value, setValue ] = useState<User | undefined>(undefined);
+    const [value, setValue] = useState<User | undefined>(undefined);
 
     const promise = sizes['large'];
 
@@ -490,9 +502,9 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('without clear button', () => {
-    const [ value, setValue ] = useState<User | undefined>(user);
+    const [value, setValue] = useState<User | undefined>(user);
 
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -525,7 +537,7 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('field', () => {
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 
@@ -556,7 +568,7 @@ storiesOf('Form/ValuePicker/single', module)
     );
   })
   .add('jarb', () => {
-    const [ size, setSize ] = useState('small');
+    const [size, setSize] = useState<'small' | 'medium' | 'large'>('small');
 
     const promise = sizes[size];
 

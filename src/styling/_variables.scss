@@ -3,7 +3,10 @@
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 $input-bg: #fff;
-$text-info-contrast: #0a80a8;
-$text-warning-contrast: #c15807;
 $card-color: var(--bs-body-color);
 $modal-inner-padding: 0.75rem;
+
+:root {
+  --bs-text-info-contrast: #0a80a8;
+  --bs-text-warning-contrast: #c15807;
+}

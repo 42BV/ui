@@ -1,7 +1,17 @@
-import React from 'react';
 import { errorMessage } from './utils';
-import { setTranslator, Translator } from '../../utilities/translation/translator';
-import { MaximumLengthError, MaxValueError, MinimumLengthError, MinValueError, NumberError, NumberFractionError, RequiredError } from '@42.nl/jarb-final-form';
+import {
+  setTranslator,
+  Translator
+} from '../../utilities/translation/translator';
+import {
+  MaximumLengthError,
+  MaxValueError,
+  MinimumLengthError,
+  MinValueError,
+  NumberError,
+  NumberFractionError,
+  RequiredError
+} from '@42.nl/jarb-final-form';
 
 describe('errorMessage', () => {
   let t: Translator;

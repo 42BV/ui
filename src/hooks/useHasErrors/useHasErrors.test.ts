@@ -1,4 +1,3 @@
-import React from 'react';
 import { useHasErrors } from './useHasErrors';
 import { renderHook } from '@testing-library/react';
 

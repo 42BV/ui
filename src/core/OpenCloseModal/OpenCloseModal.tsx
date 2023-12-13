@@ -1,4 +1,4 @@
-import React, { FormEventHandler, Suspense } from 'react';
+import { FormEventHandler, ReactNode, Suspense } from 'react';
 import { Button } from '../Button/Button';
 import { SubmitButton } from '../SubmitButton/SubmitButton';
 import { t } from '../../utilities/translation/translation';
@@ -47,12 +47,12 @@ type Props = {
   /**
    * The content of the modal body.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The label of the form element.
    */
-  label?: React.ReactNode;
+  label?: ReactNode;
 
   /**
    * Optionally customized text within the component.

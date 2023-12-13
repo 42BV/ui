@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from "react";
 
 /**
  * Enumerates the supported layouts of the EpicCellLayout.
@@ -14,7 +14,7 @@ type Props = {
   /**
    * The content of the cell.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 /**

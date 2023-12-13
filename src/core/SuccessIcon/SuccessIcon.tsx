@@ -1,4 +1,3 @@
-import React from 'react';
 import { Icon, Props as IconProps } from '../Icon/Icon';
 import { Color } from '../types';
 
@@ -75,7 +74,7 @@ export function SuccessIcon({
       <Icon
         color={value ? activeColor : color}
         hoverColor={hoverColor ? hoverColor : activeColor}
-        onClick={(e: React.MouseEvent<HTMLElement>) => {
+        onClick={(e: MouseEvent<HTMLElement>) => {
           e.preventDefault();
           onChange();
         }}

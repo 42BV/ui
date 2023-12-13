@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { take } from 'lodash';
 import classNames from 'classnames';
 import { t } from '../../utilities/translation/translation';
+
+import './MoreOrLess.scss';
 
 type Text = {
   /**
@@ -25,7 +27,7 @@ type Props = {
   /**
    * Elements to show.
    */
-  content: React.ReactNode[];
+  content: ReactNode[];
 
   /**
    * Optional extra CSS class you want to add to the component.
@@ -49,7 +51,7 @@ export function MoreOrLess({
   className,
   text = {}
 }: Props): JSX.Element {
-  const [ isOpen, setIsOpen ] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { more, less } = text;
   const amount = content.length - limit;
 
@@ -69,16 +71,16 @@ export function MoreOrLess({
         <div role="button" className="more-or-less-link" onClick={toggleOpen}>
           {isOpen
             ? t({
-              key: 'MoreOrLess.LESS',
-              fallback: 'Show less',
-              overrideText: less
-            })
+                key: 'MoreOrLess.LESS',
+                fallback: 'Show less',
+                overrideText: less
+              })
             : t({
-              key: 'MoreOrLess.MORE',
-              fallback: `Show ${amount} more`,
-              data: { amount },
-              overrideText: more ? more(amount) : undefined
-            })}
+                key: 'MoreOrLess.MORE',
+                fallback: `Show ${amount} more`,
+                data: { amount },
+                overrideText: more ? more(amount) : undefined
+              })}
         </div>
       )}
     </div>

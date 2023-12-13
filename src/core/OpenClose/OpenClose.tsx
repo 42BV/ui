@@ -1,6 +1,7 @@
-import React from 'react';
 import classNames from 'classnames';
 import { Icon } from '../Icon';
+
+import './_OpenClose.scss';
 
 type Props = {
   /**

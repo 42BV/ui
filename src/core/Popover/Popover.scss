@@ -1,12 +1,12 @@
 .tippy-popover.tippy-box {
-  color: $body-color;
-  background-color: $popover-bg;
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
 
   .tippy-content {
     padding: 0;
   }
 
   .tippy-arrow {
-    color: $popover-border-color !important;
+    color: var(--bs-border-color-translucent) !important;
   }
 }

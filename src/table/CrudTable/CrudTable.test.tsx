@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -39,7 +38,9 @@ describe('Component: CrudTable', () => {
         pageChanged={pageChangedSpy}
       >
         <EpicRow>
-          <EpicCell width={100} height={44}>test</EpicCell>
+          <EpicCell width={100} height={44}>
+            test
+          </EpicCell>
         </EpicRow>
       </CrudTable>
     );
@@ -99,7 +100,9 @@ describe('Component: CrudTable', () => {
 
       const { onSearchSpy } = setup({});
 
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
       expect(onSearchSpy).toBeCalledTimes(1);
       expect(onSearchSpy).toBeCalledWith('test');

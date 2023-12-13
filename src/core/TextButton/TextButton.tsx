@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import classNames from 'classnames';
 
 type Props = {
   /**
    * Callback for what needs to happen when the button is clicked.
    */
-  onClick: (event: React.MouseEvent<HTMLElement>) => any;
+  onClick: (event: MouseEvent<HTMLElement>) => any;
 
   /**
    * The text of the TextButton
@@ -27,7 +27,10 @@ export function TextButton({ onClick, children, className }: Props) {
   return (
     <u
       role="button"
-      className={classNames('align-self-center clickable fw-lighter', className)}
+      className={classNames(
+        'align-self-center clickable fw-lighter',
+        className
+      )}
       onClick={onClick}
     >
       {children}

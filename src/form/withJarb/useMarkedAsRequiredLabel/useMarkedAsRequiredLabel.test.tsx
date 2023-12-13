@@ -1,4 +1,3 @@
-import React from 'react';
 import { setConstraints } from '@42.nl/jarb-final-form';
 import { configure } from '../../../config/config';
 import { Tooltip } from '../../../core/Tooltip/Tooltip';
@@ -58,7 +57,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: [ 'text' ],
+          types: ['text'],
           required: false,
           minimumLength: null,
           maximumLength: 50,
@@ -80,7 +79,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: [ 'text' ],
+          types: ['text'],
           required: false,
           minimumLength: null,
           maximumLength: 50,
@@ -102,7 +101,7 @@ describe('Hook: useMarkedAsRequiredLabel', () => {
       Person: {
         firstName: {
           javaType: 'java.lang.String',
-          types: [ 'text' ],
+          types: ['text'],
           required: true,
           minimumLength: null,
           maximumLength: 50,

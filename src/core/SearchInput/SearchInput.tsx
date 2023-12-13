@@ -1,9 +1,11 @@
-import React, { KeyboardEvent, useEffect, useRef } from 'react';
+import { KeyboardEvent, ReactNode, useEffect, useRef } from 'react';
 import { debounce as lodashDebounce, DebounceSettings, uniqueId } from 'lodash';
 import { FormGroup, Input, InputGroup, InputProps, Label } from 'reactstrap';
 
 import { Icon } from '../Icon';
 import { AddonIcon } from '../../form/AddonIcon/AddonIcon';
+
+import './SearchInput.scss';
 
 export type SearchInputApi = {
   /**
@@ -44,7 +46,7 @@ export type Props = ModifiedInputProps & {
   /**
    * The label of the SearchInput.
    */
-  label: React.ReactNode;
+  label: ReactNode;
 
   /**
    * Optionally whether the label should be invisible (aria-label).
@@ -101,10 +103,7 @@ export type Props = ModifiedInputProps & {
    * debounce the value. If you change the `props.value` from
    * outside this component, nothing would normally happen.
    */
-  children?: (
-    searchInput: React.ReactNode,
-    api: SearchInputApi
-  ) => React.ReactNode;
+  children?: (searchInput: ReactNode, api: SearchInputApi) => React.ReactNode;
 
   /**
    * Whether to show a magnifying glass icon.

@@ -1,12 +1,16 @@
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { FieldTextEditor, JarbTextEditor, TextEditor } from './TextEditor';
 
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { Alert } from 'reactstrap';
-import { Card } from '../../core/Card/Card';
+import { Card } from '../../card/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { Icon } from '../../core/Icon';
 
@@ -15,9 +19,15 @@ storiesOf('Form/TextEditor', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-1">To be able to use TextEditor, you have to add lodash and react-quill to your dependencies:</p>
+        <p className="mb-1">
+          To be able to use TextEditor, you have to add lodash and react-quill
+          to your dependencies:
+        </p>
         <code>npm install --save lodash react-quill</code>
-        <p className="mb-1 mt-3">You also have to include the react-quill stylesheet in your project stylesheet:</p>
+        <p className="mb-1 mt-3">
+          You also have to include the react-quill stylesheet in your project
+          stylesheet:
+        </p>
         <code>@import &apos;react-quill/dist/quill.snow.css&apos;;</code>
         <p className="mb-1 mt-1">or in your project index file:</p>
         <code>import &apos;react-quill/dist/quill.snow.css&apos;;</code>
@@ -25,9 +35,9 @@ storiesOf('Form/TextEditor', module)
       <Story />
       <Alert color="warning" className="mt-4">
         <p>
-          <strong>Disclaimer:</strong> when using the TextEditor you must sanitize
-          the output when rendering the output in the browser. If you do not do this
-          you risk an XSS attack.
+          <strong>Disclaimer:</strong> when using the TextEditor you must
+          sanitize the output when rendering the output in the browser. If you
+          do not do this you risk an XSS attack.
         </p>
         <p>
           The 42 way of dealing with this problem is by using{' '}
@@ -36,8 +46,8 @@ storiesOf('Form/TextEditor', module)
             sanitizer
           </a>{' '}
           with a whitelist. The whitelist should only contain elements which the
-          TextEditor generates. The sanitizer should be applied before sending the
-          content to the browser.
+          TextEditor generates. The sanitizer should be applied before sending
+          the content to the browser.
         </p>
       </Alert>
     </>
@@ -111,25 +121,25 @@ storiesOf('Form/TextEditor', module)
           onChange={(value) => action(`onChange: ${value}`)}
           modules={{
             toolbar: [
-              [ 'bold', 'italic', 'underline', 'strike' ], // toggled buttons
-              [ 'blockquote', 'code-block' ],
+              ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+              ['blockquote', 'code-block'],
 
-              [ { header: 1 }, { header: 2 } ], // custom button values
-              [ { list: 'ordered' }, { list: 'bullet' } ],
-              [ { script: 'sub' }, { script: 'super' } ], // superscript/subscript
-              [ { indent: '-1' }, { indent: '+1' } ], // outdent/indent
-              [ { direction: 'rtl' } ], // text direction
+              [{ header: 1 }, { header: 2 }], // custom button values
+              [{ list: 'ordered' }, { list: 'bullet' }],
+              [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+              [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+              [{ direction: 'rtl' }], // text direction
 
-              [ { size: [ 'small', false, 'large', 'huge' ] } ], // custom dropdown
-              [ { header: [ 1, 2, 3, 4, 5, 6, false ] } ],
+              [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+              [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-              [ { color: [] }, { background: [] } ], // dropdown with defaults from theme
-              [ { font: [] } ],
-              [ { align: [] } ],
+              [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+              [{ font: [] }],
+              [{ align: [] }],
 
-              [ 'link', 'image', 'video' ],
+              ['link', 'image', 'video'],
 
-              [ 'clean' ]
+              ['clean']
             ]
           }}
         />
@@ -138,7 +148,7 @@ storiesOf('Form/TextEditor', module)
   })
   .add('custom toolbar option', () => {
     const placeholders = useMemo(
-      () => [ { label: 'First name', value: 'firstName' } ],
+      () => [{ label: 'First name', value: 'firstName' }],
       []
     );
 
@@ -167,9 +177,10 @@ storiesOf('Form/TextEditor', module)
             item.dataset.value ||
             null;
         });
-    }, [ placeholders ]);
+    }, [placeholders]);
 
     function insertPlaceholder(value: string) {
+      // @ts-expect-error Handler functions will be bound to the toolbar, so using 'this' will refer to the toolbar instance
       const quill = this.quill;
       const cursorPosition = quill.getSelection().index;
       quill.insertText(cursorPosition, `[${value}]`);
@@ -196,7 +207,7 @@ storiesOf('Form/TextEditor', module)
                 ],
                 [
                   {
-                    size: [ 'small', false, 'large', 'huge' ]
+                    size: ['small', false, 'large', 'huge']
                   },
                   'bold',
                   'italic',
@@ -211,7 +222,7 @@ storiesOf('Form/TextEditor', module)
                     list: 'bullet'
                   }
                 ],
-                [ 'clean' ]
+                ['clean']
               ],
               handlers: {
                 placeholder: insertPlaceholder
@@ -235,7 +246,7 @@ storiesOf('Form/TextEditor', module)
             // which formats are supported. Quill does this to
             // allow bold text to be pasted or entered with a
             // shortcut, but not show a toolbar button.
-            toolbar: [ 'italic', 'underline', 'strike' ]
+            toolbar: ['italic', 'underline', 'strike']
           }}
           // These are the formats which are allowed to be used.
           // When you include a format here you can paste or use
@@ -243,7 +254,7 @@ storiesOf('Form/TextEditor', module)
           // text to be bold, but we do not include it in the toolbar.
           // This means that using the ctrl-b shortcut, or pasting bold
           // text, will result in bold text.
-          formats={[ 'bold', 'italic', 'underline', 'strike' ]}
+          formats={['bold', 'italic', 'underline', 'strike']}
         />
 
         <p>

@@ -1,9 +1,9 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { Toggle } from './Toggle';
 import { Tooltip } from '../Tooltip/Tooltip';
+import { ReactNode } from 'react';
 
 describe('Component: Toggle', () => {
   function setup({
@@ -12,7 +12,7 @@ describe('Component: Toggle', () => {
     hasLabel
   }: {
     value?: boolean;
-    label?: React.ReactNode;
+    label?: ReactNode;
     hasLabel?: boolean;
   }) {
     const onChangeSpy = jest.fn();

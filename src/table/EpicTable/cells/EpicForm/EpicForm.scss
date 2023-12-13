@@ -16,7 +16,7 @@
     .epic-table-form-cell {
       // Must be transparent otherwise the shadow of the left / right
       // columns are negated.
-      background-color: rgba($gray-400, 0.3);
+      background-color: rgba(var(--bs-gray-400), 0.3);
     }
   }
 }

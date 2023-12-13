@@ -1,6 +1,6 @@
 import { Field } from 'react-final-form';
 import { FormError } from './FormError';
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export type ErrorMode = 'tooltip' | 'below';
 
@@ -9,9 +9,14 @@ type Props = {
   validator?: string;
   setHasErrors: Dispatch<SetStateAction<boolean>>;
   errorMode: ErrorMode;
-}
+};
 
-export function FieldError({ name, validator, setHasErrors, errorMode }: Props) {
+export function FieldError({
+  name,
+  validator,
+  setHasErrors,
+  errorMode
+}: Props) {
   // Listen to all props on the `Meta` object.
   const errorSubscription = {
     active: true,
@@ -29,6 +34,7 @@ export function FieldError({ name, validator, setHasErrors, errorMode }: Props) 
         <FormError
           value={field.input.value}
           meta={field.meta}
+          name={field.name}
           validator={validator}
           onChange={setHasErrors}
           className={`error-${errorMode}`}

@@ -1,11 +1,14 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { FieldTextarea, JarbTextarea, Textarea } from './Textarea';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
 import { Alert } from 'reactstrap';
-import { Card } from '../../core/Card/Card';
+import { Card } from '../../card/Card/Card';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { Icon } from '../../core/Icon';
 
@@ -14,7 +17,10 @@ storiesOf('Form/Textarea', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use Textarea, you have to add react-textarea-autosize to your dependencies:</p>
+        <p>
+          To be able to use Textarea, you have to add react-textarea-autosize to
+          your dependencies:
+        </p>
         <code>npm install --save react-textarea-autosize</code>
       </Alert>
       <Story />

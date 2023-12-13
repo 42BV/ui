@@ -1,17 +1,17 @@
 import classnames from 'classnames';
-import React from 'react';
 import { ListGroupItem, ListGroupItemHeading } from 'reactstrap';
+import { ReactNode } from 'react';
 
 type Props = {
   /**
    * The heading to display above the value.
    */
-  label: React.ReactNode;
+  label: ReactNode;
 
   /**
    * The value described by the label.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * Optional extra CSS class you want to add to the component.

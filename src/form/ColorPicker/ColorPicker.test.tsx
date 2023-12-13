@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -7,7 +6,17 @@ import { Color } from '../../core/types';
 import { IconType } from '../../core/Icon';
 
 describe('Component: ColorPicker', () => {
-  function setup({ value, hasIcon, canClear, hasLabel }: { value?: string; hasIcon?: boolean; canClear?: boolean; hasLabel?: boolean; }) {
+  function setup({
+    value,
+    hasIcon,
+    canClear,
+    hasLabel
+  }: {
+    value?: string;
+    hasIcon?: boolean;
+    canClear?: boolean;
+    hasLabel?: boolean;
+  }) {
     const onChangeSpy = jest.fn();
     const onBlurSpy = jest.fn();
 
@@ -17,7 +26,7 @@ describe('Component: ColorPicker', () => {
       name: 'bestFriend',
       label: 'Best Friend',
       placeholder: 'Select your best friend',
-      icon: hasIcon ? 'face' as IconType : undefined,
+      icon: hasIcon ? ('face' as IconType) : undefined,
       value,
       onChange: onChangeSpy,
       onBlur: onBlurSpy,
@@ -124,9 +133,13 @@ describe('Component: ColorPicker', () => {
       fireEvent.click(screen.getByText('Select your best friend'));
 
       // @ts-expect-error saturation-black will always return element
-      fireEvent.touchStart(document.querySelector('.saturation-black'), { touches: [ { pageX: 20, pageY: 20 } ] });
+      fireEvent.touchStart(document.querySelector('.saturation-black'), {
+        touches: [{ pageX: 20, pageY: 20 }]
+      });
       // @ts-expect-error saturation-black will always return element
-      fireEvent.touchEnd(document.querySelector('.saturation-black'), { touches: [ { pageX: 20, pageY: 20 } ] });
+      fireEvent.touchEnd(document.querySelector('.saturation-black'), {
+        touches: [{ pageX: 20, pageY: 20 }]
+      });
 
       fireEvent.click(screen.getByText('Select'));
 
@@ -192,9 +205,7 @@ describe('Component: ColorPicker', () => {
         value: undefined
       };
 
-      rerender(
-        <ColorPicker {...newProps} />
-      );
+      rerender(<ColorPicker {...newProps} />);
 
       expect(asFragment()).toMatchSnapshot('without value');
     });
@@ -211,9 +222,7 @@ describe('Component: ColorPicker', () => {
         value: '#424242'
       };
 
-      rerender(
-        <ColorPicker {...newProps} />
-      );
+      rerender(<ColorPicker {...newProps} />);
 
       expect(asFragment()).toMatchSnapshot('with value');
     });

@@ -1,7 +1,6 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 export type Props = {
-
   /**
    * Tabindex for tab selection.
    */
@@ -10,7 +9,7 @@ export type Props = {
   /**
    * The cells of the EpicRow
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * Whether this EpicRow is a header.
@@ -22,7 +21,7 @@ export type Props = {
    * clicked. When the callback exists the row will have a hover
    * effect.
    */
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => any;
+  onClick?: (event: MouseEvent<HTMLDivElement>) => any;
 };
 
 /**

@@ -1,9 +1,9 @@
 // Core
-export { Avatar } from './core/Avatar/Avatar';
-export { AvatarStack } from './core/Avatar/AvatarStack';
+export { Avatar } from './avatar/Avatar/Avatar';
+export { AvatarStack } from './avatar/AvatarStack/AvatarStack';
 export { Button } from './core/Button/Button';
 export type { ButtonIconPosition, ButtonSize } from './core/Button/Button';
-export { useShowSpinner } from './core/Button/useShowSpinner';
+export { useShowSpinner } from './core/Button/useShowSpinner/useShowSpinner';
 export { ConfirmButton } from './core/ConfirmButton/ConfirmButton';
 export { ConfirmModal } from './core/ConfirmModal/ConfirmModal';
 export { ContentState } from './core/ContentState/ContentState';
@@ -42,13 +42,12 @@ export { AttributeView } from './core/lists/AttributeView/AttributeView';
 export { OpenClose } from './core/OpenClose/OpenClose';
 export { FavoriteIcon } from './core/FavoriteIcon/FavoriteIcon';
 export { Modal } from './core/Modal/Modal';
-export { Card } from './core/Card/Card';
-export { CardOpenClose } from './core/CardOpenClose/CardOpenClose';
+export { Card } from './card/Card/Card';
+export { CardOpenClose } from './card/CardOpenClose/CardOpenClose';
 export { Tabs } from './core/Tabs/Tabs';
 export { Tab } from './core/Tabs/Tab/Tab';
-export { AsyncActionButton } from './core/AsyncActionButton/AsyncActionButton';
+export { AsyncActionButton } from './async/AsyncActionButton/AsyncActionButton';
 export { Debug } from './core/Debug/Debug';
-export { ErrorBoundary } from './core/ErrorBoundary/ErrorBoundary';
 
 // Form
 export { AutoSave } from './form/AutoSave/AutoSave';

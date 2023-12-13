@@ -19,7 +19,7 @@
     .page-link.disabled {
       background-color: transparent;
       border-color: transparent;
-      color: $text-muted;
+      color: var(--bs-secondary-color);
     }
 
     &.active .page-link {
@@ -41,5 +41,16 @@
     height: 2.5rem;
     display: flex;
     align-items: center;
+  }
+
+  .pagination__select-size {
+    margin-bottom: 0 !important;
+
+    .form-select {
+      border-color: #dee2e6;
+      min-width: 77px;
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+    }
   }
 }

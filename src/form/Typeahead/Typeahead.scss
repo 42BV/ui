@@ -5,7 +5,7 @@
 .showing-placeholder {
   .rbt-input-main {
     &::placeholder {
-      color: $input-placeholder-color;
+      color: var(--bs-secondary-color);
       // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
       opacity: 1;
     }

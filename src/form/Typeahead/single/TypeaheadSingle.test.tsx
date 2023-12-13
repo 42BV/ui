@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -57,7 +56,15 @@ describe('Component: TypeaheadSingle', () => {
 
     // @ts-expect-error This is in fact a mock
     useOptions.mockImplementation(
-      ({ pageNumber, size, optionsShouldAlwaysContainValue }) => {
+      ({
+        pageNumber,
+        size,
+        optionsShouldAlwaysContainValue
+      }: {
+        pageNumber: number;
+        size: number;
+        optionsShouldAlwaysContainValue: boolean;
+      }) => {
         expect(pageNumber).toBe(1);
         expect(size).toBe(!isAsync ? 3 : pageSize ?? 10);
         expect(optionsShouldAlwaysContainValue).toBe(false);

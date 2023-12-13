@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -18,7 +17,7 @@ describe('Component: PasswordStrength', () => {
     const { container } = render(
       <PasswordStrength
         password={password}
-        rules={[ 'lowercase', 'minimumLength' ]}
+        rules={['lowercase', 'minimumLength']}
         showMeter={showMeter}
       />
     );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 
 import { withJarb } from '../../withJarb/withJarb';
@@ -310,7 +310,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     );
   }
 
-  function renderModalContent(): React.ReactNode {
+  function renderModalContent(): ReactNode {
     return page.content.map((option) => {
       const label = labelForOption(option);
       const key = getKeyForOption({ option, keyForOption, labelForOption });

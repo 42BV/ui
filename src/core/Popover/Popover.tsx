@@ -1,6 +1,8 @@
-import React, { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import Tippy from '@tippyjs/react';
 import { TippyPlacement } from '../types';
+
+import './Popover.scss';
 
 type Props = {
   /**
@@ -21,14 +23,14 @@ type Props = {
   /**
    * Content shown inside the popover.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * Target component that, when hovered, will trigger the popover to show up.
    * The target(children) of the popover are wrapped into a div.
    * This is a bypass to not have to forward the ref to the DOM node.
    */
-  target: React.ReactNode;
+  target: ReactNode;
 
   /**
    * Optional alignment relative to the target where the popover will be shown.
@@ -90,7 +92,7 @@ export function Popover({
       className="border-0 tippy-popover"
       content={children}
       placement={placement}
-      offset={[ offset, distance ]}
+      offset={[offset, distance]}
       interactive={true}
       zIndex={1049} // One level below bootstrap's modal
     >

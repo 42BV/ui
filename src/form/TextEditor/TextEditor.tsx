@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import ReactQuill from 'react-quill';
 import classNames from 'classnames';
@@ -10,6 +9,8 @@ import { formatsFromToolbarModule } from './utils';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
 import { withField } from '../withField/withField';
+
+import './TextEditor.scss';
 
 export type Props = FieldCompatible<string, string> & {
   /**

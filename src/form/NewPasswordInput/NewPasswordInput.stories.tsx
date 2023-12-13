@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { FieldFormElementDependencies, FinalForm, JarbFormElementDependencies } from '../../story-utils';
-import { FieldNewPasswordInput, isStrongPassword, JarbNewPasswordInput, NewPasswordInput } from './NewPasswordInput';
+import {
+  FieldFormElementDependencies,
+  FinalForm,
+  JarbFormElementDependencies
+} from '../../story-utils';
+import {
+  FieldNewPasswordInput,
+  isStrongPassword,
+  JarbNewPasswordInput,
+  NewPasswordInput
+} from './NewPasswordInput';
 import { Alert } from 'reactstrap';
-import { Card } from '../../core/Card/Card';
+import { Card } from '../../card/Card/Card';
 import { AddonIcon } from '../AddonIcon/AddonIcon';
 import { Icon } from '../../core/Icon';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
@@ -13,14 +22,17 @@ storiesOf('Form/NewPasswordInput', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use NewPasswordInput, you have to add lodash and react-text-mask to your dependencies:</p>
+        <p>
+          To be able to use NewPasswordInput, you have to add lodash and
+          react-text-mask to your dependencies:
+        </p>
         <code>npm install --save lodash react-text-mask</code>
       </Alert>
       <Story />
     </>
   ))
   .add('basic', () => {
-    const [ password, setPassword ] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
       <Card className="m-2">
@@ -35,7 +47,7 @@ storiesOf('Form/NewPasswordInput', module)
     );
   })
   .add('icon', () => {
-    const [ password, setPassword ] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
       <Card className="m-2">
@@ -45,15 +57,13 @@ storiesOf('Form/NewPasswordInput', module)
           placeholder="Please enter your password"
           value={password}
           onChange={setPassword}
-          addon={
-            <AddonIcon icon="lock" />
-          }
+          addon={<AddonIcon icon="lock" />}
         />
       </Card>
     );
   })
   .add('without placeholder', () => {
-    const [ password, setPassword ] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
       <Card className="m-2">
@@ -67,7 +77,7 @@ storiesOf('Form/NewPasswordInput', module)
     );
   })
   .add('invisible label', () => {
-    const [ password, setPassword ] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
       <Card className="m-2">
@@ -82,7 +92,7 @@ storiesOf('Form/NewPasswordInput', module)
     );
   })
   .add('with custom label', () => {
-    const [ password, setPassword ] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
       <Card className="m-2">
@@ -107,7 +117,7 @@ storiesOf('Form/NewPasswordInput', module)
     );
   })
   .add('without meter', () => {
-    const [ password, setPassword ] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
       <Card className="m-2">

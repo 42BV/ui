@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -122,9 +121,7 @@ describe('Component: ConfirmButton', () => {
         );
         return { container, onConfirmSpy };
       } else if (icon) {
-        const { container } = render(
-          <ConfirmButton icon={icon} {...props} />
-        );
+        const { container } = render(<ConfirmButton icon={icon} {...props} />);
         return { container, onConfirmSpy };
       } else {
         const { container } = render(
@@ -137,11 +134,15 @@ describe('Component: ConfirmButton', () => {
     it('should open the Modal when the ConfirmButton button is clicked', () => {
       setup({ button: 'Delete' });
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).not.toBeInTheDocument();
 
       fireEvent.click(screen.getByText('Delete'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).toBeInTheDocument();
     });
 
     it('should close the Modal when the Cancel button is clicked', () => {
@@ -149,11 +150,15 @@ describe('Component: ConfirmButton', () => {
 
       fireEvent.click(screen.getByText('Delete'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).toBeInTheDocument();
 
       fireEvent.click(screen.getByText('Cancel'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).not.toBeInTheDocument();
       expect(onConfirmSpy).toHaveBeenCalledTimes(0);
     });
 
@@ -162,11 +167,15 @@ describe('Component: ConfirmButton', () => {
 
       fireEvent.click(screen.getByText('Delete'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).toBeInTheDocument();
 
       fireEvent.click(screen.getByText('Confirm'));
 
-      expect(screen.queryByText('Are you sure you want a ConfirmButton?')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Are you sure you want a ConfirmButton?')
+      ).not.toBeInTheDocument();
       expect(onConfirmSpy).toHaveBeenCalledTimes(1);
     });
   });

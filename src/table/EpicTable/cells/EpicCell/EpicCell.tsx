@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 import classNames from 'classnames';
 
 type Props = {
   /**
    * The content of the cell.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The width of the cell in pixels.
@@ -31,7 +31,7 @@ type InjectedProps = {
    * a click on one of the cells should trigger a click on the
    * `EpicRow`.
    */
-  onRowClick?: (event: React.MouseEvent<HTMLDivElement>) => any;
+  onRowClick?: (event: MouseEvent<HTMLDivElement>) => any;
 
   /**
    * Whether this cell should render with a hover background.
@@ -64,7 +64,7 @@ export function EpicCell({ children, width, height = 44, ...rest }: Props) {
     'epic-table-cell--hover': hover
   });
 
-  function handleOnRowClick(event: React.MouseEvent<HTMLDivElement>) {
+  function handleOnRowClick(event: MouseEvent<HTMLDivElement>) {
     /*
       Due to our mangeling of the DOM for the EpicTable to work. The
       normal way to prevent events from bubbling will not work via

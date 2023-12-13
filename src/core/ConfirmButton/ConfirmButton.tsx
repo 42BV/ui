@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { Button, Props as ButtonProps } from '../Button/Button';
 import { ConfirmModal } from '../ConfirmModal/ConfirmModal';
@@ -30,7 +30,7 @@ type Props = Omit<ButtonProps, 'onClick'> & {
   /**
    * The text you want to render inside the dialog.
    */
-  dialogText: React.ReactNode;
+  dialogText: ReactNode;
 
   /**
    * Callback which is triggered after the user has 'confirmed' that
@@ -64,7 +64,7 @@ export function ConfirmButton({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { modalHeader, confirm, cancel } = text;
 
-  function openModal(event: React.MouseEvent<HTMLElement>) {
+  function openModal(event: MouseEvent<HTMLElement>) {
     event.stopPropagation();
     setIsModalOpen(true);
   }

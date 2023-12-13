@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { Icon } from '../../../../core/Icon';
 import { t } from '../../../../utilities/translation/translation';
+import { ReactNode } from 'react';
 
 type Text = {
   /**
@@ -14,13 +13,13 @@ type Props = {
   /**
    * The details you want to render.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The callback for the close event. Is called when the close button
    * is clicked.
    */
-  onClose: (event: React.MouseEvent<HTMLElement>) => void;
+  onClose: (event: MouseEvent<HTMLElement>) => void;
 
   /**
    * Optionally customized text within the component.

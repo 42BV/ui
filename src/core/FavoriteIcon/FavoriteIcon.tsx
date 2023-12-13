@@ -1,4 +1,3 @@
-import React from 'react';
 import { Icon } from '../Icon';
 import { Color } from '../types';
 
@@ -64,7 +63,7 @@ export function FavoriteIcon({
   activeColor = 'primary',
   hoverColor
 }: FavoriteIconProps) {
-  function onClick(e: React.MouseEvent<HTMLElement>) {
+  function onClick(e: MouseEvent<HTMLElement>) {
     e.preventDefault();
     onChange(!value);
   }

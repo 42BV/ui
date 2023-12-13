@@ -1,16 +1,50 @@
 {
   "compilerOptions": {
-    "module": "ES2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "declaration": true,
     "outDir": "dist",
     "esModuleInterop": true,
     "target": "es6",
     "sourceMap": true,
-    "lib": ["es6", "dom"],
-    "jsx": "react",
-    "strictNullChecks": true
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "jsx": "react-jsx",
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "rootDir": "src",
+    "baseUrl": "src/",
+    "paths": {
+      "config": [
+        "src/config/*"
+      ],
+      "core": [
+        "src/core/*"
+      ],
+      "form": [
+        "src/form/*"
+      ],
+      "hooks": [
+        "src/hooks/*"
+      ],
+      "table": [
+        "src/table/*"
+      ],
+      "utilities": [
+        "src/utilities/*"
+      ]
+    }
   },
-  "exclude": ["node_modules"],
-  "include": ["src/**/*"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "scripts"
+  ],
+  "include": [
+    "src/**/*"
+  ]
 }

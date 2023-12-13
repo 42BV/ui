@@ -1,4 +1,3 @@
-import React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { emptyPage, Page } from '@42.nl/spring-connect';
@@ -6,14 +5,22 @@ import { emptyPage, Page } from '@42.nl/spring-connect';
 import { ModalPickerSingle } from './ModalPickerSingle';
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
-import { adminUser, listOfUsers, pageOfUsersFetcher, randomUser } from '../../../test/fixtures';
-import { ModalPickerAddButtonOptions, ModalPickerButtonAlignment } from '../types';
+import {
+  adminUser,
+  listOfUsers,
+  pageOfUsersFetcher,
+  randomUser
+} from '../../../test/fixtures';
+import {
+  ModalPickerAddButtonOptions,
+  ModalPickerButtonAlignment
+} from '../types';
 
 import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { Color } from '../../../core/types';
 import { IsOptionEnabled } from '../../option';
-import { icons } from '../../../core/Icon';
+import { IconType } from '../../../core/Icon';
 import lodash from 'lodash';
 
 jest.mock('../../useOptions', () => {
@@ -62,7 +69,17 @@ describe('Component: ModalPickerSingle', () => {
     let doInitialCheck = true;
     // @ts-expect-error This is in fact a mock
     useOptions.mockImplementation(
-      ({ pageNumber, query, size, optionsShouldAlwaysContainValue }) => {
+      ({
+        pageNumber,
+        query,
+        size,
+        optionsShouldAlwaysContainValue
+      }: {
+        pageNumber: number;
+        query: string;
+        size: number;
+        optionsShouldAlwaysContainValue: boolean;
+      }) => {
         if (doInitialCheck) {
           expect(pageNumber).toBe(1);
           expect(query).toBe('');
@@ -90,7 +107,7 @@ describe('Component: ModalPickerSingle', () => {
     const props = {
       name: 'bestFriend',
       placeholder: 'Select your best friend',
-      icon: icons['face'],
+      icon: 'face' as IconType,
       options: isAsync ? pageOfUsersFetcher : listOfUsers(),
       labelForOption: (user: User) => user.email,
       isOptionEnabled,
@@ -114,9 +131,7 @@ describe('Component: ModalPickerSingle', () => {
       hiddenLabel: !hasLabel
     };
 
-    const { container, rerender } = render(
-      <ModalPickerSingle {...props} />
-    );
+    const { container, rerender } = render(<ModalPickerSingle {...props} />);
 
     return {
       container,
@@ -213,15 +228,21 @@ describe('Component: ModalPickerSingle', () => {
         alignButton: 'left'
       });
 
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center flex-row-reverse justify-content-end');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).toHaveClass('align-items-center flex-row-reverse justify-content-end');
     });
 
     it('should render button right without value', () => {
       setup({
         alignButton: 'right'
       });
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-end');
-      expect(screen.getByText('Select your best friend').parentNode).not.toHaveClass('flex-row-reverse');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).toHaveClass('align-items-center justify-content-end');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).not.toHaveClass('flex-row-reverse');
     });
 
     it('should render button right with value', () => {
@@ -229,8 +250,12 @@ describe('Component: ModalPickerSingle', () => {
         value: adminUser(),
         alignButton: 'right'
       });
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-between');
-      expect(screen.getByText('Select your best friend').parentNode).not.toHaveClass('flex-row-reverse');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).toHaveClass('align-items-center justify-content-between');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).not.toHaveClass('flex-row-reverse');
     });
 
     it('should render without clear button', () => {
@@ -301,7 +326,9 @@ describe('Component: ModalPickerSingle', () => {
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
       expect(useOptions).toHaveBeenLastCalledWith(
         expect.objectContaining({ query: 'test', pageNumber: 1 })
@@ -439,9 +466,7 @@ describe('Component: ModalPickerSingle', () => {
         value: undefined
       };
 
-      rerender(
-        <ModalPickerSingle {...newProps} />
-      );
+      rerender(<ModalPickerSingle {...newProps} />);
 
       expect(screen.queryByText('admin@42.nl')).not.toBeInTheDocument();
     });
@@ -453,12 +478,10 @@ describe('Component: ModalPickerSingle', () => {
 
       const newProps = {
         ...props,
-        value: [ adminUser() ]
+        value: [adminUser()]
       };
 
-      rerender(
-        <ModalPickerSingle {...newProps} />
-      );
+      rerender(<ModalPickerSingle {...newProps} />);
 
       expect(screen.queryByText('admin@42.nl')).toBeInTheDocument();
     });

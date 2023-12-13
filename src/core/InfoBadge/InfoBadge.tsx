@@ -1,13 +1,15 @@
-import React from 'react';
 import { Badge } from 'reactstrap';
 import classNames from 'classnames';
 import { Color } from '../types';
+
+import './InfoBadge.scss';
+import { ReactNode } from 'react';
 
 type Props = {
   /**
    * The element you want to add the InfoBadge to.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The color of the badge. Supports Bootstrap colors (e.g. primary, danger).
@@ -32,12 +34,7 @@ type Props = {
  * Use it when you want to show a notification / message count above
  * an element.
  */
-export function InfoBadge({
-  color,
-  value,
-  children,
-  className
-}: Props) {
+export function InfoBadge({ color, value, children, className }: Props) {
   return (
     <span className={classNames('info-badge-container', className)}>
       {children}

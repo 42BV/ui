@@ -1,4 +1,3 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -11,7 +10,11 @@ storiesOf('core/Icons', module)
     return (
       <>
         <p>You can find the available icons on Google Fonts</p>
-        <Button onClick={() => window.open('https://fonts.google.com/icons', '_blank')}>
+        <Button
+          onClick={() =>
+            window.open('https://fonts.google.com/icons', '_blank')
+          }
+        >
           Go to Icons on Google Fonts
         </Button>
       </>
@@ -37,9 +40,25 @@ storiesOf('core/Icons', module)
   .add('hover color', () => {
     return (
       <div className="d-flex flex-column align-items-center">
-        <Icon icon="child_care" color="secondary" hoverColor="danger" onClick={action('child care clicked')} />
-        <Icon icon="train" color="primary" hoverColor="success" onClick={action('train clicked')} />
-        <Icon icon="home" disabled={true} color="primary" hoverColor="success" onClick={action('home clicked')} />
+        <Icon
+          icon="child_care"
+          color="secondary"
+          hoverColor="danger"
+          onClick={action('child care clicked')}
+        />
+        <Icon
+          icon="train"
+          color="primary"
+          hoverColor="success"
+          onClick={action('train clicked')}
+        />
+        <Icon
+          icon="home"
+          disabled={true}
+          color="primary"
+          hoverColor="success"
+          onClick={action('home clicked')}
+        />
       </div>
     );
   });

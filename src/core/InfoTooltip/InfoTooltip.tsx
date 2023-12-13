@@ -1,12 +1,12 @@
-import React from 'react';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip/Tooltip';
+import { ReactNode } from 'react';
 
 type Props = {
   /**
    * The content of the tooltip.
    */
-  tooltip: React.ReactNode;
+  tooltip: ReactNode;
 
   /**
    * Optionally the size of the icon.

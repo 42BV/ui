@@ -24,19 +24,15 @@ $progress-stepper-icons: (
       cursor: pointer;
     }
 
-    @each $color, $value in $theme-colors {
+    @each $color, $value in $progress-stepper-icons {
       &.#{"" + $color} {
         .step-circle {
-          $icon: map-get($progress-stepper-icons, $color);
+          &:before {
+            content: $value;
+          }
 
-          @if ($icon) {
-            &:before {
-              content: $icon;
-            }
-
-            * {
-              display: none;
-            }
+          * {
+            display: none;
           }
         }
       }
@@ -63,11 +59,11 @@ $progress-stepper-icons: (
       color: var(--bs-gray-900);
 
       &.text-info {
-        color: $text-info-contrast !important;
+        color: var(--bs-text-info-contrast) !important;
       }
 
       &.text-warning {
-        color: $text-warning-contrast !important;
+        color: var(--bs-text-warning-contrast) !important;
       }
     }
 

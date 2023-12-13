@@ -1,17 +1,17 @@
 import { FormGroup, Label } from 'reactstrap';
-import React from 'react';
 import classNames from 'classnames';
+import { ReactNode } from 'react';
 
 type Props = {
   /**
    * Optionally the label of the form element.
    */
-  label?: React.ReactNode;
+  label?: ReactNode;
 
   /**
    * The value that the form element currently has.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * Optional extra CSS class you want to add to the component.

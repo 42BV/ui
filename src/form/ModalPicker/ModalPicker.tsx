@@ -1,4 +1,3 @@
-import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 import {
   Button,
@@ -24,6 +23,7 @@ import {
   IsOptionEnabled,
   isOptionSelected
 } from '../option';
+import { ReactNode } from 'react';
 
 export type Text = {
   placeholder?: string;
@@ -52,7 +52,7 @@ type Props<T> = {
   /**
    * Here the component using the ModalPicker must render in the options.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The value to show in the search input.

@@ -1,12 +1,12 @@
-import React from 'react';
 import { Input, Label } from 'reactstrap';
+import { ReactNode } from 'react';
 
 export type Props = {
   /**
    * Optionally the label for the button, when the label is clicked
    * the checkbox is checked.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /**
    * Whether the checkbox is checked.

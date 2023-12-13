@@ -1,9 +1,12 @@
-import React from 'react';
 import { FormGroup, Input as RSInput, Label } from 'reactstrap';
 
 import { withJarb } from '../withJarb/withJarb';
 import { t } from '../../utilities/translation/translation';
-import { FieldCompatibleWithPredeterminedOptions, getKeyForOption, isOptionSelected } from '../option';
+import {
+  FieldCompatibleWithPredeterminedOptions,
+  getKeyForOption,
+  isOptionSelected
+} from '../option';
 import { useOptions } from '../useOptions';
 import { Loading } from '../../core/Loading/Loading';
 import { FieldCompatible } from '../types';
@@ -22,12 +25,12 @@ export type Text = {
 
 export type Props<T> = FieldCompatible<T, T> &
   FieldCompatibleWithPredeterminedOptions<T> & {
-  /**
-   * Optionally customized text within the component.
-   * This text should already be translated.
-   */
-  text?: Text;
-};
+    /**
+     * Optionally customized text within the component.
+     * This text should already be translated.
+     */
+    text?: Text;
+  };
 
 /**
  * Select is a form element for which the value can be selected
@@ -98,19 +101,21 @@ export function Select<T>(props: Props<T>) {
   const indexOfValue =
     value !== undefined
       ? page.content.findIndex((option) =>
-        isOptionSelected({
-          option,
-          keyForOption,
-          labelForOption,
-          isOptionEqual,
-          value
-        })
-      )
+          isOptionSelected({
+            option,
+            keyForOption,
+            labelForOption,
+            isOptionEqual,
+            value
+          })
+        )
       : undefined;
 
   return (
     <FormGroup className={className} color={color}>
-      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
+      {!hiddenLabel || typeof label !== 'string' ? (
+        <Label for={id}>{label}</Label>
+      ) : null}
       {loading ? (
         <Loading className="mt-2">
           {t({

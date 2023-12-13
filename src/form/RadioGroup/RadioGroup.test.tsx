@@ -1,10 +1,16 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { RadioGroup, Text } from './RadioGroup';
 import { User } from '../../test/types';
-import { adminUser, coordinatorUser, listOfUsers, pageOfUsers, pageOfUsersFetcher, userUser } from '../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  pageOfUsers,
+  pageOfUsersFetcher,
+  userUser
+} from '../../test/fixtures';
 import { IsOptionEnabled } from '../option';
 
 import { pageOf } from '../../utilities/page/page';
@@ -49,6 +55,12 @@ describe('Component: RadioGroup', () => {
         query,
         size,
         optionsShouldAlwaysContainValue
+      }: {
+        options: User[];
+        pageNumber: number;
+        query: string;
+        size: number;
+        optionsShouldAlwaysContainValue: boolean;
       }) => {
         expect(pageNumber).toBe(1);
         expect(query).toBe('');
@@ -80,9 +92,7 @@ describe('Component: RadioGroup', () => {
       hiddenLabel: !hasLabel
     };
 
-    const { container, rerender } = render(
-      <RadioGroup<User> {...props} />
-    );
+    const { container, rerender } = render(<RadioGroup<User> {...props} />);
 
     return {
       container,
@@ -111,12 +121,16 @@ describe('Component: RadioGroup', () => {
 
     test('with placeholder', () => {
       setup({ hasPlaceholder: true });
-      expect(screen.queryByText('Please enter your subject')).toBeInTheDocument();
+      expect(
+        screen.queryByText('Please enter your subject')
+      ).toBeInTheDocument();
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByText('Please enter your subject')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Please enter your subject')
+      ).not.toBeInTheDocument();
     });
 
     test('with label', () => {
@@ -131,7 +145,9 @@ describe('Component: RadioGroup', () => {
 
     test('horizontal', () => {
       setup({ horizontal: true });
-      expect(screen.getAllByRole('radio')[0].parentNode?.parentNode).toHaveClass('form-check-inline');
+      expect(
+        screen.getAllByRole('radio')[0].parentNode?.parentNode
+      ).toHaveClass('form-check-inline');
     });
   });
 
@@ -198,9 +214,9 @@ describe('Component: RadioGroup', () => {
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
-          [ adminUser() ],
-          [ coordinatorUser() ],
-          [ userUser() ]
+          [adminUser()],
+          [coordinatorUser()],
+          [userUser()]
         ]);
       });
     });
@@ -222,9 +238,7 @@ describe('Component: RadioGroup', () => {
         value: undefined
       };
 
-      rerender(
-        <RadioGroup {...newProps} />
-      );
+      rerender(<RadioGroup {...newProps} />);
 
       expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
       expect(screen.getAllByRole('radio')[1]).not.toBeChecked();
@@ -246,9 +260,7 @@ describe('Component: RadioGroup', () => {
         value: coordinatorUser()
       };
 
-      rerender(
-        <RadioGroup {...newProps} />
-      );
+      rerender(<RadioGroup {...newProps} />);
 
       expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
       expect(screen.getAllByRole('radio')[1]).toBeChecked();

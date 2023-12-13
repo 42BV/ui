@@ -41,7 +41,7 @@
     td.rdtDay.rdtDisabled,
     td.rdtMonth.rdtDisabled,
     td.rdtYear.rdtDisabled {
-      color: $gray-300;
+      color: var(--bs-gray-300);
     }
 
     td.rdtDay.rdtDisabled:hover,
@@ -64,10 +64,10 @@
     .rdtSwitch,
     .rdtPrev,
     .rdtNext {
-      @extend .rounded;
+      border-radius: var(--bs-border-radius);
 
       &:hover {
-        background: $gray-200;
+        background: var(--bs-gray-200);
       }
     }
 
@@ -88,10 +88,27 @@
     width: 271px;
     padding: 0;
     margin-top: 5px;
-    @extend .dropdown-menu;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    font-size: var(--bs-font-size-base);
+    color: var(--bs-body-color);
+    text-align: left;
+    list-style: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color-translucent);
+    border-radius: var(--bs-border-radius);
 
     table {
-      @extend .table, .mb-0;
+      width: 100%;
+      margin-bottom: 1rem;
+      vertical-align: top;
+      border-color: var(--bs-border-color);
+      margin-bottom: 0 !important;
       border-spacing: 5px;
       border-collapse: separate;
 
@@ -118,7 +135,7 @@
         &::after {
           content: '';
           position: absolute;
-          border-bottom: 1px solid $gray-200;
+          border-bottom: 1px solid var(--bs-gray-200);
           width: 100%;
           left: 0;
         }
@@ -129,11 +146,11 @@
         padding: 0;
         vertical-align: middle;
         font-weight: 300;
-        color: $gray-600;
+        color: var(--bs-gray-600);
 
         &.rdtOld,
         &.rdtNew {
-          color: lighten($gray-600, 35%);
+          color: var(--bs-gray-300);
         }
       }
     }
@@ -144,19 +161,16 @@
       table > tbody > tr > td {
         &.rdtActive,
         &.rdtActive:hover {
-          @extend .rounded-circle;
-          @include box-shadow(
-                          1px 1px 3px rgba(map-get($theme-colors, success), 0.24),
-                          0 1px 2px rgba(map-get($theme-colors, success), 0.48)
-          );
-          background: map-get($theme-colors, success);
+          border-radius: 50%;
+          box-shadow: 1px 1px 3px rgba(var(--bs-success), 0.24),
+          0 1px 2px rgba(var(--bs-success), 0.48);
+          background: var(--bs-success);
           color: white;
           font-weight: 500;
         }
 
         &:hover {
-          @extend .rounded-circle;
-          background: $gray-200;
+          background: var(--bs-gray-200);
         }
       }
     }
@@ -170,7 +184,7 @@
 
     .rdtToday {
       font-weight: bold;
-      color: map-get($theme-colors, success);
+      color: var(--bs-success);
     }
 
     .rdtMonths,
@@ -180,7 +194,7 @@
         height: 61px;
 
         &:hover {
-          background: $gray-200;
+          background: var(--bs-gray-200);
         }
       }
     }

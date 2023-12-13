@@ -1,0 +1,41 @@
+.avatar-stack > .avatar {
+  position: relative;
+  display: inline-block;
+  margin-right: -1.25rem;
+  transition: margin-left 0.25s ease, margin-right 0.25s ease;
+
+  .img-placeholder {
+    margin-right: 0;
+  }
+
+  &:hover {
+    margin-right: 0;
+  }
+
+  &.avatar-xs,
+  &.avatar-sm,
+  &.avatar-md,
+  &.avatar-lg {
+    transition: margin-left 0.25s ease, margin-right 0.25s ease;
+
+    &:hover {
+      margin-right: 0;
+    }
+  }
+
+  &.avatar-xs {
+    margin-right: -0.625rem;
+  }
+
+  &.avatar-sm {
+    margin-right: -2.5rem;
+  }
+
+  &.avatar-md {
+    margin-right: -3.75rem;
+  }
+
+  &.avatar-lg {
+    margin-right: -80px;
+  }
+}

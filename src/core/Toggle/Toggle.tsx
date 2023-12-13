@@ -1,7 +1,9 @@
-import React from 'react';
 import classNames from 'classnames';
 import { Color } from '../types';
 import { uniqueId } from 'lodash';
+
+import './Toggle.scss';
+import { FocusEventHandler, ReactNode } from 'react';
 
 type Props = {
   /**
@@ -34,12 +36,12 @@ type Props = {
   /**
    * Optional callback for when the Toggle is blurred.
    */
-  onBlur?: React.FocusEventHandler;
+  onBlur?: FocusEventHandler;
 
   /**
    * Label to display next to the toggle.
    */
-  label: React.ReactNode;
+  label: ReactNode;
 
   /**
    * Optionally whether the label should be invisible (aria-label).
@@ -64,27 +66,27 @@ export function Toggle({
   label,
   hiddenLabel
 }: Props) {
-  const toggleClasses = classNames(
-    'toggle-container',
-    `toggle-${color}`,
-    className
-  );
-
   return (
-    <span className={toggleClasses}>
-      {!hiddenLabel || typeof label !== 'string' ? (
-        <label className="d-inline-block toggle-label me-2" htmlFor={id}>
-          {label}
-        </label>
-      ) : null}
+    <span className={classNames('toggle-container', className)}>
       <input
         id={id}
         type="checkbox"
         onChange={(event) => onChange(event.target.checked)}
         checked={value}
         onBlur={onBlur}
-        aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
+        aria-label={
+          hiddenLabel && typeof label === 'string' ? label : undefined
+        }
+        className={classNames('toggle', `border-${color}`, {
+          [`bg-${color}-subtle`]: !value,
+          [`bg-${color}`]: value
+        })}
       />
+      {!hiddenLabel || typeof label !== 'string' ? (
+        <label className="d-inline-block toggle-label ms-2" htmlFor={id}>
+          {label}
+        </label>
+      ) : null}
     </span>
   );
 }

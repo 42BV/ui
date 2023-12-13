@@ -1,4 +1,3 @@
-import React from 'react';
 import { ContentState } from '../../core/ContentState/ContentState';
 import { t } from '../../utilities/translation/translation';
 

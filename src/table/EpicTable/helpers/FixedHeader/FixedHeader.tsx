@@ -4,7 +4,7 @@
 // Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { GooeyCenter } from '../GooeyCenter/GooeyCenter';
 import { EpicTableLayout } from '../layout/layout';
@@ -55,7 +55,7 @@ export function FixedHeader({
     if (fixedCenterEl.current) {
       fixedCenterEl.current.scrollLeft = leftScroll;
     }
-  }, [ fixedCenterEl, leftScroll ]);
+  }, [fixedCenterEl, leftScroll]);
 
   const { left, center, right } = layout;
 

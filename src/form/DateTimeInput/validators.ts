@@ -337,7 +337,7 @@ function dateAfterError({
   start,
   overrideErrorText
 }: {
-  label;
+  label: string;
   start: Start;
   overrideErrorText?: string;
 }): string {
@@ -354,7 +354,7 @@ function dateBeforeError({
   end,
   overrideErrorText
 }: {
-  label;
+  label: string;
   end: End;
   overrideErrorText?: string;
 }): string {

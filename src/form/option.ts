@@ -1,4 +1,3 @@
-import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 
 export type Options<T> = FetchOptionsCallback<T> | T[];

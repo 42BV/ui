@@ -1,89 +1,47 @@
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import autoExternal from 'rollup-plugin-auto-external';
+
+import postcss from 'rollup-plugin-postcss';
 import { visualizer } from 'rollup-plugin-visualizer';
+import terser from '@rollup/plugin-terser';
 
-import glob from 'glob';
-import path from 'path';
-import fs from 'fs-extra';
+import { getFiles } from './scripts/buildUtils';
 
-const pkg = require('./package.json');
-
-/**
- * TODO: Figure out how to a proper glob copy per
- * https://github.com/gulpjs/gulp/blob/master/docs/recipes/maintain-directory-structure-while-globbing.md
- */
-const defaultFormat = (match, src, dest) => {
-  const formattedPath = match
-    .split(path.sep)
-    .filter((dir) => !src.split(path.sep).includes(dir))
-    .join(path.sep);
-
-  return path.join(dest, formattedPath);
-};
-
-/**
- * Copies files and retains their directory structure
- */
-const copy = (options = {}) => {
-  const { hook = 'buildEnd', targets = [], format } = options;
-  let copied = false;
-  let copyTargets = [];
-
-  return {
-    name: 'copy',
-    [hook]: async () => {
-      if (copied) {
-        return;
-      }
-
-      for (const { src, dest } of targets) {
-        glob(src, async (err, matches) => {
-          if (err) console.error(err);
-          const formattedMatches = matches.map((match) => ({
-            src: match,
-            dest:
-              format && typeof format === 'function'
-                ? format(match, src, dest)
-                : defaultFormat(match, src, dest)
-          }));
-
-          copyTargets.push(...formattedMatches);
-
-          // Copy files
-          for (const { src, dest } of copyTargets) {
-            await fs.copy(src, dest);
-          }
-        });
-      }
-
-      copied = true;
-    }
-  };
-};
+const extensions = ['.js', '.ts', '.jsx', '.tsx'];
 
 module.exports = {
-  input: 'src/index.ts',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs'
-    },
-    {
-      file: pkg.module,
-      format: 'es'
-    }
+  input: [
+    'src/index.ts',
+    ...getFiles('./src/config', extensions),
+    ...getFiles('./src/core', extensions),
+    ...getFiles('./src/form', extensions),
+    ...getFiles('./src/hooks', extensions),
+    ...getFiles('./src/table', extensions),
+    ...getFiles('./src/utilities', extensions)
   ],
+  output: {
+    dir: 'dist',
+    format: 'esm',
+    preserveModules: true,
+    preserveModulesRoot: 'src',
+    sourcemap: true
+  },
   plugins: [
     autoExternal(),
-    copy({
-      targets: [
-        {
-          src: 'src/**/*.scss',
-          dest: 'dist'
-        }
-      ]
+    resolve(),
+    commonjs(),
+    typescript({
+      tsconfig: './tsconfig.build.json',
+      declaration: true,
+      declarationDir: 'dist'
     }),
-    typescript(),
-    visualizer()
+    postcss(),
+    terser(),
+    visualizer({
+      filename: 'bundle-analysis.html',
+      open: true
+    })
   ]
 };

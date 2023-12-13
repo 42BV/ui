@@ -1,6 +1,7 @@
-import React from 'react';
 import classNames from 'classnames';
 import { Color } from '../types';
+
+import './Tag.scss';
 
 type Props = {
   /**

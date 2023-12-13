@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -25,17 +24,23 @@ describe('Icon', () => {
     });
 
     test('with color', () => {
-      const { container } = render(<Icon icon="alarm" id="1337" color="danger" />);
+      const { container } = render(
+        <Icon icon="alarm" id="1337" color="danger" />
+      );
       expect(container.firstChild).toHaveClass('text-danger');
     });
 
     test('with className', () => {
-      const { container } = render(<Icon icon="alarm" className="text-danger" />);
+      const { container } = render(
+        <Icon icon="alarm" className="text-danger" />
+      );
       expect(container.firstChild).toHaveClass('text-danger');
     });
 
     test('is clickable', () => {
-      const { container } = render(<Icon icon="alarm" onClick={() => undefined} />);
+      const { container } = render(
+        <Icon icon="alarm" onClick={() => undefined} />
+      );
       expect(container.firstChild).toHaveClass('clickable');
     });
 
@@ -65,21 +70,38 @@ describe('Icon', () => {
   describe('hoverColor', () => {
     it('should use hoverColor when onClick and hoverColor are defined', async () => {
       expect.assertions(1);
-      const { container } = render(<Icon icon="alarm" color="secondary" hoverColor="primary" onClick={jest.fn()} />);
+      const { container } = render(
+        <Icon
+          icon="alarm"
+          color="secondary"
+          hoverColor="primary"
+          onClick={jest.fn()}
+        />
+      );
       await userEvent.hover(screen.getByText('alarm'));
       expect(container.firstChild).toHaveClass('text-primary');
     });
 
     it('should not use hoverColor when onClick is not defined', async () => {
       expect.assertions(1);
-      const { container } = render(<Icon icon="alarm" color="secondary" hoverColor="primary" />);
+      const { container } = render(
+        <Icon icon="alarm" color="secondary" hoverColor="primary" />
+      );
       await userEvent.hover(screen.getByText('alarm'));
       expect(container.firstChild).toHaveClass('text-secondary');
     });
 
     it('should not use hoverColor when onClick and hoverColor are defined but icon is disabled', async () => {
       expect.assertions(1);
-      const { container } = render(<Icon icon="alarm" color="secondary" hoverColor="primary" onClick={jest.fn()} disabled={true} />);
+      const { container } = render(
+        <Icon
+          icon="alarm"
+          color="secondary"
+          hoverColor="primary"
+          onClick={jest.fn()}
+          disabled={true}
+        />
+      );
       await userEvent.hover(screen.getByText('alarm'));
       expect(container.firstChild).toHaveClass('text-secondary');
     });

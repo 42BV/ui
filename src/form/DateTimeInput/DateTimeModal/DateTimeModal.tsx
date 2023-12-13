@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import Datetime from 'react-datetime';
 import moment, { Moment, MomentInput } from 'moment';
 import { constant, get } from 'lodash';
@@ -22,7 +22,7 @@ type Props = {
   /**
    * The label of the form element.
    */
-  label?: React.ReactNode;
+  label?: ReactNode;
 
   /**
    * Callback for when the form element changes.
@@ -100,7 +100,9 @@ export function DateTimeModal(props: Props) {
   } = props;
   const isDateAllowed = get(props, 'isDateAllowed', constant(true));
 
-  const [ value, setValue ] = useState(props.defaultValue ? moment(props.defaultValue) : '');
+  const [value, setValue] = useState(
+    props.defaultValue ? moment(props.defaultValue) : ''
+  );
 
   return (
     <OpenCloseModal

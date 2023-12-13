@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -51,12 +50,16 @@ describe('Component: Textarea', () => {
 
     test('with placeholder', () => {
       setup({ hasPlaceholder: true });
-      expect(screen.queryByPlaceholderText('Please enter your first name')).toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please enter your first name')
+      ).toBeInTheDocument();
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByPlaceholderText('Please enter your first name')).not.toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please enter your first name')
+      ).not.toBeInTheDocument();
     });
 
     test('visible label', () => {
@@ -76,7 +79,9 @@ describe('Component: Textarea', () => {
     test('onChange', () => {
       const { onChangeSpy } = setup({ value: undefined });
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('Maarten');
@@ -110,9 +115,7 @@ describe('Component: Textarea', () => {
         value: ''
       };
 
-      rerender(
-        <Textarea {...newProps} />
-      );
+      rerender(<Textarea {...newProps} />);
 
       expect(screen.getByRole('textbox')).toHaveValue('');
     });
@@ -127,9 +130,7 @@ describe('Component: Textarea', () => {
         value: 'Maarten'
       };
 
-      rerender(
-        <Textarea {...newProps} />
-      );
+      rerender(<Textarea {...newProps} />);
 
       expect(screen.getByRole('textbox')).toHaveValue('Maarten');
     });

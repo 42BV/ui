@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { ProgressStepper } from './ProgressStepper';
@@ -10,7 +9,7 @@ describe('Component: ProgressStepper', () => {
 
     const { container } = render(
       <ProgressStepper
-        steps={[ 'start' ]}
+        steps={['start']}
         // @ts-expect-error Test mock
         colorForStep={colorForStepSpy}
         titleForStep={titleForStepSpy}
@@ -33,7 +32,7 @@ describe('Component: ProgressStepper', () => {
 
       render(
         <ProgressStepper
-          steps={[ 'start', 'end' ]}
+          steps={['start', 'end']}
           colorForStep={() => 'primary'}
           titleForStep={(step) => step}
           // Only enable the first step.

@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavItem, NavLink } from 'reactstrap';
 import { Icon, IconType } from '../../Icon';
 import { Color } from '../../types';

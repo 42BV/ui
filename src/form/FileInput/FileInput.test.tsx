@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -32,16 +31,17 @@ describe('Component: FileInput', () => {
       hiddenLabel: !hasLabel
     };
 
-    const { container } = render(
-      <FileInput color="success" {...props} />
-    );
+    const { container } = render(<FileInput color="success" {...props} />);
 
     return { container, onChangeSpy, onBlurSpy };
   }
 
   describe('ui', () => {
     test('with value', () => {
-      const { container } = setup({ value: new File([ '' ], 'maarten.png'), valid: true });
+      const { container } = setup({
+        value: new File([''], 'maarten.png'),
+        valid: true
+      });
       expect(container).toMatchSnapshot();
     });
 
@@ -52,7 +52,9 @@ describe('Component: FileInput', () => {
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByPlaceholderText('Upload a file here')).not.toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Upload a file here')
+      ).not.toBeInTheDocument();
     });
 
     test('invisible label', () => {
@@ -63,12 +65,16 @@ describe('Component: FileInput', () => {
 
     test('invalid', () => {
       setup({ valid: false });
-      expect(screen.queryByPlaceholderText('Upload a file here')).toHaveClass('is-invalid');
+      expect(screen.queryByPlaceholderText('Upload a file here')).toHaveClass(
+        'is-invalid'
+      );
     });
 
     test('valid', () => {
       setup({ valid: true });
-      expect(screen.queryByPlaceholderText('Upload a file here')).not.toHaveClass('is-invalid');
+      expect(
+        screen.queryByPlaceholderText('Upload a file here')
+      ).not.toHaveClass('is-invalid');
     });
   });
 
@@ -80,10 +86,14 @@ describe('Component: FileInput', () => {
 
     setup({});
 
-    fireEvent.change(screen.getByPlaceholderText('Upload a file here'), { target: { value: 'test' } });
+    fireEvent.change(screen.getByPlaceholderText('Upload a file here'), {
+      target: { value: 'test' }
+    });
 
     expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-    expect(consoleErrorSpy).toHaveBeenCalledWith('The placeholder input of FileInput should not be changeable');
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      'The placeholder input of FileInput should not be changeable'
+    );
 
     global.console = console;
   });
@@ -92,9 +102,11 @@ describe('Component: FileInput', () => {
     test('onChange', () => {
       const { onChangeSpy, onBlurSpy } = setup({ value: undefined });
 
-      const file = new File([ '' ], 'maarten.png');
+      const file = new File([''], 'maarten.png');
 
-      fireEvent.change(screen.getByLabelText('Upload a file here'), { target: { files: { item: jest.fn().mockReturnValue(file) } } });
+      fireEvent.change(screen.getByLabelText('Upload a file here'), {
+        target: { files: { item: jest.fn().mockReturnValue(file) } }
+      });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy.mock.calls[0][0].name).toBe('maarten.png');
@@ -104,7 +116,9 @@ describe('Component: FileInput', () => {
 
     describe('onClick', () => {
       test('with value', () => {
-        const { onChangeSpy, onBlurSpy } = setup({ value: new File([ '' ], 'maarten.png') });
+        const { onChangeSpy, onBlurSpy } = setup({
+          value: new File([''], 'maarten.png')
+        });
 
         fireEvent.click(screen.getByLabelText('Upload a file here'));
 
@@ -144,7 +158,7 @@ test('requireFile', () => {
     fallback: 'cv is required'
   });
 
-  expect(validator(new File([ '' ], 'henkie.docx'), {})).toBe(undefined);
+  expect(validator(new File([''], 'henkie.docx'), {})).toBe(undefined);
 });
 
 test('limitFileSize', () => {
@@ -156,10 +170,10 @@ test('limitFileSize', () => {
   // @ts-expect-error Even though it accepts File it will be given undefined and null
   expect(validator(null, {})).toBe(undefined);
 
-  const smallFile = new File([ '' ], 'small.docx');
+  const smallFile = new File([''], 'small.docx');
   expect(validator(smallFile, {})).toBe(undefined);
 
-  const largeFile = new File([ 'very long string'.repeat(100000) ], 'large.docx');
+  const largeFile = new File(['very long string'.repeat(100000)], 'large.docx');
   expect(validator(largeFile, {})).toEqual({
     data: { fileSize: '1.5', label: 'cv', size: '1.0' },
     fallback: 'cv file is to large. Max size is 1.0 MB file size is 1.5 MB',

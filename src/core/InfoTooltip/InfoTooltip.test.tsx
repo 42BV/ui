@@ -1,9 +1,9 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { InfoTooltip } from './InfoTooltip';
 import { Spinner } from '../Spinner/Spinner';
+import { ReactNode } from 'react';
 
 describe('Component: InfoTooltip', () => {
   function setup({
@@ -11,7 +11,7 @@ describe('Component: InfoTooltip', () => {
     size,
     className
   }: {
-    tooltip?: React.ReactNode;
+    tooltip?: ReactNode;
     size?: number;
     className?: string;
   }) {
@@ -21,9 +21,7 @@ describe('Component: InfoTooltip', () => {
       className
     };
 
-    const { container } = render(
-      <InfoTooltip {...props} />
-    );
+    const { container } = render(<InfoTooltip {...props} />);
 
     return { container };
   }

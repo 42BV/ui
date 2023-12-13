@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -10,9 +9,7 @@ describe('Component: LoadingPage', () => {
   function setup({ show, height }: { show: boolean; height?: number }) {
     jest.spyOn(ShowAfter, 'useShowAfter').mockReturnValue(show);
 
-    const { container } = render(
-      <LoadingPage height={height} />
-    );
+    const { container } = render(<LoadingPage height={height} />);
 
     return { container };
   }

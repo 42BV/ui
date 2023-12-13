@@ -1,4 +1,3 @@
-import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 import classNames from 'classnames';
 
@@ -11,6 +10,8 @@ import {
 import { Icon } from '../Icon';
 import { Select } from '../../form/Select/Select';
 import { t } from '../../utilities/translation/translation';
+
+import './EpicPagination.scss';
 
 type Text = {
   pageSizeDropdownLabel?: string;
@@ -135,8 +136,8 @@ export function EpicPagination<T>({
                   item >= 10000
                     ? 'scale-to-page-size-10000'
                     : item >= 1000
-                    ? 'scale-to-page-size-1000'
-                    : undefined
+                      ? 'scale-to-page-size-1000'
+                      : undefined
                 }
                 onClick={() => onChange(item)}
               >

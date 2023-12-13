@@ -5,7 +5,7 @@
     .epic-table-cell--odd {
       // Must be transparent otherwise the shadow of the left / right
       // columns are negated.
-      background-color: rgba($gray-400, 0.3);
+      background-color: rgba(var(--bs-gray-400), 0.3);
     }
   }
 
@@ -37,7 +37,7 @@
   }
 
   &-header {
-    background-color: map-get($theme-colors, primary);
+    background-color: var(--bs-primary);
     color: white;
     font-weight: bold;
     flex-grow: 1;
@@ -69,7 +69,7 @@
     &--hover {
       // Must be transparent otherwise the shadow of the left / right
       // columns are negated, important so it wins from the --odd
-      background-color: rgba($gray-400, 0.8) !important;
+      background-color: rgba(var(--bs-gray-400), 0.8) !important;
       cursor: pointer;
     }
   }

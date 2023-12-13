@@ -10,8 +10,6 @@
 }
 
 // Fix text alignment of badges within a flex container
-.d-flex {
-  .badge {
-    align-self: center;
-  }
+.d-flex .badge {
+  align-self: center;
 }

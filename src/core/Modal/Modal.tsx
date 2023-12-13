@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { ReactNode, Suspense } from 'react';
 import {
   Modal as ReactstrapModal,
   ModalBody,
@@ -17,12 +17,12 @@ type Props = {
   /**
    * Optionally the content of the modal header.
    */
-  header?: React.ReactNode;
+  header?: ReactNode;
 
   /**
    * Optionally the content of the modal footer.
    */
-  footer?: React.ReactNode;
+  footer?: ReactNode;
 
   /**
    * Optionally the size (width) of the modal.
@@ -72,7 +72,7 @@ type Props = {
   /**
    * The content of the modal body.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 /**

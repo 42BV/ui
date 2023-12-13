@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   act,
   fireEvent,
@@ -23,6 +22,7 @@ import {
 import * as testUtils from '../../test/utils';
 import AvatarEditor from 'react-avatar-editor';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
+import { ReactNode } from 'react';
 
 describe('Component: ImageUpload', () => {
   function setup({
@@ -42,7 +42,7 @@ describe('Component: ImageUpload', () => {
     cropType?: 'rect' | 'circle';
     text?: Text;
     hasLabel?: boolean;
-    label?: React.ReactNode;
+    label?: ReactNode;
     emptyLabel?: boolean;
     keepOriginalFileExtension?: boolean;
     mode?: Mode;

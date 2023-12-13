@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import { CardOpenClose } from '../CardOpenClose/CardOpenClose';
+import { CardOpenClose } from '../../card/CardOpenClose/CardOpenClose';
 
 type Props = {
   /**
@@ -37,7 +37,7 @@ type Props = {
  * ```
  */
 export function Debug({ value, defaultOpen = true }: Props) {
-  const [ isOpen, setIsOpen ] = useState(defaultOpen);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
     <CardOpenClose

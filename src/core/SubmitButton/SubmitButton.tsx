@@ -1,8 +1,7 @@
-import React from 'react';
-
 import { Button, ButtonSize } from '../Button/Button';
 import { IconType } from '../Icon';
 import { useScrollToClosestError } from './useScrollToClosestError';
+import { ReactNode } from 'react';
 
 export type Props = {
   /**
@@ -21,12 +20,12 @@ export type Props = {
   /**
    * Optional callback for what needs to happen when the button is clicked.
    */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => any;
+  onClick?: (event: MouseEvent<HTMLElement>) => any;
 
   /**
    * The text of the button.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /**
    * Whether the action you are performing is currently in
@@ -67,7 +66,7 @@ export function SubmitButton({
     enabled: scrollToClosestError
   });
 
-  function submitAndScrollToClosestError(event: React.MouseEvent<HTMLElement>) {
+  function submitAndScrollToClosestError(event: MouseEvent<HTMLElement>) {
     doScrollToClosestError();
 
     if (onClick) {

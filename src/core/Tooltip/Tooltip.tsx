@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import Tippy from '@tippyjs/react';
 import { TippyPlacement } from '../types';
 
@@ -8,12 +8,12 @@ type Props = {
    * The target(children) of the tooltip are wrapped into a div.
    * This is a bypass to not have to forward the ref to the DOM node.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * Content shown inside the tooltip.
    */
-  content: React.ReactNode;
+  content: ReactNode;
 
   /**
    * Optional alignment relative to the target where the tooltip will be shown.
@@ -86,11 +86,16 @@ export function Tooltip({
       className="border-0"
       content={content}
       placement={placement}
-      offset={[ offset, distance ]}
+      offset={[offset, distance]}
       interactive={interactive}
       maxWidth={maxWidth}
     >
-      <Tag className={className} style={{ outline: 0, ...style }} tabIndex={0} role="button">
+      <Tag
+        className={className}
+        style={{ outline: 0, ...style }}
+        tabIndex={0}
+        role="button"
+      >
         {children}
       </Tag>
     </Tippy>

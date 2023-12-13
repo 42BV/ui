@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -38,9 +37,7 @@ describe('Component: SearchInput', () => {
       children: withChildren ? () => <h1>Children</h1> : undefined
     };
 
-    const { container } = render(
-      <SearchInput {...props} />
-    );
+    const { container } = render(<SearchInput {...props} />);
 
     return { container, onChangeSpy };
   }
@@ -97,17 +94,21 @@ describe('Component: SearchInput', () => {
   describe('events', () => {
     it('should debounce by 500 by default', () => {
       // @ts-expect-error Test mock
-      const debounceSpy = jest.spyOn(lodash, 'debounce').mockImplementation((fn, debounce) => {
-        expect(debounce).toBe(500);
-        return fn;
-      });
+      const debounceSpy = jest
+        .spyOn(lodash, 'debounce')
+        .mockImplementation((fn, debounce) => {
+          expect(debounce).toBe(500);
+          return fn;
+        });
 
       const { onChangeSpy } = setup({
         showIcon: true,
         showLabel: true
       });
 
-      fireEvent.change(screen.getByLabelText('Search'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByLabelText('Search'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith('Maarten');
@@ -119,10 +120,12 @@ describe('Component: SearchInput', () => {
 
     it('should be able to debounce with a custom value', () => {
       // @ts-expect-error Test mock
-      const debounceSpy = jest.spyOn(lodash, 'debounce').mockImplementation((fn, debounce) => {
-        expect(debounce).toBe(10);
-        return fn;
-      });
+      const debounceSpy = jest
+        .spyOn(lodash, 'debounce')
+        .mockImplementation((fn, debounce) => {
+          expect(debounce).toBe(10);
+          return fn;
+        });
 
       const { onChangeSpy } = setup({
         showIcon: true,
@@ -130,7 +133,9 @@ describe('Component: SearchInput', () => {
         debounce: 10
       });
 
-      fireEvent.change(screen.getByLabelText('Search'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByLabelText('Search'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(onChangeSpy).toBeCalledTimes(1);
       expect(onChangeSpy).toBeCalledWith('Maarten');
@@ -150,7 +155,9 @@ describe('Component: SearchInput', () => {
         debounceSettings
       });
 
-      fireEvent.change(screen.getByLabelText('Search'), { target: { value: 'M' } });
+      fireEvent.change(screen.getByLabelText('Search'), {
+        target: { value: 'M' }
+      });
 
       // Trailing will cause the first character to go through immediately
       expect(onChangeSpy).toBeCalledTimes(1);
@@ -213,7 +220,9 @@ describe('Component: SearchInput', () => {
           showLabel: true
         });
 
-        fireEvent.change(screen.getByLabelText('Search'), { target: { value: 'Maarten' } });
+        fireEvent.change(screen.getByLabelText('Search'), {
+          target: { value: 'Maarten' }
+        });
 
         expect(onChangeSpy).toBeCalledTimes(1);
         expect(onChangeSpy).toBeCalledWith('Maarten');
@@ -230,7 +239,10 @@ describe('Component: SearchInput', () => {
           showLabel: true
         });
 
-        fireEvent.keyUp(screen.getByLabelText('Search'), { key: 'a', currentTarget: { value: 'Maarten' } });
+        fireEvent.keyUp(screen.getByLabelText('Search'), {
+          key: 'a',
+          currentTarget: { value: 'Maarten' }
+        });
 
         expect(onChangeSpy).toBeCalledTimes(0);
       });

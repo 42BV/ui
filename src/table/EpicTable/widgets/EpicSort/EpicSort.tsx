@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Icon, IconType } from '../../../../core/Icon';
 import { EpicTableSortDirection } from '../../types';
 import { nextDirection } from './utils';

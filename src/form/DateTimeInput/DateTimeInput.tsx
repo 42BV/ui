@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FormGroup, Input, InputGroup, Label } from 'reactstrap';
 import ReactDatetimeClass from 'react-datetime';
 import { constant, get, uniqueId } from 'lodash';
 import moment, { Moment } from 'moment';
 import classNames from 'classnames';
-import MaskedInput from 'react-text-mask';
+import MaskedInput, { MaskedInputProps } from 'react-text-mask';
 
 import { DateFormat, TimeFormat } from './types';
 
@@ -20,6 +20,8 @@ import { withField } from '../withField/withField';
 import { Button } from '../../core/Button/Button';
 import { Icon } from '../../core/Icon';
 import { MomentInput } from 'moment/moment';
+
+import './DateTimeInput.scss';
 
 // istanbul ignore next
 // @ts-expect-error This is only a temporary hacky fix for rollup related issues https://github.com/arqex/react-datetime/issues/843
@@ -164,7 +166,7 @@ export function DateTimeInput(props: Props) {
             hiddenLabel && typeof label === 'string' ? label : undefined
         }}
         open={mode === 'modal' ? false : undefined}
-        renderInput={(inputProps) =>
+        renderInput={(inputProps: MaskedInputProps) =>
           mode === 'modal'
             ? maskedInputGroup(inputProps, () => setIsModalOpen(true))
             : maskedInput(inputProps)
@@ -202,14 +204,11 @@ export function DateTimeInput(props: Props) {
   );
 }
 
-export function maskedInput(props: Record<string, unknown>) {
+export function maskedInput(props: MaskedInputProps) {
   return <MaskedInput {...props} render={reactStrapInput} />;
 }
 
-export function maskedInputGroup(
-  props: Record<string, unknown>,
-  onClick: () => void
-) {
+export function maskedInputGroup(props: MaskedInputProps, onClick: () => void) {
   return (
     <InputGroup>
       <MaskedInput {...props} render={reactStrapInput} />

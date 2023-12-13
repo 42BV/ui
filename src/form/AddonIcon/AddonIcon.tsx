@@ -1,4 +1,3 @@
-import React from 'react';
 import { Icon, IconType } from '../../core/Icon';
 
 import { InputGroupText } from 'reactstrap';

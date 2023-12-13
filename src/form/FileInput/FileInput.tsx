@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { get, noop, uniqueId } from 'lodash';
 import { FieldValidator } from 'final-form';
 
@@ -39,7 +39,7 @@ export function FileInput(props: Props) {
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function onChange(event: ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
 
     /* istanbul ignore else */
@@ -52,7 +52,7 @@ export function FileInput(props: Props) {
     }
   }
 
-  function onClick(event: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+  function onClick(event: MouseEvent<HTMLInputElement, MouseEvent>) {
     // The 'delete' button is clicked in this case.
     if (value) {
       event.preventDefault();
@@ -68,30 +68,28 @@ export function FileInput(props: Props) {
     // The input should now trigger the browsers file dialog
   }
 
-
   const name = get(value, 'name', '');
   const inputProps = {
     placeholder,
     value: name,
     invalid: valid === false ? true : undefined,
-    onChange: () => console.error('The placeholder input of FileInput should not be changeable'),
-    'aria-label': 'This is a placeholder input that should not be reachable. Use the file input instead.',
+    onChange: () =>
+      console.error(
+        'The placeholder input of FileInput should not be changeable'
+      ),
+    'aria-label':
+      'This is a placeholder input that should not be reachable. Use the file input instead.',
     tabIndex: -1
   };
 
   return (
-    <FormGroup className={`file-upload ${className}`} color={color}>
-      {!hiddenLabel || typeof label !== 'string' ? <Label for={id}>{label}</Label> : null}
-      <input
-        id={id}
-        accept={accept}
-        ref={inputRef}
-        type="file"
-        onClick={onClick}
-        onChange={onChange}
-        onFocus={onFocus}
-        aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
-      />
+    <FormGroup
+      className={`file-upload position-relative ${className}`}
+      color={color}
+    >
+      {!hiddenLabel || typeof label !== 'string' ? (
+        <Label for={id}>{label}</Label>
+      ) : null}
 
       <InputGroup>
         <Input {...inputProps} />
@@ -104,6 +102,20 @@ export function FileInput(props: Props) {
       </InputGroup>
 
       {error}
+
+      <input
+        id={id}
+        accept={accept}
+        ref={inputRef}
+        type="file"
+        onClick={onClick}
+        onChange={onChange}
+        onFocus={onFocus}
+        aria-label={
+          hiddenLabel && typeof label === 'string' ? label : undefined
+        }
+        className="position-absolute w-100 h-100 top-0 start-0 opacity-0 clickable"
+      />
     </FormGroup>
   );
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -16,7 +15,9 @@ describe('Component: Tooltip', () => {
         </Tooltip>
       );
 
-      await userEvent.hover(screen.getByText('The tooltip should be wrapped around this'));
+      await userEvent.hover(
+        screen.getByText('The tooltip should be wrapped around this')
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -39,7 +40,9 @@ describe('Component: Tooltip', () => {
         </Tooltip>
       );
 
-      await userEvent.hover(screen.getByText('The tooltip should be wrapped around this'));
+      await userEvent.hover(
+        screen.getByText('The tooltip should be wrapped around this')
+      );
 
       expect(screen.getByText('Tooltip content').nodeName).toBe('SPAN');
     });
@@ -62,7 +65,11 @@ describe('Component: Tooltip', () => {
           The tooltip should be wrapped around this
         </Tooltip>
       );
-      expect(container.firstChild).toHaveStyle({ marginTop: '5px', padding: '10px', outline: 0 });
+      expect(container.firstChild).toHaveStyle({
+        marginTop: '5px',
+        padding: '10px',
+        outline: 0
+      });
     });
 
     test('with style, override outline', () => {

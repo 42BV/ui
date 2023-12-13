@@ -1,9 +1,11 @@
-import React, { ReactElement, Suspense } from 'react';
+import { ReactElement, Suspense } from 'react';
 import { Nav } from 'reactstrap';
 import { Tab } from './Tab/Tab';
 import classNames from 'classnames';
 import { LoadingPage } from '../LoadingPage/LoadingPage';
 import { TabContent } from './TabContent/TabContent';
+
+import './Tabs.scss';
 
 type Props = {
   children: (React.ReactElement | null)[];

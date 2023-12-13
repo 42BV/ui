@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import {
@@ -13,7 +13,11 @@ import {
   ReloadOptionsInfo
 } from '../../../story-utils';
 
-import { FieldTypeaheadMultiple, JarbTypeaheadMultiple, TypeaheadMultiple } from './TypeaheadMultiple';
+import {
+  FieldTypeaheadMultiple,
+  JarbTypeaheadMultiple,
+  TypeaheadMultiple
+} from './TypeaheadMultiple';
 import { Card, Icon, isTypeaheadCustomOption, Tooltip } from '../../..';
 import { Toggle } from '../../../core/Toggle/Toggle';
 import { Alert } from 'reactstrap';
@@ -23,16 +27,23 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use TypeaheadMultiple, you have to add react-bootstrap-typeahead to your dependencies:</p>
+        <p className="mb-0">
+          To be able to use TypeaheadMultiple, you have to add
+          react-bootstrap-typeahead to your dependencies:
+        </p>
         <code>npm install --save react-bootstrap-typeahead</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
-        <code>@import &apos;react-bootstrap-typeahead/css/Typeahead.css&apos;;</code>
+        <p className="mb-0 mt-2">
+          You also have to add the stylesheet to your project
+        </p>
+        <code>
+          @import &apos;react-bootstrap-typeahead/css/Typeahead.css&apos;;
+        </code>
       </Alert>
       <Story />
     </>
   ))
   .add('predefined options', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -58,7 +69,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('async options', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -85,7 +96,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
   })
 
   .add('async options - limited pageSize', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -117,7 +128,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('disabled options', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -144,7 +155,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       provinces()[0]
     ]);
 
@@ -173,8 +184,8 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [ limitToNorthern, setLimitToNorthern ] = useState(false);
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [limitToNorthern, setLimitToNorthern] = useState(false);
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 
@@ -215,7 +226,7 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
     );
   })
   .add('allow new', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([]);
+    const [value, setValue] = useState<Province[] | undefined>([]);
 
     return (
       <Card className="m-2">
@@ -229,7 +240,11 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
           onChange={(selectedProvinces) => {
             setValue(
               selectedProvinces
-                ? selectedProvinces.map(p => isTypeaheadCustomOption(p) ? {id: -1, label: p.label, value: p.label, north: false} : p)
+                ? selectedProvinces.map((p) =>
+                    isTypeaheadCustomOption(p)
+                      ? { id: -1, label: p.label, value: p.label, north: false }
+                      : p
+                  )
                 : undefined
             );
           }}
@@ -244,15 +259,15 @@ storiesOf('Form/Typeahead/TypeaheadMultiple', module)
         ) : null}
 
         <p>
-          Whenever <code>allowNew</code> is <code>true</code>, the value you
-          get in onChange might contain a TypeaheadCustomOption. You have to
-          convert this option to a type you can work with yourself.
+          Whenever <code>allowNew</code> is <code>true</code>, the value you get
+          in onChange might contain a TypeaheadCustomOption. You have to convert
+          this option to a type you can work with yourself.
         </p>
       </Card>
     );
   })
   .add('label & placeholder', () => {
-    const [ value, setValue ] = useState<Province[] | undefined>([
+    const [value, setValue] = useState<Province[] | undefined>([
       nonExistingProvince()
     ]);
 

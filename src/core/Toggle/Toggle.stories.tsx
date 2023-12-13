@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -7,14 +7,14 @@ import { Toggle } from './Toggle';
 storiesOf('Core/Toggle', module)
   .addParameters({ component: Toggle })
   .add('basic', () => {
-    const [ primary, setPrimary ] = useState(true);
-    const [ secondary, setSecondary ] = useState(true);
-    const [ info, setInfo ] = useState(true);
-    const [ success, setSuccess ] = useState(true);
-    const [ warning, setWarning ] = useState(true);
-    const [ danger, setDanger ] = useState(true);
-    const [ light, setLight ] = useState(true);
-    const [ dark, setDark ] = useState(true);
+    const [primary, setPrimary] = useState(true);
+    const [secondary, setSecondary] = useState(true);
+    const [info, setInfo] = useState(true);
+    const [success, setSuccess] = useState(true);
+    const [warning, setWarning] = useState(true);
+    const [danger, setDanger] = useState(true);
+    const [light, setLight] = useState(true);
+    const [dark, setDark] = useState(true);
 
     return (
       <div className="text-center">

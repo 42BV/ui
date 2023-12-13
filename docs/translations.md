@@ -204,11 +204,6 @@ Here is a JSON notation containing all keys and default translations:
   "TypeaheadMultiple": {
     "PAGINATION_TEXT": "Display additional results..."
   },
-  "ErrorBoundary": {
-    "ERROR": {
-      "TITLE": "Oops something went wrong!"
-    }
-  },
   "CopyToClipboard": {
     "COPIED": "Copied!"
   },
@@ -219,6 +214,9 @@ Here is a JSON notation containing all keys and default translations:
     "PAGE_SIZE_DROPDOWN_LABEL": "Select page size",
     "PAGE_SIZE": "{{pageSize}} items per page",
     "TOTAL_ELEMENTS": "{{totalElements}} records found"
+  },
+  "Card": {
+    "ERROR": "Oops, something went wrong!"
   }
 }
 ```

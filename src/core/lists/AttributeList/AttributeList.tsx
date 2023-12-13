@@ -1,12 +1,12 @@
-import React from 'react';
 import { ListGroup } from 'reactstrap';
+import { ReactNode } from 'react';
 
 type Props = {
   /**
    * The content of the list.
    * This should be a combination of AttributeView components.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * Optional extra CSS class you want to add to the component.

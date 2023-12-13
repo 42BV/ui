@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormFeedback } from 'reactstrap';
 import { useErrorsForValidator } from '@42.nl/react-error-store';
 
@@ -7,6 +6,8 @@ import { errorMessage } from './utils';
 import { useSettledErrors } from './useSettledErrors';
 import { useOnChange } from './useOnChange';
 import { FormErrorOnChange } from './types';
+
+import './FormError.scss';
 
 type Props = {
   /**
@@ -18,6 +19,11 @@ type Props = {
    * The meta-object to render the errors for.
    */
   meta: Meta;
+
+  /**
+   * The name of the field to render the errors for.
+   */
+  name: string;
 
   /**
    * The validator for which the FormError should render back-end errors.
@@ -46,10 +52,16 @@ type Props = {
  *
  * To retrieve back-end errors, we use `@42.nl/react-error-store`.
  */
-export function FormError(props: Props) {
-  const { value, meta, validator, onChange, className } = props;
+export function FormError({
+  value,
+  meta,
+  name,
+  validator,
+  onChange,
+  className
+}: Props) {
   const backEndErrors = useErrorsForValidator(validator ?? '');
-  const frontEndErrors = useSettledErrors(meta, value);
+  const frontEndErrors = useSettledErrors(meta, name, value);
 
   const hasErrors = backEndErrors.length > 0 || frontEndErrors.length > 0;
 
@@ -62,11 +74,15 @@ export function FormError(props: Props) {
   return (
     <div className={className}>
       {frontEndErrors.map((e: MetaError, index: number) => (
-        <FormFeedback key={`${index}`}>{errorMessage(e)}</FormFeedback>
+        <FormFeedback key={`${index}`} className="d-block">
+          {errorMessage(e)}
+        </FormFeedback>
       ))}
 
       {backEndErrors.map((e: string) => (
-        <FormFeedback key={e}>{errorMessage(e)}</FormFeedback>
+        <FormFeedback key={e} className="d-block">
+          {errorMessage(e)}
+        </FormFeedback>
       ))}
     </div>
   );

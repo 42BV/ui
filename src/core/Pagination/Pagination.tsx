@@ -1,4 +1,3 @@
-import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 
 import {
@@ -12,6 +11,8 @@ import { range } from 'lodash';
 import { Select } from '../../form/Select/Select';
 import { t } from '../../utilities/translation/translation';
 import classNames from 'classnames';
+
+import './Pagination.scss';
 
 type Text = {
   pageSizeDropdownLabel?: string;

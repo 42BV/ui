@@ -29,10 +29,10 @@
   }
 
   .img-upload-wrapper {
-    @extend .text-center;
+    border: 0.625rem dashed var(--bs-gray-400);
     padding-top: 3rem;
     padding-bottom: 3rem;
-    border: 0.625rem dashed var(--bs-gray-400);
+    text-align: center;
 
     > i {
       font-size: 5rem;

@@ -1,7 +1,9 @@
-import React from 'react';
 import classNames from 'classnames';
 import { Form, FormProps } from 'react-final-form';
 import { AutoSave } from '../../../../form/AutoSave/AutoSave';
+
+import './EpicForm.scss';
+import { ReactNode } from 'react';
 
 interface Props<FormValues> extends FormProps<FormValues> {
   /**
@@ -12,7 +14,7 @@ interface Props<FormValues> extends FormProps<FormValues> {
   /**
    * The content of the cell.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The width of the cell.
@@ -35,7 +37,8 @@ interface Props<FormValues> extends FormProps<FormValues> {
  * allow forms to be used inside an EpicRow.
  */
 export function EpicForm<FormValues>(props: Props<FormValues>) {
-  const { id, children, width, height, submitOnChange, odd, ...formProps } = props;
+  const { id, children, width, height, submitOnChange, odd, ...formProps } =
+    props;
 
   const classes = classNames('epic-table-form border-bottom p-1', {
     'epic-table-form--odd': odd

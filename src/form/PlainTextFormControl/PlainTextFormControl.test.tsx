@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -50,7 +49,9 @@ describe('Component: PlainTextFormControl', () => {
       setup({
         valueClassName: 'value-class-name'
       });
-      expect(screen.getByText('This is your name')).toHaveClass('value-class-name');
+      expect(screen.getByText('This is your name')).toHaveClass(
+        'value-class-name'
+      );
     });
   });
 });

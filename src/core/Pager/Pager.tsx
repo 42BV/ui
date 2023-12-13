@@ -1,4 +1,3 @@
-import React from 'react';
 import { Page } from '@42.nl/spring-connect';
 import classNames from 'classnames';
 
@@ -50,12 +49,7 @@ type Props<T> = {
  *
  * It supports working with a `Page` from `@42.nl/spring-connect`.
  */
-export function Pager<T>({
-  page,
-  onChange,
-  className,
-  text = {}
-}: Props<T>) {
+export function Pager<T>({ page, onChange, className, text = {} }: Props<T>) {
   const { first, last } = page;
   const { next, previous } = text;
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from 'reactstrap';
 import { ModalPickerButtonAlignment } from '../types';
 import classNames from 'classnames';
@@ -7,6 +6,7 @@ import { TextButton } from '../../../core/TextButton/TextButton';
 import { ModalPickerSingleRenderValue } from '../single/ModalPickerSingle';
 import { ModalPickerMultipleRenderValues } from '../multiple/ModalPickerMultiple';
 import { Icon, IconType } from '../../../core/Icon';
+import { ReactNode } from 'react';
 
 type Text = {
   clear?: string;
@@ -21,7 +21,7 @@ type BaseProps = {
   /**
    * The label to display on the button.
    */
-  label: React.ReactNode;
+  label: ReactNode;
 
   /**
    * Optionally the icon to display on the button.

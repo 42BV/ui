@@ -4,27 +4,27 @@
 // Therefore, there are a ton of stories for e2e testing instead. So
 // that is why the EpicTable is ignored by istanbul.
 
-import React, { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import { debounce } from 'lodash';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import type { OverlayScrollbars } from "overlayscrollbars";
+import type { OverlayScrollbars } from 'overlayscrollbars';
 
 type Props = {
   /**
    * What comes left of the GooeyCenter.
    */
-  left: React.ReactNode;
+  left: ReactNode;
 
   /**
    * The GooeyCenter a scrollbar will appear for the center when
    * it is too large to render on the screen.
    */
-  center?: React.ReactNode;
+  center?: ReactNode;
 
   /**
    * What comes right of the GooeyCenter.
    */
-  right?: React.ReactNode;
+  right?: ReactNode;
 
   /**
    * Optional callback which gives the current left scroll position
@@ -76,7 +76,7 @@ export function GooeyCenter({
   const wrapperEl = useRef<HTMLDivElement>(null);
   const centerEl = useRef<HTMLDivElement>(null);
 
-  const [ centerWidth, setCenterWidth ] = useState(0);
+  const [centerWidth, setCenterWidth] = useState(0);
 
   useEffect(
     function trackCenterWidthBasedOnResize() {
@@ -109,7 +109,7 @@ export function GooeyCenter({
         window.removeEventListener('resizeEpicTables', calculateCenterWidth);
       };
     },
-    [ setCenterWidth, onCenterWidthChanged, left, center, right ]
+    [setCenterWidth, onCenterWidthChanged, left, center, right]
   );
 
   function handleScroll(instance: OverlayScrollbars, event: Event) {

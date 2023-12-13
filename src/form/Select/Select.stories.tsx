@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { FieldSelect, JarbSelect, Select } from './Select';
@@ -15,7 +15,7 @@ import {
   ReloadOptionsInfo,
   resolveAfter
 } from '../../story-utils';
-import { Card } from '../../core/Card/Card';
+import { Card } from '../../card/Card/Card';
 import { pageOf } from '../../utilities/page/page';
 import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { Icon } from '../../core/Icon';
@@ -23,7 +23,7 @@ import { Icon } from '../../core/Icon';
 storiesOf('Form/Select', module)
   .addParameters({ component: Select })
   .add('predefined options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -44,7 +44,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('async options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -69,7 +69,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('disabled options', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 
@@ -91,7 +91,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('custom isOptionEqual', () => {
-    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -113,7 +113,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('custom keyForOption', () => {
-    const [ value, setValue ] = useState<Province | undefined>(provinces()[0]);
+    const [value, setValue] = useState<Province | undefined>(provinces()[0]);
 
     return (
       <Card className="m-2">
@@ -135,13 +135,15 @@ storiesOf('Form/Select', module)
     );
   })
   .add('using reloadOptions', () => {
-    const [ brand, setBrand ] = useState<string>();
-    const [ model, setModel ] = useState<string>();
+    const brands = ['Audi', 'BMW', 'Mercedes'];
+    type Brand = (typeof brands)[number];
+    const [brand, setBrand] = useState<Brand | undefined>();
+    const [model, setModel] = useState<string>();
 
-    const allOptions = {
-      Audi: [ 'A1', 'A2', 'A3', 'M5' ],
-      BMW: [ 'series 1', 'series 2', 'series 3', 'series 4', 'series 5' ],
-      Mercedes: [ 'Viano', 'Vito', 'Sprinter' ]
+    const allOptions: { [key in Brand]: string[] } = {
+      Audi: ['A1', 'A2', 'A3', 'M5'],
+      BMW: ['series 1', 'series 2', 'series 3', 'series 4', 'series 5'],
+      Mercedes: ['Viano', 'Vito', 'Sprinter']
     };
 
     return (
@@ -150,7 +152,7 @@ storiesOf('Form/Select', module)
           id="brand"
           label="Brand"
           placeholder="Please select your brand"
-          options={() => resolveAfter(pageOf(Object.keys(allOptions), 1))}
+          options={() => resolveAfter(pageOf(brands, 1))}
           labelForOption={(option) => option}
           onChange={(value) => {
             setBrand(value);
@@ -181,7 +183,7 @@ storiesOf('Form/Select', module)
     );
   })
   .add('label & placeholder', () => {
-    const [ value, setValue ] = useState<Province | undefined>(
+    const [value, setValue] = useState<Province | undefined>(
       nonExistingProvince()
     );
 

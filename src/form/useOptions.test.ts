@@ -665,8 +665,8 @@ describe('useOptions', () => {
       const config = {
         options: fetcher,
         value: undefined,
-        labelForOption: (option) => option.label,
-        isOptionEqual: (a, b) => a.id === b.id,
+        labelForOption: (option: Option) => option.label,
+        isOptionEqual: (a: Option, b: Option) => a.id === b.id,
         query: '',
         pageNumber: 1,
         size: 2,
@@ -1258,8 +1258,8 @@ describe('useOptions', () => {
         const config = {
           options: fetcher,
           value: { id: 1337, label: '1337' },
-          labelForOption: (option) => option.label,
-          isOptionEqual: (a, b) => a.id === b.id,
+          labelForOption: (option: Option) => option.label,
+          isOptionEqual: (a: Option, b: Option) => a.id === b.id,
           query: '',
           pageNumber: 1,
           size: 2,
@@ -1304,8 +1304,8 @@ describe('useOptions', () => {
         const config = {
           options: fetcher,
           value: undefined,
-          labelForOption: (option) => option.label,
-          isOptionEqual: (a, b) => a.id === b.id,
+          labelForOption: (option: Option) => option.label,
+          isOptionEqual: (a: Option, b: Option) => a.id === b.id,
           query: '',
           pageNumber: 1,
           size: 2,
@@ -1350,8 +1350,8 @@ describe('useOptions', () => {
         const config = {
           options: fetcher,
           value: { id: 1, label: '1' },
-          labelForOption: (option) => option.label,
-          isOptionEqual: (a, b) => a.id === b.id,
+          labelForOption: (option: Option) => option.label,
+          isOptionEqual: (a: Option, b: Option) => a.id === b.id,
           query: '',
           pageNumber: 1,
           size: 2,
@@ -1396,8 +1396,8 @@ describe('useOptions', () => {
         const config = {
           options: fetcher,
           value: { id: 1337, label: '1337' },
-          labelForOption: (option) => option.label,
-          isOptionEqual: (a, b) => a.id === b.id,
+          labelForOption: (option: Option) => option.label,
+          isOptionEqual: (a: Option, b: Option) => a.id === b.id,
           query: '',
           pageNumber: 1,
           size: 2,
@@ -1448,8 +1448,8 @@ describe('useOptions', () => {
             { id: 4242, label: '4242' }, // Should be added
             { id: 2, label: '2' } // Should not be added again
           ],
-          labelForOption: (option) => option.label,
-          isOptionEqual: (a, b) => a.id === b.id,
+          labelForOption: (option: Option) => option.label,
+          isOptionEqual: (a: Option, b: Option) => a.id === b.id,
           query: '',
           pageNumber: 1,
           size: 2,

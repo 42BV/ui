@@ -1,46 +1,17 @@
 // Variables
 @import './styling/variables';
-@import './styling/mixins';
 
 // Abstract styles
 @import './styling/bootstrap';
-@import './styling/icons';
 @import './styling/typography';
 @import './styling/form';
-@import './styling/dropdowns';
 
-// Core components
-@import './core/Avatar/Avatar';
-@import './core/Button/Button';
-@import './core/ContentState/ContentState';
-@import './core/FlashMessage/FlashMessage';
-@import './core/Icon/Icon';
-@import './core/InfoBadge/InfoBadge';
-@import './core/LoadingPage/LoadingPage';
-@import './core/MoreOrLess/MoreOrLess';
-@import './core/NavigationItem/NavigationItem';
-@import './core/Pagination/Pagination';
-@import './core/EpicPagination/EpicPagination';
-@import './core/ProgressStepper/ProgressStepper';
-@import './core/Spinner/Spinner';
-@import './core/Tag/Tag';
-@import './core/Popover/Popover';
-@import './core/Toggle/Toggle';
-@import './core/OpenClose/OpenClose';
-@import './core/SearchInput/SearchInput';
-@import './core/Tabs/Tabs';
-
-// Form components
-@import './form/ImageUpload/ImageUpload';
-@import './form/DateTimeInput/DateTimeInput';
-@import './form/FileInput/FileInput';
-@import './form/FormError/FormError';
-@import './form/TextEditor/TextEditor';
-@import './form/Typeahead/Typeahead';
-@import './form/ColorPicker/ColorPicker';
-@import './form/RadioGroup/RadioGroup';
-@import './form/NewPasswordInput/NewPasswordInput';
-
-// Table
-@import './table/EpicTable/EpicTable';
-@import './table/EpicTable/cells/EpicForm/EpicForm';
+.flash-message {
+  @each $color, $value in $theme-colors {
+    &.alert-#{"" + $color} {
+      background: $value;
+      border-color: $value;
+      color: color-contrast($value);
+    }
+  }
+}

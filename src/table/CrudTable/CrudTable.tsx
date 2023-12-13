@@ -1,9 +1,9 @@
-import React from 'react';
 import { SearchInput } from '../../core/SearchInput/SearchInput';
 import { EpicTable } from '../EpicTable/EpicTable';
 import { Pagination } from '../../core/Pagination/Pagination';
 import { Page } from '@42.nl/spring-connect';
 import { t } from '../../utilities/translation/translation';
+import { ReactNode } from 'react';
 
 type Text = {
   searchLabel?: string;
@@ -65,7 +65,7 @@ type Props = {
   /**
    * The content of the table.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 /**
@@ -112,9 +112,7 @@ export function CrudTable(props: Props) {
 
       {renderSelection ? renderSelection() : null}
 
-      <EpicTable minHeight={400}>
-        {children}
-      </EpicTable>
+      <EpicTable minHeight={400}>{children}</EpicTable>
 
       {page && pageChanged ? (
         <div className="d-flex justify-content-center">

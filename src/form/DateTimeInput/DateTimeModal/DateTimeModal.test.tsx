@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -7,7 +6,7 @@ import { DateTimeModal } from './DateTimeModal';
 import moment from 'moment';
 
 describe('Component: DateTimeModal', () => {
-  let console;
+  let console: Console;
 
   afterEach(() => {
     global.console = console;
@@ -49,17 +48,19 @@ describe('Component: DateTimeModal', () => {
     test('without value', () => {
       setup({});
       const today = new Date();
-      expect(screen.getAllByText(today.getDate()).map((e) => e.className)).toContain('rdtDay rdtToday');
+      expect(
+        screen.getAllByText(today.getDate()).map((e) => e.className)
+      ).toContain('rdtDay rdtToday');
     });
   });
 
   describe('events', () => {
     it('should update internal value when a date is selected', () => {
       const setValueSpy = jest.fn();
-      jest.spyOn(React, 'useState').mockReturnValue([ '', setValueSpy ]);
+      jest.spyOn(React, 'useState').mockReturnValue(['', setValueSpy]);
       setup({});
 
-      const value = moment(new Date).startOf('month');
+      const value = moment(new Date()).startOf('month');
 
       fireEvent.click(screen.getAllByText('1')[0]);
 
@@ -89,7 +90,7 @@ describe('Component: DateTimeModal', () => {
     it('should close modal with new value when clicking select button', () => {
       const { onCloseSpy, onSaveSpy } = setup({});
 
-      const value = moment(new Date).startOf('month');
+      const value = moment(new Date()).startOf('month');
 
       fireEvent.click(screen.getAllByText('1')[0]);
       fireEvent.click(screen.getByText('save'));
@@ -101,7 +102,9 @@ describe('Component: DateTimeModal', () => {
     });
 
     test('is date allowed', () => {
-      const isDateAllowedSpy = jest.fn().mockImplementation((date) => date.isBefore(new Date()));
+      const isDateAllowedSpy = jest
+        .fn()
+        .mockImplementation((date) => date.isBefore(new Date()));
 
       render(
         <DateTimeModal

@@ -1,7 +1,7 @@
-import React from 'react';
 import { t } from '../../utilities/translation/translation';
 import { Modal } from '../Modal/Modal';
 import { Button } from '../Button/Button';
+import { ReactNode } from 'react';
 
 type Props = {
   /**
@@ -39,7 +39,7 @@ type Props = {
   /**
    * Text which is rendered inside the modal
    */
-  modalText: React.ReactNode;
+  modalText: ReactNode;
 
   /**
    * Optional extra CSS class you want to add to the component.

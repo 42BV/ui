@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef, useState } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 import { FormGroup, Label } from 'reactstrap';
 import classNames from 'classnames';
 
@@ -14,7 +14,7 @@ import { Tooltip } from '../../core/Tooltip/Tooltip';
 import { TextButton } from '../../core/TextButton/TextButton';
 import { FieldCompatible } from '../types';
 import Tippy from '@tippyjs/react';
-import { Card } from '../../core/Card/Card';
+import { Card } from '../../card/Card/Card';
 import { withField } from '../withField/withField';
 
 type Text = {
@@ -87,9 +87,9 @@ export function IconPicker(props: Props) {
     canClear = true
   } = props;
 
-  const [ isOpen, setIsOpen ] = useState(false);
-  const [ pageNumber, setPageNumber ] = useState(1);
-  const [ query, setQuery ] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [query, setQuery] = useState('');
 
   const filteredIcons = icons.filter((icon) =>
     icon.toLowerCase().startsWith(query.toLowerCase())
@@ -127,7 +127,8 @@ export function IconPicker(props: Props) {
         fallback: 'Search...',
         overrideText: text.searchPlaceholder
       })}
-      hiddenLabel={true}>
+      hiddenLabel={true}
+    >
       {(searchInput, searchInputApi) => (
         <FormGroup className={classes} color={color}>
           {!hiddenLabel ? <Label>{label}</Label> : null}
@@ -141,10 +142,7 @@ export function IconPicker(props: Props) {
                   icon={value}
                 />
                 {canClear ? (
-                  <TextButton
-                    onClick={() => onIconSelected()}
-                    className="me-3"
-                  >
+                  <TextButton onClick={() => onIconSelected()} className="me-3">
                     {t({
                       key: 'IconPicker.CLEAR',
                       fallback: 'Clear',
@@ -158,29 +156,31 @@ export function IconPicker(props: Props) {
               visible={isOpen}
               className="border-0 tippy-popover"
               placement="bottom"
-              offset={[ 0, 7 ]}
+              offset={[0, 7]}
               interactive={true}
               zIndex={1049} // One level below bootstrap's modal
-              content={(
+              content={
                 <Card
                   header={searchInput}
-                  footer={iconsPage.totalPages > 1 ? (
-                    <Pager page={iconsPage} onChange={setPageNumber} />
-                  ) : undefined}
+                  footer={
+                    iconsPage.totalPages > 1 ? (
+                      <Pager page={iconsPage} onChange={setPageNumber} />
+                    ) : undefined
+                  }
                   cardFooterClassName="bg-white"
                 >
                   <div style={{ width: 240, height: 240, margin: 'auto' }}>
                     {!isEmpty ? (
                       iconsPage.content.map((icon) => (
                         <span key={icon} className="d-inline-block">
-                        <Tooltip placement="top" distance={18} content={icon}>
-                          <Icon
-                            className="m-2"
-                            icon={icon}
-                            onClick={() => onIconSelected(icon)}
-                          />
-                        </Tooltip>
-                      </span>
+                          <Tooltip placement="top" distance={18} content={icon}>
+                            <Icon
+                              className="m-2"
+                              icon={icon}
+                              onClick={() => onIconSelected(icon)}
+                            />
+                          </Tooltip>
+                        </span>
                       ))
                     ) : (
                       <ContentState
@@ -200,7 +200,7 @@ export function IconPicker(props: Props) {
                     )}
                   </div>
                 </Card>
-              )}
+              }
             >
               <IconPickerButtonRef
                 onClick={() => {
@@ -229,7 +229,10 @@ type ButtonProps = {
   placeholder?: string;
 };
 
-function IconPickerButton({ onClick, icon, placeholder }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
+function IconPickerButton(
+  { onClick, icon, placeholder }: ButtonProps,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
   return (
     <button
       type="button"
@@ -237,9 +240,7 @@ function IconPickerButton({ onClick, icon, placeholder }: ButtonProps, ref: Forw
       onClick={onClick}
       ref={ref}
     >
-      {icon ? (
-        <Icon icon={icon} className="me-2 align-bottom" />
-      ) : null}
+      {icon ? <Icon icon={icon} className="me-2 align-bottom" /> : null}
       {placeholder}
     </button>
   );

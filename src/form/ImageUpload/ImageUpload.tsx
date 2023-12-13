@@ -1,4 +1,12 @@
-import React, { Fragment, MutableRefObject, useCallback, useEffect, useRef, useState, WheelEventHandler } from 'react';
+import {
+  Fragment,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  WheelEventHandler
+} from 'react';
 import { FieldValidator } from 'final-form';
 import { FormGroup, Label } from 'reactstrap';
 import AvatarEditor from 'react-avatar-editor';
@@ -9,10 +17,19 @@ import { withJarb } from '../withJarb/withJarb';
 import { doBlur } from '../utils';
 import { t } from '../../utilities/translation/translation';
 import { Translation } from '../../utilities/translation/translator';
-import { calculateScale, cropToAvatarEditorConfig, dataUrlToFile, getPicaInstance, readFile, replaceFileExtension } from './utils';
+import {
+  calculateScale,
+  cropToAvatarEditorConfig,
+  dataUrlToFile,
+  getPicaInstance,
+  readFile,
+  replaceFileExtension
+} from './utils';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
 import { withField } from '../withField/withField';
+
+import './ImageUpload.scss';
 
 export type Text = {
   cancel?: string;
@@ -58,8 +75,10 @@ export type ImageUploadCrop = ImageUploadCropRect | ImageUploadCropCircle;
 type Value = File | string;
 type ChangeValue = File | null;
 
-export type Props = Omit<FieldCompatible<Value, ChangeValue>,
-  'placeholder' | 'valid'> & {
+export type Props = Omit<
+  FieldCompatible<Value, ChangeValue>,
+  'placeholder' | 'valid'
+> & {
   /**
    * Whether to crop as a circle or as a rectangle.
    */
@@ -122,8 +141,8 @@ export function ImageUpload(props: Props) {
     hiddenLabel
   } = props;
 
-  const [ mode, setMode ] = useState<Mode>('no-file');
-  const [ image, setImage ] = useState<ImageState>();
+  const [mode, setMode] = useState<Mode>('no-file');
+  const [image, setImage] = useState<ImageState>();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const editorRef = useRef<AvatarEditor | null>(null);
@@ -150,9 +169,9 @@ export function ImageUpload(props: Props) {
         });
       }
     }
-  }, [ value, image ]);
+  }, [value, image]);
 
-  function imgSelected({ target: { files } }: React.ChangeEvent<HTMLInputElement>) {
+  function imgSelected({ target: { files } }: ChangeEvent<HTMLInputElement>) {
     if (files) {
       const file = files[0];
 
@@ -178,15 +197,17 @@ export function ImageUpload(props: Props) {
     const config = cropToAvatarEditorConfig(crop);
 
     const offScreenCanvas = document.createElement('canvas');
-    offScreenCanvas.width = config.width < canvas.width ? config.width : canvas.width;
-    offScreenCanvas.height = config.height < canvas.height ? config.height : canvas.height;
+    offScreenCanvas.width =
+      config.width < canvas.width ? config.width : canvas.width;
+    offScreenCanvas.height =
+      config.height < canvas.height ? config.height : canvas.height;
 
     // Let pica generate the cropped image as pica uses a far
     // better compression algorithm than the browsers do by default!
     return getPicaInstance().resize(canvas, offScreenCanvas, {
       alpha: true
     });
-  }, [ crop ]);
+  }, [crop]);
 
   async function onCrop() {
     const data = await cropImage();
@@ -202,14 +223,16 @@ export function ImageUpload(props: Props) {
 
     const picaCanvas = await cropStep();
     const dataUrl = picaCanvas.toDataURL('image/png', 1.0);
-    const newFileName = keepOriginalFileExtension ? image.fileName : replaceFileExtension(image.fileName);
+    const newFileName = keepOriginalFileExtension
+      ? image.fileName
+      : replaceFileExtension(image.fileName);
     const file = dataUrlToFile(dataUrl, newFileName);
 
     onChange(file);
     doBlur(onBlur);
 
     return { src: dataUrl, fileName: newFileName };
-  }, [ image, onChange, onBlur, cropStep, keepOriginalFileExtension ]);
+  }, [image, onChange, onBlur, cropStep, keepOriginalFileExtension]);
 
   function afterCrop({ src, fileName }: { src: string; fileName: string }) {
     setMode('file-selected');
@@ -243,7 +266,7 @@ export function ImageUpload(props: Props) {
       }, 100);
       return () => clearTimeout(timeout);
     }
-  }, [ mode, crop, cropImage ]);
+  }, [mode, crop, cropImage]);
 
   function rotateLeft() {
     if (image) {
@@ -257,7 +280,7 @@ export function ImageUpload(props: Props) {
     }
   }
 
-  function changeScale(event: React.WheelEvent<HTMLDivElement>) {
+  function changeScale(event: WheelEvent<HTMLDivElement>) {
     event.preventDefault();
     if (image) {
       setImage({ ...image, scale: calculateScale(image.scale, event.deltaY) });
@@ -302,12 +325,26 @@ export function ImageUpload(props: Props) {
                 src={image.src}
               />
             </div>
-            <FileSelectedButtons text={text} triggerFileInput={triggerFileInput} resetFileInput={resetFileInput} />
+            <FileSelectedButtons
+              text={text}
+              triggerFileInput={triggerFileInput}
+              resetFileInput={resetFileInput}
+            />
           </>
         ) : mode === 'edit' && image ? (
           <>
-            <Editor crop={crop} editorRef={editorRef} image={image} changeScale={changeScale} />
-            <EditButtons rotateLeft={rotateLeft} rotateRight={rotateRight} resetFileInput={resetFileInput} onCrop={onCrop} />
+            <Editor
+              crop={crop}
+              editorRef={editorRef}
+              image={image}
+              changeScale={changeScale}
+            />
+            <EditButtons
+              rotateLeft={rotateLeft}
+              rotateRight={rotateRight}
+              resetFileInput={resetFileInput}
+              onCrop={onCrop}
+            />
           </>
         ) : (
           <Fragment>
@@ -317,7 +354,9 @@ export function ImageUpload(props: Props) {
               type="file"
               accept="image/*"
               ref={inputRef}
-              aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
+              aria-label={
+                hiddenLabel && typeof label === 'string' ? label : undefined
+              }
             />
 
             <div className="img-upload-wrapper bg-faded text-muted">
@@ -372,11 +411,7 @@ function FileSelectedButtons({
 }) {
   return (
     <FormGroup className="text-center mt-1">
-      <Button
-        onClick={triggerFileInput}
-        color="primary"
-        icon="camera_roll"
-      >
+      <Button onClick={triggerFileInput} color="primary" icon="camera_roll">
         {t({
           key: 'ImageUpload.CHANGE',
           fallback: 'Change',
@@ -441,12 +476,7 @@ function EditButtons({
         })}
       </Button>
 
-      <Button
-        className="ms-1"
-        onClick={onCrop}
-        color="primary"
-        icon="done"
-      >
+      <Button className="ms-1" onClick={onCrop} color="primary" icon="done">
         {t({
           key: 'ImageUpload.DONE',
           fallback: 'Done',
@@ -465,7 +495,9 @@ export const JarbImageUpload = withJarb<Value, ChangeValue, Props>(ImageUpload);
 /**
  * Variant of the ImageUpload which can be used in a final form.
  */
-export const FieldImageUpload = withField<Value, ChangeValue, Props>(ImageUpload);
+export const FieldImageUpload = withField<Value, ChangeValue, Props>(
+  ImageUpload
+);
 
 /**
  * An ImageValidator is a FieldValidator which checks if the image

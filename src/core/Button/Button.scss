@@ -1,26 +1,15 @@
-.button {
-  .btn {
-    position: relative;
-    overflow: hidden;
+.button-spinner {
+  stroke: currentColor;
+}
 
-    .button-icon {
-      font-size: 1.1em;
-    }
-  }
+.btn-outline-info {
+  color: var(--bs-text-info-contrast);
+}
 
-  @each $color, $value in $theme-colors {
-    &.#{"" + $color} {
-      .spinner {
-        stroke: $value;
-      }
-    }
-  }
+.btn-outline-warning {
+  color: var(--bs-text-warning-contrast);
+}
 
-  .btn-outline-info {
-    color: $text-info-contrast;
-  }
-
-  .btn-outline-warning {
-    color: $text-warning-contrast;
-  }
+.button-icon {
+  font-size: 1.1em;
 }

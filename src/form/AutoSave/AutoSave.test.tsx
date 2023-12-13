@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 
 import { AutoSave } from './AutoSave';
@@ -36,13 +35,11 @@ describe('Component: AutoSave', () => {
     const setActiveSpy = jest.fn();
     jest
       .spyOn(Active, 'useActive')
-      .mockImplementation(() => [ activeField, setActiveSpy ]);
+      .mockImplementation(() => [activeField, setActiveSpy]);
 
     const { container } = render(
       <FinalForm.Form onSubmit={onSubmitSpy}>
-        {() => (
-          <AutoSave onSave={onSaveSpy} initialValues={initialValues} />
-        )}
+        {() => <AutoSave onSave={onSaveSpy} initialValues={initialValues} />}
       </FinalForm.Form>
     );
 
@@ -53,9 +50,7 @@ describe('Component: AutoSave', () => {
   test('ui', () => {
     const { container } = render(
       <FinalForm.Form onSubmit={jest.fn()}>
-        {() => (
-          <AutoSave onSave={jest.fn()} />
-        )}
+        {() => <AutoSave onSave={jest.fn()} />}
       </FinalForm.Form>
     );
     expect(container.firstChild).toBeNull();

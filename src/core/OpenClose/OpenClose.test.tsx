@@ -1,11 +1,16 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { OpenClose } from './OpenClose';
 
 describe('Component: OpenClose', () => {
-  function setup({ isOpen = false, className }: { isOpen?: boolean; className?: string; }) {
+  function setup({
+    isOpen = false,
+    className
+  }: {
+    isOpen?: boolean;
+    className?: string;
+  }) {
     const { container } = render(
       <OpenClose open={isOpen} className={className} />
     );

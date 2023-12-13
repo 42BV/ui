@@ -46,7 +46,6 @@ describe('index', () => {
         "EpicSelection": [Function],
         "EpicSort": [Function],
         "EpicTable": [Function],
-        "ErrorBoundary": [Function],
         "FavoriteIcon": [Function],
         "FieldCheckbox": [Function],
         "FieldCheckboxMultipleSelect": [Function],

@@ -1,8 +1,10 @@
-import React from 'react';
 import classNames from 'classnames';
 
 import { Icon } from '../Icon';
 import { Spinner } from '../Spinner/Spinner';
+
+import './ContentState.scss';
+import { ReactNode } from 'react';
 
 export type ContentStateMode = 'empty' | 'no-results' | 'error' | 'loading';
 
@@ -27,7 +29,7 @@ type Props = {
    * Optional custom content you want to render below the titles.
    * You could use this to render a button for example.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /**
    * Optional extra CSS class you want to add to the component.
@@ -88,7 +90,9 @@ export function ContentState({
         </div>
       </div>
       <span className="d-block fs-4">{title}</span>
-      {subTitle && <span className="d-block fs-6 text-dark mb-3">{subTitle}</span>}
+      {subTitle && (
+        <span className="d-block fs-6 text-dark mb-3">{subTitle}</span>
+      )}
       {children}
     </div>
   );

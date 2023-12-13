@@ -1,5 +1,6 @@
-import React from 'react';
 import classNames from 'classnames';
+
+import './Spinner.scss';
 
 type Props = {
   /**

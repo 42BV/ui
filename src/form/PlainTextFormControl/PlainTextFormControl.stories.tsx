@@ -1,4 +1,3 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { PlainTextFormControl } from './PlainTextFormControl';
 import { Form } from 'reactstrap';

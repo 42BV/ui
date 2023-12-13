@@ -1,11 +1,16 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { EpicCell } from './EpicCell';
 
 describe('Component: EpicCell', () => {
-  function setup({ hasOnRowClick = true, height }: { hasOnRowClick?: boolean; height?: number; }) {
+  function setup({
+    hasOnRowClick = true,
+    height
+  }: {
+    hasOnRowClick?: boolean;
+    height?: number;
+  }) {
     const onRowClickSpy = jest.fn();
     const onHoverChangedSpy = jest.fn();
 

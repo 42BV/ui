@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 import { Spinner } from '../Spinner/Spinner';
 import { useShowAfter } from '../../hooks/useShowAfter/useShowAfter';
 

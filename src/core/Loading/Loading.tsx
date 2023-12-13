@@ -1,9 +1,9 @@
-import React from 'react';
 import classNames from 'classnames';
 
 import { Spinner } from '../Spinner/Spinner';
 
 import { t } from '../../utilities/translation/translation';
+import { ReactNode } from 'react';
 
 type Text = {
   /**
@@ -28,7 +28,7 @@ type Props = {
   /**
    * Optional text to show next to the loading indicator.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 export function Loading({ children, className, text = {} }: Props) {
@@ -41,10 +41,10 @@ export function Loading({ children, className, text = {} }: Props) {
         {children
           ? children
           : t({
-            key: 'Loading.LOADING',
-            fallback: 'Loading...',
-            overrideText: text.loading
-          })}
+              key: 'Loading.LOADING',
+              fallback: 'Loading...',
+              overrideText: text.loading
+            })}
       </span>
     </div>
   );

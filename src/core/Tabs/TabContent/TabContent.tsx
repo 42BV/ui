@@ -1,6 +1,5 @@
 import { alwaysTrue } from '../../../form/utils';
 import classNames from 'classnames';
-import React from 'react';
 import { HideInactiveTabsBy } from '../Tabs';
 
 export type Props = {

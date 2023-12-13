@@ -1,13 +1,10 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 
 import { OrSeparator } from './OrSeparator';
 
 describe('Component: OrSeparator', () => {
   function setup() {
-    const { container } = render(
-      <OrSeparator />
-    );
+    const { container } = render(<OrSeparator />);
 
     return { container };
   }

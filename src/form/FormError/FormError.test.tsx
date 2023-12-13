@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { RequiredError } from '@42.nl/jarb-final-form';
 import * as reactErrorStore from '@42.nl/react-error-store';
@@ -31,16 +30,17 @@ describe('Component: FormError', () => {
 
     jest
       .spyOn(reactErrorStore, 'useErrorsForValidator')
-      .mockReturnValue(hasBackEndErrors ? [ 'back-end error' ] : []);
+      .mockReturnValue(hasBackEndErrors ? ['back-end error'] : []);
 
     jest
       .spyOn(SettledErrors, 'useSettledErrors')
-      .mockReturnValue(hasFrontEndErrors ? [ required ] : []);
+      .mockReturnValue(hasFrontEndErrors ? [required] : []);
 
     const { container } = render(
       <FormError
         value="henkie"
         meta={validMeta}
+        name="name"
         validator="User.name"
         onChange={onChange}
       />

@@ -1,9 +1,8 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { ProgressStepper } from './ProgressStepper';
-import { Card } from '../Card/Card';
+import { Card } from '../../card/Card/Card';
 
 type Step =
   | 'primary'

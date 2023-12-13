@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, RefObject } from 'react';
+import { forwardRef, Ref, RefObject } from 'react';
 
 export type Props = {
   /**

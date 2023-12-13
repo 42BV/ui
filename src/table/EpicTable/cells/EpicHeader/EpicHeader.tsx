@@ -1,12 +1,11 @@
-import React from 'react';
-
 import { EpicResize } from './EpicResize/EpicResize';
+import { ReactNode } from 'react';
 
 export type Props = {
   /**
    * The content of the cell.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 
   /**
    * The width of the cell in pixels.

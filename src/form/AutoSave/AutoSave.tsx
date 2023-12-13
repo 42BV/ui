@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormSpy } from 'react-final-form';
 import { FormState } from 'final-form';
 import { isEqual } from 'lodash';
@@ -22,7 +21,7 @@ type Props<FormValues, T> = {
 
 export function AutoSave<FormValues, T>(props: Props<FormValues, T>) {
   const { onSave, initialValues } = props;
-  const [ active, setActive ] = useActive();
+  const [active, setActive] = useActive();
   const promise = usePromise<T>();
 
   async function onChange(formState: FormState<FormValues>) {
