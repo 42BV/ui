@@ -116,6 +116,7 @@ exports[`Component: ModalPicker ui default 1`] = `
                   >
                     <button
                       class="page-link"
+                      type="button"
                     >
                       1
                     </button>
@@ -125,6 +126,7 @@ exports[`Component: ModalPicker ui default 1`] = `
                   >
                     <button
                       class="page-link"
+                      type="button"
                     >
                       2
                     </button>
@@ -134,6 +136,7 @@ exports[`Component: ModalPicker ui default 1`] = `
                   >
                     <button
                       class="page-link"
+                      type="button"
                     >
                       3
                     </button>
@@ -143,6 +146,7 @@ exports[`Component: ModalPicker ui default 1`] = `
                   >
                     <button
                       class="page-link"
+                      type="button"
                     >
                       <i
                         class="icon material-icons"
@@ -364,6 +368,7 @@ exports[`Component: ModalPicker ui loading 1`] = `
                   >
                     <button
                       class="page-link"
+                      type="button"
                     >
                       1
                     </button>
@@ -373,6 +378,7 @@ exports[`Component: ModalPicker ui loading 1`] = `
                   >
                     <button
                       class="page-link"
+                      type="button"
                     >
                       2
                     </button>
@@ -382,6 +388,7 @@ exports[`Component: ModalPicker ui loading 1`] = `
                   >
                     <button
                       class="page-link"
+                      type="button"
                     >
                       3
                     </button>
@@ -391,6 +398,7 @@ exports[`Component: ModalPicker ui loading 1`] = `
                   >
                     <button
                       class="page-link"
+                      type="button"
                     >
                       <i
                         class="icon material-icons"
