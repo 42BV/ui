@@ -31,6 +31,7 @@ exports[`Component: Pagination ui first page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             1
           </button>
@@ -40,6 +41,7 @@ exports[`Component: Pagination ui first page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             2
           </button>
@@ -49,6 +51,7 @@ exports[`Component: Pagination ui first page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             3
           </button>
@@ -59,6 +62,7 @@ exports[`Component: Pagination ui first page 1`] = `
           <button
             class="disabled page-link"
             disabled=""
+            type="button"
           >
             ...
           </button>
@@ -68,6 +72,7 @@ exports[`Component: Pagination ui first page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             8
           </button>
@@ -77,6 +82,7 @@ exports[`Component: Pagination ui first page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             9
           </button>
@@ -86,6 +92,7 @@ exports[`Component: Pagination ui first page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             10
           </button>
@@ -95,6 +102,7 @@ exports[`Component: Pagination ui first page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             <i
               class="icon material-icons"
@@ -146,6 +154,7 @@ exports[`Component: Pagination ui last page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             1
           </button>
@@ -155,6 +164,7 @@ exports[`Component: Pagination ui last page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             2
           </button>
@@ -164,6 +174,7 @@ exports[`Component: Pagination ui last page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             3
           </button>
@@ -174,6 +185,7 @@ exports[`Component: Pagination ui last page 1`] = `
           <button
             class="disabled page-link"
             disabled=""
+            type="button"
           >
             ...
           </button>
@@ -183,6 +195,7 @@ exports[`Component: Pagination ui last page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             8
           </button>
@@ -192,6 +205,7 @@ exports[`Component: Pagination ui last page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             9
           </button>
@@ -201,6 +215,7 @@ exports[`Component: Pagination ui last page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             10
           </button>
@@ -210,6 +225,7 @@ exports[`Component: Pagination ui last page 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             <i
               class="icon material-icons"
@@ -261,6 +277,7 @@ exports[`Component: Pagination ui middle 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             1
           </button>
@@ -271,6 +288,7 @@ exports[`Component: Pagination ui middle 1`] = `
           <button
             class="disabled page-link"
             disabled=""
+            type="button"
           >
             ...
           </button>
@@ -280,6 +298,7 @@ exports[`Component: Pagination ui middle 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             4
           </button>
@@ -289,6 +308,7 @@ exports[`Component: Pagination ui middle 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             5
           </button>
@@ -298,6 +318,7 @@ exports[`Component: Pagination ui middle 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             6
           </button>
@@ -308,6 +329,7 @@ exports[`Component: Pagination ui middle 1`] = `
           <button
             class="disabled page-link"
             disabled=""
+            type="button"
           >
             ...
           </button>
@@ -317,6 +339,7 @@ exports[`Component: Pagination ui middle 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             10
           </button>
@@ -326,6 +349,7 @@ exports[`Component: Pagination ui middle 1`] = `
         >
           <button
             class="page-link"
+            type="button"
           >
             <i
               class="icon material-icons"

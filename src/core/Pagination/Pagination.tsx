@@ -121,11 +121,15 @@ export function Pagination<T>({
         {content.map((item, index) => (
           <PaginationItem active={item === current} key={index}>
             {item === '...' ? (
-              <PaginationLink className="disabled" disabled={true}>
+              <PaginationLink
+                className="disabled"
+                disabled={true}
+                type="button"
+              >
                 {item}
               </PaginationLink>
             ) : (
-              <PaginationLink onClick={() => onChange(item)}>
+              <PaginationLink onClick={() => onChange(item)} type="button">
                 {item}
               </PaginationLink>
             )}
@@ -133,7 +137,7 @@ export function Pagination<T>({
         ))}
         {showPreviousAndNextButtons ? (
           <PaginationItem disabled={last}>
-            <PaginationLink onClick={() => onChange(current + 1)}>
+            <PaginationLink onClick={() => onChange(current + 1)} type="button">
               <Icon icon="arrow_forward" size={14} />
             </PaginationLink>
           </PaginationItem>
