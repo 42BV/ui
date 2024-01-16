@@ -25,14 +25,14 @@ describe('useEpicResizeListenerCleanup', () => {
 
     // For some reason this is not 2 but 11 I cannot find out why
     // this happens
-    //expect(window.removeEventListener).toBeCalledTimes(2);
+    //expect(window.removeEventListener).toHaveBeenCalledTimes(2);
 
-    expect(window.removeEventListener).toBeCalledWith(
+    expect(window.removeEventListener).toHaveBeenCalledWith(
       'mousemove',
       resize,
       listenerConfig
     );
-    expect(window.removeEventListener).toBeCalledWith(
+    expect(window.removeEventListener).toHaveBeenCalledWith(
       'mouseup',
       resizeEnd,
       listenerConfig

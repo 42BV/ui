@@ -146,8 +146,10 @@ describe('Component: TypeaheadSingle', () => {
         pageSize: 2
       });
 
-      expect(useOptions).toBeCalledTimes(1);
-      expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 2 }));
+      expect(useOptions).toHaveBeenCalledTimes(1);
+      expect(useOptions).toHaveBeenCalledWith(
+        expect.objectContaining({ size: 2 })
+      );
 
       fireEvent.change(screen.getByRole('combobox'), {
         target: { value: '42.nl' }
@@ -166,8 +168,10 @@ describe('Component: TypeaheadSingle', () => {
         isAsync: true
       });
 
-      expect(useOptions).toBeCalledTimes(1);
-      expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 10 }));
+      expect(useOptions).toHaveBeenCalledTimes(1);
+      expect(useOptions).toHaveBeenCalledWith(
+        expect.objectContaining({ size: 10 })
+      );
 
       fireEvent.change(screen.getByRole('combobox'), {
         target: { value: '42.nl' }
@@ -266,8 +270,10 @@ describe('Component: TypeaheadSingle', () => {
 
       // We simply test here if the hook is called correctly, the hook
       // itself is already tested.
-      expect(useAutoSelectOptionWhenQueryMatchesExactly).toBeCalledTimes(1);
-      expect(useAutoSelectOptionWhenQueryMatchesExactly).toBeCalledWith({
+      expect(useAutoSelectOptionWhenQueryMatchesExactly).toHaveBeenCalledTimes(
+        1
+      );
+      expect(useAutoSelectOptionWhenQueryMatchesExactly).toHaveBeenCalledWith({
         onChange: onChangeSpy,
         query: '',
         typeaheadOptions: [
@@ -291,7 +297,7 @@ describe('Component: TypeaheadSingle', () => {
       });
 
       await waitFor(() => {
-        expect(useOptions).toBeCalledTimes(2);
+        expect(useOptions).toHaveBeenCalledTimes(2);
       });
       expect(useOptions).toHaveBeenLastCalledWith(
         expect.objectContaining({ query: 'admin' })

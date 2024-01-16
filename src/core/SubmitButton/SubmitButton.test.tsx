@@ -8,7 +8,10 @@ import * as useScrollToClosestError from './useScrollToClosestError';
 
 describe('Component: SubmitButton', () => {
   function setup(
-    { hasOnClick = true, inProgress = false }: { hasOnClick: boolean; inProgress?: boolean },
+    {
+      hasOnClick = true,
+      inProgress = false
+    }: { hasOnClick: boolean; inProgress?: boolean },
     props?: Partial<Props>
   ) {
     const doScrollToClosestErrorSpy = jest.fn();
@@ -31,12 +34,16 @@ describe('Component: SubmitButton', () => {
       </SubmitButton>
     );
 
-    expect(useScrollToClosestError.useScrollToClosestError).toBeCalledTimes(1);
+    expect(
+      useScrollToClosestError.useScrollToClosestError
+    ).toHaveBeenCalledTimes(1);
     const enabled =
       props?.scrollToClosestError !== undefined
         ? props.scrollToClosestError
         : true;
-    expect(useScrollToClosestError.useScrollToClosestError).toBeCalledWith({
+    expect(
+      useScrollToClosestError.useScrollToClosestError
+    ).toHaveBeenCalledWith({
       enabled
     });
 
@@ -84,7 +91,7 @@ describe('Component: SubmitButton', () => {
       fireEvent.click(screen.getByText('Submit'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
-      expect(doScrollToClosestErrorSpy).toBeCalledTimes(1);
+      expect(doScrollToClosestErrorSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should when the button is clicked even when there is no onClick scroll to closest error', () => {
@@ -95,7 +102,7 @@ describe('Component: SubmitButton', () => {
       fireEvent.click(screen.getByText('Submit'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(0);
-      expect(doScrollToClosestErrorSpy).toBeCalledTimes(1);
+      expect(doScrollToClosestErrorSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should when the button is clicked always call doScrollToClosestErrorSpy even when scrollToClosestError is false', () => {
@@ -107,7 +114,7 @@ describe('Component: SubmitButton', () => {
       fireEvent.click(screen.getByText('Submit'));
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
-      expect(doScrollToClosestErrorSpy).toBeCalledTimes(1);
+      expect(doScrollToClosestErrorSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

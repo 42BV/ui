@@ -8,7 +8,14 @@ import { Options } from '../option';
 
 import { User } from '../../test/types';
 import * as testUtils from '../../test/utils';
-import { adminUser, coordinatorUser, listOfUsers, nobodyUser, randomUser, userUser } from '../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  nobodyUser,
+  randomUser,
+  userUser
+} from '../../test/fixtures';
 
 describe('Component: ValuePicker', () => {
   function setup({
@@ -52,8 +59,12 @@ describe('Component: ValuePicker', () => {
 
     expect(container).toMatchSnapshot();
 
-    expect(fetchOptionsSpy).toBeCalledTimes(1);
-    expect(fetchOptionsSpy).toBeCalledWith({ query: '', page: 1, size: 1 });
+    expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
+    expect(fetchOptionsSpy).toHaveBeenCalledWith({
+      query: '',
+      page: 1,
+      size: 1
+    });
   });
 
   describe('single', () => {
@@ -83,8 +94,8 @@ describe('Component: ValuePicker', () => {
         expect(screen.queryAllByRole('radio').length).toBe(3);
         expect(asFragment()).toMatchSnapshot();
 
-        expect(fetchOptionsSpy).toBeCalledTimes(2);
-        expect(fetchOptionsSpy).toBeCalledWith({
+        expect(fetchOptionsSpy).toHaveBeenCalledTimes(2);
+        expect(fetchOptionsSpy).toHaveBeenCalledWith({
           query: '',
           page: 1,
           size: 1
@@ -143,8 +154,8 @@ describe('Component: ValuePicker', () => {
         expect(screen.queryByRole('combobox')).toBeInTheDocument();
         expect(asFragment()).toMatchSnapshot();
 
-        expect(fetchOptionsSpy).toBeCalledTimes(2);
-        expect(fetchOptionsSpy).toBeCalledWith({
+        expect(fetchOptionsSpy).toHaveBeenCalledTimes(2);
+        expect(fetchOptionsSpy).toHaveBeenCalledWith({
           query: '',
           page: 1,
           size: 1
@@ -158,7 +169,7 @@ describe('Component: ValuePicker', () => {
 
       it('should render a `Select` component when options array length is less than 11 but more than 3', () => {
         setup({
-          options: [ adminUser(), coordinatorUser(), userUser(), nobodyUser() ],
+          options: [adminUser(), coordinatorUser(), userUser(), nobodyUser()],
           multiple: false
         });
 
@@ -192,8 +203,8 @@ describe('Component: ValuePicker', () => {
         expect(screen.queryByRole('button')).toBeInTheDocument();
         expect(asFragment()).toMatchSnapshot();
 
-        expect(fetchOptionsSpy).toBeCalledTimes(2);
-        expect(fetchOptionsSpy).toBeCalledWith({
+        expect(fetchOptionsSpy).toHaveBeenCalledTimes(2);
+        expect(fetchOptionsSpy).toHaveBeenCalledWith({
           query: '',
           page: 1,
           size: 1
@@ -277,8 +288,8 @@ describe('Component: ValuePicker', () => {
         expect(screen.queryAllByRole('checkbox').length).toBe(3);
         expect(asFragment()).toMatchSnapshot();
 
-        expect(fetchOptionsSpy).toBeCalledTimes(2);
-        expect(fetchOptionsSpy).toBeCalledWith({
+        expect(fetchOptionsSpy).toHaveBeenCalledTimes(2);
+        expect(fetchOptionsSpy).toHaveBeenCalledWith({
           query: '',
           page: 1,
           size: 1
@@ -337,8 +348,8 @@ describe('Component: ValuePicker', () => {
         expect(screen.queryByRole('button')).toBeInTheDocument();
         expect(asFragment()).toMatchSnapshot();
 
-        expect(fetchOptionsSpy).toBeCalledTimes(2);
-        expect(fetchOptionsSpy).toBeCalledWith({
+        expect(fetchOptionsSpy).toHaveBeenCalledTimes(2);
+        expect(fetchOptionsSpy).toHaveBeenCalledWith({
           query: '',
           page: 1,
           size: 1

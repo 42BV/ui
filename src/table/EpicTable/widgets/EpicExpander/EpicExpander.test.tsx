@@ -36,8 +36,8 @@ describe('Component: EpicExpander', () => {
 
       fireEvent.click(screen.getByText('expand_more'));
 
-      expect(onChangeSpy).toBeCalledTimes(1);
-      expect(onChangeSpy).toBeCalledWith(true);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(true);
     });
 
     it('should close the expander when it is clicked when it is open', () => {
@@ -45,8 +45,8 @@ describe('Component: EpicExpander', () => {
 
       fireEvent.click(screen.getByText('expand_less'));
 
-      expect(onChangeSpy).toBeCalledTimes(1);
-      expect(onChangeSpy).toBeCalledWith(false);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(false);
     });
   });
 });

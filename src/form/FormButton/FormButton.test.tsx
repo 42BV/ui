@@ -30,11 +30,11 @@ describe('Component: FormButton', () => {
 
       fireEvent.click(screen.getByRole('button'));
 
-      expect(getElementByIdSpy).toBeCalledTimes(1);
-      expect(getElementByIdSpy).toBeCalledWith('test');
+      expect(getElementByIdSpy).toHaveBeenCalledTimes(1);
+      expect(getElementByIdSpy).toHaveBeenCalledWith('test');
 
-      expect(element.dispatchEvent).toBeCalledTimes(1);
-      expect(element.dispatchEvent).toBeCalledWith(
+      expect(element.dispatchEvent).toHaveBeenCalledTimes(1);
+      expect(element.dispatchEvent).toHaveBeenCalledWith(
         new Event('submit', { cancelable: true, bubbles: true })
       );
     });
@@ -48,10 +48,10 @@ describe('Component: FormButton', () => {
 
       fireEvent.click(screen.getByRole('button'));
 
-      expect(getElementByIdSpy).toBeCalledTimes(1);
-      expect(getElementByIdSpy).toBeCalledWith('test');
+      expect(getElementByIdSpy).toHaveBeenCalledTimes(1);
+      expect(getElementByIdSpy).toHaveBeenCalledWith('test');
 
-      expect(element.dispatchEvent).toBeCalledTimes(0);
+      expect(element.dispatchEvent).toHaveBeenCalledTimes(0);
     });
   });
 });

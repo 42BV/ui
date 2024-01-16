@@ -10,7 +10,7 @@ describe('Component: ProgressStepper', () => {
 
     const { container } = render(
       <ProgressStepper
-        steps={[ 'start' ]}
+        steps={['start']}
         // @ts-expect-error Test mock
         colorForStep={colorForStepSpy}
         titleForStep={titleForStepSpy}
@@ -20,10 +20,10 @@ describe('Component: ProgressStepper', () => {
 
     expect(container).toMatchSnapshot();
 
-    expect(colorForStepSpy).toBeCalledTimes(1);
+    expect(colorForStepSpy).toHaveBeenCalledTimes(1);
     expect(colorForStepSpy).toHaveBeenCalledWith('start', 0);
 
-    expect(titleForStepSpy).toBeCalledTimes(1);
+    expect(titleForStepSpy).toHaveBeenCalledTimes(1);
     expect(titleForStepSpy).toHaveBeenCalledWith('start', 0);
   });
 
@@ -33,7 +33,7 @@ describe('Component: ProgressStepper', () => {
 
       render(
         <ProgressStepper
-          steps={[ 'start', 'end' ]}
+          steps={['start', 'end']}
           colorForStep={() => 'primary'}
           titleForStep={(step) => step}
           // Only enable the first step.

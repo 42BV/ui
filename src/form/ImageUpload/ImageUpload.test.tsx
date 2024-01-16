@@ -382,7 +382,7 @@ describe('Component: ImageUpload', () => {
         await expect(promise).resolves.toBeDefined();
       });
 
-      expect(replaceFileExtensionSpy).toBeCalledTimes(1);
+      expect(replaceFileExtensionSpy).toHaveBeenCalledTimes(1);
 
       expect(setImageSpy).toHaveBeenCalledTimes(1);
       expect(setImageSpy).toHaveBeenCalledWith({
@@ -419,7 +419,7 @@ describe('Component: ImageUpload', () => {
         await expect(promise).resolves.toBeDefined();
       });
 
-      expect(replaceFileExtensionSpy).toBeCalledTimes(0);
+      expect(replaceFileExtensionSpy).toHaveBeenCalledTimes(0);
 
       expect(setImageSpy).toHaveBeenCalledTimes(1);
       expect(setImageSpy).toHaveBeenCalledWith({

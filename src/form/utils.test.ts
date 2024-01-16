@@ -25,7 +25,7 @@ describe('getState', () => {
 test('doBlur', () => {
   const onBlur = jest.fn();
   doBlur(onBlur);
-  expect(onBlur).toBeCalledTimes(1);
+  expect(onBlur).toHaveBeenCalledTimes(1);
 });
 
 test('alwaysTrue', () => {

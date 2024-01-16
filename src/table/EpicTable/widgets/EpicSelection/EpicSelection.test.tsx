@@ -34,8 +34,8 @@ describe('Component: EpicSelection', () => {
 
       fireEvent.click(screen.getByRole('checkbox'));
 
-      expect(onChangeSpy).toBeCalledTimes(1);
-      expect(onChangeSpy).toBeCalledWith(true);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(true);
     });
 
     it('should call onChange with false when checkbox is clicked while checked', () => {
@@ -43,8 +43,8 @@ describe('Component: EpicSelection', () => {
 
       fireEvent.click(screen.getByRole('checkbox'));
 
-      expect(onChangeSpy).toBeCalledTimes(1);
-      expect(onChangeSpy).toBeCalledWith(false);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(false);
     });
   });
 });

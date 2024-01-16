@@ -125,7 +125,7 @@ describe('Component: OpenCloseModal', () => {
 
       fireEvent.click(screen.getByText('Cancel'));
 
-      expect(onCloseSpy).toBeCalledTimes(1);
+      expect(onCloseSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should call onSave when save button clicked', () => {
@@ -133,7 +133,7 @@ describe('Component: OpenCloseModal', () => {
 
       fireEvent.click(screen.getByText('Save'));
 
-      expect(onSaveSpy).toBeCalledTimes(1);
+      expect(onSaveSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

@@ -104,7 +104,6 @@ export function DateTimeInput(props: Props) {
     placeholder,
     valid,
     onFocus,
-    onBlur,
     dateFormat,
     timeFormat,
     color,
@@ -131,11 +130,14 @@ export function DateTimeInput(props: Props) {
     // when the user typed in a partial or invalid date manually.
     if (moment.isMoment(newValue)) {
       props.onChange(newValue.toDate());
-      doBlur(onBlur);
     } else {
       props.onChange(newValue);
     }
+  }
 
+  function onBlur(currentValue: string | Moment) {
+    onChange(currentValue);
+    doBlur(props.onBlur);
     setIsModalOpen(false);
   }
 
@@ -165,12 +167,15 @@ export function DateTimeInput(props: Props) {
         }}
         open={mode === 'modal' ? false : undefined}
         renderInput={(inputProps) =>
-          mode === 'modal'
-            ? maskedInputGroup(inputProps, () => setIsModalOpen(true))
-            : maskedInput(inputProps)
+          maskedInputGroup(
+            inputProps,
+            mode === 'modal' ? () => setIsModalOpen(true) : undefined
+          )
         }
         onChange={onChange}
+        onBlur={onBlur}
         onOpen={onFocus}
+        onClose={onBlur}
         value={value}
         dateFormat={dateFormat}
         timeFormat={timeFormat}
@@ -183,7 +188,7 @@ export function DateTimeInput(props: Props) {
       {mode === 'modal' && isModalOpen ? (
         <DateTimeModal
           onClose={() => setIsModalOpen(false)}
-          onSave={onChange}
+          onSave={onBlur}
           dateFormat={dateFormat}
           timeFormat={timeFormat}
           defaultValue={
@@ -202,20 +207,29 @@ export function DateTimeInput(props: Props) {
   );
 }
 
-export function maskedInput(props: Record<string, unknown>) {
-  return <MaskedInput {...props} render={reactStrapInput} />;
-}
-
 export function maskedInputGroup(
-  props: Record<string, unknown>,
-  onClick: () => void
+  props: Record<string, unknown> & {
+    onChange: (event: any) => void;
+  },
+  onClick?: () => void
 ) {
   return (
     <InputGroup>
       <MaskedInput {...props} render={reactStrapInput} />
-      <Button onClick={onClick}>
-        <Icon icon="calendar_today" />
-      </Button>
+      {props.value ? (
+        <div className="input-group-text">
+          <Icon
+            icon="close"
+            onClick={() => props.onChange({ target: { value: '' } })}
+            className="date-time-input__clear-icon"
+          />
+        </div>
+      ) : null}
+      {onClick ? (
+        <Button onClick={onClick}>
+          <Icon icon="calendar_today" />
+        </Button>
+      ) : null}
     </InputGroup>
   );
 }
