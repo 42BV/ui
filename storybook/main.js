@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
   core: {
-    builder: "webpack5",
+    builder: 'webpack5'
   },
-  stories: [ '../src/**/*.stories.@(js|mxs|tsx|ts)' ],
+  stories: ['../src/**/*.stories.@(js|mxs|tsx|ts)'],
   addons: [
     '@storybook/addon-actions/register',
     '@storybook/addon-a11y',
@@ -18,17 +18,18 @@ module.exports = {
   typescript: {
     check: false,
     checkOptions: {},
-    reactDocgen: 'react-docgen-typescript',
+    reactDocgen: 'react-docgen-typescript-plugin',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-    },
+      propFilter: (prop) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true
+    }
   },
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
       use: ['style-loader', 'css-loader', 'sass-loader'],
-      include: path.resolve(__dirname, '../'),
+      include: path.resolve(__dirname, '../')
     });
 
     config.resolve.fallback.http = require.resolve('stream-http');

@@ -703,8 +703,8 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(1);
-      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledWith({ page: 1, query: '', size: 2 });
     });
 
     it('should when the reloadOptions changes re-fetch the options and go back in loading state', async () => {
@@ -767,8 +767,8 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(1);
-      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledWith({ page: 1, query: '', size: 2 });
 
       rerender({ reloadOptions: 'filter' });
 
@@ -812,7 +812,7 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(2);
+      expect(fetcher).toHaveBeenCalledTimes(2);
       expect(fetcher).toHaveBeenLastCalledWith({ page: 1, query: '', size: 2 });
     });
 
@@ -879,8 +879,8 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(1);
-      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledWith({ page: 1, query: '', size: 2 });
 
       rerender({ value: options[0] });
 
@@ -903,7 +903,7 @@ describe('useOptions', () => {
       });
 
       // Should not have called the options fetcher again
-      expect(fetcher).toBeCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledTimes(1);
     });
 
     it('should when the query changes re-fetch the options and go back in loading state', async () => {
@@ -966,8 +966,8 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(1);
-      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledWith({ page: 1, query: '', size: 2 });
 
       rerender({ query: 'filter' });
 
@@ -1011,7 +1011,7 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(2);
+      expect(fetcher).toHaveBeenCalledTimes(2);
       expect(fetcher).toHaveBeenLastCalledWith({
         page: 1,
         query: 'filter',
@@ -1082,8 +1082,8 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(1);
-      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledWith({ page: 1, query: '', size: 2 });
 
       rerender({ pageNumber: 2 });
 
@@ -1127,7 +1127,7 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(2);
+      expect(fetcher).toHaveBeenCalledTimes(2);
       expect(fetcher).toHaveBeenLastCalledWith({ page: 2, query: '', size: 2 });
     });
 
@@ -1194,8 +1194,8 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(1);
-      expect(fetcher).toBeCalledWith({ page: 1, query: '', size: 2 });
+      expect(fetcher).toHaveBeenCalledTimes(1);
+      expect(fetcher).toHaveBeenCalledWith({ page: 1, query: '', size: 2 });
 
       rerender({ size: 3 });
 
@@ -1240,7 +1240,7 @@ describe('useOptions', () => {
         loading: false
       });
 
-      expect(fetcher).toBeCalledTimes(2);
+      expect(fetcher).toHaveBeenCalledTimes(2);
       expect(fetcher).toHaveBeenLastCalledWith({ page: 1, query: '', size: 3 });
     });
 

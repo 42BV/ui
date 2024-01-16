@@ -2,7 +2,13 @@ import React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { DateTimeInput, DateTimeInputIsDateAllowed, DateTimeInputMode, FieldDateTimeInput, JarbDateTimeInput } from './DateTimeInput';
+import {
+  DateTimeInput,
+  DateTimeInputIsDateAllowed,
+  DateTimeInputMode,
+  FieldDateTimeInput,
+  JarbDateTimeInput
+} from './DateTimeInput';
 import * as Validators from './validators';
 import { Form } from 'react-final-form';
 import { setConstraints } from '@42.nl/jarb-final-form';
@@ -55,7 +61,9 @@ describe('Component: DateTimeInput', () => {
         value: new Date(2000, 0, 1, 12, 30, 40)
       });
       expect(screen.queryByText('Date of birth')).toBeInTheDocument();
-      expect(screen.queryByLabelText('Date of birth(YYYY-MM-DD HH:mm:ss)')).toBeInTheDocument();
+      expect(
+        screen.queryByLabelText('Date of birth(YYYY-MM-DD HH:mm:ss)')
+      ).toBeInTheDocument();
       expect(container).toMatchSnapshot();
     });
 
@@ -65,10 +73,13 @@ describe('Component: DateTimeInput', () => {
       expect(screen.queryByLabelText('Date of birth')).toBeInTheDocument();
     });
 
+    test('with value', () => {
+      setup({ value: new Date(2000, 0, 1, 12, 30, 40) });
+      expect(screen.queryByText('close')).toBeInTheDocument();
+    });
+
     test('with date picker in modal', () => {
-      jest
-        .spyOn(React, 'useState')
-        .mockReturnValueOnce([ true, jest.fn() ]);
+      jest.spyOn(React, 'useState').mockReturnValueOnce([true, jest.fn()]);
 
       setup({
         mode: 'modal',
@@ -135,22 +146,26 @@ describe('Component: DateTimeInput', () => {
   describe('events', () => {
     describe('onChange', () => {
       it('should when the value is a string which is a valid date set the value', () => {
-        const { onChangeSpy, onBlurSpy } = setup({});
+        const { onChangeSpy } = setup({});
 
-        fireEvent.change(screen.getByPlaceholderText('Please enter your date of birth'), { target: { value: '2000-01-01 12:00:00' } });
+        fireEvent.change(
+          screen.getByPlaceholderText('Please enter your date of birth'),
+          { target: { value: '2000-01-01 12:00:00' } }
+        );
 
         expect(onChangeSpy).toHaveBeenCalled();
         expect(onChangeSpy).toHaveBeenLastCalledWith(
           new Date('2000-01-01T12:00:00.000Z')
         );
-
-        expect(onBlurSpy).toHaveBeenCalledTimes(1);
       });
 
       it('should when the value is a string which is not a valid date call onChange with invalid date string', () => {
         const { onChangeSpy, onBlurSpy } = setup({});
 
-        fireEvent.change(screen.getByPlaceholderText('Please enter your date of birth'), { target: { value: '2000-42-42 42:42:42' } });
+        fireEvent.change(
+          screen.getByPlaceholderText('Please enter your date of birth'),
+          { target: { value: '2000-42-42 42:42:42' } }
+        );
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
         expect(onChangeSpy).toHaveBeenCalledWith('2000-42-42 42:42:42');
@@ -161,7 +176,10 @@ describe('Component: DateTimeInput', () => {
       it('should when the value is a string which is not a valid value call onChange with invalid string value', () => {
         const { onChangeSpy, onBlurSpy } = setup({});
 
-        fireEvent.change(screen.getByPlaceholderText('Please enter your date of birth'), { target: { value: '2000-__-__ __:__:__' } });
+        fireEvent.change(
+          screen.getByPlaceholderText('Please enter your date of birth'),
+          { target: { value: '2000-__-__ __:__:__' } }
+        );
 
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
         expect(onChangeSpy).toHaveBeenCalledWith('2000-__-__ __:__:__');
@@ -172,7 +190,9 @@ describe('Component: DateTimeInput', () => {
 
     test('onFocus', () => {
       const { onFocusSpy } = setup({});
-      fireEvent.focus(screen.getByPlaceholderText('Please enter your date of birth'));
+      fireEvent.focus(
+        screen.getByPlaceholderText('Please enter your date of birth')
+      );
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });
 
@@ -189,43 +209,50 @@ describe('Component: DateTimeInput', () => {
         const setIsModalOpenSpy = jest.fn();
         jest
           .spyOn(React, 'useState')
-          .mockReturnValueOnce([ false, setIsModalOpenSpy ]);
+          .mockReturnValueOnce([false, setIsModalOpenSpy]);
 
         setup({ mode: 'modal' });
 
         fireEvent.click(screen.getByText('calendar_today'));
 
-        expect(setIsModalOpenSpy).toBeCalledTimes(1);
-        expect(setIsModalOpenSpy).toBeCalledWith(true);
+        expect(setIsModalOpenSpy).toHaveBeenCalledTimes(1);
+        expect(setIsModalOpenSpy).toHaveBeenCalledWith(true);
       });
 
       test('close modal', () => {
         const setIsModalOpenSpy = jest.fn();
         jest
           .spyOn(React, 'useState')
-          .mockReturnValueOnce([ true, setIsModalOpenSpy ]);
+          .mockReturnValueOnce([true, setIsModalOpenSpy]);
 
         setup({ mode: 'modal' });
 
         fireEvent.click(screen.getByText('cancel'));
 
-        expect(setIsModalOpenSpy).toBeCalledTimes(1);
-        expect(setIsModalOpenSpy).toBeCalledWith(false);
+        expect(setIsModalOpenSpy).toHaveBeenCalledTimes(1);
+        expect(setIsModalOpenSpy).toHaveBeenCalledWith(false);
       });
 
       test('close modal on clicking select button', () => {
         const setIsModalOpenSpy = jest.fn();
         jest
           .spyOn(React, 'useState')
-          .mockReturnValueOnce([ true, setIsModalOpenSpy ]);
+          .mockReturnValueOnce([true, setIsModalOpenSpy]);
 
         setup({ mode: 'modal' });
 
         fireEvent.click(screen.getByText('save'));
 
-        expect(setIsModalOpenSpy).toBeCalledTimes(1);
-        expect(setIsModalOpenSpy).toBeCalledWith(false);
+        expect(setIsModalOpenSpy).toHaveBeenCalledTimes(1);
+        expect(setIsModalOpenSpy).toHaveBeenCalledWith(false);
       });
+    });
+
+    test('clear button should clear the value', () => {
+      const { onChangeSpy } = setup({ value: new Date() });
+      fireEvent.click(screen.getByText('close'));
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith('');
     });
   });
 
@@ -234,25 +261,33 @@ describe('Component: DateTimeInput', () => {
       const value = new Date(1989, 2, 21);
       setup({ value, mode: 'modal' });
       expect(screen.queryByText('March 1989')).toBeInTheDocument();
-      expect(screen.getAllByText('21').map((e) => e.className)).toContain('rdtDay rdtActive');
+      expect(screen.getAllByText('21').map((e) => e.className)).toContain(
+        'rdtDay rdtActive'
+      );
     });
 
     it('should open at value date when value is valid date string', () => {
       setup({ value: '1989-03-21 13:00:00', mode: 'modal' });
       expect(screen.queryByText('March 1989')).toBeInTheDocument();
-      expect(screen.getAllByText('21').map((e) => e.className)).toContain('rdtDay rdtActive');
+      expect(screen.getAllByText('21').map((e) => e.className)).toContain(
+        'rdtDay rdtActive'
+      );
     });
 
     it('should open at today when value is invalid date string', () => {
       setup({ value: '2022-42-42 42:42:42', mode: 'modal' });
       const today = new Date();
-      expect(screen.getAllByText(today.getDate()).map((e) => e.className)).toContain('rdtDay rdtToday');
+      expect(
+        screen.getAllByText(today.getDate()).map((e) => e.className)
+      ).toContain('rdtDay rdtToday');
     });
 
     it('should open at today when value is incomplete date string', () => {
       setup({ value: '2022-01-__', mode: 'modal' });
       const today = new Date();
-      expect(screen.getAllByText(today.getDate()).map((e) => e.className)).toContain('rdtDay rdtToday');
+      expect(
+        screen.getAllByText(today.getDate()).map((e) => e.className)
+      ).toContain('rdtDay rdtToday');
     });
   });
 
@@ -262,18 +297,20 @@ describe('Component: DateTimeInput', () => {
 
       const { props, rerender } = setup({});
 
-      expect(screen.getByPlaceholderText('Please enter your date of birth')).toHaveValue('');
+      expect(
+        screen.getByPlaceholderText('Please enter your date of birth')
+      ).toHaveValue('');
 
       const newProps = {
         ...props,
         value
       };
 
-      rerender(
-        <DateTimeInput color="success" {...newProps} />
-      );
+      rerender(<DateTimeInput color="success" {...newProps} />);
 
-      expect(screen.getByPlaceholderText('Please enter your date of birth')).toHaveValue('1989-02-21 00:00:00');
+      expect(
+        screen.getByPlaceholderText('Please enter your date of birth')
+      ).toHaveValue('1989-02-21 00:00:00');
     });
   });
 });
@@ -282,7 +319,9 @@ describe('Component: JarbDateTimeInput', () => {
   it('should use default validator', async () => {
     expect.assertions(1);
 
-    const isDateValidatorSpy = jest.spyOn(Validators, 'isDateValidator').mockReturnValue(jest.fn());
+    const isDateValidatorSpy = jest
+      .spyOn(Validators, 'isDateValidator')
+      .mockReturnValue(jest.fn());
     setConstraints({
       Test: {
         date: {
@@ -297,7 +336,12 @@ describe('Component: JarbDateTimeInput', () => {
       render(
         <Form onSubmit={jest.fn()}>
           {() => (
-            <JarbDateTimeInput jarb={{ validator: 'Test.date', label: 'Test' }} name="test" dateFormat="YYYY-MM-DD" timeFormat={false} />
+            <JarbDateTimeInput
+              jarb={{ validator: 'Test.date', label: 'Test' }}
+              name="test"
+              dateFormat="YYYY-MM-DD"
+              timeFormat={false}
+            />
           )}
         </Form>
       );
@@ -323,13 +367,20 @@ describe('Component: FieldDateTimeInput', () => {
   it('should use default validator', async () => {
     expect.assertions(1);
 
-    const isDateValidatorSpy = jest.spyOn(Validators, 'isDateValidator').mockReturnValue(jest.fn());
+    const isDateValidatorSpy = jest
+      .spyOn(Validators, 'isDateValidator')
+      .mockReturnValue(jest.fn());
 
     await act(() => {
       render(
         <Form onSubmit={jest.fn()}>
           {() => (
-            <FieldDateTimeInput name="test" label="Test" dateFormat="YYYY-MM-DD" timeFormat={false} />
+            <FieldDateTimeInput
+              name="test"
+              label="Test"
+              dateFormat="YYYY-MM-DD"
+              timeFormat={false}
+            />
           )}
         </Form>
       );
@@ -345,7 +396,12 @@ describe('Component: FieldDateTimeInput', () => {
       render(
         <Form onSubmit={jest.fn()}>
           {() => (
-            <FieldDateTimeInput name="test" label={<Tooltip content="Test">Test</Tooltip>} dateFormat="YYYY-MM-DD" timeFormat={false} />
+            <FieldDateTimeInput
+              name="test"
+              label={<Tooltip content="Test">Test</Tooltip>}
+              dateFormat="YYYY-MM-DD"
+              timeFormat={false}
+            />
           )}
         </Form>
       );

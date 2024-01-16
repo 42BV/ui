@@ -4,11 +4,20 @@ import '@testing-library/jest-dom';
 import { emptyPage, Page } from '@42.nl/spring-connect';
 
 import { ModalPickerMultiple } from './ModalPickerMultiple';
-import { adminUser, coordinatorUser, listOfUsers, randomUser, userUser } from '../../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  randomUser,
+  userUser
+} from '../../../test/fixtures';
 
 import { User } from '../../../test/types';
 import * as testUtils from '../../../test/utils';
-import { ModalPickerAddButtonOptions, ModalPickerButtonAlignment } from '../types';
+import {
+  ModalPickerAddButtonOptions,
+  ModalPickerButtonAlignment
+} from '../types';
 import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { Color } from '../../../core/types';
@@ -103,12 +112,12 @@ describe('Component: ModalPickerMultiple', () => {
       alignButton,
       renderValue: hasRenderValue
         ? (users?: User[]) => (
-          <span>
+            <span>
               {users
                 ? users.map((user) => user.id).join(', ')
                 : 'none selected'}
             </span>
-        )
+          )
         : undefined,
       renderOptions: hasRenderOptions
         ? () => <span>RenderOptions</span>
@@ -121,9 +130,7 @@ describe('Component: ModalPickerMultiple', () => {
       hiddenLabel: !hasLabel
     };
 
-    const { container, rerender } = render(
-      <ModalPickerMultiple {...props} />
-    );
+    const { container, rerender } = render(<ModalPickerMultiple {...props} />);
 
     return {
       container,
@@ -169,7 +176,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     test('with value', () => {
       setup({
-        value: [ adminUser(), userUser() ]
+        value: [adminUser(), userUser()]
       });
 
       expect(screen.queryByText('admin@42.nl, user@42.nl')).toBeInTheDocument();
@@ -177,7 +184,9 @@ describe('Component: ModalPickerMultiple', () => {
       fireEvent.click(screen.getByText('Select your best friend'));
 
       expect(screen.queryAllByText('×').length).toBe(2);
-      expect(screen.queryAllByText('×').map((e) => e.parentNode?.textContent)).toEqual([ 'admin@42.nl×', 'user@42.nl×' ]);
+      expect(
+        screen.queryAllByText('×').map((e) => e.parentNode?.textContent)
+      ).toEqual(['admin@42.nl×', 'user@42.nl×']);
     });
 
     test('without value', () => {
@@ -192,7 +201,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render the options with the correct checked state', () => {
       setup({
-        value: [ adminUser(), coordinatorUser() ]
+        value: [adminUser(), coordinatorUser()]
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
@@ -226,33 +235,43 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should render button left', () => {
       setup({
-        value: [ adminUser() ],
+        value: [adminUser()],
         alignButton: 'left'
       });
 
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center flex-row-reverse justify-content-end');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).toHaveClass('align-items-center flex-row-reverse justify-content-end');
     });
 
     it('should render button right without value', () => {
       setup({
         alignButton: 'right'
       });
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-end');
-      expect(screen.getByText('Select your best friend').parentNode).not.toHaveClass('flex-row-reverse');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).toHaveClass('align-items-center justify-content-end');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).not.toHaveClass('flex-row-reverse');
     });
 
     it('should render button right with value', () => {
       setup({
-        value: [ adminUser() ],
+        value: [adminUser()],
         alignButton: 'right'
       });
-      expect(screen.getByText('Select your best friend').parentNode).toHaveClass('align-items-center justify-content-between');
-      expect(screen.getByText('Select your best friend').parentNode).not.toHaveClass('flex-row-reverse');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).toHaveClass('align-items-center justify-content-between');
+      expect(
+        screen.getByText('Select your best friend').parentNode
+      ).not.toHaveClass('flex-row-reverse');
     });
 
     it('should render without clear button', () => {
       setup({
-        value: [ adminUser() ],
+        value: [adminUser()],
         canClear: false
       });
       expect(screen.queryByText('Clear')).not.toBeInTheDocument();
@@ -268,7 +287,7 @@ describe('Component: ModalPickerMultiple', () => {
 
       it('should use the default ModalPickerValueTruncator to render values', () => {
         setup({
-          value: [ adminUser() ],
+          value: [adminUser()],
           hasRenderValue: false
         });
         expect(screen.getByText('admin@42.nl')).toHaveClass('text-truncate');
@@ -277,7 +296,7 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should be able to use custom function to render options', () => {
       setup({
-        value: [ adminUser() ],
+        value: [adminUser()],
         hasRenderOptions: true
       });
 
@@ -315,7 +334,9 @@ describe('Component: ModalPickerMultiple', () => {
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
       expect(useOptions).toHaveBeenLastCalledWith(
         expect.objectContaining({ query: 'test', pageNumber: 1 })
@@ -358,14 +379,14 @@ describe('Component: ModalPickerMultiple', () => {
       fireEvent.click(screen.getByText('Select'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([ adminUser() ]);
+      expect(onChangeSpy).toHaveBeenCalledWith([adminUser()]);
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should clear the value when the user clicks the clear button', () => {
       const { onChangeSpy } = setup({
-        value: [ adminUser(), coordinatorUser() ]
+        value: [adminUser(), coordinatorUser()]
       });
 
       fireEvent.click(screen.getByText('Clear'));
@@ -376,15 +397,15 @@ describe('Component: ModalPickerMultiple', () => {
 
     it('should remove the value after clicking select when the user removes a selected value via the tag inside the modal', () => {
       const { onChangeSpy } = setup({
-        value: [ adminUser() ]
+        value: [adminUser()]
       });
 
       fireEvent.click(screen.getByText('Select your best friend'));
       fireEvent.click(screen.getByText('×'));
       fireEvent.click(screen.getByText('Select'));
 
-      expect(onChangeSpy).toBeCalledTimes(1);
-      expect(onChangeSpy).toBeCalledWith([]);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith([]);
     });
 
     describe('addButton', () => {
@@ -448,7 +469,7 @@ describe('Component: ModalPickerMultiple', () => {
 
   describe('value changes', () => {
     test('becomes empty', () => {
-      const value = [ adminUser() ];
+      const value = [adminUser()];
 
       const { props, rerender } = setup({ value: value });
 
@@ -459,9 +480,7 @@ describe('Component: ModalPickerMultiple', () => {
         value: undefined
       };
 
-      rerender(
-        <ModalPickerMultiple {...newProps} />
-      );
+      rerender(<ModalPickerMultiple {...newProps} />);
 
       expect(screen.queryByText('admin@42.nl')).not.toBeInTheDocument();
     });
@@ -473,12 +492,10 @@ describe('Component: ModalPickerMultiple', () => {
 
       const newProps = {
         ...props,
-        value: [ adminUser() ]
+        value: [adminUser()]
       };
 
-      rerender(
-        <ModalPickerMultiple {...newProps} />
-      );
+      rerender(<ModalPickerMultiple {...newProps} />);
 
       expect(screen.queryByText('admin@42.nl')).toBeInTheDocument();
     });

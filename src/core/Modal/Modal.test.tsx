@@ -83,7 +83,7 @@ describe('Component: Modal', () => {
 
       fireEvent.click(screen.getByLabelText('Close'));
 
-      expect(onCloseSpy).toBeCalledTimes(1);
+      expect(onCloseSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

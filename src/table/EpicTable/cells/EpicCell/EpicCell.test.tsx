@@ -5,7 +5,13 @@ import '@testing-library/jest-dom';
 import { EpicCell } from './EpicCell';
 
 describe('Component: EpicCell', () => {
-  function setup({ hasOnRowClick = true, height }: { hasOnRowClick?: boolean; height?: number; }) {
+  function setup({
+    hasOnRowClick = true,
+    height
+  }: {
+    hasOnRowClick?: boolean;
+    height?: number;
+  }) {
     const onRowClickSpy = jest.fn();
     const onHoverChangedSpy = jest.fn();
 
@@ -42,7 +48,7 @@ describe('Component: EpicCell', () => {
 
       fireEvent.click(screen.getByText('epic cell'));
 
-      expect(onRowClickSpy).toBeCalledTimes(1);
+      expect(onRowClickSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should call onHoverChanged when hovering over the div', () => {
@@ -50,13 +56,13 @@ describe('Component: EpicCell', () => {
 
       fireEvent.mouseEnter(screen.getByText('epic cell'));
 
-      expect(onHoverChangedSpy).toBeCalledTimes(1);
-      expect(onHoverChangedSpy).toBeCalledWith(true);
+      expect(onHoverChangedSpy).toHaveBeenCalledTimes(1);
+      expect(onHoverChangedSpy).toHaveBeenCalledWith(true);
 
       fireEvent.mouseLeave(screen.getByText('epic cell'));
 
-      expect(onHoverChangedSpy).toBeCalledTimes(2);
-      expect(onHoverChangedSpy).toBeCalledWith(false);
+      expect(onHoverChangedSpy).toHaveBeenCalledTimes(2);
+      expect(onHoverChangedSpy).toHaveBeenCalledWith(false);
     });
   });
 });

@@ -23,13 +23,13 @@ describe('HoC: useComponentOverflow', () => {
 
     useComponentOverflow.handleResizeCallback(ref, setComponentOverflowSpy)();
 
-    expect(setComponentOverflowSpy).toBeCalledTimes(0);
+    expect(setComponentOverflowSpy).toHaveBeenCalledTimes(0);
 
     ref.current = document.createElement('div');
 
     useComponentOverflow.handleResizeCallback(ref, setComponentOverflowSpy)();
-    expect(setComponentOverflowSpy).toBeCalledTimes(1);
-    expect(setComponentOverflowSpy).toBeCalledWith(false);
+    expect(setComponentOverflowSpy).toHaveBeenCalledTimes(1);
+    expect(setComponentOverflowSpy).toHaveBeenCalledWith(false);
   });
 
   describe('layoutEffect', () => {
@@ -46,7 +46,7 @@ describe('HoC: useComponentOverflow', () => {
 
     it('should not call handleResize when ref is empty', () => {
       useComponentOverflow.layoutEffect(ref, handleResizeSpy, undefined)();
-      expect(handleResizeSpy).toBeCalledTimes(0);
+      expect(handleResizeSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should call addEventListener and removeEventListener when resizeObserver is not defined', () => {
@@ -64,17 +64,24 @@ describe('HoC: useComponentOverflow', () => {
         undefined
       )();
 
-      expect(handleResizeSpy).toBeCalledTimes(1);
-      expect(addEventListenerSpy).toBeCalledTimes(1);
-      expect(addEventListenerSpy).toBeCalledWith('resize', handleResizeSpy, {
-        passive: true
-      });
+      expect(handleResizeSpy).toHaveBeenCalledTimes(1);
+      expect(addEventListenerSpy).toHaveBeenCalledTimes(1);
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        'resize',
+        handleResizeSpy,
+        {
+          passive: true
+        }
+      );
 
       // @ts-expect-error Test mock
       eventListenerResult();
 
-      expect(removeEventListenerSpy).toBeCalledTimes(1);
-      expect(removeEventListenerSpy).toBeCalledWith('resize', handleResizeSpy);
+      expect(removeEventListenerSpy).toHaveBeenCalledTimes(1);
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        'resize',
+        handleResizeSpy
+      );
       removeEventListenerSpy.mockReset();
     });
 
@@ -96,17 +103,17 @@ describe('HoC: useComponentOverflow', () => {
         { observe: observeSpy, unobserve: unobserveSpy }
       )();
 
-      expect(handleResizeSpy).toBeCalledTimes(1);
-      expect(observeSpy).toBeCalledTimes(1);
-      expect(observeSpy).toBeCalledWith(ref.current);
-      expect(addEventListenerSpy).toBeCalledTimes(0);
+      expect(handleResizeSpy).toHaveBeenCalledTimes(1);
+      expect(observeSpy).toHaveBeenCalledTimes(1);
+      expect(observeSpy).toHaveBeenCalledWith(ref.current);
+      expect(addEventListenerSpy).toHaveBeenCalledTimes(0);
 
       // @ts-expect-error Test mock
       resizeObserverResult();
 
-      expect(unobserveSpy).toBeCalledTimes(1);
-      expect(unobserveSpy).toBeCalledWith(ref.current);
-      expect(removeEventListenerSpy).toBeCalledTimes(0);
+      expect(unobserveSpy).toHaveBeenCalledTimes(1);
+      expect(unobserveSpy).toHaveBeenCalledWith(ref.current);
+      expect(removeEventListenerSpy).toHaveBeenCalledTimes(0);
     });
   });
 });

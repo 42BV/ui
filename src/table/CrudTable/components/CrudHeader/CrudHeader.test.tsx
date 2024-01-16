@@ -29,14 +29,12 @@ describe('Component: CrudHeader', () => {
       onResize: hasResize ? onResizeSpy : undefined,
       onSearch: hasSearch ? onSearchSpy : undefined,
       onSort: hasSort ? onSortSpy : undefined,
-      options: hasSearchOptions ? [ 'crud', 'header' ] : undefined,
+      options: hasSearchOptions ? ['crud', 'header'] : undefined,
       labelForOption: hasSearchOptions ? (option) => option : undefined
     };
 
     const { container } = render(
-      <CrudHeader {...props}>
-        This is a header
-      </CrudHeader>
+      <CrudHeader {...props}>This is a header</CrudHeader>
     );
 
     return { container, onResizeSpy, onSearchSpy, onSortSpy };
@@ -55,7 +53,9 @@ describe('Component: CrudHeader', () => {
 
     test('with resize', () => {
       setup({ hasResize: true });
-      expect(screen.queryByTestId('epic-table-header-resize')).toBeInTheDocument();
+      expect(
+        screen.queryByTestId('epic-table-header-resize')
+      ).toBeInTheDocument();
     });
 
     test('with sort', () => {
@@ -78,8 +78,12 @@ describe('Component: CrudHeader', () => {
       setup({ hasSearch: true, hasSearchOptions: true });
 
       expect(screen.queryByRole('combobox')).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: 'crud' })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: 'header' })).toBeInTheDocument();
+      expect(
+        screen.queryByRole('option', { name: 'crud' })
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole('option', { name: 'header' })
+      ).toBeInTheDocument();
     });
   });
 
@@ -89,28 +93,33 @@ describe('Component: CrudHeader', () => {
 
       fireEvent.click(screen.getByText('sort'));
 
-      expect(onSortSpy).toBeCalledTimes(1);
-      expect(onSortSpy).toBeCalledWith('ASC');
+      expect(onSortSpy).toHaveBeenCalledTimes(1);
+      expect(onSortSpy).toHaveBeenCalledWith('ASC');
     });
 
     it('should call onSearch when the user types in the search field', () => {
       const { onSearchSpy } = setup({ hasSearch: true });
 
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
-      expect(onSearchSpy).toBeCalledTimes(1);
-      expect(onSearchSpy).toBeCalledWith('test');
+      expect(onSearchSpy).toHaveBeenCalledTimes(1);
+      expect(onSearchSpy).toHaveBeenCalledWith('test');
     });
 
     it('should call onSearch when the user selects a search option', async () => {
       expect.assertions(2);
 
-      const { onSearchSpy } = setup({ hasSearch: true, hasSearchOptions: true });
+      const { onSearchSpy } = setup({
+        hasSearch: true,
+        hasSearchOptions: true
+      });
 
       await userEvent.selectOptions(screen.getByRole('combobox'), 'crud');
 
-      expect(onSearchSpy).toBeCalledTimes(1);
-      expect(onSearchSpy).toBeCalledWith('crud');
+      expect(onSearchSpy).toHaveBeenCalledTimes(1);
+      expect(onSearchSpy).toHaveBeenCalledWith('crud');
     });
   });
 });

@@ -7,7 +7,6 @@ describe('Component: EpicDetail', () => {
   function setup() {
     const onCloseSpy = jest.fn();
 
-
     const { container } = render(
       <EpicDetail onClose={onCloseSpy}>
         <h1>children</h1>
@@ -28,7 +27,7 @@ describe('Component: EpicDetail', () => {
 
       fireEvent.click(screen.getByText('close'));
 
-      expect(onCloseSpy).toBeCalledTimes(1);
+      expect(onCloseSpy).toHaveBeenCalledTimes(1);
     });
   });
 });

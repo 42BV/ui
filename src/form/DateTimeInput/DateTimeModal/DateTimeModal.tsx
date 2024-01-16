@@ -6,7 +6,8 @@ import { constant, get } from 'lodash';
 import { DateTimeInputIsDateAllowed } from '../DateTimeInput';
 import { DateFormat, TimeFormat } from '../types';
 import { t } from '../../../utilities/translation/translation';
-import { OpenCloseModal } from '../../../core/OpenCloseModal/OpenCloseModal';
+import { Modal, ModalFooter, ModalHeader } from 'reactstrap';
+import { Button } from '../../../core/Button/Button';
 
 export type Text = {
   cancel?: string;
@@ -91,27 +92,22 @@ export function DateTimeModal(props: Props) {
     timeFormat,
     locale,
     utc = true,
-    text = {
-      save: t({
-        key: 'DateTimeModal.SELECT',
-        fallback: 'Select'
-      })
-    }
+    text
   } = props;
   const isDateAllowed = get(props, 'isDateAllowed', constant(true));
 
-  const [ value, setValue ] = useState(props.defaultValue ? moment(props.defaultValue) : '');
+  const [value, setValue] = useState(
+    props.defaultValue ? moment(props.defaultValue) : ''
+  );
 
   return (
-    <OpenCloseModal
+    <Modal
+      isOpen={true}
       onClose={onClose}
-      onSave={() => onSave(value)}
-      label={label}
-      text={text}
-      size="sm"
       className="date-time-modal"
-      stickyFooter={false}
+      size="sm"
     >
+      <ModalHeader toggle={onClose}>{label}</ModalHeader>
       <Datetime
         input={false}
         open={true}
@@ -126,6 +122,32 @@ export function DateTimeModal(props: Props) {
           isDateAllowed(date, current)
         }
       />
-    </OpenCloseModal>
+      <ModalFooter>
+        <Button
+          className="ms-1"
+          color="secondary"
+          icon="cancel"
+          onClick={onClose}
+        >
+          {t({
+            overrideText: text?.cancel,
+            key: 'OpenCloseModal.CANCEL',
+            fallback: 'Cancel'
+          })}
+        </Button>
+        <Button
+          className="ms-1"
+          color="primary"
+          icon="save"
+          onClick={() => onSave(value)}
+        >
+          {t({
+            overrideText: text?.select,
+            key: 'DateTimeModal.SELECT',
+            fallback: 'Select'
+          })}
+        </Button>
+      </ModalFooter>
+    </Modal>
   );
 }

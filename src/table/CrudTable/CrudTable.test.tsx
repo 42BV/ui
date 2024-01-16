@@ -39,7 +39,9 @@ describe('Component: CrudTable', () => {
         pageChanged={pageChangedSpy}
       >
         <EpicRow>
-          <EpicCell width={100} height={44}>test</EpicCell>
+          <EpicCell width={100} height={44}>
+            test
+          </EpicCell>
         </EpicRow>
       </CrudTable>
     );
@@ -99,10 +101,12 @@ describe('Component: CrudTable', () => {
 
       const { onSearchSpy } = setup({});
 
-      fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'test' } });
+      fireEvent.change(screen.getByRole('searchbox'), {
+        target: { value: 'test' }
+      });
 
-      expect(onSearchSpy).toBeCalledTimes(1);
-      expect(onSearchSpy).toBeCalledWith('test');
+      expect(onSearchSpy).toHaveBeenCalledTimes(1);
+      expect(onSearchSpy).toHaveBeenCalledWith('test');
     });
 
     it('should call pageChanged when the user clicks a page number', () => {
@@ -110,8 +114,8 @@ describe('Component: CrudTable', () => {
 
       fireEvent.click(screen.getByText('arrow_forward'));
 
-      expect(pageChangedSpy).toBeCalledTimes(1);
-      expect(pageChangedSpy).toBeCalledWith(3);
+      expect(pageChangedSpy).toHaveBeenCalledTimes(1);
+      expect(pageChangedSpy).toHaveBeenCalledWith(3);
     });
   });
 });

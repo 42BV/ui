@@ -7,7 +7,7 @@ import { uniqueId } from 'lodash';
 import { FieldCompatible } from '../types';
 import { withField } from '../withField/withField';
 
-type Props = FieldCompatible<boolean | undefined, boolean> & {
+type Props = FieldCompatible<boolean, boolean> & {
   /**
    * Optionally whether to support the indeterminate state.
    */
@@ -63,7 +63,9 @@ export function Checkbox(props: Props) {
             }
           }}
           className="mr-2"
-          aria-label={hiddenLabel && typeof label === 'string' ? label : undefined}
+          aria-label={
+            hiddenLabel && typeof label === 'string' ? label : undefined
+          }
         />
         {!hiddenLabel || typeof label !== 'string' ? label : null}
       </Label>
@@ -87,4 +89,6 @@ export const JarbCheckbox = withJarb<boolean, boolean | null, Props>(Checkbox);
 /**
  * Variant of the Checkbox which can be used in a final form.
  */
-export const FieldCheckbox = withField<boolean, boolean | null, Props>(Checkbox);
+export const FieldCheckbox = withField<boolean, boolean | null, Props>(
+  Checkbox
+);

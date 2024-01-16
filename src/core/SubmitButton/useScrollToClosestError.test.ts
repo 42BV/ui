@@ -34,13 +34,13 @@ describe('useScrollToClosestError', () => {
       );
 
       // Should not scroll the first time as the hook is initializing.
-      expect(document.querySelector).toBeCalledTimes(0);
-      expect(scrollIntoViewSpy).toBeCalledTimes(0);
+      expect(document.querySelector).toHaveBeenCalledTimes(0);
+      expect(scrollIntoViewSpy).toHaveBeenCalledTimes(0);
 
       // Even after 200 seconds it should not be called
       jest.advanceTimersByTime(200);
-      expect(document.querySelector).toBeCalledTimes(0);
-      expect(scrollIntoViewSpy).toBeCalledTimes(0);
+      expect(document.querySelector).toHaveBeenCalledTimes(0);
+      expect(scrollIntoViewSpy).toHaveBeenCalledTimes(0);
 
       // Now call doScrollToClosestError for the second time.
       // But only after 200 milliseconds it should be run due to the debounce
@@ -48,22 +48,22 @@ describe('useScrollToClosestError', () => {
         result.current.doScrollToClosestError();
       });
       jest.advanceTimersByTime(199);
-      expect(document.querySelector).toBeCalledTimes(0);
-      expect(scrollIntoViewSpy).toBeCalledTimes(0);
+      expect(document.querySelector).toHaveBeenCalledTimes(0);
+      expect(scrollIntoViewSpy).toHaveBeenCalledTimes(0);
 
       // It should be called after 200 milliseconds
       jest.advanceTimersByTime(1);
-      expect(document.querySelector).toBeCalledTimes(1);
-      expect(scrollIntoViewSpy).toBeCalledTimes(1);
-      expect(scrollIntoViewSpy).toBeCalledWith({ behavior: 'smooth' });
+      expect(document.querySelector).toHaveBeenCalledTimes(1);
+      expect(scrollIntoViewSpy).toHaveBeenCalledTimes(1);
+      expect(scrollIntoViewSpy).toHaveBeenCalledWith({ behavior: 'smooth' });
 
       // Let's test if the debounce works properly
       await act(() => {
         result.current.doScrollToClosestError();
       });
       jest.advanceTimersByTime(199);
-      expect(document.querySelector).toBeCalledTimes(1);
-      expect(scrollIntoViewSpy).toBeCalledTimes(1);
+      expect(document.querySelector).toHaveBeenCalledTimes(1);
+      expect(scrollIntoViewSpy).toHaveBeenCalledTimes(1);
 
       // Now quickly call again within the 200 milliseconds
       // and cross the debounce threshold.
@@ -72,14 +72,14 @@ describe('useScrollToClosestError', () => {
       });
       jest.advanceTimersByTime(1);
       // The scroll should not be called due to the debounce
-      expect(document.querySelector).toBeCalledTimes(1);
-      expect(scrollIntoViewSpy).toBeCalledTimes(1);
+      expect(document.querySelector).toHaveBeenCalledTimes(1);
+      expect(scrollIntoViewSpy).toHaveBeenCalledTimes(1);
 
       // Now it should trigger the debounced scroll
       jest.advanceTimersByTime(199);
-      expect(document.querySelector).toBeCalledTimes(2);
-      expect(scrollIntoViewSpy).toBeCalledTimes(2);
-      expect(scrollIntoViewSpy).toBeCalledWith({ behavior: 'smooth' });
+      expect(document.querySelector).toHaveBeenCalledTimes(2);
+      expect(scrollIntoViewSpy).toHaveBeenCalledTimes(2);
+      expect(scrollIntoViewSpy).toHaveBeenCalledWith({ behavior: 'smooth' });
     });
 
     describe('enabled but element not found scenarios', () => {
@@ -129,7 +129,7 @@ describe('useScrollToClosestError', () => {
           jest.advanceTimersByTime(200);
         });
 
-        expect(document.querySelector).toBeCalledTimes(1);
+        expect(document.querySelector).toHaveBeenCalledTimes(1);
       }
     });
   });
@@ -150,6 +150,6 @@ describe('useScrollToClosestError', () => {
       jest.advanceTimersByTime(200);
     });
 
-    expect(document.querySelector).toBeCalledTimes(0);
+    expect(document.querySelector).toHaveBeenCalledTimes(0);
   });
 });

@@ -26,19 +26,19 @@ describe('useAutoSelectOptionWhenQueryMatchesExactly', () => {
     );
 
     // Initially there is no match
-    expect(onChangeSpy).toBeCalledTimes(0);
+    expect(onChangeSpy).toHaveBeenCalledTimes(0);
 
     // User starts typing the first letter, still no exact match
     rerender({ query: 'a' });
-    expect(onChangeSpy).toBeCalledTimes(0);
+    expect(onChangeSpy).toHaveBeenCalledTimes(0);
 
     // User starts typing the second letter, still no exact match
     rerender({ query: 'aa' });
-    expect(onChangeSpy).toBeCalledTimes(0);
+    expect(onChangeSpy).toHaveBeenCalledTimes(0);
 
     // User starts typing the third letter, now there is a match
     rerender({ query: 'aap' });
-    expect(onChangeSpy).toBeCalledTimes(1);
-    expect(onChangeSpy).toBeCalledWith('AAP');
+    expect(onChangeSpy).toHaveBeenCalledTimes(1);
+    expect(onChangeSpy).toHaveBeenCalledWith('AAP');
   });
 });

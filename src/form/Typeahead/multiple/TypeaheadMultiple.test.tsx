@@ -146,8 +146,10 @@ describe('Component: TypeaheadMultiple', () => {
         pageSize: 2
       });
 
-      expect(useOptions).toBeCalledTimes(1);
-      expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 2 }));
+      expect(useOptions).toHaveBeenCalledTimes(1);
+      expect(useOptions).toHaveBeenCalledWith(
+        expect.objectContaining({ size: 2 })
+      );
 
       fireEvent.change(screen.getByRole('combobox'), {
         target: { value: '42.nl' }
@@ -164,8 +166,10 @@ describe('Component: TypeaheadMultiple', () => {
 
       const { asFragment } = setup({ isAsync: true });
 
-      expect(useOptions).toBeCalledTimes(1);
-      expect(useOptions).toBeCalledWith(expect.objectContaining({ size: 10 }));
+      expect(useOptions).toHaveBeenCalledTimes(1);
+      expect(useOptions).toHaveBeenCalledWith(
+        expect.objectContaining({ size: 10 })
+      );
 
       fireEvent.change(screen.getByRole('combobox'), {
         target: { value: '42.nl' }
@@ -236,8 +240,8 @@ describe('Component: TypeaheadMultiple', () => {
 
       fireEvent.click(screen.getByText('×'));
 
-      expect(onChangeSpy).toBeCalledTimes(1);
-      expect(onChangeSpy).toBeCalledWith(undefined);
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith(undefined);
     });
   });
 
@@ -263,15 +267,15 @@ describe('Component: TypeaheadMultiple', () => {
         isAsync: true
       });
 
-      expect(useOptions).toBeCalledTimes(1);
+      expect(useOptions).toHaveBeenCalledTimes(1);
 
       fireEvent.change(screen.getByRole('combobox'), {
         target: { value: 'admin' }
       });
 
       await waitFor(() => {
-        expect(useOptions).toBeCalledTimes(2);
-        expect(useOptions).toBeCalledWith(
+        expect(useOptions).toHaveBeenCalledTimes(2);
+        expect(useOptions).toHaveBeenCalledWith(
           expect.objectContaining({ query: 'admin' })
         );
       });

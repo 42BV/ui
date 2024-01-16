@@ -36,13 +36,11 @@ describe('Component: AutoSave', () => {
     const setActiveSpy = jest.fn();
     jest
       .spyOn(Active, 'useActive')
-      .mockImplementation(() => [ activeField, setActiveSpy ]);
+      .mockImplementation(() => [activeField, setActiveSpy]);
 
     const { container } = render(
       <FinalForm.Form onSubmit={onSubmitSpy}>
-        {() => (
-          <AutoSave onSave={onSaveSpy} initialValues={initialValues} />
-        )}
+        {() => <AutoSave onSave={onSaveSpy} initialValues={initialValues} />}
       </FinalForm.Form>
     );
 
@@ -53,9 +51,7 @@ describe('Component: AutoSave', () => {
   test('ui', () => {
     const { container } = render(
       <FinalForm.Form onSubmit={jest.fn()}>
-        {() => (
-          <AutoSave onSave={jest.fn()} />
-        )}
+        {() => <AutoSave onSave={jest.fn()} />}
       </FinalForm.Form>
     );
     expect(container.firstChild).toBeNull();
@@ -68,10 +64,10 @@ describe('Component: AutoSave', () => {
       // @ts-expect-error We only need the active property for this test
       onChangeTrigger({ active: 'test' });
 
-      expect(setActiveSpy).toBeCalledTimes(1);
-      expect(setActiveSpy).toBeCalledWith('test');
+      expect(setActiveSpy).toHaveBeenCalledTimes(1);
+      expect(setActiveSpy).toHaveBeenCalledWith('test');
 
-      expect(onSaveSpy).toBeCalledTimes(0);
+      expect(onSaveSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should not save when same field changes', () => {
@@ -82,8 +78,8 @@ describe('Component: AutoSave', () => {
       // @ts-expect-error We only need the active property for this test
       onChangeTrigger({ active: 'test' });
 
-      expect(setActiveSpy).toBeCalledTimes(0);
-      expect(onSaveSpy).toBeCalledTimes(0);
+      expect(setActiveSpy).toHaveBeenCalledTimes(0);
+      expect(onSaveSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should not save when values do not change', () => {
@@ -95,10 +91,10 @@ describe('Component: AutoSave', () => {
       // @ts-expect-error We only need the active and values properties for this test
       onChangeTrigger({ active: 'friends', values: { test: 'test' } });
 
-      expect(setActiveSpy).toBeCalledTimes(1);
-      expect(setActiveSpy).toBeCalledWith('friends');
+      expect(setActiveSpy).toHaveBeenCalledTimes(1);
+      expect(setActiveSpy).toHaveBeenCalledWith('friends');
 
-      expect(onSaveSpy).toBeCalledTimes(0);
+      expect(onSaveSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should wait with saving again until the previous save has finished', async () => {
@@ -118,15 +114,15 @@ describe('Component: AutoSave', () => {
       // @ts-expect-error We only need the active and values properties for this test
       onChangeTrigger({ active: 'friends', values: { test: 'testing' } });
 
-      expect(setActiveSpy).toBeCalledTimes(1);
-      expect(setActiveSpy).toBeCalledWith('friends');
+      expect(setActiveSpy).toHaveBeenCalledTimes(1);
+      expect(setActiveSpy).toHaveBeenCalledWith('friends');
 
-      expect(onSaveSpy).toBeCalledTimes(0);
+      expect(onSaveSpy).toHaveBeenCalledTimes(0);
 
       await resolve();
 
-      expect(onSaveSpy).toBeCalledTimes(1);
-      expect(onSaveSpy).toBeCalledWith({ test: 'testing' });
+      expect(onSaveSpy).toHaveBeenCalledTimes(1);
+      expect(onSaveSpy).toHaveBeenCalledWith({ test: 'testing' });
     });
 
     it('should save when another field changes', () => {
@@ -137,11 +133,11 @@ describe('Component: AutoSave', () => {
       // @ts-expect-error We only need the active and values properties for this test
       onChangeTrigger({ active: 'friends', values: { test: 'test' } });
 
-      expect(setActiveSpy).toBeCalledTimes(1);
-      expect(setActiveSpy).toBeCalledWith('friends');
+      expect(setActiveSpy).toHaveBeenCalledTimes(1);
+      expect(setActiveSpy).toHaveBeenCalledWith('friends');
 
-      expect(onSaveSpy).toBeCalledTimes(1);
-      expect(onSaveSpy).toBeCalledWith({ test: 'test' });
+      expect(onSaveSpy).toHaveBeenCalledTimes(1);
+      expect(onSaveSpy).toHaveBeenCalledWith({ test: 'test' });
     });
   });
 });

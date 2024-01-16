@@ -49,17 +49,38 @@ describe('Component: DateTimeModal', () => {
     test('without value', () => {
       setup({});
       const today = new Date();
-      expect(screen.getAllByText(today.getDate()).map((e) => e.className)).toContain('rdtDay rdtToday');
+      expect(
+        screen.getAllByText(today.getDate()).map((e) => e.className)
+      ).toContain('rdtDay rdtToday');
+    });
+
+    test('custom button texts', () => {
+      render(
+        <DateTimeModal
+          onClose={() => undefined}
+          onSave={() => undefined}
+          dateFormat="YYYY-MM-DD"
+          timeFormat="HH:II:SS"
+          text={{
+            select: 'do it',
+            cancel: 'nah'
+          }}
+        />
+      );
+      expect(screen.queryByText('Select')).not.toBeInTheDocument();
+      expect(screen.queryByText('Cancel')).not.toBeInTheDocument();
+      expect(screen.queryByText('do it')).toBeInTheDocument();
+      expect(screen.queryByText('nah')).toBeInTheDocument();
     });
   });
 
   describe('events', () => {
     it('should update internal value when a date is selected', () => {
       const setValueSpy = jest.fn();
-      jest.spyOn(React, 'useState').mockReturnValue([ '', setValueSpy ]);
+      jest.spyOn(React, 'useState').mockReturnValue(['', setValueSpy]);
       setup({});
 
-      const value = moment(new Date).startOf('month');
+      const value = moment(new Date()).startOf('month');
 
       fireEvent.click(screen.getAllByText('1')[0]);
 
@@ -72,8 +93,8 @@ describe('Component: DateTimeModal', () => {
 
       fireEvent.click(screen.getAllByText('1')[0]);
 
-      expect(onCloseSpy).toBeCalledTimes(0);
-      expect(onSaveSpy).toBeCalledTimes(0);
+      expect(onCloseSpy).toHaveBeenCalledTimes(0);
+      expect(onSaveSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should close modal without value when modal is closed', () => {
@@ -82,26 +103,28 @@ describe('Component: DateTimeModal', () => {
       fireEvent.click(screen.getAllByText('1')[0]);
       fireEvent.click(screen.getByText('cancel'));
 
-      expect(onCloseSpy).toBeCalledTimes(1);
-      expect(onSaveSpy).toBeCalledTimes(0);
+      expect(onCloseSpy).toHaveBeenCalledTimes(1);
+      expect(onSaveSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should close modal with new value when clicking select button', () => {
       const { onCloseSpy, onSaveSpy } = setup({});
 
-      const value = moment(new Date).startOf('month');
+      const value = moment(new Date()).startOf('month');
 
       fireEvent.click(screen.getAllByText('1')[0]);
       fireEvent.click(screen.getByText('save'));
 
-      expect(onSaveSpy).toBeCalledTimes(1);
+      expect(onSaveSpy).toHaveBeenCalledTimes(1);
       expect(value.isSame(onSaveSpy.mock.calls[0][0])).toBe(true);
 
-      expect(onCloseSpy).toBeCalledTimes(0);
+      expect(onCloseSpy).toHaveBeenCalledTimes(0);
     });
 
     test('is date allowed', () => {
-      const isDateAllowedSpy = jest.fn().mockImplementation((date) => date.isBefore(new Date()));
+      const isDateAllowedSpy = jest
+        .fn()
+        .mockImplementation((date) => date.isBefore(new Date()));
 
       render(
         <DateTimeModal
@@ -113,7 +136,7 @@ describe('Component: DateTimeModal', () => {
         />
       );
 
-      expect(isDateAllowedSpy).toBeCalledTimes(42);
+      expect(isDateAllowedSpy).toHaveBeenCalledTimes(42);
     });
   });
 });

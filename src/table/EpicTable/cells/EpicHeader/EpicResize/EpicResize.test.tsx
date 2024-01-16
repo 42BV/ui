@@ -16,23 +16,27 @@ describe('Component: EpicResize', () => {
     it('should resize with a throttle', () => {
       const onResizeSpy = jest.fn();
 
-      render(
-        <EpicResize width={300} onResize={onResizeSpy} />
-      );
+      render(<EpicResize width={300} onResize={onResizeSpy} />);
 
-      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), { clientX: 0 });
+      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 0
+      });
 
       expect(document.body.style.cursor).toBe('col-resize');
       expect(document.body.classList.contains('user-select-none')).toBe(true);
 
-      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), { clientX: 42 });
+      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 42
+      });
 
-      expect(onResizeSpy).toBeCalledTimes(1);
-      expect(onResizeSpy).toBeCalledWith(342);
+      expect(onResizeSpy).toHaveBeenCalledTimes(1);
+      expect(onResizeSpy).toHaveBeenCalledWith(342);
 
-      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), { clientX: 80 });
+      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 80
+      });
 
-      expect(onResizeSpy).toBeCalledTimes(1);
+      expect(onResizeSpy).toHaveBeenCalledTimes(1);
 
       fireEvent.mouseUp(screen.getByTestId('epic-table-header-resize'));
 
@@ -47,42 +51,48 @@ describe('Component: EpicResize', () => {
         <EpicResize width={300} onResize={oldResizeSpy} />
       );
 
-      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), { clientX: 0 });
-      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), { clientX: 42 });
+      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 0
+      });
+      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 42
+      });
 
-      expect(oldResizeSpy).toBeCalledTimes(1);
+      expect(oldResizeSpy).toHaveBeenCalledTimes(1);
 
       const newResizeSpy = jest.fn();
 
-      rerender(
-        <EpicResize width={300} onResize={newResizeSpy} />
-      );
+      rerender(<EpicResize width={300} onResize={newResizeSpy} />);
 
-      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), { clientX: 42 });
+      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 42
+      });
 
       // The old one should not be called again
-      expect(oldResizeSpy).toBeCalledTimes(1);
+      expect(oldResizeSpy).toHaveBeenCalledTimes(1);
 
       // The new should be called instead
-      expect(newResizeSpy).toBeCalledTimes(1);
+      expect(newResizeSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should not allow resizing to below the initial width', () => {
       const onResizeSpy = jest.fn();
 
-      render(
-        <EpicResize width={300} onResize={onResizeSpy} />
-      );
+      render(<EpicResize width={300} onResize={onResizeSpy} />);
 
-      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), { clientX: 300 });
+      fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 300
+      });
 
       expect(document.body.style.cursor).toBe('col-resize');
       expect(document.body.classList.contains('user-select-none')).toBe(true);
 
-      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), { clientX: 280 });
+      fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
+        clientX: 280
+      });
 
-      expect(onResizeSpy).toBeCalledTimes(1);
-      expect(onResizeSpy).toBeCalledWith(300);
+      expect(onResizeSpy).toHaveBeenCalledTimes(1);
+      expect(onResizeSpy).toHaveBeenCalledWith(300);
     });
   });
 });

@@ -4,7 +4,14 @@ import '@testing-library/jest-dom';
 
 import { CheckboxMultipleSelect, Text } from './CheckboxMultipleSelect';
 import { User } from '../../test/types';
-import { adminUser, coordinatorUser, listOfUsers, pageOfUsers, pageOfUsersFetcher, userUser } from '../../test/fixtures';
+import {
+  adminUser,
+  coordinatorUser,
+  listOfUsers,
+  pageOfUsers,
+  pageOfUsersFetcher,
+  userUser
+} from '../../test/fixtures';
 
 import { pageOf } from '../../utilities/page/page';
 import { useOptions } from '../useOptions';
@@ -90,18 +97,22 @@ describe('Component: CheckboxMultipleSelect', () => {
     });
 
     test('with value', () => {
-      setup({ value: [ adminUser() ] });
+      setup({ value: [adminUser()] });
       expect(screen.getByLabelText('admin@42.nl')).toBeChecked();
     });
 
     test('with placeholder', () => {
       setup({ hasPlaceholder: true });
-      expect(screen.queryByText('Please select your provinces')).toBeInTheDocument();
+      expect(
+        screen.queryByText('Please select your provinces')
+      ).toBeInTheDocument();
     });
 
     test('without placeholder', () => {
       setup({});
-      expect(screen.queryByText('Please select your provinces')).not.toBeInTheDocument();
+      expect(
+        screen.queryByText('Please select your provinces')
+      ).not.toBeInTheDocument();
     });
 
     test('with label', () => {
@@ -117,7 +128,9 @@ describe('Component: CheckboxMultipleSelect', () => {
     test('horizontal', () => {
       setup({ horizontal: true });
       screen.getAllByRole('checkbox').forEach((checkbox) => {
-        expect(checkbox.parentNode?.parentNode).toHaveClass('form-check-inline');
+        expect(checkbox.parentNode?.parentNode).toHaveClass(
+          'form-check-inline'
+        );
       });
     });
 
@@ -145,14 +158,14 @@ describe('Component: CheckboxMultipleSelect', () => {
         value,
         isOptionEnabled: undefined,
         hasIsOptionEqual: false,
-        options: [ admin, coordinator, user ]
+        options: [admin, coordinator, user]
       });
 
       // First lets click on the admin it should be added
       fireEvent.click(screen.getByLabelText('admin@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([ admin ]);
+      expect(onChangeSpy).toHaveBeenCalledWith([admin]);
 
       // Check that selected is a copy of value
       expect(onChangeSpy.mock.calls[0][0]).not.toBe(value);
@@ -161,19 +174,17 @@ describe('Component: CheckboxMultipleSelect', () => {
 
       let newProps = {
         ...props,
-        value: [ admin ]
+        value: [admin]
       };
 
       // Manually set the value since it is external
-      rerender(
-        <CheckboxMultipleSelect {...newProps} />
-      );
+      rerender(<CheckboxMultipleSelect {...newProps} />);
 
       // Now lets click on the coordinator it should be added
       fireEvent.click(screen.getByLabelText('coordinator@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(2);
-      expect(onChangeSpy).toHaveBeenCalledWith([ admin, coordinator ]);
+      expect(onChangeSpy).toHaveBeenCalledWith([admin, coordinator]);
 
       // Check that selected is a copy of value
       expect(onChangeSpy.mock.calls[1][0]).not.toBe(value);
@@ -182,19 +193,17 @@ describe('Component: CheckboxMultipleSelect', () => {
 
       newProps = {
         ...props,
-        value: [ admin, coordinator ]
+        value: [admin, coordinator]
       };
 
       // Manually set the value since it is external
-      rerender(
-        <CheckboxMultipleSelect {...newProps} />
-      );
+      rerender(<CheckboxMultipleSelect {...newProps} />);
 
       // Now lets click on the admin again it should be removed
       fireEvent.click(screen.getByLabelText('admin@42.nl'));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(3);
-      expect(onChangeSpy).toHaveBeenCalledWith([ coordinator ]);
+      expect(onChangeSpy).toHaveBeenCalledWith([coordinator]);
 
       // Check that selected is a copy of value
       expect(onChangeSpy.mock.calls[2][0]).not.toBe(value);
@@ -205,7 +214,7 @@ describe('Component: CheckboxMultipleSelect', () => {
     describe('isOptionEnabled', () => {
       it('should when "isOptionEnabled" is not defined always be true', () => {
         setup({
-          value: [ adminUser() ],
+          value: [adminUser()],
           isOptionEnabled: undefined
         });
 
@@ -237,9 +246,9 @@ describe('Component: CheckboxMultipleSelect', () => {
 
         expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
-          [ adminUser() ],
-          [ coordinatorUser() ],
-          [ userUser() ]
+          [adminUser()],
+          [coordinatorUser()],
+          [userUser()]
         ]);
       });
     });
@@ -248,7 +257,7 @@ describe('Component: CheckboxMultipleSelect', () => {
   describe('value changes', () => {
     test('becomes empty', () => {
       const { props, rerender } = setup({
-        value: [ userUser() ],
+        value: [userUser()],
         isOptionEnabled: undefined
       });
 
@@ -260,9 +269,7 @@ describe('Component: CheckboxMultipleSelect', () => {
         value: undefined
       };
 
-      rerender(
-        <CheckboxMultipleSelect {...newProps} />
-      );
+      rerender(<CheckboxMultipleSelect {...newProps} />);
 
       checkbox = screen.getAllByRole('checkbox')[2];
       expect(checkbox).not.toBeChecked();
@@ -279,12 +286,10 @@ describe('Component: CheckboxMultipleSelect', () => {
 
       const newProps = {
         ...props,
-        value: [ coordinatorUser() ]
+        value: [coordinatorUser()]
       };
 
-      rerender(
-        <CheckboxMultipleSelect {...newProps} />
-      );
+      rerender(<CheckboxMultipleSelect {...newProps} />);
 
       checkbox = screen.getAllByRole('checkbox')[1];
       expect(checkbox).toBeChecked();
@@ -297,7 +302,7 @@ describe('Component: CheckboxMultipleSelect', () => {
         optionsShouldAlwaysContainValueConfig: false
       });
 
-      expect(useOptions).toBeCalledWith(
+      expect(useOptions).toHaveBeenCalledWith(
         expect.objectContaining({ optionsShouldAlwaysContainValue: false })
       );
     });
@@ -307,7 +312,7 @@ describe('Component: CheckboxMultipleSelect', () => {
         optionsShouldAlwaysContainValueConfig: true
       });
 
-      expect(useOptions).toBeCalledWith(
+      expect(useOptions).toHaveBeenCalledWith(
         expect.objectContaining({ optionsShouldAlwaysContainValue: true })
       );
     });
@@ -315,7 +320,7 @@ describe('Component: CheckboxMultipleSelect', () => {
     test('when nothing is provided it should be true', () => {
       setup({});
 
-      expect(useOptions).toBeCalledWith(
+      expect(useOptions).toHaveBeenCalledWith(
         expect.objectContaining({ optionsShouldAlwaysContainValue: true })
       );
     });

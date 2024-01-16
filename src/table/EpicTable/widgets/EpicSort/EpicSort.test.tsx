@@ -50,8 +50,8 @@ describe('Component: EpicSort', () => {
 
       fireEvent.click(screen.getByText('arrow_drop_down'));
 
-      expect(onChangeSpy).toBeCalledTimes(1);
-      expect(onChangeSpy).toBeCalledWith('ASC');
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(onChangeSpy).toHaveBeenCalledWith('ASC');
     });
   });
 });
