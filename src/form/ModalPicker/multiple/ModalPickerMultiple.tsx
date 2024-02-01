@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 
 import { withJarb } from '../../withJarb/withJarb';
@@ -176,7 +176,9 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     setIsOpen(false);
   }
 
-  function openModal() {
+  const openModal: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+
     // Always copy the `value` so the `selected` is a fresh array.
     // Otherwise, the selection will be the same as the value, which
     // causes values to be committed and the cancel button will not
@@ -188,7 +190,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     setQuery('');
     setPageNumber(1);
     setUserHasSearched(false);
-  }
+  };
 
   function optionClicked(option: T, isSelected: boolean) {
     // Always copy the `value` so the `selected` is a fresh array.
