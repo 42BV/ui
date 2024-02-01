@@ -28,7 +28,7 @@ export type Props = {
   /**
    *  Optional callback for what needs to happen when the button is clicked.
    */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => any;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 
   /**
    * Whether the action you are performing is currently in progress.
@@ -124,7 +124,7 @@ export function Button({
 }: Props) {
   const showSpinner = useShowSpinner(!!inProgress);
 
-  function handleOnClick(event: React.MouseEvent<HTMLElement>) {
+  const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     if (!onClick) {
       return;
     }
@@ -132,7 +132,7 @@ export function Button({
     if (!inProgress) {
       onClick(event);
     }
-  }
+  };
 
   // If there are children it will look like a button.
   if (children) {

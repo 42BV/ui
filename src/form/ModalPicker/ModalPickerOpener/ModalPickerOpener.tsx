@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { Button } from 'reactstrap';
 import { ModalPickerButtonAlignment } from '../types';
 import classNames from 'classnames';
@@ -16,7 +16,7 @@ type BaseProps = {
   /**
    * Function to open the modal, called when the button is clicked.
    */
-  openModal: () => void;
+  openModal: MouseEventHandler<HTMLButtonElement>;
 
   /**
    * The label to display on the button.
@@ -60,18 +60,16 @@ type Props<T> =
   | ModalPickerSingleOpenerProps<T>
   | ModalPickerMultipleOpenerProps<T>;
 
-export function ModalPickerOpener<T>(props: Props<T>) {
-  const {
-    openModal,
-    label,
-    icon,
-    alignButton,
-    onClear,
-    text = {},
-    renderValue,
-    value
-  } = props;
-
+export function ModalPickerOpener<T>({
+  openModal,
+  label,
+  icon,
+  alignButton,
+  onClear,
+  text = {},
+  renderValue,
+  value
+}: Props<T>) {
   const hasValue = !!value;
 
   const wrapperClassName = classNames('d-flex', 'align-items-center', {
