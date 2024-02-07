@@ -171,6 +171,7 @@ export function ModalPickerSingle<T>(props: Props<T>) {
 
   const openModal: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
+    event.stopPropagation();
     setIsOpen(true);
     setSelected(value);
     setQuery('');

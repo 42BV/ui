@@ -178,6 +178,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
 
   const openModal: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
+    event.stopPropagation();
 
     // Always copy the `value` so the `selected` is a fresh array.
     // Otherwise, the selection will be the same as the value, which
