@@ -10,6 +10,7 @@ exports[`Component: Input masked 1`] = `
       aria-label="First name"
       class="form-control"
       id="11"
+      name="firstName"
       type="text"
       value=""
     />
@@ -36,6 +37,7 @@ exports[`Component: Input ui addon default 1`] = `
         aria-label="First name"
         class="form-control"
         id="6"
+        name="firstName"
         type="text"
         value=""
       />
@@ -55,6 +57,7 @@ exports[`Component: Input ui default 1`] = `
       aria-label="First name"
       class="form-control"
       id="1"
+      name="firstName"
       type="text"
       value=""
     />
@@ -78,6 +81,7 @@ exports[`Component: Input ui visible label 1`] = `
     <input
       class="form-control"
       id="firstName"
+      name="firstName"
       type="text"
       value=""
     />

@@ -21,6 +21,7 @@ exports[`HoC: withJarb errorMode: tooltip 1`] = `
       <input
         class="form-control"
         id="firstName"
+        name="firstName"
         placeholder="Please enter your first name"
         type="text"
         value="yolo"
@@ -61,6 +62,7 @@ exports[`HoC: withJarb ui default 1`] = `
     <input
       class="form-control"
       id="firstName"
+      name="firstName"
       placeholder="Please enter your first name"
       type="text"
       value="yolo"
@@ -85,6 +87,7 @@ exports[`HoC: withJarb ui with error 1`] = `
       aria-invalid="true"
       class="is-invalid form-control"
       id="firstName"
+      name="firstName"
       placeholder="Please enter your first name"
       type="text"
       value="yolo"

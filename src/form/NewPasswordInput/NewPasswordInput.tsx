@@ -6,9 +6,17 @@ import { Translation } from '../../utilities/translation/translator';
 import { Input, Props as InputProps } from '../Input/Input';
 import { withJarb } from '../withJarb/withJarb';
 import { PasswordStrength } from './PasswordStrength/PasswordStrength';
-import { hasLowercase, hasMinimumLength, hasNoSpaces, hasNumber, hasSpecialChar, hasUppercase } from './PasswordStrength/rules';
+import {
+  hasLowercase,
+  hasMinimumLength,
+  hasNoSpaces,
+  hasNumber,
+  hasSpecialChar,
+  hasUppercase
+} from './PasswordStrength/rules';
 import { NewPasswordInputRule } from './types';
 import { withField } from '../withField/withField';
+import { FieldCompatible } from '../types';
 
 type PasswordProps = {
   /**
@@ -82,7 +90,7 @@ export function NewPasswordInput(props: Props) {
     'showMeter'
   ]) as InputProps;
   inputProps.type = 'password';
-  const passwordStrengthProps = pick(props, [ 'minimumLength', 'showMeter' ]);
+  const passwordStrengthProps = pick(props, ['minimumLength', 'showMeter']);
 
   return (
     <div className="new-password-input">
@@ -99,12 +107,20 @@ export function NewPasswordInput(props: Props) {
 /**
  * Variant of the FileInput which can be used in a Jarb context.
  */
-export const JarbNewPasswordInput = withJarb<string, string, Props>(NewPasswordInput);
+export const JarbNewPasswordInput = withJarb<
+  string,
+  string,
+  FieldCompatible<string, string> & Props
+>(NewPasswordInput);
 
 /**
  * Variant of the FileInput which can be used in a final form.
  */
-export const FieldNewPasswordInput = withField<string, string, Props>(NewPasswordInput);
+export const FieldNewPasswordInput = withField<
+  string,
+  string,
+  FieldCompatible<string, string> & Props
+>(NewPasswordInput);
 
 function getRulesFromProps(props: PasswordProps): NewPasswordInputRule[] {
   const {
