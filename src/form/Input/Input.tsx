@@ -1,6 +1,12 @@
 import React, { ChangeEvent } from 'react';
 import RTMaskedInput from 'react-text-mask';
-import { FormGroup, Input as RSInput, InputGroup, Label } from 'reactstrap';
+import {
+  FormGroup,
+  Input as RSInput,
+  InputGroup,
+  InputProps as RSInputProps,
+  Label
+} from 'reactstrap';
 import { withJarb } from '../withJarb/withJarb';
 import { FieldCompatible } from '../types';
 import { uniqueId } from 'lodash';
@@ -36,80 +42,72 @@ export type InputType =
   | 'time'
   | 'color';
 
-export type Props = FieldCompatible<string, string> & {
-  /**
-   * Optional type of the input, default to `text`.
-   */
-  type?: InputType;
+export type Props = FieldCompatible<string, string> &
+  Omit<RSInputProps, 'value' | 'onChange' | 'onBlur' | 'onFocus' | 'type'> & {
+    /**
+     * Optional type of the input, default to `text`.
+     */
+    type?: InputType;
 
-  /**
-   * Optional mask of the input.
-   *
-   * @see https://text-mask.github.io/text-mask/
-   */
-  mask?: InputMask;
+    /**
+     * Optional mask of the input.
+     *
+     * @see https://text-mask.github.io/text-mask/
+     */
+    mask?: InputMask;
 
-  /**
-   * Optional addon to display to the left or right of the input
-   * element. Provide either an Addon, AddonIcon or AddonButton to be
-   * rendered here.
-   *
-   * The `position` property of the addon determines were the addon
-   * is rendered.
-   */
-  addon?: React.ReactElement;
+    /**
+     * Optional addon to display to the left or right of the input
+     * element. Provide either an Addon, AddonIcon or AddonButton to be
+     * rendered here.
+     *
+     * The `position` property of the addon determines were the addon
+     * is rendered.
+     */
+    addon?: React.ReactElement;
 
-  /**
-   * The position of the Addon, is it to the right or left
-   * of the input.
-   *
-   * Defaults to 'left'
-   */
-  addonPosition?: 'left' | 'right';
+    /**
+     * The position of the Addon, is it to the right or left
+     * of the input.
+     *
+     * Defaults to 'left'
+     */
+    addonPosition?: 'left' | 'right';
 
-  /**
-   * A ref to the actual input, can be used to focus the element.
-   */
-  innerRef?: React.Ref<HTMLInputElement>;
-};
+    /**
+     * A ref to the actual input, can be used to focus the element.
+     */
+    innerRef?: React.Ref<HTMLInputElement>;
+  };
 
 /**
  * Input is a basic form element which allows the user to enter text.
  *
  * Supports addons and masks.
  */
-export function Input(props: Props) {
-  const {
-    id = uniqueId(),
-    label,
-    hiddenLabel,
-    placeholder,
-    value,
-    onChange,
-    onBlur,
-    onFocus,
-    innerRef,
-    type = 'text',
-    error,
-    color,
-    valid,
-    mask,
-    addon,
-    addonPosition = 'left',
-    className = ''
-  } = props;
-
+export function Input({
+  id = uniqueId(),
+  label,
+  hiddenLabel,
+  onChange,
+  type = 'text',
+  error,
+  color,
+  valid,
+  mask,
+  addon,
+  addonPosition = 'left',
+  className = '',
+  ...htmlInputProps
+}: Props) {
   const inputProps = {
+    ...htmlInputProps,
     id,
     type,
     valid,
     invalid: valid === false ? true : undefined,
-    value,
-    innerRef,
-    placeholder,
-    onFocus,
-    onChange: (event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value),
-    onBlur,
+    onChange: (event: ChangeEvent<HTMLInputElement>) =>
+      onChange(event.target.value),
     'aria-label': hiddenLabel && typeof label === 'string' ? label : undefined
   };
 

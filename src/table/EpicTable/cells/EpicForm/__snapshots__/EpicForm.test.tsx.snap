@@ -20,6 +20,7 @@ exports[`Component: EpicForm ui 1`] = `
       <input
         class="form-control"
         id="testField"
+        name="testField"
         type="text"
         value=""
       />

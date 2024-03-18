@@ -68,7 +68,15 @@ describe('Component: Input', () => {
       <Input color="success" {...props} />
     );
 
-    return { container, props, asFragment, rerender, onChangeSpy, onBlurSpy, onFocusSpy };
+    return {
+      container,
+      props,
+      asFragment,
+      rerender,
+      onChangeSpy,
+      onBlurSpy,
+      onFocusSpy
+    };
   }
 
   describe('ui', () => {
@@ -84,12 +92,16 @@ describe('Component: Input', () => {
 
     test('with placeholder', () => {
       setup({ hasPlaceholder: true });
-      expect(screen.queryByPlaceholderText('Please enter your first name')).toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please enter your first name')
+      ).toBeInTheDocument();
     });
 
     test('without placeholder', () => {
       setup({ hasPlaceholder: false });
-      expect(screen.queryByPlaceholderText('Please enter your first name')).not.toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText('Please enter your first name')
+      ).not.toBeInTheDocument();
     });
 
     test('visible label', () => {
@@ -106,18 +118,26 @@ describe('Component: Input', () => {
     });
 
     test('addon default', () => {
-      const { container } = setup({ addon: <InputGroupText>Default on the left</InputGroupText> });
+      const { container } = setup({
+        addon: <InputGroupText>Default on the left</InputGroupText>
+      });
       expect(container).toMatchSnapshot();
     });
 
     test('addon left', () => {
-      setup({ addon: <InputGroupText>Left</InputGroupText>, addonPosition: 'left' });
+      setup({
+        addon: <InputGroupText>Left</InputGroupText>,
+        addonPosition: 'left'
+      });
       const addon = screen.getByText('Left');
       expect(addon.parentNode?.childNodes.item(0)).toBe(addon);
     });
 
     test('addon right', () => {
-      setup({ addon: <InputGroupText position="right">Right</InputGroupText>, addonPosition: 'right' });
+      setup({
+        addon: <InputGroupText position="right">Right</InputGroupText>,
+        addonPosition: 'right'
+      });
       const addon = screen.getByText('Right');
       expect(addon.parentNode?.childNodes.item(1)).toBe(addon);
     });
@@ -142,7 +162,9 @@ describe('Component: Input', () => {
     test('onChange', () => {
       const { onChangeSpy } = setup({ value: undefined, type: 'text' });
 
-      fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Maarten' } });
+      fireEvent.change(screen.getByRole('textbox'), {
+        target: { value: 'Maarten' }
+      });
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith('Maarten');
@@ -176,9 +198,7 @@ describe('Component: Input', () => {
         value: ''
       };
 
-      rerender(
-        <Input color="success" {...newProps} />
-      );
+      rerender(<Input color="success" {...newProps} />);
 
       expect(screen.getByRole('textbox')).toHaveValue('');
     });
@@ -193,9 +213,7 @@ describe('Component: Input', () => {
         value: 'Maarten'
       };
 
-      rerender(
-        <Input color="success" {...newProps} />
-      );
+      rerender(<Input color="success" {...newProps} />);
 
       expect(screen.getByRole('textbox')).toHaveValue('Maarten');
     });
