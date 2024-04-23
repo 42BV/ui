@@ -244,10 +244,13 @@ describe('Component: CheckboxMultipleSelect', () => {
         expect(checkboxes[1]).toBeDisabled();
         expect(checkboxes[2]).toBeDisabled();
 
-        expect(isOptionEnabledSpy).toHaveBeenCalledTimes(3);
+        expect(isOptionEnabledSpy).toHaveBeenCalledTimes(6);
         expect(isOptionEnabledSpy.mock.calls).toEqual([
           [adminUser()],
+          [adminUser()],
           [coordinatorUser()],
+          [coordinatorUser()],
+          [userUser()],
           [userUser()]
         ]);
       });

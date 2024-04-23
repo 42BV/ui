@@ -286,7 +286,7 @@ export function ModalPickerSingle<T>(props: Props<T>) {
       });
 
       return (
-        <FormGroup key={key} check>
+        <FormGroup key={key} check disabled={!isOptionEnabled(option)}>
           <Label check>
             <Input
               type="radio"
