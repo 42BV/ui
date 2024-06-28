@@ -19,7 +19,7 @@ exports[`Component: Pagination ui first page 1`] = `
             class="page-link"
           >
             <i
-              class="icon material-icons"
+              class="icon material-icons material-icons__filled"
               style="font-size: 14px;"
             >
               arrow_back
@@ -105,7 +105,7 @@ exports[`Component: Pagination ui first page 1`] = `
             type="button"
           >
             <i
-              class="icon material-icons"
+              class="icon material-icons material-icons__filled"
               style="font-size: 14px;"
             >
               arrow_forward
@@ -142,7 +142,7 @@ exports[`Component: Pagination ui last page 1`] = `
             class="page-link"
           >
             <i
-              class="icon material-icons"
+              class="icon material-icons material-icons__filled"
               style="font-size: 14px;"
             >
               arrow_back
@@ -228,7 +228,7 @@ exports[`Component: Pagination ui last page 1`] = `
             type="button"
           >
             <i
-              class="icon material-icons"
+              class="icon material-icons material-icons__filled"
               style="font-size: 14px;"
             >
               arrow_forward
@@ -265,7 +265,7 @@ exports[`Component: Pagination ui middle 1`] = `
             class="page-link"
           >
             <i
-              class="icon material-icons"
+              class="icon material-icons material-icons__filled"
               style="font-size: 14px;"
             >
               arrow_back
@@ -352,7 +352,7 @@ exports[`Component: Pagination ui middle 1`] = `
             type="button"
           >
             <i
-              class="icon material-icons"
+              class="icon material-icons material-icons__filled"
               style="font-size: 14px;"
             >
               arrow_forward

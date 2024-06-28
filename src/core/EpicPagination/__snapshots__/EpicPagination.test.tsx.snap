@@ -19,7 +19,7 @@ exports[`Component: EpicPagination ui middle 1`] = `
             class="page-link"
           >
             <i
-              class="icon center-icon material-icons"
+              class="icon material-icons material-icons__filled center-icon"
             >
               first_page
             </i>
@@ -32,7 +32,7 @@ exports[`Component: EpicPagination ui middle 1`] = `
             class="page-link"
           >
             <i
-              class="icon center-icon material-icons"
+              class="icon material-icons material-icons__filled center-icon"
             >
               chevron_left
             </i>
@@ -90,7 +90,7 @@ exports[`Component: EpicPagination ui middle 1`] = `
             class="page-link"
           >
             <i
-              class="icon center-icon material-icons"
+              class="icon material-icons material-icons__filled center-icon"
             >
               chevron_right
             </i>
@@ -103,7 +103,7 @@ exports[`Component: EpicPagination ui middle 1`] = `
             class="page-link"
           >
             <i
-              class="icon center-icon material-icons"
+              class="icon material-icons material-icons__filled center-icon"
             >
               last_page
             </i>

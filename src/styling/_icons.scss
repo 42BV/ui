@@ -1,14 +1,44 @@
-/* fallback */
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url('https://fonts.gstatic.com/s/materialicons/v118/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2') format('woff2');
+  src: url('https://fonts.gstatic.com/s/materialicons/v142/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Material Icons Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/materialiconsoutlined/v109/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcel5euIg.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Material Icons Rounded';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/materialiconsround/v108/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmPq_HTTw.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Material Icons Sharp';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/materialiconssharp/v109/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvRImcycg.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Material Icons Two tone';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/materialiconstwotone/v112/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0NjbrHg.woff2') format('woff2');
   font-display: swap;
 }
 
 .material-icons {
-  font-family: 'Material Icons', sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -23,4 +53,24 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
   user-select: none;
+
+  &__filled {
+    font-family: 'Material Icons', sans-serif;
+  }
+
+  &__outlined {
+    font-family: 'Material Icons Outlined', sans-serif;
+  }
+
+  &__rounded {
+    font-family: 'Material Icons Rounded', sans-serif;
+  }
+
+  &__sharp {
+    font-family: 'Material Icons Sharp', sans-serif;
+  }
+
+  &__two-tone {
+    font-family: 'Material Icons Two tone', sans-serif;
+  }
 }

@@ -47,7 +47,7 @@ exports[`Component: IconPicker ui with selected value 1`] = `
           class="d-flex justify-content-between"
         >
           <i
-            class="icon pt-2 me-3 material-icons"
+            class="icon material-icons material-icons__filled pt-2 me-3"
             id="icon-picker-value"
           >
             3d_rotation

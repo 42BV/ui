@@ -61,7 +61,7 @@ exports[`Component: ConfirmModal ui custom texts 1`] = `
                   class="d-flex justify-content-center align-items-center"
                 >
                   <i
-                    class="icon button-icon me-2 material-icons"
+                    class="icon material-icons material-icons__filled button-icon me-2"
                   >
                     close
                   </i>
@@ -80,7 +80,7 @@ exports[`Component: ConfirmModal ui custom texts 1`] = `
                   class="d-flex justify-content-center align-items-center"
                 >
                   <i
-                    class="icon button-icon me-2 material-icons"
+                    class="icon material-icons material-icons__filled button-icon me-2"
                   >
                     check
                   </i>
@@ -160,7 +160,7 @@ exports[`Component: ConfirmModal ui default texts 1`] = `
                   class="d-flex justify-content-center align-items-center"
                 >
                   <i
-                    class="icon button-icon me-2 material-icons"
+                    class="icon material-icons material-icons__filled button-icon me-2"
                   >
                     close
                   </i>
@@ -179,7 +179,7 @@ exports[`Component: ConfirmModal ui default texts 1`] = `
                   class="d-flex justify-content-center align-items-center"
                 >
                   <i
-                    class="icon button-icon me-2 material-icons"
+                    class="icon material-icons material-icons__filled button-icon me-2"
                   >
                     check
                   </i>

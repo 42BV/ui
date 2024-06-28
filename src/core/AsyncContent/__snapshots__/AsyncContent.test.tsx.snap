@@ -12,32 +12,32 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when empt
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -46,7 +46,7 @@ exports[`Component: AsyncContent deprecated React Async when fulfilled when empt
         class="state-content"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           laptop
         </i>
@@ -89,32 +89,32 @@ exports[`Component: AsyncContent deprecated React Async when rejected should not
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -123,7 +123,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected should not
         class="state-content"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           sentiment_very_dissatisfied
         </i>
@@ -145,7 +145,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected should not
           class="d-flex justify-content-center align-items-center"
         >
           <i
-            class="icon button-icon me-2 material-icons"
+            class="icon material-icons material-icons__filled button-icon me-2"
           >
             refresh
           </i>
@@ -169,32 +169,32 @@ exports[`Component: AsyncContent deprecated React Async when rejected with retry
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -203,7 +203,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected with retry
         class="state-content"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           sentiment_very_dissatisfied
         </i>
@@ -225,7 +225,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected with retry
           class="d-flex justify-content-center align-items-center"
         >
           <i
-            class="icon button-icon me-2 material-icons"
+            class="icon material-icons material-icons__filled button-icon me-2"
           >
             refresh
           </i>
@@ -249,32 +249,32 @@ exports[`Component: AsyncContent deprecated React Async when rejected without re
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -283,7 +283,7 @@ exports[`Component: AsyncContent deprecated React Async when rejected without re
         class="state-content"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           sentiment_very_dissatisfied
         </i>
@@ -310,32 +310,32 @@ exports[`Component: AsyncContent when fulfilled when empty 1`] = `
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -344,7 +344,7 @@ exports[`Component: AsyncContent when fulfilled when empty 1`] = `
         class="state-content"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           laptop
         </i>
@@ -387,32 +387,32 @@ exports[`Component: AsyncContent when loading React Async & React Query <= v4 1`
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -460,32 +460,32 @@ exports[`Component: AsyncContent when loading React Query v5+ 1`] = `
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -533,32 +533,32 @@ exports[`Component: AsyncContent when rejected should not render when showRetryB
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -567,7 +567,7 @@ exports[`Component: AsyncContent when rejected should not render when showRetryB
         class="state-content"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           sentiment_very_dissatisfied
         </i>
@@ -589,7 +589,7 @@ exports[`Component: AsyncContent when rejected should not render when showRetryB
           class="d-flex justify-content-center align-items-center"
         >
           <i
-            class="icon button-icon me-2 material-icons"
+            class="icon material-icons material-icons__filled button-icon me-2"
           >
             refresh
           </i>
@@ -613,32 +613,32 @@ exports[`Component: AsyncContent when rejected with retry button 1`] = `
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -647,7 +647,7 @@ exports[`Component: AsyncContent when rejected with retry button 1`] = `
         class="state-content"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           sentiment_very_dissatisfied
         </i>
@@ -669,7 +669,7 @@ exports[`Component: AsyncContent when rejected with retry button 1`] = `
           class="d-flex justify-content-center align-items-center"
         >
           <i
-            class="icon button-icon me-2 material-icons"
+            class="icon material-icons material-icons__filled button-icon me-2"
           >
             refresh
           </i>
@@ -693,32 +693,32 @@ exports[`Component: AsyncContent when rejected without retry button 1`] = `
         class="state-icons"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           contrast
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           photo
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           folder_open
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           radio_button_unchecked
         </i>
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           bolt
         </i>
@@ -727,7 +727,7 @@ exports[`Component: AsyncContent when rejected without retry button 1`] = `
         class="state-content"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           sentiment_very_dissatisfied
         </i>

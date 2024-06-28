@@ -33,7 +33,7 @@ exports[`Component: ImageUpload ui edit as circle 1`] = `
           class="button mt-2 secondary d-inline-block"
         >
           <i
-            class="icon material-icons text-secondary clickable"
+            class="icon material-icons material-icons__filled text-secondary clickable"
             style="font-size: 24px;"
           >
             rotate_left
@@ -43,7 +43,7 @@ exports[`Component: ImageUpload ui edit as circle 1`] = `
           class="button ms-1 mt-2 secondary d-inline-block"
         >
           <i
-            class="icon material-icons text-secondary clickable"
+            class="icon material-icons material-icons__filled text-secondary clickable"
             style="font-size: 24px;"
           >
             rotate_right
@@ -60,7 +60,7 @@ exports[`Component: ImageUpload ui edit as circle 1`] = `
               class="d-flex justify-content-center align-items-center"
             >
               <i
-                class="icon button-icon me-2 material-icons"
+                class="icon material-icons material-icons__filled button-icon me-2"
               >
                 cancel
               </i>
@@ -79,7 +79,7 @@ exports[`Component: ImageUpload ui edit as circle 1`] = `
               class="d-flex justify-content-center align-items-center"
             >
               <i
-                class="icon button-icon me-2 material-icons"
+                class="icon material-icons material-icons__filled button-icon me-2"
               >
                 done
               </i>
@@ -127,7 +127,7 @@ exports[`Component: ImageUpload ui edit as rect 1`] = `
           class="button mt-2 secondary d-inline-block"
         >
           <i
-            class="icon material-icons text-secondary clickable"
+            class="icon material-icons material-icons__filled text-secondary clickable"
             style="font-size: 24px;"
           >
             rotate_left
@@ -137,7 +137,7 @@ exports[`Component: ImageUpload ui edit as rect 1`] = `
           class="button ms-1 mt-2 secondary d-inline-block"
         >
           <i
-            class="icon material-icons text-secondary clickable"
+            class="icon material-icons material-icons__filled text-secondary clickable"
             style="font-size: 24px;"
           >
             rotate_right
@@ -154,7 +154,7 @@ exports[`Component: ImageUpload ui edit as rect 1`] = `
               class="d-flex justify-content-center align-items-center"
             >
               <i
-                class="icon button-icon me-2 material-icons"
+                class="icon material-icons material-icons__filled button-icon me-2"
               >
                 cancel
               </i>
@@ -173,7 +173,7 @@ exports[`Component: ImageUpload ui edit as rect 1`] = `
               class="d-flex justify-content-center align-items-center"
             >
               <i
-                class="icon button-icon me-2 material-icons"
+                class="icon material-icons material-icons__filled button-icon me-2"
               >
                 done
               </i>
@@ -225,7 +225,7 @@ exports[`Component: ImageUpload ui file-selected as circle 1`] = `
               class="d-flex justify-content-center align-items-center"
             >
               <i
-                class="icon button-icon me-2 material-icons"
+                class="icon material-icons material-icons__filled button-icon me-2"
               >
                 camera_roll
               </i>
@@ -244,7 +244,7 @@ exports[`Component: ImageUpload ui file-selected as circle 1`] = `
               class="d-flex justify-content-center align-items-center"
             >
               <i
-                class="icon button-icon me-2 material-icons"
+                class="icon material-icons material-icons__filled button-icon me-2"
               >
                 delete
               </i>
@@ -290,7 +290,7 @@ exports[`Component: ImageUpload ui file-selected as rect 1`] = `
               class="d-flex justify-content-center align-items-center"
             >
               <i
-                class="icon button-icon me-2 material-icons"
+                class="icon material-icons material-icons__filled button-icon me-2"
               >
                 camera_roll
               </i>
@@ -309,7 +309,7 @@ exports[`Component: ImageUpload ui file-selected as rect 1`] = `
               class="d-flex justify-content-center align-items-center"
             >
               <i
-                class="icon button-icon me-2 material-icons"
+                class="icon material-icons material-icons__filled button-icon me-2"
               >
                 delete
               </i>
@@ -346,7 +346,7 @@ exports[`Component: ImageUpload ui no-file 1`] = `
         class="img-upload-wrapper bg-faded text-muted"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           add_a_photo
         </i>

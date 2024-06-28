@@ -6,7 +6,7 @@ exports[`Component: EpicExpander ui is open 1`] = `
     class="button dark d-inline-block"
   >
     <i
-      class="icon material-icons text-dark clickable"
+      class="icon material-icons material-icons__filled text-dark clickable"
       style="font-size: 24px;"
     >
       expand_less

@@ -10,7 +10,7 @@ exports[`Component: Debug ui 1`] = `
     >
       DEBUG
       <i
-        class="icon open-close is-open material-icons"
+        class="icon material-icons material-icons__filled open-close is-open"
       >
         expand_more
       </i>

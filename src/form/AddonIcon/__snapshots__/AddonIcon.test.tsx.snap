@@ -6,7 +6,7 @@ exports[`Component: AddonIcon ui 1`] = `
     class="input-group-text"
   >
     <i
-      class="icon material-icons"
+      class="icon material-icons material-icons__filled"
     >
       360
     </i>

@@ -10,7 +10,7 @@ exports[`Component: NavigationItem ui default 1`] = `
       href="[object Object]"
     >
       <i
-        class="icon me-3 align-bottom material-icons"
+        class="icon material-icons material-icons__filled me-3 align-bottom"
       >
         dashboard
       </i>

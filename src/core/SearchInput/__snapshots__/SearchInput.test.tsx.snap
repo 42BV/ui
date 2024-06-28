@@ -12,7 +12,7 @@ exports[`Component: SearchInput ui default 1`] = `
         class="input-group-text"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           search
         </i>
@@ -36,7 +36,7 @@ exports[`Component: SearchInput ui with value 1`] = `
     class="search-input"
   >
     <i
-      class="icon cancel-search material-icons clickable"
+      class="icon material-icons material-icons__filled cancel-search clickable"
     >
       close
     </i>
@@ -47,7 +47,7 @@ exports[`Component: SearchInput ui with value 1`] = `
         class="input-group-text"
       >
         <i
-          class="icon material-icons"
+          class="icon material-icons material-icons__filled"
         >
           search
         </i>

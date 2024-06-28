@@ -39,7 +39,7 @@ exports[`Component: FileInput ui with value 1`] = `
             class="d-flex justify-content-center align-items-center"
           >
             <i
-              class="icon d-block material-icons"
+              class="icon material-icons material-icons__filled d-block"
             >
               delete
             </i>

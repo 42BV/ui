@@ -139,7 +139,7 @@ exports[`Component: OpenCloseModal ui in progress 1`] = `
                     class="d-flex justify-content-center align-items-center"
                   >
                     <i
-                      class="icon button-icon me-2 material-icons"
+                      class="icon material-icons material-icons__filled button-icon me-2"
                     >
                       cancel
                     </i>
@@ -330,7 +330,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
                     class="d-flex justify-content-center align-items-center"
                   >
                     <i
-                      class="icon button-icon me-2 material-icons"
+                      class="icon material-icons material-icons__filled button-icon me-2"
                     >
                       cancel
                     </i>
@@ -349,7 +349,7 @@ exports[`Component: OpenCloseModal ui open 1`] = `
                     class="d-flex justify-content-center align-items-center"
                   >
                     <i
-                      class="icon button-icon me-2 material-icons"
+                      class="icon material-icons material-icons__filled button-icon me-2"
                     >
                       save
                     </i>

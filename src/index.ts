@@ -232,7 +232,7 @@ export { useHover } from './hooks/useHover/useHover';
 export { useBootstrapSize } from './hooks/useBootstrapSize/useBootstrapSize';
 
 // Types
-export type { Color } from './core/types';
+export type { Color, TippyPlacement } from './core/types';
 export type { FieldCompatible, MetaError, Meta } from './form/types';
 export type {
   Options,

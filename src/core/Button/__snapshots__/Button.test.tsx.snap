@@ -221,7 +221,7 @@ exports[`Component: Button ui button with icon normal inProgress is false 1`] = 
         class="d-flex justify-content-center align-items-center"
       >
         <i
-          class="icon button-icon me-2 material-icons"
+          class="icon material-icons material-icons__filled button-icon me-2"
         >
           save
         </i>
@@ -283,7 +283,7 @@ exports[`Component: Button ui button with icon normal with icon on the right 1`]
       >
         Save
         <i
-          class="icon button-icon ms-2 material-icons"
+          class="icon material-icons material-icons__filled button-icon ms-2"
         >
           save
         </i>
@@ -306,7 +306,7 @@ exports[`Component: Button ui button with icon outline inProgress is false 1`] =
         class="d-flex justify-content-center align-items-center"
       >
         <i
-          class="icon button-icon me-2 material-icons"
+          class="icon material-icons material-icons__filled button-icon me-2"
         >
           save
         </i>
@@ -360,7 +360,7 @@ exports[`Component: Button ui icon only disabled is disabled 1`] = `
     class="button primary d-inline-block"
   >
     <i
-      class="icon material-icons text-primary icon--disabled"
+      class="icon material-icons material-icons__filled text-primary icon--disabled"
       style="font-size: 24px;"
     >
       save
@@ -375,7 +375,7 @@ exports[`Component: Button ui icon only disabled is enabled 1`] = `
     class="button primary d-inline-block"
   >
     <i
-      class="icon material-icons text-primary clickable"
+      class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
     >
       save
@@ -390,7 +390,7 @@ exports[`Component: Button ui icon only full-width full width and icon left 1`] 
     class="button primary d-flex justify-content-start"
   >
     <i
-      class="icon material-icons text-primary clickable"
+      class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
     >
       save
@@ -405,7 +405,7 @@ exports[`Component: Button ui icon only full-width full width and icon right 1`]
     class="button primary d-flex justify-content-end"
   >
     <i
-      class="icon material-icons text-primary clickable"
+      class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
     >
       save
@@ -420,7 +420,7 @@ exports[`Component: Button ui icon only inProgress inProgress is false 1`] = `
     class="button primary d-inline-block"
   >
     <i
-      class="icon material-icons text-primary clickable"
+      class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
     >
       save
@@ -461,7 +461,7 @@ exports[`Component: Button ui icon only that when no icon is provided it will fa
     class="button primary d-inline-block"
   >
     <i
-      class="icon material-icons text-primary clickable"
+      class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
     >
       block

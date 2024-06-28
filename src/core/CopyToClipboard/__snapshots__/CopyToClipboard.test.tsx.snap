@@ -19,7 +19,7 @@ exports[`Component: CopyToClipboard ui default 1`] = `
       class="button flex-grow-0 flex-shrink-0 text-white primary d-inline-block"
     >
       <i
-        class="icon material-icons text-primary clickable"
+        class="icon material-icons material-icons__filled text-primary clickable"
         style="font-size: 24px;"
       >
         content_copy

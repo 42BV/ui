@@ -88,7 +88,7 @@ exports[`Component: ValuePicker multiple ModalPickerMultiple should render a \`M
         type="button"
       >
         <i
-          class="icon me-2 align-bottom material-icons"
+          class="icon material-icons material-icons__filled me-2 align-bottom"
         >
           face
         </i>
@@ -148,7 +148,7 @@ exports[`Component: ValuePicker single ModalPickerSingle should render a \`Modal
         type="button"
       >
         <i
-          class="icon me-2 align-bottom material-icons"
+          class="icon material-icons material-icons__filled me-2 align-bottom"
         >
           face
         </i>

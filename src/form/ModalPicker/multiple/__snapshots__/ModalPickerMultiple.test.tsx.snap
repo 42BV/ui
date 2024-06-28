@@ -76,7 +76,7 @@ exports[`Component: ModalPickerMultiple ui default: modal 1`] = `
                       class="input-group-text"
                     >
                       <i
-                        class="icon material-icons"
+                        class="icon material-icons material-icons__filled"
                       >
                         search
                       </i>
@@ -238,7 +238,7 @@ exports[`Component: ModalPickerMultiple ui loading 1`] = `
                       class="input-group-text"
                     >
                       <i
-                        class="icon material-icons"
+                        class="icon material-icons material-icons__filled"
                       >
                         search
                       </i>
@@ -271,32 +271,32 @@ exports[`Component: ModalPickerMultiple ui loading 1`] = `
                       class="state-icons"
                     >
                       <i
-                        class="icon material-icons"
+                        class="icon material-icons material-icons__filled"
                       >
                         add
                       </i>
                       <i
-                        class="icon material-icons"
+                        class="icon material-icons material-icons__filled"
                       >
                         contrast
                       </i>
                       <i
-                        class="icon material-icons"
+                        class="icon material-icons material-icons__filled"
                       >
                         photo
                       </i>
                       <i
-                        class="icon material-icons"
+                        class="icon material-icons material-icons__filled"
                       >
                         folder_open
                       </i>
                       <i
-                        class="icon material-icons"
+                        class="icon material-icons material-icons__filled"
                       >
                         radio_button_unchecked
                       </i>
                       <i
-                        class="icon material-icons"
+                        class="icon material-icons material-icons__filled"
                       >
                         bolt
                       </i>

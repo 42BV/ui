@@ -39,7 +39,7 @@ exports[`Component: DateTimeInput ui visible label 1`] = `
             class="input-group-text"
           >
             <i
-              class="icon date-time-input__clear-icon material-icons clickable"
+              class="icon material-icons material-icons__filled date-time-input__clear-icon clickable"
             >
               close
             </i>
@@ -970,7 +970,7 @@ exports[`Component: DateTimeInput ui with date picker in modal 1`] = `
                   class="d-flex justify-content-center align-items-center"
                 >
                   <i
-                    class="icon button-icon me-2 material-icons"
+                    class="icon material-icons material-icons__filled button-icon me-2"
                   >
                     cancel
                   </i>
@@ -989,7 +989,7 @@ exports[`Component: DateTimeInput ui with date picker in modal 1`] = `
                   class="d-flex justify-content-center align-items-center"
                 >
                   <i
-                    class="icon button-icon me-2 material-icons"
+                    class="icon material-icons material-icons__filled button-icon me-2"
                   >
                     save
                   </i>

@@ -13,7 +13,7 @@ exports[`Component: ConfirmButton ui button and icon 1`] = `
         class="d-flex justify-content-center align-items-center"
       >
         <i
-          class="icon button-icon me-2 material-icons"
+          class="icon material-icons material-icons__filled button-icon me-2"
         >
           delete
         </i>
@@ -37,7 +37,7 @@ exports[`Component: ConfirmButton ui custom class, color and texts 1`] = `
         class="d-flex justify-content-center align-items-center"
       >
         <i
-          class="icon button-icon me-2 material-icons"
+          class="icon material-icons material-icons__filled button-icon me-2"
         >
           delete
         </i>
@@ -73,7 +73,7 @@ exports[`Component: ConfirmButton ui only icon 1`] = `
     class="button danger d-inline-block"
   >
     <i
-      class="icon material-icons text-danger clickable"
+      class="icon material-icons material-icons__filled text-danger clickable"
       style="font-size: 24px;"
     >
       delete

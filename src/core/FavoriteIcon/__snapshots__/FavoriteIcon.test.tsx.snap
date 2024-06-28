@@ -3,7 +3,7 @@
 exports[`Component: FavoriteIcon ui favorite 1`] = `
 <div>
   <i
-    class="icon material-icons text-primary clickable"
+    class="icon material-icons material-icons__filled text-primary clickable"
   >
     star
   </i>
@@ -13,7 +13,7 @@ exports[`Component: FavoriteIcon ui favorite 1`] = `
 exports[`Component: FavoriteIcon ui not favorite 1`] = `
 <div>
   <i
-    class="icon material-icons text-secondary clickable"
+    class="icon material-icons material-icons__filled text-secondary clickable"
   >
     star_border
   </i>

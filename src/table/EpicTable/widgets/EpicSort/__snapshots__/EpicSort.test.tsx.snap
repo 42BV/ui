@@ -3,7 +3,7 @@
 exports[`Component: EpicSort ui is ASC 1`] = `
 <div>
   <i
-    class="icon pe-1 material-icons clickable"
+    class="icon material-icons material-icons__filled pe-1 clickable"
   >
     arrow_drop_up
   </i>

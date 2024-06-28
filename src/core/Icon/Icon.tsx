@@ -59,6 +59,13 @@ export type Props = {
    * Defaults to `false`
    */
   autoFocus?: boolean;
+
+  /**
+   * Optionally the variant of the icon to use.
+   *
+   * Defaults to filled
+   */
+  variant?: 'filled' | 'outlined' | 'rounded' | 'sharp' | 'two-tone';
 };
 
 /**
@@ -75,7 +82,8 @@ export function Icon({
   hoverColor,
   disabled,
   size,
-  autoFocus
+  autoFocus,
+  variant = 'filled'
 }: Props) {
   const [hover, hoverEvents] = useHover();
 
@@ -88,9 +96,10 @@ export function Icon({
 
   const classes = classNames(
     'icon',
-    className,
     'material-icons',
+    `material-icons__${variant}`,
     colorCssClasses,
+    className,
     {
       clickable: !disabled && onClick,
       'icon--disabled': disabled
