@@ -21,8 +21,9 @@ type Props = {
   /**
    * The minimum width of the EpicHeader.
    * When resizing, the column is not allowed to become smaller than this.
+   * Defaults to the value of width.
    */
-  minWidth: number;
+  minWidth?: number;
 };
 
 /**
@@ -36,6 +37,11 @@ export function EpicResize({ width, onResize, minWidth }: Props) {
   // not throttle the resize will become very jarring / jittery.
   const throttledResize = useRef(throttle(onResize, 40));
 
+  // Store the original width of when the EpicHeader was first rendered
+  // when minWidth is not specified to prevent resizing only allowing
+  // columns to grow.
+  const minimumWidth = useRef(minWidth ?? width);
+
   // When the onResize changes re-init the throttle.
   useEffect(() => {
     throttledResize.current = throttle(onResize, 40);
@@ -47,20 +53,17 @@ export function EpicResize({ width, onResize, minWidth }: Props) {
   // Store the x position of the mouse when the resize first started.
   const mouseXOnResizeStart = useRef(0);
 
-  const resize = useCallback(
-    (event: MouseEvent) => {
-      const distance = event.clientX - mouseXOnResizeStart.current;
+  const resize = useCallback((event: MouseEvent) => {
+    const distance = event.clientX - mouseXOnResizeStart.current;
 
-      const nextWidth = widthOnResizeStart.current + distance;
+    const nextWidth = widthOnResizeStart.current + distance;
 
-      const boundedWidth = Math.max(minWidth, nextWidth);
+    const boundedWidth = Math.max(minimumWidth.current, nextWidth);
 
-      throttledResize.current(boundedWidth);
+    throttledResize.current(boundedWidth);
 
-      event.preventDefault();
-    },
-    [minWidth]
-  );
+    event.preventDefault();
+  }, []);
 
   const resizeEnd = useCallback(() => {
     // Reset the cursor back to default

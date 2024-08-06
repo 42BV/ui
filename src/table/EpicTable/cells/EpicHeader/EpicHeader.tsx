@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import { EpicResize } from './EpicResize/EpicResize';
 
@@ -51,15 +51,11 @@ export function EpicHeader({
   height = 44,
   onResize
 }: Props) {
-  // Store the original width of when the EpicHeader was first rendered
-  // when minWidth is not specified to prevent resizing only allowing
-  // columns to grow.
-  const minimumWidth = useRef(minWidth ?? width);
   return (
     <div
       className="epic-table-header d-flex align-items-center justify-content-between p-1"
       style={{
-        minWidth: minimumWidth.current,
+        minWidth: width,
         width,
         height
       }}
@@ -67,11 +63,7 @@ export function EpicHeader({
       {children}
 
       {onResize ? (
-        <EpicResize
-          minWidth={minimumWidth.current}
-          width={width}
-          onResize={onResize}
-        />
+        <EpicResize minWidth={minWidth} width={width} onResize={onResize} />
       ) : null}
     </div>
   );
