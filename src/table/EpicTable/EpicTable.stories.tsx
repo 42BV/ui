@@ -22,7 +22,10 @@ import moment from 'moment';
 import { MoreOrLess } from '../../core/MoreOrLess/MoreOrLess';
 import { pageOf } from '../../utilities/page/page';
 import { Tag } from '../../core/Tag/Tag';
-import { ContentState, ContentStateMode } from '../../core/ContentState/ContentState';
+import {
+  ContentState,
+  ContentStateMode
+} from '../../core/ContentState/ContentState';
 import { DateTimeInput } from '../../form/DateTimeInput/DateTimeInput';
 import { Button } from '../../core/Button/Button';
 import { Pagination } from '../../core/Pagination/Pagination';
@@ -33,16 +36,25 @@ storiesOf('table/EpicTable', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use EpicTable, you have to add lodash, overlayscrollbars and overlayscrollbars-react to your dependencies:</p>
-        <code>npm install --save lodash overlayscrollbars overlayscrollbars-react</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
-        <code>@import &apos;overlayscrollbars/overlayscrollbars.css&apos;;</code>
+        <p className="mb-0">
+          To be able to use EpicTable, you have to add lodash, overlayscrollbars
+          and overlayscrollbars-react to your dependencies:
+        </p>
+        <code>
+          npm install --save lodash overlayscrollbars overlayscrollbars-react
+        </code>
+        <p className="mb-0 mt-2">
+          You also have to add the stylesheet to your project
+        </p>
+        <code>
+          @import &apos;overlayscrollbars/overlayscrollbars.css&apos;;
+        </code>
       </Alert>
       <Story />
     </>
   ))
   .add('full example', () => {
-    const [ widths, setWidths ] = useState(() => ({
+    const [widths, setWidths] = useState(() => ({
       firstName: 300,
       lastName: 200,
       age: 200,
@@ -61,7 +73,7 @@ storiesOf('table/EpicTable', module)
       setWidths((widths) => ({ ...widths, [name]: width }));
     }
 
-    const [ filters, setFilters ] = useState(() => ({
+    const [filters, setFilters] = useState(() => ({
       firstName: '',
       lastName: '',
       age: '',
@@ -91,7 +103,7 @@ storiesOf('table/EpicTable', module)
       });
     });
 
-    const [ sort, setSort ] = useState<{
+    const [sort, setSort] = useState<{
       direction: EpicTableSortDirection;
       column: string;
     }>({ direction: 'NONE', column: 'firstName' });
@@ -111,16 +123,16 @@ storiesOf('table/EpicTable', module)
 
     filteredPersons.sort(sortFn);
 
-    const [ page, setPage ] = useState(1);
+    const [page, setPage] = useState(1);
 
     const pageOfPersons = pageOf(filteredPersons, page, 20);
 
-    const [ selected, setSelected ] = useState<Person[]>([]);
+    const [selected, setSelected] = useState<Person[]>([]);
 
     function onSelect(person: Person, checked: boolean) {
       if (checked) {
         selected.push(person);
-        setSelected([ ...selected ]);
+        setSelected([...selected]);
       } else {
         const nextSelected = selected.filter((p) => p.id !== person.id);
 
@@ -139,16 +151,16 @@ storiesOf('table/EpicTable', module)
             selected.push(p);
           }
 
-          setSelected([ ...selected ]);
+          setSelected([...selected]);
         });
       } else {
         setSelected([]);
       }
     }
 
-    const [ detail, setDetail ] = useState(-1);
+    const [detail, setDetail] = useState(-1);
 
-    const [ loading, setLoading ] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       setLoading(true);
@@ -500,7 +512,11 @@ storiesOf('table/EpicTable', module)
                   {person.sex}
                 </EpicCell>
                 <EpicCell width={widths.actions} height={44}>
-                  <Button icon="delete" color="danger" onClick={action('delete')} />
+                  <Button
+                    icon="delete"
+                    color="danger"
+                    onClick={action('delete')}
+                  />
                   <Button icon="edit" onClick={action('edit')} />
                 </EpicCell>
               </EpicRow>
@@ -1014,8 +1030,8 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with overlay', () => {
-    const [ mode, setMode ] = useState<ContentStateMode>('loading');
-    const [ detail, setDetail ] = useState(false);
+    const [mode, setMode] = useState<ContentStateMode>('loading');
+    const [detail, setDetail] = useState(false);
 
     return (
       <Card body>
@@ -1106,7 +1122,7 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with sort', () => {
-    const [ direction, setDirection ] = useState<EpicTableSortDirection>('NONE');
+    const [direction, setDirection] = useState<EpicTableSortDirection>('NONE');
 
     const sortFn =
       direction === 'ASC'
@@ -1206,7 +1222,7 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with resizable columns', () => {
-    const [ widths, setWidths ] = useState(() => ({
+    const [widths, setWidths] = useState(() => ({
       firstName: 300,
       lastName: 100,
       age: 100,
@@ -1222,6 +1238,7 @@ storiesOf('table/EpicTable', module)
         <EpicTable>
           <EpicRow header>
             <EpicHeader
+              minWidth={100}
               width={widths.firstName}
               height={44}
               onResize={(width) => changeSize('firstName', width)}
@@ -1408,7 +1425,7 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with pagination', () => {
-    const [ page, setPage ] = useState(1);
+    const [page, setPage] = useState(1);
 
     const pageOfPersons = pageOf(persons, page, 20);
 
@@ -1508,7 +1525,7 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with expander', () => {
-    const [ expanded, setExpanded ] = useState(-1);
+    const [expanded, setExpanded] = useState(-1);
 
     return (
       <Card body>
@@ -1617,7 +1634,7 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with detail', () => {
-    const [ detail, setDetail ] = useState(-1);
+    const [detail, setDetail] = useState(-1);
 
     return (
       <Card body>
@@ -1809,7 +1826,7 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with detail but small', () => {
-    const [ detail, setDetail ] = useState(-1);
+    const [detail, setDetail] = useState(-1);
 
     return (
       <Card body>
@@ -1890,16 +1907,16 @@ storiesOf('table/EpicTable', module)
     );
   })
   .add('with selection', () => {
-    const [ page, setPage ] = useState(1);
+    const [page, setPage] = useState(1);
 
     const pageOfPersons = pageOf(persons, page, 20);
 
-    const [ selected, setSelected ] = useState<Person[]>([]);
+    const [selected, setSelected] = useState<Person[]>([]);
 
     function onSelect(person: Person, checked: boolean) {
       if (checked) {
         selected.push(person);
-        setSelected([ ...selected ]);
+        setSelected([...selected]);
       } else {
         const nextSelected = selected.filter((p) => p.id !== person.id);
 
@@ -1918,7 +1935,7 @@ storiesOf('table/EpicTable', module)
             selected.push(p);
           }
 
-          setSelected([ ...selected ]);
+          setSelected([...selected]);
         });
       } else {
         setSelected([]);
@@ -2045,4 +2062,3 @@ storiesOf('table/EpicTable', module)
       </Card>
     );
   });
-

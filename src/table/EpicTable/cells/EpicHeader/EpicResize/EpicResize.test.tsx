@@ -6,7 +6,7 @@ import { EpicResize } from './EpicResize';
 describe('Component: EpicResize', () => {
   test('ui', () => {
     const { container } = render(
-      <EpicResize width={300} onResize={jest.fn()} />
+      <EpicResize minWidth={100} width={300} onResize={jest.fn()} />
     );
 
     expect(container).toMatchSnapshot();
@@ -16,7 +16,7 @@ describe('Component: EpicResize', () => {
     it('should resize with a throttle', () => {
       const onResizeSpy = jest.fn();
 
-      render(<EpicResize width={300} onResize={onResizeSpy} />);
+      render(<EpicResize minWidth={100} width={300} onResize={onResizeSpy} />);
 
       fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), {
         clientX: 0
@@ -48,7 +48,7 @@ describe('Component: EpicResize', () => {
       const oldResizeSpy = jest.fn();
 
       const { rerender } = render(
-        <EpicResize width={300} onResize={oldResizeSpy} />
+        <EpicResize minWidth={100} width={300} onResize={oldResizeSpy} />
       );
 
       fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), {
@@ -62,7 +62,9 @@ describe('Component: EpicResize', () => {
 
       const newResizeSpy = jest.fn();
 
-      rerender(<EpicResize width={300} onResize={newResizeSpy} />);
+      rerender(
+        <EpicResize minWidth={100} width={300} onResize={newResizeSpy} />
+      );
 
       fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
         clientX: 42
@@ -78,7 +80,7 @@ describe('Component: EpicResize', () => {
     it('should not allow resizing to below the initial width', () => {
       const onResizeSpy = jest.fn();
 
-      render(<EpicResize width={300} onResize={onResizeSpy} />);
+      render(<EpicResize minWidth={100} width={300} onResize={onResizeSpy} />);
 
       fireEvent.mouseDown(screen.getByTestId('epic-table-header-resize'), {
         clientX: 300
@@ -88,11 +90,11 @@ describe('Component: EpicResize', () => {
       expect(document.body.classList.contains('user-select-none')).toBe(true);
 
       fireEvent.mouseMove(screen.getByTestId('epic-table-header-resize'), {
-        clientX: 280
+        clientX: 80
       });
 
       expect(onResizeSpy).toHaveBeenCalledTimes(1);
-      expect(onResizeSpy).toHaveBeenCalledWith(300);
+      expect(onResizeSpy).toHaveBeenCalledWith(100);
     });
   });
 });

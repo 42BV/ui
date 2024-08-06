@@ -17,7 +17,7 @@ describe('Component: EpicHeader', () => {
 
     test('with resize', () => {
       render(
-        <EpicHeader width={300} height={44} onResize={jest.fn()}>
+        <EpicHeader minWidth={200} width={300} height={44} onResize={jest.fn()}>
           epic header
         </EpicHeader>
       );

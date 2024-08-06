@@ -1,4 +1,9 @@
-import React, { MouseEvent as RMouseEvent, useCallback, useEffect, useRef } from 'react';
+import React, {
+  MouseEvent as RMouseEvent,
+  useCallback,
+  useEffect,
+  useRef
+} from 'react';
 import { throttle } from 'lodash';
 
 import { useEpicResizeListenerCleanup } from './useEpicResizeListenerCleanup';
@@ -9,11 +14,15 @@ type Props = {
    * The width of the EpicHeader which is resized.
    */
   width: number;
-
   /**
    * Callback which gives the EpicHeader the new width
    */
   onResize: (width: number) => void;
+  /**
+   * The minimum width of the EpicHeader.
+   * When resizing, the column is not allowed to become smaller than this.
+   */
+  minWidth: number;
 };
 
 /**
@@ -22,12 +31,7 @@ type Props = {
  * is a tiny block rendered next to the EpicHeader, when the user
  * hovers over it the mouse icon will become a `col-resize`.
  */
-export function EpicResize({ width, onResize }: Props) {
-  // Stores the original width of when the EpicResize was first
-  // rendered, you can never make it smaller than this original width
-  // to prevent columns from becoming to small.
-  const minWidth = useRef(width);
-
+export function EpicResize({ width, onResize, minWidth }: Props) {
   // Throttle the onResize so the resizing becomes smooth. If we do
   // not throttle the resize will become very jarring / jittery.
   const throttledResize = useRef(throttle(onResize, 40));
@@ -35,7 +39,7 @@ export function EpicResize({ width, onResize }: Props) {
   // When the onResize changes re-init the throttle.
   useEffect(() => {
     throttledResize.current = throttle(onResize, 40);
-  }, [ onResize ]);
+  }, [onResize]);
 
   // Stores the width of the element when the resize first started.
   const widthOnResizeStart = useRef(0);
@@ -43,17 +47,20 @@ export function EpicResize({ width, onResize }: Props) {
   // Store the x position of the mouse when the resize first started.
   const mouseXOnResizeStart = useRef(0);
 
-  const resize = useCallback((event: MouseEvent) => {
-    const distance = event.clientX - mouseXOnResizeStart.current;
+  const resize = useCallback(
+    (event: MouseEvent) => {
+      const distance = event.clientX - mouseXOnResizeStart.current;
 
-    const nextWidth = widthOnResizeStart.current + distance;
+      const nextWidth = widthOnResizeStart.current + distance;
 
-    const boundedWidth = Math.max(minWidth.current, nextWidth);
+      const boundedWidth = Math.max(minWidth, nextWidth);
 
-    throttledResize.current(boundedWidth);
+      throttledResize.current(boundedWidth);
 
-    event.preventDefault();
-  }, []);
+      event.preventDefault();
+    },
+    [minWidth]
+  );
 
   const resizeEnd = useCallback(() => {
     // Reset the cursor back to default
@@ -63,7 +70,7 @@ export function EpicResize({ width, onResize }: Props) {
     document.body.classList.remove('user-select-none');
 
     window.removeEventListener('mousemove', resize, listenerConfig);
-  }, [ resize ]);
+  }, [resize]);
 
   const resizeStart = useCallback(
     (event: RMouseEvent<HTMLDivElement>, width: number) => {
@@ -91,7 +98,7 @@ export function EpicResize({ width, onResize }: Props) {
       // entire document instead until the mouse goes up. This way the
       // user doesn't have to have 100% accuracy to resize the element.
     },
-    [ resize, resizeEnd ]
+    [resize, resizeEnd]
   );
 
   useEpicResizeListenerCleanup(resize, resizeEnd);
