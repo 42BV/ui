@@ -1,6 +1,7 @@
 import { Field } from 'react-final-form';
 import { FormError } from './FormError';
 import React, { Dispatch, SetStateAction } from 'react';
+import { FieldSubscription } from 'final-form';
 
 export type ErrorMode = 'tooltip' | 'below';
 
@@ -18,11 +19,12 @@ export function FieldError({
   errorMode
 }: Props) {
   // Listen to all props on the `Meta` object.
-  const errorSubscription = {
+  const errorSubscription: FieldSubscription = {
     active: true,
     touched: true,
     error: true,
     submitError: true,
+    dirtySinceLastSubmit: true,
     value: true,
     validating: true
   };
