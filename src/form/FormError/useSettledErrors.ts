@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
 
-import { Meta, MetaError } from '../types';
+import { MetaError } from "../types";
+import { FieldMetaState } from "react-final-form";
 
 /**
  * Final form considers a form to be `valid` when it is `validating`
@@ -28,16 +29,27 @@ import { Meta, MetaError } from '../types';
  * @param meta
  * @param value
  */
-export function useSettledErrors(meta: Meta, value: any): MetaError[] {
-  const { error, active, touched } = meta;
+export function useSettledErrors(
+  meta: FieldMetaState<unknown>,
+  value: any
+): MetaError[] {
+  const { error, submitError, active, touched, dirtySinceLastSubmit } = meta;
 
-  const [ errorCache ] = useState({});
+  const [errorCache] = useState({});
 
   const errors: MetaError[] = useMemo(() => {
-    return error === undefined ? [] : Array.isArray(error) ? error : [ error ];
-  }, [ error ]);
+    return error === undefined ? [] : Array.isArray(error) ? error : [error];
+  }, [error]);
 
-  const [ settledErrors, setSettledErrors ] = useState(errors);
+  const submitErrors: MetaError[] = useMemo(() => {
+    return submitError === undefined || dirtySinceLastSubmit
+      ? []
+      : Array.isArray(submitError)
+        ? submitError
+        : [submitError];
+  }, [submitError, dirtySinceLastSubmit]);
+
+  const [settledErrors, setSettledErrors] = useState(errors);
 
   const hasErrors = errors.length > 0;
 
@@ -126,10 +138,11 @@ export function useSettledErrors(meta: Meta, value: any): MetaError[] {
     active,
     touched,
     errors,
+    submitErrors,
     settledErrors.length,
     errorCache,
     value
   ]);
 
-  return settledErrors;
+  return [...settledErrors, ...submitErrors];
 }

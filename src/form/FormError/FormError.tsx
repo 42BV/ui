@@ -2,11 +2,12 @@ import React from 'react';
 import { FormFeedback } from 'reactstrap';
 import { useErrorsForValidator } from '@42.nl/react-error-store';
 
-import { Meta, MetaError } from '../types';
+import { MetaError } from '../types';
 import { errorMessage } from './utils';
 import { useSettledErrors } from './useSettledErrors';
 import { useOnChange } from './useOnChange';
 import { FormErrorOnChange } from './types';
+import { FieldMetaState } from 'react-final-form';
 
 type Props = {
   /**
@@ -17,7 +18,7 @@ type Props = {
   /**
    * The meta-object to render the errors for.
    */
-  meta: Meta;
+  meta: FieldMetaState<any>;
 
   /**
    * The validator for which the FormError should render back-end errors.

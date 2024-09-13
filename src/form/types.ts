@@ -14,6 +14,7 @@ export type Meta = {
   active?: boolean;
   touched?: boolean;
   error?: MetaError | MetaError[];
+  submitError?: MetaError | MetaError[];
 };
 
 export type FieldCompatible<Value, ChangeValue> = {
