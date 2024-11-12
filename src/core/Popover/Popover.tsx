@@ -64,6 +64,11 @@ type Props = {
    * by the wrapping of the children inside the CustomTag.
    */
   style?: CSSProperties;
+
+  /**
+   * Optionally set the maximum width of the popover.
+   */
+  maxWidth?: number;
 };
 
 /**
@@ -79,7 +84,8 @@ export function Popover({
   className,
   isOpen,
   onClickOutside,
-  style
+  style,
+  maxWidth
 }: Props) {
   const Tag = tag;
 
@@ -90,9 +96,10 @@ export function Popover({
       className="border-0 tippy-popover"
       content={children}
       placement={placement}
-      offset={[ offset, distance ]}
+      offset={[offset, distance]}
       interactive={true}
       zIndex={1049} // One level below bootstrap's modal
+      maxWidth={maxWidth}
     >
       <Tag className={className} style={style} tabIndex={0} role="button">
         {target}
