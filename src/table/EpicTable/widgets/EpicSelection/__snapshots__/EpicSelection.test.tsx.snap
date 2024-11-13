@@ -3,7 +3,7 @@
 exports[`Component: EpicSelection ui is checked 1`] = `
 <div>
   <label
-    class="d-flex m-0 align-items-center form-label"
+    class="d-flex m-0 align-items-center p-1 m-n1 clickable form-label"
   >
     <input
       checked=""
