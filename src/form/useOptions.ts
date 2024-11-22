@@ -1,6 +1,5 @@
-import { emptyPage, Page } from '@42.nl/spring-connect';
+import { emptyPage, Page, pageOf } from '@42.nl/spring-connect';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { pageOf } from '../utilities/page/page';
 import {
   FetchOptionsCallback,
   FieldCompatibleWithPredeterminedOptions,

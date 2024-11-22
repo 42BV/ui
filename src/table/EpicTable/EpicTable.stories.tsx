@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Alert, Card, Col, Input, Row } from 'reactstrap';
 import { every, groupBy, lowerCase, startsWith } from 'lodash';
+import { pageOf } from '@42.nl/spring-connect';
 
 import { EpicTable } from './EpicTable';
 import { EpicRow } from './rows/EpicRow/EpicRow';
@@ -20,7 +21,6 @@ import { EpicSort } from './widgets/EpicSort/EpicSort';
 import { EpicTableSortDirection } from './types';
 import moment from 'moment';
 import { MoreOrLess } from '../../core/MoreOrLess/MoreOrLess';
-import { pageOf } from '../../utilities/page/page';
 import { Tag } from '../../core/Tag/Tag';
 import {
   ContentState,
@@ -203,7 +203,7 @@ storiesOf('table/EpicTable', module)
           <EpicRow header>
             <EpicHeader
               width={widths.firstName}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('firstName', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -227,12 +227,13 @@ storiesOf('table/EpicTable', module)
                     event.preventDefault();
                     filterChanged('firstName', event.target.value);
                   }}
+                  className="mt-2"
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.lastName}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('lastName', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -249,12 +250,13 @@ storiesOf('table/EpicTable', module)
                   onChange={(event) =>
                     filterChanged('lastName', event.target.value)
                   }
+                  className="mt-2"
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.age}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('age', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -267,12 +269,13 @@ storiesOf('table/EpicTable', module)
                 </EpicCellLayout>
                 <Input
                   onChange={(event) => filterChanged('age', event.target.value)}
+                  className="mt-2"
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.eyeColor}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('eyeColor', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -290,6 +293,7 @@ storiesOf('table/EpicTable', module)
                   onChange={(event) =>
                     filterChanged('eyeColor', event.target.value)
                   }
+                  className="mt-2"
                 >
                   <option>all</option>
                   <option>brown</option>
@@ -300,7 +304,7 @@ storiesOf('table/EpicTable', module)
             </EpicHeader>
             <EpicHeader
               width={widths.height}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('height', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -317,12 +321,13 @@ storiesOf('table/EpicTable', module)
                   onChange={(event) =>
                     filterChanged('height', event.target.value)
                   }
+                  className="mt-2"
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.weight}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('weight', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -339,12 +344,13 @@ storiesOf('table/EpicTable', module)
                   onChange={(event) =>
                     filterChanged('weight', event.target.value)
                   }
+                  className="mt-2"
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.jobTitle}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('jobTitle', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -361,12 +367,13 @@ storiesOf('table/EpicTable', module)
                   onChange={(event) =>
                     filterChanged('jobTitle', event.target.value)
                   }
+                  className="mt-2"
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.favoriteMovie}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('favoriteMovie', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -381,12 +388,12 @@ storiesOf('table/EpicTable', module)
                     }
                   />
                 </EpicCellLayout>
-                <Input />
+                <Input className="mt-2" />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.favoriteFood}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('favoriteFood', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -405,12 +412,13 @@ storiesOf('table/EpicTable', module)
                   onChange={(event) =>
                     filterChanged('favoriteFood', event.target.value)
                   }
+                  className="mt-2"
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.dateOfBirth}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('dateOfBirth', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -439,12 +447,13 @@ storiesOf('table/EpicTable', module)
                       date ? moment(date).format('YYYY-MM-DD') : ''
                     )
                   }
+                  className="mt-2"
                 />
               </EpicCellLayout>
             </EpicHeader>
             <EpicHeader
               width={widths.sex}
-              height={88}
+              height={94}
               onResize={(width) => changeSize('sex', width)}
             >
               <EpicCellLayout mode="vertical">
@@ -458,6 +467,7 @@ storiesOf('table/EpicTable', module)
                 <Input
                   type="select"
                   onChange={(event) => filterChanged('sex', event.target.value)}
+                  className="mt-2"
                 >
                   <option>all</option>
                   <option>male</option>
@@ -465,7 +475,7 @@ storiesOf('table/EpicTable', module)
                 </Input>
               </EpicCellLayout>
             </EpicHeader>
-            <EpicHeader width={widths.actions} height={88}>
+            <EpicHeader width={widths.actions} height={94}>
               <div className="px-1 py-1 align-self-start">Actions</div>
             </EpicHeader>
           </EpicRow>
@@ -520,7 +530,7 @@ storiesOf('table/EpicTable', module)
                   <Button icon="edit" onClick={action('edit')} />
                 </EpicCell>
               </EpicRow>
-              <EpicDetailRow active={index === detail} left={300}>
+              <EpicDetailRow active={index === detail} left={widths.firstName}>
                 {() => (
                   <EpicDetail onClose={() => setDetail(-1)}>
                     <Row tag="dl">
@@ -1617,7 +1627,7 @@ storiesOf('table/EpicTable', module)
                   <Button icon="edit" onClick={action('edit')} />
                 </EpicCell>
               </EpicRow>
-              <EpicExpanderRow active={index === expanded} height={58}>
+              <EpicExpanderRow active={index === expanded} height={66}>
                 {() => (
                   <div className="p-1">
                     <Alert className="mb-0" color="danger">

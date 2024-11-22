@@ -1,7 +1,8 @@
 import React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { emptyPage, Page } from '@42.nl/spring-connect';
+import { emptyPage, Page, pageOf } from '@42.nl/spring-connect';
+import lodash from 'lodash';
 
 import { ModalPickerSingle } from './ModalPickerSingle';
 import { User } from '../../../test/types';
@@ -17,12 +18,10 @@ import {
   ModalPickerButtonAlignment
 } from '../types';
 
-import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { Color } from '../../../core/types';
 import { IsOptionEnabled } from '../../option';
 import { icons } from '../../../core/Icon';
-import lodash from 'lodash';
 
 jest.mock('../../useOptions', () => {
   return { useOptions: jest.fn() };

@@ -25,10 +25,10 @@ export type Props = {
  */
 export function EpicSelection({ children, checked, onChange }: Props) {
   return (
-    <Label className="d-flex m-0 align-items-center p-1 m-n1 clickable">
+    <Label className="d-flex align-items-center ps-2 py-1 my-n1 ms-n2 clickable h-auto">
       <Input
         type="checkbox"
-        className="m-0 ms-1 me-2 flex-shrink-0 flex-grow-0 d-inline-block position-static"
+        className="m-0 me-2 flex-shrink-0 flex-grow-0 d-inline-block position-static clickable"
         checked={checked}
         onChange={() => onChange(!checked)}
       />

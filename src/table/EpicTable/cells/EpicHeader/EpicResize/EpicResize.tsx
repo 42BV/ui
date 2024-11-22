@@ -8,6 +8,7 @@ import { throttle } from 'lodash';
 
 import { useEpicResizeListenerCleanup } from './useEpicResizeListenerCleanup';
 import { listenerConfig } from './ListenerConfig';
+import { Icon } from '../../../../../core/Icon';
 
 type Props = {
   /**
@@ -108,9 +109,11 @@ export function EpicResize({ width, onResize, minWidth }: Props) {
 
   return (
     <div
-      className="epic-table-header-resizeable"
+      className="epic-table-header-resizeable me-n2 d-flex align-items-center h-100"
       onMouseDown={(e) => resizeStart(e, width)}
       data-testid="epic-table-header-resize"
-    />
+    >
+      <Icon icon="more_vert" />
+    </div>
   );
 }

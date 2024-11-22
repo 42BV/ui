@@ -228,7 +228,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
       page.content.unshift(item);
 
       setIsOpen(true);
-    } catch (error) {
+    } catch {
       setIsOpen(true);
     }
   }

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { range } from 'lodash';
-
-import { pageOf } from '../../utilities/page/page';
+import { Alert } from 'reactstrap';
+import { pageOf } from '@42.nl/spring-connect';
 
 import { EpicPagination } from './EpicPagination';
-import { Alert } from 'reactstrap';
 
 storiesOf('core/EpicPagination', module)
   .addParameters({ component: EpicPagination })

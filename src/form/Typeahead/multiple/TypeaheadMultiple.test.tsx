@@ -1,6 +1,8 @@
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
+import { pageOf } from '@42.nl/spring-connect';
 
 import { TypeaheadMultiple } from './TypeaheadMultiple';
 
@@ -12,10 +14,8 @@ import {
 } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
-import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { IsOptionEnabled } from '../../option';
-import userEvent from '@testing-library/user-event';
 
 jest.mock('../../useOptions', () => {
   return { useOptions: jest.fn() };

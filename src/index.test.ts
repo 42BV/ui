@@ -142,7 +142,6 @@ describe('index', () => {
         "isTypeaheadCustomOption": [Function],
         "limitFileSize": [Function],
         "limitImageSize": [Function],
-        "pageOf": [Function],
         "requireFile": [Function],
         "requireImage": [Function],
         "setTranslator": [Function],

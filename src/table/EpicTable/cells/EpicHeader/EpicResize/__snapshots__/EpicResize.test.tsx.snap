@@ -3,8 +3,14 @@
 exports[`Component: EpicResize ui 1`] = `
 <div>
   <div
-    class="epic-table-header-resizeable"
+    class="epic-table-header-resizeable me-n2 d-flex align-items-center h-100"
     data-testid="epic-table-header-resize"
-  />
+  >
+    <i
+      class="icon material-icons material-icons__filled"
+    >
+      more_vert
+    </i>
+  </div>
 </div>
 `;

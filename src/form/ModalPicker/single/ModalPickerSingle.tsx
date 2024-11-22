@@ -189,7 +189,7 @@ export function ModalPickerSingle<T>(props: Props<T>) {
       page.content.unshift(option);
 
       setIsOpen(true);
-    } catch (error) {
+    } catch {
       setIsOpen(true);
     }
   }

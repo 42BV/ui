@@ -23,7 +23,7 @@ describe('Component: OpenCloseModal', () => {
     stickyFooter?: boolean;
   }) {
     const onCloseSpy = jest.fn();
-    const onSaveSpy = jest.fn();
+    const onSaveSpy = jest.fn((e) => e.preventDefault());
 
     const props = {
       isOpen,

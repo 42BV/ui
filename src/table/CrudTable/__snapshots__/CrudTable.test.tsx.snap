@@ -50,7 +50,7 @@ exports[`Component: CrudTable ui default 1`] = `
             tabindex="0"
           />
           <div
-            class="epic-table-cell border-bottom p-1 epic-table-cell--odd"
+            class="epic-table-cell border-bottom py-1 px-2 epic-table-cell--odd"
             style="min-width: 100px; width: 100px; height: 44px;"
           >
             test

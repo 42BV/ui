@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { pageOf } from '@42.nl/spring-connect';
 
 import { CheckboxMultipleSelect, Text } from './CheckboxMultipleSelect';
 import { User } from '../../test/types';
@@ -13,7 +14,6 @@ import {
   userUser
 } from '../../test/fixtures';
 
-import { pageOf } from '../../utilities/page/page';
 import { useOptions } from '../useOptions';
 import { IsOptionEnabled } from '../option';
 

@@ -3,9 +3,8 @@ import { Form as ReactFinalForm } from 'react-final-form';
 import { Alert, Col, Row } from 'reactstrap';
 import { SubmitButton } from './core/SubmitButton/SubmitButton';
 import { action } from '@storybook/addon-actions';
-import { Page } from '@42.nl/spring-connect';
+import { Page, pageOf } from '@42.nl/spring-connect';
 import { FetchOptionsCallbackConfig } from './form/option';
-import { pageOf } from './utilities/page/page';
 import { Card } from './index';
 
 type Props = {
@@ -59,8 +58,8 @@ export function IsOptionEqualInfo() {
   return (
     <>
       <p>
-        By default when <code>isOptionEqual</code> is not provided the ids
-        of the objects will be compared. If id does not exist the labels for the
+        By default when <code>isOptionEqual</code> is not provided the ids of
+        the objects will be compared. If id does not exist the labels for the
         options coming from <code>labelForOption</code> will be compared.
       </p>
 
@@ -83,10 +82,9 @@ export function KeyForOptionInfo() {
   return (
     <>
       <p>
-        By default when <code>keyForOption</code> is not provided the id of
-        the object will be used the key. If id does not exist the labels for the
-        options coming from <code>labelForOption</code> will be used as the
-        key.
+        By default when <code>keyForOption</code> is not provided the id of the
+        object will be used the key. If id does not exist the labels for the
+        options coming from <code>labelForOption</code> will be used as the key.
       </p>
 
       <p>
@@ -108,9 +106,9 @@ export function KeyForOptionInfo() {
 export function ReloadOptionsInfo() {
   return (
     <p>
-      Whenever <code>reloadOptions</code> changes the options are fetched
-      again. Should only be used when <code>options</code> is a function
-      which fetches data.
+      Whenever <code>reloadOptions</code> changes the options are fetched again.
+      Should only be used when <code>options</code> is a function which fetches
+      data.
     </p>
   );
 }
@@ -119,10 +117,14 @@ export function FieldFormElementDependencies() {
   return (
     <Alert color="warning" className="mb-4">
       <p>
-        To be able to use field variants of form elements, you have to add @42.nl/final-form-field-validation, final-form,
-        react-final-form and react-display-name to your dependencies:
+        To be able to use field variants of form elements, you have to add
+        @42.nl/final-form-field-validation, final-form, react-final-form and
+        react-display-name to your dependencies:
       </p>
-      <code>npm install --save @42.nl/final-form-field-validation final-form react-final-form react-display-name</code>
+      <code>
+        npm install --save @42.nl/final-form-field-validation final-form
+        react-final-form react-display-name
+      </code>
     </Alert>
   );
 }
@@ -131,10 +133,16 @@ export function JarbFormElementDependencies() {
   return (
     <Alert color="warning" className="mb-4">
       <p>
-        To be able to use jarb variants of form elements, you have to add @42.nl/jarb-final-form, @42.nl/final-form-field-validation,
-        @42.nl/spring-connect, @42.nl/react-error-store, final-form, react-final-form and react-display-name to your dependencies:
+        To be able to use jarb variants of form elements, you have to add
+        @42.nl/jarb-final-form, @42.nl/final-form-field-validation,
+        @42.nl/spring-connect, @42.nl/react-error-store, final-form,
+        react-final-form and react-display-name to your dependencies:
       </p>
-      <code>npm install --save @42.nl/jarb-final-form @42.nl/final-form-field-validation @42.nl/spring-connect @42.nl/react-error-store final-form react-final-form react-display-name</code>
+      <code>
+        npm install --save @42.nl/jarb-final-form
+        @42.nl/final-form-field-validation @42.nl/spring-connect
+        @42.nl/react-error-store final-form react-final-form react-display-name
+      </code>
     </Alert>
   );
 }

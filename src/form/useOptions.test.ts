@@ -1,9 +1,8 @@
 import { act, renderHook } from '@testing-library/react';
+import { emptyPage, Page, pageOf } from '@42.nl/spring-connect';
+import { range } from 'lodash';
 
 import { useOptions } from './useOptions';
-import { pageOf } from '../utilities/page/page';
-import { range } from 'lodash';
-import { emptyPage, Page } from '@42.nl/spring-connect';
 import { resolvablePromise } from '../test/utils';
 
 type Option = {

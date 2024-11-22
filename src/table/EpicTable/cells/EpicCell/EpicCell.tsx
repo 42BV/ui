@@ -59,7 +59,7 @@ export function EpicCell({ children, width, height = 44, ...rest }: Props) {
 
   const { odd, onRowClick, hover, onHoverChanged } = rest as InjectedProps;
 
-  const classes = classNames('epic-table-cell border-bottom p-1', {
+  const classes = classNames('epic-table-cell border-bottom py-1 px-2', {
     'epic-table-cell--odd': odd,
     'epic-table-cell--hover': hover
   });

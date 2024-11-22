@@ -222,7 +222,6 @@ export type {
   Translation,
   Translator
 } from './utilities/translation/translator';
-export { pageOf } from './utilities/page/page';
 export { configure } from './config/config';
 export type { Config } from './config/config';
 

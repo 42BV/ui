@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { pageOf } from '@42.nl/spring-connect';
 
 import { RadioGroup, Text } from './RadioGroup';
 import { User } from '../../test/types';
@@ -14,7 +15,6 @@ import {
 } from '../../test/fixtures';
 import { IsOptionEnabled } from '../option';
 
-import { pageOf } from '../../utilities/page/page';
 import { useOptions } from '../useOptions';
 
 jest.mock('../useOptions', () => {

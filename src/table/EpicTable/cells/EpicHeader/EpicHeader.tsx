@@ -48,12 +48,12 @@ export function EpicHeader({
   children,
   width,
   minWidth,
-  height = 44,
+  height,
   onResize
 }: Props) {
   return (
     <div
-      className="epic-table-header d-flex align-items-center justify-content-between p-1"
+      className="epic-table-header d-flex align-items-center justify-content-between p-2"
       style={{
         minWidth: width,
         width,

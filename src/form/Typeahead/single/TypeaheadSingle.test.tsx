@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { pageOf } from '@42.nl/spring-connect';
 
 import { TypeaheadSingle } from './TypeaheadSingle';
 
@@ -13,7 +14,6 @@ import {
 } from '../../../test/fixtures';
 import { User } from '../../../test/types';
 
-import { pageOf } from '../../../utilities/page/page';
 import { useOptions } from '../../useOptions';
 import { IsOptionEnabled } from '../../option';
 import { useAutoSelectOptionWhenQueryMatchesExactly } from './useAutoSelectOptionWhenQueryMatchesExactly';
