@@ -45,6 +45,10 @@
     .form-check-input:checked {
       border-color: var(--bs-border-color);
     }
+
+    &-resizeable {
+      cursor: col-resize;
+    }
   }
 
   &-cell {
