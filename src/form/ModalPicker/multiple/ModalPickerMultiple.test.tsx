@@ -1,20 +1,17 @@
 import React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { emptyPage, Page, pageOf } from '@42.nl/spring-connect';
-import lodash from 'lodash';
 
 import { ModalPickerMultiple } from './ModalPickerMultiple';
 import {
   adminUser,
   coordinatorUser,
   listOfUsers,
-  randomUser,
   userUser
 } from '../../../test/fixtures';
 
 import { User } from '../../../test/types';
-import * as testUtils from '../../../test/utils';
 import {
   ModalPickerAddButtonOptions,
   ModalPickerButtonAlignment
@@ -322,65 +319,16 @@ describe('Component: ModalPickerMultiple', () => {
       expect(screen.queryAllByRole('checkbox').length).toBe(3);
     });
 
-    it('should fetch options when the user searches', () => {
-      // @ts-expect-error Test mock
-      jest.spyOn(lodash, 'debounce').mockImplementation((fn) => {
-        return fn;
-      });
-
-      setup({
-        value: undefined
-      });
+    it('should close the modal when the cancel button is clicked', () => {
+      setup({});
 
       fireEvent.click(screen.getByText('Select your best friend'));
-      fireEvent.change(screen.getByRole('searchbox'), {
-        target: { value: 'test' }
-      });
 
-      expect(useOptions).toHaveBeenLastCalledWith(
-        expect.objectContaining({ query: 'test', pageNumber: 1 })
-      );
-    });
+      expect(screen.queryAllByRole('checkbox').length).toBe(3);
 
-    it('should load the new page when the user moves to another page', () => {
-      setup({
-        value: undefined,
-        pageSize: 2
-      });
-
-      fireEvent.click(screen.getByText('Select your best friend'));
-      fireEvent.click(screen.getByText('arrow_forward'));
-
-      expect(useOptions).toHaveBeenLastCalledWith(
-        expect.objectContaining({ pageNumber: 2 })
-      );
-    });
-
-    it('should not call onChange when the user clicks cancel', () => {
-      const { onChangeSpy, onBlurSpy } = setup({
-        value: undefined
-      });
-
-      fireEvent.click(screen.getByText('Select your best friend'));
       fireEvent.click(screen.getByText('Cancel'));
 
-      expect(onChangeSpy).toHaveBeenCalledTimes(0);
-      expect(onBlurSpy).toHaveBeenCalledTimes(0);
-    });
-
-    it('should call onChange when the user clicks select', () => {
-      const { onChangeSpy, onBlurSpy } = setup({
-        value: undefined
-      });
-
-      fireEvent.click(screen.getByText('Select your best friend'));
-      fireEvent.click(screen.getAllByRole('checkbox')[0]);
-      fireEvent.click(screen.getByText('Select'));
-
-      expect(onChangeSpy).toHaveBeenCalledTimes(1);
-      expect(onChangeSpy).toHaveBeenCalledWith([adminUser()]);
-
-      expect(onBlurSpy).toHaveBeenCalledTimes(1);
+      expect(screen.queryAllByRole('checkbox').length).toBe(0);
     });
 
     it('should clear the value when the user clicks the clear button', () => {
@@ -405,64 +353,6 @@ describe('Component: ModalPickerMultiple', () => {
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
       expect(onChangeSpy).toHaveBeenCalledWith([]);
-    });
-
-    describe('addButton', () => {
-      it('should add an item on the first position, when the promise resolves', async () => {
-        expect.assertions(9);
-
-        const { promise, resolve } = testUtils.resolvablePromise();
-        const addButtonCallbackSpy = jest.fn().mockReturnValueOnce(promise);
-
-        setup({
-          value: undefined,
-          showAddButton: true,
-          reUsePage: true,
-          addButtonCallbackSpy
-        });
-
-        fireEvent.click(screen.getByText('Select your best friend'));
-        fireEvent.click(screen.getByText('Add color'));
-
-        expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
-
-        const addedUser = randomUser();
-        resolve(addedUser);
-
-        await act(async () => {
-          await expect(promise).resolves.toEqual(addedUser);
-        });
-
-        expect(screen.queryAllByText(addedUser.email).length).toBe(2);
-        expect(screen.queryAllByRole('checkbox').length).toBe(4);
-        expect(screen.getAllByRole('checkbox')[0]).toBeChecked();
-      });
-
-      it('should hide when the promise is rejected', async () => {
-        expect.assertions(7);
-
-        const { promise, reject } = testUtils.rejectablePromise();
-        const addButtonCallbackSpy = jest.fn().mockReturnValueOnce(promise);
-
-        setup({
-          value: undefined,
-          showAddButton: true,
-          addButtonCallbackSpy
-        });
-
-        fireEvent.click(screen.getByRole('button'));
-        fireEvent.click(screen.getByText('Add color'));
-
-        expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
-
-        reject('error');
-
-        await act(async () => {
-          await expect(promise).rejects.toEqual('error');
-        });
-
-        expect(screen.queryAllByRole('checkbox').length).toBe(3);
-      });
     });
   });
 

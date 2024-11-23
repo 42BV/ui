@@ -2,24 +2,21 @@ import React, { MouseEventHandler, useState } from 'react';
 import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 
 import { withJarb } from '../../withJarb/withJarb';
-import { alwaysTrue, doBlur } from '../../utils';
+import { doBlur } from '../../utils';
 import { Tag } from '../../../core/Tag/Tag';
 import { ModalPicker, Text } from '../ModalPicker';
 import {
-  ModalPickerAddButtonCallback,
   ModalPickerAddButtonOptions,
   ModalPickerButtonAlignment,
   ModalPickerRenderOptions
 } from '../types';
 import {
   FieldCompatibleWithPredeterminedOptions,
-  getKeyForOption,
   isOptionSelected
 } from '../../option';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import { FieldCompatible } from '../../types';
-import { useOptions } from '../../useOptions';
 import { IconType } from '../../../core/Icon';
 import { t } from '../../../utilities/translation/translation';
 import { withField } from '../../withField/withField';
@@ -135,7 +132,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
     options,
     keyForOption,
     isOptionEqual,
-    isOptionEnabled = alwaysTrue,
+    isOptionEnabled,
     labelForOption,
     reloadOptions,
     renderValue,
@@ -148,27 +145,10 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [query, setQuery] = useState<string>('');
-  const [userHasSearched, setUserHasSearched] = useState(false);
-  const [selected, setSelected] = useState<T[]>([]);
 
-  const { page, loading } = useOptions({
-    options,
-    value,
-    isOptionEqual,
-    labelForOption,
-    reloadOptions,
-    pageNumber,
-    query,
-    size: pageSize,
-    optionsShouldAlwaysContainValue: false
-  });
-
-  function modalSaved() {
+  function modalSaved(selected?: T[]) {
     setIsOpen(false);
-    onChange([...selected]);
-
+    onChange(selected);
     doBlur(onBlur);
   }
 
@@ -179,59 +159,8 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
   const openModal: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
     event.stopPropagation();
-
-    // Always copy the `value` so the `selected` is a fresh array.
-    // Otherwise, the selection will be the same as the value, which
-    // causes values to be committed and the cancel button will not
-    // do anything.
-    const newSelected = Array.isArray(value) ? [...value] : [];
-
-    setSelected(newSelected);
     setIsOpen(true);
-    setQuery('');
-    setPageNumber(1);
-    setUserHasSearched(false);
   };
-
-  function optionClicked(option: T, isSelected: boolean) {
-    // Always copy the `value` so the `selected` is a fresh array.
-    // Otherwise, the selection will be the same as the value, which
-    // causes values to be committed and the cancel button will not
-    // do anything.
-    let newSelected = [...selected];
-
-    if (isSelected) {
-      newSelected = selected.filter(
-        (value) =>
-          !isOptionSelected({
-            option,
-            keyForOption,
-            labelForOption,
-            isOptionEqual,
-            value
-          })
-      );
-    } else {
-      newSelected.push(option);
-    }
-
-    setSelected(newSelected);
-  }
-
-  async function addButtonClicked(callback: ModalPickerAddButtonCallback<T>) {
-    setIsOpen(false);
-
-    try {
-      const item = await callback();
-
-      optionClicked(item, false);
-      page.content.unshift(item);
-
-      setIsOpen(true);
-    } catch {
-      setIsOpen(true);
-    }
-  }
 
   const modalPickerOpenerProps = {
     openModal,
@@ -248,7 +177,7 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
         ),
     onClear: canClear ? () => onChange(undefined) : undefined,
     // Only render the clear button when it has a value
-    value: value && value.length > 0 ? value : undefined
+    value: value?.length ? value : undefined
   };
 
   return (
@@ -258,102 +187,64 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
       <ModalPickerOpener {...modalPickerOpenerProps} />
 
       {error}
-      {renderModal()}
+      {isOpen ? (
+        <ModalPicker
+          multiple={true}
+          placeholder={placeholder}
+          canSearch={canSearch}
+          canSearchSync={Array.isArray(options)}
+          closeModal={closeModal}
+          modalSaved={modalSaved}
+          addButton={addButton}
+          value={value}
+          renderOptionsConfig={{
+            isOptionEqual,
+            keyForOption,
+            isOptionEnabled,
+            renderOptions
+          }}
+          renderSelection={renderModalCurrentSelection}
+          text={text}
+          pageSize={pageSize}
+          options={options}
+          labelForOption={labelForOption}
+          reloadOptions={reloadOptions}
+        >
+          {(options) =>
+            options.map((option) => (
+              <FormGroup key={option.key} check disabled={!option.enabled}>
+                <Label check>
+                  <Input
+                    type="checkbox"
+                    checked={option.isSelected}
+                    disabled={!option.enabled}
+                    onChange={option.toggle}
+                  />
+                  {option.label}
+                </Label>
+              </FormGroup>
+            ))
+          }
+        </ModalPicker>
+      ) : null}
     </FormGroup>
   );
 
-  function queryChanged(query: string) {
-    setQuery(query);
-    setUserHasSearched(true);
-    setPageNumber(1);
-  }
-
-  function renderModal() {
-    const addButtonOptions = addButton
-      ? {
-          label: addButton.label,
-          onClick: () => addButtonClicked(addButton.onClick)
-        }
-      : undefined;
-
-    return (
-      <ModalPicker
-        query={query}
-        placeholder={placeholder}
-        isOpen={isOpen}
-        page={page}
-        canSearch={canSearch}
-        canSearchSync={Array.isArray(options)}
-        queryChanged={queryChanged}
-        pageChanged={setPageNumber}
-        closeModal={closeModal}
-        modalSaved={modalSaved}
-        addButton={addButtonOptions}
-        loading={loading}
-        userHasSearched={userHasSearched}
-        selected={selected}
-        renderOptionsConfig={
-          renderOptions
-            ? {
-                labelForOption,
-                isOptionEqual,
-                keyForOption,
-                isOptionEnabled,
-                renderOptions,
-                onChange: optionClicked
-              }
-            : undefined
-        }
-        text={text}
-      >
-        {renderModalCurrentSelection()}
-
-        {renderModalContent()}
-      </ModalPicker>
-    );
-  }
-
-  function renderModalContent(): React.ReactNode {
-    return page.content.map((option) => {
-      const label = labelForOption(option);
-      const key = getKeyForOption({ option, keyForOption, labelForOption });
-
-      const isSelected = isOptionSelected({
-        option,
-        labelForOption,
-        isOptionEqual,
-        keyForOption,
-        value: selected
-      });
-
-      return (
-        <FormGroup key={key} check disabled={!isOptionEnabled(option)}>
-          <Label check>
-            <Input
-              type="checkbox"
-              checked={isSelected}
-              disabled={!isOptionEnabled(option)}
-              onChange={() => optionClicked(option, isSelected)}
-            />
-            {label}
-          </Label>
-        </FormGroup>
-      );
-    });
-  }
-
-  function renderModalCurrentSelection() {
+  function renderModalCurrentSelection(
+    setSelected: (value: T[]) => void,
+    selected?: T[]
+  ) {
     return (
       <Row className="mb-3 py-2 bg-dark bg-opacity-10">
         <Col className="bg-opacity-100">
-          {selected && selected.length > 0 ? (
+          {selected?.length ? (
             selected.map((value) => {
               const label = labelForOption(value);
 
               return (
                 <Tag
                   key={label}
-                  onRemove={() => optionClicked(value, true)}
+                  onRemove={() => optionClicked(selected, setSelected, value)}
                   text={label}
                 />
               );
@@ -368,6 +259,25 @@ export function ModalPickerMultiple<T>(props: Props<T>) {
           )}
         </Col>
       </Row>
+    );
+  }
+
+  function optionClicked(
+    selected: T[],
+    setSelected: (value: T[]) => void,
+    option: T
+  ) {
+    setSelected(
+      selected.filter(
+        (value) =>
+          !isOptionSelected({
+            option,
+            keyForOption,
+            labelForOption,
+            isOptionEqual,
+            value
+          })
+      )
     );
   }
 }

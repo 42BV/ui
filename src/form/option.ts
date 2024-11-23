@@ -161,12 +161,12 @@ export function getKeyForOption<T>({
   return labelForOption(option);
 }
 
-type IsOptionSelectedConfig<T> = {
+type IsOptionSelectedConfig<T, Value> = {
   option: T;
   keyForOption?: KeyForOption<T>;
   labelForOption: LabelForOption<T>;
   isOptionEqual?: IsOptionEqual<T>;
-  value?: T[] | T;
+  value?: Value;
 };
 
 /**
@@ -179,7 +179,7 @@ type IsOptionSelectedConfig<T> = {
  * so `isOptionSelected` can perform its function best.
  */
 export function isOptionSelected<T>(
-  config: IsOptionSelectedConfig<T>
+  config: IsOptionSelectedConfig<T, T | T[]>
 ): boolean {
   const { value } = config;
 
@@ -190,23 +190,29 @@ export function isOptionSelected<T>(
   if (Array.isArray(value)) {
     return value.some((value) => isValueSelected(value, config));
   } else {
-    return isValueSelected(value, config);
+    return isValueSelected<T>(value, config);
   }
 }
 
 // Helper for isOptionSelected
 function isValueSelected<T>(
   value: T,
-  config: IsOptionSelectedConfig<T>
+  config: IsOptionSelectedConfig<T, T | T[]>
 ): boolean {
-  const { option, isOptionEqual, labelForOption, keyForOption } = config;
+  const { option, isOptionEqual } = config;
+  return isOptionEqual
+    ? isOptionEqual(value, option)
+    : compareOptions(value, option, config);
+}
 
-  if (isOptionEqual) {
-    return isOptionEqual(value, option);
-  } else {
-    const key = getKeyForOption({ option, keyForOption, labelForOption });
-    return (
-      key === getKeyForOption({ option: value, keyForOption, labelForOption })
-    );
-  }
+export function compareOptions<T>(
+  a: T,
+  b: T,
+  config: Omit<IsOptionSelectedConfig<T, T | T[]>, 'value'>
+) {
+  const { labelForOption, keyForOption } = config;
+  return (
+    getKeyForOption({ option: a, keyForOption, labelForOption }) ===
+    getKeyForOption({ option: b, keyForOption, labelForOption })
+  );
 }

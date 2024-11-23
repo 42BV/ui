@@ -1,19 +1,12 @@
 import React, { MouseEventHandler, useState } from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
-import {
-  FieldCompatibleWithPredeterminedOptions,
-  getKeyForOption,
-  isOptionSelected
-} from '../../option';
+import { FieldCompatibleWithPredeterminedOptions } from '../../option';
 import { FieldCompatible } from '../../types';
-import { useOptions } from '../../useOptions';
-import { alwaysTrue } from '../../utils';
 import { withJarb } from '../../withJarb/withJarb';
 import { ModalPicker, Text } from '../ModalPicker';
 import { ModalPickerOpener } from '../ModalPickerOpener/ModalPickerOpener';
 import { ModalPickerValueTruncator } from '../ModalPickerValueTruncator/ModalPickerValueTruncator';
 import {
-  ModalPickerAddButtonCallback,
   ModalPickerAddButtonOptions,
   ModalPickerButtonAlignment,
   ModalPickerRenderOptions
@@ -125,12 +118,12 @@ export function ModalPickerSingle<T>(props: Props<T>) {
     value,
     onChange,
     addButton,
-    canSearch = true,
-    pageSize = 10,
+    canSearch,
+    pageSize,
     options,
     keyForOption,
     isOptionEqual,
-    isOptionEnabled = alwaysTrue,
+    isOptionEnabled,
     labelForOption,
     reloadOptions,
     renderValue,
@@ -142,26 +135,9 @@ export function ModalPickerSingle<T>(props: Props<T>) {
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [query, setQuery] = useState<string>('');
-  const [userHasSearched, setUserHasSearched] = useState(false);
-  const [selected, setSelected] = useState<T | undefined>(undefined);
 
-  const { page, loading } = useOptions({
-    options,
-    value,
-    isOptionEqual,
-    labelForOption,
-    reloadOptions,
-    pageNumber,
-    query,
-    size: pageSize,
-    optionsShouldAlwaysContainValue: false
-  });
-
-  function modalSaved() {
+  function modalSaved(selected?: T) {
     setIsOpen(false);
-
     onChange(selected);
   }
 
@@ -173,26 +149,7 @@ export function ModalPickerSingle<T>(props: Props<T>) {
     event.preventDefault();
     event.stopPropagation();
     setIsOpen(true);
-    setSelected(value);
-    setQuery('');
-    setPageNumber(1);
-    setUserHasSearched(false);
   };
-
-  async function addButtonClicked(callback: ModalPickerAddButtonCallback<T>) {
-    setIsOpen(false);
-
-    try {
-      const option = await callback();
-
-      setSelected(option);
-      page.content.unshift(option);
-
-      setIsOpen(true);
-    } catch {
-      setIsOpen(true);
-    }
-  }
 
   const modalPickerOpenerProps = {
     openModal,
@@ -219,86 +176,49 @@ export function ModalPickerSingle<T>(props: Props<T>) {
 
       {error}
 
-      {renderModal()}
+      {isOpen ? renderModal() : null}
     </FormGroup>
   );
 
-  function queryChanged(query: string) {
-    setQuery(query);
-    setUserHasSearched(true);
-    setPageNumber(1);
-  }
-
   function renderModal() {
-    const addButtonOptions = addButton
-      ? {
-          label: addButton.label,
-          onClick: () => addButtonClicked(addButton.onClick)
-        }
-      : undefined;
-
     return (
       <ModalPicker
-        query={query}
         placeholder={placeholder}
-        isOpen={isOpen}
-        page={page}
         canSearch={canSearch}
         canSearchSync={Array.isArray(options)}
-        queryChanged={queryChanged}
-        pageChanged={setPageNumber}
         closeModal={closeModal}
         modalSaved={modalSaved}
-        addButton={addButtonOptions}
-        loading={loading}
-        userHasSearched={userHasSearched}
-        selected={selected}
-        renderOptionsConfig={
+        addButton={addButton}
+        value={value}
+        renderOptionsConfig={{
+          isOptionEqual,
+          keyForOption,
+          isOptionEnabled,
           renderOptions
-            ? {
-                labelForOption,
-                isOptionEqual,
-                keyForOption,
-                isOptionEnabled,
-                renderOptions,
-                onChange: setSelected
-              }
-            : undefined
-        }
+        }}
         text={text}
+        pageSize={pageSize}
+        options={options}
+        labelForOption={labelForOption}
+        reloadOptions={reloadOptions}
       >
-        {renderModalContent()}
+        {(options) =>
+          options.map((option) => (
+            <FormGroup key={option.key} check disabled={!option.enabled}>
+              <Label check>
+                <Input
+                  type="radio"
+                  checked={option.isSelected}
+                  disabled={!option.enabled}
+                  onChange={option.toggle}
+                />
+                {option.label}
+              </Label>
+            </FormGroup>
+          ))
+        }
       </ModalPicker>
     );
-  }
-
-  function renderModalContent(): React.ReactNode {
-    return page.content.map((option: T) => {
-      const label = labelForOption(option);
-      const key = getKeyForOption({ option, keyForOption, labelForOption });
-
-      const isChecked = isOptionSelected({
-        option,
-        keyForOption,
-        labelForOption,
-        isOptionEqual,
-        value: selected
-      });
-
-      return (
-        <FormGroup key={key} check disabled={!isOptionEnabled(option)}>
-          <Label check>
-            <Input
-              type="radio"
-              checked={isChecked}
-              disabled={!isOptionEnabled(option)}
-              onChange={() => setSelected(option)}
-            />
-            {label}
-          </Label>
-        </FormGroup>
-      );
-    });
   }
 }
 

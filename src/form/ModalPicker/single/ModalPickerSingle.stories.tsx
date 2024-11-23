@@ -292,25 +292,27 @@ storiesOf('Form/ModalPicker/ModalPickerSingle', module)
           labelForOption={(user: User) => user.email}
           renderOptions={(options) => (
             <ListGroup>
-              {options.map(({ option, isSelected, toggle, enabled }) => (
-                <ListGroupItem
-                  key={option.email}
-                  onClick={toggle}
-                  className={classNames(
-                    'd-flex justify-content-between align-items-center',
-                    { clickable: enabled, 'bg-light': !enabled }
-                  )}
-                >
-                  <span>
-                    <Avatar
-                      src="https://www.placecage.com/100/100"
-                      alt={option.email}
-                    />
-                    {option.email}
-                  </span>
-                  {isSelected ? <Icon icon="check" color="primary" /> : null}
-                </ListGroupItem>
-              ))}
+              {options.map(
+                ({ option, key, label, isSelected, toggle, enabled }) => (
+                  <ListGroupItem
+                    key={key}
+                    onClick={toggle}
+                    className={classNames(
+                      'd-flex justify-content-between align-items-center',
+                      { clickable: enabled, 'bg-light': !enabled }
+                    )}
+                  >
+                    <span>
+                      <Avatar
+                        src="https://www.placecage.com/100/100"
+                        alt={option.email}
+                      />
+                      {label}
+                    </span>
+                    {isSelected ? <Icon icon="check" color="primary" /> : null}
+                  </ListGroupItem>
+                )
+              )}
             </ListGroup>
           )}
           value={value}

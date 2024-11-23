@@ -179,7 +179,7 @@ describe('Component: ValuePicker', () => {
 
     describe('ModalPickerSingle', () => {
       it('should render a `ModalPickerSingle` when async page `totalElements` is more than than 10', async () => {
-        expect.assertions(5);
+        expect.assertions(4);
 
         const promise = Promise.resolve(
           testUtils.pageWithContent([
@@ -203,16 +203,11 @@ describe('Component: ValuePicker', () => {
         expect(screen.queryByRole('button')).toBeInTheDocument();
         expect(asFragment()).toMatchSnapshot();
 
-        expect(fetchOptionsSpy).toHaveBeenCalledTimes(2);
+        expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
         expect(fetchOptionsSpy).toHaveBeenCalledWith({
           query: '',
           page: 1,
           size: 1
-        });
-        expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
-          query: '',
-          page: 1,
-          size: 10
         });
       });
 
@@ -324,7 +319,7 @@ describe('Component: ValuePicker', () => {
 
     describe('ModalPickerMultiple', () => {
       it('should render a `ModalPickerMultiple` when async page `totalElements` is more than 10', async () => {
-        expect.assertions(5);
+        expect.assertions(4);
 
         const promise = Promise.resolve(
           testUtils.pageWithContent([
@@ -348,16 +343,11 @@ describe('Component: ValuePicker', () => {
         expect(screen.queryByRole('button')).toBeInTheDocument();
         expect(asFragment()).toMatchSnapshot();
 
-        expect(fetchOptionsSpy).toHaveBeenCalledTimes(2);
+        expect(fetchOptionsSpy).toHaveBeenCalledTimes(1);
         expect(fetchOptionsSpy).toHaveBeenCalledWith({
           query: '',
           page: 1,
           size: 1
-        });
-        expect(fetchOptionsSpy).toHaveBeenLastCalledWith({
-          query: '',
-          page: 1,
-          size: 10
         });
       });
 

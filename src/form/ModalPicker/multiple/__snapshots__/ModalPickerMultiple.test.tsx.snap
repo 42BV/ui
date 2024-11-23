@@ -61,97 +61,81 @@ exports[`Component: ModalPickerMultiple ui default: modal 1`] = `
             class="modal-body"
           >
             <div
-              class="row"
+              class="mb-3 py-2 bg-dark bg-opacity-10 row"
             >
               <div
-                class="col"
+                class="bg-opacity-100 col"
               >
-                <div
-                  class="search-input"
+                <span
+                  class="text-muted"
                 >
-                  <div
-                    class="input-group"
-                  >
-                    <span
-                      class="input-group-text"
-                    >
-                      <i
-                        class="icon material-icons material-icons__filled"
-                      >
-                        search
-                      </i>
-                    </span>
-                    <input
-                      aria-label="Start typing to search"
-                      class="form-control"
-                      id="1"
-                      placeholder="Search..."
-                      type="search"
-                      value=""
-                    />
-                  </div>
-                </div>
+                  No option selected
+                </span>
               </div>
             </div>
             <div
-              class="mt-3 row"
+              class="search-input"
             >
               <div
-                class="col"
+                class="mb-3 input-group"
               >
-                <div
-                  class="mb-3 py-2 bg-dark bg-opacity-10 row"
+                <span
+                  class="input-group-text"
                 >
-                  <div
-                    class="bg-opacity-100 col"
+                  <i
+                    class="icon material-icons material-icons__filled"
                   >
-                    <span
-                      class="text-muted"
-                    >
-                      No option selected
-                    </span>
-                  </div>
-                </div>
-                <div
-                  class="form-check"
-                >
-                  <label
-                    class="form-check-label"
-                  >
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                    />
-                    admin@42.nl
-                  </label>
-                </div>
-                <div
-                  class="form-check"
-                >
-                  <label
-                    class="form-check-label"
-                  >
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                    />
-                    coordinator@42.nl
-                  </label>
-                </div>
-                <div
-                  class="form-check"
-                >
-                  <label
-                    class="form-check-label"
-                  >
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                    />
-                    user@42.nl
-                  </label>
-                </div>
+                    search
+                  </i>
+                </span>
+                <input
+                  aria-label="Start typing to search"
+                  class="form-control"
+                  id="1"
+                  placeholder="Search..."
+                  type="search"
+                  value=""
+                />
               </div>
+            </div>
+            <div
+              class="form-check"
+            >
+              <label
+                class="form-check-label"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                />
+                admin@42.nl
+              </label>
+            </div>
+            <div
+              class="form-check"
+            >
+              <label
+                class="form-check-label"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                />
+                coordinator@42.nl
+              </label>
+            </div>
+            <div
+              class="form-check"
+            >
+              <label
+                class="form-check-label"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                />
+                user@42.nl
+              </label>
             </div>
           </div>
           <div
@@ -223,111 +207,108 @@ exports[`Component: ModalPickerMultiple ui loading 1`] = `
             class="modal-body"
           >
             <div
-              class="row"
+              class="mb-3 py-2 bg-dark bg-opacity-10 row"
             >
               <div
-                class="col"
+                class="bg-opacity-100 col"
               >
-                <div
-                  class="search-input"
+                <span
+                  class="text-muted"
                 >
-                  <div
-                    class="input-group"
-                  >
-                    <span
-                      class="input-group-text"
-                    >
-                      <i
-                        class="icon material-icons material-icons__filled"
-                      >
-                        search
-                      </i>
-                    </span>
-                    <input
-                      aria-label="Start typing to search"
-                      class="form-control"
-                      id="9"
-                      placeholder="Search..."
-                      type="search"
-                      value=""
-                    />
-                  </div>
-                </div>
+                  No option selected
+                </span>
               </div>
             </div>
             <div
-              class="mt-3 row"
+              class="search-input"
             >
               <div
-                class="col"
+                class="mb-3 input-group"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  <i
+                    class="icon material-icons material-icons__filled"
+                  >
+                    search
+                  </i>
+                </span>
+                <input
+                  aria-label="Start typing to search"
+                  class="form-control"
+                  id="9"
+                  placeholder="Search..."
+                  type="search"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="text-center"
+            >
+              <div
+                class="content-state loading"
               >
                 <div
-                  class="text-center"
+                  class="state-icons"
                 >
-                  <div
-                    class="content-state loading"
+                  <i
+                    class="icon material-icons material-icons__filled"
                   >
-                    <div
-                      class="state-icons"
-                    >
-                      <i
-                        class="icon material-icons material-icons__filled"
-                      >
-                        add
-                      </i>
-                      <i
-                        class="icon material-icons material-icons__filled"
-                      >
-                        contrast
-                      </i>
-                      <i
-                        class="icon material-icons material-icons__filled"
-                      >
-                        photo
-                      </i>
-                      <i
-                        class="icon material-icons material-icons__filled"
-                      >
-                        folder_open
-                      </i>
-                      <i
-                        class="icon material-icons material-icons__filled"
-                      >
-                        radio_button_unchecked
-                      </i>
-                      <i
-                        class="icon material-icons material-icons__filled"
-                      >
-                        bolt
-                      </i>
-                    </div>
-                    <div
-                      class="state-content"
-                    >
-                      <svg
-                        class="spinner mb-2"
-                        height="75"
-                        viewBox="25 25 50 50"
-                        width="75"
-                      >
-                        <circle
-                          class="path"
-                          cx="50"
-                          cy="50"
-                          fill="none"
-                          r="20"
-                          stroke="#f0ad4e"
-                          stroke-miterlimit="10"
-                          stroke-width="4"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <span
-                    class="d-block fs-4"
-                  />
+                    add
+                  </i>
+                  <i
+                    class="icon material-icons material-icons__filled"
+                  >
+                    contrast
+                  </i>
+                  <i
+                    class="icon material-icons material-icons__filled"
+                  >
+                    photo
+                  </i>
+                  <i
+                    class="icon material-icons material-icons__filled"
+                  >
+                    folder_open
+                  </i>
+                  <i
+                    class="icon material-icons material-icons__filled"
+                  >
+                    radio_button_unchecked
+                  </i>
+                  <i
+                    class="icon material-icons material-icons__filled"
+                  >
+                    bolt
+                  </i>
+                </div>
+                <div
+                  class="state-content"
+                >
+                  <svg
+                    class="spinner mb-2"
+                    height="75"
+                    viewBox="25 25 50 50"
+                    width="75"
+                  >
+                    <circle
+                      class="path"
+                      cx="50"
+                      cy="50"
+                      fill="none"
+                      r="20"
+                      stroke="#f0ad4e"
+                      stroke-miterlimit="10"
+                      stroke-width="4"
+                    />
+                  </svg>
                 </div>
               </div>
+              <span
+                class="d-block fs-4"
+              />
             </div>
           </div>
           <div

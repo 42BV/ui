@@ -1,17 +1,15 @@
 import React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { emptyPage, Page, pageOf } from '@42.nl/spring-connect';
 import lodash from 'lodash';
 
 import { ModalPickerSingle } from './ModalPickerSingle';
 import { User } from '../../../test/types';
-import * as testUtils from '../../../test/utils';
 import {
   adminUser,
   listOfUsers,
-  pageOfUsersFetcher,
-  randomUser
+  pageOfUsersFetcher
 } from '../../../test/fixtures';
 import {
   ModalPickerAddButtonOptions,
@@ -384,62 +382,6 @@ describe('Component: ModalPickerSingle', () => {
       expect(screen.getAllByRole('radio')[1]).toBeChecked();
 
       expect(onChangeSpy).toHaveBeenCalledTimes(0);
-    });
-
-    describe('addButton', () => {
-      it('should add an item on the first position, when the promise resolves', async () => {
-        expect.assertions(9);
-
-        const { promise, resolve } = testUtils.resolvablePromise();
-        const addButtonCallbackSpy = jest.fn().mockReturnValueOnce(promise);
-
-        setup({
-          value: undefined,
-          showAddButton: true,
-          reUsePage: true,
-          addButtonCallbackSpy
-        });
-
-        fireEvent.click(screen.getByText('Select your best friend'));
-        fireEvent.click(screen.getByText('Add color'));
-
-        expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
-
-        const addedUser = randomUser();
-        await act(async () => {
-          resolve(addedUser);
-          await expect(promise).resolves.toEqual(addedUser);
-        });
-
-        expect(screen.queryByText(addedUser.email)).toBeInTheDocument();
-        expect(screen.queryAllByRole('radio').length).toBe(4);
-        expect(screen.getAllByRole('radio')[0]).toBeChecked();
-      });
-
-      it('should hide when the promise is rejected', async () => {
-        expect.assertions(7);
-
-        const { promise, reject } = testUtils.rejectablePromise();
-        const addButtonCallbackSpy = jest.fn().mockReturnValueOnce(promise);
-
-        setup({
-          value: undefined,
-          showAddButton: true,
-          addButtonCallbackSpy
-        });
-
-        fireEvent.click(screen.getByRole('button'));
-        fireEvent.click(screen.getByText('Add color'));
-
-        expect(addButtonCallbackSpy).toHaveBeenCalledTimes(1);
-
-        await act(async () => {
-          reject('error');
-          await expect(promise).rejects.toEqual('error');
-        });
-
-        expect(screen.queryAllByRole('radio').length).toBe(3);
-      });
     });
   });
 

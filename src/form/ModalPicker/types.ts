@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Key, ReactNode } from 'react';
 
 export type ModalPickerAddButtonCallback<T> = () => Promise<T>;
 
@@ -11,6 +11,8 @@ export type ModalPickerButtonAlignment = 'left' | 'right' | 'default';
 
 export type ModalPickerRenderOptionsOption<T> = {
   option: T;
+  key: Key;
+  label: ReactNode;
   isSelected: boolean;
   enabled: boolean;
   toggle: () => void;

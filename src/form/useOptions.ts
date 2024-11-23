@@ -6,8 +6,8 @@ import {
   isOptionSelected
 } from './option';
 
-type UseOptionConfig<T> = FieldCompatibleWithPredeterminedOptions<T> & {
-  value?: T | T[];
+type UseOptionConfig<T, Value> = FieldCompatibleWithPredeterminedOptions<T> & {
+  value?: Value;
   query: string;
   pageNumber: number;
   size: number;
@@ -19,7 +19,9 @@ type UseOptionResult<T> = {
   loading: boolean;
 };
 
-export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
+export function useOptions<T, Value = T | T[]>(
+  config: UseOptionConfig<T, Value>
+): UseOptionResult<T> {
   const {
     options: optionsOrFetcher,
     value,
@@ -106,7 +108,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
           keyForOption,
           labelForOption,
           isOptionEqual,
-          value
+          value: value as T
         })
       );
 
@@ -115,7 +117,7 @@ export function useOptions<T>(config: UseOptionConfig<T>): UseOptionResult<T> {
         return page;
       }
 
-      return { ...page, content: [value, ...page.content] };
+      return { ...page, content: [value as T, ...page.content] };
     }
   }
 
