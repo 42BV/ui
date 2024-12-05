@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import { NavLink as RRNavLink } from 'react-router';
 import { NavItem, NavLink } from 'reactstrap';
 import classNames from 'classnames';
 
