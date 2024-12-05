@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 
 import { NavigationItem } from './NavigationItem';
 import { Alert } from 'reactstrap';
@@ -10,8 +10,11 @@ storiesOf('core/NavigationItem', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p>To be able to use NavigationItem, you have to add react-router-dom to your dependencies:</p>
-        <code>npm install --save react-router-dom</code>
+        <p>
+          To be able to use NavigationItem, you have to add react-router to your
+          dependencies:
+        </p>
+        <code>npm install --save react-router</code>
       </Alert>
       <Story />
     </>
