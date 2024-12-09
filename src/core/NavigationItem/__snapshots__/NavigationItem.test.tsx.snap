@@ -7,7 +7,6 @@ exports[`Component: NavigationItem ui default 1`] = `
   >
     <a
       class="nav-link"
-      data-discover="true"
       href="[object Object]"
     >
       <i
