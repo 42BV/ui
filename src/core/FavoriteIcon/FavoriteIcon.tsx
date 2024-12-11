@@ -66,6 +66,7 @@ export function FavoriteIcon({
 }: FavoriteIconProps) {
   function onClick(e: React.MouseEvent<HTMLElement>) {
     e.preventDefault();
+    e.stopPropagation();
     onChange(!value);
   }
 
