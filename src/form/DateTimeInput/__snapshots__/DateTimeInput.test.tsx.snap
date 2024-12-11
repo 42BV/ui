@@ -40,6 +40,7 @@ exports[`Component: DateTimeInput ui visible label 1`] = `
           >
             <i
               class="icon material-icons material-icons__filled date-time-input__clear-icon clickable"
+              tabindex="0"
             >
               close
             </i>

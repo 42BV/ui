@@ -123,6 +123,15 @@ describe('Icon', () => {
 
       expect(onClickSpy).toHaveBeenCalledTimes(1);
     });
+    it('should call the "onClick" event when the icon has focus and the enter key is pressed', () => {
+      const onClickSpy = jest.fn();
+
+      render(<Icon icon="alarm" onClick={onClickSpy} />);
+
+      fireEvent.keyUp(screen.getByText('alarm'), { key: 'Enter' });
+
+      expect(onClickSpy).toHaveBeenCalledTimes(1);
+    });
 
     it('should call the "onClick" event when the icon is clicked and is explicitly enabled', () => {
       const onClickSpy = jest.fn();

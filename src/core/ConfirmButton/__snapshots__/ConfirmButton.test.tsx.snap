@@ -75,6 +75,7 @@ exports[`Component: ConfirmButton ui only icon 1`] = `
     <i
       class="icon material-icons material-icons__filled text-danger clickable"
       style="font-size: 24px;"
+      tabindex="0"
     >
       delete
     </i>
