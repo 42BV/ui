@@ -37,6 +37,7 @@ exports[`Component: SearchInput ui with value 1`] = `
   >
     <i
       class="icon material-icons material-icons__filled cancel-search clickable"
+      tabindex="0"
     >
       close
     </i>

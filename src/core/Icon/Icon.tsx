@@ -85,7 +85,7 @@ export function Icon({
   autoFocus,
   variant = 'filled'
 }: Props) {
-  const [hover, hoverEvents] = useHover();
+  const [ hover, hoverEvents ] = useHover();
 
   const colorCssClasses = {};
   if (hoverColor && hover && !disabled && onClick !== undefined) {
@@ -117,9 +117,16 @@ export function Icon({
           onClick(event);
         }
       }}
+      onKeyUp={(event) => {
+        if (event.key === 'Enter') {
+          const target = event.target as HTMLElement;
+          target.click();
+        }
+      }}
       className={classes}
       {...hoverEvents}
       autoFocus={autoFocus}
+      tabIndex={onClick ? 0 : undefined}
     >
       {icon}
     </i>

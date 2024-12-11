@@ -4,6 +4,7 @@ exports[`Component: FavoriteIcon ui favorite 1`] = `
 <div>
   <i
     class="icon material-icons material-icons__filled text-primary clickable"
+    tabindex="0"
   >
     star
   </i>
@@ -14,6 +15,7 @@ exports[`Component: FavoriteIcon ui not favorite 1`] = `
 <div>
   <i
     class="icon material-icons material-icons__filled text-secondary clickable"
+    tabindex="0"
   >
     star_border
   </i>

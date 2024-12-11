@@ -4,6 +4,7 @@ exports[`Component: EpicSort ui is ASC 1`] = `
 <div>
   <i
     class="icon material-icons material-icons__filled py-1 ps-2 clickable"
+    tabindex="0"
   >
     arrow_drop_up
   </i>

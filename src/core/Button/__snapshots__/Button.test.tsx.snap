@@ -362,6 +362,7 @@ exports[`Component: Button ui icon only disabled is disabled 1`] = `
     <i
       class="icon material-icons material-icons__filled text-primary icon--disabled"
       style="font-size: 24px;"
+      tabindex="0"
     >
       save
     </i>
@@ -377,6 +378,7 @@ exports[`Component: Button ui icon only disabled is enabled 1`] = `
     <i
       class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
+      tabindex="0"
     >
       save
     </i>
@@ -392,6 +394,7 @@ exports[`Component: Button ui icon only full-width full width and icon left 1`] 
     <i
       class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
+      tabindex="0"
     >
       save
     </i>
@@ -407,6 +410,7 @@ exports[`Component: Button ui icon only full-width full width and icon right 1`]
     <i
       class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
+      tabindex="0"
     >
       save
     </i>
@@ -422,6 +426,7 @@ exports[`Component: Button ui icon only inProgress inProgress is false 1`] = `
     <i
       class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
+      tabindex="0"
     >
       save
     </i>
@@ -463,6 +468,7 @@ exports[`Component: Button ui icon only that when no icon is provided it will fa
     <i
       class="icon material-icons material-icons__filled text-primary clickable"
       style="font-size: 24px;"
+      tabindex="0"
     >
       block
     </i>

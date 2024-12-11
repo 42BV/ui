@@ -35,6 +35,7 @@ exports[`Component: ImageUpload ui edit as circle 1`] = `
           <i
             class="icon material-icons material-icons__filled text-secondary clickable"
             style="font-size: 24px;"
+            tabindex="0"
           >
             rotate_left
           </i>
@@ -45,6 +46,7 @@ exports[`Component: ImageUpload ui edit as circle 1`] = `
           <i
             class="icon material-icons material-icons__filled text-secondary clickable"
             style="font-size: 24px;"
+            tabindex="0"
           >
             rotate_right
           </i>
@@ -129,6 +131,7 @@ exports[`Component: ImageUpload ui edit as rect 1`] = `
           <i
             class="icon material-icons material-icons__filled text-secondary clickable"
             style="font-size: 24px;"
+            tabindex="0"
           >
             rotate_left
           </i>
@@ -139,6 +142,7 @@ exports[`Component: ImageUpload ui edit as rect 1`] = `
           <i
             class="icon material-icons material-icons__filled text-secondary clickable"
             style="font-size: 24px;"
+            tabindex="0"
           >
             rotate_right
           </i>
