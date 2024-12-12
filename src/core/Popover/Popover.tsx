@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties } from 'react';
 import Tippy from '@tippyjs/react';
 import { TippyPlacement } from '../types';
 
@@ -16,14 +16,6 @@ type Props = {
    * Optionally whether the popover should open on click instead of hover.
    */
   openOnClick?: boolean;
-
-  /**
-   * Optional callback that gets triggered when the tag is clicked.
-   * When openOnClick is true, this component will take care of its visibility
-   * state, unless onClick is defined.
-   * This should be used when wanting to take complete control over the popover.
-   */
-  onClick?: () => void;
 
   /**
    * Optionally callback that gets triggered when clicked outside the popover.
@@ -97,30 +89,15 @@ export function Popover({
   className,
   isOpen,
   openOnClick,
-  onClick,
   onClickOutside,
   style,
   maxWidth
 }: Props) {
   const Tag = tag;
 
-  const [visible, setVisible] = useState(openOnClick ? !!isOpen : undefined);
-
-  useEffect(() => {
-    setVisible(openOnClick ? !!isOpen : undefined);
-  }, [openOnClick, isOpen]);
-
-  function tagClicked() {
-    if (onClick) {
-      onClick();
-    } else if (openOnClick) {
-      setVisible(!visible);
-    }
-  }
-
   return (
     <Tippy
-      visible={visible}
+      visible={isOpen}
       onClickOutside={onClickOutside}
       className="border-0 tippy-popover"
       content={children}
@@ -129,14 +106,9 @@ export function Popover({
       interactive={true}
       zIndex={1049} // One level below bootstrap's modal
       maxWidth={maxWidth}
+      trigger={openOnClick ? 'click' : 'mouseenter focus'}
     >
-      <Tag
-        className={className}
-        style={style}
-        tabIndex={0}
-        role="button"
-        onClick={tagClicked}
-      >
+      <Tag className={className} style={style} tabIndex={0} role="button">
         {target}
       </Tag>
     </Tippy>
