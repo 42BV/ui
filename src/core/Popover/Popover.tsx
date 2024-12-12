@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import Tippy from '@tippyjs/react';
+import Tippy, { TippyProps } from '@tippyjs/react';
 import { TippyPlacement } from '../types';
 
 type Props = {
@@ -18,10 +18,16 @@ type Props = {
   openOnClick?: boolean;
 
   /**
+   * Optional callback that gets triggered when the target is clicked.
+   * Is useful for when wanting to take complete control over the popover.
+   */
+  onClick?: () => void;
+
+  /**
    * Optionally callback that gets triggered when clicked outside the popover.
    * Is useful for when wanting to take complete control over the popover.
    */
-  onClickOutside?: () => void;
+  onClickOutside?: TippyProps['onClickOutside'];
 
   /**
    * Content shown inside the popover.
@@ -88,6 +94,7 @@ export function Popover({
   tag = 'span',
   className,
   isOpen,
+  onClick,
   openOnClick,
   onClickOutside,
   style,
@@ -108,7 +115,13 @@ export function Popover({
       maxWidth={maxWidth}
       trigger={openOnClick ? 'click' : 'mouseenter focus'}
     >
-      <Tag className={className} style={style} tabIndex={0} role="button">
+      <Tag
+        className={className}
+        style={style}
+        tabIndex={0}
+        role="button"
+        onClick={onClick}
+      >
         {target}
       </Tag>
     </Tippy>

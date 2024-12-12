@@ -80,45 +80,28 @@ storiesOf('core/Popover', module)
 
     return (
       <Card>
-        Status: {isOpen ? 'opened' : 'closed'}
         <Popover
           isOpen={isOpen}
           target="Open"
-          tag="div"
-          className="text-center"
+          tag="button"
+          className="btn btn-primary"
+          onClick={() => setIsOpen(!isOpen)}
+          onClickOutside={(_, event) => {
+            const target = event.target as HTMLElement;
+            if (target.textContent !== 'Show popover') {
+              setIsOpen(false);
+            }
+          }}
         >
           <TinyCrud />
         </Popover>
-        <Button onClick={() => setIsOpen(!isOpen)}>Show / hide</Button>
-        <p className="mt-4 mb-0">
-          Note: you can take complete control over the Popover by using the{' '}
-          <code>isOpen</code> prop. Once you make it <code>true</code> or{' '}
-          <code>false</code> the hover behavior will be disabled.
-        </p>
-      </Card>
-    );
-  })
-
-  .add('on click outside', () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-      <Card>
-        Status: {isOpen ? 'opened' : 'closed'}
-        <Popover
-          isOpen={isOpen}
-          onClickOutside={() => setIsOpen(false)}
-          target="Open"
-          tag="div"
-          className="text-center"
-        >
-          <NiceCard />
-        </Popover>
-        <Button onClick={() => setIsOpen(true)}>Show</Button>
+        <p className="mt-3">Status: {isOpen ? 'opened' : 'closed'}</p>
+        <Button onClick={() => setIsOpen(true)}>Show popover</Button>
         <p className="mt-4">
           Note: you can take complete control over the Popover by using the{' '}
-          <code>isOpen</code> prop. Once you make it <code>true</code> or{' '}
-          <code>false</code> the hover behavior will be disabled.
+          <code>isOpen</code> and <code>onClick</code> props. Once you change{' '}
+          <code>isOpen</code> to <code>true</code> or <code>false</code>, the
+          hover behavior will be disabled.
         </p>
         <p>
           In combination with <code>onClickOutside</code> you can close the
