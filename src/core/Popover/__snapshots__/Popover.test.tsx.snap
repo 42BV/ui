@@ -17,7 +17,7 @@ exports[`Component: Popover ui default 1`] = `
 exports[`Component: Popover ui open 1`] = `
 <div>
   <span
-    aria-expanded="true"
+    aria-expanded="false"
     role="button"
     tabindex="0"
   >
@@ -25,44 +25,13 @@ exports[`Component: Popover ui open 1`] = `
       The popover should be wrapped around this div, in a span
     </div>
   </span>
-  <div
-    data-tippy-root=""
-    id="tippy-2"
-    style="z-index: 1049; visibility: visible; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px; bottom: 0px; transform: translate(0px, -7px);"
-  >
-    <div
-      class="tippy-box border-0 tippy-popover"
-      data-animation="fade"
-      data-escaped=""
-      data-placement="top"
-      data-reference-hidden=""
-      data-state="hidden"
-      role="tooltip"
-      style="max-width: 350px; transition-duration: 0ms;"
-      tabindex="-1"
-    >
-      <div
-        class="tippy-content"
-        data-state="hidden"
-        style="transition-duration: 0ms;"
-      >
-        <div>
-          Popover content
-        </div>
-      </div>
-      <div
-        class="tippy-arrow"
-        style="position: absolute; left: 0px; transform: translate(3px, 0px);"
-      />
-    </div>
-  </div>
 </div>
 `;
 
 exports[`Component: Popover ui with optional properties 1`] = `
 <div>
   <span
-    aria-expanded="true"
+    aria-expanded="false"
     role="button"
     style="margin-top: 5px; padding: 10px;"
     tabindex="0"
@@ -71,36 +40,5 @@ exports[`Component: Popover ui with optional properties 1`] = `
       The popover should be wrapped around this div, in a div
     </div>
   </span>
-  <div
-    data-tippy-root=""
-    id="tippy-5"
-    style="z-index: 1049; visibility: visible; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px; transform: translate(0px, 10px);"
-  >
-    <div
-      class="tippy-box border-0 tippy-popover"
-      data-animation="fade"
-      data-escaped=""
-      data-placement="bottom"
-      data-reference-hidden=""
-      data-state="hidden"
-      role="tooltip"
-      style="max-width: 350px; transition-duration: 0ms;"
-      tabindex="-1"
-    >
-      <div
-        class="tippy-content"
-        data-state="hidden"
-        style="transition-duration: 0ms;"
-      >
-        <div>
-          Popover content
-        </div>
-      </div>
-      <div
-        class="tippy-arrow"
-        style="position: absolute; left: 0px; transform: translate(3px, 0px);"
-      />
-    </div>
-  </div>
 </div>
 `;
