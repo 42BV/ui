@@ -17,9 +17,14 @@ storiesOf('core/Popover', module)
   .addDecorator((Story) => (
     <>
       <Alert color="warning" className="mb-4">
-        <p className="mb-0">To be able to use Popover, you have to add @tippyjs/react to your dependencies:</p>
+        <p className="mb-0">
+          To be able to use Popover, you have to add @tippyjs/react to your
+          dependencies:
+        </p>
         <code>npm install --save @tippyjs/react</code>
-        <p className="mb-0 mt-2">You also have to add the stylesheet to your project</p>
+        <p className="mb-0 mt-2">
+          You also have to add the stylesheet to your project
+        </p>
         <code>@import &apos;tippy.js/dist/tippy.css&apos;;</code>
       </Alert>
       <Story />
@@ -41,7 +46,13 @@ storiesOf('core/Popover', module)
             <NiceCard />
           </Popover>
 
-          <Popover target={<><Icon icon="map" /> Hover this icon!</>}>
+          <Popover
+            target={
+              <>
+                <Icon icon="map" /> Hover this icon!
+              </>
+            }
+          >
             <TinyCrud />
           </Popover>
         </Col>
@@ -49,26 +60,47 @@ storiesOf('core/Popover', module)
     </div>
   ))
 
+  .add('open on click', () => {
+    return (
+      <Card>
+        <Popover
+          openOnClick={true}
+          target="Open"
+          tag="div"
+          className="text-center"
+        >
+          <TinyCrud />
+        </Popover>
+      </Card>
+    );
+  })
+
   .add('taking control', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
       <Card>
         Status: {isOpen ? 'opened' : 'closed'}
-        <Popover isOpen={isOpen} target="Open" tag="div" className="text-center">
+        <Popover
+          isOpen={isOpen}
+          target="Open"
+          tag="div"
+          className="text-center"
+        >
           <TinyCrud />
         </Popover>
         <Button onClick={() => setIsOpen(!isOpen)}>Show / hide</Button>
         <p className="mt-4 mb-0">
-          Note: you can take complete control over the Popover by using the <code>isOpen</code> prop.
-          Once you make it <code>true</code> or <code>false</code> the hover behavior will be disabled.
+          Note: you can take complete control over the Popover by using the{' '}
+          <code>isOpen</code> prop. Once you make it <code>true</code> or{' '}
+          <code>false</code> the hover behavior will be disabled.
         </p>
       </Card>
     );
   })
 
   .add('on click outside', () => {
-    const [ isOpen, setIsOpen ] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
       <Card>
@@ -84,12 +116,13 @@ storiesOf('core/Popover', module)
         </Popover>
         <Button onClick={() => setIsOpen(true)}>Show</Button>
         <p className="mt-4">
-          Note: you can take complete control over the Popover by using the <code>isOpen</code> prop.
-          Once you make it <code>true</code> or <code>false</code> the hover behavior will be disabled.
+          Note: you can take complete control over the Popover by using the{' '}
+          <code>isOpen</code> prop. Once you make it <code>true</code> or{' '}
+          <code>false</code> the hover behavior will be disabled.
         </p>
         <p>
-          In combination with <code>onClickOutside</code> you can
-          close the popover when clicked anywhere outside the popover.
+          In combination with <code>onClickOutside</code> you can close the
+          popover when clicked anywhere outside the popover.
         </p>
       </Card>
     );
@@ -133,15 +166,24 @@ storiesOf('core/Popover', module)
       <span className="d-block fs-5">Alignment-modifier</span>
       <Row className="mt-3">
         <Col className="d-flex justify-content-around">
-          <Popover target={<div className="py-5 px-3 border"> Hover me! </div>} placement="right-start">
+          <Popover
+            target={<div className="py-5 px-3 border"> Hover me! </div>}
+            placement="right-start"
+          >
             right-start
           </Popover>
 
-          <Popover target={<div className="py-5 px-3 border"> Hover me! </div>} placement="right">
+          <Popover
+            target={<div className="py-5 px-3 border"> Hover me! </div>}
+            placement="right"
+          >
             right
           </Popover>
 
-          <Popover target={<div className="py-5 px-3 border"> Hover me! </div>} placement="right-end">
+          <Popover
+            target={<div className="py-5 px-3 border"> Hover me! </div>}
+            placement="right-end"
+          >
             right-end
           </Popover>
         </Col>
@@ -212,7 +254,11 @@ storiesOf('core/Popover', module)
             You can change that with the tag property
           </Popover>
 
-          <Popover target="My target is in a <button>" tag="button" className="btn btn-primary">
+          <Popover
+            target="My target is in a <button>"
+            tag="button"
+            className="btn btn-primary"
+          >
             Buttons are allowed too!
           </Popover>
         </Col>
@@ -221,9 +267,9 @@ storiesOf('core/Popover', module)
   ));
 
 function TinyCrud() {
-  const [ open, setOpen ] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const persons = [ 'aap', 'noot', 'mies' ];
+  const persons = ['aap', 'noot', 'mies'];
 
   return (
     <ListGroup style={{ width: 300 }}>

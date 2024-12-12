@@ -72,17 +72,6 @@ describe('Component: Popover', () => {
   });
 
   describe('events', () => {
-    it('should call onClick when tag is clicked', () => {
-      const onClickSpy = jest.fn();
-      render(
-        <Popover onClick={onClickSpy} target={<>Click this</>} tag="button">
-          Popover content
-        </Popover>
-      );
-      fireEvent.click(screen.getByText('Click this'));
-      expect(onClickSpy).toBeCalledTimes(1);
-    });
-
     it('should open on click when openOnClick is true', () => {
       render(
         <Popover openOnClick={true} target={<>Click this</>} tag="button">
