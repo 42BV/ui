@@ -113,7 +113,13 @@ export function Popover({
       interactive={true}
       zIndex={1049} // One level below bootstrap's modal
       maxWidth={maxWidth}
-      trigger={openOnClick ? 'click' : 'mouseenter focus'}
+      trigger={
+        isOpen !== undefined
+          ? undefined
+          : openOnClick
+            ? 'click'
+            : 'mouseenter focus'
+      }
     >
       <Tag
         className={className}
