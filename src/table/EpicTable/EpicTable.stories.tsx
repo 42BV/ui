@@ -37,11 +37,13 @@ storiesOf('table/EpicTable', module)
     <>
       <Alert color="warning" className="mb-4">
         <p className="mb-0">
-          To be able to use EpicTable, you have to add lodash, overlayscrollbars
-          and overlayscrollbars-react to your dependencies:
+          To be able to use EpicTable, you have to add lodash,
+          overlayscrollbars, overlayscrollbars-react and react-is to your
+          dependencies:
         </p>
         <code>
           npm install --save lodash overlayscrollbars overlayscrollbars-react
+          react-is
         </code>
         <p className="mb-0 mt-2">
           You also have to add the stylesheet to your project
@@ -1315,7 +1317,7 @@ storiesOf('table/EpicTable', module)
         <EpicTable>
           {letters.map((letter) => (
             <Fragment key={letter}>
-              <EpicRow header>
+              <EpicRow header={true}>
                 <EpicHeader width={300} height={44}>
                   {letter}
                 </EpicHeader>
