@@ -19,7 +19,7 @@ https://github.com/nodeca/pica
 
 /*!
  * OverlayScrollbars
- * Version: 2.10.1
+ * Version: 2.11.0
  *
  * Copyright (c) Rene Haas | KingSora.
  * https://github.com/KingSora
