@@ -52,9 +52,6 @@ exports[`Component: TypeaheadMultiple ui async with a custom pageSize of 2 optio
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
-          data-popper-escaped="true"
-          data-popper-placement="bottom-start"
-          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
           style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
@@ -149,9 +146,6 @@ exports[`Component: TypeaheadMultiple ui async with the default pageSize of 10 o
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
-          data-popper-escaped="true"
-          data-popper-placement="bottom-start"
-          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
           style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
@@ -385,9 +379,6 @@ exports[`Component: TypeaheadMultiple ui with a custom pagination text 1`] = `
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
-          data-popper-escaped="true"
-          data-popper-placement="bottom-start"
-          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
           style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
@@ -496,9 +487,6 @@ exports[`Component: TypeaheadMultiple ui with the default pagination text 1`] = 
         <div
           aria-label="menu-options"
           class="rbt-menu dropdown-menu show"
-          data-popper-escaped="true"
-          data-popper-placement="bottom-start"
-          data-popper-reference-hidden="true"
           id="bestFriend-options"
           role="listbox"
           style="position: absolute; left: 0px; top: 0px; display: block; max-height: 300px; overflow: auto; transform: translate(0px, 0px); width: 0px;"
