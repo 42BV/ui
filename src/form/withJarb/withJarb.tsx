@@ -12,10 +12,11 @@ import { useMarkedAsRequiredLabel } from './useMarkedAsRequiredLabel/useMarkedAs
 import { FieldCompatible } from '../types';
 import { FieldValidator } from 'final-form';
 import { ErrorMode, FieldError } from '../FormError/FieldError';
+import { TippyPlacement } from '../../core/types';
 
 // This is a list of props that `withJarb` will pass to the `final-form`
 // Field, but not the wrapper.
-const passedFieldProps = [ 'initialValue', 'format', 'formatOnBlur', 'parse' ];
+const passedFieldProps = ['initialValue', 'format', 'formatOnBlur', 'parse'];
 
 // These are the props that are managed by `withJarb` and should not
 // be set manually by the user.
@@ -29,7 +30,10 @@ const managedProps = [
   'error'
 ];
 
-export type JarbFieldCompatible<Value, ChangeValue> = Omit<FieldCompatible<Value, ChangeValue>, 'label'> & {
+export type JarbFieldCompatible<Value, ChangeValue> = Omit<
+  FieldCompatible<Value, ChangeValue>,
+  'label'
+> & {
   /**
    * The label of the form element.
    * Defaults to the value from `jarb.label`.
@@ -41,10 +45,17 @@ export type JarbFieldCompatible<Value, ChangeValue> = Omit<FieldCompatible<Value
    * below the form element.
    */
   errorMode?: ErrorMode;
+
+  /**
+   * The placement of the the errors tooltip.
+   * Defaults to bottom.
+   */
+  tooltipPlacement?: TippyPlacement;
 };
 
 export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
-  Omit<P,
+  Omit<
+    P,
     | 'onFocus'
     | 'onBlur'
     | 'onChange'
@@ -52,7 +63,8 @@ export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
     | 'color'
     | 'valid'
     | 'error'
-    | 'label'>;
+    | 'label'
+  >;
 
 /**
  * withJarb is a Higher Order Component which takes an input element
@@ -70,9 +82,16 @@ export type WithJarbProps<Value, P> = JarbFieldProps<Value, any> &
  * @param Wrapper The Component which is `JarbFieldCompatible`.
  * @param defaultValidators Optional validators the field should use by default
  */
-export function withJarb<Value,
+export function withJarb<
+  Value,
   ChangeValue,
-  P extends JarbFieldCompatible<Value, ChangeValue>>(Wrapper: React.ComponentType<P>, defaultValidators?: (props: WithJarbProps<Value, P>) => FieldValidator<Value>[]) {
+  P extends JarbFieldCompatible<Value, ChangeValue>
+>(
+  Wrapper: React.ComponentType<P>,
+  defaultValidators?: (
+    props: WithJarbProps<Value, P>
+  ) => FieldValidator<Value>[]
+) {
   const displayName = `Jarb${getDisplayName(Wrapper)}`;
 
   WithJarb.displayName = displayName;
@@ -84,10 +103,11 @@ export function withJarb<Value,
       illegalPropsDetected('withJarb', displayName, illegalProps, managedProps);
     }
 
-    const [ hasErrors, setHasErrors ] = useHasErrors();
+    const [hasErrors, setHasErrors] = useHasErrors();
 
     const {
       errorMode = 'below',
+      tooltipPlacement = 'bottom',
       name,
       jarb,
       validators,
@@ -99,7 +119,7 @@ export function withJarb<Value,
 
     // A bit magical this one but this makes TypeScript accept all other
     // props as the Props to the wrapped component.
-    const wrapperProps = (omit(rest, passedFieldProps) as unknown) as P;
+    const wrapperProps = omit(rest, passedFieldProps) as unknown as P;
 
     wrapperProps.label = useMarkedAsRequiredLabel({
       label: wrapperProps.label ?? jarb.label,
@@ -134,7 +154,11 @@ export function withJarb<Value,
       <JarbField<Value, any>
         name={name}
         jarb={jarb}
-        validators={defaultValidators ? merge(defaultValidators(props), validators) : validators}
+        validators={
+          defaultValidators
+            ? merge(defaultValidators(props), validators)
+            : validators
+        }
         asyncValidators={asyncValidators}
         asyncValidatorsDebounce={asyncValidatorsDebounce}
         subscription={fieldSubscription}
@@ -144,7 +168,7 @@ export function withJarb<Value,
               content={error}
               tag="div"
               className="w-100"
-              placement="bottom"
+              placement={tooltipPlacement}
             >
               <Wrapper
                 {...wrapperProps}

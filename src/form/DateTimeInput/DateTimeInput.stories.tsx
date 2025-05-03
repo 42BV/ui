@@ -372,6 +372,8 @@ storiesOf('Form/DateTimeInput', module)
                           }
                         })
                       ]}
+                      errorMode="tooltip"
+                      tooltipPlacement="top"
                     />
 
                     <FieldDateTimeInput
