@@ -46,19 +46,22 @@ export function CardOpenClose(props: Props) {
       <CardHeader
         className="d-flex justify-content-between align-content-center clickable"
         onClick={toggle}
+        tabIndex={0}
+        role="button"
+        onKeyUp={(e) => {
+          if (e.key === 'Enter' || e.code === 'Space') {
+            toggle();
+          }
+        }}
       >
         {header}
 
         <OpenClose open={isOpen} />
       </CardHeader>
 
-      {!isOpen
-        ? null
-        : (
-          <Suspense fallback={<Loading />}>
-            {props.children()}
-          </Suspense>
-        )}
+      {!isOpen ? null : (
+        <Suspense fallback={<Loading />}>{props.children()}</Suspense>
+      )}
     </Card>
   );
 }
